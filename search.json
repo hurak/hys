@@ -1,0 +1,1560 @@
+[
+  {
+    "objectID": "hybrid_automata.html",
+    "href": "hybrid_automata.html",
+    "title": "Hybrid automata",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html",
+    "href": "temporal_logics.html",
+    "title": "Temporal logics",
+    "section": "",
+    "text": "It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that “if this and that conditions are satisfied, then yet another condition must not hold”, and so on.\nIt turns out, however, that the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. Temporal logics add some more expressiveness.\nIndeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html#temporal-operators",
+    "href": "temporal_logics.html#temporal-operators",
+    "title": "Temporal logics",
+    "section": "Temporal operators",
+    "text": "Temporal operators\nThe name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express when certain properties must (or must not) be satisfied along the state trajectories.\n\nExample 1 Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states \\{\\text{green}, \\text{yellow}, \\text{red}, \\text{red-yellow}\\} of the traffic light. We may want to impose a requirement such that \\text{green} is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, \\neg(\\text{green}_1 \\land \\text{green}_2). But now consider that we require that sooner or later, \\text{green} must be on for each light (to guarantee fairness). And that this must be true all the time, that is, \\text{green} must come infinitely often. And, furthermore, that \\text{red} cannot come imediately after its respective \\text{green}.\n\nRequirements like these cannot be expressed with standard logical operators such as \\lnot, \\land, \\lor, \\implies and \\iff, and temporal operators must be introduced. Here they are.\n\nTemporal operators\n\n\nSymbol\nAlternative symbol\nMeaning\n\n\n\n\n\\mathbf{F}\n\\Diamond\nEventually (Finally)\n\n\n\\mathbf{G}\n\\Box\nGlobally (Always)\n\n\n\\mathbf{X}\n\\bigcirc\nNeXt\n\n\n\\mathbf{U}\n\\sqcup\nUntill\n\n\n\nWe are explaining their use while we introduce our first temporal logic.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html#linear-temporal-logic-ltl",
+    "href": "temporal_logics.html#linear-temporal-logic-ltl",
+    "title": "Temporal logics",
+    "section": "Linear temporal logic (LTL)",
+    "text": "Linear temporal logic (LTL)\n“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is iniated at some state x.\nWe now consider some property \\phi(x) of a sequence of states emanating from the state x. \\phi(x) evaluates to true or false. And indeed, while the argument of \\phi is a particular state, when evaluating \\phi, the full sequence is taken into consideration when evaluating \\phi(x).\nIn order to be able to express requirements on future states, \\phi() cannot be just a logical formula, it must by a LTL formula. Here comes a formal definition \n\\begin{aligned}\n\\phi &= \\text{true} \\, | \\, p \\, | \\, \\neg \\phi_1 \\, | \\, \\phi_1 \\land \\phi_2 \\, | \\, \\phi_1 \\lor \\phi_2 \\\\\n&\\quad | \\, \\mathbf{X} \\phi_1 \\, | \\, \\mathbf{F} \\phi_1 \\, | \\, \\mathbf{G} \\phi_1 | \\, \\phi_1 \\mathbf{U} \\phi_2\n\\end{aligned}\n\nHaving an LTL formula, we write that a state sequence emanating from a given discrete state x satisfies the formula as x \\models \\phi if \\phi is true for all possible state trajectories starting at this state.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html#examples-of-ltl-formulas",
+    "href": "temporal_logics.html#examples-of-ltl-formulas",
+    "title": "Temporal logics",
+    "section": "Examples of LTL formulas",
+    "text": "Examples of LTL formulas\n\n\\mathbf{G}\\neg \\phi\n\n\n\\mathbf{G}\\mathbf{F} \\phi\n\n\n\\mathbf{F}\\mathbf{G} \\phi\n\n\n\\mathbf{F}(\\phi_1 \\land \\mathbf{X}\\mathbf{F}\\phi_2)",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
+    "href": "temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
+    "title": "Temporal logics",
+    "section": "CTL* (CTL mixed with LTL) supports branching",
+    "text": "CTL* (CTL mixed with LTL) supports branching\n\nExistential quantifiers needed\n\n\\mathbf{A}: For all\n\\mathbf{E}: There exists",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "temporal_logics.html#literature",
+    "href": "temporal_logics.html#literature",
+    "title": "Temporal logics",
+    "section": "Literature",
+    "text": "Literature\n\nLin, Hai, and Panos J. Antsaklis. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springher, 2022. Chapter 3.\nMitra, Sayan. Verifying Cyber-Physical Systems: A Path to Safe Autonomy. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2021. https://sayanmitracode.github.io/cpsbooksite/about.html.\nBaier, Christel, and Joost-Pieter Katoen. Principles of Model Checking. Cambridge, MA, USA: MIT Press, 2008.\nClarke, Edmund M., Jr, Orna Grumberg, Daniel Kroening, Doron Peled, and Helmut Veith. Model Checking. 2nd ed. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2018.\nMurray, Richard M, Ufuk Topcu, and Nok Wongpiromsarn. ‘Lecture 3 Linear Temporal Logic (LTL)’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf.\nWongpiromsarn, Nok, Richard M. Murray, and Ufuk Topcu. ‘Lecture 4 Model Checking and Logic Synthesis’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "why_mld.html",
+    "href": "why_mld.html",
+    "title": "Why another framework?",
+    "section": "",
+    "text": "We are going to introduce yet another framework for modeling hybrid systems – mixed logical dynamical (MLD) description. A question must inevitably pop up: “why yet another framework?”\nThe answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it.\nIn particular, with the state variable and control input vectors composed of continuous and discrete variables \n\\bm x = \\begin{bmatrix}\\bm x_c\\\\\\bm x_d\\end{bmatrix}, \\quad \\bm u = \\begin{bmatrix}\\bm u_c\\\\\\bm u_d\\end{bmatrix},\n where \\bm x_c\\in\\mathbb R^{n_c},\\;\\bm x_d\\in\\mathbb N^{n_d},\\; \\bm u_c\\in\\mathbb R^{m_c} and \\bm u_d\\in\\mathbb N^{m_d}, we would like to formulate the model in the form of state equations, say \n\\begin{aligned}\n\\begin{bmatrix}\\bm x_c(k+1) \\\\ \\bm x_d(k+1)\\end{bmatrix}\n&=\n\\begin{bmatrix} \\mathbf f_c(\\bm x(k), \\bm u(k)) \\\\ \\mathbf f_d(\\bm x(k), \\bm u(k)) \\end{bmatrix}\n\\end{aligned}\n\nIs it possible?\nUnfortunately no. At least not exactly in this form. But something close to it is achievable instead.\nBut first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.\n\n\n\n Back to top",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Why another framework?"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html",
+    "href": "discrete_event_systems.html",
+    "title": "Discrete-event systems",
+    "section": "",
+    "text": "Instantaneous occurence, that is, an event takes no time.\nAssociated with a change of state (transition to another).\n\nBetween events the systems stays fixed, it doesn’t evolve.\n\nIn addition, the state space is discrete (even if infinite).\n\n\nDo we need to define the state here?",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#discrete-event",
+    "href": "discrete_event_systems.html#discrete-event",
+    "title": "Discrete-event systems",
+    "section": "",
+    "text": "Instantaneous occurence, that is, an event takes no time.\nAssociated with a change of state (transition to another).\n\nBetween events the systems stays fixed, it doesn’t evolve.\n\nIn addition, the state space is discrete (even if infinite).\n\n\nDo we need to define the state here?",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#example-of-a-des-trajectory",
+    "href": "discrete_event_systems.html#example-of-a-des-trajectory",
+    "title": "Discrete-event systems",
+    "section": "Example of a DES trajectory",
+    "text": "Example of a DES trajectory\n\n\n\nThe state space not necessarily equidistantly discretized.\nFor some events no transitions occur (\\(e_3\\) at \\(t_3\\)).\nBeware the annoying notational conflict when interpreting the lower index: either related to time or to a particular element of a set. In other words: name of the variable vs. value of the variable.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#contrast-with-continuous-time-dynamical-systems",
+    "href": "discrete_event_systems.html#contrast-with-continuous-time-dynamical-systems",
+    "title": "Discrete-event systems",
+    "section": "Contrast with continuous-time dynamical systems",
+    "text": "Contrast with continuous-time dynamical systems\nin which everything takes time, however short.\n\nThe set of space is \\(\\mathbb{R}\\) (or a subset).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#discrete-time-or-discretized-systems",
+    "href": "discrete_event_systems.html#discrete-time-or-discretized-systems",
+    "title": "Discrete-event systems",
+    "section": "Discrete-time (or discretized) systems",
+    "text": "Discrete-time (or discretized) systems\nsuch as \\(x[k+1] = A x[k]\\) also not event-driven but time-driven, hence the moments of transitions are predictable.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#events-occur",
+    "href": "discrete_event_systems.html#events-occur",
+    "title": "Discrete-event systems",
+    "section": "Events occur",
+    "text": "Events occur\n\nwhen action is taken (button press, clutch released, …),\nspontaneously, when the reason is difficult to trace down (computer failure, …),\nwhen some condition is met (water level is reached, …).\n\n\nThe third case needs an introduction of a concept of a hybrid systems, wait for it.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#sequence-of-time-stamped-events",
+    "href": "discrete_event_systems.html#sequence-of-time-stamped-events",
+    "title": "Discrete-event systems",
+    "section": "Sequence of “time-stamped” events",
+    "text": "Sequence of “time-stamped” events\nAka timed trace \\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \\ldots\\]\n\nIt is enough to characterize an execution of a deterministic automaton (a unique initial state and a unique transitions at a given state and an event).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#possibly-stochastic-but-what-exactly",
+    "href": "discrete_event_systems.html#possibly-stochastic-but-what-exactly",
+    "title": "Discrete-event systems",
+    "section": "Possibly stochastic, but what exactly?",
+    "text": "Possibly stochastic, but what exactly?\n\nStochasticity can be introduced in the event times (e.g. Poisson process),\nbut also in the transitions (e.g. probabilistic automata, more on this later).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "href": "discrete_event_systems.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "title": "Discrete-event systems",
+    "section": "Sometimes time stamps not needed – the ordering of events is enough",
+    "text": "Sometimes time stamps not needed – the ordering of events is enough\nTrace \\[e_1,e_2,e_3, \\ldots\\]\n\nExample\ncredit_card_swiped, pin_entered, amount_entered, money_withdrawn\n\n\nOnly the order of the events is important.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#discrete-event-systems-studied-through-their-languages",
+    "href": "discrete_event_systems.html#discrete-event-systems-studied-through-their-languages",
+    "title": "Discrete-event systems",
+    "section": "Discrete-event systems studied through their languages",
+    "text": "Discrete-event systems studied through their languages\nInspired by formal language theory.\n\nAlphabet\n\na set of symbols (events).\n\nWord (or string)\n\na sequence of symbols from a finite alphabet (a particular execution or run of an automaton).\n\nLanguage\n\na set of words from the given alphabet (a set of all possible executions of an automaton).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "discrete_event_systems.html#modelling-frameworks-for-des",
+    "href": "discrete_event_systems.html#modelling-frameworks-for-des",
+    "title": "Discrete-event systems",
+    "section": "Modelling frameworks for DES",
+    "text": "Modelling frameworks for DES\n(in our course:)\n\n(State) automaton (pl. automata)\nPetri net\n\n(max,plus) algebra, MPL systems",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "reset_systems.html",
+    "href": "reset_systems.html",
+    "title": "Reset systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Reset systems"
+    ]
+  },
+  {
+    "objectID": "explicit_mpc_for_mld_systems.html",
+    "href": "explicit_mpc_for_mld_systems.html",
+    "title": "Explicit MPC for hybrid systems",
+    "section": "",
+    "text": "Model predictive control (MPC) is not computationally cheap (compared to, say, PID or LQG control) as it requires solving optimization problem – typically a quadratic program (QP) - online. The optimization solver needs to be a part of the controller.\nThere is an alternative, though, at least in same cases. It is called explicit MPC. The computationally heavy optimization is only perfomed only during the design process and the MPC controller is then implemented just as an affine state feedback\n\\bm u_k(\\bm x(k)) = \\mathbf F_k^i \\bm x(k) + \\mathbf g_k^i,\\; \\text{if}\\; \\bm x(k) \\in \\mathcal R_k^i,\nwith the coefficients picked from some kind of a lookup table in real time Although retreiving the coefficients of the feedback controller is not computationally trivial, still it is cheaper than full optimization.",
+    "crumbs": [
+      "11. Model predictive control (MPC) for MLD systems",
+      "Explicit MPC for hybrid systems"
+    ]
+  },
+  {
+    "objectID": "explicit_mpc_for_mld_systems.html#multiparametric-programming",
+    "href": "explicit_mpc_for_mld_systems.html#multiparametric-programming",
+    "title": "Explicit MPC for hybrid systems",
+    "section": "Multiparametric programming",
+    "text": "Multiparametric programming\nThe key technique for explicit MPC is multi-parametric programming. In order to explain it, consider the following problem\n\nJ^\\ast(x) = \\inf_z J(z;x).\n\nThe z variable is an optimization variable, while x is a parameter. For a given parameter x, the cost function J is minimized. We study how the optimal cost J^\\ast depends on the parameter, hence the name parametric programming. If x is a vector, the name of the problem changes to multiparametric programming.\n\nExample: scalar variable, single parameter\nConsider the following cost function J(z;x) in z parameterized by x. The optimization variable z is constrained and this constraint is also parameterized by x. \n\\begin{aligned}\nJ(z;x) &= \\frac{1}{2} z^2 + 2zx + 2x^2 \\\\\n\\text{subject to} &\\quad  z \\leq 1 + x.\n\\end{aligned}\n\nIn this simple case we can aim at analytical solution. We proceed in the standard way – we introduce a Lagrange multiplicator \\lambda and form the augmented cost function \nL(z,\\lambda; x) = \\frac{1}{2} z^2 + 2zx + 2x^2 + \\lambda (z-1-x).\n\nThe necessary conditions of optimality for the inequality-constrained problem come in the form of KKT conditions \n\\begin{aligned}\nz + 2x + \\lambda &= 0,\\\\\nz - 1 - x &\\leq  0,\\\\\n\\lambda & \\geq 0,\\\\\n\\lambda (z - 1 - x) &= 0.\n\\end{aligned}\n\nThe last condition – the complementarity condition – gives rise to two scenarios: one corresponding to \\lambda = 0, and the other corresponding to z - 1 - x = 0. We consider them separately below.\nAfter substituting \\lambda = 0 into the KKT conditions, we get \n\\begin{aligned}\nz + 2x &= 0,\\\\\nz - 1 - x & \\leq  0.\n\\end{aligned}\n\nFrom the first equation we get how z depends on x, and from the second we obtain a bound on x. Finally, we can also substitute the expression for z into the cost function J to get the optimal cost J^\\ast as a function of x. All these are summarized here \n\\begin{aligned}\nz &= -2x,\\\\\nx & \\geq -\\frac{1}{3},\\\\\nJ^\\ast(x) &= 0.\n\\end{aligned}\n\nNow, the other scenario. Upon substitutin z - 1 - x = 0 into the KKT conditions we get\n\n\\begin{aligned}\nz + 2x + \\lambda &= 0,\\\\\nz - 1 - x &=  0,\\\\\n\\lambda & \\geq 0.\n\\end{aligned}\n\nFrom the second equation we get the expression for z in terms of x, substituting into the first equation and invoking the condition on nonnegativity of \\lambda we get the bound on x (not suprisingly it complements the one obtained in the previous scenario). Finally, substituting for z in the cost function J we get a formula for the cost J^\\ast as a function of x.\n\n\\begin{aligned}\nz &= 1 + x,\\\\\n\\lambda &= -z - 2x \\geq 0 \\quad \\implies \\quad x \\leq -\\frac{1}{3},\\\\\nJ^\\ast(x) &= \\frac{9}{2}x^2 + 3x + \\frac{1}{2}.\n\\end{aligned}\n\nThe two scenarios can now be combined into a single piecewise affine function z(x) \nz(x) = \\begin{cases}\n1+x & \\text{if } x \\leq -\\frac{1}{3},\\\\\n-2x & \\text{if } x &gt; -\\frac{1}{3}.\n\\end{cases}\n\n\nx = range(-1, 1, length=100)\nz(x) = x &lt;= -1/3 ? 1 + x : -2x\nJstar(x) = x &lt;= -1/3 ? 9/2*x^2 + 3x + 1/2 : 0\n\nusing Plots\nplot(x, z.(x), label=\"z(x)\")\nvline!([-1/3],line=:dash)\nxlabel!(\"x\")\nylabel!(\"z(x)\")\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nand a piecewise quadratic cost function J^\\ast(x) \nJ^\\ast(x) = \\begin{cases}\n\\frac{9}{2}x^2 + 3x + \\frac{1}{2} & \\text{if } x \\leq -\\frac{1}{3},\\\\\n0 & \\text{if } x &gt; -\\frac{1}{3}.\n\\end{cases}\n\n\nplot(x, Jstar.(x), label=\"J*(x)\")\nvline!([-1/3],line=:dash)\nxlabel!(\"x\")\nylabel!(\"J*(x)\")",
+    "crumbs": [
+      "11. Model predictive control (MPC) for MLD systems",
+      "Explicit MPC for hybrid systems"
+    ]
+  },
+  {
+    "objectID": "references_automata.html",
+    "href": "references_automata.html",
+    "title": "B(E)3M35HYS – Hybrid systems",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "references_automata.html"
+    ]
+  },
+  {
+    "objectID": "switched_systems.html",
+    "href": "switched_systems.html",
+    "title": "Switched systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Switched systems"
+    ]
+  },
+  {
+    "objectID": "references_petri_nets.html",
+    "href": "references_petri_nets.html",
+    "title": "B(E)3M35HYS – Hybrid systems",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "references_petri_nets.html"
+    ]
+  },
+  {
+    "objectID": "complementarity_systems.html",
+    "href": "complementarity_systems.html",
+    "title": "Complementarity systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Complementarity systems"
+    ]
+  },
+  {
+    "objectID": "references_intro.html",
+    "href": "references_intro.html",
+    "title": "References",
+    "section": "",
+    "text": "The discipline of hybrid system is huge and spans several areas of science and engineering. As a result, finding a single comprehensive reference is difficult if not impossible. The more so that our selection of topics is inevitably biased. Therefore, we will always provide a list of references when studying particular topics. Admittedly, our selections of both topics and references will mostly be biased towards control engineering.",
+    "crumbs": [
+      "0. Introduction",
+      "References"
+    ]
+  },
+  {
+    "objectID": "references_intro.html#overview-texts-freely-available-online",
+    "href": "references_intro.html#overview-texts-freely-available-online",
+    "title": "References",
+    "section": "Overview texts freely available online",
+    "text": "Overview texts freely available online\nAmong the texts that provide motivation for studying hybrid systems as well as some introduction into theoretical and computational frameworks, we recommend Heemels et al. (2009), which is also available on the author’s webpage. Yet another overview, which is also available online, is Johansson (2004). And yet another is De Schutter et al. (2009), which is available on the author’s web page. The quartet of recommended online resources is concluded by Lygeros (2004).",
+    "crumbs": [
+      "0. Introduction",
+      "References"
+    ]
+  },
+  {
+    "objectID": "references_intro.html#text-available-in-print",
+    "href": "references_intro.html#text-available-in-print",
+    "title": "References",
+    "section": "Text available in print",
+    "text": "Text available in print\nAmong the printed books, for which we are not aware of legally available online version, the slim book van der Schaft and Schumacher (2000) can be regarded as the classic. The handbook Lunze and Lamnabhi-Lagarrigue (2009) contains a wealth of contributions from several authors (in fact two of the online resources linked above are chapters from this book). The latest textbook on the topic of hybrid systems is Lin and Antsaklis (2022).\nSanfelice (2021)\nGoebel, Sanfelice, and Teel (2012)\nGoebel, Sanfelice, and Teel (2009)\nBorrelli, Bemporad, and Morari (2017)",
+    "crumbs": [
+      "0. Introduction",
+      "References"
+    ]
+  },
+  {
+    "objectID": "references_max_plus.html",
+    "href": "references_max_plus.html",
+    "title": "References",
+    "section": "",
+    "text": "Baccelli et al. (2001)\n\n\n\n\n Back to topReferences\n\nBaccelli, François, Guy Cohen, Geert Jan Olsder, and Jean-Pierre Quadrat. 2001. Synchronization and Linearity: An Algebra for Discrete Event Systems. Web edition. Chichester: Wiley. https://www.rocq.inria.fr/metalau/cohen/documents/BCOQ-book.pdf.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "References"
+    ]
+  },
+  {
+    "objectID": "what_is_verification.html",
+    "href": "what_is_verification.html",
+    "title": "What is verification?",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "12. Formal verification",
+      "What is verification?"
+    ]
+  },
+  {
+    "objectID": "solution_concepts.html",
+    "href": "solution_concepts.html",
+    "title": "Solution concepts",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "7. Solution",
+      "Solution concepts"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html",
+    "href": "hybrid_equations.html",
+    "title": "Hybrid equations",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "stability_via_common_lyapunov_function.html",
+    "href": "stability_via_common_lyapunov_function.html",
+    "title": "Common Lyapunov function",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "8. Stability",
+      "Common Lyapunov function"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html",
+    "href": "petri_nets.html",
+    "title": "Petri nets",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "automata.html",
+    "href": "automata.html",
+    "title": "(State) automata",
+    "section": "",
+    "text": "Having just discussed the concept of a discrete-event system, we now the most popular modeling framework for such systems: a state automaton, or just an automaton (plural automata). It is also known as a state machine or a (discrete) transition system.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#definition-of-an-automaton-can-include-marked-states",
+    "href": "automata.html#definition-of-an-automaton-can-include-marked-states",
+    "title": "(State) automata",
+    "section": "Definition of an automaton can include marked states",
+    "text": "Definition of an automaton can include marked states\n\\[\\boxed{\nG = \\{\\mathcal X,\\mathcal X_0,\\mathcal E,\\mathcal F, \\mathcal X_\\mathrm{m}\\},}\n\\] \\(\\mathcal X_\\mathrm{m} \\subseteq \\mathcal X\\) is the set of marked or accepting states.\n\n\nI do not particularly like this idea of mixing the model of the system with the requirements, but this is how it is.\nNote that within this definition we have three sets (subsets) of states: \\(\\mathcal X\\), \\(\\mathcal X_0\\) and \\(\\mathcal X_\\mathrm{m}\\).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#comment-on-an-alternative-notation",
+    "href": "automata.html#comment-on-an-alternative-notation",
+    "title": "(State) automata",
+    "section": "Comment on an alternative notation",
+    "text": "Comment on an alternative notation\n\nNote that later (when introducing hybrid automata), we will replace the letter \\(\\mathcal X\\) with \\(\\mathcal Q\\) in favour of continuous-valued dynamical (sub)systems described by differential equations \\(\\dot x = f(x,u)\\).\nSimilarly for other letters.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#automaton-as-digraph-also-state-transition-diagram",
+    "href": "automata.html#automaton-as-digraph-also-state-transition-diagram",
+    "title": "(State) automata",
+    "section": "Automaton as (di)graph (also state transition diagram)",
+    "text": "Automaton as (di)graph (also state transition diagram)\n\nStates as nodes.\nTransitions as edges.\nEvents (actions) as labels for the edges\n\n(not necessarily unique).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example",
+    "href": "automata.html#example",
+    "title": "(State) automata",
+    "section": "Example",
+    "text": "Example\n\n\\(\\mathcal X = \\{x_1,x_2,x_3\\},\\quad \\mathcal X_0 = \\{x_1\\}\\)\n\\(\\mathcal E = \\{e_1,e_2,e_3\\}\\)\n\\(\\begin{aligned}\\mathcal F = \\{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\\}\\end{aligned}\\)\n\n. . .\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nx₁\n\nx₁\n\n\n\ninit-&gt;x₁\n\n\n\n\n\nx₂\n\nx₂\n\n\n\nx₁-&gt;x₂\n\n\ne₁\n\n\n\nx₃\n\nx₃\n\n\n\nx₁-&gt;x₃\n\n\ne₂\n\n\n\nx₂-&gt;x₁\n\n\ne₂\n\n\n\nx₂-&gt;x₃\n\n\ne₃",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#active-event-function-and-set",
+    "href": "automata.html#active-event-function-and-set",
+    "title": "(State) automata",
+    "section": "Active event function and set",
+    "text": "Active event function and set\n\nActive event function \\(\\Gamma: \\mathcal X \\rightarrow 2^\\mathcal{E}\\) assigns to each state a set of active events.\nActive event set \\(\\Gamma(x)\\) is the set of active events in particular state \\(x\\).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#finite-state-automaton-fsa",
+    "href": "automata.html#finite-state-automaton-fsa",
+    "title": "(State) automata",
+    "section": "Finite state automaton (FSA)",
+    "text": "Finite state automaton (FSA)\n\nFinite set \\(\\mathcal X\\) of states.\nAlso: Finite state machine (FSM).\n\n\nRather superfluous definition.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#execution-of-an-automaton",
+    "href": "automata.html#execution-of-an-automaton",
+    "title": "(State) automata",
+    "section": "Execution of an automaton",
+    "text": "Execution of an automaton\n\n\\(x_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\\)\nSometimes also written as \\(x_1,e_1,x_2,e_2,\\ldots\\)\n\n\n\n\n\n\n\n\nNotational confusion\n\n\n\n\\(x_k\\) for some \\(k\\) is the name of a particular state. It is not the name of a (yet to be introduced) state variable; In fact, it can be viewed of its value (also valuation).\n\n\n\nSome authors strictly distinguish between the state variable and the state (variable valuation),\n\nsimilarly as in probability theory random variable \\(X\\) vs its value \\(x\\), as in \\(F(x) = P(X\\leq x)\\);\n\nsome do not, but then it may lead to confusion;\nyet some others avoid the problem by not introducing state variables and only working with enumerated states.\n\n\n\n\n\n\n\n\nNotational confusion 2\n\n\n\nEven worse, it is also tempting to interpret the lower index k as (discrete) time, but nope, in the previous k is not the time index.\nAgain, some authors do not distinguish…",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#path-of-an-automaton",
+    "href": "automata.html#path-of-an-automaton",
+    "title": "(State) automata",
+    "section": "Path of an automaton",
+    "text": "Path of an automaton\nCorresponding to the execution\n\\[x_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\\]\nthe path is just the sequence of visited states:\n\\[x_1,x_2,x_1,x_2,x_3,\\ldots\\]\n\nIn continuous-valued dynamical systems, we have a state trajectory, but then time stamps are attached to each visited state.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-beverage-vending-machine",
+    "href": "automata.html#example-beverage-vending-machine",
+    "title": "(State) automata",
+    "section": "Example: Beverage vending machine",
+    "text": "Example: Beverage vending machine\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\n\n\n\nState sequence (path): waiting, swiped, paid, coke_dispensed, waiting\nEvents sequence: swipe card, accept payment, choose coke, take coke\n\n\n\nIndeed, the two states coke_dispensed and fanta_dispensed can be merged into just beverage_dispensed.\nHow about other paths? Longer? Shorter?",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-beverage-vending-machine-1",
+    "href": "automata.html#example-beverage-vending-machine-1",
+    "title": "(State) automata",
+    "section": "Example: Beverage vending machine",
+    "text": "Example: Beverage vending machine\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\n\n\nThe waiting state can be marked (is accepting).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-longitudinal-control-of-a-ground-vehicle",
+    "href": "automata.html#example-longitudinal-control-of-a-ground-vehicle",
+    "title": "(State) automata",
+    "section": "Example: Longitudinal control of a ground vehicle",
+    "text": "Example: Longitudinal control of a ground vehicle\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nstill\n\nstill\n\n\n\ninit-&gt;still\n\n\n\n\n\naccelerating\n\naccelerating\n\n\n\nstill-&gt;accelerating\n\n\npush acc\n\n\n\ncruising\n\ncruising\n\n\n\naccelerating-&gt;cruising\n\n\ncruise ON\n\n\n\ncoasting\n\ncoasting\n\n\n\naccelerating-&gt;coasting\n\n\nrel acc\n\n\n\ncruising-&gt;accelerating\n\n\npush acc\n\n\n\ncruising-&gt;coasting\n\n\nrel acc\n\n\n\nbraking\n\nbraking\n\n\n\ncruising-&gt;braking\n\n\npush brake\n\n\n\ncoasting-&gt;braking\n\n\npush brake\n\n\n\nbraking-&gt;still\n\n\nzero vel\n\n\n\nbraking-&gt;cruising\n\n\ncruise ON\n\n\n\nbraking-&gt;coasting\n\n\nrel brake\n\n\n\n\n\n\n\n\n\n\nBy cruise on I mean switching on some kind of a cruise control system, which keeps the velocity constant.\nIt turns out the optimal control strategy for trains (under some circumstances).\nNote that some of the events are indeed actions started by the driver, but some are just coming from the physics of the vehicle (transition from braking to zero velocity).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-corridor-switch",
+    "href": "automata.html#example-corridor-switch",
+    "title": "(State) automata",
+    "section": "Example: Corridor switch",
+    "text": "Example: Corridor switch\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\nswitch₁,switch₂\n\n\n\nON-&gt;OFF\n\n\nswitch₁,switch₂\n\n\n\n\n\n\n\n\n\nTwo events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-double-intensity-switching",
+    "href": "automata.html#example-double-intensity-switching",
+    "title": "(State) automata",
+    "section": "Example: Double intensity switching",
+    "text": "Example: Double intensity switching\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npush\n\n\n\nON-&gt;OFF\n\n\npush\n\n\n\nON2\n\nON2\n\n\n\nON-&gt;ON2\n\n\npush\n\n\n\nON2-&gt;OFF\n\n\npush\n\n\n\n\n\n\n\n\n\nObviously we need to introduce time into the automaton…",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#state-as-the-value-of-a-state-variable",
+    "href": "automata.html#state-as-the-value-of-a-state-variable",
+    "title": "(State) automata",
+    "section": "State as the value of a state variable",
+    "text": "State as the value of a state variable\n\nDefinition of the state space by enumeration doesn’t scale well.\nState can be characterized as the value (sometimes also valuation) of a state variable.\nState variable \\(x\\) is given by\n\nthe name,\nthe “type” (boolean, integer, vector, …).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#examples-of-state-variables",
+    "href": "automata.html#examples-of-state-variables",
+    "title": "(State) automata",
+    "section": "Examples of state variables",
+    "text": "Examples of state variables\n\nCorridor switch: \\(x \\in \\{\\mathrm{false},\\mathrm{true}\\}\\) (also \\(\\{0,1\\}\\)).\nDouble intensity switching:\n\n\\(x \\in \\{0,1,2\\} \\subset \\mathbb Z\\),\nor \\(\\bm x = \\begin{bmatrix}x_1\\\\ x_2 \\end{bmatrix}\\), where \\(x_1,x_2 \\in \\{0,1\\}\\).\n\n\n\n\nValuation is the value of a variable in a particular state.\nIt is not necessarily only numeric.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#state-transition-equation",
+    "href": "automata.html#state-transition-equation",
+    "title": "(State) automata",
+    "section": "State (transition) equation",
+    "text": "State (transition) equation\n\\[\\boxed{x^+ = f(x,e)}\\]\n\nUpon introduction of discrete-time (index) \\(k\\) \\[x_{k+1} = f(x_k,e_k)\\]\nor \\[x[k+1] = f(x[k],e[k]).\\]\n\n\n\nThe function f can be defined by a computer code rather than a clean mathematical formula.\nThe discrete-time index of the event is sometimes considered shifted, that is $\\(x_{k+1} = f(x_k,e_{k+1})\\).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#extension-moore-machine",
+    "href": "automata.html#extension-moore-machine",
+    "title": "(State) automata",
+    "section": "Extension: Moore machine",
+    "text": "Extension: Moore machine\n\nAutomaton with state outputs.\nOutput function assigns outputs to the states \\[y = g(x).\\]\nThe output is produced (emitted) when the (new) state is entered.\nThe output does not depend on the input. When plugged into feedback, no algebraic loops.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-of-a-moore-machine",
+    "href": "automata.html#example-of-a-moore-machine",
+    "title": "(State) automata",
+    "section": "Example of a Moore machine",
+    "text": "Example of a Moore machine\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nclosed\n\nNO FLOW\nValve\nclosed\n\n\n\ninit-&gt;closed\n\n\n\n\n\npartial\n\nFLOW\nValve\npartially\nopen\n\n\n\nclosed-&gt;partial\n\n\nopen valve one turn\n\n\n\npartial-&gt;closed\n\n\nclose valve one turn\n\n\n\nfull\n\nFLOW\nValve\nfully open\n\n\n\npartial-&gt;full\n\n\nopen valve one turn\n\n\n\nfull-&gt;closed\n\n\nemergency shut off\n\n\n\nfull-&gt;partial\n\n\nclose valve one turn\n\n\n\n\n\n\n\n\nThe outputs are the labels of the states.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#extension-mealy-machine",
+    "href": "automata.html#extension-mealy-machine",
+    "title": "(State) automata",
+    "section": "Extension: Mealy machine",
+    "text": "Extension: Mealy machine\n\nAutomaton with input/output transition labels.\nThe transition label \\(e_\\mathrm{i}/e_\\mathrm{o}\\) on the transion from \\(x_1\\) to \\(x_2\\) reads as “the input event \\(e_\\mathrm{i}\\) at state \\(x_1\\) activates the transition to \\(x_2\\), which outputs the event \\(e_\\mathrm{o}\\)”. \\[x_1\\xrightarrow{e_\\mathrm{i}/e_\\mathrm{o}} x_2\\]\nIt can be viewed as if the output function also considers the input and not only the state \\(y = e_\\mathrm{o} = g(x,e_\\mathrm{i})\\).\nThe output is produced (emitted) during the transition (before the new state is entered).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-of-a-mealy-machine",
+    "href": "automata.html#example-of-a-mealy-machine",
+    "title": "(State) automata",
+    "section": "Example of a Mealy machine",
+    "text": "Example of a Mealy machine\nCoffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNo coin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\n10 CZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK / no coffee\n\n\n\n20\n\n20 CZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK / no coffee\n\n\n\n10-&gt;0\n\n\ninsert 20 CZK / coffee\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK / no coffee\n\n\n\n20-&gt;0\n\n\ninsert 10 CZK / coffee\n\n\n\n20-&gt;10\n\n\ninsert 20 CZK / coffee",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-reformulate-the-previous-example-as-a-moore-machine",
+    "href": "automata.html#example-reformulate-the-previous-example-as-a-moore-machine",
+    "title": "(State) automata",
+    "section": "Example: reformulate the previous example as a Moore machine",
+    "text": "Example: reformulate the previous example as a Moore machine\n. . .\nTwo more states wrt Mealy\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNO COFFEE\nNo\ncoin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\nNO COFFEE\n10\nCZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK\n\n\n\n20\n\nNO COFFEE\n20\nCZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK\n\n\n\n30\n\nCOFFEE\n10+20\nCZK\n\n\n\n10-&gt;30\n\n\ninsert 20 CZK\n\n\n\n20-&gt;30\n\n\ninsert 10 CZK\n\n\n\n40\n\nCOFFEE\n20+20\nCZK\n\n\n\n20-&gt;40\n\n\ninsert 20 CZK\n\n\n\n30-&gt;0\n\n\n\n\n\n30-&gt;10\n\n\ninsert 10 CZK\n\n\n\n30-&gt;20\n\n\ninsert 20 CZK\n\n\n\n40-&gt;10\n\n\n\n\n\n40-&gt;20\n\n\ninsert 10 CZK\n\n\n\n40-&gt;30\n\n\ninsert 20 CZK\n\n\n\n\n\n\n\n\n\nThere are transitions from 30 and 40 back to 0 that are not labelled by any event. This does not seem to follow the general rule that transitions are always triggered by events. Not what? It can be resolved upon introducing time as the timeout transitions.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-dijkstra-token-passing",
+    "href": "automata.html#example-dijkstra-token-passing",
+    "title": "(State) automata",
+    "section": "Example: Dijkstra token passing",
+    "text": "Example: Dijkstra token passing\n\n\n\n\n\n\n\nG\n\n\n0\n\n0\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n3-&gt;0",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#data-type-for-the-state-vector",
+    "href": "automata.html#data-type-for-the-state-vector",
+    "title": "(State) automata",
+    "section": "Data type for the state vector",
+    "text": "Data type for the state vector\n```{julia}\nstruct DijkstraTokenRing\n    number_of_nodes::Int64\n    max_value_of_state_variable::Int64\n    state_vector::Vector{Int64}\nend\n```",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#state-update-transition-function",
+    "href": "automata.html#state-update-transition-function",
+    "title": "(State) automata",
+    "section": "State update (transition) function",
+    "text": "State update (transition) function\n```{julia}\nfunction update!(dtr::DijkstraTokenRing)                        \n    n = dtr.number_of_nodes\n    k = dtr.max_value_of_state_variable\n    x = dtr.state_vector\n    xnext = copy(x)\n1    for i in eachindex(x)\n        if i == 1                                              \n2            xnext[i] = (x[i] == x[n]) ? mod(x[i] + 1,k) : x[i]\n        else                                                    \n3            xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]\n        end\n    end\n    dtr.x .= xnext                                              \nend\n```\n\n1\n\nMind the +1 shift. x[2] corresponds to x₁ in the literature.\n\n2\n\nIncrement if the left neighbour is identical.\n\n3\n\nUpdate by the differing left neighbour.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#output-function",
+    "href": "automata.html#output-function",
+    "title": "(State) automata",
+    "section": "Output function",
+    "text": "Output function\nIt gives the position of the token.\n```{julia}\nfunction output(dtr::DijkstraTokenRing)\n    x = dtr.state_vector\n    y = similar(x)\n    y[1] = iszero(x[1]-x[end])\n    y[2:end] .= .!iszero.(diff(x))\n    return y\nend\n```",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#section",
+    "href": "automata.html#section",
+    "title": "(State) automata",
+    "section": "",
+    "text": "n = 4                           # Concrete number of nodes.\nk = n                           # Concrete max value of a state variable (must be &gt;= n).\nx_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).\ndtr = DijkstraTokenRing(n,k,x_initial)\noutput(dtr)                     # Show where the token is (are).\n\nupdate!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.\nupdate!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    \nupdate!(dtr), output(dtr)",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#extended-state-automaton",
+    "href": "automata.html#extended-state-automaton",
+    "title": "(State) automata",
+    "section": "Extended-state automaton",
+    "text": "Extended-state automaton\n\nIndeed, the hyphen is there on purpose – we are extending the state space by additional state variables.\nAugmenting the state variable(s) that define the states/modes/locations (in the graph) by additional (typed) state variables: Int, Enum, Bool,…\n\nTransitions are then guarded by conditions on theses extra state variables.\nBesides the guard condition, the transitions is labelled also by a reset function that resets the extended state variables.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-counting-up-to-10",
+    "href": "automata.html#example-counting-up-to-10",
+    "title": "(State) automata",
+    "section": "Example: counting up to 10",
+    "text": "Example: counting up to 10\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\nint k=0\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npress\n\n\n\nON-&gt;OFF\n\n\n(press ⋁ k ≥ 10); k=0\n\n\n\nON-&gt;ON\n\n\n(press ∧ k &lt; 10); k=k+1",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#automata-state-machines-in-umlsysml",
+    "href": "automata.html#automata-state-machines-in-umlsysml",
+    "title": "(State) automata",
+    "section": "Automata (state machines) in UML/SysML",
+    "text": "Automata (state machines) in UML/SysML\n\n\nThey can do hierarchies and more.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#automata-state-machines-in-openmodelica",
+    "href": "automata.html#automata-state-machines-in-openmodelica",
+    "title": "(State) automata",
+    "section": "Automata (state machines) in (Open)Modelica",
+    "text": "Automata (state machines) in (Open)Modelica",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#automata-in-simulink---stateflow-chart",
+    "href": "automata.html#automata-in-simulink---stateflow-chart",
+    "title": "(State) automata",
+    "section": "Automata in Simulink -> Stateflow Chart",
+    "text": "Automata in Simulink -&gt; Stateflow Chart",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#composing-automata",
+    "href": "automata.html#composing-automata",
+    "title": "(State) automata",
+    "section": "Composing automata",
+    "text": "Composing automata\nSynchronization through events: !,?\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n1\n\n1\n\n\n\ninit-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\npress?\n\n\n\n3\n\n3\n\n\n\n3-&gt;3\n\n\npress!",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#languages-and-automata",
+    "href": "automata.html#languages-and-automata",
+    "title": "(State) automata",
+    "section": "Languages and automata",
+    "text": "Languages and automata\n\nExtend the transition function: \\(f: \\mathcal X \\times \\mathcal E^\\ast \\rightarrow \\mathcal X\\), where \\(\\mathcal E^\\ast\\) stands for “all possible sequences of events”.\nLanguage generated by the automaton is \\[\n  \\mathcal L(\\mathcal G) = \\{s\\in\\mathcal E^\\ast \\mid f(x_0,s) \\;\\text{is defined}\\}\n  \\]\nLanguage marked by the automaton (the automaton is accepting or recognizing that language) \\[\n  \\mathcal L_\\mathrm{m}(\\mathcal G) = \\{s\\in\\mathcal L(\\mathcal G) \\mid f(x_0,s) \\in \\mathcal{X}_\\mathrm{m}\\}\n  \\]",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#ex.-languaged-accepted-by-automaton",
+    "href": "automata.html#ex.-languaged-accepted-by-automaton",
+    "title": "(State) automata",
+    "section": "Ex.: languaged accepted by automaton",
+    "text": "Ex.: languaged accepted by automaton\n\\[\n\\mathcal{E} = \\{a,b\\}, \\mathcal{L} = \\{a,aa,ba,aaa,aba,baa,bba,\\ldots\\}\n\\]\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n\n1\n\n\n\n1-&gt;1\n\n\na\n\n\n\n1-&gt;0\n\n\nb\n\n\n\n0-&gt;1\n\n\na\n\n\n\n0-&gt;0\n\n\nb\n\n\n\n\n\n\n\n\n\nWhat if we remove the self loop at state 1? The automaton then accepts languages starting with a and endis with a.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#what-is-the-language-view-of-automata-good-for",
+    "href": "automata.html#what-is-the-language-view-of-automata-good-for",
+    "title": "(State) automata",
+    "section": "What is the “language view of automata” good for?",
+    "text": "What is the “language view of automata” good for?\n\nDefinitions, analysis, synthesis.\nWe then need language concepts such as\n\nconcatenation of strings: \\(\\quad c = ab\\)\nempty string \\(\\varepsilon\\): \\(\\quad\\varepsilon a = a \\varepsilon = a\\)\nprefix, suffix\nprefix closure \\(\\bar{\\mathcal{L}}\\) (of the language \\(\\mathcal L\\))\n…",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#blocking",
+    "href": "automata.html#blocking",
+    "title": "(State) automata",
+    "section": "Blocking",
+    "text": "Blocking\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n2\n\n\n2\n\n\n\n2-&gt;0\n\n\ng\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\na\n\n\n\n1-&gt;2\n\n\nb\n\n\n\n5\n\n5\n\n\n\n1-&gt;5\n\n\ng\n\n\n\n3\n\n3\n\n\n\n1-&gt;3\n\n\na\n\n\n\n4\n\n4\n\n\n\n3-&gt;4\n\n\nb\n\n\n\n4-&gt;3\n\n\na\n\n\n\n4-&gt;4\n\n\ng\n\n\n\n\n\n\n\n\n\nDeadlock at state 2. Livelock at states 3 and 4.\n\\(\\bar{\\mathcal{L}}_\\mathrm{m}(\\mathcal G) \\sub \\mathcal L(\\mathcal G)\\).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#queueing-systems",
+    "href": "automata.html#queueing-systems",
+    "title": "(State) automata",
+    "section": "Queueing systems",
+    "text": "Queueing systems\n\nentities (also customers, jobs, tasks, requests, etc.)\nresources (also servers, processors, etc.): customers are waiting for them\nqueues (also buffers): where waiting is done\n\n. . .",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#examples-of-queueing-systems",
+    "href": "automata.html#examples-of-queueing-systems",
+    "title": "(State) automata",
+    "section": "Examples of queueing systems",
+    "text": "Examples of queueing systems\n\nentities: people waiting for service in a bank or at a bust stop\nresources: people (again) in a bank at the counter\nqueues: bank lobbies, bus stops, warehouses, …\n\n\nWhat are other examples? - entities: packets, … - resources: processor, computer periphery, router, … - queues: …",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#why-study",
+    "href": "automata.html#why-study",
+    "title": "(State) automata",
+    "section": "Why study?",
+    "text": "Why study?\n\nResources are not unlimited\nTradeoff needed between customer satisfaction and fair resources allocation",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#networks-of-queueing-systems",
+    "href": "automata.html#networks-of-queueing-systems",
+    "title": "(State) automata",
+    "section": "Networks of queueing systems",
+    "text": "Networks of queueing systems",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#queueing-systems-as-automata",
+    "href": "automata.html#queueing-systems-as-automata",
+    "title": "(State) automata",
+    "section": "Queueing systems as automata",
+    "text": "Queueing systems as automata\n\nevents: \\(\\mathcal E = \\{\\text{arrival},\\text{departure}\\}\\)\nstates: number of customers in the queue \\[\n\\mathcal X = \\{0,1,2,3,\\ldots\\}, \\quad \\mathcal X_0 = \\{0\\}\n\\]\n\nnot a finite state automation, unless the queue is bounded.\n\nstate transition: \\[\nf(x,e) =\n\\begin{cases}\nx+1, & \\text{if}\\; x\\leq 0 \\land e = \\mathrm{arrival}\\\\\nx-1, & \\text{if}\\; x &gt; 0 \\land e = \\mathrm{departure}\n\\end{cases}\n\\]\n\n\nWhether the queue’s length is bounded is a modelling assumption.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#queueing-system-as-an-automaton",
+    "href": "automata.html#queueing-system-as-an-automaton",
+    "title": "(State) automata",
+    "section": "Queueing system as an automaton",
+    "text": "Queueing system as an automaton\n\n\nOnce again, note how the states correspond to the value of the state variable.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-of-a-queueing-system-jobs-processing-by-a-cpu",
+    "href": "automata.html#example-of-a-queueing-system-jobs-processing-by-a-cpu",
+    "title": "(State) automata",
+    "section": "Example of a queueing system: jobs processing by a CPU",
+    "text": "Example of a queueing system: jobs processing by a CPU",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#stochastic-queueing-systems",
+    "href": "automata.html#stochastic-queueing-systems",
+    "title": "(State) automata",
+    "section": "Stochastic queueing systems",
+    "text": "Stochastic queueing systems\n\nArrivals can be modelled using random processes.\nSimilarly the departures – delays (processing time) of the server can be modelled as random.\nBut then time needs to be included in the automaton, and so far we do not have it there.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#timed-automaton",
+    "href": "automata.html#timed-automaton",
+    "title": "(State) automata",
+    "section": "Timed automaton",
+    "text": "Timed automaton\n\nMotivation\n\nHow many events of a certain type in a given interval?\nIs the time interval between two events above a given threshold?\nHow long does the system spend in a given state?\n…",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#timed-automaton-with-guards-alur-dill",
+    "href": "automata.html#timed-automaton-with-guards-alur-dill",
+    "title": "(State) automata",
+    "section": "Timed automaton with guards (Alur & Dill)",
+    "text": "Timed automaton with guards (Alur & Dill)\n\none or several resettable clocks: \\(c_i,\\, i=1,\\ldots, k\\), driven by the ODE \\[\n  \\frac{\\mathrm{d} c_i(t)}{\\mathrm d t} = 1, \\quad c_i(0) = 0.\n  \\]\neach transition labelled by the tripple {guard; event; reset}\n\n\nBoth satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#ex.-ta-with-guards",
+    "href": "automata.html#ex.-ta-with-guards",
+    "title": "(State) automata",
+    "section": "Ex.: TA with guards",
+    "text": "Ex.: TA with guards\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\nc₁&lt;1; alarm; -",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#ex.-ta-with-guards-and-invariant",
+    "href": "automata.html#ex.-ta-with-guards-and-invariant",
+    "title": "(State) automata",
+    "section": "Ex.: TA with guards and invariant",
+    "text": "Ex.: TA with guards and invariant\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n2\n\n2\nc₁&lt;1\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n-; alarm; -\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#invariant-vs-guard",
+    "href": "automata.html#invariant-vs-guard",
+    "title": "(State) automata",
+    "section": "Invariant vs guard",
+    "text": "Invariant vs guard\n\nInvariant ((of a location)) gives an upper bound on the time the system can stay at the given location. It can leave earlier but not later.\nGuard (of a given transition) gives an enabling condition on leaving the location through the given transition.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#example-several-trains-approaching-a-bridge",
+    "href": "automata.html#example-several-trains-approaching-a-bridge",
+    "title": "(State) automata",
+    "section": "Example: several trains approaching a bridge",
+    "text": "Example: several trains approaching a bridge\n\nBehrmann, Gerd, Alexandre David, and Kim G. Larsen. ‘A Tutorial on Uppaal’. In Formal Methods for the Design of Real-Time Systems, edited by Marco Bernardo and Flavio Corradini, 200–236. Lecture Notes in Computer Science 3185. Berlin, Heidelberg: Springer, 2004. https://doi.org/10.1007/978-3-540-30080-9_7.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#software",
+    "href": "automata.html#software",
+    "title": "(State) automata",
+    "section": "Software",
+    "text": "Software\n\nUPPAAL (for timed automata)\nStateflow\nSimEvents\n(Open)Modelica – SimPy\nDiscreteEvents.jl, ConcurrentSim.jl\n…",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#literature",
+    "href": "automata.html#literature",
+    "title": "(State) automata",
+    "section": "Literature",
+    "text": "Literature\n\n\nCassandras, Christos G., and Stéphane Lafortune. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer, 2021.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "automata.html#literature-1",
+    "href": "automata.html#literature-1",
+    "title": "(State) automata",
+    "section": "Literature",
+    "text": "Literature\n\nLafortune, Stéphane. „Discrete Event Systems: Modeling, Observation, and Control”. Annual Review of Control, Robotics, and Autonomous Systems 2, č. 1 (2019): 141–59. https://doi.org/10.1146/annurev-control-053018-023659.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "(State) automata"
+    ]
+  },
+  {
+    "objectID": "online_mpc_for_mld_systems.html",
+    "href": "online_mpc_for_mld_systems.html",
+    "title": "Online MPC for hybrid systems",
+    "section": "",
+    "text": "First, we need to set the cost function for the optimal control problem. As usual in optimal control, we want to impose different weights on invididual state and control variables. The most popular is the quadratic cost function well known from the LQ-optimal control\n\\[\nJ_0(x(0),U_0) = x_N^T S_N x_N + \\sum_{k=0}^{N-1} \\left( x_k^T Q x_k + u_k^T R u_k \\right)\n\\]\nBut other (weighted) norms can also be used, in particular 1-norm and infinity-norm\n\\[\nJ_0(x(0),U_0) = \\|S_N x_N\\|_1 + \\sum_{k=0}^{N-1} \\left( \\|Q x_k\\|_1 + \\|R u_k\\|_1 \\right),\n\\]\n\\[\nJ_0(x(0),U_0) = \\|S_N x_N\\|_{\\infty} + \\sum_{k=0}^{N-1} \\left( \\|Q x_k\\|_{\\infty} + \\|R u_k\\|_{\\infty} \\right).\n\\]",
+    "crumbs": [
+      "11. Model predictive control (MPC) for MLD systems",
+      "Online MPC for hybrid systems"
+    ]
+  },
+  {
+    "objectID": "online_mpc_for_mld_systems.html#optimal-control-on-a-finite-horizon",
+    "href": "online_mpc_for_mld_systems.html#optimal-control-on-a-finite-horizon",
+    "title": "Online MPC for hybrid systems",
+    "section": "",
+    "text": "First, we need to set the cost function for the optimal control problem. As usual in optimal control, we want to impose different weights on invididual state and control variables. The most popular is the quadratic cost function well known from the LQ-optimal control\n\\[\nJ_0(x(0),U_0) = x_N^T S_N x_N + \\sum_{k=0}^{N-1} \\left( x_k^T Q x_k + u_k^T R u_k \\right)\n\\]\nBut other (weighted) norms can also be used, in particular 1-norm and infinity-norm\n\\[\nJ_0(x(0),U_0) = \\|S_N x_N\\|_1 + \\sum_{k=0}^{N-1} \\left( \\|Q x_k\\|_1 + \\|R u_k\\|_1 \\right),\n\\]\n\\[\nJ_0(x(0),U_0) = \\|S_N x_N\\|_{\\infty} + \\sum_{k=0}^{N-1} \\left( \\|Q x_k\\|_{\\infty} + \\|R u_k\\|_{\\infty} \\right).\n\\]",
+    "crumbs": [
+      "11. Model predictive control (MPC) for MLD systems",
+      "Online MPC for hybrid systems"
+    ]
+  },
+  {
+    "objectID": "online_mpc_for_mld_systems.html#optimization-problem",
+    "href": "online_mpc_for_mld_systems.html#optimization-problem",
+    "title": "Online MPC for hybrid systems",
+    "section": "Optimization problem",
+    "text": "Optimization problem\nCombining the cost function with the MLD model, and perhaps we some extra constraints imposed on the control inputs as well as state variables, we get \\[\n\\operatorname*{minimize}_{u_0, u_1, \\ldots, u_{N-1}} J_0(x(0),(u_0, u_1, \\ldots, u_{N-1}))\n\\]\nsubject to \\[\n\\begin{aligned}\nx_{k+1} &= Ax_k + B_u u_k + B_\\delta\\delta_k + B_z z_k + B_0\\\\\ny_k &= Cx_k + D_u u_k + D_\\delta \\delta_k + D_z z_k + D_0\\\\\nE_\\delta \\delta_k &+ E_z z_k \\leq E_u u_k + E_x x_k + E_0 \\\\\nu_{\\min} &\\leq u_k \\leq u_{\\max} \\\\\nx_{\\min} &\\leq x_k \\leq x_{\\max} \\\\\nP x_N &\\leq r \\\\\nx_0 &= x(0)\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "11. Model predictive control (MPC) for MLD systems",
+      "Online MPC for hybrid systems"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html",
+    "href": "mixed_logical_dynamical_systems.html",
+    "title": "Mixed logical dynamical",
+    "section": "",
+    "text": "Our motivation is to get rid of the IF-THEN conditions in the model.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#propositional-logic-and-connectives",
+    "href": "mixed_logical_dynamical_systems.html#propositional-logic-and-connectives",
+    "title": "Mixed logical dynamical",
+    "section": "Propositional logic and connectives",
+    "text": "Propositional logic and connectives\n\nBoolean variable (or elementary proposition) \\(X\\) evaluates to true or false.\n\nFor convenience also 0 or 1, but …\n\nConnectives\n\nConjunction (logical and): \\(X_1 \\land X_2\\)\nDisjunction (logical or): \\(X_1 \\lor X_2\\)\nNegation: \\(\\neg X_2\\) (or \\(\\overline{X_2}\\) or \\(\\sim X_2\\))\nImplication: \\(X_1 \\implies X_2\\)\nEquivalence: \\(X_1 \\iff X_2\\)\nLogical XOR: \\(X_1 \\oplus X_2\\)",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#equivalences-of-logic-propositions",
+    "href": "mixed_logical_dynamical_systems.html#equivalences-of-logic-propositions",
+    "title": "Mixed logical dynamical",
+    "section": "Equivalences of logic propositions",
+    "text": "Equivalences of logic propositions\n. . .\n\\[\nX_1 \\implies X_2 \\quad  \\text{is equivalent to} \\quad \\neg X_2 \\implies \\neg X_1\n\\]\n. . .\n\\[\nX_1 \\iff X_2 \\quad  \\text{eq.} \\quad (X_1 \\implies X_2) \\land (X_2 \\implies X_1)\n\\]\n. . .\n\\[\nX_1 \\land X_2 \\qquad  \\text{eq.} \\qquad \\neg (\\neg X_1 \\lor \\neg X_2)\n\\]\n. . .\n\\[\nX_1 \\implies X_2 \\qquad  \\text{eq.} \\qquad \\neg X_1 \\lor X_2\n\\]\n\nThe last one can be seen as follows: it cannot happen that \\(X1 \\land \\neg X2\\), that is, it holds that \\(\\neg(X1 \\land \\neg X2)\\). De Morgan gives \\(\\neg X1 \\lor X2\\)",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#binary-variables-related-to-the-boolean-ones",
+    "href": "mixed_logical_dynamical_systems.html#binary-variables-related-to-the-boolean-ones",
+    "title": "Mixed logical dynamical",
+    "section": "Binary variables related to the Boolean ones",
+    "text": "Binary variables related to the Boolean ones\n\nAssociate with the Boolean variable \\(X\\) a binary variable \\(\\delta\\in\\{0,1\\}\\) such that \\[\n\\delta =\n\\begin{cases}\n0 & \\text{if} \\; \\neg X\\\\\n1 & \\text{if} \\; X\n\\end{cases}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#integer-inequalities-related-to-the-logical-formulas",
+    "href": "mixed_logical_dynamical_systems.html#integer-inequalities-related-to-the-logical-formulas",
+    "title": "Mixed logical dynamical",
+    "section": "Integer (in)equalities related to the logical formulas",
+    "text": "Integer (in)equalities related to the logical formulas",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#and",
+    "href": "mixed_logical_dynamical_systems.html#and",
+    "title": "Mixed logical dynamical",
+    "section": "And",
+    "text": "And\n\\[X_1 \\land X_2\\]\n. . .\n\\[[\\delta_1=1] \\land [\\delta_2=1]\\]\n. . .\n\\[\\delta_1=1, \\; \\delta_2=1\\]\n\nAnother (discarded) possibility:\n\n. . .\n\\[\\delta_1 \\delta_2 = 1\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#or",
+    "href": "mixed_logical_dynamical_systems.html#or",
+    "title": "Mixed logical dynamical",
+    "section": "Or",
+    "text": "Or\n\\[X_1 \\lor X_2\\]\n. . .\n\\[[\\delta_1=1] \\lor [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 + \\delta_2\\geq 1\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#negation",
+    "href": "mixed_logical_dynamical_systems.html#negation",
+    "title": "Mixed logical dynamical",
+    "section": "Negation",
+    "text": "Negation\n\\[\\neg X_1\\]\n. . .\n\\[\\neg [\\delta_1=1]\\]\n. . .\n\\[\\delta_1 = 0\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#xor",
+    "href": "mixed_logical_dynamical_systems.html#xor",
+    "title": "Mixed logical dynamical",
+    "section": "Xor",
+    "text": "Xor\n\\[X_1 \\oplus X_2\\]\n. . .\n\\[[\\delta_1=1] \\oplus [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 + \\delta_2 = 1\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#implication",
+    "href": "mixed_logical_dynamical_systems.html#implication",
+    "title": "Mixed logical dynamical",
+    "section": "Implication",
+    "text": "Implication\n\\[X_1 \\implies X_2\\]\n. . .\n\\[[\\delta_1=1] \\implies [\\delta_2=1]\\]\n\nequivalently, using \\(\\neg X_1 \\lor X_2\\), \\[\\neg [\\delta_1=1] \\lor [\\delta_2=1],\\]\nwhich translates to \\[(1-\\delta_1) + \\delta_2\\geq 1,\\]\nwhich simplifies to \\[\\delta_1 - \\delta_2 \\leq 0\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#equivalence",
+    "href": "mixed_logical_dynamical_systems.html#equivalence",
+    "title": "Mixed logical dynamical",
+    "section": "Equivalence",
+    "text": "Equivalence\n\\[X_1 \\iff X_2\\]\n. . .\n\\[[\\delta_1=1] \\iff [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 - \\delta_2 = 0\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#assignment",
+    "href": "mixed_logical_dynamical_systems.html#assignment",
+    "title": "Mixed logical dynamical",
+    "section": "Assignment",
+    "text": "Assignment\n\\[X_3 \\iff (X_1 \\land X_2)\\]\n. . .\n\\[[\\delta_3=1] \\iff ([\\delta_1=1] \\land [\\delta_2=1])\\]\n\nExpressing the equivalence using implications \\[X_3 \\implies X_1,\\; X_3\\implies X_2, \\; (X_1 \\land X_2) \\implies X_3\\]\nThe the last one is equivalent to \\[\\neg (X_1 \\land X_2) \\lor X_3\\]\nwhich can be simplified to \\[\\neg X_1 \\lor \\neg X_2 \\lor X_3\\]\nwhich translates to \\[\\neg [\\delta_1=1] \\lor \\neg [\\delta_2 = 1] \\lor [\\delta_3 = 1]\\]\nwhich finally leads to the inequality \\[(1-\\delta_1) + (1-\\delta_2) + \\delta_3 \\geq 1\\]\nand after simplification \\[\\delta_1 + \\delta_2 - \\delta_3 \\leq 1.\\]\nAnd don’t forget to consider the first to inequalities too \\[\n-\\delta_1 + \\delta_3 \\leq 0, \\quad -\\delta_2 + \\delta_3 \\leq 0.\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#general-transformation-of-boolean-expressions-to-integer-inequalities",
+    "href": "mixed_logical_dynamical_systems.html#general-transformation-of-boolean-expressions-to-integer-inequalities",
+    "title": "Mixed logical dynamical",
+    "section": "General transformation of Boolean expressions to integer inequalities",
+    "text": "General transformation of Boolean expressions to integer inequalities\n\nFrom Conjunctive Normal Form (CNF) \\[\n\\bigwedge_{j=1}^m \\left[\\left(\\lor_{i\\in \\mathcal{P}_j} X_i\\right) \\lor \\left(\\lor_{i\\in \\mathcal{N}_j} \\neg X_i\\right)\\right]\n\\]\nto 0-1 integer inequalities defining a polyhedron \\[\n\\begin{aligned}\n\\sum_{i\\in \\mathcal{P}_1} \\delta_i + \\sum_{i\\in \\mathcal{N}_1} (1-\\delta_i) &\\geq 1,\\\\\n&\\vdots\\\\\n\\sum_{i\\in \\mathcal{P}_m} \\delta_i + \\sum_{i\\in \\mathcal{N}_m} (1-\\delta_i) &\\geq 1.\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#finite-state-machine-fsm-using-binary-variables",
+    "href": "mixed_logical_dynamical_systems.html#finite-state-machine-fsm-using-binary-variables",
+    "title": "Mixed logical dynamical",
+    "section": "Finite state machine (FSM) using binary variables",
+    "text": "Finite state machine (FSM) using binary variables\n\nEncode the discrete state variables in binary \\[\nx_b \\in \\{0,1\\}^{n_b}\n\\]\nSimilarly the discrete inputs \\[\nu_b \\in \\{0,1\\}^{m_b}\n\\]\nThe logical state equation then \\[\nx_b(k+1) = f_b(x_b(k),u_b(k),\\delta_e(k))\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#example",
+    "href": "mixed_logical_dynamical_systems.html#example",
+    "title": "Mixed logical dynamical",
+    "section": "Example",
+    "text": "Example\n. . .\n\n\nState update/transition equation \\[\n\\begin{aligned}\n& x_d(k+1) = \\\\\n&\\begin{cases}\n\\text{Red} & \\text{if}\\; ([x_d = \\text{green}] \\land \\neg [\\delta_3=1]) \\lor ([x_d = \\text{red}] \\land \\neg [\\delta_3=1])\\\\\n\\text{Green} & \\text{if} \\; \\ldots\\\\\n\\text{Blue} & \\text{if} \\; \\ldots\n\\end{cases}\n\\end{aligned}\n\\]\nBinary encoding of the discrete states \\[\n\\text{Red}: x_b = \\begin{bmatrix}0\\\\0 \\end{bmatrix}, \\; \\text{Green}: x_b = \\begin{bmatrix}0\\\\1 \\end{bmatrix}, \\; \\text{Blue}: x_b = \\begin{bmatrix}1\\\\0 \\end{bmatrix}\n\\]\nReformulating the state update equations for binary variables \\[\n\\begin{aligned}\nx_{b1} &= (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land \\neg [\\delta_1=1]) \\\\\n&\\quad (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land [\\delta_1=1]) \\land [u_{b2}=1]\\\\\n&\\quad (\\neg [x_{b1} = 1] \\land [x_{b2} = 1]  \\land \\neg [u_{b1}=1] \\land [\\delta_3=1])\\\\\n&\\quad \\lor ([x_{b1} = 1]\\land \\neg [\\delta_2=1])\\\\\nx_{b2} &= \\ldots\n\\end{aligned}\n\\]\nSimplify, convert to CNF.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#mixing-logical-and-continuous",
+    "href": "mixed_logical_dynamical_systems.html#mixing-logical-and-continuous",
+    "title": "Mixed logical dynamical",
+    "section": "Mixing logical and continuous",
+    "text": "Mixing logical and continuous\n\nsee Indicator variables.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#logical-implies-continuous",
+    "href": "mixed_logical_dynamical_systems.html#logical-implies-continuous",
+    "title": "Mixed logical dynamical",
+    "section": "Logical implies continuous",
+    "text": "Logical implies continuous\n\\[X \\implies [f(x)\\leq 0]\\]\n. . .\n\\[[\\delta = 1] \\implies [f(x)\\leq 0]\\]\n\nintroduce \\(M\\) \\[\nf(x) \\leq (1-\\delta) M\n\\]\nthat is large enough so that when \\(\\delta=0\\), there is no practical restriction on \\(f\\).\n\nBig-M technique.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#continuous-implies-logical",
+    "href": "mixed_logical_dynamical_systems.html#continuous-implies-logical",
+    "title": "Mixed logical dynamical",
+    "section": "Continuous implies logical",
+    "text": "Continuous implies logical\n\\[[f(x)\\leq 0] \\implies X\\]\n. . .\n\\[[f(x)\\leq 0] \\implies [\\delta = 1]\\]\n\nEquivalently \\[\\neg [\\delta = 1] \\implies \\neg [f(x)\\leq 0],\\]\nthat is, \\[[\\delta = 0] \\implies [f(x) &gt; 0]\\]\nIntroduce \\(m\\) such that \\(f(x)&gt;0\\) is enforced when \\(\\delta=0\\) \\[\nf(x) &gt; m\\delta\n\\]\nbut small enough that there is no restriction on \\(f\\) when \\(\\delta=1\\).\nFor numerical reasons, modify to nonstrict inequality \\[\nf(x) \\geq \\epsilon + (m-\\epsilon)\\delta,\n\\] where \\(\\epsilon\\approx 0\\) (for example, machine epsilon).",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#equivalence-between-logical-and-continuous",
+    "href": "mixed_logical_dynamical_systems.html#equivalence-between-logical-and-continuous",
+    "title": "Mixed logical dynamical",
+    "section": "Equivalence between logical and continuous",
+    "text": "Equivalence between logical and continuous\n\nCombining the previous two implications.\n\n. . .\n\\[\n\\begin{aligned}\nf(x) &\\leq (1-\\delta) M,\\\\\nf(x) &\\geq \\epsilon + (m-\\epsilon)\\delta.\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#if-then-else-rule-as-an-inequality",
+    "href": "mixed_logical_dynamical_systems.html#if-then-else-rule-as-an-inequality",
+    "title": "Mixed logical dynamical",
+    "section": "IF-THEN-ELSE rule as an inequality",
+    "text": "IF-THEN-ELSE rule as an inequality\n\nIf \\(X\\)\n\nthen \\(z = a^\\top x + b^\\top u + f\\),\nelse \\(z = 0\\).\n\nIt can be expressed as a product \\[\nz = \\delta\\,(a^\\top x + b^\\top u + f)\n\\]\n\n. . .\n\\[\n\\begin{aligned}\nz &\\leq M\\delta,\\\\\n- z &\\leq -m\\delta,\\\\\nz &\\leq a^\\top x + b^\\top u + f - m(1-\\delta),\\\\\n-z &\\leq -(a^\\top x + b^\\top u + f) + M(1-\\delta).\n\\end{aligned}\n\\]\n\nThe reasoning is that if \\(\\delta=0\\), then \\(z\\) is restricted, while \\(a^\\top x + b^\\top u + f\\) is not. And the other way around.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#another-if-then-else-rule",
+    "href": "mixed_logical_dynamical_systems.html#another-if-then-else-rule",
+    "title": "Mixed logical dynamical",
+    "section": "Another IF-THEN-ELSE rule",
+    "text": "Another IF-THEN-ELSE rule\n\nIf \\(X\\)\n\nthen \\(z = a_1^\\top x + b_1^\\top u + f_1\\),\nelse \\(z = a_2^\\top x + b_2^\\top u + f_2\\).\n\nIt can be expressed as \\[\n\\begin{aligned}\nz &= \\delta\\,(a_1^\\top x + b_1^\\top u + f_1) \\\\\n&\\quad + (1-\\delta)(a_2^\\top x + b_2^\\top u + f_2)\n\\end{aligned}\n\\]\n\n. . .\n\\[\n\\begin{aligned}\n(m_2-M_1)\\delta  + z &\\leq a_2^\\top x + b_2^\\top u + f_2,\\\\\n(m_1-M_2)\\delta  - z &\\leq -a_2^\\top x - b_2^\\top u - f_2,\\\\\n(m_1-M_2)(1-\\delta)  + z &\\leq a_1^\\top x + b_1^\\top u + f_1,\\\\\n(m_2-M_1)(1-\\delta)  - z &\\leq -a_1^\\top x - b_1^\\top u - f_1.\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities",
+    "href": "mixed_logical_dynamical_systems.html#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities",
+    "title": "Mixed logical dynamical",
+    "section": "Generation of events by mixing logical and continuous variables in inequalities",
+    "text": "Generation of events by mixing logical and continuous variables in inequalities\n\\[\n\\begin{aligned}\nh_i(x_c(k), u_c(k)) &\\leq M_i (1-\\delta_{e,i})\\\\\nh_i(x_c(k), u_c(k)) &\\geq \\epsilon + (m_i-\\epsilon) \\delta_{e,i}\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#switched-affine-system",
+    "href": "mixed_logical_dynamical_systems.html#switched-affine-system",
+    "title": "Mixed logical dynamical",
+    "section": "Switched affine system",
+    "text": "Switched affine system\n\nWe want to get rid of the IF-THEN and formulate the switching mechanism into the format of inequalities too.\n\n. . .\n\\[\nx_c(k+1) = \\sum_{i=1}^s z_i(k),  \n\\]\n\nwhere \\[\nz_1(k) =\n\\begin{cases}\nA_1 x_c(k) + B_1 u_c(k) + f_1 & \\text{if}\\;i(k)=1\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n. . .\n\\[\\quad \\vdots\\]\n. . .\n\\[\nz_s(k) =\n\\begin{cases}\nA_s x_c(k) + B_s u_c(k) + f_s & \\text{if}\\;i(k)=s\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\nFor each \\(i\\in \\{1, 2, \\ldots, s\\}\\)\n\n. . .\n\\[\n\\begin{aligned}\nz_i &\\leq M_i\\delta_i,\\\\\n- z_i &\\leq -m_i\\delta_i,\\\\\nz_i &\\leq a_i^\\top x + b_i^\\top u + f_i - m_i(1-\\delta_i),\\\\\n-z_i &\\leq -(a_i^\\top x + b_i^\\top u + f_i) + M_i(1-\\delta_i).\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#mixed-logical-dynamical-mld-system",
+    "href": "mixed_logical_dynamical_systems.html#mixed-logical-dynamical-mld-system",
+    "title": "Mixed logical dynamical",
+    "section": "Mixed logical dynamical (MLD) system",
+    "text": "Mixed logical dynamical (MLD) system\n\\[\n\\begin{aligned}\nx(k+1) &= Ax(k) + B_u u(k) + B_\\delta\\delta + B_zz(k) + B_0\\\\\ny(k) &= Cx(k) + D_u u(k) + D_\\delta \\delta + D_z z + D_0\\\\\nE_\\delta \\delta &+ E_z z(k) \\leq E_u u(k) + E_x x(k) + E_0  \n\\end{aligned}\n\\]",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#simple-example",
+    "href": "mixed_logical_dynamical_systems.html#simple-example",
+    "title": "Mixed logical dynamical",
+    "section": "Simple example",
+    "text": "Simple example",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#hysdel-language",
+    "href": "mixed_logical_dynamical_systems.html#hysdel-language",
+    "title": "Mixed logical dynamical",
+    "section": "HYSDEL language",
+    "text": "HYSDEL language",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "mixed_logical_dynamical_systems.html#piecewise-affine-systems",
+    "href": "mixed_logical_dynamical_systems.html#piecewise-affine-systems",
+    "title": "Mixed logical dynamical",
+    "section": "Piecewise affine systems",
+    "text": "Piecewise affine systems\n. . .\n\\[\n\\begin{aligned}\nx(k+1) &= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\\\\ny(k) &= C_{i(k)}x(k) + D_{i(k)} u(k) + g_{i(k)}\\\\\n& \\; H_{i(k)} x(k) + J_{i(k)} u(k) \\leq K_{i(k)}\n\\end{aligned}\n\\]\n\nDHA, MLD, PWA are equivalent.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Mixed logical dynamical"
+    ]
+  },
+  {
+    "objectID": "barrier_function.html",
+    "href": "barrier_function.html",
+    "title": "Barrier certificates",
+    "section": "",
+    "text": "This is another technique for verification of safety of hybrid system. Unlike the optimal-control based and set-propagation based techniques, it is not based on explicit computational characterization of the evolution of states in time. Instead, it is based on searching for a function of a state that satisfies certain properties. The function is called a barrier function and it serves as a certificate of safety.\nFor notational and conceptual convenience we start with an explanation of the method for continuous systems, and only then we extend it to hybrid systems.",
+    "crumbs": [
+      "12. Formal verification",
+      "Barrier certificates"
+    ]
+  },
+  {
+    "objectID": "barrier_function.html#barrier-certificate-for-continuous-systems",
+    "href": "barrier_function.html#barrier-certificate-for-continuous-systems",
+    "title": "Barrier certificates",
+    "section": "Barrier certificate for continuous systems",
+    "text": "Barrier certificate for continuous systems\nWe consider a continuous-time dynamical system modelled by \n\\dot{\\bm x}(t) = \\mathbf f(\\bm x, \\bm d),\n where \\bm d represents an uncertainy in the system description – it can be an uncertain parameter or an external disturbance acting on the system.\nWe now define two regions of the state space:\n\nthe set of initial states \\mathcal X_0,\nand the set of unsafe states \\mathcal X_\\mathrm{u}.\n\nOur goal is to prove (certify) that the system does not reach the unsafe states for an arbitrary initial state \\bm x(0)\\in \\mathcal X_0 and for an arbitrary d\\in \\mathcal D.\nWe define a barrier function B(\\bm x) with the following three properties\nB(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x, \\bm d \\, \\text{such that} \\, B(\\bm x) = 0.\nNow, upon finding a function B(\\bm x) with such properties, we will prove (certify) safety of the system – the function serves as a certificate of safety.\n\n\n\n\n\n\nNote\n\n\n\nIt cannot go unnoticed that the properties of a barrier function B(\\bm x) and the motivation for its finding resemble those of a Lyapunov function. Indeed, the two concepts are related. But they are not the same.\n\n\nHow do we find such function? We will reuse the computational technique based on sum-of-squares (SOS) polynomials that we already used for Lyapunov functions. But first we need to handle one unpleasant aspect of the third condition above – nonconvexity of the set given by B(\\bm x) = 0.",
+    "crumbs": [
+      "12. Formal verification",
+      "Barrier certificates"
+    ]
+  },
+  {
+    "objectID": "barrier_function.html#convex-relaxation-of-the-barrier-certificate-problem",
+    "href": "barrier_function.html#convex-relaxation-of-the-barrier-certificate-problem",
+    "title": "Barrier certificates",
+    "section": "Convex relaxation of the barrier certificate problem",
+    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/rR75x/src/integrator_interface.jl:600",
+    "crumbs": [
+      "12. Formal verification",
+      "Barrier certificates"
+    ]
+  },
+  {
+    "objectID": "barrier_function.html#barrier-certificate-for-hybrid-systems",
+    "href": "barrier_function.html#barrier-certificate-for-hybrid-systems",
+    "title": "Barrier certificates",
+    "section": "Barrier certificate for hybrid systems",
+    "text": "Barrier certificate for hybrid systems\nFor a hybrid automaton with l locations \\{q_1,q_2,\\ldots,q_l\\}, not just one but l barrier functions/certificates are needed:\nB_i(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u}(q_i),\nB_i(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0(q_i),\n\\nabla B_i(\\bm x)^\\top \\mathbf f_i(\\bm x, \\bm u) \\leq 0,\\quad \\forall \\bm x, \\bm u \\, \\text{such that} \\, B_i(\\bm x) = 0,\n\n\\begin{aligned}\nB_i(\\bm x) \\leq 0,\\quad &\\forall \\bm x \\in \\mathcal R(q_j,q_i,\\bm x^-)\\,\\text{for some}\\, q_j\\,\\\\\n&\\text{and}\\, \\bm x^-\\in\\mathcal G(q_j,q_i)\\,\\text{with}\\, B_j(\\bm x^-)\\leq 0.\n\\end{aligned}",
+    "crumbs": [
+      "12. Formal verification",
+      "Barrier certificates"
+    ]
+  },
+  {
+    "objectID": "barrier_function.html#convex-relaxation-of-barrier-certificates-for-hybrid-systems",
+    "href": "barrier_function.html#convex-relaxation-of-barrier-certificates-for-hybrid-systems",
+    "title": "Barrier certificates",
+    "section": "Convex relaxation of barrier certificates for hybrid systems",
+    "text": "Convex relaxation of barrier certificates for hybrid systems\n\\nabla B_i(\\bm x)^\\top \\mathbf f_i(\\bm x, \\bm u) \\leq 0,\\quad \\forall \\bm x\\in X_0(q_i), \\bm u\\in\\mathcal U(q_i),\n\n\\begin{aligned}\nB_i(\\bm x) \\leq 0,\\quad &\\forall (\\bm x, \\bm x^-)\\,\\text{such that}\\, \\bm x \\in \\mathcal R(q_j,q_i,\\bm x^-), \\\\\n&\\text{and}\\, \\bm x^-\\in\\mathcal G(q_i,q_j).\n\\end{aligned}",
+    "crumbs": [
+      "12. Formal verification",
+      "Barrier certificates"
+    ]
+  },
+  {
+    "objectID": "simulation_using_complementarity_constraints.html",
+    "href": "simulation_using_complementarity_constraints.html",
+    "title": "Simulation using complementarity",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulation using complementarity"
+    ]
+  },
+  {
+    "objectID": "discrete_hybrid_automata.html",
+    "href": "discrete_hybrid_automata.html",
+    "title": "Discrete hybrid automata",
+    "section": "",
+    "text": "Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.\nIn particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Discrete hybrid automata"
+    ]
+  },
+  {
+    "objectID": "discrete_hybrid_automata.html#four-components-of-a-discrete-time-hybrid-automaton",
+    "href": "discrete_hybrid_automata.html#four-components-of-a-discrete-time-hybrid-automaton",
+    "title": "Discrete hybrid automata",
+    "section": "Four components of a discrete(-time) hybrid automaton",
+    "text": "Four components of a discrete(-time) hybrid automaton\nWe are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, …). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:\n\nswitched affine system (SAS),\nmode selector (MS),\nevent generator (EG),\nfinite state machine (FSM).\n\nTheir interconnection is shown in the following figure.\n\nDraw the block diagram from Bemporad’s materials (book, toolbox documentation).\n\nLet’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).\n\nSwitched affine systems (SAS)\nThis is a model of the continuous-value dynamics parameterized by the index i that evolves in (discrete) time \n\\begin{aligned}\nx_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\\\\ny_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}\n\\end{aligned}\n\nIn principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.\n\n\nEvent generator (EG)\nWe consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the ith region of the state-input space, if the continuous-value state x_c(k) and the continuous-value control input u_c satisfy \nH_i x_c(k) + J_i u_c(k) + K_i \\leq 0\n\nThe event indicated by the (vector) binary variable \n\\delta_e(k) = h(x_c(k), u_c(k)) \\in \\{0,1\\}^m,\n\nwhere \nh_i(x_c(k), u_c(k)) = \\begin{cases}1 & H_i x_c(k) + J_i u_c(k) + K_i \\leq 0\\\\ 0 & \\text{otherwise}. \\end{cases}\n\n\n\nFinite state machine (FSM)\n\nx_d(k+1) = f_d(x_d(k),u_d(k),\\delta_e(k))\n\n\n\nMode selector (MS)\ni(k) \\in \\{1, 2, \\ldots, s\\}\n\ni(k) = \\mu(x_d(k), u_d(k), \\delta_e(k))",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Discrete hybrid automata"
+    ]
+  },
+  {
+    "objectID": "discrete_hybrid_automata.html#trajectory-of-a-dha",
+    "href": "discrete_hybrid_automata.html#trajectory-of-a-dha",
+    "title": "Discrete hybrid automata",
+    "section": "Trajectory of a DHA",
+    "text": "Trajectory of a DHA\n\n\\begin{aligned}\n\\delta_e(k) &= h(x_c(k), u_c(k))\\\\\ni(k) &= \\mu(x_d(k), u_d(k), \\delta_e(k))\\\\\ny_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}\\\\\ny_d(k) &= g_d(x_d(k), u_d(k), \\delta_e(k))\\\\\nx_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\\\\nx_d(k+1) &= f_d(x_d(k),u_d(k),\\delta_e(k))\n\\end{aligned}",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Discrete hybrid automata"
+    ]
+  },
+  {
+    "objectID": "discrete_hybrid_automata.html#how-to-get-rid-of-the-if-then-conditions-in-the-model",
+    "href": "discrete_hybrid_automata.html#how-to-get-rid-of-the-if-then-conditions-in-the-model",
+    "title": "Discrete hybrid automata",
+    "section": "How to get rid of the IF-THEN conditions in the model?",
+    "text": "How to get rid of the IF-THEN conditions in the model?",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Discrete hybrid automata"
+    ]
+  },
+  {
+    "objectID": "discrete_hybrid_automata.html#main-resources-for-the-lecture",
+    "href": "discrete_hybrid_automata.html#main-resources-for-the-lecture",
+    "title": "Discrete hybrid automata",
+    "section": "Main resource(s) for the lecture",
+    "text": "Main resource(s) for the lecture\n\nBorrelli, Francesco, Alberto Bemporad, and Manfred Morari. Predictive Control for Linear and Hybrid Systems. Cambridge, New York: Cambridge University Press, 2017.\nBemporad, Alberto. Hybrid Toolbox for Matlab.",
+    "crumbs": [
+      "10. Mixed logical dynamical (MLD) systems",
+      "Discrete hybrid automata"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "B(E)3M35HYS – Hybrid systems",
+    "section": "",
+    "text": "This website constitutes the lecture notes for the graduate course Hybrid Systems (B3M35HYS, BE3M35HYS) taught within Cybernetics and Robotics graduate program at Faculty of Electrical Engineering, Czech Technical University in Prague.\nOrganizational instructions, description of grading policy, assignments of homework problems and other course related material relevant for officially enrolled students are located elsewhere (the course page within the FEL Moodle).\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "max_plus_systems.html",
+    "href": "max_plus_systems.html",
+    "title": "Max-plus linear systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus linear systems"
+    ]
+  },
+  {
+    "objectID": "complementarity_constraints.html",
+    "href": "complementarity_constraints.html",
+    "title": "Complementarity constraints",
+    "section": "",
+    "text": "Yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms, is based on complementaristy constraints. Before we introduce that modelling framework in the next section, we first explain the very concept of complementarity constraints.",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Complementarity constraints"
+    ]
+  },
+  {
+    "objectID": "complementarity_constraints.html#why-complementarity-constraints",
+    "href": "complementarity_constraints.html#why-complementarity-constraints",
+    "title": "Complementarity constraints",
+    "section": "",
+    "text": "Yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms, is based on complementaristy constraints. Before we introduce that modelling framework in the next section, we first explain the very concept of complementarity constraints.",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Complementarity constraints"
+    ]
+  },
+  {
+    "objectID": "complementarity_constraints.html#definition-of-complementarity-constraints",
+    "href": "complementarity_constraints.html#definition-of-complementarity-constraints",
+    "title": "Complementarity constraints",
+    "section": "Definition of complementarity constraints",
+    "text": "Definition of complementarity constraints\nTwo variables x\\in\\mathbb R and y\\in\\mathbb R satisfy the complementarity constraint if x or y is equal to zero and both are nonnegative\nxy=0, \\; x\\geq 0,\\; y\\geq 0,\nor, using a dedicated compact notation:\n\\boxed{0\\leq x \\perp y \\geq 0.}\n\n\n\n\n\n\nBoth variables can be zero\n\n\n\nThe or in the above definition is not exclusive, therefore it is possible that both x and y are zero.\n\n\nThe concept and notation extends to vectors x\\in\\mathbb R^n and y\\in\\mathbb R^n, in which case the constraint is interpreted componentwise \\boxed{\\bm 0\\leq \\bm x \\perp \\bm y \\geq \\bm 0.}",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Complementarity constraints"
+    ]
+  },
+  {
+    "objectID": "complementarity_constraints.html#geometric-interpretation-of-complementarity-constraints",
+    "href": "complementarity_constraints.html#geometric-interpretation-of-complementarity-constraints",
+    "title": "Complementarity constraints",
+    "section": "Geometric interpretation of complementarity constraints",
+    "text": "Geometric interpretation of complementarity constraints\nThe set of admissible pairs (x,y) in the \\mathbb R^2 plane is constrained to the L-shaped subset given by the nonnegative x and y semi-axes (including the origin). The set is obviously nonconvex.",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Complementarity constraints"
+    ]
+  },
+  {
+    "objectID": "piecewise_affine_systems.html",
+    "href": "piecewise_affine_systems.html",
+    "title": "Piecewise affine systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Piecewise affine systems"
+    ]
+  },
+  {
+    "objectID": "introduction.html",
+    "href": "introduction.html",
+    "title": "What is a hybrid system?",
+    "section": "",
+    "text": "xxx\n\n\n\n Back to top",
+    "crumbs": [
+      "0. Introduction",
+      "What is a hybrid system?"
+    ]
+  },
+  {
+    "objectID": "reachability.html",
+    "href": "reachability.html",
+    "title": "Reachability",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "12. Formal verification",
+      "Reachability"
+    ]
+  },
+  {
+    "objectID": "stability_via_multiple_lyapunov_function.html",
+    "href": "stability_via_multiple_lyapunov_function.html",
+    "title": "Multiple Lyapunov function",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "8. Stability",
+      "Multiple Lyapunov function"
+    ]
+  },
+  {
+    "objectID": "stability_of_hybrid_systems.html",
+    "href": "stability_of_hybrid_systems.html",
+    "title": "Stability of hybrid systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "8. Stability",
+      "Stability of hybrid systems"
+    ]
+  },
+  {
+    "objectID": "solution_conditions.html",
+    "href": "solution_conditions.html",
+    "title": "Solution conditions",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "7. Solution",
+      "Solution conditions"
+    ]
+  }
+]
