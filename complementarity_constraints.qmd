@@ -1,0 +1,31 @@
+---
+title: "Complementarity constraints"
+format:
+    html:
+        html-math-method: katex
+---
+
+## Why complementarity constraints?
+
+Yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms, is based on complementaristy constraints. Before we introduce that modelling framework in the next section, we first explain the very concept of complementarity constraints.
+
+## Definition of complementarity constraints
+
+Two variables $x\in\mathbb R$ and $y\in\mathbb R$ satisfy the complementarity constraint if $x$ or $y$ is equal to zero and both are nonnegative 
+
+$$xy=0, \; x\geq 0,\; y\geq 0,$$  
+
+or, using a dedicated compact notation:  
+$$\boxed{0\leq x \perp y \geq 0.}$$
+
+::: {.callout-warning}
+## Both variables can be zero
+The *or* in the above definition is not exclusive, therefore it is possible that both $x$ and $y$ are zero.
+:::
+
+The concept and notation extends to vectors $x\in\mathbb R^n$ and $y\in\mathbb R^n$, in which case the constraint is interpreted componentwise
+$$\boxed{\bm 0\leq \bm x \perp \bm y \geq \bm 0.}$$
+
+## Geometric interpretation of complementarity constraints 
+
+The set of admissible pairs $(x,y)$ in the $\mathbb R^2$ plane is constrained to the L-shaped subset given by the nonnegative $x$ and $y$ semi-axes (including the origin). The set is obviously nonconvex.

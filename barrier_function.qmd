@@ -1,0 +1,167 @@
+---
+title: "Barrier certificates"
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+execute:
+    enabled: true
+jupyter: julia-1.10        
+---
+
+This is another technique for verification of safety of hybrid system. Unlike the optimal-control based and set-propagation based techniques, it is not based on explicit computational characterization of the evolution of states in time. Instead, it is based on searching for a function of a state that satisfies certain properties. The function is called a barrier function and it serves as a certificate of safety.
+
+For notational and conceptual convenience we start with an explanation of the method for continuous systems, and only then we extend it to hybrid systems.
+
+## Barrier certificate for continuous systems
+
+We consider a continuous-time dynamical system modelled by
+$$
+\dot{\bm x}(t) = \mathbf f(\bm x, \bm d), 
+$$
+where $\bm d$ represents an uncertainy in the system description – it can be an uncertain parameter or an external disturbance acting on the system.
+
+We now define two regions of the state space: 
+
+- the set of initial states $\mathcal X_0$, 
+- and the set of unsafe states $\mathcal X_\mathrm{u}$. 
+
+Our goal is to prove (certify) that the system does not reach the unsafe states for an arbitrary initial state $\bm x(0)\in \mathcal X_0$ and for an arbitrary $d\in \mathcal D$.
+
+We define a barrier function $B(\bm x)$ with the following three properties
+
+$$B(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
+
+$$B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,$$
+
+$$\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x, \bm d \, \text{such that} \, B(\bm x) = 0.$$
+
+Now, upon finding a function $B(\bm x)$ with such properties, we will prove (certify) safety of the system – the function serves as a certificate of safety.
+
+:::{.callout-note}
+It cannot go unnoticed that the properties of a barrier function $B(\bm x)$ and the motivation for its finding resemble those of a Lyapunov function. Indeed, the two concepts are related. But they are not the same. 
+:::
+
+How do we find such function? We will reuse the computational technique based on sum-of-squares (SOS) polynomials that we already used for Lyapunov functions. But first we need to handle one unpleasant aspect of the third condition above – nonconvexity of the set given by $B(\bm x) = 0$.
+
+## Convex relaxation of the barrier certificate problem
+
+We relax the third condition so that it holds not only at $B(\bm x) = 0$ but everywhere. The three conditions are then
+$$B(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
+
+$$B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,$$
+
+$$\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x\in \mathcal X, \bm d \in \mathcal D.$$
+
+Let's now demonstrate this by means of an example.
+
+::: {#exm-line}
+Consider the system modelled by
+$$
+\begin{aligned}
+\dot x_1 &= x_2\\
+\dot x_2 &= -x_1 + \frac{p}{3}x_1^3 - x_2,
+\end{aligned}
+$$
+where the parameter $p\in [0.9,1.1]$. 
+
+The initial set is given by
+$$
+\mathcal X_0 = \{ \bm x \in \mathbb R^2 \mid (x_1-1.5)^2 + x_2^2 \leq 0.25 \}
+$$
+and the unsafe set is given by
+$$
+\mathcal X_\mathrm{u} = \{ \bm x \in \mathbb R^2 \mid (x_1+1)^2 + (x_2+1)^2 \leq 0.16 \}.
+$$
+
+The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
+
+```{julia}
+using SumOfSquares
+using DynamicPolynomials
+using MosekTools    
+
+optimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() => true)
+model = SOSModel(optimizer)
+@polyvar x[1:2] 
+
+p = 1;
+
+f = [ x[2],
+     -x[1] + (p/3)*x[1]^3 - x[2]]
+
+g₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}
+h₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}
+
+X = monomials(x, 0:4)
+@variable(model, B, Poly(X))
+
+ε = 0.001
+@constraint(model, B >= ε, domain = @set(g₁ >= 0))
+
+@constraint(model, B <= 0, domain = @set(h₁ >= 0))
+
+using LinearAlgebra # Needed for `dot`
+dBdt = dot(differentiate(B, x), f)
+@constraint(model, -dBdt >= 0)
+
+JuMP.optimize!(model)
+
+JuMP.primal_status(model)
+
+import DifferentialEquations, Plots, ImplicitPlots
+function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())
+    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="X₀", linecolor=:blue)
+    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="Xᵤ", linecolor=:teal)
+    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="B = 0", linecolor=:red)
+    Plots.plot(X₀plot)
+    Plots.plot!(Xᵤplot)
+    Plots.plot!(Bplot)
+    ∇(vx, vy) = [fi(x[1] => vx, x[2] => vy) for fi in f]
+    ∇pt(v, p, t) = ∇(v[1], v[2])
+    function traj(v0)
+        tspan = (0.0, Δt)
+        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)
+        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)
+    end
+    ticks = -5:0.5:5
+    X = repeat(ticks, 1, length(ticks))
+    Y = X'
+    Plots.quiver!(X, Y, quiver = (x, y) -> ∇(x, y) / quiver_scaling, linewidth=0.5)
+    for x0 in X0
+        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)
+    end
+    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))
+end
+
+phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])
+```
+:::
+
+## Barrier certificate for hybrid systems
+
+For a hybrid automaton with $l$ locations $\{q_1,q_2,\ldots,q_l\}$, not just one but $l$ barrier functions/certificates are needed:
+
+$$B_i(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u}(q_i),$$
+
+$$B_i(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0(q_i),$$
+
+$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x, \bm u \, \text{such that} \, B_i(\bm x) = 0,$$
+
+$$
+\begin{aligned}
+B_i(\bm x) \leq 0,\quad &\forall \bm x \in \mathcal R(q_j,q_i,\bm x^-)\,\text{for some}\, q_j\,\\
+&\text{and}\, \bm x^-\in\mathcal G(q_j,q_i)\,\text{with}\, B_j(\bm x^-)\leq 0.
+\end{aligned}
+$$
+
+## Convex relaxation of barrier certificates for hybrid systems
+
+$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x\in X_0(q_i), \bm u\in\mathcal U(q_i),$$
+
+$$
+\begin{aligned}
+B_i(\bm x) \leq 0,\quad &\forall (\bm x, \bm x^-)\,\text{such that}\, \bm x \in \mathcal R(q_j,q_i,\bm x^-), \\
+&\text{and}\, \bm x^-\in\mathcal G(q_i,q_j).
+\end{aligned}
+$$

@@ -1,0 +1,88 @@
+---
+title: "Discrete-event systems"
+---
+
+## (Discrete) event 
+
+- Instantaneous occurence, that is, an event takes no time. 
+- Associated with a change of state (transition to another). 
+    - Between events the systems stays fixed, it doesn't evolve.
+- In addition, the state space is discrete (even if infinite).
+
+::: {.notes}
+Do we need to define the state here?
+:::
+
+## Example of a DES trajectory
+
+![](figures/sample_path_discrete_event_system.png)
+
+::: {.notes}
+- The state space not necessarily equidistantly discretized.
+- For some events no transitions occur ($e_3$ at $t_3$).
+- Beware the annoying notational conflict when interpreting the lower index: either related to time or to a particular element of a set. In other words: name of the variable vs. value of the variable.
+:::
+	
+## Contrast with continuous-time dynamical systems 
+
+in which everything takes time, however short.
+
+![](figures/sample_path_continuous_time_system.png)
+
+The set of space is $\mathbb{R}$ (or a subset).
+
+## Discrete-time (or discretized) systems 
+such as $x[k+1] = A x[k]$ also not event-driven but time-driven, hence the moments of transitions are predictable.
+
+![](figures/sample_path_discrete_time_system.png)
+
+## Events occur 
+
+- when *action* is taken (button press, clutch released, ...),
+- *spontaneously*, when the reason is difficult to trace down (computer failure, ...),
+- when some *condition* is met (water level is reached, ...).
+
+::: {.notes}
+The third case needs an introduction of a concept of a hybrid systems, wait for it.
+:::
+
+## Sequence of "time-stamped" events
+Aka timed *trace*
+$$(e_1,t_1), (e_2,t_2), (e_3,t_3), \ldots$$
+
+- It is enough to characterize an execution of a deterministic automaton (a unique initial state and a unique transitions at a given state and an event).
+
+## Possibly stochastic, but what exactly?
+
+- Stochasticity can be introduced in the event times (e.g. Poisson process),
+- but also in the transitions (e.g. probabilistic automata, more on this later).
+
+## Sometimes time stamps not needed – the ordering of events is enough
+Trace
+$$e_1,e_2,e_3, \ldots$$
+
+- ### Example 
+`credit_card_swiped`, `pin_entered`, `amount_entered`, `money_withdrawn`
+
+:::{.notes}
+Only the order of the events is important.
+:::
+
+## Discrete-event systems studied through their languages
+Inspired by formal language theory.
+
+Alphabet
+: a set of symbols (events).
+
+Word (or string)
+: a sequence of symbols from a finite alphabet (a particular execution or run of an automaton). 
+
+Language
+: a set of  words from the given alphabet (a set of all possible executions of an automaton). 
+
+## Modelling frameworks for DES
+(in our course:)
+
+- (State) automaton (pl. automata)
+- Petri net
+    - (max,plus) algebra, MPL systems

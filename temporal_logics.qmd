@@ -1,0 +1,91 @@
+---
+title: "Temporal logics"
+format:
+    html:
+        html-math-method: katex
+---
+
+It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that "if this and that conditions are satisfied, then yet another condition must not hold", and so on. 
+
+It turns out, however, that the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. Temporal logics add some more expressiveness. 
+
+Indeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.
+
+## Temporal operators
+
+The name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express **when** certain properties must (or must not) be satisfied along the state trajectories. 
+
+::: {#exm-line}
+Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states $\{\text{green}$, $\text{yellow}$, $\text{red}$, $\text{red-yellow}\}$ of the traffic light. We may want to impose a requirement such that $\text{green}$ is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, $\neg(\text{green}_1 \land \text{green}_2)$. But now consider that we require that sooner or later, $\text{green}$ must be on for each light (to guarantee fairness). And that this must be true all the time, that is, $\text{green}$ must come infinitely often. And, furthermore, that $\text{red}$ cannot come imediately after its respective $\text{green}$. 
+:::
+
+Requirements like these cannot be expressed with standard logical operators such as $\lnot$, $\land$, $\lor$, $\implies$ and $\iff$, and temporal operators must be introduced. Here they are.
+
+| Symbol       | Alternative symbol | Meaning                     |
+|--------------|--------------------|-----------------------------|
+| $\mathbf{F}$ | $\Diamond$         | Eventually (**F**inally) |
+| $\mathbf{G}$ | $\Box$             | **G**lobally (Always)    |
+| $\mathbf{X}$ | $\bigcirc$         | Ne**X**t                    |
+| $\mathbf{U}$ | $\sqcup$           | **U**ntill                  |
+
+: Temporal operators 
+
+We are explaining their use while we introduce our first temporal logic.
+
+## Linear temporal logic (LTL)
+
+"Linear" refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is iniated at some state $x$.
+
+We now consider some property $\phi(x)$ of a sequence of states emanating from the state $x$. $\phi(x)$ evaluates to `true` or `false`. And indeed, while the argument of $\phi$ is a particular state, when evaluating $\phi$, the full sequence is taken into consideration when evaluating $\phi(x)$.
+
+In order to be able to express requirements on future states, $\phi()$ cannot be just a logical formula, it must by a LTL formula. Here comes a formal definition
+$$
+\begin{aligned}
+\phi &= \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \\
+&\quad | \, \mathbf{X} \phi_1 \, | \, \mathbf{F} \phi_1 \, | \, \mathbf{G} \phi_1 | \, \phi_1 \mathbf{U} \phi_2
+\end{aligned}
+$$
+
+Having an LTL formula, we write that a state sequence emanating from a given discrete state $x$ satisfies the formula as
+$$x \models \phi$$ 
+if $\phi$ is true for all possible state trajectories starting at this state.
+
+## Examples of LTL formulas
+
+$$
+\mathbf{G}\neg \phi
+$$
+
+$$
+\mathbf{G}\mathbf{F} \phi
+$$
+
+
+$$
+\mathbf{F}\mathbf{G} \phi
+$$
+
+
+$$
+\mathbf{F}(\phi_1 \land \mathbf{X}\mathbf{F}\phi_2)
+$$
+
+
+## CTL* (CTL mixed with LTL) supports branching
+
+- Existential quantifiers needed
+    - $\mathbf{A}$: For all
+    - $\mathbf{E}$: There exists
+
+## Literature
+
+- Lin, Hai, and Panos J. Antsaklis. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springher, 2022. Chapter 3.
+- Mitra, Sayan. Verifying Cyber-Physical Systems: A Path to Safe Autonomy. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2021. [https://sayanmitracode.github.io/cpsbooksite/about.html](https://sayanmitracode.github.io/cpsbooksite/about.html).
+
+- Baier, Christel, and Joost-Pieter Katoen. Principles of Model Checking. Cambridge, MA, USA: MIT Press, 2008.
+
+- Clarke, Edmund M., Jr, Orna Grumberg, Daniel Kroening, Doron Peled, and Helmut Veith. Model Checking. 2nd ed. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2018.
+
+- Murray, Richard M, Ufuk Topcu, and Nok Wongpiromsarn. ‘Lecture 3 Linear Temporal Logic (LTL)’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. [http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf](http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf).
+
+- Wongpiromsarn, Nok, Richard M. Murray, and Ufuk Topcu. ‘Lecture 4 Model Checking and Logic Synthesis’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. [http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf](http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf).

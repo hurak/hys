@@ -1,0 +1,84 @@
+project:
+  type: website
+
+website:
+  title: "B(E)3M35HYS – Hybrid systems"
+  page-footer: "Copyright 2023, Zdeněk Hurák"
+  page-navigation: true
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "0. Introduction"
+        contents:
+          - introduction.qmd
+          - references_intro.qmd
+      - section: "1. Discrete-event systems: Automata"
+        contents:
+          - discrete_event_systems.qmd
+          - automata.qmd  
+          - references_automata.qmd
+      - section: "2. Discrete-event systems: Petri nets"  
+        contents:  
+          - petri_nets.qmd  
+          - references_petri_nets.qmd
+      - section: "3. Discrete-event systems: Max-plus systems"  
+        contents:
+          - max_plus_systems.qmd  
+          - references_max_plus.qmd
+      - section: "4. Hybrid systems: Hybrid automata"
+        contents:
+          - hybrid_automata.qmd
+          - references_hybrid_automata.qmd
+      - section: "5. Hybrid systems: Hybrid equations"
+        contents:
+          - hybrid_equations.qmd
+          - references_hybrid_equations.qmd
+      - section: "6. Some classes of hybrid systems"
+        contents:
+          - reset_systems.qmd
+          - switched_systems.qmd
+          - piecewise_affine_systems.qmd
+          - references_reset_switched_piecewise.qmd
+      - section: "7. Solution"
+        contents:
+          - solution_concepts.qmd
+          - solution_conditions.qmd
+          - references_solution.qmd
+      - section: "8. Stability"
+        contents:
+          - stability_of_hybrid_systems.qmd
+          - stability_via_common_lyapunov_function.qmd
+          - stability_via_multiple_lyapunov_function.qmd
+          - references_stability.qmd
+      - section: "9. Complementarity systems"
+        contents:
+          - complementarity_constraints.qmd
+          - complementarity_systems.qmd
+          - simulation_using_complementarity_constraints.qmd
+          - references_complementarity.qmd
+      - section: "10. Mixed logical dynamical (MLD) systems"
+        contents:
+          - why_mld.qmd
+          - discrete_hybrid_automata.qmd
+          - mixed_logical_dynamical_systems.qmd
+          - references_mld.qmd
+      - section: "11. Model predictive control (MPC) for MLD systems"
+        contents:
+          - online_mpc_for_mld_systems.qmd
+          - explicit_mpc_for_mld_systems.qmd
+          - references_mpc.qmd
+      - section: "12. Formal verification"
+        contents:
+          - what_is_verification.qmd
+          - reachability.qmd
+          - barrier_function.qmd
+          - temporal_logics.qmd
+          - references_verification.qmd
+  back-to-top-navigation: true
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
