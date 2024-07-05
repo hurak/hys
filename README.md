@@ -1,0 +1,3 @@
+# Hybrid Systems (B3M35HYS/BE3M35HYS)
+
+A repository of source files (Quarto Markdown files) for online lecture notes for the graduate course Hybrid Systems (Czech version [B3M35HYS](https://intranet.fel.cvut.cz/cz/education/bk/predmety/67/72/p6772006.html) / English version [BE3M35HYS](https://intranet.fel.cvut.cz/cz/education/bk/predmety/68/41/p6841906.html)) at Czech Technical University in Prague, Czechia. The rendered web page for these lecture notes is at [https://hurak.github.io/hys](https://hurak.github.io/hys).
