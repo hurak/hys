@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references_intro.html" rel="next">
+<link href="./outline.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -119,6 +119,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -467,8 +473,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#example-of-a-hybrid-system" id="toc-example-of-a-hybrid-system" class="nav-link active" data-scroll-target="#example-of-a-hybrid-system">Example of a hybrid system</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -492,9 +505,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>xxx</p>
+<p>The adjective “hybrid” is used in common language to express that the thing under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague definition into a more descriptive one: a hybrid system has a <em>bit</em> of this and an <em>atom</em> of that…</p>
+<ul>
+<li>Physical systems combined with if-then-else and/or timing rules (mostly in software).</li>
+<li>Discrete- or continuous-time continuous(-valued) dynamical systems combined with discrete(-valued) dynamial systems (aka discrete-event systems).
+<ul>
+<li>The former modelled by ODE or DAE,</li>
+<li>the latter modelled by state automata and Petri nets, and implementing some propositonal, predicate and/or temporal logic.</li>
+</ul></li>
+<li>Recently also cyberphysical systems.</li>
+</ul>
+<div class="notes">
+<ul>
+<li>Propositional logic also known as sentential or statement logic</li>
+<li>Concerning cyberphysical systems, I can hardly distinguish them from hybrid systems. Furthermore, it is annoying to see the narowing of cyber(netics) to computers. Cybernetics by itself is already physical!</li>
+</ul>
+</div>
+<section id="example-of-a-hybrid-system" class="level2">
+<h2 class="anchored" data-anchor-id="example-of-a-hybrid-system">Example of a hybrid system</h2>
+<p><img src="figures/example_hybrid_system_cassandras_book.png" class="img-fluid"></p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Open and unbounded concept.</p>
+</div>
+</div>
+<ul>
+<li>Partly because hybrid systems are investigated by many
+<ul>
+<li>Computer science</li>
+<li>Modeling &amp; simulation</li>
+<li>Control systems</li>
+</ul></li>
+</ul>
+<div class="notes">
+<ul>
+<li>Computer science
+<ul>
+<li>They start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.</li>
+<li>Mainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …</li>
+</ul></li>
+<li>Modeling and simulation
+<ul>
+<li>Even when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).</li>
+<li>Strictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled…</li>
+</ul></li>
+<li>Control systems
+<ul>
+<li>Typically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)</li>
+<li>Besides synthesis (aka control design), properties such as stability, controllability, robustness.</li>
+<li>There is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.</li>
+</ul></li>
+</ul>
+</div>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -589,7 +665,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -921,8 +997,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references_intro.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./outline.html" class="pagination-link" aria-label="Course outline">
+        <span class="nav-page-text">Course outline</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -933,7 +1009,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>   
     <div class="nav-footer-center">
-<p>Copyright 2023, Zdeněk Hurák</p>
+<p>Copyright 2024, Zdeněk Hurák</p>
 </div>
     <div class="nav-footer-right">
       &nbsp;
