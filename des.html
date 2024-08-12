@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.2">
+<meta name="generator" content="quarto-1.6.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -188,6 +188,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./des_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -213,6 +219,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -551,15 +563,12 @@ window.Quarto = {
    
   <ul>
   <li><a href="#discrete-event" id="toc-discrete-event" class="nav-link active" data-scroll-target="#discrete-event">(Discrete) event</a></li>
-  <li><a href="#example-of-a-des-trajectory" id="toc-example-of-a-des-trajectory" class="nav-link" data-scroll-target="#example-of-a-des-trajectory">Example of a DES trajectory</a></li>
-  <li><a href="#contrast-with-continuous-time-dynamical-systems" id="toc-contrast-with-continuous-time-dynamical-systems" class="nav-link" data-scroll-target="#contrast-with-continuous-time-dynamical-systems">Contrast with continuous-time dynamical systems</a></li>
-  <li><a href="#discrete-time-or-discretized-systems" id="toc-discrete-time-or-discretized-systems" class="nav-link" data-scroll-target="#discrete-time-or-discretized-systems">Discrete-time (or discretized) systems</a></li>
-  <li><a href="#events-occur" id="toc-events-occur" class="nav-link" data-scroll-target="#events-occur">Events occur</a></li>
-  <li><a href="#sequence-of-time-stamped-events" id="toc-sequence-of-time-stamped-events" class="nav-link" data-scroll-target="#sequence-of-time-stamped-events">Sequence of “time-stamped” events</a></li>
-  <li><a href="#possibly-stochastic-but-what-exactly" id="toc-possibly-stochastic-but-what-exactly" class="nav-link" data-scroll-target="#possibly-stochastic-but-what-exactly">Possibly stochastic, but what exactly?</a></li>
+  <li><a href="#when-do-events-occur" id="toc-when-do-events-occur" class="nav-link" data-scroll-target="#when-do-events-occur">When do events occur?</a></li>
+  <li><a href="#sequence-of-time-stamped-events-aka-timed-trace" id="toc-sequence-of-time-stamped-events-aka-timed-trace" class="nav-link" data-scroll-target="#sequence-of-time-stamped-events-aka-timed-trace">Sequence of “time-stamped” events (aka timed <em>trace</em>)</a></li>
+  <li><a href="#des-can-be-stochastic-but-what-exactly-is-stochastic-then" id="toc-des-can-be-stochastic-but-what-exactly-is-stochastic-then" class="nav-link" data-scroll-target="#des-can-be-stochastic-but-what-exactly-is-stochastic-then">DES can be stochastic, but what exactly is stochastic then?</a></li>
   <li><a href="#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" id="toc-sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" class="nav-link" data-scroll-target="#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough">Sometimes time stamps not needed – the ordering of events is enough</a></li>
-  <li><a href="#discrete-event-systems-studied-through-their-languages" id="toc-discrete-event-systems-studied-through-their-languages" class="nav-link" data-scroll-target="#discrete-event-systems-studied-through-their-languages">Discrete-event systems studied through their languages</a></li>
-  <li><a href="#modelling-frameworks-for-des" id="toc-modelling-frameworks-for-des" class="nav-link" data-scroll-target="#modelling-frameworks-for-des">Modelling frameworks for DES</a></li>
+  <li><a href="#discrete-event-systems-are-studied-through-their-languages" id="toc-discrete-event-systems-are-studied-through-their-languages" class="nav-link" data-scroll-target="#discrete-event-systems-are-studied-through-their-languages">Discrete-event systems are studied through their languages</a></li>
+  <li><a href="#modelling-frameworks-for-des-as-used-in-our-course" id="toc-modelling-frameworks-for-des-as-used-in-our-course" class="nav-link" data-scroll-target="#modelling-frameworks-for-des-as-used-in-our-course">Modelling frameworks for DES (as used in our course)</a></li>
   </ul>
 </nav>
     </div>
@@ -585,106 +594,115 @@ window.Quarto = {
 </header>
 
 
+<p>We have already mentioned that hybrid systems are composed of <em>time-driven subsystems</em> and <em>event-driven subsystems</em>. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).</p>
 <section id="discrete-event" class="level2">
 <h2 class="anchored" data-anchor-id="discrete-event">(Discrete) event</h2>
-<ul>
-<li>Instantaneous occurence, that is, an event takes no time.</li>
-<li>Associated with a change of state (transition to another).
-<ul>
-<li>Between events the systems stays fixed, it doesn’t evolve.</li>
-</ul></li>
-<li>In addition, the state space is discrete (even if infinite).</li>
-</ul>
-<div class="notes">
-<p>Do we need to define the state here?</p>
+<p>We need to start with the definition of an <em>event</em>. Sometimes an adjective <em>discrete</em> is added (to get <em>discrete event</em>), although it appears rather redundant.</p>
+<p>The primary characteristic of an event is <em>instantaneous occurence</em>, that is, an event takes no time.</p>
+<p>Within the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The concept of a state
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>True, here we are making a reference to the concept of a <em>state</em>, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).</p>
+</div>
+</div>
+<p>Although it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).</p>
+<div id="exm-trajectory_discrete-event" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (DES state trajectory)</strong></span> In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.</p>
+<p><img src="des_figures/sample_path_discrete_event_system.png" class="img-fluid" style="width:60.0%"></p>
+<p>It is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.</p>
+<p>Also note that for some events no transitions occur (<span class="math inline">\(e_3\)</span> at <span class="math inline">\(t_3\)</span>).</p>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Frequent notational confusion: does the lower index represent discrete time or an element of a set?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between <em>name of the variable</em> and <em>value of the variable</em>. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.</p>
+</div>
+</div>
+<div id="exm-trajectory-continuous-time" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (State trajectory of a continuous-time dynamical systems)</strong></span> Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be <span class="math inline">\(\dot x(t) = f(x)\)</span>. In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.</p>
+<p><img src="des_figures/sample_path_continuous_time_system.png" class="img-fluid" style="width:60.0%"></p>
+<p>The set of states (aka state space) is <span class="math inline">\(\mathbb{R}\)</span> (or a subset) in this case (in general <span class="math inline">\(\mathbb{R}^n\)</span> or a subset).</p>
+</div>
+<div id="exm-trajectory-discrete-time" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (State trajectory of a time-discretized (aka sampled-data) system)</strong></span> As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by <span class="math inline">\(x_k = f(x_k)\)</span> in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.</p>
+<p><img src="des_figures/sample_path_discrete_time_system.png" class="img-fluid" style="width:60.0%"></p>
 </div>
 </section>
-<section id="example-of-a-des-trajectory" class="level2">
-<h2 class="anchored" data-anchor-id="example-of-a-des-trajectory">Example of a DES trajectory</h2>
-<p><img src="figures/sample_path_discrete_event_system.png" class="img-fluid"></p>
-<div class="notes">
-<ul>
-<li>The state space not necessarily equidistantly discretized.</li>
-<li>For some events no transitions occur (<span class="math inline">\(e_3\)</span> at <span class="math inline">\(t_3\)</span>).</li>
-<li>Beware the annoying notational conflict when interpreting the lower index: either related to time or to a particular element of a set. In other words: name of the variable vs.&nbsp;value of the variable.</li>
-</ul>
-</div>
-</section>
-<section id="contrast-with-continuous-time-dynamical-systems" class="level2">
-<h2 class="anchored" data-anchor-id="contrast-with-continuous-time-dynamical-systems">Contrast with continuous-time dynamical systems</h2>
-<p>in which everything takes time, however short.</p>
-<p><img src="figures/sample_path_continuous_time_system.png" class="img-fluid"></p>
-<p>The set of space is <span class="math inline">\(\mathbb{R}\)</span> (or a subset).</p>
-</section>
-<section id="discrete-time-or-discretized-systems" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-time-or-discretized-systems">Discrete-time (or discretized) systems</h2>
-<p>such as <span class="math inline">\(x[k+1] = A x[k]\)</span> also not event-driven but time-driven, hence the moments of transitions are predictable.</p>
-<p><img src="figures/sample_path_discrete_time_system.png" class="img-fluid"></p>
-</section>
-<section id="events-occur" class="level2">
-<h2 class="anchored" data-anchor-id="events-occur">Events occur</h2>
+<section id="when-do-events-occur" class="level2">
+<h2 class="anchored" data-anchor-id="when-do-events-occur">When do events occur?</h2>
+<p>There are three major possibilities:</p>
 <ul>
 <li>when <em>action</em> is taken (button press, clutch released, …),</li>
-<li><em>spontaneously</em>, when the reason is difficult to trace down (computer failure, …),</li>
-<li>when some <em>condition</em> is met (water level is reached, …).</li>
-</ul>
-<div class="notes">
-<p>The third case needs an introduction of a concept of a hybrid systems, wait for it.</p>
-</div>
-</section>
-<section id="sequence-of-time-stamped-events" class="level2">
-<h2 class="anchored" data-anchor-id="sequence-of-time-stamped-events">Sequence of “time-stamped” events</h2>
-<p>Aka timed <em>trace</em> <span class="math display">\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \ldots\]</span></p>
-<ul>
-<li>It is enough to characterize an execution of a deterministic automaton (a unique initial state and a unique transitions at a given state and an event).</li>
+<li><em>spontaneously</em>: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),</li>
+<li>when some <em>condition</em> is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.</li>
 </ul>
 </section>
-<section id="possibly-stochastic-but-what-exactly" class="level2">
-<h2 class="anchored" data-anchor-id="possibly-stochastic-but-what-exactly">Possibly stochastic, but what exactly?</h2>
+<section id="sequence-of-time-stamped-events-aka-timed-trace" class="level2">
+<h2 class="anchored" data-anchor-id="sequence-of-time-stamped-events-aka-timed-trace">Sequence of “time-stamped” events (aka timed <em>trace</em>)</h2>
+<p>The sequence of pairs (event, time) <span class="math display">\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \ldots\]</span></p>
+<p>is sufficient to characterize an execution of a <em>deterministic</em> system, that is, a system with a unique initial state and a unique transitions at a given state and an event.</p>
+</section>
+<section id="des-can-be-stochastic-but-what-exactly-is-stochastic-then" class="level2">
+<h2 class="anchored" data-anchor-id="des-can-be-stochastic-but-what-exactly-is-stochastic-then">DES can be stochastic, but what exactly is stochastic then?</h2>
+<p>Stochasticity can be introduced in</p>
 <ul>
-<li>Stochasticity can be introduced in the event times (e.g.&nbsp;Poisson process),</li>
+<li>the event times (e.g.&nbsp;Poisson process),</li>
 <li>but also in the transitions (e.g.&nbsp;probabilistic automata, more on this later).</li>
 </ul>
 </section>
 <section id="sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" class="level2">
 <h2 class="anchored" data-anchor-id="sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough">Sometimes time stamps not needed – the ordering of events is enough</h2>
-<p>Trace <span class="math display">\[e_1,e_2,e_3, \ldots\]</span></p>
-<ul>
-<li><h3 id="example" class="anchored">Example</h3>
-<code>credit_card_swiped</code>, <code>pin_entered</code>, <code>amount_entered</code>, <code>money_withdrawn</code></li>
-</ul>
-<div class="notes">
-<p>Only the order of the events is important.</p>
+<p>The sequence of events (aka <em>trace</em>) <span class="math display">\[e_1,e_2,e_3, \ldots\]</span> can be enough for some analysis, in which only the order of the events is important.</p>
+<div id="exm-untimed-discrete-event-system" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4</strong></span> <code>credit_card_swiped</code>, <code>pin_entered</code>, <code>amount_entered</code>, <code>money_withdrawn</code></p>
 </div>
 </section>
-<section id="discrete-event-systems-studied-through-their-languages" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-event-systems-studied-through-their-languages">Discrete-event systems studied through their languages</h2>
-<p>Inspired by formal language theory.</p>
+<section id="discrete-event-systems-are-studied-through-their-languages" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-event-systems-are-studied-through-their-languages">Discrete-event systems are studied through their languages</h2>
+<p>When studying discrete-event systems, soon we are exposed to terminology from the <em>formal language theory</em> such as <em>alphabet</em>, <em>word</em>, and <em>language</em>. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.</p>
+<p>We define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.</p>
 <dl>
 <dt>Alphabet</dt>
 <dd>
-a set of symbols (events).
+a set of symbols.
 </dd>
 <dt>Word (or string)</dt>
 <dd>
-a sequence of symbols from a finite alphabet (a particular execution or run of an automaton).
+a sequence of symbols from a finite alphabet.
 </dd>
 <dt>Language</dt>
 <dd>
-a set of words from the given alphabet (a set of all possible executions of an automaton).
+a set of words from the given alphabet.
 </dd>
 </dl>
+<p>Now, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.</p>
+<p>Indeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” when in the next section when we introduce the concept of an automaton and some of its properties.</p>
 </section>
-<section id="modelling-frameworks-for-des" class="level2">
-<h2 class="anchored" data-anchor-id="modelling-frameworks-for-des">Modelling frameworks for DES</h2>
-<p>(in our course:)</p>
+<section id="modelling-frameworks-for-des-as-used-in-our-course" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-frameworks-for-des-as-used-in-our-course">Modelling frameworks for DES (as used in our course)</h2>
+<p>These are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems</p>
 <ul>
 <li>(State) automaton (pl. automata)</li>
-<li>Petri net
-<ul>
+<li>Petri net</li>
 <li>(max,plus) algebra, MPL systems</li>
-</ul></li>
 </ul>
+<p>While the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.</p>
+<p>We are going to cover all the three frameworks in this course as a prequel to hybrid systems.</p>
 
 
 </section>

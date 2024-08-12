@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.2">
+<meta name="generator" content="quarto-1.6.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./des_references.html" rel="next">
+<link href="./des_software.html" rel="next">
 <link href="./des.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,8 +103,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -222,6 +236,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./des_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -247,6 +267,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -584,28 +610,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#definition-of-an-automaton-can-include-marked-states" id="toc-definition-of-an-automaton-can-include-marked-states" class="nav-link active" data-scroll-target="#definition-of-an-automaton-can-include-marked-states">Definition of an automaton can include marked states</a></li>
-  <li><a href="#comment-on-an-alternative-notation" id="toc-comment-on-an-alternative-notation" class="nav-link" data-scroll-target="#comment-on-an-alternative-notation">Comment on an alternative notation</a></li>
-  <li><a href="#automaton-as-digraph-also-state-transition-diagram" id="toc-automaton-as-digraph-also-state-transition-diagram" class="nav-link" data-scroll-target="#automaton-as-digraph-also-state-transition-diagram">Automaton as (di)graph (also state transition diagram)</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#active-event-function-and-set" id="toc-active-event-function-and-set" class="nav-link" data-scroll-target="#active-event-function-and-set">Active event function and set</a></li>
+  <li><a href="#marked-states" id="toc-marked-states" class="nav-link active" data-scroll-target="#marked-states">Marked states</a></li>
+  <li><a href="#automaton-as-a-digraph-also-a-state-transition-diagram" id="toc-automaton-as-a-digraph-also-a-state-transition-diagram" class="nav-link" data-scroll-target="#automaton-as-a-digraph-also-a-state-transition-diagram">Automaton as a (di)graph (also a state transition diagram)</a></li>
   <li><a href="#finite-state-automaton-fsa" id="toc-finite-state-automaton-fsa" class="nav-link" data-scroll-target="#finite-state-automaton-fsa">Finite state automaton (FSA)</a></li>
   <li><a href="#execution-of-an-automaton" id="toc-execution-of-an-automaton" class="nav-link" data-scroll-target="#execution-of-an-automaton">Execution of an automaton</a></li>
   <li><a href="#path-of-an-automaton" id="toc-path-of-an-automaton" class="nav-link" data-scroll-target="#path-of-an-automaton">Path of an automaton</a></li>
   <li><a href="#example-beverage-vending-machine" id="toc-example-beverage-vending-machine" class="nav-link" data-scroll-target="#example-beverage-vending-machine">Example: Beverage vending machine</a></li>
-  <li><a href="#example-beverage-vending-machine-1" id="toc-example-beverage-vending-machine-1" class="nav-link" data-scroll-target="#example-beverage-vending-machine-1">Example: Beverage vending machine</a></li>
-  <li><a href="#example-longitudinal-control-of-a-ground-vehicle" id="toc-example-longitudinal-control-of-a-ground-vehicle" class="nav-link" data-scroll-target="#example-longitudinal-control-of-a-ground-vehicle">Example: Longitudinal control of a ground vehicle</a></li>
-  <li><a href="#example-corridor-switch" id="toc-example-corridor-switch" class="nav-link" data-scroll-target="#example-corridor-switch">Example: Corridor switch</a></li>
-  <li><a href="#example-double-intensity-switching" id="toc-example-double-intensity-switching" class="nav-link" data-scroll-target="#example-double-intensity-switching">Example: Double intensity switching</a></li>
   <li><a href="#state-as-the-value-of-a-state-variable" id="toc-state-as-the-value-of-a-state-variable" class="nav-link" data-scroll-target="#state-as-the-value-of-a-state-variable">State as the value of a state variable</a></li>
   <li><a href="#examples-of-state-variables" id="toc-examples-of-state-variables" class="nav-link" data-scroll-target="#examples-of-state-variables">Examples of state variables</a></li>
   <li><a href="#state-transition-equation" id="toc-state-transition-equation" class="nav-link" data-scroll-target="#state-transition-equation">State (transition) equation</a></li>
   <li><a href="#extension-moore-machine" id="toc-extension-moore-machine" class="nav-link" data-scroll-target="#extension-moore-machine">Extension: Moore machine</a></li>
-  <li><a href="#example-of-a-moore-machine" id="toc-example-of-a-moore-machine" class="nav-link" data-scroll-target="#example-of-a-moore-machine">Example of a Moore machine</a></li>
   <li><a href="#extension-mealy-machine" id="toc-extension-mealy-machine" class="nav-link" data-scroll-target="#extension-mealy-machine">Extension: Mealy machine</a></li>
-  <li><a href="#example-of-a-mealy-machine" id="toc-example-of-a-mealy-machine" class="nav-link" data-scroll-target="#example-of-a-mealy-machine">Example of a Mealy machine</a></li>
-  <li><a href="#example-reformulate-the-previous-example-as-a-moore-machine" id="toc-example-reformulate-the-previous-example-as-a-moore-machine" class="nav-link" data-scroll-target="#example-reformulate-the-previous-example-as-a-moore-machine">Example: reformulate the previous example as a Moore machine</a></li>
-  <li><a href="#example-dijkstra-token-passing" id="toc-example-dijkstra-token-passing" class="nav-link" data-scroll-target="#example-dijkstra-token-passing">Example: Dijkstra token passing</a></li>
+  <li><a href="#reformulate-the-previous-example-as-a-moore-machine" id="toc-reformulate-the-previous-example-as-a-moore-machine" class="nav-link" data-scroll-target="#reformulate-the-previous-example-as-a-moore-machine">Reformulate the previous example as a Moore machine</a></li>
+  <li><a href="#dijkstra-token-passing" id="toc-dijkstra-token-passing" class="nav-link" data-scroll-target="#dijkstra-token-passing">Dijkstra token passing</a></li>
   <li><a href="#data-type-for-the-state-vector" id="toc-data-type-for-the-state-vector" class="nav-link" data-scroll-target="#data-type-for-the-state-vector">Data type for the state vector</a></li>
   <li><a href="#state-update-transition-function" id="toc-state-update-transition-function" class="nav-link" data-scroll-target="#state-update-transition-function">State update (transition) function</a></li>
   <li><a href="#output-function" id="toc-output-function" class="nav-link" data-scroll-target="#output-function">Output function</a></li>
@@ -634,9 +651,6 @@ window.Quarto = {
   <li><a href="#ex.-ta-with-guards-and-invariant" id="toc-ex.-ta-with-guards-and-invariant" class="nav-link" data-scroll-target="#ex.-ta-with-guards-and-invariant">Ex.: TA with guards and invariant</a></li>
   <li><a href="#invariant-vs-guard" id="toc-invariant-vs-guard" class="nav-link" data-scroll-target="#invariant-vs-guard">Invariant vs guard</a></li>
   <li><a href="#example-several-trains-approaching-a-bridge" id="toc-example-several-trains-approaching-a-bridge" class="nav-link" data-scroll-target="#example-several-trains-approaching-a-bridge">Example: several trains approaching a bridge</a></li>
-  <li><a href="#software" id="toc-software" class="nav-link" data-scroll-target="#software">Software</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#literature-1" id="toc-literature-1" class="nav-link" data-scroll-target="#literature-1">Literature</a></li>
   </ul>
 </nav>
     </div>
@@ -662,77 +676,60 @@ window.Quarto = {
 </header>
 
 
-<p>Having just discussed the concept of a discrete-event system, we now the most popular modeling framework for such systems: a <em>state automaton</em>, or just an <em>automaton</em> (plural automata). It is also known as a <em>state machine</em> or a <em>(discrete) transition system</em>.</p>
+<p>Having just discussed the concept of a discrete-event system, we now introduce the most popular modeling framework for such systems: a <em>state automaton</em>, or just an <em>automaton</em> (plural automata). It is also known as a <em>state machine</em> or a <em>(discrete) transition system</em>.</p>
 <div id="def-automaton" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 1 (Automaton)</strong></span> Automaton is a tuple <span class="math display">\[\boxed{
+<p><span class="theorem-title"><strong>Definition 1 (Automaton)</strong></span> Automaton is a tuple <span class="math display">\boxed{
 G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F\},}
-\]</span><br>
+</span><br>
 where</p>
 <ul>
-<li><span class="math inline">\(\mathcal X\)</span> is the set of <em>states</em> (also called <em>modes</em> or <em>locations</em>).</li>
-<li><span class="math inline">\(\mathcal X_0 \subseteq \mathcal X\)</span> is the set of <em>initial states</em>.</li>
-<li><span class="math inline">\(\mathcal E\)</span> is the set of <em>events</em> (also <em>actions</em>, <em>transition labels</em>, <em>symbols</em>). Also called <em>alphabet</em>.</li>
-<li><span class="math inline">\(\mathcal F\subseteq \mathcal X \times \mathcal E \times \mathcal X\)</span> is the set of transitions.
-<ul>
-<li>In the deterministic case it can also be narrowed down to a <em>transition function</em> <span class="math inline">\(f:\mathcal X \times \mathcal E \rightarrow \mathcal X\)</span>.
-<ul>
-<li><span class="math inline">\(f\)</span> is a partial function.</li>
-</ul></li>
-<li>Sometimes used even for multivalued functions: <span class="math inline">\(f:\mathcal X \times \mathcal E \rightarrow 2^\mathcal{X}\)</span> , where <span class="math inline">\(2^\mathcal{X}\)</span> is a power set.</li>
-</ul></li>
+<li><span class="math inline">\mathcal X</span> is the set of <em>states</em> (also called <em>modes</em> or <em>locations</em>).</li>
+<li><span class="math inline">\mathcal X_0 \subseteq \mathcal X</span> is the set of <em>initial states</em>.</li>
+<li><span class="math inline">\mathcal E</span> is the set of <em>events</em> (also <em>actions</em>, <em>transition labels</em>, <em>symbols</em>). It is also called <em>alphabet</em>.</li>
+<li><span class="math inline">\mathcal F\subseteq \mathcal X \times \mathcal E \times \mathcal X</span> is the set of transitions. In the deterministic case it can also be narrowed down to a <em>transition function</em> <span class="math inline">f:\mathcal X \times \mathcal E \rightarrow \mathcal X</span>. Note that <span class="math inline">f</span> is then is a partial function, it is not necessarily defined for all combinations of states and events. Sometimes <span class="math inline">f</span> is used even for multivalued functions: <span class="math inline">f:\mathcal X \times \mathcal E \rightarrow 2^\mathcal{X}</span>, where <span class="math inline">2^\mathcal{X}</span> is a <em>power set</em> (a set of all subsets of <span class="math inline">X</span>).</li>
 </ul>
 </div>
-<div class="notes">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Some comments on the notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>The set of states is often denoted by <span class="math inline">\(\mathcal Q\)</span> to spare the letter <span class="math inline">\(\mathcal X\)</span> for the continuous valued state space of hybrid systems.</li>
-<li>The set of events is often denoted by <span class="math inline">\(\mathcal A\)</span> to spare the letter <span class="math inline">\(\mathcal E\)</span> for the set of transitions (edges), because <span class="math inline">\(F\)</span> and <span class="math inline">\(f\)</span> may also need to be spared for the continuous-valued transitions. But then the letter A actually fits this purpose nicely because the event set is also called the alphabet.</li>
-<li>The power set is a set of all subsets of <span class="math inline">\(X\)</span>.</li>
+<li>The set of states is often denoted by <span class="math inline">\mathcal Q</span> to spare the letter <span class="math inline">\mathcal X</span> for the continuous valued state space of hybrid systems.</li>
+<li>The set of events is often denoted by <span class="math inline">\mathcal A</span> to spare the letter <span class="math inline">\mathcal E</span> for the set of transitions (edges), because <span class="math inline">F</span> and <span class="math inline">f</span> may also need to be spared for the continuous-valued transitions. But then the letter <span class="math inline">\mathcal A</span> actually fits this purpose nicely because the event set is also called the alphabet.</li>
 </ul>
 </div>
-<section id="definition-of-an-automaton-can-include-marked-states" class="level2">
-<h2 class="anchored" data-anchor-id="definition-of-an-automaton-can-include-marked-states">Definition of an automaton can include marked states</h2>
-<p><span class="math display">\[\boxed{
-G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\},}
-\]</span> <span class="math inline">\(\mathcal X_\mathrm{m} \subseteq \mathcal X\)</span> is the set of <em>marked</em> or <em>accepting</em> states.</p>
-<div class="notes">
-<ul>
-<li>I do not particularly like this idea of mixing the model of the system with the requirements, but this is how it is.</li>
-<li>Note that within this definition we have three sets (subsets) of states: <span class="math inline">\(\mathcal X\)</span>, <span class="math inline">\(\mathcal X_0\)</span> and <span class="math inline">\(\mathcal X_\mathrm{m}\)</span>.</li>
-</ul>
 </div>
+<section id="marked-states" class="level2">
+<h2 class="anchored" data-anchor-id="marked-states">Marked states</h2>
+<p>In some literature, the definition of the automaton also includes a set <span class="math inline">\mathcal X_\mathrm{m} \subseteq \mathcal X</span> of <em>marked</em> or <em>accepting</em> states, in which case the definition of an automaton now includes three (sub)sets of states: <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span> and <span class="math inline">\mathcal X_\mathrm{m}</span>. <span class="math display">\boxed{
+G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\}.}
+</span></p>
+<p>The marked states are just some states with special roles in the system. Namely, these are the states into which the system should be controlled. I do not particularly like this idea of mixing the model of the system with the requirements, but some part of the community likes it this way.</p>
 </section>
-<section id="comment-on-an-alternative-notation" class="level2">
-<h2 class="anchored" data-anchor-id="comment-on-an-alternative-notation">Comment on an alternative notation</h2>
+<section id="automaton-as-a-digraph-also-a-state-transition-diagram" class="level2">
+<h2 class="anchored" data-anchor-id="automaton-as-a-digraph-also-a-state-transition-diagram">Automaton as a (di)graph (also a state transition diagram)</h2>
+<p>So far the definition of an automaton was not particularly visual. This can be changes by viewing the automaton as a directed graph (digraph) with. Thesa are the basic rules</p>
 <ul>
-<li>Note that later (when introducing hybrid automata), we will replace the letter <span class="math inline">\(\mathcal X\)</span> with <span class="math inline">\(\mathcal Q\)</span> in favour of continuous-valued dynamical (sub)systems described by differential equations <span class="math inline">\(\dot x = f(x,u)\)</span>.</li>
-<li>Similarly for other letters.</li>
+<li>State is represented as a node of the graph.</li>
+<li>Transition from a given state to another state is represented as an edge connecting the two nodes.</li>
+<li>Events (actions) are the labels attached to the edges. It is not necessary that each edge has its unique label.</li>
 </ul>
-</section>
-<section id="automaton-as-digraph-also-state-transition-diagram" class="level2">
-<h2 class="anchored" data-anchor-id="automaton-as-digraph-also-state-transition-diagram">Automaton as (di)graph (also state transition diagram)</h2>
-<ul>
-<li>States as nodes.</li>
-<li>Transitions as edges.</li>
-<li>Events (actions) as labels for the edges
-<ul>
-<li>(not necessarily unique).</li>
-</ul></li>
-</ul>
-</section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<ul>
-<li><span class="math inline">\(\mathcal X = \{x_1,x_2,x_3\},\quad \mathcal X_0 = \{x_1\}\)</span></li>
-<li><span class="math inline">\(\mathcal E = \{e_1,e_2,e_3\}\)</span></li>
-<li><span class="math inline">\(\begin{aligned}\mathcal F = \{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\}\end{aligned}\)</span></li>
-</ul>
-<p>. . .</p>
-<div class="cell" data-layout-align="default">
+<div id="exm-automaton-as-digraph" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Automaton as a digraph)</strong></span> Consider an automaton defined by these sets: <span class="math inline">\mathcal X = \{x_1,x_2,x_3\}</span>, <span class="math inline">\mathcal X_0 = \{x_1\}</span>, <span class="math inline">\mathcal E = \{e_1,e_2,e_3\}</span>, <span class="math inline">\mathcal F = \{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\}</span>.</p>
+<p>The corresponding digraph is in <a href="#fig-automaton-as-digraph" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div class="cell" data-fig-width="5.5" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-automaton-as-digraph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-automaton-as-digraph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 343.07 96.22" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="528" height="480" viewbox="0.00 0.00 343.07 96.22" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 92.22)">
 <title>G</title>
 <!-- init -->
@@ -795,22 +792,24 @@ G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\},}
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-automaton-as-digraph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: An example automaton as a digraph
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section>
-<section id="active-event-function-and-set" class="level2">
-<h2 class="anchored" data-anchor-id="active-event-function-and-set">Active event function and set</h2>
-<ul>
-<li>Active event function <span class="math inline">\(\Gamma: \mathcal X \rightarrow 2^\mathcal{E}\)</span> assigns to each state a set of active events.</li>
-<li>Active event set <span class="math inline">\(\Gamma(x)\)</span> is the set of active events in particular state <span class="math inline">\(x\)</span>.</li>
-</ul>
+</div>
+<p>We may encounter the following term</p>
+<div id="def-active-event-function-and-set" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2 (Active event function and set)</strong></span> Active event function (actually a multivalued function) <span class="math inline">\Gamma: \mathcal X \rightarrow 2^\mathcal{E}</span> assigns to each state a set of active events. Active event set <span class="math inline">\Gamma(x)</span> is the set of active events in a particular state <span class="math inline">x</span>.</p>
+</div>
 </section>
 <section id="finite-state-automaton-fsa" class="level2">
 <h2 class="anchored" data-anchor-id="finite-state-automaton-fsa">Finite state automaton (FSA)</h2>
 <ul>
-<li>Finite set <span class="math inline">\(\mathcal X\)</span> of states.</li>
+<li>Finite set <span class="math inline">\mathcal X</span> of states.</li>
 <li>Also: Finite state machine (FSM).</li>
 </ul>
 <div class="notes">
@@ -820,8 +819,8 @@ G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\},}
 <section id="execution-of-an-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="execution-of-an-automaton">Execution of an automaton</h2>
 <ul>
-<li><span class="math inline">\(x_1\xrightarrow{e_1} x_2\xrightarrow{e_2} x_1 \xrightarrow{e_1} x_2 \xrightarrow{e_4} x_3\ldots\)</span></li>
-<li>Sometimes also written as <span class="math inline">\(x_1,e_1,x_2,e_2,\ldots\)</span></li>
+<li><span class="math inline">x_1\xrightarrow{e_1} x_2\xrightarrow{e_2} x_1 \xrightarrow{e_1} x_2 \xrightarrow{e_4} x_3\ldots</span></li>
+<li>Sometimes also written as <span class="math inline">x_1,e_1,x_2,e_2,\ldots</span></li>
 </ul>
 <hr>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -834,13 +833,13 @@ Notational confusion
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><span class="math inline">\(x_k\)</span> for some <span class="math inline">\(k\)</span> is the name of a particular state. It is not the name of a (yet to be introduced) <em>state variable</em>; In fact, it can be viewed of its <em>value</em> (also <em>valuation</em>).</p>
+<p><span class="math inline">x_k</span> for some <span class="math inline">k</span> is the name of a particular state. It is not the name of a (yet to be introduced) <em>state variable</em>; In fact, it can be viewed of its <em>value</em> (also <em>valuation</em>).</p>
 </div>
 </div>
 <ul>
 <li>Some authors strictly distinguish between the state variable and the state (variable valuation),
 <ul>
-<li>similarly as in probability theory random variable <span class="math inline">\(X\)</span> vs its value <span class="math inline">\(x\)</span>, as in <span class="math inline">\(F(x) = P(X\leq x)\)</span>;</li>
+<li>similarly as in probability theory random variable <span class="math inline">X</span> vs its value <span class="math inline">x</span>, as in <span class="math inline">F(x) = P(X\leq x)</span>;</li>
 </ul></li>
 <li>some do not, but then it may lead to confusion;</li>
 <li>yet some others avoid the problem by not introducing state variables and only working with enumerated states.</li>
@@ -864,15 +863,14 @@ Notational confusion 2
 <section id="path-of-an-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="path-of-an-automaton">Path of an automaton</h2>
 <p>Corresponding to the execution</p>
-<p><span class="math display">\[x_1\xrightarrow{e_1} x_2\xrightarrow{e_2} x_1 \xrightarrow{e_1} x_2 \xrightarrow{e_4} x_3\ldots\]</span></p>
+<p><span class="math display">x_1\xrightarrow{e_1} x_2\xrightarrow{e_2} x_1 \xrightarrow{e_1} x_2 \xrightarrow{e_4} x_3\ldots</span></p>
 <p>the path is just the sequence of visited states:</p>
-<p><span class="math display">\[x_1,x_2,x_1,x_2,x_3,\ldots\]</span></p>
+<p><span class="math display">x_1,x_2,x_1,x_2,x_3,\ldots</span></p>
 <div class="notes">
 <p>In continuous-valued dynamical systems, we have a <em>state trajectory</em>, but then time stamps are attached to each visited state.</p>
 </div>
-</section>
-<section id="example-beverage-vending-machine" class="level2">
-<h2 class="anchored" data-anchor-id="example-beverage-vending-machine">Example: Beverage vending machine</h2>
+<div id="exm-beverage-vending-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Beverage vending machine)</strong></span> &nbsp;</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -982,6 +980,7 @@ Notational confusion 2
 <li>State sequence (path): <code>waiting</code>, <code>swiped</code>, <code>paid</code>, <code>coke_dispensed</code>, <code>waiting</code></li>
 <li>Events sequence: <code>swipe card</code>, <code>accept payment</code>, <code>choose coke</code>, <code>take coke</code></li>
 </ul>
+</div>
 <div class="notes">
 <ul>
 <li>Indeed, the two states <code>coke_dispensed</code> and <code>fanta_dispensed</code> can be merged into just <code>beverage_dispensed</code>.</li>
@@ -989,8 +988,8 @@ Notational confusion 2
 </ul>
 </div>
 </section>
-<section id="example-beverage-vending-machine-1" class="level2">
-<h2 class="anchored" data-anchor-id="example-beverage-vending-machine-1">Example: Beverage vending machine</h2>
+<section id="example-beverage-vending-machine" class="level2">
+<h2 class="anchored" data-anchor-id="example-beverage-vending-machine">Example: Beverage vending machine</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1098,9 +1097,8 @@ Notational confusion 2
 </div>
 </div>
 <p>The <code>waiting</code> state can be <em>marked</em> (is <em>accepting</em>).</p>
-</section>
-<section id="example-longitudinal-control-of-a-ground-vehicle" class="level2">
-<h2 class="anchored" data-anchor-id="example-longitudinal-control-of-a-ground-vehicle">Example: Longitudinal control of a ground vehicle</h2>
+<div id="exm-longitudinal-control" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Longitudinal control of a ground vehicle)</strong></span> &nbsp;</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1227,6 +1225,7 @@ Notational confusion 2
 </div>
 </div>
 </div>
+</div>
 <div class="notes">
 <ul>
 <li>By <code>cruise on</code> I mean switching on some kind of a cruise control system, which keeps the velocity constant.</li>
@@ -1234,9 +1233,8 @@ Notational confusion 2
 <li>Note that some of the events are indeed actions started by the driver, but some are just coming from the physics of the vehicle (transition from braking to zero velocity).</li>
 </ul>
 </div>
-</section>
-<section id="example-corridor-switch" class="level2">
-<h2 class="anchored" data-anchor-id="example-corridor-switch">Example: Corridor switch</h2>
+<div id="exm-corridor-switch" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Corridor switch)</strong></span> &nbsp;</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1292,9 +1290,9 @@ Notational confusion 2
 <ul>
 <li>Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.</li>
 </ul>
-</section>
-<section id="example-double-intensity-switching" class="level2">
-<h2 class="anchored" data-anchor-id="example-double-intensity-switching">Example: Double intensity switching</h2>
+</div>
+<div id="exm-double-intensity-switching" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Double intensity switching)</strong></span> &nbsp;</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1370,13 +1368,14 @@ Notational confusion 2
 <ul>
 <li>Obviously we need to introduce <em>time</em> into the automaton…</li>
 </ul>
+</div>
 </section>
 <section id="state-as-the-value-of-a-state-variable" class="level2">
 <h2 class="anchored" data-anchor-id="state-as-the-value-of-a-state-variable">State as the value of a state variable</h2>
 <ul>
 <li>Definition of the state space by enumeration doesn’t scale well.</li>
 <li>State can be characterized as the <em>value</em> (sometimes also <em>valuation</em>) of a <em>state variable</em>.</li>
-<li>State variable <span class="math inline">\(x\)</span> is given by
+<li>State variable <span class="math inline">x</span> is given by
 <ul>
 <li>the name,</li>
 <li>the “type” (boolean, integer, vector, …).</li>
@@ -1386,11 +1385,11 @@ Notational confusion 2
 <section id="examples-of-state-variables" class="level2">
 <h2 class="anchored" data-anchor-id="examples-of-state-variables">Examples of state variables</h2>
 <ul>
-<li>Corridor switch: <span class="math inline">\(x \in \{\mathrm{false},\mathrm{true}\}\)</span> (also <span class="math inline">\(\{0,1\}\)</span>).</li>
+<li>Corridor switch: <span class="math inline">x \in \{\mathrm{false},\mathrm{true}\}</span> (also <span class="math inline">\{0,1\}</span>).</li>
 <li>Double intensity switching:
 <ul>
-<li><span class="math inline">\(x \in \{0,1,2\} \subset \mathbb Z\)</span>,</li>
-<li>or <span class="math inline">\(\bm x = \begin{bmatrix}x_1\\ x_2 \end{bmatrix}\)</span>, where <span class="math inline">\(x_1,x_2 \in \{0,1\}\)</span>.</li>
+<li><span class="math inline">x \in \{0,1,2\} \subset \mathbb Z</span>,</li>
+<li>or <span class="math inline">\bm x = \begin{bmatrix}x_1\\ x_2 \end{bmatrix}</span>, where <span class="math inline">x_1,x_2 \in \{0,1\}</span>.</li>
 </ul></li>
 </ul>
 <div class="notes">
@@ -1402,15 +1401,15 @@ Notational confusion 2
 </section>
 <section id="state-transition-equation" class="level2">
 <h2 class="anchored" data-anchor-id="state-transition-equation">State (transition) equation</h2>
-<p><span class="math display">\[\boxed{x^+ = f(x,e)}\]</span></p>
+<p><span class="math display">\boxed{x^+ = f(x,e)}</span></p>
 <ul>
-<li><p>Upon introduction of discrete-time (index) <span class="math inline">\(k\)</span> <span class="math display">\[x_{k+1} = f(x_k,e_k)\]</span></p></li>
-<li><p>or <span class="math display">\[x[k+1] = f(x[k],e[k]).\]</span></p></li>
+<li><p>Upon introduction of discrete-time (index) <span class="math inline">k</span> <span class="math display">x_{k+1} = f(x_k,e_k)</span></p></li>
+<li><p>or <span class="math display">x[k+1] = f(x[k],e[k]).</span></p></li>
 </ul>
 <div class="notes">
 <ul>
 <li>The function f can be defined by a computer code rather than a clean mathematical formula.</li>
-<li>The discrete-time index of the event is sometimes considered shifted, that is $<span class="math inline">\(x_{k+1} = f(x_k,e_{k+1})\)</span>.</li>
+<li>The discrete-time index of the event is sometimes considered shifted, that is $<span class="math inline">x_{k+1} = f(x_k,e_{k+1})</span>.</li>
 </ul>
 </div>
 </section>
@@ -1418,13 +1417,12 @@ Notational confusion 2
 <h2 class="anchored" data-anchor-id="extension-moore-machine">Extension: Moore machine</h2>
 <ul>
 <li>Automaton with state outputs.</li>
-<li>Output function assigns outputs to the states <span class="math display">\[y = g(x).\]</span></li>
+<li>Output function assigns outputs to the states <span class="math display">y = g(x).</span></li>
 <li>The output is produced (emitted) when the (new) state is entered.</li>
 <li>The output does not depend on the input. When plugged into feedback, no algebraic loops.</li>
 </ul>
-</section>
-<section id="example-of-a-moore-machine" class="level2">
-<h2 class="anchored" data-anchor-id="example-of-a-moore-machine">Example of a Moore machine</h2>
+<div id="exm-moore-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 (Moore machine)</strong></span> &nbsp;</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1512,19 +1510,18 @@ Notational confusion 2
 </div>
 </div>
 <p>The outputs are the labels of the states.</p>
+</div>
 </section>
 <section id="extension-mealy-machine" class="level2">
 <h2 class="anchored" data-anchor-id="extension-mealy-machine">Extension: Mealy machine</h2>
 <ul>
 <li>Automaton with input/output transition labels.</li>
-<li>The transition label <span class="math inline">\(e_\mathrm{i}/e_\mathrm{o}\)</span> on the transion from <span class="math inline">\(x_1\)</span> to <span class="math inline">\(x_2\)</span> reads as “the input event <span class="math inline">\(e_\mathrm{i}\)</span> at state <span class="math inline">\(x_1\)</span> activates the transition to <span class="math inline">\(x_2\)</span>, which outputs the event <span class="math inline">\(e_\mathrm{o}\)</span>”. <span class="math display">\[x_1\xrightarrow{e_\mathrm{i}/e_\mathrm{o}} x_2\]</span></li>
-<li>It can be viewed as if the output function also considers the input and not only the state <span class="math inline">\(y = e_\mathrm{o} = g(x,e_\mathrm{i})\)</span>.</li>
+<li>The transition label <span class="math inline">e_\mathrm{i}/e_\mathrm{o}</span> on the transion from <span class="math inline">x_1</span> to <span class="math inline">x_2</span> reads as “the input event <span class="math inline">e_\mathrm{i}</span> at state <span class="math inline">x_1</span> activates the transition to <span class="math inline">x_2</span>, which outputs the event <span class="math inline">e_\mathrm{o}</span>”. <span class="math display">x_1\xrightarrow{e_\mathrm{i}/e_\mathrm{o}} x_2</span></li>
+<li>It can be viewed as if the output function also considers the input and not only the state <span class="math inline">y = e_\mathrm{o} = g(x,e_\mathrm{i})</span>.</li>
 <li>The output is produced (emitted) during the transition (before the new state is entered).</li>
 </ul>
-</section>
-<section id="example-of-a-mealy-machine" class="level2">
-<h2 class="anchored" data-anchor-id="example-of-a-mealy-machine">Example of a Mealy machine</h2>
-<p>Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.</p>
+<div id="exm-mealy-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7 (Mealy machine)</strong></span> Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1611,10 +1608,11 @@ Notational confusion 2
 </div>
 </div>
 </div>
+</div>
 </section>
-<section id="example-reformulate-the-previous-example-as-a-moore-machine" class="level2">
-<h2 class="anchored" data-anchor-id="example-reformulate-the-previous-example-as-a-moore-machine">Example: reformulate the previous example as a Moore machine</h2>
-<p>. . .</p>
+<div id="xml-mealy-machine-as-moore-machine">
+<section id="reformulate-the-previous-example-as-a-moore-machine" class="level2">
+<h2 class="anchored" data-anchor-id="reformulate-the-previous-example-as-a-moore-machine">Reformulate the previous example as a Moore machine</h2>
 <p>Two more states wrt Mealy</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
@@ -1764,12 +1762,13 @@ Notational confusion 2
 </div>
 </div>
 </div>
+</section>
+</div>
 <div class="notes">
 <p>There are transitions from 30 and 40 back to 0 that are not labelled by any event. This does not seem to follow the general rule that transitions are always triggered by events. Not what? It can be resolved upon introducing time as the timeout transitions.</p>
 </div>
-</section>
-<section id="example-dijkstra-token-passing" class="level2">
-<h2 class="anchored" data-anchor-id="example-dijkstra-token-passing">Example: Dijkstra token passing</h2>
+<section id="dijkstra-token-passing" class="level2">
+<h2 class="anchored" data-anchor-id="dijkstra-token-passing">Dijkstra token passing</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -1977,18 +1976,18 @@ Notational confusion 2
 </section>
 <section id="automata-state-machines-in-umlsysml" class="level2">
 <h2 class="anchored" data-anchor-id="automata-state-machines-in-umlsysml">Automata (state machines) in UML/SysML</h2>
-<p><img src="figures/statemachine_sysml.png" class="img-fluid"></p>
+<p><img src="des_figures/statemachine_sysml.png" class="img-fluid"></p>
 <div class="notes">
 <p>They can do hierarchies and more.</p>
 </div>
 </section>
 <section id="automata-state-machines-in-openmodelica" class="level2">
 <h2 class="anchored" data-anchor-id="automata-state-machines-in-openmodelica">Automata (state machines) in (Open)Modelica</h2>
-<p><img src="figures/statemachine_modelica.png" class="img-fluid"></p>
+<p><img src="des_figures/statemachine_modelica.png" class="img-fluid"></p>
 </section>
 <section id="automata-in-simulink---stateflow-chart" class="level2">
 <h2 class="anchored" data-anchor-id="automata-in-simulink---stateflow-chart">Automata in Simulink -&gt; Stateflow Chart</h2>
-<p><img src="figures/aircontrol-chart_stateflow.png" class="img-fluid"></p>
+<p><img src="des_figures/aircontrol-chart_stateflow.png" class="img-fluid"></p>
 </section>
 <section id="composing-automata" class="level2">
 <h2 class="anchored" data-anchor-id="composing-automata">Composing automata</h2>
@@ -2055,20 +2054,20 @@ Notational confusion 2
 <section id="languages-and-automata" class="level2">
 <h2 class="anchored" data-anchor-id="languages-and-automata">Languages and automata</h2>
 <ul>
-<li><p>Extend the transition function: <span class="math inline">\(f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X\)</span>, where <span class="math inline">\(\mathcal E^\ast\)</span> stands for “all possible sequences of events”.</p></li>
-<li><p>Language <strong>generated</strong> by the automaton is <span class="math display">\[
+<li><p>Extend the transition function: <span class="math inline">f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X</span>, where <span class="math inline">\mathcal E^\ast</span> stands for “all possible sequences of events”.</p></li>
+<li><p>Language <strong>generated</strong> by the automaton is <span class="math display">
   \mathcal L(\mathcal G) = \{s\in\mathcal E^\ast \mid f(x_0,s) \;\text{is defined}\}
-  \]</span></p></li>
-<li><p>Language <strong>marked</strong> by the automaton (the automaton is <strong>accepting</strong> or <strong>recognizing</strong> that language) <span class="math display">\[
+  </span></p></li>
+<li><p>Language <strong>marked</strong> by the automaton (the automaton is <strong>accepting</strong> or <strong>recognizing</strong> that language) <span class="math display">
   \mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}
-  \]</span></p></li>
+  </span></p></li>
 </ul>
 </section>
 <section id="ex.-languaged-accepted-by-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="ex.-languaged-accepted-by-automaton">Ex.: languaged accepted by automaton</h2>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathcal{E} = \{a,b\}, \mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}
-\]</span></p>
+</span></p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -2146,10 +2145,10 @@ Notational confusion 2
 <li>Definitions, analysis, synthesis.</li>
 <li>We then need language concepts such as
 <ul>
-<li>concatenation of strings: <span class="math inline">\(\quad c = ab\)</span></li>
-<li>empty string <span class="math inline">\(\varepsilon\)</span>: <span class="math inline">\(\quad\varepsilon a = a \varepsilon = a\)</span></li>
+<li>concatenation of strings: <span class="math inline">\quad c = ab</span></li>
+<li>empty string <span class="math inline">\varepsilon</span>: <span class="math inline">\quad\varepsilon a = a \varepsilon = a</span></li>
 <li>prefix, suffix</li>
-<li>prefix closure <span class="math inline">\(\bar{\mathcal{L}}\)</span> (of the language <span class="math inline">\(\mathcal L\)</span>)</li>
+<li>prefix closure <span class="math inline">\bar{\mathcal{L}}</span> (of the language <span class="math inline">\mathcal L</span>)</li>
 <li>…</li>
 </ul></li>
 </ul>
@@ -2277,7 +2276,7 @@ Notational confusion 2
 </div>
 <ul>
 <li>Deadlock at state 2. Livelock at states 3 and 4.</li>
-<li><span class="math inline">\(\bar{\mathcal{L}}_\mathrm{m}(\mathcal G) \sub \mathcal L(\mathcal G)\)</span>.</li>
+<li><span class="math inline">\bar{\mathcal{L}}_\mathrm{m}(\mathcal G) \sub \mathcal L(\mathcal G)</span>.</li>
 </ul>
 </section>
 <section id="queueing-systems" class="level2">
@@ -2288,7 +2287,7 @@ Notational confusion 2
 <li>queues (also buffers): where waiting is done</li>
 </ul>
 <p>. . .</p>
-<p><img src="figures/queueing_system.png" class="img-fluid"></p>
+<p><img src="des_figures/queueing_system.png" class="img-fluid"></p>
 </section>
 <section id="examples-of-queueing-systems" class="level2">
 <h2 class="anchored" data-anchor-id="examples-of-queueing-systems">Examples of queueing systems</h2>
@@ -2310,25 +2309,25 @@ Notational confusion 2
 </section>
 <section id="networks-of-queueing-systems" class="level2">
 <h2 class="anchored" data-anchor-id="networks-of-queueing-systems">Networks of queueing systems</h2>
-<p><img src="figures/queueing_system_network.png" class="img-fluid"></p>
+<p><img src="des_figures/queueing_system_network.png" class="img-fluid"></p>
 </section>
 <section id="queueing-systems-as-automata" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-systems-as-automata">Queueing systems as automata</h2>
 <ul>
-<li><p>events: <span class="math inline">\(\mathcal E = \{\text{arrival},\text{departure}\}\)</span></p></li>
-<li><p>states: number of customers in the queue <span class="math display">\[
+<li><p>events: <span class="math inline">\mathcal E = \{\text{arrival},\text{departure}\}</span></p></li>
+<li><p>states: number of customers in the queue <span class="math display">
 \mathcal X = \{0,1,2,3,\ldots\}, \quad \mathcal X_0 = \{0\}
-\]</span></p>
+</span></p>
 <ul>
 <li>not a finite state automation, unless the queue is bounded.</li>
 </ul></li>
-<li><p>state transition: <span class="math display">\[
+<li><p>state transition: <span class="math display">
 f(x,e) =
 \begin{cases}
 x+1, &amp; \text{if}\; x\leq 0 \land e = \mathrm{arrival}\\
 x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}
 \end{cases}
-\]</span></p></li>
+</span></p></li>
 </ul>
 <div class="notes">
 <p>Whether the queue’s length is bounded is a modelling assumption.</p>
@@ -2336,7 +2335,7 @@ x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}
 </section>
 <section id="queueing-system-as-an-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-system-as-an-automaton">Queueing system as an automaton</h2>
-<p><img src="figures/queueing_system_as_automaton.png" class="img-fluid"></p>
+<p><img src="des_figures/queueing_system_as_automaton.png" class="img-fluid"></p>
 <div class="notes">
 <p>Once again, note how the states correspond to the value of the state variable.</p>
 </div>
@@ -2367,9 +2366,9 @@ x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}
 <section id="timed-automaton-with-guards-alur-dill" class="level2">
 <h2 class="anchored" data-anchor-id="timed-automaton-with-guards-alur-dill">Timed automaton with guards (Alur &amp; Dill)</h2>
 <ul>
-<li>one or several resettable clocks: <span class="math inline">\(c_i,\, i=1,\ldots, k\)</span>, driven by the ODE <span class="math display">\[
+<li>one or several resettable clocks: <span class="math inline">c_i,\, i=1,\ldots, k</span>, driven by the ODE <span class="math display">
   \frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0.
-  \]</span></li>
+  </span></li>
 <li>each transition labelled by the tripple {guard; event; reset}</li>
 </ul>
 <div class="notes">
@@ -2550,33 +2549,6 @@ x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}
 <h2 class="anchored" data-anchor-id="example-several-trains-approaching-a-bridge">Example: several trains approaching a bridge</h2>
 <ul>
 <li>Behrmann, Gerd, Alexandre David, and Kim G. Larsen. ‘A Tutorial on Uppaal’. In Formal Methods for the Design of Real-Time Systems, edited by Marco Bernardo and Flavio Corradini, 200–236. Lecture Notes in Computer Science 3185. Berlin, Heidelberg: Springer, 2004. https://doi.org/10.1007/978-3-540-30080-9_7.</li>
-</ul>
-</section>
-<section id="software" class="level2">
-<h2 class="anchored" data-anchor-id="software">Software</h2>
-<ul>
-<li>UPPAAL (for timed automata)</li>
-<li>Stateflow</li>
-<li>SimEvents</li>
-<li>(Open)Modelica – SimPy</li>
-<li>DiscreteEvents.jl, ConcurrentSim.jl</li>
-<li>…</li>
-</ul>
-</section>
-<section id="literature" class="level2">
-<h2 class="anchored" data-anchor-id="literature">Literature</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p>Cassandras, Christos G., and Stéphane Lafortune. Introduction to Discrete Event Systems. 3rd ed.&nbsp;Cham: Springer, 2021.</p>
-</div><div class="column" style="width:60%;">
-<p><img src="figures/cassandras_discrete_event_FRONT_PAGE.jpg" class="img-fluid" style="width:60.0%"></p>
-</div>
-</div>
-</section>
-<section id="literature-1" class="level2">
-<h2 class="anchored" data-anchor-id="literature-1">Literature</h2>
-<ul>
-<li>Lafortune, Stéphane. „Discrete Event Systems: Modeling, Observation, and Control”. Annual Review of Control, Robotics, and Autonomous Systems 2, č. 1 (2019): 141–59. https://doi.org/10.1146/annurev-control-053018-023659.</li>
 </ul>
 
 
@@ -3010,8 +2982,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./des_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./des_software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
