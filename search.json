@@ -4,7 +4,216 @@
     "href": "hybrid_automata.html",
     "title": "Hybrid automata",
     "section": "",
-    "text": "About this site\n\n\n\n Back to top",
+    "text": "We start with an autonomous (=no external/control inputs) hybrid automaton. It is a tuple of sets and (set) mappings \n\\boxed{\n\\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, f, \\mathcal I, \\mathcal E, \\mathcal G, \\mathcal R\\},}\n where",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#hybrid-automaton-with-external-events-and-control-inputs",
+    "href": "hybrid_automata.html#hybrid-automaton-with-external-events-and-control-inputs",
+    "title": "Hybrid automata",
+    "section": "Hybrid automaton with external events and control inputs",
+    "text": "Hybrid automaton with external events and control inputs\nWe now extend the hybrid automaton with two new components:\n\na set \\mathcal{A} of (external) actions (also events or symbols),\na set \\mathcal{U} external continuous-valued inputs (control inputs or disturbances).\n\n\\boxed{\n  \\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, \\mathcal I, \\mathcal A, \\mathcal U, f, \\mathcal E, \\mathcal G, \\mathcal R\\} ,}\n where",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#mathcal-a-a_1a_2ldots-a_s-is-a-set-of-actions",
+    "href": "hybrid_automata.html#mathcal-a-a_1a_2ldots-a_s-is-a-set-of-actions",
+    "title": "Hybrid automata",
+    "section": "\\mathcal A = \\{a_1,a_2,\\ldots, a_s\\} is a set of actions",
+    "text": "\\mathcal A = \\{a_1,a_2,\\ldots, a_s\\} is a set of actions\n\nThe role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.\nUnlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.\n\n\nIn simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#mathcal-uinmathbb-rm-is-a-set-of-continuous-valued-inputs",
+    "href": "hybrid_automata.html#mathcal-uinmathbb-rm-is-a-set-of-continuous-valued-inputs",
+    "title": "Hybrid automata",
+    "section": "\\mathcal U\\in\\mathbb R^m is a set of continuous-valued inputs",
+    "text": "\\mathcal U\\in\\mathbb R^m is a set of continuous-valued inputs\n\nReal-valued functions of time.\nControl inputs, disturbances, references, noises.\n\n\nIn applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#some-modifications-needed",
+    "href": "hybrid_automata.html#some-modifications-needed",
+    "title": "Hybrid automata",
+    "section": "Some modifications needed",
+    "text": "Some modifications needed\nupon introduction of these two types of external inputs:\n\nf: \\mathcal Q \\times \\mathcal X \\times \\mathcal U \\rightarrow \\mathbb R^n is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation \\dot x = f_q(x,u).\n\\mathcal E\\subseteq \\mathcal Q \\times (\\mathcal A) \\times \\mathcal Q is a set of transitions now possibly parameterized by the actions (as in classical automata).\n\\mathcal I : \\mathcal Q \\rightarrow 2^{\\mathcal{X}\\times \\mathcal U} is a location invariant now augmented with a subset of the control input set.\n\\mathcal G: \\mathcal E \\rightarrow 2^{\\mathcal{X}\\times U} is a guard set now augmented with a subset of the control input set.\n\\mathcal R: \\mathcal E \\times \\mathcal X\\times \\mathcal U\\rightarrow 2^{\\mathcal X} is a (state) reset map that is now additionally parameterized by the control input.\n\n\n\nThe guard set for the given location gives just necessary (also enabling) conditions for the transition (x\\in \\mathcal{G}(q)).\nIf enabled, the transition can happen if one of the two things is satisfied:\n\nthe continous state leaves the invariant set of the given location,\n\nan external event occurs.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-button-controlled-led",
+    "href": "hybrid_automata.html#example-button-controlled-led",
+    "title": "Hybrid automata",
+    "section": "Example: button-controlled LED",
+    "text": "Example: button-controlled LED\n. . .\n\n. . .\n\n\\mathcal{Q} = \\{\\mathrm{off}, \\mathrm{dim}, \\mathrm{bright}\\},\\quad \\mathcal{Q}_0 = \\{\\mathrm{off}\\}\n\n. . .\n\n\\mathcal{X} = \\mathbb{R}, \\quad \\mathcal{X}_0 = \\{0\\}\n\n. . .\n\n\\mathcal{I(\\mathrm{off})} = \\mathcal{I(\\mathrm{bright})} = \\mathcal{I(\\mathrm{dim})} = \\{x\\in\\mathbb R \\mid x \\geq 0\\}\n\n. . .\n\nf(x) = 1\n\n. . .\n\n\\mathcal{A} = \\{\\mathrm{press}\\}\n\n. . .\n\n\\begin{aligned}\n\\mathcal{E} &= \\{(\\mathrm{off},\\mathrm{press},\\mathrm{dim}),(\\mathrm{dim},\\mathrm{press},\\mathrm{off}),\\\\\n&\\qquad (\\mathrm{dim},\\mathrm{press},\\mathrm{bright}),(\\mathrm{bright},\\mathrm{press},\\mathrm{off})\\}\n\\end{aligned}\n\n. . .\n\n\\begin{aligned}\n\\mathcal{G}((\\mathrm{off},\\mathrm{press},\\mathrm{dim})) &= \\mathcal X \\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{off})) &= \\{x \\in \\mathcal X \\mid x&gt;2\\}\\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{bright})) &= \\{x \\in \\mathcal X \\mid x\\leq 2\\}\\\\\n\\mathcal{G}((\\mathrm{bright},\\mathrm{press},\\mathrm{off})) &= \\mathcal X.\n\\end{aligned}\n\n. . .\n\nr((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0,\n\n\nthat is, x^+ = r((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0.\nFor all other transitions r((\\cdot, \\cdot, \\cdot),x)=x,\n\nthat is, x^+ = x.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-water-tank",
+    "href": "hybrid_automata.html#example-water-tank",
+    "title": "Hybrid automata",
+    "section": "Example: Water tank",
+    "text": "Example: Water tank\n\n\n\n\\dot V =\n\\begin{cases}\nQ_\\mathrm{in} - Q_\\mathrm{out,middle} - Q_\\mathrm{out,bottom}, & h&gt;h_\\mathrm{m}\\\\\nQ_\\mathrm{in} - Q_\\mathrm{out,bottom}, & h\\leq h_\\mathrm{m}\n\\end{cases}\n\n. . .",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-bouncing-ball",
+    "href": "hybrid_automata.html#example-bouncing-ball",
+    "title": "Hybrid automata",
+    "section": "Example: Bouncing ball",
+    "text": "Example: Bouncing ball\n\n\n\n\n\n\\dot{\\bm x} = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}, \\quad \\begin{bmatrix}10,0\\end{bmatrix}",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-bouncing-ball-ha",
+    "href": "hybrid_automata.html#example-bouncing-ball-ha",
+    "title": "Hybrid automata",
+    "section": "Example: bouncing ball – HA",
+    "text": "Example: bouncing ball – HA\n. . .\n\n. . .\n\n\\mathcal{Q} = \\{q\\}, \\; \\mathcal{Q}_0 = \\{q\\}\n\n. . .\n\n\\mathcal{X} = \\mathbb R^2, \\; \\mathcal{X}_0 = \\left\\{\\begin{bmatrix}10\\\\0\\end{bmatrix}\\right\\}\n\n. . .\n\n\\mathcal{I} = \\{\\mathbb R^2 \\mid x_1 &gt; 0 \\lor (x_1 = 0 \\land x_2 &gt; 0)\\}\n\n. . .\n\nf(\\bm x) = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}\n\n. . .\n\n\\mathcal{E} = \\{(q,q)\\}\n\n. . .\n\n\\mathcal{G} = \\{\\bm x\\in\\mathbb R^2 \\mid x_1=0 \\land x_2 &lt; 0\\}\n\n. . .\n\nr((q,q),\\bm x) = \\begin{bmatrix}x_1\\\\ -\\gamma x_2 \\end{bmatrix},\n where \\gamma is the coefficient of restitution (e.g., \\gamma = 0.9).",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#comment-on-the-invariant-set-for-the-bouncing-ball",
+    "href": "hybrid_automata.html#comment-on-the-invariant-set-for-the-bouncing-ball",
+    "title": "Hybrid automata",
+    "section": "Comment on the invariant set for the bouncing ball",
+    "text": "Comment on the invariant set for the bouncing ball\n\nSome authors characterize the invariant set as x_1\\geq 0.\nBut this means that as the ball touches the ground, nothig forces it to leave the location and do the transition.\nInstead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition.\nThe present definition avoids this. On the other hand, when solving the model numerically, the use of inequalities, in particular nonstrict ones, is inevitable.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-stick-slip-friction-karnopp",
+    "href": "hybrid_automata.html#example-stick-slip-friction-karnopp",
+    "title": "Hybrid automata",
+    "section": "Example: Stick-slip friction (Karnopp)",
+    "text": "Example: Stick-slip friction (Karnopp)\n\nMass m, external force F_\\mathrm{a}, friction force F_\\mathrm{f} \nm\\dot v = F_\\mathrm{a} - F_\\mathrm{f}(v).\n\nAssuming Coulomb friction \nF_\\mathrm{f}(v) = F_\\mathrm{c}\\operatorname*{sgn}(v).\n\nWhat if v=0 and F_\\mathrm{a}&lt;F_\\mathrm{c}?",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#karnopp-model",
+    "href": "hybrid_automata.html#karnopp-model",
+    "title": "Hybrid automata",
+    "section": "Karnopp model",
+    "text": "Karnopp model\n. . .\n\nm\\dot v = 0, \\qquad v=0, \\; |F_\\mathrm{a}| &lt; F_\\mathrm{c}\n\n. . .\n\nF_\\mathrm{f} = \\begin{cases}\\operatorname*{sat}(F_\\mathrm{a},F_\\mathrm{c}), & v=0\\\\F_\\mathrm{c}\\operatorname*{sgn}(v), & \\mathrm{else}\\end{cases}\n\n. . .",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-rimless-wheel",
+    "href": "hybrid_automata.html#example-rimless-wheel",
+    "title": "Hybrid automata",
+    "section": "Example: Rimless wheel",
+    "text": "Example: Rimless wheel",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-rimless-wheel-ha",
+    "href": "hybrid_automata.html#example-rimless-wheel-ha",
+    "title": "Hybrid automata",
+    "section": "Example: Rimless wheel – HA",
+    "text": "Example: Rimless wheel – HA\n. . .",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-rimless-wheel-alternative-ha-with-a-single-location",
+    "href": "hybrid_automata.html#example-rimless-wheel-alternative-ha-with-a-single-location",
+    "title": "Hybrid automata",
+    "section": "Example: Rimless wheel – alternative HA with a single location",
+    "text": "Example: Rimless wheel – alternative HA with a single location\n\nDo not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable s \\in [0, 1, \\ldots, 5] within a single location.\n\n. . .",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter",
+    "href": "hybrid_automata.html#example-dc-dc-boost-converter",
+    "title": "Hybrid automata",
+    "section": "Example: DC-DC boost converter",
+    "text": "Example: DC-DC boost converter\n\n\nNot just the switch but also the (ideal) diode is introducing mode transitions.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter-the-switch-closed",
+    "href": "hybrid_automata.html#example-dc-dc-boost-converter-the-switch-closed",
+    "title": "Hybrid automata",
+    "section": "Example: DC-DC boost converter – the switch closed",
+    "text": "Example: DC-DC boost converter – the switch closed\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}}{L}i_\\mathrm{L} & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter-continuous-conduction-mode-ccm",
+    "href": "hybrid_automata.html#example-dc-dc-boost-converter-continuous-conduction-mode-ccm",
+    "title": "Hybrid automata",
+    "section": "Example: DC-DC boost converter – continuous conduction mode (CCM)",
+    "text": "Example: DC-DC boost converter – continuous conduction mode (CCM)\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}+ \\frac{RR_\\mathrm{C}}{R+R_\\mathrm{C}}}{L} & -\\frac{R}{L(R+R_\\mathrm{C})}\\\\\n\\frac{R}{C(R+R_\\mathrm{C})} & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm",
+    "href": "hybrid_automata.html#example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm",
+    "title": "Hybrid automata",
+    "section": "Example: DC-DC boost converter – discontinuous cond. mode (DCM)",
+    "text": "Example: DC-DC boost converter – discontinuous cond. mode (DCM)\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0 & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\nv_0\n\n\nPossibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.",
+    "crumbs": [
+      "4. Hybrid systems: Hybrid automata",
+      "Hybrid automata"
+    ]
+  },
+  {
+    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter-ha",
+    "href": "hybrid_automata.html#example-dc-dc-boost-converter-ha",
+    "title": "Hybrid automata",
+    "section": "Example: DC-DC boost converter – HA",
+    "text": "Example: DC-DC boost converter – HA",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -15,7 +224,7 @@
     "href": "hybrid_equations_references.html",
     "title": "Literature",
     "section": "",
-    "text": "Back to top",
+    "text": "The theoretical and computational framework of hybrid equations has been mostly developed by a relatively small circle of researchers (Sanfelice, Goebel, Teel, …). The primary monograph is [1]. It is also supported by a freely available Matlab toolbox, see the section on software.\n\nThe book [2] can be regarded as a predecessor and/or complement of the just mentioned [1]. Although the book is not available online, a short version appears as an article [3] in the popular IEEE Control Systems magazine (the one with color figures :-).\n\n\n\n\n\n Back to topReferences\n\n[1] R. G. Sanfelice, Hybrid Feedback Control. Princeton University Press, 2021. Accessed: Sep. 23, 2020. [Online]. Available: https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control\n\n\n[2] R. Goebel, R. G. Sanfelice, and A. R. Teel, Hybrid Dynamical Systems: Modeling, Stability, and Robustness. Princeton University Press, 2012. Available: https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems\n\n\n[3] R. Goebel, R. G. Sanfelice, and A. R. Teel, “Hybrid dynamical systems,” IEEE Control Systems Magazine, vol. 29, no. 2, pp. 28–93, Apr. 2009, doi: 10.1109/MCS.2008.931718.",
     "crumbs": [
       "5. Hybrid systems: Hybrid equations",
       "Literature"
@@ -475,421 +684,208 @@
     ]
   },
   {
-    "objectID": "verification_reachability.html",
-    "href": "verification_reachability.html",
-    "title": "Reachability",
+    "objectID": "hybrid_equations_software.html",
+    "href": "hybrid_equations_software.html",
+    "title": "Software",
     "section": "",
-    "text": "About this site\n\n\n\n Back to top",
+    "text": "There is a well-developed and actively maintained Matlab toolbox\n\nSanfelice, Ricardo, and Pablo Nanez. ‘Hybrid Equations (HyEQ) Toolbox for Matlab’. Version 3.0, 15 October 2022. https://github.com/pnanez/HyEQ_Toolbox. Documentation at https://hyeq.github.io.\n\nThe toolbox can also be installed directly from Matlab through their Add-Ons Explorer. As the stable version is already two years old and they also offer a beta version 3.1.0.04, which was last updated on April 28, 2024, the beta version seems the way to go for our purposes. The authors will certainly appreciate any feedback.\nOther programming languages seem to be missing a similar toolbox/package. How about developing one in Julia?\n\n\n\n Back to top",
     "crumbs": [
-      "12. Formal verification",
-      "Reachability"
+      "5. Hybrid systems: Hybrid equations",
+      "Software"
     ]
   },
   {
-    "objectID": "classes_switched.html",
-    "href": "classes_switched.html",
-    "title": "Switched systems",
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "What is a hybrid system?",
     "section": "",
-    "text": "About this site\n\n\n\n Back to top",
+    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
     "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Switched systems"
+      "0. Introduction",
+      "What is a hybrid system?"
     ]
   },
   {
-    "objectID": "solution_references.html",
-    "href": "solution_references.html",
-    "title": "Literature",
+    "objectID": "intro.html#definition-of-a-hybrid-system",
+    "href": "intro.html#definition-of-a-hybrid-system",
+    "title": "What is a hybrid system?",
     "section": "",
-    "text": "Back to top",
+    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
+    "crumbs": [
+      "0. Introduction",
+      "What is a hybrid system?"
+    ]
+  },
+  {
+    "objectID": "intro.html#example-of-a-hybrid-system",
+    "href": "intro.html#example-of-a-hybrid-system",
+    "title": "What is a hybrid system?",
+    "section": "Example of a hybrid system",
+    "text": "Example of a hybrid system",
+    "crumbs": [
+      "0. Introduction",
+      "What is a hybrid system?"
+    ]
+  },
+  {
+    "objectID": "intro.html#hybrid-system-is-an-open-and-unbounded-concept",
+    "href": "intro.html#hybrid-system-is-an-open-and-unbounded-concept",
+    "title": "What is a hybrid system?",
+    "section": "Hybrid system is an open and unbounded concept",
+    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled…\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
+    "crumbs": [
+      "0. Introduction",
+      "What is a hybrid system?"
+    ]
+  },
+  {
+    "objectID": "solution_concepts.html",
+    "href": "solution_concepts.html",
+    "title": "Solution concepts",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
     "crumbs": [
       "7. Solution",
-      "Literature"
+      "Solution concepts"
     ]
   },
   {
-    "objectID": "max_plus_references.html",
-    "href": "max_plus_references.html",
-    "title": "Literature",
-    "section": "",
-    "text": "One last time in this course we refer to Cassandras and Lafortune (2021), a comprehensive and popular introduction do discrete event systems. A short introduction to the framework (max,+) algebra can be found (under the somewhat less known name “Dioid algebras”) in Chapter 5.4.\nBut as a recommendable alternative, (any one of) the a series of papers by Bart de Schutter (TU Delft) and his colleagues can be read instead. For example De Schutter et al. (2020) and De Schutter and van den Boom (2000).\nFor anyone interested in learning yet more, a beautiful (and freely online) book is Baccelli et al. (2001), which we have also mentioned in the context of Petri nets.\nMax-plus algebra is relevant outside the domain of discrete-event systems – it is also investigated in optimization for its connection with piecewise linear/affine functions. Note that the community prefers using the name tropical geometry (to emphasise that they view it as a branch of algebraic geometry). A lovely tutorial is Rau (2017).\n\n\n\n\n Back to topReferences\n\nBaccelli, François, Guy Cohen, Geert Jan Olsder, and Jean-Pierre Quadrat. 2001. Synchronization and Linearity: An Algebra for Discrete Event Systems. Web edition. Chichester: Wiley. https://www.rocq.inria.fr/metalau/cohen/documents/BCOQ-book.pdf.\n\n\nCassandras, Christos G., and Stéphane Lafortune. 2021. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer. https://doi.org/10.1007/978-3-030-72274-6.\n\n\nDe Schutter, Bart, and Ton van den Boom. 2000. “Model Predictive Control for Max-Plus-Linear Discrete-Event Systems: Extended Report & Addendum.” Technical Report bds:99-10a. Delft, The Netherlands: Delft University of Technology. https://pub.deschutter.info/abs/99_10a.html.\n\n\nDe Schutter, Bart, Ton van den Boom, Jia Xu, and Samira S. Farahani. 2020. “Analysis and Control of Max-Plus Linear Discrete-Event Systems: An Introduction.” Discrete Event Dynamic Systems 30 (1): 25–54. https://doi.org/10.1007/s10626-019-00294-w.\n\n\nRau, Johannes. 2017. “A First Expedition to Tropical Geometry.” https://www.math.uni-tuebingen.de/user/jora/downloads/FirstExpedition.pdf.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Literature"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html",
-    "href": "verification_temporal_logics.html",
-    "title": "Temporal logics",
-    "section": "",
-    "text": "It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that “if this and that conditions are satisfied, then yet another condition must not hold”, and so on.\nIt turns out, however, that the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. Temporal logics add some more expressiveness.\nIndeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html#temporal-operators",
-    "href": "verification_temporal_logics.html#temporal-operators",
-    "title": "Temporal logics",
-    "section": "Temporal operators",
-    "text": "Temporal operators\nThe name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express when certain properties must (or must not) be satisfied along the state trajectories.\n\nExample 1 Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states \\{\\text{green}, \\text{yellow}, \\text{red}, \\text{red-yellow}\\} of the traffic light. We may want to impose a requirement such that \\text{green} is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, \\neg(\\text{green}_1 \\land \\text{green}_2). But now consider that we require that sooner or later, \\text{green} must be on for each light (to guarantee fairness). And that this must be true all the time, that is, \\text{green} must come infinitely often. And, furthermore, that \\text{red} cannot come imediately after its respective \\text{green}.\n\nRequirements like these cannot be expressed with standard logical operators such as \\lnot, \\land, \\lor, \\implies and \\iff, and temporal operators must be introduced. Here they are.\n\nTemporal operators\n\n\nSymbol\nAlternative symbol\nMeaning\n\n\n\n\n\\mathbf{F}\n\\Diamond\nEventually (Finally)\n\n\n\\mathbf{G}\n\\Box\nGlobally (Always)\n\n\n\\mathbf{X}\n\\bigcirc\nNeXt\n\n\n\\mathbf{U}\n\\sqcup\nUntill\n\n\n\nWe are explaining their use while we introduce our first temporal logic.",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html#linear-temporal-logic-ltl",
-    "href": "verification_temporal_logics.html#linear-temporal-logic-ltl",
-    "title": "Temporal logics",
-    "section": "Linear temporal logic (LTL)",
-    "text": "Linear temporal logic (LTL)\n“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is iniated at some state x.\nWe now consider some property \\phi(x) of a sequence of states emanating from the state x. \\phi(x) evaluates to true or false. And indeed, while the argument of \\phi is a particular state, when evaluating \\phi, the full sequence is taken into consideration when evaluating \\phi(x).\nIn order to be able to express requirements on future states, \\phi() cannot be just a logical formula, it must by a LTL formula. Here comes a formal definition \n\\begin{aligned}\n\\phi &= \\text{true} \\, | \\, p \\, | \\, \\neg \\phi_1 \\, | \\, \\phi_1 \\land \\phi_2 \\, | \\, \\phi_1 \\lor \\phi_2 \\\\\n&\\quad | \\, \\mathbf{X} \\phi_1 \\, | \\, \\mathbf{F} \\phi_1 \\, | \\, \\mathbf{G} \\phi_1 | \\, \\phi_1 \\mathbf{U} \\phi_2\n\\end{aligned}\n\nHaving an LTL formula, we write that a state sequence emanating from a given discrete state x satisfies the formula as x \\models \\phi if \\phi is true for all possible state trajectories starting at this state.",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html#examples-of-ltl-formulas",
-    "href": "verification_temporal_logics.html#examples-of-ltl-formulas",
-    "title": "Temporal logics",
-    "section": "Examples of LTL formulas",
-    "text": "Examples of LTL formulas\n\n\\mathbf{G}\\neg \\phi\n\n\n\\mathbf{G}\\mathbf{F} \\phi\n\n\n\\mathbf{F}\\mathbf{G} \\phi\n\n\n\\mathbf{F}(\\phi_1 \\land \\mathbf{X}\\mathbf{F}\\phi_2)",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
-    "href": "verification_temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
-    "title": "Temporal logics",
-    "section": "CTL* (CTL mixed with LTL) supports branching",
-    "text": "CTL* (CTL mixed with LTL) supports branching\n\nExistential quantifiers needed\n\n\\mathbf{A}: For all\n\\mathbf{E}: There exists",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "verification_temporal_logics.html#literature",
-    "href": "verification_temporal_logics.html#literature",
-    "title": "Temporal logics",
-    "section": "Literature",
-    "text": "Literature\n\nLin, Hai, and Panos J. Antsaklis. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springher, 2022. Chapter 3.\nMitra, Sayan. Verifying Cyber-Physical Systems: A Path to Safe Autonomy. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2021. https://sayanmitracode.github.io/cpsbooksite/about.html.\nBaier, Christel, and Joost-Pieter Katoen. Principles of Model Checking. Cambridge, MA, USA: MIT Press, 2008.\nClarke, Edmund M., Jr, Orna Grumberg, Daniel Kroening, Doron Peled, and Helmut Veith. Model Checking. 2nd ed. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2018.\nMurray, Richard M, Ufuk Topcu, and Nok Wongpiromsarn. ‘Lecture 3 Linear Temporal Logic (LTL)’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf.\nWongpiromsarn, Nok, Richard M. Murray, and Ufuk Topcu. ‘Lecture 4 Model Checking and Logic Synthesis’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf.",
-    "crumbs": [
-      "12. Formal verification",
-      "Temporal logics"
-    ]
-  },
-  {
-    "objectID": "classes_PWA.html",
-    "href": "classes_PWA.html",
-    "title": "Piecewise affine systems",
-    "section": "",
-    "text": "About this site\n\n\n\n Back to top",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Piecewise affine systems"
-    ]
-  },
-  {
-    "objectID": "stability_via_common_lyapunov_function.html",
-    "href": "stability_via_common_lyapunov_function.html",
-    "title": "Common Lyapunov function",
-    "section": "",
-    "text": "About this site\n\n\n\n Back to top",
-    "crumbs": [
-      "8. Stability",
-      "Common Lyapunov function"
-    ]
-  },
-  {
-    "objectID": "des.html",
-    "href": "des.html",
-    "title": "Discrete-event systems",
-    "section": "",
-    "text": "We have already mentioned that hybrid systems are composed of time-driven subsystems and event-driven subsystems. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#discrete-event",
-    "href": "des.html#discrete-event",
-    "title": "Discrete-event systems",
-    "section": "(Discrete) event",
-    "text": "(Discrete) event\nWe need to start with the definition of an event. Sometimes an adjective discrete is added (to get discrete event), although it appears rather redundant.\nThe primary characteristic of an event is instantaneous occurence, that is, an event takes no time.\nWithin the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.\n\n\n\n\n\n\nThe concept of a state\n\n\n\nTrue, here we are making a reference to the concept of a state, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).\n\n\nAlthough it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).\n\nExample 1 (DES state trajectory) In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.\n\nIt is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.\nAlso note that for some events no transitions occur (\\(e_3\\) at \\(t_3\\)).\n\n\n\n\n\n\n\nFrequent notational confusion: does the lower index represent discrete time or an element of a set?\n\n\n\nThe previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between name of the variable and value of the variable. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.\n\n\n\nExample 2 (State trajectory of a continuous-time dynamical systems) Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be \\(\\dot x(t) = f(x)\\). In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.\n\nThe set of states (aka state space) is \\(\\mathbb{R}\\) (or a subset) in this case (in general \\(\\mathbb{R}^n\\) or a subset).\n\n\nExample 3 (State trajectory of a time-discretized (aka sampled-data) system) As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by \\(x_k = f(x_k)\\) in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#when-do-events-occur",
-    "href": "des.html#when-do-events-occur",
-    "title": "Discrete-event systems",
-    "section": "When do events occur?",
-    "text": "When do events occur?\nThere are three major possibilities:\n\nwhen action is taken (button press, clutch released, …),\nspontaneously: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),\nwhen some condition is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
-    "href": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
-    "title": "Discrete-event systems",
-    "section": "Sequence of “time-stamped” events (aka timed trace)",
-    "text": "Sequence of “time-stamped” events (aka timed trace)\nThe sequence of pairs (event, time) \\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \\ldots\\]\nis sufficient to characterize an execution of a deterministic system, that is, a system with a unique initial state and a unique transitions at a given state and an event.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
-    "href": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
-    "title": "Discrete-event systems",
-    "section": "DES can be stochastic, but what exactly is stochastic then?",
-    "text": "DES can be stochastic, but what exactly is stochastic then?\nStochasticity can be introduced in\n\nthe event times (e.g. Poisson process),\nbut also in the transitions (e.g. probabilistic automata, more on this later).",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
-    "href": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
-    "title": "Discrete-event systems",
-    "section": "Sometimes time stamps not needed – the ordering of events is enough",
-    "text": "Sometimes time stamps not needed – the ordering of events is enough\nThe sequence of events (aka trace) \\[e_1,e_2,e_3, \\ldots\\] can be enough for some analysis, in which only the order of the events is important.\n\nExample 4 credit_card_swiped, pin_entered, amount_entered, money_withdrawn",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#discrete-event-systems-are-studied-through-their-languages",
-    "href": "des.html#discrete-event-systems-are-studied-through-their-languages",
-    "title": "Discrete-event systems",
-    "section": "Discrete-event systems are studied through their languages",
-    "text": "Discrete-event systems are studied through their languages\nWhen studying discrete-event systems, soon we are exposed to terminology from the formal language theory such as alphabet, word, and language. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.\nWe define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.\n\nAlphabet\n\na set of symbols.\n\nWord (or string)\n\na sequence of symbols from a finite alphabet.\n\nLanguage\n\na set of words from the given alphabet.\n\n\nNow, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.\nIndeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” when in the next section when we introduce the concept of an automaton and some of its properties.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
-    "href": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
-    "title": "Discrete-event systems",
-    "section": "Modelling frameworks for DES (as used in our course)",
-    "text": "Modelling frameworks for DES (as used in our course)\nThese are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems\n\n(State) automaton (pl. automata)\nPetri net\n(max,plus) algebra, MPL systems\n\nWhile the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.\nWe are going to cover all the three frameworks in this course as a prequel to hybrid systems.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html",
-    "href": "max_plus_algebra.html",
-    "title": "Max-plus algebra",
-    "section": "",
-    "text": "Max-plus algebra, also written as (max,+) algebra (and also known as tropical algebra/geometry and dioid algebra), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely event graphs, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.\nBut before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard algebra.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#algebra",
-    "href": "max_plus_algebra.html#algebra",
-    "title": "Max-plus algebra",
-    "section": "Algebra",
-    "text": "Algebra\nAlgebra is a set of elements equipped with\n\ntwo operations:\n\naddition (plus, +)\nmultiplication (times, ×)\n\nneutral (identity) element with respect to addition: zero, 0 a+0=a.\nneutral (identity) element with respect to multiplication: one, 1 a\\times 1 = a.\n\nInverse elements can also be defined, namely\n\nInverse element wrt addition: -a a+(-a) = 0.\nInverse element wrt multiplication (except for 0): a^{-1} a \\times a^{-1} = 1.\n\nIf the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a field, otherwise it is called a ring.\nProminent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too.\nProminent example of a field is the set of real numbers.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
-    "href": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
-    "title": "Max-plus algebra",
-    "section": "(max,+) algebra: redefining the addition and multiplication",
-    "text": "(max,+) algebra: redefining the addition and multiplication\nElements of the (max,+) algebra are real numbers numbers, but it is still a ring and not a field since the two operations are defined differently.\nThe new operations of addition, which we denote by \\oplus to distinguish it from the standard addition, is defined as \\boxed{\n  x\\oplus y \\equiv \\max(x,y).\n  }\n\nThe new operation of multiplication, which we denote by \\otimes to distinguish it from the standard multiplication, is defined as \\boxed{\n  x\\otimes y \\equiv x+y}.\n\n\n\n\n\n\n\nImportant\n\n\n\nIndeed, there is no typo here, the standard addition is replaced by \\otimes and not \\oplus.\n\n\n\n\n\n\n\n\n(min,+) also possible\n\n\n\nIndeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.\n\n\n\nReals must be extended with the negative infinity\nStrictly speaking, the (max,+) algebra is a broader set than just \\mathbb R. We need to extend the reals with the minus infinity. We denote the extended set by \\mathbb R_\\varepsilon \\boxed{\n\\mathbb R_\\varepsilon \\coloneqq \\mathbb R \\cup \\{-\\infty\\}}.\n\nThe reason for the notation is that a dedicated symbol \\varepsilon is assigned to this minus infinity, that is, \\boxed\n{\\varepsilon \\coloneqq -\\infty.}\n\nIt may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol.\nWe are now going to see the reason for this extension.\n\n\nNeutral elements\n\nNeutral element with respect to \\oplus\nThe neutral element with respect to \\oplus, the zero, is -\\infty. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\oplus \\varepsilon = x,\n because \\max(x,-\\infty) = x.\n\n\nNeutral element with respect to \\otimes\nThe neutral element with respect to \\otimes, the one, is 0. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\otimes \\varepsilon = x,\n because x+0=x.\n\n\n\n\n\n\nNonsymmetric notation, but who cares?\n\n\n\nThe notation is rather nonsymmetric here. We now have a dedicated symbol \\varepsilon for the zero element in the new algebra, but no dedicated symbol for the one element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like mp-zero and mp-one to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was not even able to figure out how to encircle numbers in LaTeX…\n\n\n\n\n\nInverse elements\n\nInverse with respect to \\oplus\nThe inverse element with respect to \\oplus in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for \\varepsilon.\nThis has major consequences, for example, x\\oplus x=x.\nCan you verify this statement? How is is related to the fact that the inverse element with respect to \\oplus does not exist in general?\nThis is the key difference with respect to a conventional algebra, wherein the inverse element of a wrt conventional addition is -a, while here we do not even define \\ominus.\nFormally speaking, the (max,+) algebra is only a semi-ring.\n\n\nInverse with respect to \\otimes\nThe inverse element with respect to \\otimes does not exist for all elements. The \\varepsilon element does not have an inverse element with respect to \\otimes. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
-    "href": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
-    "title": "Max-plus algebra",
-    "section": "Powers and the inverse with respect to \\otimes",
-    "text": "Powers and the inverse with respect to \\otimes\nHaving defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer r\\in\\mathbb Z, the rth power of x, denoted by x^{\\otimes^r}, is defined, unsurprisingly as x^{\\otimes^r} \\coloneqq x\\otimes x \\otimes \\ldots \\otimes x.\nObserve that it corresponds to rx in the conventional algebra x^{\\otimes^r} = rx.\nBut then the inverse element with respect to \\otimes can also be determined using the (-1)th power as x^{\\otimes^{-1}} = -x.\nThis is not actually surprising, is it?\nThere are few more implications. For example,\nx^{\\otimes^0} = 0.\nThere is also no inverse element with respect to \\otimes for \\varepsilon, but it is expected as \\varepsilon is a zero wrt \\oplus. Furthermore, for r\\neq -1, if r&gt;0 , then \\varepsilon^{\\otimes^r} = \\varepsilon, if r&lt;0 , then \\varepsilon^{\\otimes^r} is undefined, which are both expected. Finally, \\varepsilon^{\\otimes^0} = 0 by convention.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
-    "href": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
-    "title": "Max-plus algebra",
-    "section": "Order of evaluation of (max,+) formulas",
-    "text": "Order of evaluation of (max,+) formulas\nIt is the same as that for the conventional algebra:\n1. power, \n2. multiplication, \n3. addition.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
-    "href": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
-    "title": "Max-plus algebra",
-    "section": "(max,+) polynomials (aka tropical polynomials)",
-    "text": "(max,+) polynomials (aka tropical polynomials)\nHaving covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial p(x) = a_{n}\\otimes x^{\\otimes^{n}} \\oplus a_{n-1}\\otimes x^{\\otimes^{n-1}} \\oplus \\ldots \\oplus a_{1}\\otimes x \\oplus a_{0},\n where a_i\\in \\mathbb R_\\varepsilon and n\\in \\mathbb N.\nBy interpreting the operations, this translates to the following function \\boxed\n{p(x) = \\max\\{nx + a_n, (n-1)x + a_{n-1}, \\ldots, x+a_1, a_0\\}.}\n\n\nExample 1 (1D polynomial) Consider the following (max,+) polynomial \np(x) = 2\\otimes x^{\\otimes^{2}} \\oplus 3\\otimes x \\oplus 1.\n\nWe can interpret it in the conventional algebra as \np(x) = \\max\\{2x+2,x+3,1\\},  \n which is a piecewise linear (actually affine) function.\n\n\nCode\nusing Plots\nx = -5:3\nf(x) = max(2*x+2,x+3,1)\nplot(x,f.(x),label=\"\",thickness_scaling = 2)\nxc = [-2,1]\nyc = f.(xc)\nscatter!(xc,yc,markercolor=[:red,:red],label=\"\",thickness_scaling = 2)\n\n\n\n\nExample 2 (Example of a 2D polynomial) Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(5,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"f(x,y)\")\n\n\n\n\nExample 3 (Another 2D polynomial) Consider another 2D (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y \\oplus (-1)\\otimes x^{\\otimes^2} \\oplus 1\\otimes x\\otimes y \\oplus (-1)\\otimes y^{\\otimes^2}.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(15,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"p(x,y)\")\n\n\n\n\n\n\n\n\n\nPiecewise affine (PWA) functions\n\n\n\nPiecewise affine (PWA) functions will turn out a frequent buddy in our course.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#solution-set-zero-set",
-    "href": "max_plus_algebra.html#solution-set-zero-set",
-    "title": "Max-plus algebra",
-    "section": "Solution set (zero set)",
-    "text": "Solution set (zero set)\n…",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#matrix-computations",
-    "href": "max_plus_algebra.html#matrix-computations",
-    "title": "Max-plus algebra",
-    "section": "Matrix computations",
-    "text": "Matrix computations\n\nAddition and multiplication\nWhat is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in \\mathbb R_\\varepsilon, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations. (A\\oplus B)_{ij} = a_{ij}\\oplus b_{ij} = \\max(a_{ij},b_{ij}) \n\\begin{aligned}\n(A\\otimes B)_{ij} &= \\bigoplus_{k=1}^n a_{ik}\\otimes b_{kj}\\\\\n&= \\max_{k=1,\\ldots, n}(a_{ik}+b_{kj})\n\\end{aligned}\n\n\n\nZero and identity matrices\n(max,+) zero matrix \\mathcal{E}_{m\\times n} has all its elements equal to \\varepsilon, that is, \n\\mathcal{E}_{m\\times n} =\n\\begin{bmatrix}\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\n\\end{bmatrix}.\n\n(max,+) identity matrix I_n has 0 on the diagonal and \\varepsilon elsewhere, that is, \nI_{n} =\n\\begin{bmatrix}\n0 & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & 0 & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & 0\n\\end{bmatrix}.\n\n\n\nMatrix powers\nThe zerothe power of a matrix is – unsurprisingly – the identity matrix, that is, A^{\\otimes^0} = I_n.\nThe kth power of a matrix, for k\\in \\mathbb N\\setminus\\{0\\}, is then defined using A^{\\otimes^k} = A\\otimes A^{\\otimes^{k-1}}.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
-    "href": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
-    "title": "Max-plus algebra",
-    "section": "Connection with graph theory – precedence graph",
-    "text": "Connection with graph theory – precedence graph\nConsider A\\in \\mathbb R_\\varepsilon^{n\\times n}. For this matrix, we can define the precedence graph \\mathcal{G}(A) as a weighted directed graph with the vertices 1, 2, …, n, and with the arcs (j,i) with the associated weights a_{ij} for all a_{ij}\\neq \\varepsilon. The kth power of the matrix is then\n\n(A)^{\\otimes^k}_{ij} = \\max_{i_1,\\ldots,i_{k-1}\\in \\{1,2,\\ldots,n\\}} \\{a_{ii_1} + a_{i_1i_2} + \\ldots + a_{i_{k-1}j}\\}\n for all i,j and k\\in \\mathbb N\\setminus 0.\n\nExample 4 (Example) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix}\n\\qquad\nA^{\\otimes^2} =\n\\begin{bmatrix}\n4 & 5 & 3\\\\\n3 & 4 & 3\\\\\n5 & 5 & 6\n\\end{bmatrix}\n\n\n\n\n\n\n\n\n\nG\n\n\n1\n\n1\n\n\n\n1-&gt;1\n\n\n2\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n1\n\n\n\n3\n\n3\n\n\n\n1-&gt;3\n\n\n2\n\n\n\n2-&gt;1\n\n\n3\n\n\n\n2-&gt;3\n\n\n-1\n\n\n\n3-&gt;2\n\n\n0\n\n\n\n3-&gt;3\n\n\n3\n\n\n\n\n\n\nFigure 1: An example of a precedence graph\n\n\n\n\n\n\n\nIrreducibility of a matrix\n\nMatrix in \\mathbb R_\\varepsilon^{n\\times n} is irreducible if its precedence graph is strongly connected.\nMatrix is irreducible iff \n(A \\oplus A^{\\otimes^2} \\oplus \\ldots A^{\\otimes^{n-1}})_{ij} \\neq \\varepsilon \\quad \\forall i,j, i\\neq j.\n\\tag{1}",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
-    "href": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
-    "title": "Max-plus algebra",
-    "section": "Eigenvalues and eigenvectors",
-    "text": "Eigenvalues and eigenvectors\nEigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives \nA\\otimes v = \\lambda \\otimes v.\n\nA few comments:\n\nIn general, total number of (max,+) eigenvalues &lt;n.\nAn irreducible matrix has only one (max,+) eigenvalue.\nGraph-theoretic interpretation: maximum average weight over all elementary circuits…\n\n\nEigenvalue-related property of irreducible matrices\nFor large enough k and c, it holds that \\boxed\n{A^{\\otimes^{k+c}} = \\lambda^{\\otimes^c}\\otimes A^{\\otimes^k}.}",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#solving-max-linear-equations",
-    "href": "max_plus_algebra.html#solving-max-linear-equations",
-    "title": "Max-plus algebra",
-    "section": "Solving (max,+) linear equations",
-    "text": "Solving (max,+) linear equations\nWe can also define and solve linear equations within the (max,+) algebra. Considering A\\in \\mathbb R_\\varepsilon^{n\\times n},\\, b\\in \\mathbb R_\\varepsilon^n, we can formulate and solve the equation \nA\\otimes x = b.\n\nIn general no solution even if A is square. However, often we can find some use for a subsolution defined as \nA\\otimes x \\leq b.\n\nTypically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.\n\nExample 5 (Greatest subsolution) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix},\n\\qquad\nb =  \n\\begin{bmatrix}\n1 \\\\ 2 \\\\ 3\n\\end{bmatrix}\n\n\nx =\n\\begin{bmatrix}\n1\\\\ -2 \\\\ 0\n\\end{bmatrix}\n\n\nA \\otimes x =\n\\begin{bmatrix}\n1\\\\ 0 \\\\ 1\n\\end{bmatrix}\n\\leq b\n\n\nWith this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "des_software.html",
-    "href": "des_software.html",
-    "title": "Software",
-    "section": "",
-    "text": "In this course we will encounter a few more software packages but in this first learning block we will only lightly introduce two, both by The Mathworks:",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#matlab-and-simulink",
-    "href": "des_software.html#matlab-and-simulink",
-    "title": "Software",
-    "section": "Matlab and Simulink",
-    "text": "Matlab and Simulink\n\nStateFlow – fnite state automata within Simulink. Can also model hybrid automata. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(“stateflow”) in Matlab. We will primarily use this tool in our course. It extends nicely to hybrid systems.\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks. We will not particularly need it in our course. Several tools are also available outside Matlab and Simulink:",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#python",
-    "href": "des_software.html#python",
-    "title": "Software",
-    "section": "Python",
-    "text": "Python\nSimPy – discrete-event simulation in Python.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#julia",
-    "href": "des_software.html#julia",
-    "title": "Software",
-    "section": "Julia",
-    "text": "Julia\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#openmodelica",
-    "href": "des_software.html#openmodelica",
-    "title": "Software",
-    "section": "(Open)Modelica",
-    "text": "(Open)Modelica\nStarting with Modelica 3.3, some support for state machines is now built into the language. It is already implemented in OpenModelica, see the example.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#uppaal",
-    "href": "des_software.html#uppaal",
-    "title": "Software",
-    "section": "UPPAAL",
-    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "stability_references.html",
-    "href": "stability_references.html",
+    "objectID": "hybrid_automata_references.html",
+    "href": "hybrid_automata_references.html",
     "title": "Literature",
     "section": "",
     "text": "Back to top",
     "crumbs": [
-      "8. Stability",
+      "4. Hybrid systems: Hybrid automata",
       "Literature"
+    ]
+  },
+  {
+    "objectID": "des_references.html",
+    "href": "des_references.html",
+    "title": "Literature",
+    "section": "",
+    "text": "Literature for discrete-event systems is vast, but within the control systems community the classical (and award-winning) reference is Cassandras and Lafortune (2021). Note that an electronic version of the previous edition (perfectly acceptable for us) is accessible through the NTK library (possibly upon CTU login). This book is rather thick too and covering its content can easily need a full semestr. However, in our course we will only need the very basics of the theory of (finite state) automata and such basics are presented in Chapters 1 and 2. The extension to timed automata is then presented in Chapter 5.2.\n\nThe basics are also presented in the tutorial paper by the same author(s) Lafortune (2019).\nA very short (but sufficient for us) intro to discrete-event systems that adheres to Cassandras’s style is given in the first chapter of the recent hybrid systems textbook Lin and Antsaklis (2022).\nAlternatively, there are some other recent textbooks that contain decent introductions to the theory of (finite state) automata. These are often surfing on the wave of popularity of the recently fashionable buzzword of cyberphysical or embedded systems, but in essence these deal with the same hybrid systems as we do in our course. The fact is, however, that the modeling formalism can be a bit different from the one in Cassandras (certainly when it comes to notation but also some concepts). One such textbook is Alur (2015), for which an electronic version accessible through the NTK library (upon CTU login). Another one is Mitra (2007). In particular, Chapter 2 serves as an intro to the automata theory. Last but not least, Lee and Seshia (2017), for which an electronic version is freely downloadable.\n\n\n\n\n Back to topReferences\n\nAlur, Rajeev. 2015. Principles of Cyber-Physical Systems. Cambridge, MA, USA: MIT Press. https://mitpress.mit.edu/9780262029117/principles-of-cyber-physical-systems/.\n\n\nCassandras, Christos G., and Stéphane Lafortune. 2021. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer. https://doi.org/10.1007/978-3-030-72274-6.\n\n\nLafortune, Stéphane. 2019. “Discrete Event Systems: Modeling, Observation, and Control.” Annual Review of Control, Robotics, and Autonomous Systems 2 (1): 141–59. https://doi.org/10.1146/annurev-control-053018-023659.\n\n\nLee, Edward Ashford, and Sanjit Arunkumar Seshia. 2017. Introduction to Embedded Systems: A Cyber-Physical Systems Approach. 2nd ed. Cambridge, MA, USA: MIT Press. https://ptolemy.berkeley.edu/books/leeseshia//.\n\n\nLin, Hai, and Panos J. Antsaklis. 2022. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springer. https://doi.org/10.1007/978-3-030-78731-8.\n\n\nMitra, Sayan. 2007. “A Verification Framework for Hybrid Systems.” PhD thesis, Massachusetts Institute of Technology. https://dspace.mit.edu/handle/1721.1/42238.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html",
+    "href": "hybrid_equations.html",
+    "title": "Hybrid equations",
+    "section": "",
+    "text": "Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called hybrid equations, sometimes also hybrid state equations to emphasize that what we are after is some kind of analogy with state equations \\dot{x}(t) = f(x(t), u(t)) and x_{k+1} = g(x_k, u_k) that we are familiar with from (continuous-valued) dynamical systems.\nSometimes it also called event-flow equations or jump-flow equations.\nThese are the key ideas:\nThe major advantage of this modeling framework is that we do not have to distinguish. This is in contrast with hybrid automata, where we have to start by classifying the state variables as either continuous or discrete before moving on. kIn the current framework we treat all the variables identically – they mostly flow and occasionally (perhaps never, which is OK) jump.",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#hybrid-state-equations",
+    "href": "hybrid_equations.html#hybrid-state-equations",
+    "title": "Hybrid equations",
+    "section": "Hybrid (state) equations",
+    "text": "Hybrid (state) equations\nIt is high time to introduce hybrid (state) equations. Here they come \n\\begin{aligned}\n\\dot{x} &= f(x), \\quad x \\in \\mathcal{C},\\\\\nx^+ &= g(x), \\quad x \\in \\mathcal{D}.\n\\end{aligned}\n where\n\nf is the flow map,\n\\mathcal{C} is the flow set,\ng is the jump map,\n\\mathcal{D} is the jump set.\n\nThis model of a hybrid system is thus parameterized by the quadruple \\{f, \\mathcal C, g, \\mathcal D\\}.",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#hybrid-state-inclusions",
+    "href": "hybrid_equations.html#hybrid-state-inclusions",
+    "title": "Hybrid equations",
+    "section": "Hybrid (state) inclusions",
+    "text": "Hybrid (state) inclusions\nWe now extend the presented framework of hybrid equations a bit. Namely, the functions on the right hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets! \n\\begin{aligned}\n\\dot{x} &\\in \\mathcal F(x), \\quad x \\in \\mathcal{C},\\\\\nx^+ &\\in \\mathcal G(x), \\quad x \\in \\mathcal{D}.\n\\end{aligned}\n where\n\n\\mathcal{F} is the set-valued flow map,\n\\mathcal{C} is the flow set,\n\\mathcal{G} is the set-valued jump map,\n\\mathcal{D} is the jump set.",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#output-equations",
+    "href": "hybrid_equations.html#output-equations",
+    "title": "Hybrid equations",
+    "section": "Output equations",
+    "text": "Output equations\nTypically a full model is only formed upon defining some output variables (oftentimes just a subset of possibly scaled state variables or their linear combinations). These output variables then obey some output equation \ny(x) = h(x),\n\nor \ny(x) = h(x,u).\n\n\nExample 1 (Bouncing ball) This is the “hello world example” for hybrid systems with state jumps (pun intended). The state variables are the height and the vertical speed of the ball. \n\\bm x \\in \\mathbb{R}^2, \\qquad \\bm x = \\begin{bmatrix}x_1 \\\\ x_2\\end{bmatrix}.\n\nThe quadruple defining the hybrid equations is \n\\mathcal{C} = \\{\\bm x \\in \\mathbb{R}^2 \\mid x_1&gt;0 \\lor (x_1 = 0, x_2\\geq 0)\\},\n \nf(\\bm x) = \\begin{bmatrix}x_2 \\\\ -g\\end{bmatrix}, \\qquad g = 9.81,\n \n\\mathcal{D} = \\{\\bm x \\in \\mathbb{R}^2 \\mid x_1 = 0, x_2 &lt; 0\\},\n \ng(\\bm x) = \\begin{bmatrix}x_1 \\\\ -\\alpha x_2\\end{bmatrix}, \\qquad \\alpha = 0.8.\n\nThe two sets and two maps are illustrated below.\n\n\n\nMaps and sets for the bouncing ball example\n\n\n\n\nExample 2 (Bouncing ball on a controlled piston) We now extend the simple bouncing ball example by adding a vertically moving piston. The piston is controlled by a force.\n\n\n\nExample of a ball bouncing on a vertically moving piston\n\n\nIn our analysis we neglect the sizes (for simplicity).\nThe collision happens when x_\\mathrm{b} = x_\\mathrm{p}, and v_\\mathrm{b} &lt; v_\\mathrm{p}.\nThe conservation of momentum after a collision reads \nm_\\mathrm{b}v_\\mathrm{b}^+ + m_\\mathrm{p}v_\\mathrm{p}^+ = m_\\mathrm{b}v_\\mathrm{b} + m_\\mathrm{p}v_\\mathrm{p}.\n\\tag{1}\nThe collision is modelled using a restitution coefficient \nv_\\mathrm{p}^+ - v_\\mathrm{b}^+ = -\\gamma (v_\\mathrm{p} - v_\\mathrm{b}).\n\\tag{2}\nFrom the momentum conservation Equation 1 \nv_\\mathrm{p}^+ = \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b} + v_\\mathrm{p} - \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b}^+\n\nwe substitute to Equation 2 to get \n\\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b} + v_\\mathrm{p} - \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b}^+ - v_\\mathrm{b}^+ = -\\gamma (v_\\mathrm{p} - v_\\mathrm{b}),\n from which we express v_\\mathbb{b}^+ \n\\begin{aligned}\nv_\\mathrm{b}^+ &= \\frac{1}{1+\\frac{m_\\mathrm{b}}{m_\\mathrm{p}}}\\left(\\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b} + v_\\mathrm{p} + \\gamma (v_\\mathrm{p} - v_\\mathrm{b})\\right)\\\\\n&= \\frac{m_\\mathrm{p}}{m_\\mathrm{p}+m_\\mathrm{b}}\\left(\\frac{m_\\mathrm{b}-\\gamma m_\\mathrm{p}}{m_\\mathrm{p}}v_\\mathrm{b} + (1+\\gamma)v_\\mathrm{p}\\right)\\\\\n&= \\frac{m_\\mathrm{b}-\\gamma m_\\mathrm{p}}{m_\\mathrm{b}+m_\\mathrm{p}}v_\\mathrm{b} + \\frac{(1+\\gamma)m_\\mathrm{p}}{m_\\mathrm{p}+m_\\mathrm{b}}v_\\mathrm{p}\n\\end{aligned}.\n\nSubstitute to the expression for v_\\mathbb{p}^+ to get \n\\begin{aligned}\nv_\\mathrm{p}^+ &= \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}v_\\mathrm{b} + v_\\mathrm{p} - \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}\\left(\\frac{m_\\mathrm{b}-\\gamma m_\\mathrm{p}}{m_\\mathrm{b}+m_\\mathrm{p}}v_\\mathrm{b} + \\frac{(1+\\gamma)m_\\mathrm{p}}{m_\\mathrm{p}+m_\\mathrm{b}}v_\\mathrm{p}\\right)\\\\\n&= \\frac{m_\\mathrm{b}}{m_\\mathrm{p}}\\left(1-\\frac{m_\\mathrm{b}-\\gamma m_\\mathrm{p}}{m_\\mathrm{b}+m_\\mathrm{p}}\\right) v_\\mathrm{b} \\\\\n&\\qquad\\qquad + \\left(1-\\frac{m_\\mathrm{b}}{m_\\mathrm{p}}\\frac{(1+\\gamma)m_\\mathrm{p}}{m_\\mathrm{p}+m_\\mathrm{b}}\\right) v_\\mathrm{p}\\\\\n&= \\frac{m_\\mathrm{b}}{m_\\mathrm{b}+m_\\mathrm{p}}(1+\\gamma) v_\\mathrm{b} + \\frac{m_\\mathrm{p}-\\gamma m_\\mathrm{b}}{m_\\mathrm{p}+m_\\mathrm{b}} v_\\mathrm{p}.\n\\end{aligned}\n\nFinally we can simplify the expressions a bit by introducing m=\\frac{m_\\mathrm{b}}{m_\\mathrm{b}+m_\\mathrm{p}}. The jump equation is then \n\\begin{bmatrix}\nv_\\mathrm{b}^+\\\\\nv_\\mathrm{p}^+\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nm - \\gamma (1-m) & (1+\\gamma)(1-m)\\\\\nm(1+\\gamma) & 1-m-\\gamma m\n\\end{bmatrix}\n\\begin{bmatrix}\nv_\\mathrm{b}\\\\\nv_\\mathrm{p}\n\\end{bmatrix}.\n\n\n\nExample 3 (Synchronization of fireflies) This is a famous example in synchronization. We consider n fireflies, x_i is the i-th firefly’s clock, normalized to [0,1]. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by \\varepsilon \\%.\nHere is how we model the problem using the four-tuple \\{f, \\mathcal C, g, \\mathcal D\\}: \n\\mathcal{C} = [0,1)^n = \\{\\bm x \\in \\mathbb R^n\\mid x_i \\in [0,1),\\; i=1,\\ldots,n \\},\n \n\\bm f = [f_1, f_2, \\ldots, f_n]^\\top,\\quad f_i = 1, \\quad i=1,\\ldots,n,\n \n\\mathcal{D} = \\{\\bm x \\in [0,1]^n \\mid \\max_i x_i = 1 \\},\n\n\n\\begin{aligned}\n\\bm g &= [g_1, \\ldots, g_n]^\\top,\\\\\n& \\qquad g_i(x_i) =\n\\begin{cases}\n(1 + \\varepsilon)x_i, & \\text{if } (1+\\varepsilon)x_i &lt; 1, \\\\\n0, & \\text{otherwise}.\n\\end{cases}\n\\end{aligned}\n\n\n\nExample 4 (Thyristor control) Consider the circuit below.\n\n\n\nExample of a thyristor control\n\n\nWe consider a harmonic input voltage, that is, \n\\begin{aligned}\n\\dot v_0 &= \\omega v_1\\\\\n\\dot v_1 &= -\\omega v_0.\n\\end{aligned}\n\nThe thyristor can be on (discrete state q=1) or off (q=0). The firing time \\tau is given by the firing angle \\alpha \\in (0,\\pi).\nThe state vector is \n\\bm x =\n\\begin{bmatrix}\nv_0\\\\ v_1 \\\\ i_\\mathrm{L} \\\\ v_\\mathrm{C} \\\\ q \\\\ \\tau\n\\end{bmatrix}.\n\nThe flow map is \n\\bm f(\\bm x)\n=\n\\begin{bmatrix}\n\\omega v_1\\\\\n-\\omega v_0\\\\\nq \\frac{v_\\mathrm{C}-Ri_\\mathrm{L}}{L}\\\\\n-\\frac{1}{CR}v_\\mathrm{C} + \\frac{1}{CR}v_\\mathrm{0} - \\frac{1}{C}i_\\mathrm{L}\\\\\n0\\\\\n1\n\\end{bmatrix}.\n\nThe flow set is \n\\begin{aligned}\n\\mathcal{C} &= \\{\\bm x \\mid q=0,\\, \\tau&lt;\\frac{\\alpha}{\\omega},\\, i_\\mathrm{L}=0\\}\\\\ &\\qquad \\cup \\{\\bm x \\mid q=1,\\, i_\\mathrm{L}&gt;0\\}\n\\end{aligned}.\n\nThe jump set is \n\\begin{aligned}\n\\mathcal{D} &= \\{\\bm x \\mid q=0,\\, \\tau\\geq \\frac{\\alpha}{\\omega},\\, i_\\mathrm{L}=0,\\, v_\\mathrm{C}&gt;0\\}\\\\ &\\qquad \\cup \\{\\bm x \\mid q=1,\\, i_\\mathrm{L}=0,\\, v_\\mathrm{C}&lt;0\\}\n\\end{aligned}.\n\nThe jump map is \n\\bm g(\\bm x) =\n\\begin{bmatrix}\nu_0\\\\ u_1 \\\\ i_\\mathrm{L} \\\\ v_\\mathrm{C} \\\\ {\\color{red} 1-q} \\\\ {\\color{red} 0}\n\\end{bmatrix}.\n\nThe last condition in the jump set comes from the requirement that not only must the current through the inductor be zero, but also it must be decreasing. And from the state equation it follows that the voltage on the capacitor must be negative.\n\n\nExample 5 (Sampled-data feedback control) Another example of a dynamical system that fits nicely into the hybrid equations framework is sampled-data feedback control system. Within the feedback loop in Figure 1, we recognize a continuous-time plant and a discrete-time controller.\n\n\n\n\n\n\nFigure 1: Sampled data feedback control\n\n\n\nThe plant is modelled by \\dot x_\\mathrm{p} = f_\\mathrm{p}(x_\\mathrm{p},u), \\; y = h(x_\\mathrm{p}). The controller samples the output T-periodically and computes its own output as a nonlinear function u = \\kappa(r-y).\nThe closed-loop model is then \n\\dot x_\\mathrm{p} = f_\\mathrm{p}(x_\\mathrm{p},\\kappa(r-h(x_\\mathrm{p}))), \\; y = h(x_\\mathrm{p}).\n\nThe closed-loop state vector is \n\\bm x =\n\\begin{bmatrix}\nx_\\mathrm{p}\\\\ u \\\\ \\tau\n\\end{bmatrix}\n\\in\n\\mathbb R^n \\times \\mathbb R^m \\times \\mathbb R.\n\nThe flow set is \n\\begin{aligned}\n\\mathcal{C} &= \\{\\bm x \\mid \\tau \\in [0,T)\\}\n\\end{aligned}\n\nThe flow map is \n\\bm f(\\bm x)\n=\n\\begin{bmatrix}\nf_\\mathrm{p}(x_\\mathrm{p},u)\\\\\n0\\\\\n1\n\\end{bmatrix}\n\nThe jump set is \n\\begin{aligned}\n\\mathcal{D} &= \\{\\bm x \\mid \\tau = T\\}\n\\end{aligned}\n or rather \n\\begin{aligned}\n\\mathcal{D} &= \\{\\bm x \\mid \\tau \\geq T\\}\n\\end{aligned}\n\nThe jump map is \n\\bm g(\\bm x) =\n\\begin{bmatrix}\nx_\\mathrm{p}\\\\\n\\kappa(r-y)\\\\\n0\n\\end{bmatrix}\n\nYou may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theoris. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time T may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework.",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#hybridness-after-closing-the-loop",
+    "href": "hybrid_equations.html#hybridness-after-closing-the-loop",
+    "title": "Hybrid equations",
+    "section": "Hybridness after closing the loop",
+    "text": "Hybridness after closing the loop\nWe have defined hybrid systems, but what exactly is hybrid when we close a feedback loop? There are three possibilities:\n\nHybrid plant + continuous controller.\nHybrid plant + hybrid controller.\nContinuous plant + hybrid controller.\n\nThe first case is encountered when we use a standard controller such as a PID controller to control a system whose dynamics can be characterized/modelled as hybrid. The second scenario considers a controller that mimicks the behavior of a hybrid system. The third case is perhaps the least intuitive: although the plant to be controller is continuous(-valued), it may still make sense to design and implement a hybrid controller, see the next paragraph.",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#impossibility-to-stabilize-without-a-hybrid-controller",
+    "href": "hybrid_equations.html#impossibility-to-stabilize-without-a-hybrid-controller",
+    "title": "Hybrid equations",
+    "section": "Impossibility to stabilize without a hybrid controller",
+    "text": "Impossibility to stabilize without a hybrid controller\n\nExample 6 (Unicycle stabilization) We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with controlled forward speed and yaw (turning) angular rate.\n\n\n\nUnicycle vehicle\n\n\nThe vehicle is modelled by \n\\begin{aligned}\n\\dot x &= v \\cos \\theta,\\\\\n\\dot y &= v \\sin \\theta,\\\\\n\\dot \\theta &= \\omega,\n\\end{aligned}\n\n\n\\bm x = \\begin{bmatrix}\nx\\\\ y\\\\ \\theta\n\\end{bmatrix},\n\\quad\n\\bm u = \\begin{bmatrix}\nv\\\\ \\omega\n\\end{bmatrix}.\n\nIt is known that this system cannot be stabilized by a continuous feedback controller. The general result that applies here was published in [1]. The condition of stabilizability by a time-invariant continuous state feedback is that the image of every neighborhood of the origin under (\\bm x,\\bm u) \\mapsto \\bm f(\\bm x, \\bm u) contains some neighborhood of the origin. This is not the case here. The map from the state-control space to the velocity space is\n\n\\begin{bmatrix}\nx\\\\ y\\\\ \\theta\\\\ v\\\\ \\omega\n\\end{bmatrix}\n\\mapsto\n\\begin{bmatrix}\nv \\cos \\theta\\\\\nv \\sin \\theta \\\\\n\\omega\n\\end{bmatrix}.\n\nNow consider a neighborhood of the origin such that |\\theta|&lt;\\frac{\\pi}{2}. It is impossible to get \\bm f(\\bm x, \\bm u) = \\begin{bmatrix}\n0\\\\ f_2 \\\\ 0\\end{bmatrix}, \\; f_2\\neq 0. Hence, stabilization by a continuous feedback \\bm u = \\kappa (\\bm x) is impossible.\nBut it is possible to stabilize the vehicle using a discontinuous feedback. And discontinuous feedback controllr can be viewed as switching control, which in turn can be seen as instance of a hybrid controller.\n\n\nExample 7 (Global stabilization on a circle) We now demonstration of a general phenomenon of stabilization on a manifold. We will see that even if stabilization by a continous feedback is possible, it might not guarantee global stability.\nThe dynamics of a particle sliding around a unit circle \\mathbb S_1 is modelled by\n\n\\dot{\\bm x} = u\\begin{bmatrix}0 & -1\\\\ 1 & 0\\end{bmatrix}\\bm x,\n where \\bm x \\in \\mathbb S^1,\\quad u\\in \\mathbb R.\nThe point to be stabilized is \\bm x^* = \\begin{bmatrix}1\\\\ 0\\end{bmatrix}.\n\n\n\nStabilization on a circle\n\n\nWhat is required from a globally stabilizing controller?\n\nSolutions stay in \\mathbb S^1,\nSolutions converge to \\bm x^*,\nIf a solution starts near \\bm x^*, it stays near.\n\nOne candidate is \\kappa(\\bm x) = -x_2.\nDefine the (Lyapunov) function V(\\bm x) = 1-x_1.\nIts time derivative along the solution trajectory \n\\begin{aligned}\n\\dot V &= \\left(\\nabla_{\\bm{x}}V\\right)^\\top \\dot{\\bm x}\\\\\n&= \\begin{bmatrix}-1 & 0\\end{bmatrix}\\left(-x_2\\begin{bmatrix}0 & -1\\\\ 1 & 0\\end{bmatrix}\\begin{bmatrix} x_1 \\\\ x_2 \\end{bmatrix}\\right)\\\\\n&= -x_2^2\\\\\n&= -(1-x_1^2).\n\\end{aligned}\n\nIt follows that \n\\dot V &lt; 0 \\quad \\forall \\bm x \\in \\mathbb S^1 \\setminus \\{-1,1\\}.\n\nWith u=-x_2 the point \\bm x^* is stable but not globally atractive.\nCan we do better? Yes, we can. But we need to incorporate some switching into the controller. Loosely speaking anywhere except for the state (-1,0), we can apply the previously design controller, and at the troublesome state (-1,0), or actually in some region around it, we need to switch to another controller that would drive the system away from the problematic region.\nBut we will take this example as an opportunity to go one step further and instead of just a switching controller we design a hybrid controller. The difference is that within a hybrid controller we can incorporate some hysteresis, which is a robustifying feature. In order to to that, we need to introduce a new state variable q\\in\\{0,1\\}. Determination of the flow and jump sets is sketched in Figure 2.\n\n\n\n\n\n\nFigure 2: Definition of the sets defining a hybrid controller\n\n\n\nThe two feedback controllers are given by \n\\begin{aligned}\n\\kappa(\\bm x,0) &= \\kappa_0(\\bm x) = -x_2,\\\\\n\\kappa(\\bm x,1) &= \\kappa_1(\\bm x) = -x_1.\n\\end{aligned}\n\nThe flow map is (DIY) \nf(\\bm x, q) = \\ldots\n\nThe flow set is \n\\mathcal{C} = (\\mathcal C_0 \\times \\{0\\}) \\cup (\\mathcal C_1 \\times \\{1\\}).\n\nThe jump set is \n\\mathcal{D} = (\\mathcal D_0 \\times \\{0\\}) \\cup (\\mathcal D_1 \\times \\{1\\}).\n\nThe jump map is \ng(\\bm x, q) = 1-q \\quad \\forall [\\bm x, q]^\\top \\in \\mathcal D.\n\nSimulation using Julia is provided below.\n\n\nShow the code\nusing OrdinaryDiffEq\n\n# Defining the sets and functions for the hybrid equations\n\nc₀, c₁ = -2/3, -1/3\n\nC(x,q) = (x[1] &gt;= c₀ && q == 0) || (x[1] &lt;= c₁ && q == 1) # Actually not really needed, just a complement of D.\nD(x,q) = (x[1] &lt; c₀ && q == 0) || (x[1] &gt; c₁ && q == 1) \n\ng(x,q) = 1-q\n\nκ(x,q) = q==0 ? -x[2] : -x[1] \n\nfunction f!(dx,x,q,t)               # Already in the format for the ODE solver.\n    A = [0.0 -1.0; 1.0 0.0] \n    dx .= A*x*κ(x,q)\nend\n\n# Defining the initial conditions for the simulation\n\ncᵢ = (c₀+c₁)/2\nx₀ = [cᵢ,sqrt(1-cᵢ^2)]\nq₀ = 1\n\n# Setting up the simulation problem\n\ntspan = (0.0,10.0)\nprob = ODEProblem(f!,x₀,tspan,q₀)\n\nfunction condition(x,t,integrator)\n    q = integrator.p \n    return D(x,q)\nend\n\nfunction affect!(integrator)\n    q = integrator.p\n    x = integrator.u \n    integrator.p = g(x,q)\nend\n\ncb = DiscreteCallback(condition,affect!)\n\n# Solving the simulation problem\n\nsol = solve(prob,Tsit5(),callback=cb,dtmax=0.1) # ContinuousCallback more suitable here\n\n# Plotting the results of the simulation\n\nusing Plots\ngr(tickfontsize=12,legend_font_pointsize=12,guidefontsize=12)\n\nplot(sol,label=[\"x₁\" \"x₂\"],xaxis=\"t\",yaxis=\"x\",lw=2)\nhline!([c₀], label=\"c₀\")\nhline!([c₁], label=\"c₁\")\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Simulation of stabilization on a circle using a hybrid controller\n\n\n\n\nThe solution can also be visualized in the state space.\n\n\nShow the code\nplot(sol,vars=(1,2),label=\"\",xaxis=\"x₁\",yaxis=\"x₂\",lw=2,aspect_ratio=1)\nvline!([c₀], label=\"c₀\")\nvline!([c₁], label=\"c₁\")\nscatter!([x₀[1]],[x₀[2]],label=\"x init\")\nscatter!([1],[0],label=\"x ref\")\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n\n\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: Simulation of stabilization on a circle using a hybrid controller",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#supervisory-control",
+    "href": "hybrid_equations.html#supervisory-control",
+    "title": "Hybrid equations",
+    "section": "Supervisory control",
+    "text": "Supervisory control\nYet another problem that can benefit from being formulated as a hybrid system is supervisory control.\n\n\n\nSupervisory control",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "hybrid_equations.html#combining-local-and-global-controllers-subset-supervisory-control",
+    "href": "hybrid_equations.html#combining-local-and-global-controllers-subset-supervisory-control",
+    "title": "Hybrid equations",
+    "section": "Combining local and global controllers (\\subset supervisory control)",
+    "text": "Combining local and global controllers (\\subset supervisory control)\nAs a subset of supervisory control we can view a controller that switches between a global and a local controller.\n\n\n\nCombining global and local controllers\n\n\nLocal controllers have good transient response but only work well in a small region around the equilibrium state. Global controllers have poor transient response but work well in a larger region around the equilibrium state.\nA useful example is that of swinging up and stabilization of a pendulum: the local controller can be designer for a linear model obtained by linearization about the upright orientation of the pendulum. But such controller can only be expected to perform well in some small region around the upright orientation. The global controller is designed to bring the pendulum into that small region.\nThe flow and jump sets for the local and global controllers are in Figure 5. Can you tell, which is which? Remember that by introducing the discrete variable q, some hysteresis is in the game here.\n\n\n\n\n\n\nFigure 5: Flow and jump sets for a local and a global controller",
+    "crumbs": [
+      "5. Hybrid systems: Hybrid equations",
+      "Hybrid equations"
+    ]
+  },
+  {
+    "objectID": "demo_error.html",
+    "href": "demo_error.html",
+    "title": "Demo",
+    "section": "",
+    "text": "Lorem ipsum: \\(x^2 + y^2 = 1\\). For this and that ….\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "complementarity_simulations.html",
+    "href": "complementarity_simulations.html",
+    "title": "Simulations using complementarity",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "max_plus_software.html",
+    "href": "max_plus_software.html",
+    "title": "Software",
+    "section": "",
+    "text": "MaxPlus.jl package for Julia by Quentin Quadrat.\nMax-Plus Algebra Toolbox for Matlab by Jarosław Stańczyk.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Software"
     ]
   },
   {
@@ -1014,120 +1010,421 @@
     ]
   },
   {
-    "objectID": "max_plus_software.html",
-    "href": "max_plus_software.html",
+    "objectID": "stability_references.html",
+    "href": "stability_references.html",
+    "title": "Literature",
+    "section": "",
+    "text": "Back to top",
+    "crumbs": [
+      "8. Stability",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "des_software.html",
+    "href": "des_software.html",
     "title": "Software",
     "section": "",
-    "text": "MaxPlus.jl package for Julia by Quentin Quadrat.\nMax-Plus Algebra Toolbox for Matlab by Jarosław Stańczyk.\n\n\n\n\n Back to top",
+    "text": "In this course we will encounter a few more software packages but in this first learning block we will only lightly introduce two, both by The Mathworks:",
     "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
+      "1. Discrete-event systems: Automata",
       "Software"
     ]
   },
   {
-    "objectID": "complementarity_simulations.html",
-    "href": "complementarity_simulations.html",
-    "title": "Simulations using complementarity",
-    "section": "",
-    "text": "Back to top",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "demo_error.html",
-    "href": "demo_error.html",
-    "title": "Demo",
-    "section": "",
-    "text": "Lorem ipsum: \\(x^2 + y^2 = 1\\). For this and that ….\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "hybrid_equations.html",
-    "href": "hybrid_equations.html",
-    "title": "Hybrid equations",
-    "section": "",
-    "text": "About this site\n\n\n\n Back to top",
-    "crumbs": [
-      "5. Hybrid systems: Hybrid equations",
-      "Hybrid equations"
-    ]
-  },
-  {
-    "objectID": "des_references.html",
-    "href": "des_references.html",
-    "title": "Literature",
-    "section": "",
-    "text": "Literature for discrete-event systems is vast, but within the control systems community the classical (and award-winning) reference is Cassandras and Lafortune (2021). Note that an electronic version of the previous edition (perfectly acceptable for us) is accessible through the NTK library (possibly upon CTU login). This book is rather thick too and covering its content can easily need a full semestr. However, in our course we will only need the very basics of the theory of (finite state) automata and such basics are presented in Chapters 1 and 2. The extension to timed automata is then presented in Chapter 5.2.\n\nThe basics are also presented in the tutorial paper by the same author(s) Lafortune (2019).\nA very short (but sufficient for us) intro to discrete-event systems that adheres to Cassandras’s style is given in the first chapter of the recent hybrid systems textbook Lin and Antsaklis (2022).\nAlternatively, there are some other recent textbooks that contain decent introductions to the theory of (finite state) automata. These are often surfing on the wave of popularity of the recently fashionable buzzword of cyberphysical or embedded systems, but in essence these deal with the same hybrid systems as we do in our course. The fact is, however, that the modeling formalism can be a bit different from the one in Cassandras (certainly when it comes to notation but also some concepts). One such textbook is Alur (2015), for which an electronic version accessible through the NTK library (upon CTU login). Another one is Mitra (2007). In particular, Chapter 2 serves as an intro to the automata theory. Last but not least, Lee and Seshia (2017), for which an electronic version is freely downloadable.\n\n\n\n\n Back to topReferences\n\nAlur, Rajeev. 2015. Principles of Cyber-Physical Systems. Cambridge, MA, USA: MIT Press. https://mitpress.mit.edu/9780262029117/principles-of-cyber-physical-systems/.\n\n\nCassandras, Christos G., and Stéphane Lafortune. 2021. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer. https://doi.org/10.1007/978-3-030-72274-6.\n\n\nLafortune, Stéphane. 2019. “Discrete Event Systems: Modeling, Observation, and Control.” Annual Review of Control, Robotics, and Autonomous Systems 2 (1): 141–59. https://doi.org/10.1146/annurev-control-053018-023659.\n\n\nLee, Edward Ashford, and Sanjit Arunkumar Seshia. 2017. Introduction to Embedded Systems: A Cyber-Physical Systems Approach. 2nd ed. Cambridge, MA, USA: MIT Press. https://ptolemy.berkeley.edu/books/leeseshia//.\n\n\nLin, Hai, and Panos J. Antsaklis. 2022. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springer. https://doi.org/10.1007/978-3-030-78731-8.\n\n\nMitra, Sayan. 2007. “A Verification Framework for Hybrid Systems.” PhD thesis, Massachusetts Institute of Technology. https://dspace.mit.edu/handle/1721.1/42238.",
+    "objectID": "des_software.html#matlab-and-simulink",
+    "href": "des_software.html#matlab-and-simulink",
+    "title": "Software",
+    "section": "Matlab and Simulink",
+    "text": "Matlab and Simulink\n\nStateFlow – fnite state automata within Simulink. Can also model hybrid automata. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(“stateflow”) in Matlab. We will primarily use this tool in our course. It extends nicely to hybrid systems.\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks. We will not particularly need it in our course. Several tools are also available outside Matlab and Simulink:",
     "crumbs": [
       "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#python",
+    "href": "des_software.html#python",
+    "title": "Software",
+    "section": "Python",
+    "text": "Python\nSimPy – discrete-event simulation in Python.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#julia",
+    "href": "des_software.html#julia",
+    "title": "Software",
+    "section": "Julia",
+    "text": "Julia\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#openmodelica",
+    "href": "des_software.html#openmodelica",
+    "title": "Software",
+    "section": "(Open)Modelica",
+    "text": "(Open)Modelica\nStarting with Modelica 3.3, some support for state machines is now built into the language. It is already implemented in OpenModelica, see the example.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#uppaal",
+    "href": "des_software.html#uppaal",
+    "title": "Software",
+    "section": "UPPAAL",
+    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html",
+    "href": "max_plus_algebra.html",
+    "title": "Max-plus algebra",
+    "section": "",
+    "text": "Max-plus algebra, also written as (max,+) algebra (and also known as tropical algebra/geometry and dioid algebra), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely event graphs, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.\nBut before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard algebra.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#algebra",
+    "href": "max_plus_algebra.html#algebra",
+    "title": "Max-plus algebra",
+    "section": "Algebra",
+    "text": "Algebra\nAlgebra is a set of elements equipped with\n\ntwo operations:\n\naddition (plus, +)\nmultiplication (times, ×)\n\nneutral (identity) element with respect to addition: zero, 0 a+0=a.\nneutral (identity) element with respect to multiplication: one, 1 a\\times 1 = a.\n\nInverse elements can also be defined, namely\n\nInverse element wrt addition: -a a+(-a) = 0.\nInverse element wrt multiplication (except for 0): a^{-1} a \\times a^{-1} = 1.\n\nIf the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a field, otherwise it is called a ring.\nProminent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too.\nProminent example of a field is the set of real numbers.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
+    "href": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
+    "title": "Max-plus algebra",
+    "section": "(max,+) algebra: redefining the addition and multiplication",
+    "text": "(max,+) algebra: redefining the addition and multiplication\nElements of the (max,+) algebra are real numbers numbers, but it is still a ring and not a field since the two operations are defined differently.\nThe new operations of addition, which we denote by \\oplus to distinguish it from the standard addition, is defined as \\boxed{\n  x\\oplus y \\equiv \\max(x,y).\n  }\n\nThe new operation of multiplication, which we denote by \\otimes to distinguish it from the standard multiplication, is defined as \\boxed{\n  x\\otimes y \\equiv x+y}.\n\n\n\n\n\n\n\nImportant\n\n\n\nIndeed, there is no typo here, the standard addition is replaced by \\otimes and not \\oplus.\n\n\n\n\n\n\n\n\n(min,+) also possible\n\n\n\nIndeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.\n\n\n\nReals must be extended with the negative infinity\nStrictly speaking, the (max,+) algebra is a broader set than just \\mathbb R. We need to extend the reals with the minus infinity. We denote the extended set by \\mathbb R_\\varepsilon \\boxed{\n\\mathbb R_\\varepsilon \\coloneqq \\mathbb R \\cup \\{-\\infty\\}}.\n\nThe reason for the notation is that a dedicated symbol \\varepsilon is assigned to this minus infinity, that is, \\boxed\n{\\varepsilon \\coloneqq -\\infty.}\n\nIt may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol.\nWe are now going to see the reason for this extension.\n\n\nNeutral elements\n\nNeutral element with respect to \\oplus\nThe neutral element with respect to \\oplus, the zero, is -\\infty. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\oplus \\varepsilon = x,\n because \\max(x,-\\infty) = x.\n\n\nNeutral element with respect to \\otimes\nThe neutral element with respect to \\otimes, the one, is 0. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\otimes \\varepsilon = x,\n because x+0=x.\n\n\n\n\n\n\nNonsymmetric notation, but who cares?\n\n\n\nThe notation is rather nonsymmetric here. We now have a dedicated symbol \\varepsilon for the zero element in the new algebra, but no dedicated symbol for the one element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like mp-zero and mp-one to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was not even able to figure out how to encircle numbers in LaTeX…\n\n\n\n\n\nInverse elements\n\nInverse with respect to \\oplus\nThe inverse element with respect to \\oplus in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for \\varepsilon.\nThis has major consequences, for example, x\\oplus x=x.\nCan you verify this statement? How is is related to the fact that the inverse element with respect to \\oplus does not exist in general?\nThis is the key difference with respect to a conventional algebra, wherein the inverse element of a wrt conventional addition is -a, while here we do not even define \\ominus.\nFormally speaking, the (max,+) algebra is only a semi-ring.\n\n\nInverse with respect to \\otimes\nThe inverse element with respect to \\otimes does not exist for all elements. The \\varepsilon element does not have an inverse element with respect to \\otimes. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
+    "href": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
+    "title": "Max-plus algebra",
+    "section": "Powers and the inverse with respect to \\otimes",
+    "text": "Powers and the inverse with respect to \\otimes\nHaving defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer r\\in\\mathbb Z, the rth power of x, denoted by x^{\\otimes^r}, is defined, unsurprisingly as x^{\\otimes^r} \\coloneqq x\\otimes x \\otimes \\ldots \\otimes x.\nObserve that it corresponds to rx in the conventional algebra x^{\\otimes^r} = rx.\nBut then the inverse element with respect to \\otimes can also be determined using the (-1)th power as x^{\\otimes^{-1}} = -x.\nThis is not actually surprising, is it?\nThere are few more implications. For example,\nx^{\\otimes^0} = 0.\nThere is also no inverse element with respect to \\otimes for \\varepsilon, but it is expected as \\varepsilon is a zero wrt \\oplus. Furthermore, for r\\neq -1, if r&gt;0 , then \\varepsilon^{\\otimes^r} = \\varepsilon, if r&lt;0 , then \\varepsilon^{\\otimes^r} is undefined, which are both expected. Finally, \\varepsilon^{\\otimes^0} = 0 by convention.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
+    "href": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
+    "title": "Max-plus algebra",
+    "section": "Order of evaluation of (max,+) formulas",
+    "text": "Order of evaluation of (max,+) formulas\nIt is the same as that for the conventional algebra:\n1. power, \n2. multiplication, \n3. addition.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
+    "href": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
+    "title": "Max-plus algebra",
+    "section": "(max,+) polynomials (aka tropical polynomials)",
+    "text": "(max,+) polynomials (aka tropical polynomials)\nHaving covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial p(x) = a_{n}\\otimes x^{\\otimes^{n}} \\oplus a_{n-1}\\otimes x^{\\otimes^{n-1}} \\oplus \\ldots \\oplus a_{1}\\otimes x \\oplus a_{0},\n where a_i\\in \\mathbb R_\\varepsilon and n\\in \\mathbb N.\nBy interpreting the operations, this translates to the following function \\boxed\n{p(x) = \\max\\{nx + a_n, (n-1)x + a_{n-1}, \\ldots, x+a_1, a_0\\}.}\n\n\nExample 1 (1D polynomial) Consider the following (max,+) polynomial \np(x) = 2\\otimes x^{\\otimes^{2}} \\oplus 3\\otimes x \\oplus 1.\n\nWe can interpret it in the conventional algebra as \np(x) = \\max\\{2x+2,x+3,1\\},  \n which is a piecewise linear (actually affine) function.\n\n\nCode\nusing Plots\nx = -5:3\nf(x) = max(2*x+2,x+3,1)\nplot(x,f.(x),label=\"\",thickness_scaling = 2)\nxc = [-2,1]\nyc = f.(xc)\nscatter!(xc,yc,markercolor=[:red,:red],label=\"\",thickness_scaling = 2)\n\n\n\n\nExample 2 (Example of a 2D polynomial) Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(5,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"f(x,y)\")\n\n\n\n\nExample 3 (Another 2D polynomial) Consider another 2D (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y \\oplus (-1)\\otimes x^{\\otimes^2} \\oplus 1\\otimes x\\otimes y \\oplus (-1)\\otimes y^{\\otimes^2}.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(15,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"p(x,y)\")\n\n\n\n\n\n\n\n\n\nPiecewise affine (PWA) functions\n\n\n\nPiecewise affine (PWA) functions will turn out a frequent buddy in our course.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#solution-set-zero-set",
+    "href": "max_plus_algebra.html#solution-set-zero-set",
+    "title": "Max-plus algebra",
+    "section": "Solution set (zero set)",
+    "text": "Solution set (zero set)\n…",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#matrix-computations",
+    "href": "max_plus_algebra.html#matrix-computations",
+    "title": "Max-plus algebra",
+    "section": "Matrix computations",
+    "text": "Matrix computations\n\nAddition and multiplication\nWhat is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in \\mathbb R_\\varepsilon, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations. (A\\oplus B)_{ij} = a_{ij}\\oplus b_{ij} = \\max(a_{ij},b_{ij}) \n\\begin{aligned}\n(A\\otimes B)_{ij} &= \\bigoplus_{k=1}^n a_{ik}\\otimes b_{kj}\\\\\n&= \\max_{k=1,\\ldots, n}(a_{ik}+b_{kj})\n\\end{aligned}\n\n\n\nZero and identity matrices\n(max,+) zero matrix \\mathcal{E}_{m\\times n} has all its elements equal to \\varepsilon, that is, \n\\mathcal{E}_{m\\times n} =\n\\begin{bmatrix}\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\n\\end{bmatrix}.\n\n(max,+) identity matrix I_n has 0 on the diagonal and \\varepsilon elsewhere, that is, \nI_{n} =\n\\begin{bmatrix}\n0 & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & 0 & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & 0\n\\end{bmatrix}.\n\n\n\nMatrix powers\nThe zerothe power of a matrix is – unsurprisingly – the identity matrix, that is, A^{\\otimes^0} = I_n.\nThe kth power of a matrix, for k\\in \\mathbb N\\setminus\\{0\\}, is then defined using A^{\\otimes^k} = A\\otimes A^{\\otimes^{k-1}}.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
+    "href": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
+    "title": "Max-plus algebra",
+    "section": "Connection with graph theory – precedence graph",
+    "text": "Connection with graph theory – precedence graph\nConsider A\\in \\mathbb R_\\varepsilon^{n\\times n}. For this matrix, we can define the precedence graph \\mathcal{G}(A) as a weighted directed graph with the vertices 1, 2, …, n, and with the arcs (j,i) with the associated weights a_{ij} for all a_{ij}\\neq \\varepsilon. The kth power of the matrix is then\n\n(A)^{\\otimes^k}_{ij} = \\max_{i_1,\\ldots,i_{k-1}\\in \\{1,2,\\ldots,n\\}} \\{a_{ii_1} + a_{i_1i_2} + \\ldots + a_{i_{k-1}j}\\}\n for all i,j and k\\in \\mathbb N\\setminus 0.\n\nExample 4 (Example) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix}\n\\qquad\nA^{\\otimes^2} =\n\\begin{bmatrix}\n4 & 5 & 3\\\\\n3 & 4 & 3\\\\\n5 & 5 & 6\n\\end{bmatrix}\n\n\n\n\n\n\n\n\n\nG\n\n\n1\n\n1\n\n\n\n1-&gt;1\n\n\n2\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n1\n\n\n\n3\n\n3\n\n\n\n1-&gt;3\n\n\n2\n\n\n\n2-&gt;1\n\n\n3\n\n\n\n2-&gt;3\n\n\n-1\n\n\n\n3-&gt;2\n\n\n0\n\n\n\n3-&gt;3\n\n\n3\n\n\n\n\n\n\nFigure 1: An example of a precedence graph\n\n\n\n\n\n\n\nIrreducibility of a matrix\n\nMatrix in \\mathbb R_\\varepsilon^{n\\times n} is irreducible if its precedence graph is strongly connected.\nMatrix is irreducible iff \n(A \\oplus A^{\\otimes^2} \\oplus \\ldots A^{\\otimes^{n-1}})_{ij} \\neq \\varepsilon \\quad \\forall i,j, i\\neq j.\n\\tag{1}",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
+    "href": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
+    "title": "Max-plus algebra",
+    "section": "Eigenvalues and eigenvectors",
+    "text": "Eigenvalues and eigenvectors\nEigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives \nA\\otimes v = \\lambda \\otimes v.\n\nA few comments:\n\nIn general, total number of (max,+) eigenvalues &lt;n.\nAn irreducible matrix has only one (max,+) eigenvalue.\nGraph-theoretic interpretation: maximum average weight over all elementary circuits…\n\n\nEigenvalue-related property of irreducible matrices\nFor large enough k and c, it holds that \\boxed\n{A^{\\otimes^{k+c}} = \\lambda^{\\otimes^c}\\otimes A^{\\otimes^k}.}",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#solving-max-linear-equations",
+    "href": "max_plus_algebra.html#solving-max-linear-equations",
+    "title": "Max-plus algebra",
+    "section": "Solving (max,+) linear equations",
+    "text": "Solving (max,+) linear equations\nWe can also define and solve linear equations within the (max,+) algebra. Considering A\\in \\mathbb R_\\varepsilon^{n\\times n},\\, b\\in \\mathbb R_\\varepsilon^n, we can formulate and solve the equation \nA\\otimes x = b.\n\nIn general no solution even if A is square. However, often we can find some use for a subsolution defined as \nA\\otimes x \\leq b.\n\nTypically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.\n\nExample 5 (Greatest subsolution) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix},\n\\qquad\nb =  \n\\begin{bmatrix}\n1 \\\\ 2 \\\\ 3\n\\end{bmatrix}\n\n\nx =\n\\begin{bmatrix}\n1\\\\ -2 \\\\ 0\n\\end{bmatrix}\n\n\nA \\otimes x =\n\\begin{bmatrix}\n1\\\\ 0 \\\\ 1\n\\end{bmatrix}\n\\leq b\n\n\nWith this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "des.html",
+    "href": "des.html",
+    "title": "Discrete-event systems",
+    "section": "",
+    "text": "We have already mentioned that hybrid systems are composed of time-driven subsystems and event-driven subsystems. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#discrete-event",
+    "href": "des.html#discrete-event",
+    "title": "Discrete-event systems",
+    "section": "(Discrete) event",
+    "text": "(Discrete) event\nWe need to start with the definition of an event. Sometimes an adjective discrete is added (to get discrete event), although it appears rather redundant.\nThe primary characteristic of an event is instantaneous occurence, that is, an event takes no time.\nWithin the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.\n\n\n\n\n\n\nThe concept of a state\n\n\n\nTrue, here we are making a reference to the concept of a state, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).\n\n\nAlthough it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).\n\nExample 1 (DES state trajectory) In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.\n\nIt is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.\nAlso note that for some events no transitions occur (\\(e_3\\) at \\(t_3\\)).\n\n\n\n\n\n\n\nFrequent notational confusion: does the lower index represent discrete time or an element of a set?\n\n\n\nThe previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between name of the variable and value of the variable. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.\n\n\n\nExample 2 (State trajectory of a continuous-time dynamical systems) Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be \\(\\dot x(t) = f(x)\\). In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.\n\nThe set of states (aka state space) is \\(\\mathbb{R}\\) (or a subset) in this case (in general \\(\\mathbb{R}^n\\) or a subset).\n\n\nExample 3 (State trajectory of a time-discretized (aka sampled-data) system) As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by \\(x_k = f(x_k)\\) in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#when-do-events-occur",
+    "href": "des.html#when-do-events-occur",
+    "title": "Discrete-event systems",
+    "section": "When do events occur?",
+    "text": "When do events occur?\nThere are three major possibilities:\n\nwhen action is taken (button press, clutch released, …),\nspontaneously: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),\nwhen some condition is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
+    "href": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
+    "title": "Discrete-event systems",
+    "section": "Sequence of “time-stamped” events (aka timed trace)",
+    "text": "Sequence of “time-stamped” events (aka timed trace)\nThe sequence of pairs (event, time) \\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \\ldots\\]\nis sufficient to characterize an execution of a deterministic system, that is, a system with a unique initial state and a unique transitions at a given state and an event.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
+    "href": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
+    "title": "Discrete-event systems",
+    "section": "DES can be stochastic, but what exactly is stochastic then?",
+    "text": "DES can be stochastic, but what exactly is stochastic then?\nStochasticity can be introduced in\n\nthe event times (e.g. Poisson process),\nbut also in the transitions (e.g. probabilistic automata, more on this later).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "href": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "title": "Discrete-event systems",
+    "section": "Sometimes time stamps not needed – the ordering of events is enough",
+    "text": "Sometimes time stamps not needed – the ordering of events is enough\nThe sequence of events (aka trace) \\[e_1,e_2,e_3, \\ldots\\] can be enough for some analysis, in which only the order of the events is important.\n\nExample 4 credit_card_swiped, pin_entered, amount_entered, money_withdrawn",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#discrete-event-systems-are-studied-through-their-languages",
+    "href": "des.html#discrete-event-systems-are-studied-through-their-languages",
+    "title": "Discrete-event systems",
+    "section": "Discrete-event systems are studied through their languages",
+    "text": "Discrete-event systems are studied through their languages\nWhen studying discrete-event systems, soon we are exposed to terminology from the formal language theory such as alphabet, word, and language. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.\nWe define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.\n\nAlphabet\n\na set of symbols.\n\nWord (or string)\n\na sequence of symbols from a finite alphabet.\n\nLanguage\n\na set of words from the given alphabet.\n\n\nNow, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.\nIndeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” when in the next section when we introduce the concept of an automaton and some of its properties.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
+    "href": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
+    "title": "Discrete-event systems",
+    "section": "Modelling frameworks for DES (as used in our course)",
+    "text": "Modelling frameworks for DES (as used in our course)\nThese are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems\n\n(State) automaton (pl. automata)\nPetri net\n(max,plus) algebra, MPL systems\n\nWhile the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.\nWe are going to cover all the three frameworks in this course as a prequel to hybrid systems.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "stability_via_common_lyapunov_function.html",
+    "href": "stability_via_common_lyapunov_function.html",
+    "title": "Common Lyapunov function",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "8. Stability",
+      "Common Lyapunov function"
+    ]
+  },
+  {
+    "objectID": "classes_PWA.html",
+    "href": "classes_PWA.html",
+    "title": "Piecewise affine systems",
+    "section": "",
+    "text": "About this site\n\n\n\n Back to top",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Piecewise affine systems"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html",
+    "href": "verification_temporal_logics.html",
+    "title": "Temporal logics",
+    "section": "",
+    "text": "It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that “if this and that conditions are satisfied, then yet another condition must not hold”, and so on.\nIt turns out, however, that the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. Temporal logics add some more expressiveness.\nIndeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html#temporal-operators",
+    "href": "verification_temporal_logics.html#temporal-operators",
+    "title": "Temporal logics",
+    "section": "Temporal operators",
+    "text": "Temporal operators\nThe name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express when certain properties must (or must not) be satisfied along the state trajectories.\n\nExample 1 Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states \\{\\text{green}, \\text{yellow}, \\text{red}, \\text{red-yellow}\\} of the traffic light. We may want to impose a requirement such that \\text{green} is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, \\neg(\\text{green}_1 \\land \\text{green}_2). But now consider that we require that sooner or later, \\text{green} must be on for each light (to guarantee fairness). And that this must be true all the time, that is, \\text{green} must come infinitely often. And, furthermore, that \\text{red} cannot come imediately after its respective \\text{green}.\n\nRequirements like these cannot be expressed with standard logical operators such as \\lnot, \\land, \\lor, \\implies and \\iff, and temporal operators must be introduced. Here they are.\n\nTemporal operators\n\n\nSymbol\nAlternative symbol\nMeaning\n\n\n\n\n\\mathbf{F}\n\\Diamond\nEventually (Finally)\n\n\n\\mathbf{G}\n\\Box\nGlobally (Always)\n\n\n\\mathbf{X}\n\\bigcirc\nNeXt\n\n\n\\mathbf{U}\n\\sqcup\nUntill\n\n\n\nWe are explaining their use while we introduce our first temporal logic.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html#linear-temporal-logic-ltl",
+    "href": "verification_temporal_logics.html#linear-temporal-logic-ltl",
+    "title": "Temporal logics",
+    "section": "Linear temporal logic (LTL)",
+    "text": "Linear temporal logic (LTL)\n“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is iniated at some state x.\nWe now consider some property \\phi(x) of a sequence of states emanating from the state x. \\phi(x) evaluates to true or false. And indeed, while the argument of \\phi is a particular state, when evaluating \\phi, the full sequence is taken into consideration when evaluating \\phi(x).\nIn order to be able to express requirements on future states, \\phi() cannot be just a logical formula, it must by a LTL formula. Here comes a formal definition \n\\begin{aligned}\n\\phi &= \\text{true} \\, | \\, p \\, | \\, \\neg \\phi_1 \\, | \\, \\phi_1 \\land \\phi_2 \\, | \\, \\phi_1 \\lor \\phi_2 \\\\\n&\\quad | \\, \\mathbf{X} \\phi_1 \\, | \\, \\mathbf{F} \\phi_1 \\, | \\, \\mathbf{G} \\phi_1 | \\, \\phi_1 \\mathbf{U} \\phi_2\n\\end{aligned}\n\nHaving an LTL formula, we write that a state sequence emanating from a given discrete state x satisfies the formula as x \\models \\phi if \\phi is true for all possible state trajectories starting at this state.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html#examples-of-ltl-formulas",
+    "href": "verification_temporal_logics.html#examples-of-ltl-formulas",
+    "title": "Temporal logics",
+    "section": "Examples of LTL formulas",
+    "text": "Examples of LTL formulas\n\n\\mathbf{G}\\neg \\phi\n\n\n\\mathbf{G}\\mathbf{F} \\phi\n\n\n\\mathbf{F}\\mathbf{G} \\phi\n\n\n\\mathbf{F}(\\phi_1 \\land \\mathbf{X}\\mathbf{F}\\phi_2)",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
+    "href": "verification_temporal_logics.html#ctl-ctl-mixed-with-ltl-supports-branching",
+    "title": "Temporal logics",
+    "section": "CTL* (CTL mixed with LTL) supports branching",
+    "text": "CTL* (CTL mixed with LTL) supports branching\n\nExistential quantifiers needed\n\n\\mathbf{A}: For all\n\\mathbf{E}: There exists",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "verification_temporal_logics.html#literature",
+    "href": "verification_temporal_logics.html#literature",
+    "title": "Temporal logics",
+    "section": "Literature",
+    "text": "Literature\n\nLin, Hai, and Panos J. Antsaklis. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springher, 2022. Chapter 3.\nMitra, Sayan. Verifying Cyber-Physical Systems: A Path to Safe Autonomy. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2021. https://sayanmitracode.github.io/cpsbooksite/about.html.\nBaier, Christel, and Joost-Pieter Katoen. Principles of Model Checking. Cambridge, MA, USA: MIT Press, 2008.\nClarke, Edmund M., Jr, Orna Grumberg, Daniel Kroening, Doron Peled, and Helmut Veith. Model Checking. 2nd ed. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2018.\nMurray, Richard M, Ufuk Topcu, and Nok Wongpiromsarn. ‘Lecture 3 Linear Temporal Logic (LTL)’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf.\nWongpiromsarn, Nok, Richard M. Murray, and Ufuk Topcu. ‘Lecture 4 Model Checking and Logic Synthesis’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf.",
+    "crumbs": [
+      "12. Formal verification",
+      "Temporal logics"
+    ]
+  },
+  {
+    "objectID": "max_plus_references.html",
+    "href": "max_plus_references.html",
+    "title": "Literature",
+    "section": "",
+    "text": "One last time in this course we refer to Cassandras and Lafortune (2021), a comprehensive and popular introduction do discrete event systems. A short introduction to the framework (max,+) algebra can be found (under the somewhat less known name “Dioid algebras”) in Chapter 5.4.\nBut as a recommendable alternative, (any one of) the a series of papers by Bart de Schutter (TU Delft) and his colleagues can be read instead. For example De Schutter et al. (2020) and De Schutter and van den Boom (2000).\nFor anyone interested in learning yet more, a beautiful (and freely online) book is Baccelli et al. (2001), which we have also mentioned in the context of Petri nets.\nMax-plus algebra is relevant outside the domain of discrete-event systems – it is also investigated in optimization for its connection with piecewise linear/affine functions. Note that the community prefers using the name tropical geometry (to emphasise that they view it as a branch of algebraic geometry). A lovely tutorial is Rau (2017).\n\n\n\n\n Back to topReferences\n\nBaccelli, François, Guy Cohen, Geert Jan Olsder, and Jean-Pierre Quadrat. 2001. Synchronization and Linearity: An Algebra for Discrete Event Systems. Web edition. Chichester: Wiley. https://www.rocq.inria.fr/metalau/cohen/documents/BCOQ-book.pdf.\n\n\nCassandras, Christos G., and Stéphane Lafortune. 2021. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer. https://doi.org/10.1007/978-3-030-72274-6.\n\n\nDe Schutter, Bart, and Ton van den Boom. 2000. “Model Predictive Control for Max-Plus-Linear Discrete-Event Systems: Extended Report & Addendum.” Technical Report bds:99-10a. Delft, The Netherlands: Delft University of Technology. https://pub.deschutter.info/abs/99_10a.html.\n\n\nDe Schutter, Bart, Ton van den Boom, Jia Xu, and Samira S. Farahani. 2020. “Analysis and Control of Max-Plus Linear Discrete-Event Systems: An Introduction.” Discrete Event Dynamic Systems 30 (1): 25–54. https://doi.org/10.1007/s10626-019-00294-w.\n\n\nRau, Johannes. 2017. “A First Expedition to Tropical Geometry.” https://www.math.uni-tuebingen.de/user/jora/downloads/FirstExpedition.pdf.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
       "Literature"
     ]
   },
   {
-    "objectID": "hybrid_automata_references.html",
-    "href": "hybrid_automata_references.html",
+    "objectID": "solution_references.html",
+    "href": "solution_references.html",
     "title": "Literature",
     "section": "",
     "text": "Back to top",
     "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
+      "7. Solution",
       "Literature"
     ]
   },
   {
-    "objectID": "solution_concepts.html",
-    "href": "solution_concepts.html",
-    "title": "Solution concepts",
+    "objectID": "classes_switched.html",
+    "href": "classes_switched.html",
+    "title": "Switched systems",
     "section": "",
     "text": "About this site\n\n\n\n Back to top",
     "crumbs": [
-      "7. Solution",
-      "Solution concepts"
+      "6. Some classes of hybrid systems",
+      "Switched systems"
     ]
   },
   {
-    "objectID": "intro.html",
-    "href": "intro.html",
-    "title": "What is a hybrid system?",
+    "objectID": "verification_reachability.html",
+    "href": "verification_reachability.html",
+    "title": "Reachability",
     "section": "",
-    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
+    "text": "About this site\n\n\n\n Back to top",
     "crumbs": [
-      "0. Introduction",
-      "What is a hybrid system?"
-    ]
-  },
-  {
-    "objectID": "intro.html#definition-of-a-hybrid-system",
-    "href": "intro.html#definition-of-a-hybrid-system",
-    "title": "What is a hybrid system?",
-    "section": "",
-    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
-    "crumbs": [
-      "0. Introduction",
-      "What is a hybrid system?"
-    ]
-  },
-  {
-    "objectID": "intro.html#example-of-a-hybrid-system",
-    "href": "intro.html#example-of-a-hybrid-system",
-    "title": "What is a hybrid system?",
-    "section": "Example of a hybrid system",
-    "text": "Example of a hybrid system",
-    "crumbs": [
-      "0. Introduction",
-      "What is a hybrid system?"
-    ]
-  },
-  {
-    "objectID": "intro.html#hybrid-system-is-an-open-and-unbounded-concept",
-    "href": "intro.html#hybrid-system-is-an-open-and-unbounded-concept",
-    "title": "What is a hybrid system?",
-    "section": "Hybrid system is an open and unbounded concept",
-    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled…\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
-    "crumbs": [
-      "0. Introduction",
-      "What is a hybrid system?"
+      "12. Formal verification",
+      "Reachability"
     ]
   },
   {
@@ -1157,7 +1454,7 @@
     "href": "verification_barrier.html#convex-relaxation-of-the-barrier-certificate-problem",
     "title": "Barrier certificates",
     "section": "Convex relaxation of the barrier certificate problem",
-    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\nPrecompiling SumOfSquares\n  ✓ InverseFunctions\n  ✓ InverseFunctions → DatesExt\n  ✓ LogExpFunctions → LogExpFunctionsInverseFunctionsExt\n  ✓ MutableArithmetics\n  ✓ MultivariatePolynomials\n  ✓ SemialgebraicSets\n  ✓ MultivariateBases\n  ✓ DynamicPolynomials\n  ✓ MultivariateMoments\n  ✓ MathOptInterface\n  ✓ JuMP\n  ✓ PolyJuMP\n  ✓ SumOfSquares\n  13 dependencies successfully precompiled in 51 seconds. 65 already precompiled.\nPrecompiling MosekTools\n  ✓ MosekTools\n  1 dependency successfully precompiled in 1 seconds. 48 already precompiled.\nPrecompiling DifferentialEquations\n  ✓ CompositionsBase → CompositionsBaseInverseFunctionsExt\n  ✓ EnzymeCore\n  ✓ ADTypes\n  ✓ Unitful → InverseFunctionsUnitfulExt\n  ✓ Functors\n  ✓ Distances → DistancesChainRulesCoreExt\n  ✓ ArrayInterface\n  ✓ MatrixFactorizations\n  ✓ StatsFuns → StatsFunsInverseFunctionsExt\n  ✓ EnzymeCore → AdaptExt\n  ✓ ADTypes → ADTypesEnzymeCoreExt\n  ✓ LazyArrays\n  ✓ Accessors\n  ✓ ArrayInterface → ArrayInterfaceGPUArraysCoreExt\n  ✓ ADTypes → ADTypesChainRulesCoreExt\n  ✓ MatrixFactorizations → MatrixFactorizationsBandedMatricesExt\n  ✓ ArrayInterface → ArrayInterfaceStaticArraysCoreExt\n  ✓ Accessors → AccessorsStaticArraysExt\n  ✓ Graphs\n  ✓ SparseMatrixColorings\n  ✓ LazyArrays → LazyArraysBandedMatricesExt\n  ✓ Accessors → AccessorsUnitfulExt\n  ✓ ArrayInterface → ArrayInterfaceBandedMatricesExt\n  ✓ VertexSafeGraphs\n  ✓ SciMLStructures\n  ✓ PreallocationTools\n  ✓ MaybeInplace\n  ✓ LazyArrays → LazyArraysStaticArraysExt\n  ✓ DifferentiationInterface\n  ✓ FiniteDiff\n  ✓ SymbolicIndexingInterface\n  ✓ StaticArrayInterface\n  ✓ SciMLOperators\n  ✓ DifferentiationInterface → DifferentiationInterfaceForwardDiffExt\n  ✓ FiniteDiff → FiniteDiffBandedMatricesExt\n  ✓ StaticArrayInterface → StaticArrayInterfaceStaticArraysExt\n  ✓ RecursiveArrayTools\n  ✓ DifferentiationInterface → DifferentiationInterfaceFiniteDiffExt\n  ✓ StaticArrayInterface → StaticArrayInterfaceOffsetArraysExt\n  ✓ FiniteDiff → FiniteDiffStaticArraysExt\n  ✓ RecursiveArrayTools → RecursiveArrayToolsForwardDiffExt\n  ✓ CloseOpenIntervals\n  ✓ DifferentiationInterface → DifferentiationInterfaceChainRulesCoreExt\n  ✓ LayoutPointers\n  ✓ NLSolversBase\n  ✓ StrideArraysCore\n  ✓ SparseDiffTools\n  ✓ FastAlmostBandedMatrices\n  ✓ Polyester\n  ✓ LineSearches\n  ✓ FastBroadcast\n  ✓ SparseDiffTools → SparseDiffToolsPolyesterExt\n  ✓ NLsolve\n  ✓ RecursiveArrayTools → RecursiveArrayToolsFastBroadcastExt\n  ✓ Optim\n  ✓ VectorizationBase\n  ✓ Optim → OptimMOIExt\n  ✓ SLEEFPirates\n  ✓ SciMLBase\n  ✓ SciMLBase → SciMLBaseChainRulesCoreExt\n  ✓ ExponentialUtilities\n  ✓ DiffEqBase\n  ✓ DiffEqBase → DiffEqBaseUnitfulExt\n  ✓ DiffEqBase → DiffEqBaseChainRulesCoreExt\n  ✓ DiffEqBase → DiffEqBaseDistributionsExt\n  ✓ LoopVectorization\n  ✓ LoopVectorization → SpecialFunctionsExt\n  ✓ JumpProcesses\n  ✓ DiffEqNoiseProcess\n  ✓ LoopVectorization → ForwardDiffExt\n  ✓ TriangularSolve\n  ✓ Sundials\n  ✓ RecursiveFactorization\n  ✓ SimpleNonlinearSolve\n  ✓ SimpleNonlinearSolve → SimpleNonlinearSolveChainRulesCoreExt\n  ✓ LinearSolve\n  ✓ LinearSolve → LinearSolveFastAlmostBandedMatricesExt\n  ✓ NonlinearSolve\n  ✓ NonlinearSolve → NonlinearSolveNLsolveExt\n  ✓ NonlinearSolve → NonlinearSolveBandedMatricesExt\n  ✓ DiffEqCallbacks\n  ✓ SteadyStateDiffEq\n  ✓ OrdinaryDiffEq\n  ✓ DelayDiffEq\n  ✓ StochasticDiffEq\n  ✓ BoundaryValueDiffEq\n  ✓ DifferentialEquations\n  87 dependencies successfully precompiled in 184 seconds. 148 already precompiled.\nPrecompiling ImplicitPlots\n  ✓ StaticPolynomials\n  ✓ ImplicitPlots\n  2 dependencies successfully precompiled in 2 seconds. 21 already precompiled.\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/hq1ku/src/integrator_interface.jl:600",
+    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\nPrecompiling DifferentialEquations\n  ✓ StatsFuns → StatsFunsInverseFunctionsExt\n  ✓ RandomNumbers\n  ✓ Random123\n  ✓ DiffEqBase → DiffEqBaseDistributionsExt\n  ✓ JumpProcesses\n  ✓ DiffEqNoiseProcess\n  ✓ StochasticDiffEq\n  ✓ DifferentialEquations\n  8 dependencies successfully precompiled in 14 seconds. 227 already precompiled.\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/hq1ku/src/integrator_interface.jl:600",
     "crumbs": [
       "12. Formal verification",
       "Barrier certificates"
@@ -1901,7 +2198,7 @@
     "href": "petri_nets_references.html",
     "title": "Literature",
     "section": "",
-    "text": "Literature for Petri nets is vast, but a decent (and perfectly satisfactory) introduction can be found in Chapter 4 and 5.3 (for the timed PN) of the classical (and award-winning) reference [1]. Note that electronic version (in fact, PDF) is accessible through the NTK library (upon CTU login, for example to usermap first).\nA nice introduction is also in Chapter 2 of the freely online available book [2].\nThe survey paper that is particularly focused on Petri nets from the control systems perspective is [3] and it gives a wealth of other references.",
+    "text": "Literature for Petri nets is vast, but a decent (and perfectly satisfactory) introduction can be found in Chapter 4 and 5.3 (for the timed PN) of the classical (and award-winning) reference [1]. Note that electronic version (in fact, PDF) is accessible through the NTK library (upon CTU login, for example to usermap first).\nA nice introduction is also in Chapter 2 of the freely online available book [2].\nThe survey paper that is particularly focused on Petri nets from the control systems perspective is [3] and it gives a wealth of other references.\nA few more monographs, mostly inclined towards control systems, are [4], [5], [6].",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Literature"
@@ -1912,7 +2209,7 @@
     "href": "petri_nets_references.html#petri-nets-and-their-derivatives-such-as-grafcet-in-international-standards",
     "title": "Literature",
     "section": "Petri nets and their derivatives such as Grafcet in international standards",
-    "text": "Petri nets and their derivatives such as Grafcet in international standards\nWe mention at the beginning of this chapter that Petri nets have made it to international standards. Here they are: [4], [5], and [6].\nBased on Petri nets, another framework has been derived and standardized, namely GRAFCET, see [7] and [8], upon which, in turn, the popular Sequential Function Chart (SFC) language for PLC programming [9] is based.",
+    "text": "Petri nets and their derivatives such as Grafcet in international standards\nWe mention at the beginning of this chapter that Petri nets have made it to international standards. Here they are: [7], [8], and [9].\nBased on Petri nets, another framework has been derived and standardized, namely GRAFCET, see [10] and [11], upon which, in turn, the popular Sequential Function Chart (SFC) language for PLC programming [12] is based.",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Literature"

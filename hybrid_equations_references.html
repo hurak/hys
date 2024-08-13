@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./classes_reset.html" rel="next">
-<link href="./hybrid_equations.html" rel="prev">
+<link href="./hybrid_equations_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -277,6 +297,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -553,10 +579,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The theoretical and computational framework of hybrid equations has been mostly developed by a relatively small circle of researchers (Sanfelice, Goebel, Teel, …). The primary monograph is <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[1]</a></span>. It is also supported by a freely available Matlab toolbox, see the section on software.</p>
+<p><img src="intro_figures/sanfelice_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>The book <span class="citation" data-cites="goebelHybridDynamicalSystems2012"><a href="#ref-goebelHybridDynamicalSystems2012" role="doc-biblioref">[2]</a></span> can be regarded as a predecessor and/or complement of the just mentioned <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[1]</a></span>. Although the book is not available online, a short version appears as an article <span class="citation" data-cites="goebelHybridDynamicalSystems2009"><a href="#ref-goebelHybridDynamicalSystems2009" role="doc-biblioref">[3]</a></span> in the popular <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=37">IEEE Control Systems magazine</a> (the one with color figures :-).</p>
+<p><img src="intro_figures/goebel_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-sanfeliceHybridFeedbackControl2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. G. Sanfelice, <em>Hybrid <span>Feedback Control</span></em>. Princeton University Press, 2021. Accessed: Sep. 23, 2020. [Online]. Available: <a href="https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control">https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control</a></div>
+</div>
+<div id="ref-goebelHybridDynamicalSystems2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <em>Hybrid <span>Dynamical Systems</span>: <span>Modeling</span>, <span>Stability</span>, and <span>Robustness</span></em>. Princeton University Press, 2012. Available: <a href="https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems">https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems</a></div>
+</div>
+<div id="ref-goebelHybridDynamicalSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <span>“Hybrid dynamical systems,”</span> <em>IEEE Control Systems Magazine</em>, vol. 29, no. 2, pp. 28–93, Apr. 2009, doi: <a href="https://doi.org/10.1109/MCS.2008.931718">10.1109/MCS.2008.931718</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -979,8 +1020,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./hybrid_equations.html" class="pagination-link" aria-label="Hybrid equations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Hybrid equations</span>
+      <a href="./hybrid_equations_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

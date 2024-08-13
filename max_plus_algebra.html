@@ -358,6 +358,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_equations_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -819,7 +825,7 @@ p(x) = 2\otimes x^{\otimes^{2}} \oplus 3\otimes x \oplus 1.
 <p>We can interpret it in the conventional algebra as <span class="math display">
 p(x) = \max\{2x+2,x+3,1\},  
 </span> which is a piecewise linear (actually affine) function.</p>
-<div id="cfcbe3f4" class="cell">
+<div id="d4bd17fa" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -836,7 +842,7 @@ p(x) = \max\{2x+2,x+3,1\},
 <p><span class="theorem-title"><strong>Example 2 (Example of a 2D polynomial)</strong></span> Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial <span class="math display">
 p(x,y) = 0 \otimes x \otimes y.
 </span></p>
-<div id="b22b05c7" class="cell">
+<div id="3da68775" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -855,7 +861,7 @@ p(x,y) = 0 \otimes x \otimes y.
 <p><span class="theorem-title"><strong>Example 3 (Another 2D polynomial)</strong></span> Consider another 2D (max,+) polynomial <span class="math display">
 p(x,y) = 0 \otimes x \otimes y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
 </span></p>
-<div id="b127b896" class="cell">
+<div id="848d7bf6" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
