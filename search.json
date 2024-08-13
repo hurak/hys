@@ -15,84 +15,7 @@
     "href": "hybrid_automata.html#hybrid-automaton-with-external-events-and-control-inputs",
     "title": "Hybrid automata",
     "section": "Hybrid automaton with external events and control inputs",
-    "text": "Hybrid automaton with external events and control inputs\nWe now extend the hybrid automaton with two new components:\n\na set \\mathcal{A} of (external) actions (also events or symbols),\na set \\mathcal{U} external continuous-valued inputs (control inputs or disturbances).\n\n\\boxed{\n  \\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, \\mathcal I, \\mathcal A, \\mathcal U, f, \\mathcal E, \\mathcal G, \\mathcal R\\} ,}\n where",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#mathcal-a-a_1a_2ldots-a_s-is-a-set-of-actions",
-    "href": "hybrid_automata.html#mathcal-a-a_1a_2ldots-a_s-is-a-set-of-actions",
-    "title": "Hybrid automata",
-    "section": "\\mathcal A = \\{a_1,a_2,\\ldots, a_s\\} is a set of actions",
-    "text": "\\mathcal A = \\{a_1,a_2,\\ldots, a_s\\} is a set of actions\n\nThe role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.\nUnlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.\n\n\nIn simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#mathcal-uinmathbb-rm-is-a-set-of-continuous-valued-inputs",
-    "href": "hybrid_automata.html#mathcal-uinmathbb-rm-is-a-set-of-continuous-valued-inputs",
-    "title": "Hybrid automata",
-    "section": "\\mathcal U\\in\\mathbb R^m is a set of continuous-valued inputs",
-    "text": "\\mathcal U\\in\\mathbb R^m is a set of continuous-valued inputs\n\nReal-valued functions of time.\nControl inputs, disturbances, references, noises.\n\n\nIn applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#some-modifications-needed",
-    "href": "hybrid_automata.html#some-modifications-needed",
-    "title": "Hybrid automata",
-    "section": "Some modifications needed",
-    "text": "Some modifications needed\nupon introduction of these two types of external inputs:\n\nf: \\mathcal Q \\times \\mathcal X \\times \\mathcal U \\rightarrow \\mathbb R^n is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation \\dot x = f_q(x,u).\n\\mathcal E\\subseteq \\mathcal Q \\times (\\mathcal A) \\times \\mathcal Q is a set of transitions now possibly parameterized by the actions (as in classical automata).\n\\mathcal I : \\mathcal Q \\rightarrow 2^{\\mathcal{X}\\times \\mathcal U} is a location invariant now augmented with a subset of the control input set.\n\\mathcal G: \\mathcal E \\rightarrow 2^{\\mathcal{X}\\times U} is a guard set now augmented with a subset of the control input set.\n\\mathcal R: \\mathcal E \\times \\mathcal X\\times \\mathcal U\\rightarrow 2^{\\mathcal X} is a (state) reset map that is now additionally parameterized by the control input.\n\n\n\nThe guard set for the given location gives just necessary (also enabling) conditions for the transition (x\\in \\mathcal{G}(q)).\nIf enabled, the transition can happen if one of the two things is satisfied:\n\nthe continous state leaves the invariant set of the given location,\n\nan external event occurs.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-button-controlled-led",
-    "href": "hybrid_automata.html#example-button-controlled-led",
-    "title": "Hybrid automata",
-    "section": "Example: button-controlled LED",
-    "text": "Example: button-controlled LED\n. . .\n\n. . .\n\n\\mathcal{Q} = \\{\\mathrm{off}, \\mathrm{dim}, \\mathrm{bright}\\},\\quad \\mathcal{Q}_0 = \\{\\mathrm{off}\\}\n\n. . .\n\n\\mathcal{X} = \\mathbb{R}, \\quad \\mathcal{X}_0 = \\{0\\}\n\n. . .\n\n\\mathcal{I(\\mathrm{off})} = \\mathcal{I(\\mathrm{bright})} = \\mathcal{I(\\mathrm{dim})} = \\{x\\in\\mathbb R \\mid x \\geq 0\\}\n\n. . .\n\nf(x) = 1\n\n. . .\n\n\\mathcal{A} = \\{\\mathrm{press}\\}\n\n. . .\n\n\\begin{aligned}\n\\mathcal{E} &= \\{(\\mathrm{off},\\mathrm{press},\\mathrm{dim}),(\\mathrm{dim},\\mathrm{press},\\mathrm{off}),\\\\\n&\\qquad (\\mathrm{dim},\\mathrm{press},\\mathrm{bright}),(\\mathrm{bright},\\mathrm{press},\\mathrm{off})\\}\n\\end{aligned}\n\n. . .\n\n\\begin{aligned}\n\\mathcal{G}((\\mathrm{off},\\mathrm{press},\\mathrm{dim})) &= \\mathcal X \\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{off})) &= \\{x \\in \\mathcal X \\mid x&gt;2\\}\\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{bright})) &= \\{x \\in \\mathcal X \\mid x\\leq 2\\}\\\\\n\\mathcal{G}((\\mathrm{bright},\\mathrm{press},\\mathrm{off})) &= \\mathcal X.\n\\end{aligned}\n\n. . .\n\nr((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0,\n\n\nthat is, x^+ = r((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0.\nFor all other transitions r((\\cdot, \\cdot, \\cdot),x)=x,\n\nthat is, x^+ = x.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-water-tank",
-    "href": "hybrid_automata.html#example-water-tank",
-    "title": "Hybrid automata",
-    "section": "Example: Water tank",
-    "text": "Example: Water tank\n\n\n\n\\dot V =\n\\begin{cases}\nQ_\\mathrm{in} - Q_\\mathrm{out,middle} - Q_\\mathrm{out,bottom}, & h&gt;h_\\mathrm{m}\\\\\nQ_\\mathrm{in} - Q_\\mathrm{out,bottom}, & h\\leq h_\\mathrm{m}\n\\end{cases}\n\n. . .",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-bouncing-ball",
-    "href": "hybrid_automata.html#example-bouncing-ball",
-    "title": "Hybrid automata",
-    "section": "Example: Bouncing ball",
-    "text": "Example: Bouncing ball\n\n\n\n\n\n\\dot{\\bm x} = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}, \\quad \\begin{bmatrix}10,0\\end{bmatrix}",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-bouncing-ball-ha",
-    "href": "hybrid_automata.html#example-bouncing-ball-ha",
-    "title": "Hybrid automata",
-    "section": "Example: bouncing ball – HA",
-    "text": "Example: bouncing ball – HA\n. . .\n\n. . .\n\n\\mathcal{Q} = \\{q\\}, \\; \\mathcal{Q}_0 = \\{q\\}\n\n. . .\n\n\\mathcal{X} = \\mathbb R^2, \\; \\mathcal{X}_0 = \\left\\{\\begin{bmatrix}10\\\\0\\end{bmatrix}\\right\\}\n\n. . .\n\n\\mathcal{I} = \\{\\mathbb R^2 \\mid x_1 &gt; 0 \\lor (x_1 = 0 \\land x_2 &gt; 0)\\}\n\n. . .\n\nf(\\bm x) = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}\n\n. . .\n\n\\mathcal{E} = \\{(q,q)\\}\n\n. . .\n\n\\mathcal{G} = \\{\\bm x\\in\\mathbb R^2 \\mid x_1=0 \\land x_2 &lt; 0\\}\n\n. . .\n\nr((q,q),\\bm x) = \\begin{bmatrix}x_1\\\\ -\\gamma x_2 \\end{bmatrix},\n where \\gamma is the coefficient of restitution (e.g., \\gamma = 0.9).",
+    "text": "Hybrid automaton with external events and control inputs\nWe now extend the hybrid automaton with two new components:\n\na set \\mathcal{A} of (external) actions (also events or symbols),\na set \\mathcal{U} external continuous-valued inputs (control inputs or disturbances).\n\n\\boxed{\n  \\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, \\mathcal I, \\mathcal A, \\mathcal U, f, \\mathcal E, \\mathcal G, \\mathcal R\\} ,}\n where\n\n\\mathcal A = \\{a_1,a_2,\\ldots, a_s\\} is a set of actions\n\nThe role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.\nUnlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.\n\n\n\nIn simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.\n\n\n\\mathcal U\\in\\mathbb R^m is a set of continuous-valued inputs\n\nReal-valued functions of time.\nControl inputs, disturbances, references, noises.\n\n\n\nIn applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.\n\n\nSome modifications needed\nupon introduction of these two types of external inputs:\n\nf: \\mathcal Q \\times \\mathcal X \\times \\mathcal U \\rightarrow \\mathbb R^n is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation \\dot x = f_q(x,u).\n\\mathcal E\\subseteq \\mathcal Q \\times (\\mathcal A) \\times \\mathcal Q is a set of transitions now possibly parameterized by the actions (as in classical automata).\n\\mathcal I : \\mathcal Q \\rightarrow 2^{\\mathcal{X}\\times \\mathcal U} is a location invariant now augmented with a subset of the control input set.\n\\mathcal G: \\mathcal E \\rightarrow 2^{\\mathcal{X}\\times U} is a guard set now augmented with a subset of the control input set.\n\\mathcal R: \\mathcal E \\times \\mathcal X\\times \\mathcal U\\rightarrow 2^{\\mathcal X} is a (state) reset map that is now additionally parameterized by the control input.\nThe guard set for the given location gives just necessary (also enabling) conditions for the transition (x\\in \\mathcal{G}(q)).\nIf enabled, the transition can happen if one of the two things is satisfied:\n\nthe continous state leaves the invariant set of the given location,\n\nan external event occurs.\n\n\n\nExample 2 (Button-controlled LED)  \n\n\n\nAutomaton for a button controlled LED\n\n\n\n\\mathcal{Q} = \\{\\mathrm{off}, \\mathrm{dim}, \\mathrm{bright}\\},\\quad \\mathcal{Q}_0 = \\{\\mathrm{off}\\}\n\n\n\\mathcal{X} = \\mathbb{R}, \\quad \\mathcal{X}_0 = \\{0\\}\n\n\n\\mathcal{I(\\mathrm{off})} = \\mathcal{I(\\mathrm{bright})} = \\mathcal{I(\\mathrm{dim})} = \\{x\\in\\mathbb R \\mid x \\geq 0\\}\n\n\nf(x) = 1\n\n\n\\mathcal{A} = \\{\\mathrm{press}\\}\n\n\n\\begin{aligned}\n\\mathcal{E} &= \\{(\\mathrm{off},\\mathrm{press},\\mathrm{dim}),(\\mathrm{dim},\\mathrm{press},\\mathrm{off}),\\\\\n&\\qquad (\\mathrm{dim},\\mathrm{press},\\mathrm{bright}),(\\mathrm{bright},\\mathrm{press},\\mathrm{off})\\}\n\\end{aligned}\n\n\n\\begin{aligned}\n\\mathcal{G}((\\mathrm{off},\\mathrm{press},\\mathrm{dim})) &= \\mathcal X \\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{off})) &= \\{x \\in \\mathcal X \\mid x&gt;2\\}\\\\\n\\mathcal{G}((\\mathrm{dim},\\mathrm{press},\\mathrm{bright})) &= \\{x \\in \\mathcal X \\mid x\\leq 2\\}\\\\\n\\mathcal{G}((\\mathrm{bright},\\mathrm{press},\\mathrm{off})) &= \\mathcal X.\n\\end{aligned}\n\n\nr((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0,\n\n\nthat is, x^+ = r((\\mathrm{off},\\mathrm{press},\\mathrm{dim}),x) = 0.\nFor all other transitions r((\\cdot, \\cdot, \\cdot),x)=x,\n\nthat is, x^+ = x.\n\n\n\n\nExample 3 (Water tank)  \n\n\n\nWater tank example\n\n\n\n\\dot V =\n\\begin{cases}\nQ_\\mathrm{in} - Q_\\mathrm{out,middle} - Q_\\mathrm{out,bottom}, & h&gt;h_\\mathrm{m}\\\\\nQ_\\mathrm{in} - Q_\\mathrm{out,bottom}, & h\\leq h_\\mathrm{m}\n\\end{cases}\n\n\n\n\nAutomaton for a water tank example\n\n\n\n\nExample 4 (Bouncing ball)  \n\n\n\nBouncing ball example\n\n\n\n\\dot{\\bm x} = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}, \\quad \\begin{bmatrix}10,0\\end{bmatrix}\n\n\n\n\nHybrid automaton for a bouncing ball eaxample\n\n\n\n\\mathcal{Q} = \\{q\\}, \\; \\mathcal{Q}_0 = \\{q\\}\n\n\n\\mathcal{X} = \\mathbb R^2, \\; \\mathcal{X}_0 = \\left\\{\\begin{bmatrix}10\\\\0\\end{bmatrix}\\right\\}\n\n\n\\mathcal{I} = \\{\\mathbb R^2 \\mid x_1 &gt; 0 \\lor (x_1 = 0 \\land x_2 &gt; 0)\\}\n\n\nf(\\bm x) = \\begin{bmatrix} x_2\\\\ -g\\end{bmatrix}\n\n\n\\mathcal{E} = \\{(q,q)\\}\n\n\n\\mathcal{G} = \\{\\bm x\\in\\mathbb R^2 \\mid x_1=0 \\land x_2 &lt; 0\\}\n\n\nr((q,q),\\bm x) = \\begin{bmatrix}x_1\\\\ -\\gamma x_2 \\end{bmatrix},\n where \\gamma is the coefficient of restitution (e.g., \\gamma = 0.9).",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -103,73 +26,7 @@
     "href": "hybrid_automata.html#comment-on-the-invariant-set-for-the-bouncing-ball",
     "title": "Hybrid automata",
     "section": "Comment on the invariant set for the bouncing ball",
-    "text": "Comment on the invariant set for the bouncing ball\n\nSome authors characterize the invariant set as x_1\\geq 0.\nBut this means that as the ball touches the ground, nothig forces it to leave the location and do the transition.\nInstead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition.\nThe present definition avoids this. On the other hand, when solving the model numerically, the use of inequalities, in particular nonstrict ones, is inevitable.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-stick-slip-friction-karnopp",
-    "href": "hybrid_automata.html#example-stick-slip-friction-karnopp",
-    "title": "Hybrid automata",
-    "section": "Example: Stick-slip friction (Karnopp)",
-    "text": "Example: Stick-slip friction (Karnopp)\n\nMass m, external force F_\\mathrm{a}, friction force F_\\mathrm{f} \nm\\dot v = F_\\mathrm{a} - F_\\mathrm{f}(v).\n\nAssuming Coulomb friction \nF_\\mathrm{f}(v) = F_\\mathrm{c}\\operatorname*{sgn}(v).\n\nWhat if v=0 and F_\\mathrm{a}&lt;F_\\mathrm{c}?",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#karnopp-model",
-    "href": "hybrid_automata.html#karnopp-model",
-    "title": "Hybrid automata",
-    "section": "Karnopp model",
-    "text": "Karnopp model\n. . .\n\nm\\dot v = 0, \\qquad v=0, \\; |F_\\mathrm{a}| &lt; F_\\mathrm{c}\n\n. . .\n\nF_\\mathrm{f} = \\begin{cases}\\operatorname*{sat}(F_\\mathrm{a},F_\\mathrm{c}), & v=0\\\\F_\\mathrm{c}\\operatorname*{sgn}(v), & \\mathrm{else}\\end{cases}\n\n. . .",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-rimless-wheel",
-    "href": "hybrid_automata.html#example-rimless-wheel",
-    "title": "Hybrid automata",
-    "section": "Example: Rimless wheel",
-    "text": "Example: Rimless wheel",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-rimless-wheel-ha",
-    "href": "hybrid_automata.html#example-rimless-wheel-ha",
-    "title": "Hybrid automata",
-    "section": "Example: Rimless wheel – HA",
-    "text": "Example: Rimless wheel – HA\n. . .",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-rimless-wheel-alternative-ha-with-a-single-location",
-    "href": "hybrid_automata.html#example-rimless-wheel-alternative-ha-with-a-single-location",
-    "title": "Hybrid automata",
-    "section": "Example: Rimless wheel – alternative HA with a single location",
-    "text": "Example: Rimless wheel – alternative HA with a single location\n\nDo not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable s \\in [0, 1, \\ldots, 5] within a single location.\n\n. . .",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter",
-    "href": "hybrid_automata.html#example-dc-dc-boost-converter",
-    "title": "Hybrid automata",
-    "section": "Example: DC-DC boost converter",
-    "text": "Example: DC-DC boost converter\n\n\nNot just the switch but also the (ideal) diode is introducing mode transitions.",
+    "text": "Comment on the invariant set for the bouncing ball\n\nSome authors characterize the invariant set as x_1\\geq 0.\nBut this means that as the ball touches the ground, nothig forces it to leave the location and do the transition.\nInstead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition.\nThe present definition avoids this. On the other hand, when solving the model numerically, the use of inequalities, in particular nonstrict ones, is inevitable.\n\n\nExample 5 (Stick-slip friction model (Karnopp)) Mass m, external force F_\\mathrm{a}, friction force F_\\mathrm{f} \nm\\dot v = F_\\mathrm{a} - F_\\mathrm{f}(v).\n\n\nAssuming Coulomb friction \nF_\\mathrm{f}(v) = F_\\mathrm{c}\\operatorname*{sgn}(v).\n\nWhat if v=0 and F_\\mathrm{a}&lt;F_\\mathrm{c}?\n\nKarnopp model\n\nm\\dot v = 0, \\qquad v=0, \\; |F_\\mathrm{a}| &lt; F_\\mathrm{c}\n \nF_\\mathrm{f} = \\begin{cases}\\operatorname*{sat}(F_\\mathrm{a},F_\\mathrm{c}), & v=0\\\\F_\\mathrm{c}\\operatorname*{sgn}(v), & \\mathrm{else}\\end{cases}\n\n\n\n\nHybrid automaton for the Karnopp model of friction\n\n\n\n\nExample 6 (Rimless wheel)  \n\n\n\nRimless wheel\n\n\n\n\n\nHybrid automaton for a rimless wheel\n\n\nAlternatively, do not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable s \\in [0, 1, \\ldots, 5] within a single location.\n\n\n\nAlternative hybrid automaton for a rimless wheel\n\n\n\n\nExample 7 (DC-DC boost converter)  \n\n\n\nDC-DC boost converter\n\n\nNot just the switch but also the (ideal) diode is introducing mode transitions.\n\nExample: DC-DC boost converter – the switch closed\n\n\n\nDC-DC boost converter: the switch closed\n\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}}{L}i_\\mathrm{L} & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0\n\n\n\nExample: DC-DC boost converter – continuous conduction mode (CCM)\n\n\n\nDC-DC boost converter: continuous conduction mode (CCM)\n\n\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}+ \\frac{RR_\\mathrm{C}}{R+R_\\mathrm{C}}}{L} & -\\frac{R}{L(R+R_\\mathrm{C})}\\\\\n\\frac{R}{C(R+R_\\mathrm{C})} & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0\n\n\n\nExample: DC-DC boost converter – discontinuous cond. mode (DCM)\n\n\n\nDC-DC boost converter: discontinuous conduction model (DCM)\n\n\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0 & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\nv_0\n\n\nPossibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.\n\n\n\n\nHybrid automaton for a DC-DC boost converter",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -180,7 +37,7 @@
     "href": "hybrid_automata.html#example-dc-dc-boost-converter-the-switch-closed",
     "title": "Hybrid automata",
     "section": "Example: DC-DC boost converter – the switch closed",
-    "text": "Example: DC-DC boost converter – the switch closed\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}}{L}i_\\mathrm{L} & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
+    "text": "Example: DC-DC boost converter – the switch closed\n\n\n\nDC-DC boost converter: the switch closed\n\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}}{L}i_\\mathrm{L} & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -191,7 +48,7 @@
     "href": "hybrid_automata.html#example-dc-dc-boost-converter-continuous-conduction-mode-ccm",
     "title": "Hybrid automata",
     "section": "Example: DC-DC boost converter – continuous conduction mode (CCM)",
-    "text": "Example: DC-DC boost converter – continuous conduction mode (CCM)\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}+ \\frac{RR_\\mathrm{C}}{R+R_\\mathrm{C}}}{L} & -\\frac{R}{L(R+R_\\mathrm{C})}\\\\\n\\frac{R}{C(R+R_\\mathrm{C})} & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
+    "text": "Example: DC-DC boost converter – continuous conduction mode (CCM)\n\n\n\nDC-DC boost converter: continuous conduction mode (CCM)\n\n\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n-\\frac{R_\\mathrm{L}+ \\frac{RR_\\mathrm{C}}{R+R_\\mathrm{C}}}{L} & -\\frac{R}{L(R+R_\\mathrm{C})}\\\\\n\\frac{R}{C(R+R_\\mathrm{C})} & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n\\frac{1}{L}\\\\\n0\n\\end{bmatrix}\nv_0",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -202,18 +59,7 @@
     "href": "hybrid_automata.html#example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm",
     "title": "Hybrid automata",
     "section": "Example: DC-DC boost converter – discontinuous cond. mode (DCM)",
-    "text": "Example: DC-DC boost converter – discontinuous cond. mode (DCM)\n\n. . .\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0 & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\nv_0\n\n\nPossibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Hybrid automata"
-    ]
-  },
-  {
-    "objectID": "hybrid_automata.html#example-dc-dc-boost-converter-ha",
-    "href": "hybrid_automata.html#example-dc-dc-boost-converter-ha",
-    "title": "Hybrid automata",
-    "section": "Example: DC-DC boost converter – HA",
-    "text": "Example: DC-DC boost converter – HA",
+    "text": "Example: DC-DC boost converter – discontinuous cond. mode (DCM)\n\n\n\nDC-DC boost converter: discontinuous conduction model (DCM)\n\n\n\n\\begin{bmatrix}\n\\frac{\\mathrm{d}i_\\mathrm{L}}{\\mathrm{d}t}\\\\\n\\frac{\\mathrm{d}v_\\mathrm{C}}{\\mathrm{d}t}\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0 & 0\\\\\n0 & -\\frac{1}{C(R+R_\\mathrm{C})}\n\\end{bmatrix}\n\\begin{bmatrix}\ni_\\mathrm{L}\\\\\nv_\\mathrm{C}\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\nv_0\n\n\nPossibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.\n\n\n\n\nHybrid automaton for a DC-DC boost converter",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"
@@ -1454,7 +1300,7 @@
     "href": "verification_barrier.html#convex-relaxation-of-the-barrier-certificate-problem",
     "title": "Barrier certificates",
     "section": "Convex relaxation of the barrier certificate problem",
-    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\nPrecompiling DifferentialEquations\n  ✓ StatsFuns → StatsFunsInverseFunctionsExt\n  ✓ RandomNumbers\n  ✓ Random123\n  ✓ DiffEqBase → DiffEqBaseDistributionsExt\n  ✓ JumpProcesses\n  ✓ DiffEqNoiseProcess\n  ✓ StochasticDiffEq\n  ✓ DifferentialEquations\n  8 dependencies successfully precompiled in 14 seconds. 227 already precompiled.\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/hq1ku/src/integrator_interface.jl:600",
+    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/hq1ku/src/integrator_interface.jl:600",
     "crumbs": [
       "12. Formal verification",
       "Barrier certificates"

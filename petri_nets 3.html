@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hybrid automata – B(E)3M35HYS – Hybrid systems</title>
+<title>Petri nets – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +50,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./hybrid_automata_references.html" rel="next">
-<link href="./max_plus_references.html" rel="prev">
+<link href="./petri_nets_timed.html" rel="next">
+<link href="./des_references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -125,7 +145,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hybrid_automata.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="./hybrid_automata.html">Hybrid automata</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./petri_nets.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="./petri_nets.html">Petri nets</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -225,7 +245,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link">
+  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Petri nets</span></a>
   </div>
 </li>
@@ -295,7 +315,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link active">
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid automata</span></a>
   </div>
 </li>
@@ -320,12 +340,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -582,20 +596,42 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hybrid-automaton-with-external-events-and-control-inputs" id="toc-hybrid-automaton-with-external-events-and-control-inputs" class="nav-link active" data-scroll-target="#hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</a>
+  <li><a href="#definition-of-a-petri-net" id="toc-definition-of-a-petri-net" class="nav-link active" data-scroll-target="#definition-of-a-petri-net">Definition of a Petri net</a>
   <ul class="collapse">
-  <li><a href="#some-modifications-needed" id="toc-some-modifications-needed" class="nav-link" data-scroll-target="#some-modifications-needed">Some modifications needed</a></li>
+  <li><a href="#additional-definitions" id="toc-additional-definitions" class="nav-link" data-scroll-target="#additional-definitions">Additional definitions</a></li>
+  <li><a href="#marking-and-marked-petri-nets" id="toc-marking-and-marked-petri-nets" class="nav-link" data-scroll-target="#marking-and-marked-petri-nets">Marking and marked Petri nets</a></li>
+  <li><a href="#enabling-and-firing-of-a-transition" id="toc-enabling-and-firing-of-a-transition" class="nav-link" data-scroll-target="#enabling-and-firing-of-a-transition">Enabling and firing of a transition</a></li>
   </ul></li>
-  <li><a href="#comment-on-the-invariant-set-for-the-bouncing-ball" id="toc-comment-on-the-invariant-set-for-the-bouncing-ball" class="nav-link" data-scroll-target="#comment-on-the-invariant-set-for-the-bouncing-ball">Comment on the invariant set for the bouncing ball</a></li>
+  <li><a href="#state-transition-function" id="toc-state-transition-function" class="nav-link" data-scroll-target="#state-transition-function">State transition function</a></li>
+  <li><a href="#reachability" id="toc-reachability" class="nav-link" data-scroll-target="#reachability">Reachability</a>
+  <ul class="collapse">
+  <li><a href="#reachability-tree-and-graph" id="toc-reachability-tree-and-graph" class="nav-link" data-scroll-target="#reachability-tree-and-graph">Reachability tree and graph</a></li>
+  </ul></li>
+  <li><a href="#number-of-tokens-need-not-be-preserved-1" id="toc-number-of-tokens-need-not-be-preserved-1" class="nav-link" data-scroll-target="#number-of-tokens-need-not-be-preserved-1">Number of tokens need not be preserved</a></li>
+  <li><a href="#and-convergence-and-divergence" id="toc-and-convergence-and-divergence" class="nav-link" data-scroll-target="#and-convergence-and-divergence">AND-convergence, AND-divergence</a></li>
+  <li><a href="#or-convergence-and-or-divergence" id="toc-or-convergence-and-or-divergence" class="nav-link" data-scroll-target="#or-convergence-and-or-divergence">OR-convergence and OR-divergence</a></li>
+  <li><a href="#nondeterminism-in-a-pn" id="toc-nondeterminism-in-a-pn" class="nav-link" data-scroll-target="#nondeterminism-in-a-pn">Nondeterminism in a PN</a></li>
+  <li><a href="#subclasses-of-petri-nets" id="toc-subclasses-of-petri-nets" class="nav-link" data-scroll-target="#subclasses-of-petri-nets">Subclasses of Petri nets</a>
+  <ul class="collapse">
+  <li><a href="#event-graph" id="toc-event-graph" class="nav-link" data-scroll-target="#event-graph">Event graph</a></li>
+  <li><a href="#state-machine" id="toc-state-machine" class="nav-link" data-scroll-target="#state-machine">State machine</a></li>
+  <li><a href="#incidence-matrix" id="toc-incidence-matrix" class="nav-link" data-scroll-target="#incidence-matrix">Incidence matrix</a></li>
+  <li><a href="#state-equation-for-a-petri-net" id="toc-state-equation-for-a-petri-net" class="nav-link" data-scroll-target="#state-equation-for-a-petri-net">State equation for a Petri net</a></li>
+  </ul></li>
+  <li><a href="#queueing-systems-modelled-by-pn" id="toc-queueing-systems-modelled-by-pn" class="nav-link" data-scroll-target="#queueing-systems-modelled-by-pn">Queueing systems modelled by PN</a>
+  <ul class="collapse">
+  <li><a href="#some-more-extensions" id="toc-some-more-extensions" class="nav-link" data-scroll-target="#some-more-extensions">Some more extensions</a></li>
+  </ul></li>
+  <li><a href="#some-extensions-of-basic-petri-nets" id="toc-some-extensions-of-basic-petri-nets" class="nav-link" data-scroll-target="#some-extensions-of-basic-petri-nets">Some extensions of basic Petri nets</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hybrid_automata.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="./hybrid_automata.html">Hybrid automata</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./petri_nets.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="./petri_nets.html">Petri nets</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Hybrid automata</h1>
+<h1 class="title">Petri nets</h1>
 </div>
 
 
@@ -612,55 +648,445 @@ window.Quarto = {
 </header>
 
 
-<p>We start with an <em>autonomous</em> (=no external/control inputs) <em>hybrid automaton</em>. It is a tuple of sets and (set) mappings <span class="math display">
-\boxed{
-\mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\},}
-</span> where</p>
+<p>In this chapter we introduce another formalism for modelling discrete event systems (DES) – Petri nets. Petri nets offer an alternative perspective on discrete even systems compared to automata. And it is good to have alternatives, isn’t it? For some purposes, one framework can be more appropriate than the other.</p>
+<p>For example, a finite Petri net can model even an infinite state automaton.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This particular tip should be inserted later in the text and not here in this general intro.</p>
+</div>
+</div>
+<p>Furthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived <em>GRAFCET</em> language, which in turn served as the basis for the <em>Sequential Function Chart</em> (SFC) language for PLC programming. See the <a href="./petri_nets_references.html">references</a>.</p>
+<p>Last but not least, an elegant algebraic framework based on the so-called (max,+) algebra has been developed for a subset of Petri nets (so-called event graphs) and it would be a shame not to mention it in our course (in the next chapter).</p>
+<section id="definition-of-a-petri-net" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-a-petri-net">Definition of a Petri net</h2>
+<p>Similiarly as in the case of automata, a <em>Petri net</em> (PN) can be defined as a tuple of sets and functions: <span class="math display">\boxed{PN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w\},}</span> where</p>
 <ul>
-<li><p><span class="math inline">\mathcal  Q</span> is a set of <em>discrete states</em> (also called <em>modes</em> or <em>operating modes</em> or <em>locations</em>).</p>
+<li><span class="math inline">\mathcal{P} = \{p_1, \dots, p_n\}</span> is a finite set of places,</li>
+<li><span class="math inline">\mathcal{T} = \{t_1, \dots, t_m\}</span> is a finite set of transitions,</li>
+<li><span class="math inline">\mathcal{A} \subseteq (\mathcal{P} \times \mathcal{T}) \cup (\mathcal{T} \times \mathcal{P})</span> is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:
 <ul>
-<li>Examples:
-<ul>
-<li><span class="math inline">\mathcal Q = \{\text{on}, \text{off}\}</span>,</li>
-<li><span class="math inline">\mathcal Q = \{\text{working}, \text{broken},\text{in repair}\}</span>,</li>
-<li><span class="math inline">\mathcal Q = \{\text{gear}\,1, \ldots, \text{gear}\,5\}</span> .</li>
+<li><span class="math inline">(p_i, t_j) \in \mathcal{A}</span> is from place <span class="math inline">p_i</span> to transition <span class="math inline">t_j</span>,</li>
+<li><span class="math inline">(t_j, p_i) \in \mathcal{A}</span> is from transition <span class="math inline">t_j</span> to place <span class="math inline">p_i</span>,</li>
 </ul></li>
-<li>It can be characterized either by
-<ul>
-<li>by enumeration like above, or</li>
-<li>using a state variable <span class="math inline">q(t)</span> attaining discrete values. The variable can also be a vector one, possibly a binary vector state variable encoding an integer scalar state variable.</li>
-</ul></li>
-</ul></li>
-<li><p><span class="math inline">\mathcal Q_0\subseteq \mathcal  Q</span> is a set of initial discrete states.</p>
-<ul>
-<li>It can contain only a single element.
-<ul>
-<li>Example: <span class="math inline">\mathcal Q_0 = \{\text{off}\}</span>.</li>
-</ul></li>
-<li>But if it contains more than one element, it can be used to represent uncertainty in the initial state.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal X\subseteq \mathbb R^n</span> is a set of continuous states.</p>
-<ul>
-<li>Rather than by enumeration as in the case of discrete state, it is characterized by real-valued state variables <span class="math inline">x</span>, oftentimes vector ones <span class="math inline">\bm x</span>. Often they are denoted <span class="math inline">\bm x(t)</span> to emphasize the evolution in time.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal X_0\subseteq \mathcal X</span> is a set of initial continuous states.</p>
-<ul>
-<li>A set of values of the (vector) state variable at the initial time.</li>
-<li>Often just a single initial state <span class="math inline">\mathcal X_0=\{x_0\}</span>, but it can be useful to set ranges of the values of individual state variables to account for uncertainty.</li>
-</ul></li>
-<li><p><span class="math inline">f:\mathcal{Q}\times \mathcal X \rightarrow \mathbb R^n</span> is a vector field parameterized by the location</p>
-<ul>
-<li><p>Often the dependence on the location <span class="math inline">q</span> expressed as <span class="math inline">f_q(x)</span> rather than the more symmetric <span class="math inline">f(q,x)</span>.</p></li>
-<li><p>This defines a state equation parameterized by the location: <span class="math display">\dot{x}(t) = f_q(x(t)).</span></p></li>
-<li><p>It is also possible to consider a set-valued map, replacing <span class="math inline">f</span> with <span class="math display">\mathcal F: \mathcal{Q}\times \mathcal X \rightarrow 2^{\mathbb R^n},</span> which leads to the <em>differential inclusion</em> <span class="math display">\dot x \in \mathcal F_q(x).</span></p></li>
-</ul></li>
-<li><p><span class="math inline">\mathcal I: \mathcal Q \rightarrow 2^\mathcal{X}</span> gives a (location) <em>invariant</em>. It is also called a <em>domain</em> (of the location). The latter term is perhaps more appropriate becaue the term invariant is already too much overloaded in the context of dynamical systems.</p>
-<ul>
-<li>It is parameterized by the location.</li>
-<li>It is a subset of the continuous-valued state space <span class="math inline">\mathcal I(q) \subseteq \mathbb R^n</span>.</li>
-<li>It is a set of values that the state variables are allowed to attain while staying in the given location; if the state of the systems evolves towards the boundary of this set with a tendency to leave it, the system must be ready to leave that location by transitioning to another location.</li>
-</ul></li>
+<li><span class="math inline">w : \mathcal{A} \to \mathbb{N}</span> is a weight function.</li>
 </ul>
+<p>Similarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:</p>
+<ul>
+<li><em>places</em> = circles,</li>
+<li><em>transitions</em> = bars.</li>
+</ul>
+<p>The nodes of different kinds are connected by <em>arcs</em> (arrowed curves). A integer <em>weights</em> are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.</p>
+<div id="exm-simple-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Simple Petri net)</strong></span> We consider just two places, that is, <span class="math inline">\mathcal{P} = \{p_1, p_2\}</span>, and one transition, that is, <span class="math inline">\mathcal{T} = \{t\}</span>. The set of arcs is <span class="math inline">\mathcal{A} = \{\underbrace{(p_1, t)}_{a_1}, \underbrace{(t, p_2)}_{a_2}\}</span>, and the associated weights are <span class="math inline">w(a_1) = w((p_1, t)) = 2</span> and <span class="math inline">w(a_2) = w((t, p_2)) = 1</span>. The Petri net is depicted in <a href="#fig-simple-petri-net" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-simple-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a simple Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="additional-definitions" class="level3">
+<h3 class="anchored" data-anchor-id="additional-definitions">Additional definitions</h3>
+<ul>
+<li><span class="math inline">\mathcal{I}(t_j)</span> … a set of input places of the transition <span class="math inline">t_j</span>,</li>
+<li><span class="math inline">\mathcal{O}(t_j)</span> … a set of output places of the transition <span class="math inline">t_j</span>.</li>
+</ul>
+<div id="exm-more-complex-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (More complex Petri net)</strong></span> &nbsp;</p>
+<ul>
+<li><span class="math inline">\mathcal{P} = \{p_1, p_2, p_3, p_4\}</span>,</li>
+<li><span class="math inline">\mathcal{T} = \{t_1, t_2, t_3, t_4, t_5\}</span>,</li>
+<li><span class="math inline">\mathcal{A} = \{(p_1, t_1), (t_1, p_1), (p_1, t_2),\ldots\}</span>,</li>
+<li><span class="math inline">w((p_1, t_1)) = 2, \; w((t_1, p_1)) = 1, \; \ldots</span></li>
+</ul>
+<div id="fig-more-complex-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-more-complex-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/complicated_petri_net.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-more-complex-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a more complex Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="marking-and-marked-petri-nets" class="level3">
+<h3 class="anchored" data-anchor-id="marking-and-marked-petri-nets">Marking and marked Petri nets</h3>
+<p>An important concept that we must introduce now is that of <em>marking</em>. It is a function that assigns an integer to each place <span class="math display">  x: \mathcal{P} \rightarrow \mathbb{N}.</span></p>
+<p>The vector composed of the values of the marking function for all places <span class="math display">\bm x = \begin{bmatrix}x(p_1)\\ x(p_2)\\ \vdots \\ x(p_n) \end{bmatrix}</span> can be viewed as the <em>state vector</em> (although the Petri nets community perhaps would not use this terminology and stick to just marking).</p>
+<p>Marked Petri net is then a Petri net augmented with the marking</p>
+<p><span class="math display">MPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w,x\}.</span></p>
+<section id="visualization-of-marked-petri-net-using-tokens" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-of-marked-petri-net-using-tokens">Visualization of marked Petri net using tokens</h4>
+<p>Marked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.</p>
+<div id="exm-marked-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Marked Petri net)</strong></span> Consider the Petri net from <a href="#exm-simple-petri-net" class="quarto-xref">Example&nbsp;1</a>. The marking function is <span class="math inline">x(p_1) = 2</span> and <span class="math inline">x(p_2) = 1</span>, which assembled into a vector gives <span class="math inline">\bm x = \begin{bmatrix}1\\ 0 \end{bmatrix}</span>. The marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-1" class="quarto-xref">Figure&nbsp;3</a>.</p>
+<div id="fig-simplest-petri-net-marked-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simplest-petri-net-marked-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net_marked_1.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplest-petri-net-marked-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example of a marked Petri net
+</figcaption>
+</figure>
+</div>
+<p>For another marking, namely <span class="math inline">\bm x = \begin{bmatrix}2\\ 1 \end{bmatrix}</span>, the marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-2" class="quarto-xref">Figure&nbsp;4</a>.</p>
+<div id="fig-simplest-petri-net-marked-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simplest-petri-net-marked-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net_marked_2.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplest-petri-net-marked-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Example of a marked Petri net with different marking
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="enabling-and-firing-of-a-transition" class="level3">
+<h3 class="anchored" data-anchor-id="enabling-and-firing-of-a-transition">Enabling and firing of a transition</h3>
+<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">
+x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
+</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Can but does not have to
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The enabled transition can <em>fire</em>, but it doesn’t have to. We will exploit this in timed PN.</p>
+</div>
+</div>
+<div id="exm-enabled-transition" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Enabled transition)</strong></span> See the PN in <a href="#exm-marked-petri-net" class="quarto-xref">Example&nbsp;3</a>: in the first marked PN the transition cannot fire, in the second it can.</p>
+</div>
+</section>
+</section>
+<section id="state-transition-function" class="level2">
+<h2 class="anchored" data-anchor-id="state-transition-function">State transition function</h2>
+<p>We now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a <em>state transition function</em>. For a Petri net with <span class="math inline">n</span> places, the state transition function is <span class="math display">
+f: \mathbb N^n \times \mathcal{T} \rightarrow \mathbb N^n,
+</span> which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).</p>
+<p>The function is only defined for a transition <span class="math inline">t_j</span> iff the transition is enabled.</p>
+<p>If the transition <span class="math inline">t_j</span> is enabled and fired, the state evolves as <span class="math display">
+\bm x^+ = f(\bm x, t_j),
+</span> where the individual components of <span class="math inline">\bm x</span> evolve according to <span class="math display">\boxed{
+    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \; i = 1,\ldots,n.}
+</span></p>
+<p>This has a visual interpretation – a fired transition moves tokens from the input to the output places.</p>
+<div id="exm-moving-tokens-around" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Moving tokens around)</strong></span> Consider the PN with the initial marking (state) <span class="math inline">\bm x_0 = \begin{bmatrix}2\\ 0\\ 0\\ 1 \end{bmatrix}</span> (at discrete time 0), and the transition <span class="math inline">t_1</span> enabled</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Example PN in the initial state at time 0, the transition <span class="math inline">t_1</span> enabled, but not yet fired</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conflict in notation. Again. Sorry.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We admit the notation here is confusing, because we use the lower index 0 in <span class="math inline">\bm x_0</span> to denote the discrete time, while the lower index 1 in <span class="math inline">t_1</span> to denote the transition and the lower indices 1 and 2 in <span class="math inline">p_1</span> and <span class="math inline">p_2</span> just number the transitions and places, respectively. We could have chosen something like <span class="math inline">\bm x(0)</span> or <span class="math inline">\bm x[0]</span>, but we dare to hope that the context will make it clear.</p>
+</div>
+</div>
+<p>Now we assume that <span class="math inline">t_1</span> is fired</p>
+<div id="fig-example-PN-time-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-example-PN-time-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/transition_as_moving_tokens_2.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-PN-time-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Transition <span class="math inline">t_1</span> in the example PN fired at time 1
+</figcaption>
+</figure>
+</div>
+<p>The state vector changes to <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span>, the discrete time is 1 now.</p>
+<p>As a result of this transition, note that <span class="math inline">t_1, t_2, t_3</span> are now enabled.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Number of tokens need not be preserved
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the example we can see for the first time, that the number of tokens need not be preserved.</p>
+</div>
+</div>
+<p>Now fire the <span class="math inline">t_2</span> transition</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_3.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Transition <span class="math inline">t_2</span> in the example PN fired at time 2</figcaption>
+</figure>
+</div>
+<p>The state vector changes to <span class="math inline">\bm x_2 = [1, 1, 0, 2]^\top</span>, the discrete time is 2 now.</p>
+<p>Good, we can see the idea. But now we go back to time 1 (as in <a href="#fig-example-PN-time-1" class="quarto-xref">Figure&nbsp;5</a>) to explore the alternative evolution. With the state vector <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span> and the transitions <span class="math inline">t_1, t_2, t_3</span> enabled, we fire <span class="math inline">t_3</span> this time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_4.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Transition <span class="math inline">t_3</span> in the example PN fired at time 1</figcaption>
+</figure>
+</div>
+<p>The state changes to <span class="math inline">\bm x_2 = [0, 1, 0, 0]^\top</span>, the discrete time is 2. Apparently the PN evolved into at a different state. The lesson learnt with this example is that the order of firing of enabled transitions matters.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The order in which the enabled transitions are fired does matter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dependence of the state evolution upon the order of firing the transitions is not surprising. Wwe have already encountered it in automata when the active event set for a given state contains more then a single element.</p>
+</div>
+</div>
+</section>
+<section id="reachability" class="level2">
+<h2 class="anchored" data-anchor-id="reachability">Reachability</h2>
+<p>We have started talking about states and state transitions in Petri nets, which are all concepts that we are familiar with from dynamical systems. Another such concept is <em>reachability</em>. We explain it through an example.</p>
+<div id="exm-unreachable-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 (Not all states are reachable)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/unreachable_petri_net.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Example of an unreachability in a Petri net</figcaption>
+</figure>
+</div>
+<p>The Petri net is initial in the state <span class="math inline">[2,1]^\top</span>. The only reachable state is <span class="math inline">[0,2]^\top</span>.</p>
+<p>By the way, note that the weight of the arc from the place <span class="math inline">p_1</span> to the transition <span class="math inline">t</span> is 2, so both tokens are removed from the place <span class="math inline">p_1</span> when the transition <span class="math inline">t</span> fires. But then the arc to the place <span class="math inline">p_2</span> has weight 1, so only one token is added to the place <span class="math inline">p_2</span>. The other token is “lost”.</p>
+</div>
+<section id="reachability-tree-and-graph" class="level3">
+<h3 class="anchored" data-anchor-id="reachability-tree-and-graph">Reachability tree and graph</h3>
+<p>Here we introduce two tools for analysis of reachability of a Petri net.</p>
+<div id="exm-reachability-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7</strong></span> Consider the following example of a Petri net.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_for_reachability_analysis.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Example of a Petri net for reachability analysis</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-reachability-tree" class="quarto-xref">Figure&nbsp;6</a> we draw a <em>reachability tree</em> for this Petri net.</p>
+<div id="fig-reachability-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reachability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/reachability_tree.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reachability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Reachability tree for an example Petri net
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-reachability-graph" class="quarto-xref">Figure&nbsp;7</a> we draw a reachability graph for this Petri net.</p>
+<div id="fig-reachability-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reachability-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/reachability_graph.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reachability-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Reachability graph for an example Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="number-of-tokens-need-not-be-preserved-1" class="level2">
+<h2 class="anchored" data-anchor-id="number-of-tokens-need-not-be-preserved-1">Number of tokens need not be preserved</h2>
+<p>We have already commented on this before, but we emphasize it here. Indeed, it can be that <span class="math display">
+\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &lt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
+</span></p>
+<p>or</p>
+<p><span class="math display">
+\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &gt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
+</span></p>
+<p>With this reminder, we can now hightlight several patters that can be observed in Petri nets.</p>
+</section>
+<section id="and-convergence-and-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="and-convergence-and-divergence">AND-convergence, AND-divergence</h2>
+<p><img src="petri_nets_figures/and_convergence_and_divergence.png" class="img-fluid" width="600"></p>
+</section>
+<section id="or-convergence-and-or-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="or-convergence-and-or-divergence">OR-convergence and OR-divergence</h2>
+<p><img src="petri_nets_figures/or_convergence_and_divergence.png" class="img-fluid" width="600"></p>
+</section>
+<section id="nondeterminism-in-a-pn" class="level2">
+<h2 class="anchored" data-anchor-id="nondeterminism-in-a-pn">Nondeterminism in a PN</h2>
+<p>In the four patters just enumerated, we have seen that the last one – the OR-divergence – is not deterministic. Indeed, consider the following example.</p>
+<div id="exm-conflict-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_with_a_conflict.png" class="img-fluid figure-img" style="width:15.0%"></p>
+<figcaption>Nondeterminism in a Petri net</figcaption>
+</figure>
+</div>
+</div>
+<p>In other words, we can incorporate a nondeterminism in a model.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nondeterminism in automata
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that something similar can be encountered in automata, if the <em>active event set</em> for a given state contains more than one element (event,transition).</p>
+</div>
+</div>
+</section>
+<section id="subclasses-of-petri-nets" class="level2">
+<h2 class="anchored" data-anchor-id="subclasses-of-petri-nets">Subclasses of Petri nets</h2>
+<p>We can identify two subclasses of Petri nets:</p>
+<ul>
+<li>event graphs,</li>
+<li>state machines.</li>
+</ul>
+<section id="event-graph" class="level3">
+<h3 class="anchored" data-anchor-id="event-graph">Event graph</h3>
+<ul>
+<li>Each place has just one input and one output transition (all <span class="math inline">w</span>s equal to 1).</li>
+<li>No OR-convergence, no OR-divergence.</li>
+<li>Also known as <em>Decision-free PN</em>.</li>
+<li>It can model <em>synchronization</em>.</li>
+</ul>
+<div id="exm-event-graph" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9 (Event graph)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/event_graph.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Example of an event graph</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="state-machine" class="level3">
+<h3 class="anchored" data-anchor-id="state-machine">State machine</h3>
+<ul>
+<li>Each transition has just one input and one output place.</li>
+<li>No AND-convergence, no AND-divergence.</li>
+<li>Does not model synchronization.</li>
+<li>It can model <em>race conditions</em>.</li>
+<li>With no source (input) and sink (output) transitions, the number of tokens is preserved.</li>
+</ul>
+<div id="exm-state-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10 (State machine)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/state_machine_as_petri_net.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Example of a state machine</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="incidence-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="incidence-matrix">Incidence matrix</h3>
+<p>We consider a Petri net with <span class="math inline">n</span> places and <span class="math inline">m</span> transitions. The incidence matrix is defined as <span class="math display">
+\bm A \in \mathbb{Z}^{n\times m},
+</span> where <span class="math display">
+a_{ij} = w(t_j,p_i) - w(p_i,t_j).
+</span></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Transpose
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some define the incidence matrix as the transpose of our definition.</p>
+</div>
+</div>
+</section>
+<section id="state-equation-for-a-petri-net" class="level3">
+<h3 class="anchored" data-anchor-id="state-equation-for-a-petri-net">State equation for a Petri net</h3>
+<p>With the incidence matrix defined above, the state equation for a Petri net can be written as <span class="math display">
+\bm x^+ = \bm x + \bm A \bm u,
+</span> where <span class="math inline">\bm u</span> is a <em>firing vector</em> for the <em>enabled</em> <span class="math inline">j</span>-th transition <span class="math display">
+\bm u = \bm e_j = \begin{bmatrix}0 \\ \vdots \\ 0 \\ 1\\ 0\\ \vdots\\ 0\end{bmatrix}
+</span> with the 1 at the <span class="math inline">j</span>-th position.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that in <span class="citation" data-cites="cassandrasIntroductionDiscreteEvent2021"><a href="#ref-cassandrasIntroductionDiscreteEvent2021" role="doc-biblioref">[1]</a></span> they define everything in terms of the transposed quantities, but we prefer sticking to the notion of a state vector as a column.</p>
+</div>
+</div>
+<div id="exm-state-equation-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11 (State equation for a Petri net)</strong></span> Consider the Petri net from <a href="#exm-moving-tokens-around" class="quarto-xref">Example&nbsp;5</a>, which we show again below in <a href="#fig-state-equation-PN" class="quarto-xref">Figure&nbsp;8</a>.</p>
+<div id="fig-state-equation-PN" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-equation-PN-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/transition_as_moving_tokens_1.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-equation-PN-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Example of a Petri net
+</figcaption>
+</figure>
+</div>
+<p>The initial state is given by the vector <span class="math display">
+\bm x_0
+=
+\begin{bmatrix}
+2\\ 0\\ 0\\ 1
+\end{bmatrix}
+</span></p>
+<p>The incidence matrix is <span class="math display">
+\bm A = \begin{bmatrix}
+-1 &amp; 0 &amp; -1\\
+1 &amp; 0 &amp; 0\\
+1 &amp; -1 &amp; -1\\
+0 &amp; 1 &amp; -1
+\end{bmatrix}
+</span></p>
+<p>And the state vector evolves according to <span class="math display">
+\begin{aligned}
+\bm x_1 &amp;= \bm x_0 + \bm A \bm u_1\\
+\bm x_2 &amp;= \bm x_1 + \bm A \bm u_2\\
+\vdots &amp;
+\end{aligned}
+</span></p>
+</div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -671,387 +1097,101 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Strictly speaking, <span class="math inline">\mathcal{I}</span> is a mapping and not a set. It is only the mapping evaluated at a given location <span class="math inline">q</span>, that is, <span class="math inline">\mathcal{I}(q)</span> is a set.</p>
+<p>We repeat once again just to make sure: the lower index corresponds to the discrete time.</p>
 </div>
-</div>
-<ul>
-<li><p><span class="math inline">\mathcal E\subseteq \mathcal Q \times \mathcal Q</span> is a set of <em>transitions</em>.</p>
-<ul>
-<li>It is a set of the edges of the graph.</li>
-<li>Example: <span class="math inline">\mathcal E = \{(\text{off},\text{on}),(\text{on},\text{off})\}</span>, that is, a two-component set.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^\mathcal{X}</span> gives a <em>guard set</em>.</p>
-<ul>
-<li>It is associated with a given transition. In particular, <span class="math inline">\mathcal G(q_i,q_j)</span> is the <em>guard set</em> for the transition <span class="math inline">(q_i,q_j)\in\mathcal E</span>.<br>
-</li>
-<li>The <em>guard condition</em> for the given transition is satisfied if <span class="math inline">x\in \mathcal G(q_i,q_j)</span>.</li>
-<li>If the guard condition is satisfied, the transition is <em>enabled</em> – it may be executed. But it does not have to.</li>
-<li>The enabled transition must be executed when the state <span class="math inline">x</span> leaves the invariant set of the original location.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\rightarrow 2^{\mathcal X}</span> is a <em>reset map</em>.</p>
-<ul>
-<li>For a given transition from one location to another, it resets the continuous-valued state <span class="math inline">x</span> to a new value within some subset.</li>
-<li>Often the map is single-valued, <span class="math inline">r: \mathcal E \times \mathcal X\rightarrow \mathcal X</span> (multivalued-ness can be used to model uncertainty).</li>
-<li>We also say that the state experiences a <em>jump</em>.<br>
-</li>
-<li>The state after the jump (associated with the given transition) is reset according to <span class="math inline">x^+ = r(q_i,q_j, x)</span>, or <span class="math inline">x^+ \in \mathcal R(q_i,q_j, x)</span> in the multivalued case.<br>
-</li>
-<li>If no resetting of the continuous-valued state takes place, the reset map is defined just as the identity operator with respect to <span class="math inline">x</span> , that is, <span class="math inline">r(q_i,q_j, x) = x</span>.</li>
-</ul></li>
-</ul>
-<div id="exm-thermostat" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Thermostat – the hello world example of a hybrid automaton)</strong></span> The thermostat is a device that turns some heater <code>on</code> or <code>off</code> (or sets some valve open or closed) based on the sensed temperature. The goal is to keep the temperature around, say, <span class="math inline">18^\circ</span> C.</p>
-<p>Naturally, the discrete states (modes, locations) are <code>on</code> and <code>off</code>. Initially, the heater is <code>off</code>. We can identify the first two components of the hybrid automaton: <span class="math display">\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}</span></p>
-<p>The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval <span class="math inline">(5,10)</span>. Two more components of the hybrid automaton follow: <span class="math display">\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}</span></p>
-<p>In the two modes <code>on</code> and <code>off</code>, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say: <span class="math display">
-f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
-</span> which gives another component for the hybrid automaton.</p>
-<p>The control logic of the thermostat is captured by the <span class="math inline">\mathcal I</span> and <span class="math inline">\mathcal G</span> components of the hybrid automaton. Let’s determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval <span class="math inline">(18 \pm 2)^\circ</span> is acceptable. <span class="math display">
-\mathcal I(\text{off}) = \{x\mid x&gt; 16\},\quad \mathcal I(\text{on}) = \{x\mid x&lt; 20\},
-</span></p>
-<p><span class="math display">
-\mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
-</span></p>
-<p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump.</p>
-<p>The graphical representation of the thermostat hybrid automaton is shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/thermostat_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Hybrid automaton for a thermostat</figcaption>
-</figure>
-</div>
-<p>We have two final remarks about this model:</p>
-<ul>
-<li>Since not just a single initial temperature but rather a range of initial temperatures is considered, the model is not deterministic.</li>
-<li>The quality of this regulation is such that the temperatures go up and down. This is due to the type of the control (hysteretic control).</li>
-</ul>
-</div>
-<section id="hybrid-automaton-with-external-events-and-control-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</h2>
-<p>We now extend the hybrid automaton with two new components:</p>
-<ul>
-<li>a set <span class="math inline">\mathcal{A}</span> of (external) actions (also events or symbols),</li>
-<li>a set <span class="math inline">\mathcal{U}</span> external continuous-valued inputs (control inputs or disturbances).</li>
-</ul>
-<p><span class="math display">\boxed{
-  \mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, \mathcal I, \mathcal A, \mathcal U, f, \mathcal E, \mathcal G, \mathcal R\} ,}
-</span> where</p>
-<ul>
-<li><span class="math inline">\mathcal A = \{a_1,a_2,\ldots, a_s\}</span> is a set of actions
-<ul>
-<li>The role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.</li>
-<li>Unlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.</li>
-</ul></li>
-</ul>
-<div class="notes">
-<p>In simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.</p>
-</div>
-<ul>
-<li><p><span class="math inline">\mathcal U\in\mathbb R^m</span> is a set of continuous-valued inputs</p>
-<ul>
-<li>Real-valued functions of time.</li>
-<li>Control inputs, disturbances, references, noises.</li>
-</ul></li>
-</ul>
-<div class="notes">
-<p>In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.</p>
-</div>
-<section id="some-modifications-needed" class="level3">
-<h3 class="anchored" data-anchor-id="some-modifications-needed">Some modifications needed</h3>
-<p>upon introduction of these two types of external inputs:</p>
-<ul>
-<li><p><span class="math inline">f: \mathcal Q \times \mathcal X \times \mathcal U \rightarrow \mathbb R^n</span> is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation <span class="math inline">\dot x = f_q(x,u)</span>.</p></li>
-<li><p><span class="math inline">\mathcal E\subseteq \mathcal Q \times (\mathcal A) \times \mathcal Q</span> is a set of transitions now possibly parameterized by the actions (as in classical automata).</p></li>
-<li><p><span class="math inline">\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}</span> is a location invariant now augmented with a subset of the control input set.</p></li>
-<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set.</p></li>
-<li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}</span> is a (state) reset map that is now additionally parameterized by the control input.</p></li>
-<li><p>The guard set for the given location gives just necessary (also <em>enabling</em>) conditions for the transition (<span class="math inline">x\in \mathcal{G}(q)</span>).</p></li>
-<li><p>If enabled, the transition can happen if one of the two things is satisfied:</p>
-<ul>
-<li>the continous state leaves the invariant set of the given location,<br>
-</li>
-<li>an external event occurs.</li>
-</ul></li>
-</ul>
-<div id="exm-button-controlled-LED" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/button_controlled_LED.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a button controlled LED</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\mathcal{Q} = \{\mathrm{off}, \mathrm{dim}, \mathrm{bright}\},\quad \mathcal{Q}_0 = \{\mathrm{off}\}
-</span></p>
-<p><span class="math display">
-\mathcal{X} = \mathbb{R}, \quad \mathcal{X}_0 = \{0\}
-</span></p>
-<p><span class="math display">
-\mathcal{I(\mathrm{off})} = \mathcal{I(\mathrm{bright})} = \mathcal{I(\mathrm{dim})} = \{x\in\mathbb R \mid x \geq 0\}
-</span></p>
-<p><span class="math display">
-f(x) = 1
-</span></p>
-<p><span class="math display">
-\mathcal{A} = \{\mathrm{press}\}
-</span></p>
-<p><span class="math display">
-\begin{aligned}
-\mathcal{E} &amp;= \{(\mathrm{off},\mathrm{press},\mathrm{dim}),(\mathrm{dim},\mathrm{press},\mathrm{off}),\\
-&amp;\qquad (\mathrm{dim},\mathrm{press},\mathrm{bright}),(\mathrm{bright},\mathrm{press},\mathrm{off})\}
-\end{aligned}
-</span></p>
-<p><span class="math display">
-\begin{aligned}
-\mathcal{G}((\mathrm{off},\mathrm{press},\mathrm{dim})) &amp;= \mathcal X \\
-\mathcal{G}((\mathrm{dim},\mathrm{press},\mathrm{off})) &amp;= \{x \in \mathcal X \mid x&gt;2\}\\
-\mathcal{G}((\mathrm{dim},\mathrm{press},\mathrm{bright})) &amp;= \{x \in \mathcal X \mid x\leq 2\}\\
-\mathcal{G}((\mathrm{bright},\mathrm{press},\mathrm{off})) &amp;= \mathcal X.
-\end{aligned}
-</span></p>
-<p><span class="math display">
-r((\mathrm{off},\mathrm{press},\mathrm{dim}),x) = 0,
-</span></p>
-<ul>
-<li>that is, <span class="math inline">x^+ = r((\mathrm{off},\mathrm{press},\mathrm{dim}),x) = 0</span>.</li>
-<li>For all other transitions <span class="math inline">r((\cdot, \cdot, \cdot),x)=x</span>,
-<ul>
-<li>that is, <span class="math inline">x^+ = x</span>.</li>
-</ul></li>
-</ul>
-</div>
-<div id="exm-water-tank" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Water tank)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Water tank example</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\dot V =
-\begin{cases}
-Q_\mathrm{in} - Q_\mathrm{out,middle} - Q_\mathrm{out,bottom}, &amp; h&gt;h_\mathrm{m}\\
-Q_\mathrm{in} - Q_\mathrm{out,bottom}, &amp; h\leq h_\mathrm{m}
-\end{cases}
-</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a water tank example</figcaption>
-</figure>
-</div>
-</div>
-<div id="exm-bouncing-ball" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Bouncing ball)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/bouncing_ball.png" class="img-fluid figure-img" style="width:25.0%"></p>
-<figcaption>Bouncing ball example</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}
-</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/bouncing_ball_automaton.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Hybrid automaton for a bouncing ball eaxample</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\mathcal{Q} = \{q\}, \; \mathcal{Q}_0 = \{q\}
-</span></p>
-<p><span class="math display">
-\mathcal{X} = \mathbb R^2, \; \mathcal{X}_0 = \left\{\begin{bmatrix}10\\0\end{bmatrix}\right\}
-</span></p>
-<p><span class="math display">
-\mathcal{I} = \{\mathbb R^2 \mid x_1 &gt; 0 \lor (x_1 = 0 \land x_2 &gt; 0)\}
-</span></p>
-<p><span class="math display">
-f(\bm x) = \begin{bmatrix} x_2\\ -g\end{bmatrix}
-</span></p>
-<p><span class="math display">
-\mathcal{E} = \{(q,q)\}
-</span></p>
-<p><span class="math display">
-\mathcal{G} = \{\bm x\in\mathbb R^2 \mid x_1=0 \land x_2 &lt; 0\}
-</span></p>
-<p><span class="math display">
-r((q,q),\bm x) = \begin{bmatrix}x_1\\ -\gamma x_2 \end{bmatrix},
-</span> where <span class="math inline">\gamma</span> is the coefficient of restitution (e.g., <span class="math inline">\gamma = 0.9</span>).</p>
 </div>
 </section>
 </section>
-<section id="comment-on-the-invariant-set-for-the-bouncing-ball" class="level2">
-<h2 class="anchored" data-anchor-id="comment-on-the-invariant-set-for-the-bouncing-ball">Comment on the invariant set for the bouncing ball</h2>
+<section id="queueing-systems-modelled-by-pn" class="level2">
+<h2 class="anchored" data-anchor-id="queueing-systems-modelled-by-pn">Queueing systems modelled by PN</h2>
+<p>Although Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in <a href="#fig-queueing-system-with-events" class="quarto-xref">Figure&nbsp;9</a>.</p>
+<div id="fig-queueing-system-with-events" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-queueing-system-with-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/queueing_system_with_events.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-with-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Queing systems and its components and transitions/events
+</figcaption>
+</figure>
+</div>
+<p>We can associate the transitions with the events in the queing system:</p>
 <ul>
-<li>Some authors characterize the invariant set as <span class="math inline">x_1\geq 0</span>.</li>
-<li>But this means that as the ball touches the ground, nothig forces it to leave the location and do the transition.</li>
-<li>Instead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition.</li>
-<li>The present definition avoids this. On the other hand, when solving the model numerically, the use of inequalities, in particular nonstrict ones, is inevitable.</li>
+<li><span class="math inline">a</span> is a spontaneous transition (no input places).</li>
+<li><span class="math inline">s</span> needs a customer in the <strong>q</strong>ueue and the server being <strong>i</strong>dle.</li>
+<li><span class="math inline">c</span> needs the server being <strong>b</strong>usy.</li>
 </ul>
-<div id="exm-stick-slip-friction" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5 (Stick-slip friction model (Karnopp))</strong></span> Mass <span class="math inline">m</span>, external force <span class="math inline">F_\mathrm{a}</span>, friction force <span class="math inline">F_\mathrm{f}</span> <span class="math display">
-m\dot v = F_\mathrm{a} - F_\mathrm{f}(v).
-</span></p>
+<p>We can now start drawing the Petri net by drawin the bars corresponding to the transitions. Then in between every two bars, we draw a circle for a place. The places can be associated with three bold-face letters above, namely:</p>
+<p><span class="math display">\quad \mathcal{P} = \{Q, I, B\},</span> that is, queue, idle, busy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_simple_queue.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Petri net corresponding to the queing system</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The input transition adds tokens to the system
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The transition <span class="math inline">a</span> is an input transition – the tokens are added to the system through this transition.</p>
+</div>
+</div>
+<p>Note how we consider the token in the <span class="math inline">I</span> place. This is not only to express that the server is initially idle, ready to serve as soon as a customer arrives to the queue, it also ensures that no serving of a new customer can start before the serving of the current customer is completed.</p>
+<p>The initial state: <span class="math inline">[0,1,0]^\top</span>. Consider now a particular trace (of transitions/events) <span class="math inline">\{a,s,a,a,c,s,a\}</span>. Verify that this leads to the final state <span class="math inline">[2,0,1]^\top</span>.</p>
+<section id="some-more-extensions" class="level3">
+<h3 class="anchored" data-anchor-id="some-more-extensions">Some more extensions</h3>
+<p>We can keep adding features to the model of a queing system. In particular,</p>
 <ul>
-<li><p>Assuming Coulomb friction <span class="math display">
-F_\mathrm{f}(v) = F_\mathrm{c}\operatorname*{sgn}(v).
-</span></p></li>
-<li><p>What if <span class="math inline">v=0</span> and <span class="math inline">F_\mathrm{a}&lt;F_\mathrm{c}</span>?</p></li>
+<li>the arrival transition always enabled,</li>
+<li>the server can break down, and then be repaired,</li>
+<li>completing the service <span class="math inline">\neq</span> customer departure.</li>
 </ul>
-<p>Karnopp model</p>
-<p><span class="math display">
-m\dot v = 0, \qquad v=0, \; |F_\mathrm{a}| &lt; F_\mathrm{c}
-</span> <span class="math display">
-F_\mathrm{f} = \begin{cases}\operatorname*{sat}(F_\mathrm{a},F_\mathrm{c}), &amp; v=0\\F_\mathrm{c}\operatorname*{sgn}(v), &amp; \mathrm{else}\end{cases}
-</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/karnopp_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Hybrid automaton for the Karnopp model of friction</figcaption>
+<p>These are incorporated into the Petri net in <a href="#fig-petri-net-modified-queue" class="quarto-xref">Figure&nbsp;10</a>.</p>
+<div id="fig-petri-net-modified-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-petri-net-modified-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/petri_net_modified_queue.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-petri-net-modified-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Extended model of a queueing system
+</figcaption>
 </figure>
 </div>
-</div>
-<div id="exm-rimless-wheel" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> &nbsp;</p>
+<p>In the Petri net, <span class="math inline">d</span> is an output transition – the tokens are removed from the system.</p>
+<div id="exm-beverage-vending-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12 (Beverage vending machine)</strong></span> Below we show a Petri net for a beverage vending machine. While building it, we find it useful to identify the events/transitions that can happen in the system.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Rimless wheel</figcaption>
+<p><img src="petri_nets_figures/beverage_vending_machine_petri_net.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Petri net for a beverage vending machine</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>Hybrid automaton for a rimless wheel</figcaption>
-</figure>
-</div>
-<p>Alternatively, do not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable <span class="math inline">s \in [0, 1, \ldots, 5]</span> within a single location.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton_single_location.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Alternative hybrid automaton for a rimless wheel</figcaption>
-</figure>
-</div>
-</div>
-<div id="exm-DC-DC-boost-converter" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_circuit.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption>DC-DC boost converter</figcaption>
-</figure>
-</div>
-<p>Not just the switch but also the (ideal) diode is introducing mode transitions.</p>
-<section id="example-dc-dc-boost-converter-the-switch-closed" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-the-switch-closed">Example: DC-DC boost converter – the switch closed</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: the switch closed</figcaption>
-</figure>
-</div>
-<p>. . .</p>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
--\frac{R_\mathrm{L}}{L}i_\mathrm{L} &amp; 0\\
-0 &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-\frac{1}{L}\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-</section>
-<section id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm">Example: DC-DC boost converter – continuous conduction mode (CCM)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: continuous conduction mode (CCM)</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
--\frac{R_\mathrm{L}+ \frac{RR_\mathrm{C}}{R+R_\mathrm{C}}}{L} &amp; -\frac{R}{L(R+R_\mathrm{C})}\\
-\frac{R}{C(R+R_\mathrm{C})} &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-\frac{1}{L}\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-</section>
-<section id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm">Example: DC-DC boost converter – discontinuous cond. mode (DCM)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: discontinuous conduction model (DCM)</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 &amp; 0\\
-0 &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-0\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-<div class="notes">
-<p>Possibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.</p>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Hybrid automaton for a DC-DC boost converter</figcaption>
-</figure>
 </div>
 </section>
-</div>
+</section>
+<section id="some-extensions-of-basic-petri-nets" class="level2">
+<h2 class="anchored" data-anchor-id="some-extensions-of-basic-petri-nets">Some extensions of basic Petri nets</h2>
+<ul>
+<li>Coloured Petri nets (CPN): tokens can by of several types (colours), and the transitions can be enabled only if the tokens have the right colours.</li>
+<li>…</li>
+</ul>
+<p>We do not cover these extensions in our course. But there is one particular extension that we do want to cover, and this amounts to introducing time into Petri nets, leading to timed Petri nets, which we will discuss in the next chapter.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-cassandrasIntroductionDiscreteEvent2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. G. Cassandras and S. Lafortune, <em>Introduction to <span>Discrete Event Systems</span></em>, 3rd ed. Cham: Springer, 2021. Available: <a href="https://doi.org/10.1007/978-3-030-72274-6">https://doi.org/10.1007/978-3-030-72274-6</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1474,13 +1614,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./max_plus_references.html" class="pagination-link" aria-label="Literature">
+      <a href="./des_references.html" class="pagination-link" aria-label="Literature">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./hybrid_automata_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./petri_nets_timed.html" class="pagination-link" aria-label="Timed Petri nets">
+        <span class="nav-page-text">Timed Petri nets</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
