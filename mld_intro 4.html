@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Max-plus algebra – B(E)3M35HYS – Hybrid systems</title>
+<title>Mixed logical dynamical – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./max_plus_systems.html" rel="next">
-<link href="./petri_nets_references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -103,22 +67,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -159,7 +109,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./max_plus_algebra.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="./max_plus_algebra.html">Max-plus algebra</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      B(E)3M35HYS – Hybrid systems
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -294,7 +246,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link active">
+  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Max-plus algebra</span></a>
   </div>
 </li>
@@ -616,41 +568,41 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#algebra" id="toc-algebra" class="nav-link active" data-scroll-target="#algebra">Algebra</a></li>
-  <li><a href="#max-algebra-redefining-the-addition-and-multiplication" id="toc-max-algebra-redefining-the-addition-and-multiplication" class="nav-link" data-scroll-target="#max-algebra-redefining-the-addition-and-multiplication">(max,+) algebra: redefining the addition and multiplication</a>
-  <ul class="collapse">
-  <li><a href="#reals-must-be-extended-with-the-negative-infinity" id="toc-reals-must-be-extended-with-the-negative-infinity" class="nav-link" data-scroll-target="#reals-must-be-extended-with-the-negative-infinity">Reals must be extended with the negative infinity</a></li>
-  <li><a href="#neutral-elements" id="toc-neutral-elements" class="nav-link" data-scroll-target="#neutral-elements">Neutral elements</a></li>
-  <li><a href="#inverse-elements" id="toc-inverse-elements" class="nav-link" data-scroll-target="#inverse-elements">Inverse elements</a></li>
-  </ul></li>
-  <li><a href="#powers-and-the-inverse-with-respect-to-otimes" id="toc-powers-and-the-inverse-with-respect-to-otimes" class="nav-link" data-scroll-target="#powers-and-the-inverse-with-respect-to-otimes">Powers and the inverse with respect to <span class="math inline">\otimes</span></a></li>
-  <li><a href="#order-of-evaluation-of-max-formulas" id="toc-order-of-evaluation-of-max-formulas" class="nav-link" data-scroll-target="#order-of-evaluation-of-max-formulas">Order of evaluation of (max,+) formulas</a></li>
-  <li><a href="#max-polynomials-aka-tropical-polynomials" id="toc-max-polynomials-aka-tropical-polynomials" class="nav-link" data-scroll-target="#max-polynomials-aka-tropical-polynomials">(max,+) polynomials (aka tropical polynomials)</a></li>
-  <li><a href="#solution-set-zero-set" id="toc-solution-set-zero-set" class="nav-link" data-scroll-target="#solution-set-zero-set">Solution set (zero set)</a></li>
-  <li><a href="#matrix-computations" id="toc-matrix-computations" class="nav-link" data-scroll-target="#matrix-computations">Matrix computations</a>
-  <ul class="collapse">
-  <li><a href="#addition-and-multiplication" id="toc-addition-and-multiplication" class="nav-link" data-scroll-target="#addition-and-multiplication">Addition and multiplication</a></li>
-  <li><a href="#zero-and-identity-matrices" id="toc-zero-and-identity-matrices" class="nav-link" data-scroll-target="#zero-and-identity-matrices">Zero and identity matrices</a></li>
-  <li><a href="#matrix-powers" id="toc-matrix-powers" class="nav-link" data-scroll-target="#matrix-powers">Matrix powers</a></li>
-  </ul></li>
-  <li><a href="#connection-with-graph-theory-precedence-graph" id="toc-connection-with-graph-theory-precedence-graph" class="nav-link" data-scroll-target="#connection-with-graph-theory-precedence-graph">Connection with graph theory – precedence graph</a>
-  <ul class="collapse">
-  <li><a href="#irreducibility-of-a-matrix" id="toc-irreducibility-of-a-matrix" class="nav-link" data-scroll-target="#irreducibility-of-a-matrix">Irreducibility of a matrix</a></li>
-  </ul></li>
-  <li><a href="#eigenvalues-and-eigenvectors" id="toc-eigenvalues-and-eigenvectors" class="nav-link" data-scroll-target="#eigenvalues-and-eigenvectors">Eigenvalues and eigenvectors</a>
-  <ul class="collapse">
-  <li><a href="#eigenvalue-related-property-of-irreducible-matrices" id="toc-eigenvalue-related-property-of-irreducible-matrices" class="nav-link" data-scroll-target="#eigenvalue-related-property-of-irreducible-matrices">Eigenvalue-related property of irreducible matrices</a></li>
-  </ul></li>
-  <li><a href="#solving-max-linear-equations" id="toc-solving-max-linear-equations" class="nav-link" data-scroll-target="#solving-max-linear-equations">Solving (max,+) linear equations</a></li>
+  <li><a href="#propositional-logic-and-connectives" id="toc-propositional-logic-and-connectives" class="nav-link active" data-scroll-target="#propositional-logic-and-connectives">Propositional logic and connectives</a></li>
+  <li><a href="#equivalences-of-logic-propositions" id="toc-equivalences-of-logic-propositions" class="nav-link" data-scroll-target="#equivalences-of-logic-propositions">Equivalences of logic propositions</a></li>
+  <li><a href="#binary-variables-related-to-the-boolean-ones" id="toc-binary-variables-related-to-the-boolean-ones" class="nav-link" data-scroll-target="#binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</a></li>
+  <li><a href="#integer-inequalities-related-to-the-logical-formulas" id="toc-integer-inequalities-related-to-the-logical-formulas" class="nav-link" data-scroll-target="#integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</a></li>
+  <li><a href="#and" id="toc-and" class="nav-link" data-scroll-target="#and">And</a></li>
+  <li><a href="#or" id="toc-or" class="nav-link" data-scroll-target="#or">Or</a></li>
+  <li><a href="#negation" id="toc-negation" class="nav-link" data-scroll-target="#negation">Negation</a></li>
+  <li><a href="#xor" id="toc-xor" class="nav-link" data-scroll-target="#xor">Xor</a></li>
+  <li><a href="#implication" id="toc-implication" class="nav-link" data-scroll-target="#implication">Implication</a></li>
+  <li><a href="#equivalence" id="toc-equivalence" class="nav-link" data-scroll-target="#equivalence">Equivalence</a></li>
+  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  <li><a href="#general-transformation-of-boolean-expressions-to-integer-inequalities" id="toc-general-transformation-of-boolean-expressions-to-integer-inequalities" class="nav-link" data-scroll-target="#general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</a></li>
+  <li><a href="#finite-state-machine-fsm-using-binary-variables" id="toc-finite-state-machine-fsm-using-binary-variables" class="nav-link" data-scroll-target="#finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#mixing-logical-and-continuous" id="toc-mixing-logical-and-continuous" class="nav-link" data-scroll-target="#mixing-logical-and-continuous">Mixing logical and continuous</a></li>
+  <li><a href="#logical-implies-continuous" id="toc-logical-implies-continuous" class="nav-link" data-scroll-target="#logical-implies-continuous">Logical implies continuous</a></li>
+  <li><a href="#continuous-implies-logical" id="toc-continuous-implies-logical" class="nav-link" data-scroll-target="#continuous-implies-logical">Continuous implies logical</a></li>
+  <li><a href="#equivalence-between-logical-and-continuous" id="toc-equivalence-between-logical-and-continuous" class="nav-link" data-scroll-target="#equivalence-between-logical-and-continuous">Equivalence between logical and continuous</a></li>
+  <li><a href="#if-then-else-rule-as-an-inequality" id="toc-if-then-else-rule-as-an-inequality" class="nav-link" data-scroll-target="#if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</a></li>
+  <li><a href="#another-if-then-else-rule" id="toc-another-if-then-else-rule" class="nav-link" data-scroll-target="#another-if-then-else-rule">Another IF-THEN-ELSE rule</a></li>
+  <li><a href="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" id="toc-generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="nav-link" data-scroll-target="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</a></li>
+  <li><a href="#switched-affine-system" id="toc-switched-affine-system" class="nav-link" data-scroll-target="#switched-affine-system">Switched affine system</a></li>
+  <li><a href="#mixed-logical-dynamical-mld-system" id="toc-mixed-logical-dynamical-mld-system" class="nav-link" data-scroll-target="#mixed-logical-dynamical-mld-system">Mixed logical dynamical (MLD) system</a></li>
+  <li><a href="#simple-example" id="toc-simple-example" class="nav-link" data-scroll-target="#simple-example">Simple example</a></li>
+  <li><a href="#hysdel-language" id="toc-hysdel-language" class="nav-link" data-scroll-target="#hysdel-language">HYSDEL language</a></li>
+  <li><a href="#piecewise-affine-systems" id="toc-piecewise-affine-systems" class="nav-link" data-scroll-target="#piecewise-affine-systems">Piecewise affine systems</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./max_plus_algebra.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="./max_plus_algebra.html">Max-plus algebra</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Max-plus algebra</h1>
+<h1 class="title">Mixed logical dynamical</h1>
 </div>
 
 
@@ -667,447 +619,374 @@ window.Quarto = {
 </header>
 
 
-<p><em>Max-plus algebra</em>, also written as (max,+) algebra (and also known as <em>tropical algebra/geometry</em> and <em>dioid algebra</em>), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely <em>event graphs</em>, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.</p>
-<p>But before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard <em>algebra</em>.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Algebra is not only a branch of mathematics
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Confusingly enough, algebra is used both as a name of both a branch of mathematics and a special mathematical structure. In what follows, we use the term <em>algebra</em> to refer to the latter.</p>
-</div>
-</div>
-<section id="algebra" class="level2">
-<h2 class="anchored" data-anchor-id="algebra">Algebra</h2>
-<p>Algebra is a set of elements equipped with</p>
+<p>Our motivation is to get rid of the IF-THEN conditions in the model.</p>
+<section id="propositional-logic-and-connectives" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="propositional-logic-and-connectives">Propositional logic and connectives</h2>
 <ul>
-<li>two operations:
+<li>Boolean variable (or elementary proposition) <span class="math inline">\(X\)</span> evaluates to <code>true</code> or <code>false</code>.
 <ul>
-<li>addition (plus, +)</li>
-<li>multiplication (times, ×)</li>
+<li>For convenience also <code>0</code> or <code>1</code>, but …</li>
 </ul></li>
-<li>neutral (identity) element with respect to addition: zero, 0 <span class="math display">a+0=a.</span></li>
-<li>neutral (identity) element with respect to multiplication: one, 1 <span class="math display">a\times 1 = a.</span></li>
-</ul>
-<p>Inverse elements can also be defined, namely</p>
+<li>Connectives
 <ul>
-<li>Inverse element wrt addition: <span class="math inline">-a</span> <span class="math display">a+(-a) = 0.</span></li>
-<li>Inverse element wrt multiplication (except for 0): <span class="math inline">a^{-1}</span> <span class="math display">a \times a^{-1} = 1.</span></li>
+<li>Conjunction (logical and): <span class="math inline">\(X_1 \land X_2\)</span></li>
+<li>Disjunction (logical or): <span class="math inline">\(X_1 \lor X_2\)</span></li>
+<li>Negation: <span class="math inline">\(\neg X_2\)</span> (or <span class="math inline">\(\overline{X_2}\)</span> or <span class="math inline">\(\sim X_2\)</span>)</li>
+<li>Implication: <span class="math inline">\(X_1 \implies X_2\)</span></li>
+<li>Equivalence: <span class="math inline">\(X_1 \iff X_2\)</span></li>
+<li>Logical XOR: <span class="math inline">\(X_1 \oplus X_2\)</span></li>
+</ul></li>
 </ul>
-<p>If the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a <em>field</em>, otherwise it is called a <em>ring</em>.</p>
-<p>Prominent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too.</p>
-<p>Prominent example of a field is the set of real numbers.</p>
 </section>
-<section id="max-algebra-redefining-the-addition-and-multiplication" class="level2">
-<h2 class="anchored" data-anchor-id="max-algebra-redefining-the-addition-and-multiplication">(max,+) algebra: redefining the addition and multiplication</h2>
-<p>Elements of the (max,+) algebra are real numbers numbers, but it is still a ring and not a field since the two operations are defined differently.</p>
-<p>The new operations of addition, which we denote by <span class="math inline">\oplus</span> to distinguish it from the standard addition, is defined as <span class="math display">\boxed{
-  x\oplus y \equiv \max(x,y).
-  }
-</span></p>
-<p>The new operation of multiplication, which we denote by <span class="math inline">\otimes</span> to distinguish it from the standard multiplication, is defined as <span class="math display">\boxed{
-  x\otimes y \equiv x+y}.
-</span></p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Indeed, there is no typo here, the standard addition is replaced by <span class="math inline">\otimes</span> and not <span class="math inline">\oplus</span>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-(min,+) also possible
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Indeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.</p>
-</div>
-</div>
-<section id="reals-must-be-extended-with-the-negative-infinity" class="level3">
-<h3 class="anchored" data-anchor-id="reals-must-be-extended-with-the-negative-infinity">Reals must be extended with the negative infinity</h3>
-<p>Strictly speaking, the (max,+) algebra is a broader set than just <span class="math inline">\mathbb R</span>. We need to extend the reals with the minus infinity. We denote the extended set by <span class="math inline">\mathbb R_\varepsilon</span> <span class="math display">\boxed{
-\mathbb R_\varepsilon \coloneqq \mathbb R \cup \{-\infty\}}.
-</span></p>
-<p>The reason for the notation is that a dedicated symbol <span class="math inline">\varepsilon</span> is assigned to this minus infinity, that is, <span class="math display">\boxed
-{\varepsilon \coloneqq -\infty.}
-</span></p>
-<p>It may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol.</p>
-<p>We are now going to see the reason for this extension.</p>
-</section>
-<section id="neutral-elements" class="level3">
-<h3 class="anchored" data-anchor-id="neutral-elements">Neutral elements</h3>
-<section id="neutral-element-with-respect-to-oplus" class="level4">
-<h4 class="anchored" data-anchor-id="neutral-element-with-respect-to-oplus">Neutral element with respect to <span class="math inline">\oplus</span></h4>
-<p>The neutral element with respect to <span class="math inline">\oplus</span>, the <em>zero</em>, is <span class="math inline">-\infty</span>. Indeed, for <span class="math inline">x \in \mathbb R_\varepsilon</span> <span class="math display">
-x \oplus \varepsilon = x,
-</span> because <span class="math inline">\max(x,-\infty) = x</span>.</p>
-</section>
-<section id="neutral-element-with-respect-to-otimes" class="level4">
-<h4 class="anchored" data-anchor-id="neutral-element-with-respect-to-otimes">Neutral element with respect to <span class="math inline">\otimes</span></h4>
-<p>The neutral element with respect to <span class="math inline">\otimes</span>, the <em>one</em>, is <span class="math inline">0</span>. Indeed, for <span class="math inline">x \in \mathbb R_\varepsilon</span> <span class="math display">
-x \otimes \varepsilon = x,
-</span> because <span class="math inline">x+0=x</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nonsymmetric notation, but who cares?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The notation is rather nonsymmetric here. We now have a dedicated symbol <span class="math inline">\varepsilon</span> for the <em>zero</em> element in the new algebra, but no dedicated symbol for the <em>one</em> element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like <code>mp-zero</code> and <code>mp-one</code> to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was not even able to figure out how to encircle numbers in LaTeX…</p>
-</div>
+<section id="equivalences-of-logic-propositions" class="level2">
+<h2 class="anchored" data-anchor-id="equivalences-of-logic-propositions">Equivalences of logic propositions</h2>
+<p>. . .</p>
+<p><span class="math display">\[
+X_1 \implies X_2 \quad  \text{is equivalent to} \quad \neg X_2 \implies \neg X_1
+\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[
+X_1 \iff X_2 \quad  \text{eq.} \quad (X_1 \implies X_2) \land (X_2 \implies X_1)
+\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[
+X_1 \land X_2 \qquad  \text{eq.} \qquad \neg (\neg X_1 \lor \neg X_2)
+\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[
+X_1 \implies X_2 \qquad  \text{eq.} \qquad \neg X_1 \lor X_2
+\]</span></p>
+<div class="notes">
+<p>The last one can be seen as follows: it cannot happen that <span class="math inline">\(X1 \land \neg X2\)</span>, that is, it holds that <span class="math inline">\(\neg(X1 \land \neg X2)\)</span>. De Morgan gives <span class="math inline">\(\neg X1 \lor X2\)</span></p>
 </div>
 </section>
+<section id="binary-variables-related-to-the-boolean-ones" class="level2">
+<h2 class="anchored" data-anchor-id="binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</h2>
+<ul>
+<li>Associate with the Boolean variable <span class="math inline">\(X\)</span> a binary variable <span class="math inline">\(\delta\in\{0,1\}\)</span> such that <span class="math display">\[
+\delta =
+\begin{cases}
+0 &amp; \text{if} \; \neg X\\
+1 &amp; \text{if} \; X
+\end{cases}
+\]</span></li>
+</ul>
 </section>
-<section id="inverse-elements" class="level3">
-<h3 class="anchored" data-anchor-id="inverse-elements">Inverse elements</h3>
-<section id="inverse-with-respect-to-oplus" class="level4">
-<h4 class="anchored" data-anchor-id="inverse-with-respect-to-oplus">Inverse with respect to <span class="math inline">\oplus</span></h4>
-<p>The inverse element with respect to <span class="math inline">\oplus</span> in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for <span class="math inline">\varepsilon</span>.</p>
-<p>This has major consequences, for example, <span class="math display">x\oplus x=x.</span></p>
-<p>Can you verify this statement? How is is related to the fact that the inverse element with respect to <span class="math inline">\oplus</span> does not exist in general?</p>
-<p>This is the key difference with respect to a conventional algebra, wherein the inverse element of <span class="math inline">a</span> wrt conventional addition is <span class="math inline">-a</span>, while here we do not even define <span class="math inline">\ominus</span>.</p>
-<p>Formally speaking, the (max,+) algebra is only a <em>semi-ring</em>.</p>
+<section id="integer-inequalities-related-to-the-logical-formulas" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</h2>
 </section>
-<section id="inverse-with-respect-to-otimes" class="level4">
-<h4 class="anchored" data-anchor-id="inverse-with-respect-to-otimes">Inverse with respect to <span class="math inline">\otimes</span></h4>
-<p>The inverse element with respect to <span class="math inline">\otimes</span> does not exist for all elements. The <span class="math inline">\varepsilon</span> element does not have an inverse element with respect to <span class="math inline">\otimes</span>. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.</p>
+<section id="and" class="level2">
+<h2 class="anchored" data-anchor-id="and">And</h2>
+<p><span class="math display">\[X_1 \land X_2\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_1=1] \land [\delta_2=1]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1=1, \; \delta_2=1\]</span></p>
+<ul>
+<li>Another (discarded) possibility:</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1 \delta_2 = 1\]</span></p>
 </section>
+<section id="or" class="level2">
+<h2 class="anchored" data-anchor-id="or">Or</h2>
+<p><span class="math display">\[X_1 \lor X_2\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_1=1] \lor [\delta_2=1]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1 + \delta_2\geq 1\]</span></p>
 </section>
+<section id="negation" class="level2">
+<h2 class="anchored" data-anchor-id="negation">Negation</h2>
+<p><span class="math display">\[\neg X_1\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\neg [\delta_1=1]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1 = 0\]</span></p>
 </section>
-<section id="powers-and-the-inverse-with-respect-to-otimes" class="level2">
-<h2 class="anchored" data-anchor-id="powers-and-the-inverse-with-respect-to-otimes">Powers and the inverse with respect to <span class="math inline">\otimes</span></h2>
-<p>Having defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer <span class="math inline">r\in\mathbb Z</span>, the <span class="math inline">r</span>th power of <span class="math inline">x</span>, denoted by <span class="math inline">x^{\otimes^r}</span>, is defined, unsurprisingly as <span class="math display">x^{\otimes^r} \coloneqq x\otimes x \otimes \ldots \otimes x.</span></p>
-<p>Observe that it corresponds to <span class="math inline">rx</span> in the conventional algebra <span class="math display">x^{\otimes^r} = rx.</span></p>
-<p>But then the inverse element with respect to <span class="math inline">\otimes</span> can also be determined using the (-1)th power as <span class="math display">x^{\otimes^{-1}} = -x.</span></p>
-<p>This is not actually surprising, is it?</p>
-<p>There are few more implications. For example,<br>
-<span class="math display">x^{\otimes^0} = 0.</span></p>
-<p>There is also no inverse element with respect to <span class="math inline">\otimes</span> for <span class="math inline">\varepsilon</span>, but it is expected as <span class="math inline">\varepsilon</span> is a zero wrt <span class="math inline">\oplus</span>. Furthermore, for <span class="math inline">r\neq -1</span>, if <span class="math inline">r&gt;0</span> , then <span class="math inline">\varepsilon^{\otimes^r} = \varepsilon</span>, if <span class="math inline">r&lt;0</span> , then <span class="math inline">\varepsilon^{\otimes^r}</span> is undefined, which are both expected. Finally, <span class="math inline">\varepsilon^{\otimes^0} = 0</span> by convention.</p>
+<section id="xor" class="level2">
+<h2 class="anchored" data-anchor-id="xor">Xor</h2>
+<p><span class="math display">\[X_1 \oplus X_2\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_1=1] \oplus [\delta_2=1]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1 + \delta_2 = 1\]</span></p>
 </section>
-<section id="order-of-evaluation-of-max-formulas" class="level2">
-<h2 class="anchored" data-anchor-id="order-of-evaluation-of-max-formulas">Order of evaluation of (max,+) formulas</h2>
-<p>It is the same as that for the conventional algebra:</p>
-<pre><code>1. power, 
-2. multiplication, 
-3. addition.</code></pre>
+<section id="implication" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="implication">Implication</h2>
+<p><span class="math display">\[X_1 \implies X_2\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_1=1] \implies [\delta_2=1]\]</span></p>
+<ul>
+<li><p>equivalently, using <span class="math inline">\(\neg X_1 \lor X_2\)</span>, <span class="math display">\[\neg [\delta_1=1] \lor [\delta_2=1],\]</span></p></li>
+<li><p>which translates to <span class="math display">\[(1-\delta_1) + \delta_2\geq 1,\]</span></p></li>
+<li><p>which simplifies to <span class="math display">\[\delta_1 - \delta_2 \leq 0\]</span></p></li>
+</ul>
 </section>
-<section id="max-polynomials-aka-tropical-polynomials" class="level2">
-<h2 class="anchored" data-anchor-id="max-polynomials-aka-tropical-polynomials">(max,+) polynomials (aka tropical polynomials)</h2>
-<p>Having covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial <span class="math display">p(x) = a_{n}\otimes x^{\otimes^{n}} \oplus a_{n-1}\otimes x^{\otimes^{n-1}} \oplus \ldots \oplus a_{1}\otimes x \oplus a_{0},
-</span> where <span class="math inline">a_i\in \mathbb R_\varepsilon</span> and <span class="math inline">n\in \mathbb N</span>.</p>
-<p>By interpreting the operations, this translates to the following function <span class="math display">\boxed
-{p(x) = \max\{nx + a_n, (n-1)x + a_{n-1}, \ldots, x+a_1, a_0\}.}
-</span></p>
-<div id="exm-tropical-polynomial" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (1D polynomial)</strong></span> Consider the following (max,+) polynomial <span class="math display">
-p(x) = 2\otimes x^{\otimes^{2}} \oplus 3\otimes x \oplus 1.
-</span></p>
-<p>We can interpret it in the conventional algebra as <span class="math display">
-p(x) = \max\{2x+2,x+3,1\},  
-</span> which is a piecewise linear (actually affine) function.</p>
-<div id="d2e144bd" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="fl">5</span><span class="op">:</span><span class="fl">3</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> <span class="fu">max</span>(<span class="fl">2</span><span class="op">*</span>x<span class="op">+</span><span class="fl">2</span>,x<span class="op">+</span><span class="fl">3</span>,<span class="fl">1</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f</span>.(x),label<span class="op">=</span><span class="st">""</span>,thickness_scaling <span class="op">=</span> <span class="fl">2</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>xc <span class="op">=</span> [<span class="op">-</span><span class="fl">2</span>,<span class="fl">1</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>yc <span class="op">=</span> <span class="fu">f</span>.(xc)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(xc,yc,markercolor<span class="op">=</span>[<span class="op">:</span>red,<span class="op">:</span>red],label<span class="op">=</span><span class="st">""</span>,thickness_scaling <span class="op">=</span> <span class="fl">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div id="exm-tropical-polynomial-2d" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Example of a 2D polynomial)</strong></span> Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial <span class="math display">
-p(x,y) = 0 \otimes x \otimes y.
-</span></p>
-<div id="4bdbe580" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">2</span>;</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">2</span>;</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y) <span class="op">=</span> <span class="fu">max</span>(<span class="fl">0</span>,x,y)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fu">f</span>.(x<span class="op">'</span>,y);</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wireframe</span>(x,y,z,legend<span class="op">=</span><span class="cn">false</span>,camera<span class="op">=</span>(<span class="fl">5</span>,<span class="fl">30</span>))</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">"x"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">"y"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">zlabel!</span>(<span class="st">"f(x,y)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div id="exm-another-tropical-polynomial-2d" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Another 2D polynomial)</strong></span> Consider another 2D (max,+) polynomial <span class="math display">
-p(x,y) = 0 \otimes x \otimes y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
-</span></p>
-<div id="0356111f" class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">2</span>;</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">2</span>;</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y) <span class="op">=</span> <span class="fu">max</span>(<span class="fl">0</span>,x,y,<span class="fl">2</span><span class="op">*</span>x<span class="op">-</span><span class="fl">1</span>,x<span class="op">+</span>y<span class="op">+</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">*</span>y<span class="op">-</span><span class="fl">1</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fu">f</span>.(x<span class="op">'</span>,y);</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wireframe</span>(x,y,z,legend<span class="op">=</span><span class="cn">false</span>,camera<span class="op">=</span>(<span class="fl">15</span>,<span class="fl">30</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">"x"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">"y"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">zlabel!</span>(<span class="st">"p(x,y)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Piecewise affine (PWA) functions
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Piecewise affine (PWA) functions will turn out a frequent buddy in our course.</p>
-</div>
-</div>
+<section id="equivalence" class="level2">
+<h2 class="anchored" data-anchor-id="equivalence">Equivalence</h2>
+<p><span class="math display">\[X_1 \iff X_2\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_1=1] \iff [\delta_2=1]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[\delta_1 - \delta_2 = 0\]</span></p>
 </section>
-<section id="solution-set-zero-set" class="level2">
-<h2 class="anchored" data-anchor-id="solution-set-zero-set">Solution set (zero set)</h2>
-<p>…</p>
+<section id="assignment" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="assignment">Assignment</h2>
+<p><span class="math display">\[X_3 \iff (X_1 \land X_2)\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta_3=1] \iff ([\delta_1=1] \land [\delta_2=1])\]</span></p>
+<ul>
+<li><p>Expressing the equivalence using implications <span class="math display">\[X_3 \implies X_1,\; X_3\implies X_2, \; (X_1 \land X_2) \implies X_3\]</span></p></li>
+<li><p>The the last one is equivalent to <span class="math display">\[\neg (X_1 \land X_2) \lor X_3\]</span></p></li>
+<li><p>which can be simplified to <span class="math display">\[\neg X_1 \lor \neg X_2 \lor X_3\]</span></p></li>
+<li><p>which translates to <span class="math display">\[\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1]\]</span></p></li>
+<li><p>which finally leads to the inequality <span class="math display">\[(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1\]</span></p></li>
+<li><p>and after simplification <span class="math display">\[\delta_1 + \delta_2 - \delta_3 \leq 1.\]</span></p></li>
+<li><p>And don’t forget to consider the first to inequalities too <span class="math display">\[
+-\delta_1 + \delta_3 \leq 0, \quad -\delta_2 + \delta_3 \leq 0.
+\]</span></p></li>
+</ul>
 </section>
-<section id="matrix-computations" class="level2">
-<h2 class="anchored" data-anchor-id="matrix-computations">Matrix computations</h2>
-<section id="addition-and-multiplication" class="level3">
-<h3 class="anchored" data-anchor-id="addition-and-multiplication">Addition and multiplication</h3>
-<p>What is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in <span class="math inline">\mathbb R_\varepsilon</span>, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations. <span class="math display">(A\oplus B)_{ij} = a_{ij}\oplus b_{ij} = \max(a_{ij},b_{ij})</span> <span class="math display">
+<section id="general-transformation-of-boolean-expressions-to-integer-inequalities" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</h2>
+<ul>
+<li><p>From Conjunctive Normal Form (CNF) <span class="math display">\[
+\bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right]
+\]</span></p></li>
+<li><p>to 0-1 integer inequalities defining a polyhedron <span class="math display">\[
 \begin{aligned}
-(A\otimes B)_{ij} &amp;= \bigoplus_{k=1}^n a_{ik}\otimes b_{kj}\\
-&amp;= \max_{k=1,\ldots, n}(a_{ik}+b_{kj})
+\sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &amp;\geq 1,\\
+&amp;\vdots\\
+\sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &amp;\geq 1.
 \end{aligned}
-</span></p>
-</section>
-<section id="zero-and-identity-matrices" class="level3">
-<h3 class="anchored" data-anchor-id="zero-and-identity-matrices">Zero and identity matrices</h3>
-<p>(max,+) zero matrix <span class="math inline">\mathcal{E}_{m\times n}</span> has all its elements equal to <span class="math inline">\varepsilon</span>, that is, <span class="math display">
-\mathcal{E}_{m\times n} =
-\begin{bmatrix}
-\varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
-\varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
-\varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon
-\end{bmatrix}.
-</span></p>
-<p>(max,+) identity matrix <span class="math inline">I_n</span> has 0 on the diagonal and <span class="math inline">\varepsilon</span> elsewhere, that is, <span class="math display">
-I_{n} =
-\begin{bmatrix}
-0 &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
-\varepsilon &amp; 0 &amp; \ldots &amp; \varepsilon\\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
-\varepsilon &amp; \varepsilon &amp; \ldots &amp; 0
-\end{bmatrix}.
-</span></p>
-</section>
-<section id="matrix-powers" class="level3">
-<h3 class="anchored" data-anchor-id="matrix-powers">Matrix powers</h3>
-<p>The zerothe power of a matrix is – unsurprisingly – the identity matrix, that is, <span class="math display">A^{\otimes^0} = I_n.</span></p>
-<p>The kth power of a matrix, for <span class="math inline">k\in \mathbb N\setminus\{0\}</span>, is then defined using <span class="math display">A^{\otimes^k} = A\otimes A^{\otimes^{k-1}}.</span></p>
-</section>
-</section>
-<section id="connection-with-graph-theory-precedence-graph" class="level2">
-<h2 class="anchored" data-anchor-id="connection-with-graph-theory-precedence-graph">Connection with graph theory – precedence graph</h2>
-<p>Consider <span class="math inline">A\in \mathbb R_\varepsilon^{n\times n}</span>. For this matrix, we can define the <em>precedence graph</em> <span class="math inline">\mathcal{G}(A)</span> as a weighted directed graph with the vertices 1, 2, …, n, and with the arcs <span class="math inline">(j,i)</span> with the associated weights <span class="math inline">a_{ij}</span> for all <span class="math inline">a_{ij}\neq \varepsilon</span>. The kth power of the matrix is then</p>
-<p><span class="math display">
-(A)^{\otimes^k}_{ij} = \max_{i_1,\ldots,i_{k-1}\in \{1,2,\ldots,n\}} \{a_{ii_1} + a_{i_1i_2} + \ldots + a_{i_{k-1}j}\}
-</span> for all <span class="math inline">i,j</span> and <span class="math inline">k\in \mathbb N\setminus 0</span>.</p>
-<div id="exm-power-of-matrix-of-precedence-graph" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Example)</strong></span> <span class="math display">
-A =
-\begin{bmatrix}
-2 &amp; 3 &amp; \varepsilon\\
-1 &amp; \varepsilon &amp; 0\\
-2 &amp; -1 &amp; 3
-\end{bmatrix}
-\qquad
-A^{\otimes^2} =
-\begin{bmatrix}
-4 &amp; 5 &amp; 3\\
-3 &amp; 4 &amp; 3\\
-5 &amp; 5 &amp; 6
-\end{bmatrix}
-</span></p>
-<div class="cell" data-fig-width="4" data-layout-align="default">
-<div class="cell-output-display">
-<div id="fig-precedence-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-precedence-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div>
-<svg width="384" height="480" viewbox="0.00 0.00 227.66 85.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 81.8)">
-<title>G</title>
-<!-- 1 -->
-<g id="node1" class="node">
-<title>1</title>
-<ellipse fill="none" stroke="black" cx="21.5" cy="-21.5" rx="21.5" ry="21.5"></ellipse>
-<text text-anchor="middle" x="21.5" y="-17.3" font-family="Times,serif" font-size="14.00">1</text>
-</g>
-<!-- 1&#45;&gt;1 -->
-<g id="edge1" class="edge">
-<title>1-&gt;1</title>
-<path fill="none" stroke="black" d="M13.86,-41.82C12.8,-51.96 15.35,-61 21.5,-61 25.44,-61 27.9,-57.29 28.89,-51.96"></path>
-<polygon fill="black" stroke="black" points="32.39,-51.91 29.14,-41.82 25.39,-51.73 32.39,-51.91"></polygon>
-<text text-anchor="middle" x="21.5" y="-65.2" font-family="Times,serif" font-size="14.00">2</text>
-</g>
-<!-- 2 -->
-<g id="node2" class="node">
-<title>2</title>
-<ellipse fill="none" stroke="black" cx="107.5" cy="-52.5" rx="21.5" ry="21.5"></ellipse>
-<text text-anchor="middle" x="107.5" y="-48.3" font-family="Times,serif" font-size="14.00">2</text>
-</g>
-<!-- 1&#45;&gt;2 -->
-<g id="edge2" class="edge">
-<title>1-&gt;2</title>
-<path fill="none" stroke="black" d="M41.04,-30.9C47.29,-33.87 54.37,-37.02 61,-39.5 65.97,-41.36 71.33,-43.11 76.56,-44.68"></path>
-<polygon fill="black" stroke="black" points="75.77,-48.09 86.34,-47.48 77.69,-41.36 75.77,-48.09"></polygon>
-<text text-anchor="middle" x="64.5" y="-45.7" font-family="Times,serif" font-size="14.00">1</text>
-</g>
-<!-- 3 -->
-<g id="node3" class="node">
-<title>3</title>
-<ellipse fill="none" stroke="black" cx="198.16" cy="-21.5" rx="21.5" ry="21.5"></ellipse>
-<text text-anchor="middle" x="198.16" y="-17.3" font-family="Times,serif" font-size="14.00">3</text>
-</g>
-<!-- 1&#45;&gt;3 -->
-<g id="edge5" class="edge">
-<title>1-&gt;3</title>
-<path fill="none" stroke="black" d="M42.29,-15.25C54.7,-11.67 71.12,-7.52 86,-5.7 118.16,-1.76 127.07,-4.32 158.66,-11.5 161.5,-12.15 164.45,-12.85 167.4,-13.58"></path>
-<polygon fill="black" stroke="black" points="166.68,-17.01 177.24,-16.08 168.41,-10.22 166.68,-17.01"></polygon>
-<text text-anchor="middle" x="107.5" y="-9.7" font-family="Times,serif" font-size="14.00">2</text>
-</g>
-<!-- 2&#45;&gt;1 -->
-<g id="edge3" class="edge">
-<title>2-&gt;1</title>
-<path fill="none" stroke="black" d="M92.86,-36.14C86.16,-29.37 77.49,-22.27 68,-18.7 63.25,-16.91 58.03,-16.19 52.86,-16.12"></path>
-<polygon fill="black" stroke="black" points="52.29,-12.65 42.52,-16.75 52.71,-19.64 52.29,-12.65"></polygon>
-<text text-anchor="middle" x="64.5" y="-22.7" font-family="Times,serif" font-size="14.00">3</text>
-</g>
-<!-- 2&#45;&gt;3 -->
-<g id="edge4" class="edge">
-<title>2-&gt;3</title>
-<path fill="none" stroke="black" d="M128.77,-48.14C138.01,-45.93 149.01,-42.97 158.66,-39.5 162.2,-38.23 165.86,-36.74 169.45,-35.19"></path>
-<polygon fill="black" stroke="black" points="171.01,-38.33 178.65,-30.99 168.1,-31.96 171.01,-38.33"></polygon>
-<text text-anchor="middle" x="152.83" y="-46.7" font-family="Times,serif" font-size="14.00">-1</text>
-</g>
-<!-- 3&#45;&gt;2 -->
-<g id="edge6" class="edge">
-<title>3-&gt;2</title>
-<path fill="none" stroke="black" d="M177.06,-16.7C167.66,-15.37 156.47,-15.13 147,-18.7 140.77,-21.05 134.9,-24.91 129.7,-29.2"></path>
-<polygon fill="black" stroke="black" points="127.14,-26.8 122.14,-36.14 131.87,-31.96 127.14,-26.8"></polygon>
-<text text-anchor="middle" x="152.83" y="-22.7" font-family="Times,serif" font-size="14.00">0</text>
-</g>
-<!-- 3&#45;&gt;3 -->
-<g id="edge7" class="edge">
-<title>3-&gt;3</title>
-<path fill="none" stroke="black" d="M190.16,-41.82C189.05,-51.96 191.72,-61 198.16,-61 202.29,-61 204.87,-57.29 205.9,-51.96"></path>
-<polygon fill="black" stroke="black" points="209.4,-51.91 206.17,-41.82 202.4,-51.73 209.4,-51.91"></polygon>
-<text text-anchor="middle" x="198.16" y="-65.2" font-family="Times,serif" font-size="14.00">3</text>
-</g>
-</g>
-</svg>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-precedence-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: An example of a precedence graph
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<section id="irreducibility-of-a-matrix" class="level3">
-<h3 class="anchored" data-anchor-id="irreducibility-of-a-matrix">Irreducibility of a matrix</h3>
-<ul>
-<li>Matrix in <span class="math inline">\mathbb R_\varepsilon^{n\times n}</span> is <em>irreducible</em> if its precedence graph is <em>strongly connected</em>.</li>
-<li>Matrix is irreducible iff <span id="eq-power-of-irreducible-matrix"><span class="math display">
-(A \oplus A^{\otimes^2} \oplus \ldots A^{\otimes^{n-1}})_{ij} \neq \varepsilon \quad \forall i,j, i\neq j.
-\tag{1}</span></span></li>
+\]</span></p></li>
 </ul>
 </section>
-</section>
-<section id="eigenvalues-and-eigenvectors" class="level2">
-<h2 class="anchored" data-anchor-id="eigenvalues-and-eigenvectors">Eigenvalues and eigenvectors</h2>
-<p>Eigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives <span class="math display">
-A\otimes v = \lambda \otimes v.
-</span></p>
-<p>A few comments:</p>
+<section id="finite-state-machine-fsm-using-binary-variables" class="level2">
+<h2 class="anchored" data-anchor-id="finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</h2>
 <ul>
-<li>In general, total number of (max,+) eigenvalues <span class="math inline">&lt;n</span>.</li>
-<li>An irreducible matrix has only one (max,+) eigenvalue.</li>
-<li>Graph-theoretic interpretation: maximum average weight over all elementary circuits…</li>
+<li><p>Encode the discrete state variables in binary <span class="math display">\[
+x_b \in \{0,1\}^{n_b}
+\]</span></p></li>
+<li><p>Similarly the discrete inputs <span class="math display">\[
+u_b \in \{0,1\}^{m_b}
+\]</span></p></li>
+<li><p>The logical state equation then <span class="math display">\[
+x_b(k+1) = f_b(x_b(k),u_b(k),\delta_e(k))
+\]</span></p></li>
 </ul>
-<section id="eigenvalue-related-property-of-irreducible-matrices" class="level3">
-<h3 class="anchored" data-anchor-id="eigenvalue-related-property-of-irreducible-matrices">Eigenvalue-related property of irreducible matrices</h3>
-<p>For large enough <span class="math inline">k</span> and <span class="math inline">c</span>, it holds that <span class="math display">\boxed
-{A^{\otimes^{k+c}} = \lambda^{\otimes^c}\otimes A^{\otimes^k}.}
-</span></p>
 </section>
+<section id="example" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="example">Example</h2>
+<p>. . .</p>
+<p><img src="figures/fsm_example.png" class="img-fluid" style="width:80.0%"></p>
+<ul>
+<li><p>State update/transition equation <span class="math display">\[
+\begin{aligned}
+&amp; x_d(k+1) = \\
+&amp;\begin{cases}
+\text{Red} &amp; \text{if}\; ([x_d = \text{green}] \land \neg [\delta_3=1]) \lor ([x_d = \text{red}] \land \neg [\delta_3=1])\\
+\text{Green} &amp; \text{if} \; \ldots\\
+\text{Blue} &amp; \text{if} \; \ldots
+\end{cases}
+\end{aligned}
+\]</span></p></li>
+<li><p>Binary encoding of the discrete states <span class="math display">\[
+\text{Red}: x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: x_b = \begin{bmatrix}1\\0 \end{bmatrix}
+\]</span></p></li>
+<li><p>Reformulating the state update equations for binary variables <span class="math display">\[
+\begin{aligned}
+x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land \neg [\delta_1=1]) \\
+&amp;\quad (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1]) \land [u_{b2}=1]\\
+&amp;\quad (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land \neg [u_{b1}=1] \land [\delta_3=1])\\
+&amp;\quad \lor ([x_{b1} = 1]\land \neg [\delta_2=1])\\
+x_{b2} &amp;= \ldots
+\end{aligned}
+\]</span></p></li>
+<li><p>Simplify, convert to CNF.</p></li>
+</ul>
 </section>
-<section id="solving-max-linear-equations" class="level2">
-<h2 class="anchored" data-anchor-id="solving-max-linear-equations">Solving (max,+) linear equations</h2>
-<p>We can also define and solve linear equations within the (max,+) algebra. Considering <span class="math inline">A\in \mathbb R_\varepsilon^{n\times n},\, b\in \mathbb R_\varepsilon^n</span>, we can formulate and solve the equation <span class="math display">
-A\otimes x = b.
-</span></p>
-<p>In general no solution even if <span class="math inline">A</span> is square. However, often we can find some use for a <em>subsolution</em> defined as <span class="math display">
-A\otimes x \leq b.
-</span></p>
-<p>Typically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.</p>
-<div id="exm-greatest-subsolution" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5 (Greatest subsolution)</strong></span> <span class="math display">
-A =
-\begin{bmatrix}
-2 &amp; 3 &amp; \varepsilon\\
-1 &amp; \varepsilon &amp; 0\\
-2 &amp; -1 &amp; 3
-\end{bmatrix},
-\qquad
-b =  
-\begin{bmatrix}
-1 \\ 2 \\ 3
-\end{bmatrix}
-</span></p>
-<p><span class="math display">
-x =
-\begin{bmatrix}
-1\\ -2 \\ 0
-\end{bmatrix}
-</span></p>
-<p><span class="math display">
-A \otimes x =
-\begin{bmatrix}
-1\\ 0 \\ 1
-\end{bmatrix}
-\leq b
-</span></p>
+<section id="mixing-logical-and-continuous" class="level2">
+<h2 class="anchored" data-anchor-id="mixing-logical-and-continuous">Mixing logical and continuous</h2>
+<ul>
+<li>see Indicator variables.</li>
+</ul>
+</section>
+<section id="logical-implies-continuous" class="level2">
+<h2 class="anchored" data-anchor-id="logical-implies-continuous">Logical implies continuous</h2>
+<p><span class="math display">\[X \implies [f(x)\leq 0]\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[\delta = 1] \implies [f(x)\leq 0]\]</span></p>
+<ul>
+<li><p>introduce <span class="math inline">\(M\)</span> <span class="math display">\[
+f(x) \leq (1-\delta) M
+\]</span></p></li>
+<li><p>that is large enough so that when <span class="math inline">\(\delta=0\)</span>, there is no practical restriction on <span class="math inline">\(f\)</span>.</p>
+<ul>
+<li>Big-M technique.</li>
+</ul></li>
+</ul>
+</section>
+<section id="continuous-implies-logical" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="continuous-implies-logical">Continuous implies logical</h2>
+<p><span class="math display">\[[f(x)\leq 0] \implies X\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[[f(x)\leq 0] \implies [\delta = 1]\]</span></p>
+<ul>
+<li><p>Equivalently <span class="math display">\[\neg [\delta = 1] \implies \neg [f(x)\leq 0],\]</span></p></li>
+<li><p>that is, <span class="math display">\[[\delta = 0] \implies [f(x) &gt; 0]\]</span></p></li>
+<li><p>Introduce <span class="math inline">\(m\)</span> such that <span class="math inline">\(f(x)&gt;0\)</span> is enforced when <span class="math inline">\(\delta=0\)</span> <span class="math display">\[
+f(x) &gt; m\delta
+\]</span></p></li>
+<li><p>but small enough that there is no restriction on <span class="math inline">\(f\)</span> when <span class="math inline">\(\delta=1\)</span>.</p></li>
+<li><p>For numerical reasons, modify to nonstrict inequality <span class="math display">\[
+f(x) \geq \epsilon + (m-\epsilon)\delta,
+\]</span> where <span class="math inline">\(\epsilon\approx 0\)</span> (for example, machine epsilon).</p></li>
+</ul>
+</section>
+<section id="equivalence-between-logical-and-continuous" class="level2">
+<h2 class="anchored" data-anchor-id="equivalence-between-logical-and-continuous">Equivalence between logical and continuous</h2>
+<ul>
+<li>Combining the previous two implications.</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(x) &amp;\leq (1-\delta) M,\\
+f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
+\end{aligned}
+\]</span></p>
+</section>
+<section id="if-then-else-rule-as-an-inequality" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</h2>
+<ul>
+<li>If <span class="math inline">\(X\)</span>
+<ul>
+<li>then <span class="math inline">\(z = a^\top x + b^\top u + f\)</span>,</li>
+<li>else <span class="math inline">\(z = 0\)</span>.</li>
+</ul></li>
+<li>It can be expressed as a <strong>product</strong> <span class="math display">\[
+z = \delta\,(a^\top x + b^\top u + f)
+\]</span></li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[
+\begin{aligned}
+z &amp;\leq M\delta,\\
+- z &amp;\leq -m\delta,\\
+z &amp;\leq a^\top x + b^\top u + f - m(1-\delta),\\
+-z &amp;\leq -(a^\top x + b^\top u + f) + M(1-\delta).
+\end{aligned}
+\]</span></p>
+<div class="notes">
+<p>The reasoning is that if <span class="math inline">\(\delta=0\)</span>, then <span class="math inline">\(z\)</span> is restricted, while <span class="math inline">\(a^\top x + b^\top u + f\)</span> is not. And the other way around.</p>
 </div>
-<p>With this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.</p>
+</section>
+<section id="another-if-then-else-rule" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h2>
+<ul>
+<li>If <span class="math inline">\(X\)</span>
+<ul>
+<li>then <span class="math inline">\(z = a_1^\top x + b_1^\top u + f_1\)</span>,</li>
+<li>else <span class="math inline">\(z = a_2^\top x + b_2^\top u + f_2\)</span>.</li>
+</ul></li>
+<li>It can be expressed as <span class="math display">\[
+\begin{aligned}
+z &amp;= \delta\,(a_1^\top x + b_1^\top u + f_1) \\
+&amp;\quad + (1-\delta)(a_2^\top x + b_2^\top u + f_2)
+\end{aligned}
+\]</span></li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[
+\begin{aligned}
+(m_2-M_1)\delta  + z &amp;\leq a_2^\top x + b_2^\top u + f_2,\\
+(m_1-M_2)\delta  - z &amp;\leq -a_2^\top x - b_2^\top u - f_2,\\
+(m_1-M_2)(1-\delta)  + z &amp;\leq a_1^\top x + b_1^\top u + f_1,\\
+(m_2-M_1)(1-\delta)  - z &amp;\leq -a_1^\top x - b_1^\top u - f_1.
+\end{aligned}
+\]</span></p>
+</section>
+<section id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="level2">
+<h2 class="anchored" data-anchor-id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</h2>
+<p><span class="math display">\[
+\begin{aligned}
+h_i(x_c(k), u_c(k)) &amp;\leq M_i (1-\delta_{e,i})\\
+h_i(x_c(k), u_c(k)) &amp;\geq \epsilon + (m_i-\epsilon) \delta_{e,i}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="switched-affine-system" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="switched-affine-system">Switched affine system</h2>
+<ul>
+<li>We want to get rid of the <code>IF-THEN</code> and formulate the switching mechanism into the format of inequalities too.</li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[
+x_c(k+1) = \sum_{i=1}^s z_i(k),  
+\]</span></p>
+<ul>
+<li>where <span class="math display">\[
+z_1(k) =
+\begin{cases}
+A_1 x_c(k) + B_1 u_c(k) + f_1 &amp; \text{if}\;i(k)=1\\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</span></li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[\quad \vdots\]</span></p>
+<p>. . .</p>
+<p><span class="math display">\[
+z_s(k) =
+\begin{cases}
+A_s x_c(k) + B_s u_c(k) + f_s &amp; \text{if}\;i(k)=s\\
+0 &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<ul>
+<li>For each <span class="math inline">\(i\in \{1, 2, \ldots, s\}\)</span></li>
+</ul>
+<p>. . .</p>
+<p><span class="math display">\[
+\begin{aligned}
+z_i &amp;\leq M_i\delta_i,\\
+- z_i &amp;\leq -m_i\delta_i,\\
+z_i &amp;\leq a_i^\top x + b_i^\top u + f_i - m_i(1-\delta_i),\\
+-z_i &amp;\leq -(a_i^\top x + b_i^\top u + f_i) + M_i(1-\delta_i).
+\end{aligned}
+\]</span></p>
+</section>
+<section id="mixed-logical-dynamical-mld-system" class="level2">
+<h2 class="anchored" data-anchor-id="mixed-logical-dynamical-mld-system">Mixed logical dynamical (MLD) system</h2>
+<p><span class="math display">\[
+\begin{aligned}
+x(k+1) &amp;= Ax(k) + B_u u(k) + B_\delta\delta + B_zz(k) + B_0\\
+y(k) &amp;= Cx(k) + D_u u(k) + D_\delta \delta + D_z z + D_0\\
+E_\delta \delta &amp;+ E_z z(k) \leq E_u u(k) + E_x x(k) + E_0  
+\end{aligned}
+\]</span></p>
+</section>
+<section id="simple-example" class="level2">
+<h2 class="anchored" data-anchor-id="simple-example">Simple example</h2>
+</section>
+<section id="hysdel-language" class="level2">
+<h2 class="anchored" data-anchor-id="hysdel-language">HYSDEL language</h2>
+</section>
+<section id="piecewise-affine-systems" class="level2">
+<h2 class="anchored" data-anchor-id="piecewise-affine-systems">Piecewise affine systems</h2>
+<p>. . .</p>
+<p><span class="math display">\[
+\begin{aligned}
+x(k+1) &amp;= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\
+y(k) &amp;= C_{i(k)}x(k) + D_{i(k)} u(k) + g_{i(k)}\\
+&amp; \; H_{i(k)} x(k) + J_{i(k)} u(k) \leq K_{i(k)}
+\end{aligned}
+\]</span></p>
+<ul>
+<li>DHA, MLD, PWA are equivalent.</li>
+</ul>
 
 
 </section>
@@ -1533,18 +1412,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./petri_nets_references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./max_plus_systems.html" class="pagination-link" aria-label="Max-plus linear (MPL) systems">
-        <span class="nav-page-text">Max-plus linear (MPL) systems</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

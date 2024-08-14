@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hybrid automata – B(E)3M35HYS – Hybrid systems</title>
+<title>Course outline – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./hybrid_automata_references.html" rel="next">
-<link href="./max_plus_references.html" rel="prev">
+<link href="./intro_references.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,49 +69,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -125,7 +82,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hybrid_automata.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="./hybrid_automata.html">Hybrid automata</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="./intro_outline.html">Course outline</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +124,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Course outline</span></a>
   </div>
 </li>
@@ -295,7 +252,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link active">
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid automata</span></a>
   </div>
 </li>
@@ -577,24 +534,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#hybrid-automaton-with-external-events-and-control-inputs" id="toc-hybrid-automaton-with-external-events-and-control-inputs" class="nav-link active" data-scroll-target="#hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</a>
-  <ul class="collapse">
-  <li><a href="#some-modifications-needed" id="toc-some-modifications-needed" class="nav-link" data-scroll-target="#some-modifications-needed">Some modifications needed</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hybrid_automata.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="./hybrid_automata.html">Hybrid automata</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="./intro_outline.html">Course outline</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Hybrid automata</h1>
+<h1 class="title">Course outline</h1>
 </div>
 
 
@@ -611,464 +559,47 @@ window.Quarto = {
 </header>
 
 
-<p>We start with an <em>autonomous</em> (=no external/control inputs) <em>hybrid automaton</em>. It is a tuple of sets and (set) mappings <span class="math display">
-\boxed{
-\mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\},}
-</span> where</p>
+<p>The course is structured into 14 topics, each of them corresponding to one lecture. The topics are as follows:</p>
 <ul>
-<li><p><span class="math inline">\mathcal  Q</span> is a set of <em>discrete states</em> (also called <em>modes</em> or <em>operating modes</em> or <em>locations</em>).</p>
-<ul>
-<li>Examples:
-<ul>
-<li><span class="math inline">\mathcal Q = \{\text{on}, \text{off}\}</span>,</li>
-<li><span class="math inline">\mathcal Q = \{\text{working}, \text{broken},\text{in repair}\}</span>,</li>
-<li><span class="math inline">\mathcal Q = \{\text{gear}\,1, \ldots, \text{gear}\,5\}</span> .</li>
-</ul></li>
-<li>It can be characterized either by
-<ul>
-<li>by enumeration like above, or</li>
-<li>using a state variable <span class="math inline">q(t)</span> attaining discrete values. The variable can also be a vector one, possibly a binary vector state variable encoding an integer scalar state variable.</li>
-</ul></li>
-</ul></li>
-<li><p><span class="math inline">\mathcal Q_0\subseteq \mathcal  Q</span> is a set of initial discrete states.</p>
-<ul>
-<li>It can contain only a single element.
-<ul>
-<li>Example: <span class="math inline">\mathcal Q_0 = \{\text{off}\}</span>.</li>
-</ul></li>
-<li>But if it contains more than one element, it can be used to represent uncertainty in the initial state.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal X\subseteq \mathbb R^n</span> is a set of continuous states.</p>
-<ul>
-<li>Rather than by enumeration as in the case of discrete state, it is characterized by real-valued state variables <span class="math inline">x</span>, oftentimes vector ones <span class="math inline">\bm x</span>. Often they are denoted <span class="math inline">\bm x(t)</span> to emphasize the evolution in time.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal X_0\subseteq \mathcal X</span> is a set of initial continuous states.</p>
-<ul>
-<li>A set of values of the (vector) state variable at the initial time.</li>
-<li>Often just a single initial state <span class="math inline">\mathcal X_0=\{x_0\}</span>, but it can be useful to set ranges of the values of individual state variables to account for uncertainty.</li>
-</ul></li>
-<li><p><span class="math inline">f:\mathcal{Q}\times \mathcal X \rightarrow \mathbb R^n</span> is a vector field parameterized by the location</p>
-<ul>
-<li><p>Often the dependence on the location <span class="math inline">q</span> expressed as <span class="math inline">f_q(x)</span> rather than the more symmetric <span class="math inline">f(q,x)</span>.</p></li>
-<li><p>This defines a state equation parameterized by the location: <span class="math display">\dot{x}(t) = f_q(x(t)).</span></p></li>
-<li><p>It is also possible to consider a set-valued map, replacing <span class="math inline">f</span> with <span class="math display">\mathcal F: \mathcal{Q}\times \mathcal X \rightarrow 2^{\mathbb R^n},</span> which leads to the <em>differential inclusion</em> <span class="math display">\dot x \in \mathcal F_q(x).</span></p></li>
-</ul></li>
-<li><p><span class="math inline">\mathcal I: \mathcal Q \rightarrow 2^\mathcal{X}</span> gives a (location) <em>invariant</em>. It is also called a <em>domain</em> (of the location). The latter term is perhaps more appropriate becaue the term invariant is already too much overloaded in the context of dynamical systems.</p>
-<ul>
-<li>It is parameterized by the location.</li>
-<li>It is a subset of the continuous-valued state space <span class="math inline">\mathcal I(q) \subseteq \mathbb R^n</span>.</li>
-<li>It is a set of values that the state variables are allowed to attain while staying in the given location; if the state of the systems evolves towards the boundary of this set with a tendency to leave it, the system must be ready to leave that location by transitioning to another location.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Strictly speaking, <span class="math inline">\mathcal{I}</span> is a mapping and not a set. It is only the mapping evaluated at a given location <span class="math inline">q</span>, that is, <span class="math inline">\mathcal{I}(q)</span> is a set.</p>
-</div>
-</div>
-<ul>
-<li><p><span class="math inline">\mathcal E\subseteq \mathcal Q \times \mathcal Q</span> is a set of <em>transitions</em>.</p>
-<ul>
-<li>It is a set of the edges of the graph.</li>
-<li>Example: <span class="math inline">\mathcal E = \{(\text{off},\text{on}),(\text{on},\text{off})\}</span>, that is, a two-component set.</li>
-</ul></li>
-<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^\mathcal{X}</span> gives a <em>guard set</em>.</p>
-<ul>
-<li>It is associated with a given transition. In particular, <span class="math inline">\mathcal G(q_i,q_j)</span> is the <em>guard set</em> for the transition <span class="math inline">(q_i,q_j)\in\mathcal E</span>.<br>
+<li>Discrete-event systems
+<ol type="1">
+<li>(State) automata (state machines) (incl.&nbsp;timed variants)</li>
+<li>Petri nets (and timed Petri nets),</li>
+<li>Max-Plus algebra and Max-Plus Linear (MPL) systems</li>
+</ol></li>
+<li>Hybrid systems
+<ol start="4" type="1">
+<li>Hybrid automata</li>
+<li>Hybrid equations</li>
+</ol></li>
+<li>Special classes of hybrid systems
+<ol start="6" type="1">
+<li>Reset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)</li>
+<li>Complementarity dynamical systems (and complementarity optimization constraints)<br>
 </li>
-<li>The <em>guard condition</em> for the given transition is satisfied if <span class="math inline">x\in \mathcal G(q_i,q_j)</span>.</li>
-<li>If the guard condition is satisfied, the transition is <em>enabled</em> – it may be executed. But it does not have to.</li>
-<li>The enabled transition must be executed when the state <span class="math inline">x</span> leaves the invariant set of the original location.</li>
+</ol></li>
+</ul>
+<ol start="8" type="1">
+<li>Solutions of hybrid systems</li>
+</ol>
+<ul>
+<li>Stability of hybrid systems
+<ol start="9" type="1">
+<li>Common Lyapunov function
+<ul>
+<li>Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)</li>
+<li>Polynomial Lyapunov function via sum-of-squares (SOS) programming</li>
 </ul></li>
-<li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\rightarrow 2^{\mathcal X}</span> is a <em>reset map</em>.</p>
-<ul>
-<li>For a given transition from one location to another, it resets the continuous-valued state <span class="math inline">x</span> to a new value within some subset.</li>
-<li>Often the map is single-valued, <span class="math inline">r: \mathcal E \times \mathcal X\rightarrow \mathcal X</span> (multivalued-ness can be used to model uncertainty).</li>
-<li>We also say that the state experiences a <em>jump</em>.<br>
-</li>
-<li>The state after the jump (associated with the given transition) is reset according to <span class="math inline">x^+ = r(q_i,q_j, x)</span>, or <span class="math inline">x^+ \in \mathcal R(q_i,q_j, x)</span> in the multivalued case.<br>
-</li>
-<li>If no resetting of the continuous-valued state takes place, the reset map is defined just as the identity operator with respect to <span class="math inline">x</span> , that is, <span class="math inline">r(q_i,q_j, x) = x</span>.</li>
-</ul></li>
+<li>Piecewise quadratic/polynomial Lyapunov function via S-procedure</li>
+</ol></li>
 </ul>
-<div id="exm-thermostat" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Thermostat – the hello world example of a hybrid automaton)</strong></span> The thermostat is a device that turns some heater <code>on</code> or <code>off</code> (or sets some valve open or closed) based on the sensed temperature. The goal is to keep the temperature around, say, <span class="math inline">18^\circ</span> C.</p>
-<p>Naturally, the discrete states (modes, locations) are <code>on</code> and <code>off</code>. Initially, the heater is <code>off</code>. We can identify the first two components of the hybrid automaton: <span class="math display">\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}</span></p>
-<p>The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval <span class="math inline">(5,10)</span>. Two more components of the hybrid automaton follow: <span class="math display">\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}</span></p>
-<p>In the two modes <code>on</code> and <code>off</code>, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say: <span class="math display">
-f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
-</span> which gives another component for the hybrid automaton.</p>
-<p>The control logic of the thermostat is captured by the <span class="math inline">\mathcal I</span> and <span class="math inline">\mathcal G</span> components of the hybrid automaton. Let’s determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval <span class="math inline">(18 \pm 2)^\circ</span> is acceptable. <span class="math display">
-\mathcal I(\text{off}) = \{x\mid x&gt; 16\},\quad \mathcal I(\text{on}) = \{x\mid x&lt; 20\},
-</span></p>
-<p><span class="math display">
-\mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
-</span></p>
-<p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump.</p>
-<p>The graphical representation of the thermostat hybrid automaton is shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/thermostat_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Hybrid automaton for a thermostat</figcaption>
-</figure>
-</div>
-<p>We have two final remarks about this model:</p>
-<ul>
-<li>Since not just a single initial temperature but rather a range of initial temperatures is considered, the model is not deterministic.</li>
-<li>The quality of this regulation is such that the temperatures go up and down. This is due to the type of the control (hysteretic control).</li>
-</ul>
-</div>
-<section id="hybrid-automaton-with-external-events-and-control-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</h2>
-<p>We now extend the hybrid automaton with two new components:</p>
-<ul>
-<li>a set <span class="math inline">\mathcal{A}</span> of (external) actions (also events or symbols),</li>
-<li>a set <span class="math inline">\mathcal{U}</span> external continuous-valued inputs (control inputs or disturbances).</li>
-</ul>
-<p><span class="math display">\boxed{
-  \mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, \mathcal I, \mathcal A, \mathcal U, f, \mathcal E, \mathcal G, \mathcal R\} ,}
-</span> where</p>
-<ul>
-<li><span class="math inline">\mathcal A = \{a_1,a_2,\ldots, a_s\}</span> is a set of actions
-<ul>
-<li>The role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.</li>
-<li>Unlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.</li>
-</ul></li>
-</ul>
-<div class="notes">
-<p>In simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.</p>
-</div>
-<ul>
-<li><p><span class="math inline">\mathcal U\in\mathbb R^m</span> is a set of continuous-valued inputs</p>
-<ul>
-<li>Real-valued functions of time.</li>
-<li>Control inputs, disturbances, references, noises.</li>
-</ul></li>
-</ul>
-<div class="notes">
-<p>In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.</p>
-</div>
-<section id="some-modifications-needed" class="level3">
-<h3 class="anchored">Some modifications needed</h3>
-<p>upon introduction of these two types of external inputs:</p>
-<ul>
-<li><p><span class="math inline">f: \mathcal Q \times \mathcal X \times \mathcal U \rightarrow \mathbb R^n</span> is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation <span class="math inline">\dot x = f_q(x,u)</span>.</p></li>
-<li><p><span class="math inline">\mathcal E\subseteq \mathcal Q \times (\mathcal A) \times \mathcal Q</span> is a set of transitions now possibly parameterized by the actions (as in classical automata).</p></li>
-<li><p><span class="math inline">\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}</span> is a location invariant now augmented with a subset of the control input set.</p></li>
-<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set.</p></li>
-<li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}</span> is a (state) reset map that is now additionally parameterized by the control input.</p></li>
-<li><p>The guard set for the given location gives just necessary (also <em>enabling</em>) conditions for the transition (<span class="math inline">x\in \mathcal{G}(q)</span>).</p></li>
-<li><p>If enabled, the transition can happen if one of the two things is satisfied:</p>
-<ul>
-<li>the continous state leaves the invariant set of the given location,<br>
-</li>
-<li>an external event occurs.</li>
-</ul></li>
-</ul>
-<div id="exm-button-controlled-LED" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/button_controlled_LED.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a button controlled LED</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\mathcal{Q} = \{\mathrm{off}, \mathrm{dim}, \mathrm{bright}\},\quad \mathcal{Q}_0 = \{\mathrm{off}\}
-</span></p>
-<p><span class="math display">
-\mathcal{X} = \mathbb{R}, \quad \mathcal{X}_0 = \{0\}
-</span></p>
-<p><span class="math display">
-\mathcal{I(\mathrm{off})} = \mathcal{I(\mathrm{bright})} = \mathcal{I(\mathrm{dim})} = \{x\in\mathbb R \mid x \geq 0\}
-</span></p>
-<p><span class="math display">
-f(x) = 1
-</span></p>
-<p><span class="math display">
-\mathcal{A} = \{\mathrm{press}\}
-</span></p>
-<p><span class="math display">
-\begin{aligned}
-\mathcal{E} &amp;= \{(\mathrm{off},\mathrm{press},\mathrm{dim}),(\mathrm{dim},\mathrm{press},\mathrm{off}),\\
-&amp;\qquad (\mathrm{dim},\mathrm{press},\mathrm{bright}),(\mathrm{bright},\mathrm{press},\mathrm{off})\}
-\end{aligned}
-</span></p>
-<p><span class="math display">
-\begin{aligned}
-\mathcal{G}((\mathrm{off},\mathrm{press},\mathrm{dim})) &amp;= \mathcal X \\
-\mathcal{G}((\mathrm{dim},\mathrm{press},\mathrm{off})) &amp;= \{x \in \mathcal X \mid x&gt;2\}\\
-\mathcal{G}((\mathrm{dim},\mathrm{press},\mathrm{bright})) &amp;= \{x \in \mathcal X \mid x\leq 2\}\\
-\mathcal{G}((\mathrm{bright},\mathrm{press},\mathrm{off})) &amp;= \mathcal X.
-\end{aligned}
-</span></p>
-<p><span class="math display">
-r((\mathrm{off},\mathrm{press},\mathrm{dim}),x) = 0,
-</span></p>
-<ul>
-<li>that is, <span class="math inline">x^+ = r((\mathrm{off},\mathrm{press},\mathrm{dim}),x) = 0</span>.</li>
-<li>For all other transitions <span class="math inline">r((\cdot, \cdot, \cdot),x)=x</span>,
-<ul>
-<li>that is, <span class="math inline">x^+ = x</span>.</li>
-</ul></li>
-</ul>
-</div>
-<div id="exm-water-tank" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Water tank)</strong></span> We consider a water tank with one inflow and two outflows – one at the bottom, the other at some nonzero height <span class="math inline">h_\mathrm{m}</span>. The water level <span class="math inline">h</span> is the continuous state variable.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Water tank example</figcaption>
-</figure>
-</div>
-<p>The model essentially expresses that the change in the volume is given by the difference between the inflow and the outflows. The outflows are proportional to the square root of the water level (Torricelli’s law) <span class="math display">
-\dot V =
-\begin{cases}
-Q_\mathrm{in} - Q_\mathrm{out,middle} - Q_\mathrm{out,bottom}, &amp; h&gt;h_\mathrm{m}\\
-Q_\mathrm{in} - Q_\mathrm{out,bottom}, &amp; h\leq h_\mathrm{m}
-\end{cases}
-</span></p>
-<p>Apparently things change when the water level crosses (in any direction) the height <span class="math inline">h_\mathrm{m}</span>. This can be modelled using a hybrid automaton.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a water tank example</figcaption>
-</figure>
-</div>
-<p>One lesson to learn from this example is that the transition from one mode to another is not necessarily due to some computer-controlled switch. Instead, it is our modelling choice. It is an approximation that assumes negligible diameter of the middle pipe. But taking into the consideration the volume of the tank, it is probably a justifiable approximation.</p>
-</div>
-<div id="exm-bouncing-ball" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Bouncing ball)</strong></span> We assume that a ball is falling from some initial nonzero height above the table. After hitting the table, it bounces back, loosing a portion of the energy (the deformation is not perfectly elastic).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/bouncing_ball.png" class="img-fluid figure-img" style="width:25.0%"></p>
-<figcaption>Bouncing ball example</figcaption>
-</figure>
-</div>
-<p>The state equation during the free fall is <span class="math display">
-\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}.
-</span></p>
-<p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
-<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div id="fig-bouncing-ball-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="hybrid_automata_figures/bouncing_ball_automaton.png" class="img-fluid figure-img" style="width:50.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Hybrid automaton for a bouncing ball eaxample
-</figcaption>
-</figure>
-</div>
-<p>For completeness, here are the individual components of the hybrid automaton: <span class="math display">
-\mathcal{Q} = \{q\}, \; \mathcal{Q}_0 = \{q\}
-</span></p>
-<p><span class="math display">
-\mathcal{X} = \mathbb R^2, \; \mathcal{X}_0 = \left\{\begin{bmatrix}10\\0\end{bmatrix}\right\}
-</span></p>
-<p><span class="math display">
-\mathcal{I} = \{\mathbb R^2 \mid x_1 &gt; 0 \lor (x_1 = 0 \land x_2 &gt; 0)\}
-</span></p>
-<p><span class="math display">
-f(\bm x) = \begin{bmatrix} x_2\\ -g\end{bmatrix}
-</span></p>
-<p><span class="math display">
-\mathcal{E} = \{(q,q)\}
-</span></p>
-<p><span class="math display">
-\mathcal{G} = \{\bm x\in\mathbb R^2 \mid x_1=0 \land x_2 &lt; 0\}
-</span></p>
-<p><span class="math display">
-r((q,q),\bm x) = \begin{bmatrix}x_1\\ -\gamma x_2 \end{bmatrix},
-</span> where <span class="math inline">\gamma</span> is the coefficient of restitution (e.g., <span class="math inline">\gamma = 0.9</span>).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Comment on the invariant set for the bouncing ball
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some authors characterize the invariant set as <span class="math inline">x_1\geq 0</span>. But this means that as the ball touches the ground, nothing forces it to leave the location and do the transition. Instead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition. The current definition avoids this.</p>
-<p>On the other hand, when solving the model numerically, the use of inequalities to define sets is inevitable. And some numerical solvers, in particular optimization solvers, cannot handle strict inequalities. That is perhaps why some authors are quite relaxed about this issue. We will encounter it later on.</p>
-</div>
-</div>
-</div>
-<div id="exm-stick-slip-friction" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5 (Stick-slip friction model (Karnopp))</strong></span> Consider a block of mass <span class="math inline">m</span> placed freely on a surface. External horizontal force <span class="math inline">F_\mathrm{a}</span> is applied to the block, setting it to a horizontaly sliding motion, against which the friction force <span class="math inline">F_\mathrm{f}</span> is acting: <span class="math display">
-m\dot v = F_\mathrm{a} - F_\mathrm{f}(v).
-</span></p>
-<p>Common choice for a model of friction between two surfaces is <em>Coulomb friction</em> <span class="math display">
-F_\mathrm{f}(v) = F_\mathrm{c}\operatorname*{sgn}(v).
-</span></p>
-<p>The model is perfectly intuitive, isn’t it? Well, what if <span class="math inline">v=0</span> and <span class="math inline">F_\mathrm{a}&lt;F_\mathrm{c}</span>? Can you see the trouble?</p>
-<p>One of the remedies is the Karnopp model of friction <span class="math display">
-m\dot v = 0, \qquad v=0, \; |F_\mathrm{a}| &lt; F_\mathrm{c}
-</span> <span class="math display">
-F_\mathrm{f} = \begin{cases}\operatorname*{sat}(F_\mathrm{a},F_\mathrm{c}), &amp; v=0\\F_\mathrm{c}\operatorname*{sgn}(v), &amp; \mathrm{else}\end{cases}
-</span></p>
-<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<div id="fig-karnopp-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="hybrid_automata_figures/karnopp_automaton.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Hybrid automaton for the Karnopp model of friction
-</figcaption>
-</figure>
-</div>
-</div>
-<div id="exm-rimless-wheel" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Figure&nbsp;3</a>.</p>
-<div id="fig-rimless-wheel" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="hybrid_automata_figures/rimless_wheel.png" class="img-fluid figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Rimless wheel
-</figcaption>
-</figure>
-</div>
-<p>A hybrid automaton for the rimless wheel is below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>Hybrid automaton for a rimless wheel</figcaption>
-</figure>
-</div>
-<p>Alternatively, do not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable <span class="math inline">s \in [0, 1, \ldots, 5]</span> within a single location.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton_single_location.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Alternative hybrid automaton for a rimless wheel</figcaption>
-</figure>
-</div>
-</div>
-<div id="exm-DC-DC-boost-converter" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_circuit.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption>DC-DC boost converter</figcaption>
-</figure>
-</div>
-<p>Not just the switch but also the (ideal) diode is introducing mode transitions.</p>
-<section id="example-dc-dc-boost-converter-the-switch-closed" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-the-switch-closed">Example: DC-DC boost converter – the switch closed</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: the switch closed</figcaption>
-</figure>
-</div>
-<p>. . .</p>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
--\frac{R_\mathrm{L}}{L}i_\mathrm{L} &amp; 0\\
-0 &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-\frac{1}{L}\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-</section>
-<section id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm">Example: DC-DC boost converter – continuous conduction mode (CCM)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: continuous conduction mode (CCM)</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
--\frac{R_\mathrm{L}+ \frac{RR_\mathrm{C}}{R+R_\mathrm{C}}}{L} &amp; -\frac{R}{L(R+R_\mathrm{C})}\\
-\frac{R}{C(R+R_\mathrm{C})} &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-\frac{1}{L}\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-</section>
-<section id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm">Example: DC-DC boost converter – discontinuous cond. mode (DCM)</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: discontinuous conduction model (DCM)</figcaption>
-</figure>
-</div>
-<p><span class="math display">
-\begin{bmatrix}
-\frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
-\frac{\mathrm{d}v_\mathrm{C}}{\mathrm{d}t}
-\end{bmatrix}
-=
-\begin{bmatrix}
-0 &amp; 0\\
-0 &amp; -\frac{1}{C(R+R_\mathrm{C})}
-\end{bmatrix}
-\begin{bmatrix}
-i_\mathrm{L}\\
-v_\mathrm{C}
-\end{bmatrix}
-+
-\begin{bmatrix}
-0\\
-0
-\end{bmatrix}
-v_0
-</span></p>
-<div class="notes">
-<p>Possibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.</p>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Hybrid automaton for a DC-DC boost converter</figcaption>
-</figure>
-</div>
-</section>
-</div>
+<ol start="11" type="1">
+<li>Mixed-logical dynamical (MLD) description of hybrid systems</li>
+<li>Model predictive control (MPC) for MLD systems</li>
+<li>(Formal) verification of hybrid systems</li>
+</ol>
 
 
-</section>
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1493,12 +1024,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./max_plus_references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="./intro.html" class="pagination-link" aria-label="What is a hybrid system?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What is a hybrid system?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./hybrid_automata_references.html" class="pagination-link" aria-label="Literature">
+      <a href="./intro_references.html" class="pagination-link" aria-label="Literature">
         <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
