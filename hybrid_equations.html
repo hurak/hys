@@ -358,6 +358,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -422,6 +428,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -445,8 +457,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1096,6 +1108,29 @@ g(\bm x, q) = 1-q \quad \forall [\bm x, q]^\top \in \mathcal D.
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([c₀], label<span class="op">=</span><span class="st">"c₀"</span>)</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([c₁], label<span class="op">=</span><span class="st">"c₁"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Precompiling OrdinaryDiffEq
+  ✓ SciMLBase
+  ✓ SciMLBase → SciMLBaseChainRulesCoreExt
+  ✓ SciMLBase → SciMLBaseMakieExt
+  ✓ DiffEqBase
+  ✓ DiffEqBase → DiffEqBaseUnitfulExt
+  ✓ DiffEqBase → DiffEqBaseChainRulesCoreExt
+  ✓ DiffEqBase → DiffEqBaseSparseArraysExt
+  ✓ DiffEqBase → DiffEqBaseDistributionsExt
+  ✓ LinearSolve
+  ✓ LinearSolve → LinearSolveFastAlmostBandedMatricesExt
+  ✓ SimpleNonlinearSolve
+  ✓ SimpleNonlinearSolve → SimpleNonlinearSolveChainRulesCoreExt
+  ✓ NonlinearSolve
+  ✓ NonlinearSolve → NonlinearSolveNLsolveExt
+  ✓ NonlinearSolve → NonlinearSolveBandedMatricesExt
+  ✓ OrdinaryDiffEq
+  16 dependencies successfully precompiled in 74 seconds. 341 already precompiled.
+Precompiling DiffEqBaseUnitfulExt
+  ✓ DiffEqBase → DiffEqBaseUnitfulExt
+  1 dependency successfully precompiled in 1 seconds. 302 already precompiled.</code></pre>
+</div>
 <div id="fig-simulation-stabilization-on-a-circle" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="2">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simulation-stabilization-on-a-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1164,11 +1199,11 @@ Figure&nbsp;3: Simulation of stabilization on a circle using a hybrid controller
 <div id="cell-fig-simulation-stabilization-on-a-circle-XY" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol,vars<span class="op">=</span>(<span class="fl">1</span>,<span class="fl">2</span>),label<span class="op">=</span><span class="st">""</span>,xaxis<span class="op">=</span><span class="st">"x₁"</span>,yaxis<span class="op">=</span><span class="st">"x₂"</span>,lw<span class="op">=</span><span class="fl">2</span>,aspect_ratio<span class="op">=</span><span class="fl">1</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₀], label<span class="op">=</span><span class="st">"c₀"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₁], label<span class="op">=</span><span class="st">"c₁"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([x₀[<span class="fl">1</span>]],[x₀[<span class="fl">2</span>]],label<span class="op">=</span><span class="st">"x init"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([<span class="fl">1</span>],[<span class="fl">0</span>],label<span class="op">=</span><span class="st">"x ref"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol,vars<span class="op">=</span>(<span class="fl">1</span>,<span class="fl">2</span>),label<span class="op">=</span><span class="st">""</span>,xaxis<span class="op">=</span><span class="st">"x₁"</span>,yaxis<span class="op">=</span><span class="st">"x₂"</span>,lw<span class="op">=</span><span class="fl">2</span>,aspect_ratio<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₀], label<span class="op">=</span><span class="st">"c₀"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₁], label<span class="op">=</span><span class="st">"c₁"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([x₀[<span class="fl">1</span>]],[x₀[<span class="fl">2</span>]],label<span class="op">=</span><span class="st">"x init"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([<span class="fl">1</span>],[<span class="fl">0</span>],label<span class="op">=</span><span class="st">"x ref"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.

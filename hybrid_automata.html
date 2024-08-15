@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./hybrid_automata_references.html" rel="next">
+<link href="./hybrid_automata_software.html" rel="next">
 <link href="./max_plus_references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -301,6 +301,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -365,6 +371,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -388,8 +400,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -756,7 +768,7 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 <p>In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.</p>
 </div>
 <section id="some-modifications-needed" class="level3">
-<h3 class="anchored">Some modifications needed</h3>
+<h3 class="anchored" data-anchor-id="some-modifications-needed">Some modifications needed</h3>
 <p>upon introduction of these two types of external inputs:</p>
 <ul>
 <li><p><span class="math inline">f: \mathcal Q \times \mathcal X \times \mathcal U \rightarrow \mathbb R^n</span> is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation <span class="math inline">\dot x = f_q(x,u)</span>.</p></li>
@@ -856,7 +868,7 @@ Q_\mathrm{in} - Q_\mathrm{out,bottom}, &amp; h\leq h_\mathrm{m}
 \dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}.
 </span></p>
 <p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
-<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig&nbsp;1</a>.</p>
 <div id="fig-bouncing-ball-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -916,7 +928,7 @@ m\dot v = 0, \qquad v=0, \; |F_\mathrm{a}| &lt; F_\mathrm{c}
 </span> <span class="math display">
 F_\mathrm{f} = \begin{cases}\operatorname*{sat}(F_\mathrm{a},F_\mathrm{c}), &amp; v=0\\F_\mathrm{c}\operatorname*{sgn}(v), &amp; \mathrm{else}\end{cases}
 </span></p>
-<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Fig&nbsp;2</a>.</p>
 <div id="fig-karnopp-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -929,11 +941,11 @@ Figure&nbsp;2: Hybrid automaton for the Karnopp model of friction
 </div>
 </div>
 <div id="exm-rimless-wheel" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Figure&nbsp;3</a>.</p>
+<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Fig&nbsp;3</a>.</p>
 <div id="fig-rimless-wheel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="hybrid_automata_figures/rimless_wheel.png" class="img-fluid figure-img" style="width:60.0%">
+<img src="hybrid_automata_figures/rimless_wheel.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Rimless wheel
@@ -947,7 +959,7 @@ Figure&nbsp;3: Rimless wheel
 <figcaption>Hybrid automaton for a rimless wheel</figcaption>
 </figure>
 </div>
-<p>Alternatively, do not represent the discrete-state variable graphically as a location (a node in the graph) but rather as another state variable <span class="math inline">s \in [0, 1, \ldots, 5]</span> within a single location.</p>
+<p>Alternatively, we do not represent the discrete state graphically as a node in the graph but rather as another state variable <span class="math inline">s \in \{0, 1, \ldots, 5\}</span> within a single location.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hybrid_automata_figures/rimless_wheel_automaton_single_location.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -956,23 +968,26 @@ Figure&nbsp;3: Rimless wheel
 </div>
 </div>
 <div id="exm-DC-DC-boost-converter" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_circuit.png" class="img-fluid figure-img" style="width:40.0%"></p>
-<figcaption>DC-DC boost converter</figcaption>
+<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> The enabling mechanism for a DC-DC converter is switching. Although the switching is realized with a semiconductor switch, for simplicity of the exposition we consider a manual switch in <a href="#fig-dc-dc-boost-converter" class="quarto-xref">Fig&nbsp;4</a> below.</p>
+<div id="fig-dc-dc-boost-converter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dc-dc-boost-converter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/dc_dc_boost_converter_circuit.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: DC-DC boost converter
+</figcaption>
 </figure>
 </div>
-<p>Not just the switch but also the (ideal) diode is introducing mode transitions.</p>
-<section id="example-dc-dc-boost-converter-the-switch-closed" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-the-switch-closed">Example: DC-DC boost converter – the switch closed</h2>
+<p>The switch introduces two modes of operation. But the (ideal) diode introduces a mode transition too.</p>
+<section id="the-switch-closed" class="level3">
+<h3 class="anchored" data-anchor-id="the-switch-closed">The switch closed</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption>DC-DC boost converter: the switch closed</figcaption>
 </figure>
 </div>
-<p>. . .</p>
 <p><span class="math display">
 \begin{bmatrix}
 \frac{\mathrm{d}i_\mathrm{L}}{\mathrm{d}t}\\
@@ -995,8 +1010,8 @@ v_\mathrm{C}
 v_0
 </span></p>
 </section>
-<section id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-continuous-conduction-mode-ccm">Example: DC-DC boost converter – continuous conduction mode (CCM)</h2>
+<section id="continuous-conduction-mode-ccm" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-conduction-mode-ccm">Continuous conduction mode (CCM)</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -1025,8 +1040,8 @@ v_\mathrm{C}
 v_0
 </span></p>
 </section>
-<section id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm" class="level2">
-<h2 class="anchored" data-anchor-id="example-dc-dc-boost-converter-discontinuous-cond.-mode-dcm">Example: DC-DC boost converter – discontinuous cond. mode (DCM)</h2>
+<section id="discontinuous-cond.-mode-dcm" class="level3">
+<h3 class="anchored" data-anchor-id="discontinuous-cond.-mode-dcm">Discontinuous cond. mode (DCM)</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -1055,7 +1070,7 @@ v_\mathrm{C}
 v_0
 </span></p>
 <div class="notes">
-<p>Possibly the events of opening and closingg the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.</p>
+<p>Possibly the events of opening and closing the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.</p>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1498,8 +1513,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./hybrid_automata_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./hybrid_automata_software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
