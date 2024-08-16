@@ -69,6 +69,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -433,6 +476,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -546,8 +595,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#linear-complementarity-system-lcs" id="toc-linear-complementarity-system-lcs" class="nav-link active" data-scroll-target="#linear-complementarity-system-lcs">Linear complementarity system (LCS)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -571,9 +626,219 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<section id="linear-complementarity-system-lcs" class="level2">
+<h2 class="anchored" data-anchor-id="linear-complementarity-system-lcs">Linear complementarity system (LCS)</h2>
+<p>Having introduced the <em>complementarity constraints</em> and optimization problems with these constraints, we can now show how these constraints can be used to model a certain class of dynamical systems – <em>complementarity dynamical systems</em>. We start with linear ones, namely, linear complementarity systems (LCS). These are also called in the literature as Linear dynamical complementarity problems (LDCP).</p>
+<p>Linear complementarity system is modelled by <span id="eq-linear-complementarity-system"><span class="math display">\boxed{
+\begin{aligned}
+\dot x(t) &amp;= A x(t) + Bu(t)\\
+y(t) &amp;= C x(t) + Du(t)\\
+0&amp;\leq u(t) \perp y(t) \geq 0.
+\end{aligned}}
+\tag{1}</span></span></p>
+<div id="exm-electrical-circuit-as-LCS" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Electrical circuit with a diode as an LCS)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/electrical_circuit_RLCD.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Electrical circuit to be modelled as an LCS</figcaption>
+</figure>
+</div>
+<p>Note the upside-down orientation of the voltage and the current for the capacitor – we wanted the diode current identical to the capacitor current.</p>
+<p>Following the charge formalism within Lagrangian modelling, we can choose the generalized coordinates as <span class="math display">
+      q = \begin{bmatrix}
+      q_L \\ q_C
+      \end{bmatrix}.
+</span></p>
+<p>That this is indeed a sufficient number is obvious, but we can also check the classical formula <span class="math inline">B-N+1 = 4-3+1 = 2</span>. But we can also choose the state variables as <span class="math display">
+      x = \begin{bmatrix}
+      i_L\\ q_c
+      \end{bmatrix}.
+</span></p>
+<p>The resulting state equations are <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C - \frac{1}{L}u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C - \frac{1}{R} u_D.
+\end{aligned}
+</span></p>
+<p>The idealized volt-ampere characteristics of the diode is</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/va_characteristics_diode.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Ideal volt-ampere characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>Flipping the axes to get the current as the horizontal axis, we get</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/av_characteristics_diode.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Flipped volt-ampere characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>Finally, after introducing an auxiliary variable (the reverse voltage of the diode) <span class="math inline">\bar u_D = -u_D</span> , we get the desired dependence</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/av_characteristics_diode_reverted_voltage.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Yet another reformatted VA characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>which can be modelled as a complementarity constraint<br>
+<span class="math display">
+0\leq i_D \perp \bar u_D \geq 0.
+</span></p>
+<p>Now, upon replacing the diode voltage with its reverse <span class="math inline">\bar u_D</span> while using <span class="math inline">i_D=i_C</span>, we get <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
+0&amp;\leq q_C' \perp \bar u_D \geq 0.
+\end{aligned}
+</span></p>
+<p>We are not there yet – there is a derivative in the complementarity constraint. But just substitute for it: <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
+0&amp;\leq i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D \perp \bar u_D \geq 0,
+\end{aligned}
+</span><br>
+and voila, we finally got the LCS description. We can also reformat it into the vector format <span class="math display">
+\begin{aligned}
+\begin{bmatrix}
+i_L' \\ q_C'
+\end{bmatrix} &amp;=
+\begin{bmatrix}
+0 &amp;-\frac{1}{LC}\\
+1  &amp; - \frac{1}{RC}
+\end{bmatrix}
+\begin{bmatrix}
+i_L \\ q_C
+\end{bmatrix} +
+\begin{bmatrix}
+\frac{1}{L}\\
+\frac{1}{R}
+\end{bmatrix}
+\bar u_D\\
+0 &amp;\leq \left(\begin{bmatrix}
+1  &amp; - \frac{1}{RC}
+\end{bmatrix}
+\begin{bmatrix}
+i_L \\ q_C
+\end{bmatrix} +
+\begin{bmatrix}
+\frac{1}{L}\\
+\frac{1}{R}
+\end{bmatrix}
+\bar u_D\right ) \bot \bar u_D \geq 0.
+\end{aligned}
+</span></p>
+</div>
+<div id="exm-mass-spring-damper-as-LCS" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Mass-spring system with a hard stop as a linear complementarity system)</strong></span> Two carts moving horitontally (left or right) are interconnected through a spring. The left cart is also interconnected with the wall through a another spring. Furthemore, the motion of the left cart is constrained in that there is a <em>hard stop</em> that prevents the cart from moving further to the left. The setup is shown in <a href="#fig-mass-spring-hard-stop" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-mass-spring-hard-stop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mass-spring-hard-stop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/mass_spring-hard_stop.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-spring-hard-stop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
+</figcaption>
+</figure>
+</div>
+<p>The variables <span class="math inline">x_1</span> and <span class="math inline">x_2</span> give deviations of the two carts from their equilibrium positions.</p>
+<p>The hard stop is located at the equilibrium position of the left cart.</p>
+<p>Besides the two positions, their derivatives are also introduced as state vectors. The input <span class="math inline">u</span> corresponds to the reaction force of the hard stop.</p>
+<p>As the output, only the position of the left cart is (arbitrarily) chosen.</p>
+<p>The state equations and the output equation are <span class="math display">
+      \begin{aligned}
+      \dot x_1(t) &amp;= x_3\\
+      \dot x_2(t) &amp;= x_4\\
+      \dot x_3(t) &amp;= -\frac{k_1+k_2}{m_1}x_1(t) + \frac{k_2}{m_1}x_2(t) + \frac{1}{m_1}u(t)\\
+      \dot x_4(t) &amp;= \frac{k_2}{m_2}x_1(t) - \frac{k_2}{m_2} x_2(t)\\
+      y(t) &amp;= x_1(t).
+      \end{aligned}
+</span></p>
+<p>The presence of the hard stop can be modelled as an inequality constraint on the state (or the output in this case) <span class="math display">x_1(t) = y(t) \geq  0.</span></p>
+<p>Strictly speaking, similar constraint should also be imposed on the right cart. That one can not overcome the hard stop either. Furthermore, the left cart would stand in the way too. But we ignore it here for the sake of simplicity of our explanation.</p>
+<p>The reaction force <span class="math inline">u</span> can only be nonnegative <span class="math display">
+    u(t) \geq 0.
+</span></p>
+<p>Furthermore, the reaction force is acting if and only if the left cart hits the hard stop, that is,<br>
+<span class="math display">
+      y(t) u(t) = 0.
+</span></p>
+<p>All the above three constraints can be written compactly as a complementarity constraing <span class="math display">
+    0\leq y(t) \perp u(t) \geq 0.
+</span></p>
+<section id="complementarity-system-as-a-feedback-interconnection" class="level2">
+<h2 class="anchored" data-anchor-id="complementarity-system-as-a-feedback-interconnection">Complementarity system as a feedback interconnection</h2>
+<p>A complementarity system <a href="#eq-linear-complementarity-system" class="quarto-xref">Eq.&nbsp;1</a> can be seen as a feedback interconnection of a linear system and a complementarity constraint.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/complementarity_in_feedback.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Complementarity system as a feedback interconnection</figcaption>
+</figure>
+</div>
+</section>
+<section id="complementarity-systems-vs-pwa-and-max-plus-linear-systems" class="level2">
+<h2 class="anchored" data-anchor-id="complementarity-systems-vs-pwa-and-max-plus-linear-systems">Complementarity systems vs PWA and max-plus linear systems</h2>
+<p><img src="complementarity_figures/max_in_feedback.png" class="img-fluid" style="width:50.0%"></p>
+<p><span class="math display">
+y = y^+ - y^-,\quad 0 \leq y^+ \bot y^- \geq 0.
+</span></p>
+<p><span class="math display">
+\max(y,0) = \max(y^+ - y^-, 0) = y^+.
+</span></p>
+<p>Set <span class="math display">y^+ = u</span></p>
+<p>then <span class="math display">
+y = u - y^- \qquad y^- = u - y
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/max_as_complementarity_in_feedback.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</section>
+<section id="more-complicated-pwa-functions-in-feedback" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/shifted_1_pwa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p>. . .</p>
+<p><span class="math display">
+u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0)
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/shifted_1_pwa_as_complementarity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</section>
+<section id="some-more-segments" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="some-more-segments">Some more segments</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/shifted_2_pwa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math display">
+\begin{aligned}
+u(y) &amp;= k_0 y + u_0 + (k_1-k_0) \max(y-y_1,0) \\
+&amp;\qquad + (k_2-k_1) \max(y-y_2,0)\\
+&amp;= k_0 y + u_0 + \underbrace{\max((k_1-k_0)(y-y_1),0)}_{u_1}\\
+&amp;\qquad + \underbrace{\max((k_2-k_1)(y-y_2),0)}_{u_2}
+\end{aligned}
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="complementarity_figures/shifted_2_pwa_as_complementarity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 
 
+</section>
+</div>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

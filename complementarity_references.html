@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./mld_why.html" rel="next">
-<link href="./complementarity_simulations.html" rel="prev">
+<link href="./complementarity_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -433,6 +453,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -571,10 +597,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Concise (short and yet sufficient for our purposes) introduction is in <span class="citation" data-cites="heemelsEquivalenceHybridDynamical2001"><a href="#ref-heemelsEquivalenceHybridDynamical2001" role="doc-biblioref">[1]</a></span>. Besides describing the idea of complementarity in dynamical systems, it also shows how it is related to other modeling frameworks for hybrid dynamical systems. More detailed and yet very accessible introduction is in the thesis <span class="citation" data-cites="heemelsLinearComplementaritySystems1999"><a href="#ref-heemelsLinearComplementaritySystems1999" role="doc-biblioref">[2]</a></span>. Condensed treatment is in the papers <span class="citation" data-cites="heemelsLinearComplementaritySystems2000"><a href="#ref-heemelsLinearComplementaritySystems2000" role="doc-biblioref">[3]</a></span> and <span class="citation" data-cites="vanderschaftComplementarityModelingHybrid1998"><a href="#ref-vanderschaftComplementarityModelingHybrid1998" role="doc-biblioref">[4]</a></span>.</p>
+<p>A readable introduction of the framework of Extended Linear Complementarity Problem is in <span class="citation" data-cites="deschutterExtendedLinearComplementarity1999"><a href="#ref-deschutterExtendedLinearComplementarity1999" role="doc-biblioref">[5]</a></span> (it is also available as a <a href="https://pub.deschutter.info/abs/98_40.html">technical report</a>).</p>
+<p>The topics of complementarity constraints is dynamical systems and optimization is still being actively researched. A recent publication on QP optimization with complementarity constraints is <span class="citation" data-cites="hallLCQPowSolverLinear2022"><a href="#ref-hallLCQPowSolverLinear2022" role="doc-biblioref">[6]</a></span>.</p>
+<p>Numerical methods for nonsmooth dynamical systems that are based on complementary constraints (and implemented in SICONOS software) are concisely presented in <span class="citation" data-cites="acaryNumericalMethodsNonsmooth2008"><a href="#ref-acaryNumericalMethodsNonsmooth2008" role="doc-biblioref">[7]</a></span>.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-heemelsEquivalenceHybridDynamical2001" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">W. P. M. H. Heemels, B. De Schutter, and A. Bemporad, <span>“Equivalence of hybrid dynamical models,”</span> <em>Automatica</em>, vol. 37, no. 7, pp. 1085–1091, Jul. 2001, doi: <a href="https://doi.org/10.1016/S0005-1098(01)00059-0">10.1016/S0005-1098(01)00059-0</a>.</div>
+</div>
+<div id="ref-heemelsLinearComplementaritySystems1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Heemels, <span>“<span>Linear complementarity systems: a study in hybrid dynamics</span>,”</span> PhD thesis, Technische Universiteit Eindhoven, Eindhoven, NL, 1999. Available: <a href="https://heemels.tue.nl/content/papers/Hee_TUE99a.pdf">https://heemels.tue.nl/content/papers/Hee_TUE99a.pdf</a></div>
+</div>
+<div id="ref-heemelsLinearComplementaritySystems2000" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">W. P. M. H. Heemels, J. M. Schumacher, and S. Weiland, <span>“Linear <span>Complementarity Systems</span>,”</span> <em>SIAM Journal on Applied Mathematics</em>, vol. 60, no. 4, pp. 1234–1269, Jan. 2000, doi: <a href="https://doi.org/10.1137/S0036139997325199">10.1137/S0036139997325199</a>.</div>
+</div>
+<div id="ref-vanderschaftComplementarityModelingHybrid1998" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">A. J. van der Schaft and J. M. Schumacher, <span>“Complementarity modeling of hybrid systems,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 43, no. 4, pp. 483–490, Apr. 1998, doi: <a href="https://doi.org/10.1109/9.664151">10.1109/9.664151</a>.</div>
+</div>
+<div id="ref-deschutterExtendedLinearComplementarity1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">B. De Schutter and B. De Moor, <span>“The <span>Extended Linear Complementarity Problem</span> and the <span>Modeling</span> and <span>Analysis</span> of <span>Hybrid Systems</span>,”</span> in <em>Hybrid <span>Systems V</span></em>, P. Antsaklis, M. Lemmon, W. Kohn, A. Nerode, and S. Sastry, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>. Berlin, Heidelberg: Springer, 1999, pp. 70–85. doi: <a href="https://doi.org/10.1007/3-540-49163-5_4">10.1007/3-540-49163-5_4</a>.</div>
+</div>
+<div id="ref-hallLCQPowSolverLinear2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">J. Hall, A. Nurkanovic, F. Messerer, and M. Diehl, <span>“<span>LCQPow</span> – <span>A Solver</span> for <span>Linear Complementarity Quadratic Programs</span>.”</span> arXiv, Nov. 2022. Accessed: Dec. 03, 2022. [Online]. Available: <a href="http://arxiv.org/abs/2211.16341">http://arxiv.org/abs/2211.16341</a></div>
+</div>
+<div id="ref-acaryNumericalMethodsNonsmooth2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">V. Acary and B. Brogliato, <em>Numerical <span>Methods</span> for <span>Nonsmooth Dynamical Systems</span>: <span>Applications</span> in <span>Mechanics</span> and <span>Electronics</span></em>. in Lecture <span>Notes</span> in <span>Applied</span> and <span>Computational Mechanics</span>, no. 35. Berlin Heidelberg: Springer, 2008. Available: <a href="https://doi.org/10.1007/978-3-540-75392-6">https://doi.org/10.1007/978-3-540-75392-6</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -997,8 +1050,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./complementarity_simulations.html" class="pagination-link" aria-label="Simulations using complementarity">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Simulations using complementarity</span>
+      <a href="./complementarity_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
