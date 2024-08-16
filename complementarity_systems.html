@@ -510,8 +510,17 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -539,6 +548,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -601,6 +616,9 @@ window.Quarto = {
    
   <ul>
   <li><a href="#linear-complementarity-system-lcs" id="toc-linear-complementarity-system-lcs" class="nav-link active" data-scroll-target="#linear-complementarity-system-lcs">Linear complementarity system (LCS)</a></li>
+  <li><a href="#complementarity-system-as-a-feedback-interconnection" id="toc-complementarity-system-as-a-feedback-interconnection" class="nav-link" data-scroll-target="#complementarity-system-as-a-feedback-interconnection">Complementarity system as a feedback interconnection</a></li>
+  <li><a href="#complementarity-systems-vs-pwa-and-max-plus-linear-systems" id="toc-complementarity-systems-vs-pwa-and-max-plus-linear-systems" class="nav-link" data-scroll-target="#complementarity-systems-vs-pwa-and-max-plus-linear-systems">Complementarity systems vs PWA and max-plus linear systems</a></li>
+  <li><a href="#more-complicated-pwa-functions-in-feedback" id="toc-more-complicated-pwa-functions-in-feedback" class="nav-link" data-scroll-target="#more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</a></li>
   </ul>
 </nav>
     </div>
@@ -768,6 +786,8 @@ Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
 <p>All the above three constraints can be written compactly as a complementarity constraing <span class="math display">
     0\leq y(t) \perp u(t) \geq 0.
 </span></p>
+</div>
+</section>
 <section id="complementarity-system-as-a-feedback-interconnection" class="level2">
 <h2 class="anchored" data-anchor-id="complementarity-system-as-a-feedback-interconnection">Complementarity system as a feedback interconnection</h2>
 <p>A complementarity system <a href="#eq-linear-complementarity-system" class="quarto-xref">Eq.&nbsp;1</a> can be seen as a feedback interconnection of a linear system and a complementarity constraint.</p>
@@ -780,64 +800,93 @@ Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
 </section>
 <section id="complementarity-systems-vs-pwa-and-max-plus-linear-systems" class="level2">
 <h2 class="anchored" data-anchor-id="complementarity-systems-vs-pwa-and-max-plus-linear-systems">Complementarity systems vs PWA and max-plus linear systems</h2>
-<p><img src="complementarity_figures/max_in_feedback.png" class="img-fluid" style="width:50.0%"></p>
-<p><span class="math display">
+<p>Consider the feedback interconnection of a dynamical system and the max(y,u) function in the feedback loop as in <a href="#fig-max-in-feedback" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-max-in-feedback" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-max-in-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/max_in_feedback.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-max-in-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Feedback interconnection of a dynamical system and a nonlinearity
+</figcaption>
+</figure>
+</div>
+<p>We now express the original <span class="math inline">y</span> as a difference of two nonnegative variable satisfying the complementarity constraint <span class="math display">
 y = y^+ - y^-,\quad 0 \leq y^+ \bot y^- \geq 0.
 </span></p>
-<p><span class="math display">
+<p>The motivation for this was that with the new variables <span class="math inline">y^+</span> and <span class="math inline">y^-</span>, the max function can be expressed as <span class="math display">
 \max(y,0) = \max(y^+ - y^-, 0) = y^+.
 </span></p>
-<p>Set <span class="math display">y^+ = u</span></p>
-<p>then <span class="math display">
-y = u - y^- \qquad y^- = u - y
-</span></p>
+<p>Now, set <span class="math display">y^+ = u</span> and then <span class="math display">
+y = u - y^-,
+</span> from which <span class="math display">
+y^- = u - y
+</span> and therefore the original feedback interconnection can be rewritten as</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="complementarity_figures/max_as_complementarity_in_feedback.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<p><img src="complementarity_figures/max_as_complementarity_in_feedback.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Feedback interconnection equivalent to the one with max(y,0)</figcaption>
 </figure>
 </div>
 </section>
-<section id="more-complicated-pwa-functions-in-feedback" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="complementarity_figures/shifted_1_pwa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<section id="more-complicated-pwa-functions-in-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</h2>
+<p>The function <span class="math inline">\max(y,0)</span> that we have just considered is a very simple piecewise affine (PWA) function. But we can consider more complicated PWA functions. Only a little bit complicated PWA function is in <a href="#fig-shifted-pwa" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-shifted-pwa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shifted-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/shifted_1_pwa.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shifted-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A simple piecewise affine function
+</figcaption>
 </figure>
 </div>
-<p>. . .</p>
-<p><span class="math display">
-u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0)
+<p>The function is defined by shifting and scaling the original <span class="math inline">\max(y,0)</span> function: <span class="math display">
+u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0).
 </span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="complementarity_figures/shifted_1_pwa_as_complementarity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<p>We can now enforce complementarity based on this function in the feedback loop, see <a href="#fig-shifted-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;4</a>.</p>
+<div id="fig-shifted-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shifted-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/shifted_1_pwa_as_complementarity.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shifted-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Feedback system with a shifted PWA function modelled as complementarity constraint
+</figcaption>
 </figure>
 </div>
-</section>
-<section id="some-more-segments" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="some-more-segments">Some more segments</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="complementarity_figures/shifted_2_pwa.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<p>This procedure can be extended towards PWA functions composed of several segments, see <a href="#fig-several-pwa" class="quarto-xref">Fig.&nbsp;5</a>.</p>
+<div id="fig-several-pwa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-several-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/shifted_2_pwa.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-several-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: PWA function with multiple segments
+</figcaption>
 </figure>
 </div>
-<p><span class="math display">
+<p>The function is defined as <span class="math display">
 \begin{aligned}
 u(y) &amp;= k_0 y + u_0 + (k_1-k_0) \max(y-y_1,0) \\
 &amp;\qquad + (k_2-k_1) \max(y-y_2,0)\\
 &amp;= k_0 y + u_0 + \underbrace{\max((k_1-k_0)(y-y_1),0)}_{u_1}\\
 &amp;\qquad + \underbrace{\max((k_2-k_1)(y-y_2),0)}_{u_2}
 \end{aligned}
-</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="complementarity_figures/shifted_2_pwa_as_complementarity.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</span> and the feedback interconnection now contain several parallel paths with complementarity constraints as in <a href="#fig-several-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;6</a></p>
+<div id="fig-several-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-several-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="complementarity_figures/shifted_2_pwa_as_complementarity.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-several-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Feedback system with multiple-segment PWA modelled as complementarity constraints
+</figcaption>
 </figure>
 </div>
 
 
-</section>
-</div>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
