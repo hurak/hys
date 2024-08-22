@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./classes_references.html" rel="next">
-<link href="./classes_PWA.html" rel="prev">
+<link href="./stability_references.html" rel="next">
+<link href="./stability_via_multiple_lyapunov_function.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_software.html">Software</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +328,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./classes_software.html" class="sidebar-item-text sidebar-link active">
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -418,7 +398,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -593,13 +573,21 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#matlab" id="toc-matlab" class="nav-link active" data-scroll-target="#matlab">Matlab</a></li>
+  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_software.html">Software</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Software</h1>
 </div>
@@ -618,39 +606,40 @@ div.csl-indent {
 </header>
 
 
-<p>Reset systems, switched systems, and piecewise affine (PWA) systems can all be viewed as special classes of hybrid systems, and as such can be modelled and simulated using software for hybrid systems (or even general purpose modelling and simulation software).</p>
-<p>However, there are also some dedicated software tools/packages/libraries for PWA systems:</p>
+<p>In our course we formulated the problem of checking stability that that of constructing a Lyapunov function, which in turn was formulated as a problem of solving an optimization problem of <em>semidefinite programming</em> (with <em>linear matrix inequalities, LMI</em>) or <em>positive (nonnegative) polynomial programming</em> (via <em>sum-of-squares (SOS) programming</em>). Hence, we need to be able to formulate and solve those optimization problems.</p>
+<section id="matlab" class="level3">
+<h3 class="anchored" data-anchor-id="matlab">Matlab</h3>
 <ul>
-<li><a href="https://www.plexim.com/products/plecs">PLECS</a>
+<li><a href="https://cvxr.com/cvx/">CVX</a></li>
+<li><a href="https://yalmip.github.io">YALMIP</a>
 <ul>
-<li>Power electronics</li>
-<li>Commercial</li>
+<li><a href="https://yalmip.github.io/tutorial/semidefiniteprogramming/">Tutorial for semidefinite programming</a></li>
+<li><a href="https://yalmip.github.io/tutorial/sumofsquaresprogramming/">Tutorial for sum-of-squares programming</a></li>
 </ul></li>
-<li><a href="https://www.mpt3.org">Multiparametric Toolbox (MPT) for Matlab</a>
+<li><a href="https://github.com/oxfordcontrol/SOSTOOLS">SOSTOOLS</a></li>
+</ul>
+</section>
+<section id="julia" class="level3">
+<h3 class="anchored" data-anchor-id="julia">Julia</h3>
 <ul>
-<li>General</li>
-<li>Special data type/class (and some related functions) for PWA systems is available in the section on <a href="https://www.mpt3.org/UI/Systems">Modeling of dynamical systems in MPT3</a>.</li>
-<li>Free and open source.</li>
+<li><a href="https://jump.dev/Convex.jl/stable/">Convex.jl</a></li>
+<li><a href="https://github.com/jump-dev/JuMP.jl">JuMP.jl</a></li>
+<li><a href="https://github.com/jump-dev/SumOfSquares.jl">SumOfSquares.jl</a></li>
+</ul>
+</section>
+<section id="python" class="level3">
+<h3 class="anchored" data-anchor-id="python">Python</h3>
+<ul>
+<li><a href="https://www.cvxpy.org">CVXPY</a>
+<ul>
+<li><a href="https://www.cvxpy.org/examples/basic/sdp.html">Tutorial for semidefinite programming</a></li>
 </ul></li>
 </ul>
-<p>Although some more free and open-source software packages for PWA systems can be found on the internet, none of them (at as far as we know) is actively developed or at least maintained anymore:</p>
-<ul>
-<li><a href="https://github.com/bsamadi/PWATOOLS">PWATOOLS</a> toolbox for Matlab, which accompanies the recently published book <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019">Rodrigues, Samadi, and Moarref (<a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">2019</a>)</span>. Unfortunately, this ten-year old toolbox is no longer working with the recent releases of Matlab and the author is no longer maintaining it.</li>
-<li><a href="https://portal.research.lu.se/en/publications/pwltool-a-matlab-toolbox-for-piecewise-linear-system">PWLTool</a> toolbox for Matlab: some traces of this toolbox can be found on the internet, but this one seems even older, obviously back then accompanying the book <span class="citation" data-cites="johanssonPiecewiseLinearControl2003">Johansson (<a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">2003</a>)</span>.</li>
-</ul>
-<p>Overall, besides the MPT toolbox that is still being actively developed (by our colleagues at STU Bratislava), not much is currently available within the open-source software domain… :-(</p>
 
 
+</section>
 
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-Johansson, Mikael K.-J. 2003. <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer. <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a>.
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-Rodrigues, Luis, Behzad Samadi, and Miad Moarref. 2019. <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>. <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -743,7 +732,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1073,12 +1062,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./classes_PWA.html" class="pagination-link" aria-label="Piecewise affine systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Piecewise affine systems</span>
+      <a href="./stability_via_multiple_lyapunov_function.html" class="pagination-link" aria-label="Stability via multiple Lyapunov functions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Stability via multiple Lyapunov functions</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./classes_references.html" class="pagination-link" aria-label="Literature">
+      <a href="./stability_references.html" class="pagination-link" aria-label="Literature">
         <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

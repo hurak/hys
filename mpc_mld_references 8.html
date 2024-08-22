@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.5">
+<meta name="generator" content="quarto-1.6.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Literature – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./classes_references.html" rel="next">
-<link href="./classes_PWA.html" rel="prev">
+<link href="./verification_intro.html" rel="next">
+<link href="./mpc_mld_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -102,7 +102,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mpc_mld_online.html">11. Model predictive control (MPC) for MLD systems</a></li><li class="breadcrumb-item"><a href="./mpc_mld_references.html">Literature</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +348,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./classes_software.html" class="sidebar-item-text sidebar-link active">
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -407,19 +407,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stability via common Lyapunov function</span></a>
+ <span class="menu-text">Common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Software</span></a>
+ <span class="menu-text">Multiple Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -541,7 +535,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link">
+  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -599,9 +593,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mpc_mld_online.html">11. Model predictive control (MPC) for MLD systems</a></li><li class="breadcrumb-item"><a href="./mpc_mld_references.html">Literature</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Literature</h1>
 </div>
 
 
@@ -618,37 +612,15 @@ div.csl-indent {
 </header>
 
 
-<p>Reset systems, switched systems, and piecewise affine (PWA) systems can all be viewed as special classes of hybrid systems, and as such can be modelled and simulated using software for hybrid systems (or even general purpose modelling and simulation software).</p>
-<p>However, there are also some dedicated software tools/packages/libraries for PWA systems:</p>
-<ul>
-<li><a href="https://www.plexim.com/products/plecs">PLECS</a>
-<ul>
-<li>Power electronics</li>
-<li>Commercial</li>
-</ul></li>
-<li><a href="https://www.mpt3.org">Multiparametric Toolbox (MPT) for Matlab</a>
-<ul>
-<li>General</li>
-<li>Special data type/class (and some related functions) for PWA systems is available in the section on <a href="https://www.mpt3.org/UI/Systems">Modeling of dynamical systems in MPT3</a>.</li>
-<li>Free and open source.</li>
-</ul></li>
-</ul>
-<p>Although some more free and open-source software packages for PWA systems can be found on the internet, none of them (at as far as we know) is actively developed or at least maintained anymore:</p>
-<ul>
-<li><a href="https://github.com/bsamadi/PWATOOLS">PWATOOLS</a> toolbox for Matlab, which accompanies the recently published book <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019">Rodrigues, Samadi, and Moarref (<a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">2019</a>)</span>. Unfortunately, this ten-year old toolbox is no longer working with the recent releases of Matlab and the author is no longer maintaining it.</li>
-<li><a href="https://portal.research.lu.se/en/publications/pwltool-a-matlab-toolbox-for-piecewise-linear-system">PWLTool</a> toolbox for Matlab: some traces of this toolbox can be found on the internet, but this one seems even older, obviously back then accompanying the book <span class="citation" data-cites="johanssonPiecewiseLinearControl2003">Johansson (<a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">2003</a>)</span>.</li>
-</ul>
-<p>Overall, besides the MPT toolbox that is still being actively developed (by our colleagues at STU Bratislava), not much is currently available within the open-source software domain… :-(</p>
+<p>The main resource for us is the Chapter 17 of the freely available book <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[1]</a></span> that we already referred to in the previous chapter.</p>
+<p>Those who have not been exposed to fundamentals of MPC can check the Chapter 12 in the same book. Alternatively, our own introduction to the topic in the third chapter/week of the <a href="https://hurak.github.io/orr/">Optimal and robust control course</a> can be found useful.</p>
 
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-Johansson, Mikael K.-J. 2003. <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer. <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a>.
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-Rodrigues, Luis, Behzad Samadi, and Miad Moarref. 2019. <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>. <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a>.
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-borrelliPredictiveControlLinear2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">F. Borrelli, A. Bemporad, and M. Morari, <em>Predictive <span>Control</span> for <span>Linear</span> and <span>Hybrid Systems</span></em>. Cambridge, New York: Cambridge University Press, 2017. Available: <a href="http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf">http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf</a></div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1073,13 +1045,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./classes_PWA.html" class="pagination-link" aria-label="Piecewise affine systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Piecewise affine systems</span>
+      <a href="./mpc_mld_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./classes_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./verification_intro.html" class="pagination-link" aria-label="What is verification?">
+        <span class="nav-page-text">What is verification?</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

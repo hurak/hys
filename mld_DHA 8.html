@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.5">
+<meta name="generator" content="quarto-1.6.4">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Discrete hybrid automata – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./classes_references.html" rel="next">
-<link href="./classes_PWA.html" rel="prev">
+<link href="./mld_intro.html" rel="next">
+<link href="./mld_why.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -89,6 +69,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -102,7 +125,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_DHA.html">Discrete hybrid automata</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +371,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./classes_software.html" class="sidebar-item-text sidebar-link active">
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -407,19 +430,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stability via common Lyapunov function</span></a>
+ <span class="menu-text">Common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Software</span></a>
+ <span class="menu-text">Multiple Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -488,7 +505,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
+  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discrete hybrid automata</span></a>
   </div>
 </li>
@@ -593,15 +610,29 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#four-components-of-a-discrete-time-hybrid-automaton" id="toc-four-components-of-a-discrete-time-hybrid-automaton" class="nav-link active" data-scroll-target="#four-components-of-a-discrete-time-hybrid-automaton">Four components of a discrete(-time) hybrid automaton</a>
+  <ul class="collapse">
+  <li><a href="#switched-affine-systems-sas" id="toc-switched-affine-systems-sas" class="nav-link" data-scroll-target="#switched-affine-systems-sas">Switched affine systems (SAS)</a></li>
+  <li><a href="#event-generator-eg" id="toc-event-generator-eg" class="nav-link" data-scroll-target="#event-generator-eg">Event generator (EG)</a></li>
+  <li><a href="#finite-state-machine-fsm" id="toc-finite-state-machine-fsm" class="nav-link" data-scroll-target="#finite-state-machine-fsm">Finite state machine (FSM)</a></li>
+  <li><a href="#mode-selector-ms" id="toc-mode-selector-ms" class="nav-link" data-scroll-target="#mode-selector-ms">Mode selector (MS)</a></li>
+  </ul></li>
+  <li><a href="#trajectory-of-a-dha" id="toc-trajectory-of-a-dha" class="nav-link" data-scroll-target="#trajectory-of-a-dha">Trajectory of a DHA</a></li>
+  <li><a href="#how-to-get-rid-of-the-if-then-conditions-in-the-model" id="toc-how-to-get-rid-of-the-if-then-conditions-in-the-model" class="nav-link" data-scroll-target="#how-to-get-rid-of-the-if-then-conditions-in-the-model">How to get rid of the IF-THEN conditions in the model?</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./classes_reset.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="./classes_software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_DHA.html">Discrete hybrid automata</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Discrete hybrid automata</h1>
 </div>
 
 
@@ -618,39 +649,82 @@ div.csl-indent {
 </header>
 
 
-<p>Reset systems, switched systems, and piecewise affine (PWA) systems can all be viewed as special classes of hybrid systems, and as such can be modelled and simulated using software for hybrid systems (or even general purpose modelling and simulation software).</p>
-<p>However, there are also some dedicated software tools/packages/libraries for PWA systems:</p>
+<p>Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.</p>
+<p>In particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that</p>
 <ul>
-<li><a href="https://www.plexim.com/products/plecs">PLECS</a>
-<ul>
-<li>Power electronics</li>
-<li>Commercial</li>
-</ul></li>
-<li><a href="https://www.mpt3.org">Multiparametric Toolbox (MPT) for Matlab</a>
-<ul>
-<li>General</li>
-<li>Special data type/class (and some related functions) for PWA systems is available in the section on <a href="https://www.mpt3.org/UI/Systems">Modeling of dynamical systems in MPT3</a>.</li>
-<li>Free and open source.</li>
-</ul></li>
+<li>the continuous-value dynamics (often corresponding to the physical part of the system) evolves in discrete time,</li>
+<li>the events and their processing by the logical part of the system are synchronized to the same periodic clock.</li>
 </ul>
-<p>Although some more free and open-source software packages for PWA systems can be found on the internet, none of them (at as far as we know) is actively developed or at least maintained anymore:</p>
+<section id="four-components-of-a-discrete-time-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="four-components-of-a-discrete-time-hybrid-automaton">Four components of a discrete(-time) hybrid automaton</h2>
+<p>We are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, …). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:</p>
 <ul>
-<li><a href="https://github.com/bsamadi/PWATOOLS">PWATOOLS</a> toolbox for Matlab, which accompanies the recently published book <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019">Rodrigues, Samadi, and Moarref (<a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">2019</a>)</span>. Unfortunately, this ten-year old toolbox is no longer working with the recent releases of Matlab and the author is no longer maintaining it.</li>
-<li><a href="https://portal.research.lu.se/en/publications/pwltool-a-matlab-toolbox-for-piecewise-linear-system">PWLTool</a> toolbox for Matlab: some traces of this toolbox can be found on the internet, but this one seems even older, obviously back then accompanying the book <span class="citation" data-cites="johanssonPiecewiseLinearControl2003">Johansson (<a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">2003</a>)</span>.</li>
+<li>switched affine system (SAS),</li>
+<li>mode selector (MS),</li>
+<li>event generator (EG),</li>
+<li>finite state machine (FSM).</li>
 </ul>
-<p>Overall, besides the MPT toolbox that is still being actively developed (by our colleagues at STU Bratislava), not much is currently available within the open-source software domain… :-(</p>
-
-
-
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-Johansson, Mikael K.-J. 2003. <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer. <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a>.
+<p>Their interconnection is shown in the following figure.</p>
+<div class="notes">
+<p>Draw the block diagram from Bemporad’s materials (book, toolbox documentation).</p>
 </div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-Rodrigues, Luis, Behzad Samadi, and Miad Moarref. 2019. <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>. <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+<p>Let’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).</p>
+<section id="switched-affine-systems-sas" class="level3">
+<h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
+<p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
+\begin{aligned}
+x_c(k+1) &amp;= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\
+y_c(k) &amp;= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}
+\end{aligned}
+</span></p>
+<p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
+</section>
+<section id="event-generator-eg" class="level3">
+<h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
+<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_c(k)</span> and the continuous-value control input <span class="math inline">u_c</span> satisfy <span class="math display">
+H_i x_c(k) + J_i u_c(k) + K_i \leq 0
+</span></p>
+<p>The event indicated by the (vector) binary variable <span class="math display">
+\delta_e(k) = h(x_c(k), u_c(k)) \in \{0,1\}^m,
+</span></p>
+<p>where <span class="math display">
+h_i(x_c(k), u_c(k)) = \begin{cases}1 &amp; H_i x_c(k) + J_i u_c(k) + K_i \leq 0\\ 0 &amp; \text{otherwise}. \end{cases}
+</span></p>
+</section>
+<section id="finite-state-machine-fsm" class="level3">
+<h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
+<p><span class="math display">
+x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k))
+</span></p>
+</section>
+<section id="mode-selector-ms" class="level3">
+<h3 class="anchored" data-anchor-id="mode-selector-ms">Mode selector (MS)</h3>
+<p><span class="math display">i(k) \in \{1, 2, \ldots, s\}</span></p>
+<p><span class="math display">
+i(k) = \mu(x_d(k), u_d(k), \delta_e(k))
+</span></p>
+</section>
+</section>
+<section id="trajectory-of-a-dha" class="level2">
+<h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
+<p><span class="math display">
+\begin{aligned}
+\delta_e(k) &amp;= h(x_c(k), u_c(k))\\
+i(k) &amp;= \mu(x_d(k), u_d(k), \delta_e(k))\\
+y_c(k) &amp;= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}\\
+y_d(k) &amp;= g_d(x_d(k), u_d(k), \delta_e(k))\\
+x_c(k+1) &amp;= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\
+x_d(k+1) &amp;= f_d(x_d(k),u_d(k),\delta_e(k))
+\end{aligned}
+</span></p>
+</section>
+<section id="how-to-get-rid-of-the-if-then-conditions-in-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-rid-of-the-if-then-conditions-in-the-model">How to get rid of the IF-THEN conditions in the model?</h2>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1073,13 +1147,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./classes_PWA.html" class="pagination-link" aria-label="Piecewise affine systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Piecewise affine systems</span>
+      <a href="./mld_why.html" class="pagination-link" aria-label="Why another framework?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Why another framework?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./classes_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./mld_intro.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <span class="nav-page-text">Logic vs inequalities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
