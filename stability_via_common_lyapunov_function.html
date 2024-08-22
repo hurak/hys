@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -159,7 +125,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -457,6 +423,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -655,24 +627,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#short-recap-of-stability-analysis-for-continuous-dynamical-systems" id="toc-short-recap-of-stability-analysis-for-continuous-dynamical-systems" class="nav-link active" data-scroll-target="#short-recap-of-stability-analysis-for-continuous-dynamical-systems">Short recap of stability analysis for continuous dynamical systems</a></li>
-  <li><a href="#equilibrium" id="toc-equilibrium" class="nav-link" data-scroll-target="#equilibrium">Equilibrium</a></li>
-  <li><a href="#lyapunov-stability" id="toc-lyapunov-stability" class="nav-link" data-scroll-target="#lyapunov-stability">(Lyapunov) stability</a></li>
-  <li><a href="#attractivity" id="toc-attractivity" class="nav-link" data-scroll-target="#attractivity">Attractivity</a></li>
-  <li><a href="#asymptotic-stability" id="toc-asymptotic-stability" class="nav-link" data-scroll-target="#asymptotic-stability">Asymptotic stability</a></li>
-  <li><a href="#exponential-stability" id="toc-exponential-stability" class="nav-link" data-scroll-target="#exponential-stability">Exponential stability</a></li>
-  <li><a href="#stability-of-time-varying-systems" id="toc-stability-of-time-varying-systems" class="nav-link" data-scroll-target="#stability-of-time-varying-systems">Stability of time-varying systems</a></li>
-  <li><a href="#stability-analysis-via-lyapunov-function" id="toc-stability-analysis-via-lyapunov-function" class="nav-link" data-scroll-target="#stability-analysis-via-lyapunov-function">Stability analysis via Lyapunov function</a></li>
-  <li><a href="#formulated-using-comparison-functions" id="toc-formulated-using-comparison-functions" class="nav-link" data-scroll-target="#formulated-using-comparison-functions">Formulated using comparison functions</a></li>
-  <li><a href="#exponential-stability-1" id="toc-exponential-stability-1" class="nav-link" data-scroll-target="#exponential-stability-1">Exponential stability</a></li>
-  <li><a href="#exponential-stability-with-quadratic-lyapunov-function" id="toc-exponential-stability-with-quadratic-lyapunov-function" class="nav-link" data-scroll-target="#exponential-stability-with-quadratic-lyapunov-function">Exponential stability with quadratic Lyapunov function</a></li>
-  <li><a href="#converse-theorems" id="toc-converse-theorems" class="nav-link" data-scroll-target="#converse-theorems">Converse theorems</a></li>
-  <li><a href="#equilibrium-of-a-hybrid-automaton" id="toc-equilibrium-of-a-hybrid-automaton" class="nav-link" data-scroll-target="#equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</a></li>
-  <li><a href="#stability-of-a-hybrid-automaton" id="toc-stability-of-a-hybrid-automaton" class="nav-link" data-scroll-target="#stability-of-a-hybrid-automaton">Stability of a hybrid automaton</a></li>
-  <li><a href="#asymptotic-stability-1" id="toc-asymptotic-stability-1" class="nav-link" data-scroll-target="#asymptotic-stability-1">Asymptotic stability</a></li>
-  <li><a href="#must-the-individual-dynamics-be-stable" id="toc-must-the-individual-dynamics-be-stable" class="nav-link" data-scroll-target="#must-the-individual-dynamics-be-stable">Must the individual dynamics be stable?</a></li>
-  <li><a href="#can-the-individual-dynamics-be-unstable" id="toc-can-the-individual-dynamics-be-unstable" class="nav-link" data-scroll-target="#can-the-individual-dynamics-be-unstable">Can the individual dynamics be unstable?</a></li>
-  <li><a href="#hybrid-system-stability-analysis-via-lyapunov-like-function" id="toc-hybrid-system-stability-analysis-via-lyapunov-like-function" class="nav-link" data-scroll-target="#hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</a></li>
+  <li><a href="#hybrid-system-stability-analysis-via-lyapunov-like-function" id="toc-hybrid-system-stability-analysis-via-lyapunov-like-function" class="nav-link active" data-scroll-target="#hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</a></li>
   <li><a href="#stricter-condition" id="toc-stricter-condition" class="nav-link" data-scroll-target="#stricter-condition">Stricter condition</a></li>
   <li><a href="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" id="toc-further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="nav-link" data-scroll-target="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</a></li>
   <li><a href="#global-uniform-asymptotic-stability" id="toc-global-uniform-asymptotic-stability" class="nav-link" data-scroll-target="#global-uniform-asymptotic-stability">(Global) uniform asymptotic stability</a></li>
@@ -695,7 +650,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Stability via common Lyapunov function</h1>
 </div>
@@ -714,220 +669,21 @@ window.Quarto = {
 </header>
 
 
-<section id="short-recap-of-stability-analysis-for-continuous-dynamical-systems" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="short-recap-of-stability-analysis-for-continuous-dynamical-systems">Short recap of stability analysis for continuous dynamical systems</h2>
-<ul>
-<li>Consider the standard state equation <span class="math inline">\dot x = f(x)</span>.</li>
-</ul>
-</section>
-<section id="equilibrium" class="level2">
-<h2 class="anchored" data-anchor-id="equilibrium">Equilibrium</h2>
-<ul>
-<li><span class="math inline">x_\mathrm{eq}</span> such that <span class="math inline">\dot x = 0 = f(x_\mathrm{eq})</span>.
-<ul>
-<li>Without loss of generality <span class="math inline">x_\mathrm{eq} = 0</span>.</li>
-</ul></li>
-</ul>
-</section>
-<section id="lyapunov-stability" class="level2">
-<h2 class="anchored" data-anchor-id="lyapunov-stability">(Lyapunov) stability</h2>
-<ul>
-<li>Starts close, stays close.</li>
-<li>For a given <span class="math inline">\varepsilon&gt;0</span>, there is a <span class="math inline">\delta&gt;0</span> such that…</li>
-</ul>
-</section>
-<section id="attractivity" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="attractivity">Attractivity</h2>
-<ul>
-<li>Starts close, asymptotically converges.</li>
-<li>Global attractivity: asymptotically converges from anywhere.</li>
-<li>Example of attractive but unstable</li>
-</ul>
-<p>. . .</p>
-<div id="6eb37e80" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> [(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="fu">*</span>(x[<span class="fl">2</span>]<span class="op">-</span>x[<span class="fl">1</span>])<span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">5</span>)<span class="op">/</span>((x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span><span class="fu">+</span>(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span>)); (x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span><span class="fu">*</span>(x[<span class="fl">2</span>]<span class="op">-</span><span class="fl">2</span>x[<span class="fl">1</span>]))<span class="op">/</span>((x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span><span class="fu">+</span>(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span>))]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(resolution <span class="op">=</span> (<span class="fl">800</span>, <span class="fl">800</span>),fontsize<span class="op">=</span><span class="fl">20</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], xlabel <span class="op">=</span> <span class="st">"x₁"</span>, ylabel <span class="op">=</span> <span class="st">"x₂"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">streamplot!</span>(ax,<span class="fu">x-&gt;Point2f</span>(<span class="fu">f</span>(x)), <span class="op">-</span><span class="fl">1.5</span><span class="op">..</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.5</span><span class="op">..</span><span class="fl">1.5</span>, colormap <span class="op">=</span> <span class="op">:</span>magma)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
-└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<div>
-<figure class="figure">
-<p><img src="stability_via_common_lyapunov_function_files/figure-html/cell-2-output-2.svg" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="asymptotic-stability" class="level2">
-<h2 class="anchored" data-anchor-id="asymptotic-stability">Asymptotic stability</h2>
-<ul>
-<li>Stability and attractivity.</li>
-<li>Global assymptotic stability: attractivity is global.</li>
-</ul>
-</section>
-<section id="exponential-stability" class="level2">
-<h2 class="anchored" data-anchor-id="exponential-stability">Exponential stability</h2>
-<ul>
-<li>Exponential convergence.</li>
-</ul>
-</section>
-<section id="stability-of-time-varying-systems" class="level2">
-<h2 class="anchored" data-anchor-id="stability-of-time-varying-systems">Stability of time-varying systems</h2>
-<ul>
-<li>Uniform (Lyapunov, Asymptotic, …): If independent of the inititial time.</li>
-</ul>
-</section>
-<section id="stability-analysis-via-lyapunov-function" class="level2">
-<h2 class="anchored" data-anchor-id="stability-analysis-via-lyapunov-function">Stability analysis via Lyapunov function</h2>
-<p>. . .</p>
-<p><span class="math inline">V(\cdot)\in\mathcal{C}_1</span> defined on open <span class="math inline">\mathcal{D}\subset \mathbb{R}^n</span> containing the origin.</p>
-<p>. . .</p>
-<p><span class="math display">V(0) = 0, \; V(x) &gt; 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}</span></p>
-<p>. . .</p>
-<p><span class="math display"> \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x)} \leq 0</span></p>
-<p>. . .</p>
-<p>or</p>
-<p><span class="math display">\left(\nabla V(x)\right)^\top f(x) &lt; 0</span> for asymptotic stability.</p>
-</section>
-<section id="formulated-using-comparison-functions" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="formulated-using-comparison-functions">Formulated using comparison functions</h2>
-<p>. . .</p>
-<p><span class="math display">\kappa_1(\|x\|) \leq V(x) {\color{gray}\leq \kappa_2(\|x\|)},</span></p>
-<ul>
-<li>where <span class="math inline">\kappa_1(\cdot), \kappa_2(\cdot)</span> are class <span class="math inline">\mathcal{K}</span> comparison functions:
-<ul>
-<li>continuous, zero at zero and (strictly) increasing.</li>
-</ul></li>
-<li>If <span class="math inline">\kappa_1</span> increases to infinity (<span class="math inline">\kappa_1(\cdot)\in\mathcal{K}_\infty</span>), the stability is global.</li>
-</ul>
-<p>. . .</p>
-<p>For asymptotic stability</p>
-<p><span class="math display">\left(\nabla V(x)\right)^\top f(x) \leq -\rho(\|x\|),</span> where <span class="math inline">\rho(\cdot)</span> is a positive definite continuous function, zero at the origin.</p>
-<div class="notes">
-<p>The upper bound <span class="math inline">\kappa_2(\cdot)</span> does not have to be there, it is automatically satisfied for time-invariant systems. It does have to be imposed for time-varying systems though.</p>
-</div>
-</section>
-<section id="exponential-stability-1" class="level2">
-<h2 class="anchored" data-anchor-id="exponential-stability-1">Exponential stability</h2>
-<p><span class="math display">k_1 \|x\|^p \leq V(x) \leq k_2 \|x\|^p,</span></p>
-<p><span class="math display">\left(\nabla V(x)\right)^\top f(x) \leq -k_3 \|x\|^p.</span></p>
-</section>
-<section id="exponential-stability-with-quadratic-lyapunov-function" class="level2">
-<h2 class="anchored" data-anchor-id="exponential-stability-with-quadratic-lyapunov-function">Exponential stability with quadratic Lyapunov function</h2>
-<p><span class="math display">
-V(x) = x^\top P x
-</span></p>
-<p><span class="math display">\lambda_{\min} (P) \|x\|^2 \leq V(x) \leq \lambda_{\max} (P) \|x\|^2</span></p>
-</section>
-<section id="converse-theorems" class="level2">
-<h2 class="anchored" data-anchor-id="converse-theorems">Converse theorems</h2>
-<ul>
-<li>for (G)UAS,</li>
-<li>for Lyapunov stability only time-varying Lyapunov function guaranteed.</li>
-</ul>
-</section>
-<section id="equilibrium-of-a-hybrid-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</h2>
-<ul>
-<li>For a hybrid system with <span class="math inline">\dot x = \underbrace{f(q,x)}_{f_q(x)}</span>, the equilibrium <span class="math inline">x_\mathrm{eq}</span> satisfies
-<ul>
-<li><span class="math inline">0 = f_q(x_\mathrm{eq})</span> for all <span class="math inline">q\in \mathcal Q</span>,</li>
-<li>the reset map <span class="math inline">r(q,q',x_\mathrm{eq}) = x_\mathrm{eq}</span></li>
-</ul></li>
-<li>With no loss of generality <span class="math inline">x_\mathrm{eq} = 0</span>.</li>
-</ul>
-</section>
-<section id="stability-of-a-hybrid-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="stability-of-a-hybrid-automaton">Stability of a hybrid automaton</h2>
-<ul>
-<li>The equilibrium <span class="math inline">x_\mathrm{eq}</span>(=0) is stable if for a given <span class="math inline">\varepsilon &gt; 0</span> there exists <span class="math inline">\delta &gt; 0</span> such that for all hybrid systems executions/trajectories starting at <span class="math inline">(q_0,x_0)</span>, <span class="math display">
-\|x_0\| &lt; \delta \Rightarrow \|x(\tau)\| &lt; \varepsilon, \; \forall \tau \in \mathcal{T},
-</span>
-<ul>
-<li>where <span class="math inline">\tau</span> is a hybrid time and <span class="math inline">\mathcal{T}</span> is the hybrid time domain.</li>
-</ul></li>
-</ul>
-</section>
-<section id="asymptotic-stability-1" class="level2">
-<h2 class="anchored" data-anchor-id="asymptotic-stability-1">Asymptotic stability</h2>
-<ul>
-<li>The equilibrium is stable and furthermore we can choose some <span class="math inline">\delta</span> such that <span class="math display">
-\|x_0\| &lt; \delta \quad \Rightarrow \quad \lim_{\tau\rightarrow \tau_\infty} \|x(\tau)\| = 0,
-</span>
-<ul>
-<li>where <span class="math inline">\tau_\infty&lt;\infty</span> if the execution is Zeno and <span class="math inline">\tau_\infty=\infty</span> otherwise.</li>
-</ul></li>
-</ul>
-</section>
-<section id="must-the-individual-dynamics-be-stable" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="must-the-individual-dynamics-be-stable">Must the individual dynamics be stable?</h2>
-<p>. . .</p>
-<p><img src="figures/switching_between_stable.png" class="img-fluid" style="width:70.0%" data-fig-aligh="center"></p>
-<p>. . .</p>
-<p><span class="math display">
-A_1 =
-\begin{bmatrix}
--1 &amp; -100\\ 10 &amp; -1
-\end{bmatrix}, \quad
-A_2 =
-\begin{bmatrix}
--1 &amp; 10\\ -100 &amp; -1
-\end{bmatrix}
-</span></p>
-<ul>
-<li>Both are stable.</li>
-<li>Switching can be destabilizing.</li>
-</ul>
-</section>
-<section id="can-the-individual-dynamics-be-unstable" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="can-the-individual-dynamics-be-unstable">Can the individual dynamics be unstable?</h2>
-<p>. . .</p>
-<p><img src="figures/switching_between_unstable.png" class="img-fluid" style="width:70.0%" data-fig-aligh="center"></p>
-<p>. . .</p>
-<p><span class="math display">
-A_1 =
-\begin{bmatrix}
-1 &amp; -100\\ 10 &amp; 1
-\end{bmatrix}, \quad
-A_2 =
-\begin{bmatrix}
-1 &amp; 10\\ -100 &amp; 1
-\end{bmatrix}
-</span></p>
-<ul>
-<li>Both are unstable.</li>
-<li>Switching can be stabilizing.</li>
-</ul>
-</section>
-<section id="hybrid-system-stability-analysis-via-lyapunov-like-function" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</h2>
-<p>. . .</p>
+<section id="hybrid-system-stability-analysis-via-lyapunov-like-function" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</h2>
 <p><span class="math inline">V(q,x)</span> smooth in <span class="math inline">x</span> such that</p>
-<p>. . .</p>
 <p><span class="math display">
 V(q,0) = 0, \quad V(q,x) &gt; 0 \; \text{for all nonzero} \; x,
 </span></p>
-<p>. . .</p>
 <p><span class="math display">
 \left(\nabla_x V(q,x)\right)^\top f(q,x) \leq 0
 </span></p>
-<p>. . .</p>
 <p>and</p>
-<p><img src="figures/lyapunov_like_function.png" class="img-fluid"></p>
+<p><img src="stability_figures/lyapunov_like_function.png" class="img-fluid"></p>
 </section>
 <section id="stricter-condition" class="level2">
 <h2 class="anchored" data-anchor-id="stricter-condition">Stricter condition</h2>
-<p><img src="figures/stricter_lyapunov_like_function.png" class="img-fluid"></p>
+<p><img src="stability_figures/stricter_lyapunov_like_function.png" class="img-fluid"></p>
 </section>
 <section id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="level2">
 <h2 class="anchored" data-anchor-id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</h2>
