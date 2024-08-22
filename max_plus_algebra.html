@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.5">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -464,13 +464,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -738,7 +744,7 @@ Algebra is not only a branch of mathematics
 </section>
 <section id="max-algebra-redefining-the-addition-and-multiplication" class="level2">
 <h2 class="anchored" data-anchor-id="max-algebra-redefining-the-addition-and-multiplication">(max,+) algebra: redefining the addition and multiplication</h2>
-<p>Elements of the (max,+) algebra are real numbers numbers, but it is still a ring and not a field since the two operations are defined differently.</p>
+<p>Elements of the (max,+) algebra are real numbers, but it is still a ring and not a field since the two operations are defined differently.</p>
 <p>The new operations of addition, which we denote by <span class="math inline">\oplus</span> to distinguish it from the standard addition, is defined as <span class="math display">\boxed{
   x\oplus y \equiv \max(x,y).
   }
@@ -806,7 +812,7 @@ Nonsymmetric notation, but who cares?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The notation is rather nonsymmetric here. We now have a dedicated symbol <span class="math inline">\varepsilon</span> for the <em>zero</em> element in the new algebra, but no dedicated symbol for the <em>one</em> element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like <code>mp-zero</code> and <code>mp-one</code> to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was not even able to figure out how to encircle numbers in LaTeX…</p>
+<p>The notation is rather nonsymmetric here. We now have a dedicated symbol <span class="math inline">\varepsilon</span> for the <em>zero</em> element in the new algebra, but no dedicated symbol for the <em>one</em> element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like <code>mp-zero</code> and <code>mp-one</code> to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX…</p>
 </div>
 </div>
 </section>
@@ -858,7 +864,7 @@ p(x) = 2\otimes x^{\otimes^{2}} \oplus 3\otimes x \oplus 1.
 <p>We can interpret it in the conventional algebra as <span class="math display">
 p(x) = \max\{2x+2,x+3,1\},  
 </span> which is a piecewise linear (actually affine) function.</p>
-<div id="d1835cd1" class="cell">
+<div id="f59451f5" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -875,7 +881,7 @@ p(x) = \max\{2x+2,x+3,1\},
 <p><span class="theorem-title"><strong>Example 2 (Example of a 2D polynomial)</strong></span> Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial <span class="math display">
 p(x,y) = 0 \otimes x \otimes y.
 </span></p>
-<div id="71b75ed9" class="cell">
+<div id="7412e336" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
@@ -894,7 +900,7 @@ p(x,y) = 0 \otimes x \otimes y.
 <p><span class="theorem-title"><strong>Example 3 (Another 2D polynomial)</strong></span> Consider another 2D (max,+) polynomial <span class="math display">
 p(x,y) = 0 \otimes x \otimes y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
 </span></p>
-<div id="5c87c79d" class="cell">
+<div id="8bdbe537" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>

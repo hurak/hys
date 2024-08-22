@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.5">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -387,13 +407,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -592,10 +618,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Any discussion of the concept(s) of solution of a hybrid system must start with the concept of a hybrid time and hybrid time domain. Within the hybrid automata framework this is discussed in the references that we have already made. A particularly popular and recommendable are the (online available) lecture notes <span class="citation" data-cites="lygerosLectureNotesHybrid2004"><a href="#ref-lygerosLectureNotesHybrid2004" role="doc-biblioref">[1]</a></span>. Its updated and extended version <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[2]</a></span> is no longer available online – we can only guess that the authors are turning it into a printed textbook. Another hybrid automata textbook that discusses these concepts is <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[3]</a></span> (section 2.2.3), but it is not available online either. Anyway, the same concept is also discussed within the hybrid equations framework as introduced, for example, in <span class="citation" data-cites="goebelHybridDynamicalSystems2009"><a href="#ref-goebelHybridDynamicalSystems2009" role="doc-biblioref">[4]</a></span>, which can be downloaded (within institutional subscription). In fact, we find their version of hybrid time and hybrid time domain even more (visually) appealing.</p>
+<p>A transition from one discrete state to another, even if not accompanied by a jump (or reset) of the continuous state variable can be modeled as a discontinuity of the functions on right hand side of the differential equation. Depending on circumstances, more or less peculiar phenomena can occur due to these discontinuities.These issues are discussed in quite some detail in the (fairly readable) paper <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[5]</a></span>. Very much recommendable.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-lygerosLectureNotesHybrid2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Lygeros, <em>Lecture <span>Notes</span> on <span>Hybrid Systems</span></em>. 2004. Available: <a href="https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf">https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-goebelHybridDynamicalSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <span>“Hybrid dynamical systems,”</span> <em>IEEE Control Systems Magazine</em>, vol. 29, no. 2, pp. 28–93, Apr. 2009, doi: <a href="https://doi.org/10.1109/MCS.2008.931718">10.1109/MCS.2008.931718</a>.</div>
+</div>
+<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

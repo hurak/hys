@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.5">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,7 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./complementarity_constraints.html" rel="next">
-<link href="./stability_via_multiple_lyapunov_function.html" rel="prev">
+<link href="./stability_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -387,13 +407,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -592,10 +618,59 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The lecture was partly built upon the chapter 4 of the textbook <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>, which in turn was (to a large extent) built upon chapter 2 of the research monograph <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[2]</a></span>. None of these two is available online, but fortunately, the latter has a free shorter online version <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[3]</a></span>. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.</p>
+<p>The lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[4]</a></span>, which used to be available online, but has resently dissapeared – most probably it is about to be publised as a textbook.</p>
+<p>Some more online resources, in particular for multiple (also piecewise) Lyapunov functions, are <span class="citation" data-cites="decarloPerspectivesResultsStability2000"><a href="#ref-decarloPerspectivesResultsStability2000" role="doc-biblioref">[5]</a></span>, <span class="citation" data-cites="johanssonComputationPiecewiseQuadratic1998"><a href="#ref-johanssonComputationPiecewiseQuadratic1998" role="doc-biblioref">[6]</a></span>, <span class="citation" data-cites="petterssonHybridSystemStability2002"><a href="#ref-petterssonHybridSystemStability2002" role="doc-biblioref">[7]</a></span>, <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[8]</a></span>. The are all quite readable.</p>
+<p>The topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph <span class="citation" data-cites="boydLinearMatrixInequalities1994"><a href="#ref-boydLinearMatrixInequalities1994" role="doc-biblioref">[9]</a></span> was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material <span class="citation" data-cites="boydSolvingSemidefinitePrograms"><a href="#ref-boydSolvingSemidefinitePrograms" role="doc-biblioref">[10]</a></span>, tailored to their Matlab toolbox called CVX. Alternativaly, the text <span class="citation" data-cites="boydEE363ReviewSession2008"><a href="#ref-boydEE363ReviewSession2008" role="doc-biblioref">[11]</a></span> is even richer by two pages. Another recommendable lecture notes are also available for free: <span class="citation" data-cites="schererLinearMatrixInequalities2015"><a href="#ref-schererLinearMatrixInequalities2015" role="doc-biblioref">[12]</a></span>. Finally, a section on <a href="https://yalmip.github.io/tutorial/semidefiniteprogramming/">Semidefinite programming</a> in the documentation for Yalmip software can also serve as learning resource.</p>
+<p>The topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper <span class="citation" data-cites="papachristodoulouTutorialSumSquares2005"><a href="#ref-papachristodoulouTutorialSumSquares2005" role="doc-biblioref">[13]</a></span> is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation <span class="citation" data-cites="papachristodoulouSOSTOOLSSumsSquares2021"><a href="#ref-papachristodoulouSOSTOOLSSumsSquares2021" role="doc-biblioref">[14]</a></span> can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on <a href="https://yalmip.github.io/tutorial/sumofsquaresprogramming/">Sum-of-squares programming</a>.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkh<span>ä</span>user, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
+</div>
+<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+<div id="ref-decarloPerspectivesResultsStability2000" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">R. A. Decarlo, M. S. Branicky, S. Pettersson, and B. Lennartson, <span>“Perspectives and results on the stability and stabilizability of hybrid systems,”</span> <em>Proceedings of the IEEE</em>, vol. 88, no. 7, pp. 1069–1082, Jul. 2000, doi: <a href="https://doi.org/10.1109/5.871309">10.1109/5.871309</a>.</div>
+</div>
+<div id="ref-johanssonComputationPiecewiseQuadratic1998" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">M. Johansson and A. Rantzer, <span>“Computation of piecewise quadratic <span>Lyapunov</span> functions for hybrid systems,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 43, no. 4, pp. 555–559, Apr. 1998, doi: <a href="https://doi.org/10.1109/9.664157">10.1109/9.664157</a>.</div>
+</div>
+<div id="ref-petterssonHybridSystemStability2002" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. Pettersson and B. Lennartson, <span>“Hybrid system stability and robustness verification using linear matrix inequalities,”</span> <em>International Journal of Control</em>, vol. 75, no. 16–17, pp. 1335–1355, Jan. 2002, doi: <a href="https://doi.org/10.1080/0020717021000023762">10.1080/0020717021000023762</a>.</div>
+</div>
+<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
+</div>
+<div id="ref-boydLinearMatrixInequalities1994" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, <em>Linear <span>Matrix Inequalities</span> in <span>System</span> and <span>Control Theory</span></em>. in Studies in <span>Applied</span> and <span>Numerical Mathematics</span>. <span>Society for Industrial and Applied Mathematics</span>, 1994. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://web.stanford.edu/~boyd/lmibook/">https://web.stanford.edu/~boyd/lmibook/</a></div>
+</div>
+<div id="ref-boydSolvingSemidefinitePrograms" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">S. Boyd, <span>“Solving semidefinite programs using cvx,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/notes/lmi-cvx.pdf">https://stanford.edu/class/ee363/notes/lmi-cvx.pdf</a></div>
+</div>
+<div id="ref-boydEE363ReviewSession2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">S. Boyd, <span>“<span>EE363 Review Session</span> 4: <span>Linear Matrix Inequalities</span>,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/sessions/s4notes.pdf">https://stanford.edu/class/ee363/sessions/s4notes.pdf</a></div>
+</div>
+<div id="ref-schererLinearMatrixInequalities2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">C. W. Scherer and S. Weiland, <span>“Linear matrix inequalities in control,”</span> Jan. 2015. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf">https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf</a></div>
+</div>
+<div id="ref-papachristodoulouTutorialSumSquares2005" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">A. Papachristodoulou and S. Prajna, <span>“A tutorial on sum of squares techniques for systems analysis,”</span> in <em>Proceedings of the 2005 <span>American Control Conference</span></em>, Portland, OR, USA: IEEE, Jun. 2005, pp. 2686–2700 vol. 4. doi: <a href="https://doi.org/10.1109/ACC.2005.1470374">10.1109/ACC.2005.1470374</a>.</div>
+</div>
+<div id="ref-papachristodoulouSOSTOOLSSumsSquares2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Papachristodoulou <em>et al.</em>, <span>“<span>SOSTOOLS Sums</span> of <span>Squares Optimization Toolbox</span> for <span>Matlab</span>: <span>User</span>’s <span>Guide</span>.”</span> University of Oxford Control Group, Sep. 2021. Available: <a href="https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf">https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1018,8 +1093,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./stability_via_multiple_lyapunov_function.html" class="pagination-link" aria-label="Multiple Lyapunov function">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Multiple Lyapunov function</span>
+      <a href="./stability_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
