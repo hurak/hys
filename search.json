@@ -642,7 +642,7 @@
     "href": "des_automata.html#automaton-as-a-digraph-also-a-state-transition-diagram",
     "title": "(State) automata",
     "section": "Automaton as a (di)graph (also a state transition diagram)",
-    "text": "Automaton as a (di)graph (also a state transition diagram)\nSo far the definition of an automaton was not particularly visual. This can be changes by viewing the automaton as a directed graph (digraph) with. Thesa are the basic rules\n\nState is represented as a node of the graph.\nTransition from a given state to another state is represented as an edge connecting the two nodes.\nEvents (actions) are the labels attached to the edges. It is not necessary that each edge has its unique label.\n\n\nExample 1 (Automaton as a digraph) Consider an automaton defined by these sets: \\mathcal X = \\{x_1,x_2,x_3\\}, \\mathcal X_0 = \\{x_1\\}, \\mathcal E = \\{e_1,e_2,e_3\\}, \\mathcal F = \\{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\\}.\nThe corresponding digraph is in Figure 1.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nx₁\n\nx₁\n\n\n\ninit-&gt;x₁\n\n\n\n\n\nx₂\n\nx₂\n\n\n\nx₁-&gt;x₂\n\n\ne₁\n\n\n\nx₃\n\nx₃\n\n\n\nx₁-&gt;x₃\n\n\ne₂\n\n\n\nx₂-&gt;x₁\n\n\ne₂\n\n\n\nx₂-&gt;x₃\n\n\ne₃\n\n\n\n\n\n\nFigure 1: An example automaton as a digraph\n\n\n\n\n\n\nWe may encounter the following term\n\nDefinition 2 (Active event function and set) Active event function (actually a multivalued function) \\Gamma: \\mathcal X \\rightarrow 2^\\mathcal{E} assigns to each state a set of active events. Active event set \\Gamma(x) is the set of active events in a particular state x.",
+    "text": "Automaton as a (di)graph (also a state transition diagram)\nSo far the definition of an automaton was not particularly visual. This can be changes by viewing the automaton as a directed graph (digraph) with. These are the basic rules\n\nState is represented as a node of the graph.\nTransition from a given state to another state is represented as an edge connecting the two nodes.\nEvents (actions) are the labels attached to the edges. It is not necessary that each edge has its unique label.\n\n\nExample 1 (Automaton as a digraph) Consider an automaton defined by these sets: \\mathcal X = \\{x_1,x_2,x_3\\}, \\mathcal X_0 = \\{x_1\\}, \\mathcal E = \\{e_1,e_2,e_3\\}, \\mathcal F = \\{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\\}.\nThe corresponding digraph is in Fig 1.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nx₁\n\nx₁\n\n\n\ninit-&gt;x₁\n\n\n\n\n\nx₂\n\nx₂\n\n\n\nx₁-&gt;x₂\n\n\ne₁\n\n\n\nx₃\n\nx₃\n\n\n\nx₁-&gt;x₃\n\n\ne₂\n\n\n\nx₂-&gt;x₁\n\n\ne₂\n\n\n\nx₂-&gt;x₃\n\n\ne₃\n\n\n\n\n\n\nFigure 1: An example automaton as a digraph\n\n\n\n\n\n\nWe may also encounter the following term.\n\nDefinition 2 (Active event function and set) Active event function (actually a multivalued function) \\Gamma: \\mathcal X \\rightarrow 2^\\mathcal{E} assigns to each state a set of active events. Active event set \\Gamma(x) is the set of active events in a particular state x.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -653,7 +653,7 @@
     "href": "des_automata.html#finite-state-automaton-fsa",
     "title": "(State) automata",
     "section": "Finite state automaton (FSA)",
-    "text": "Finite state automaton (FSA)\n\nFinite set \\mathcal X of states.\nAlso: Finite state machine (FSM).\n\n\nRather superfluous definition.",
+    "text": "Finite state automaton (FSA)\nThis may be regarded as a rather superfluous definition – a finite state automaton (FSA) is a state automaton with a finite set \\mathcal X of states. It is also known as a finite state machine (FSM).",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -675,18 +675,7 @@
     "href": "des_automata.html#path-of-an-automaton",
     "title": "(State) automata",
     "section": "Path of an automaton",
-    "text": "Path of an automaton\nCorresponding to the execution\nx_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\nthe path is just the sequence of visited states:\nx_1,x_2,x_1,x_2,x_3,\\ldots\n\nIn continuous-valued dynamical systems, we have a state trajectory, but then time stamps are attached to each visited state.\n\n\nExample 2 (Beverage vending machine)  \n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\n\n\n\nState sequence (path): waiting, swiped, paid, coke_dispensed, waiting\nEvents sequence: swipe card, accept payment, choose coke, take coke\n\n\n\n\nIndeed, the two states coke_dispensed and fanta_dispensed can be merged into just beverage_dispensed.\nHow about other paths? Longer? Shorter?",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#example-beverage-vending-machine",
-    "href": "des_automata.html#example-beverage-vending-machine",
-    "title": "(State) automata",
-    "section": "Example: Beverage vending machine",
-    "text": "Example: Beverage vending machine\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\n\n\nThe waiting state can be marked (is accepting).\n\nExample 3 (Longitudinal control of a ground vehicle)  \n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nstill\n\nstill\n\n\n\ninit-&gt;still\n\n\n\n\n\naccelerating\n\naccelerating\n\n\n\nstill-&gt;accelerating\n\n\npush acc\n\n\n\ncruising\n\ncruising\n\n\n\naccelerating-&gt;cruising\n\n\ncruise ON\n\n\n\ncoasting\n\ncoasting\n\n\n\naccelerating-&gt;coasting\n\n\nrel acc\n\n\n\ncruising-&gt;accelerating\n\n\npush acc\n\n\n\ncruising-&gt;coasting\n\n\nrel acc\n\n\n\nbraking\n\nbraking\n\n\n\ncruising-&gt;braking\n\n\npush brake\n\n\n\ncoasting-&gt;braking\n\n\npush brake\n\n\n\nbraking-&gt;still\n\n\nzero vel\n\n\n\nbraking-&gt;cruising\n\n\ncruise ON\n\n\n\nbraking-&gt;coasting\n\n\nrel brake\n\n\n\n\n\n\n\n\n\n\n\nBy cruise on I mean switching on some kind of a cruise control system, which keeps the velocity constant.\nIt turns out the optimal control strategy for trains (under some circumstances).\nNote that some of the events are indeed actions started by the driver, but some are just coming from the physics of the vehicle (transition from braking to zero velocity).\n\n\n\nExample 4 (Corridor switch)  \n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\nswitch₁,switch₂\n\n\n\nON-&gt;OFF\n\n\nswitch₁,switch₂\n\n\n\n\n\n\n\n\n\nTwo events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.\n\n\n\nExample 5 (Double intensity switching)  \n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npush\n\n\n\nON-&gt;OFF\n\n\npush\n\n\n\nON2\n\nON2\n\n\n\nON-&gt;ON2\n\n\npush\n\n\n\nON2-&gt;OFF\n\n\npush\n\n\n\n\n\n\n\n\n\nObviously we need to introduce time into the automaton…",
+    "text": "Path of an automaton\nCorresponding to the execution\nx_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\nthe path is just the sequence of visited states:\nx_1,x_2,x_1,x_2,x_3,\\ldots\n\nIn continuous-valued dynamical systems, we have a state trajectory, but then time stamps are attached to each visited state.\n\n\nExample 2 (Beverage vending machine)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\nFigure 2: Example of a digraph representation of the automaton for a beverage vending machine\n\n\n\n\n\n\nState sequence (path): waiting, swiped, paid, coke_dispensed, waiting\nEvents sequence: swipe card, accept payment, choose coke, take coke\nIndeed, the two states coke_dispensed and fanta_dispensed can be merged into just beverage_dispensed.\nHow about other paths? Longer? Shorter?\n\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nwaiting\n\n\nwaiting\n\n\n\ninit-&gt;waiting\n\n\n\n\n\nswiped\n\nswiped\n\n\n\nwaiting-&gt;swiped\n\n\nswipe card\n\n\n\nswiped-&gt;waiting\n\n\nreject payment\n\n\n\npaid\n\npaid\n\n\n\nswiped-&gt;paid\n\n\naccept payment\n\n\n\ncoke_dispensed\n\ncoke_dispensed\n\n\n\npaid-&gt;coke_dispensed\n\n\nchoose coke\n\n\n\nfanta_dispensed\n\nfanta_dispensed\n\n\n\npaid-&gt;fanta_dispensed\n\n\nchoose fanta\n\n\n\ncoke_dispensed-&gt;waiting\n\n\ntake coke\n\n\n\nfanta_dispensed-&gt;waiting\n\n\ntake fanta\n\n\n\n\n\n\nFigure 3: Example of a digraph representation of the automaton for a beverage vending machine with a marked state\n\n\n\n\n\nThe waiting state can be marked (is accepting).\n\n\nExample 3 (Longitudinal control of a ground vehicle)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nstill\n\nstill\n\n\n\ninit-&gt;still\n\n\n\n\n\naccelerating\n\naccelerating\n\n\n\nstill-&gt;accelerating\n\n\npush acc\n\n\n\ncruising\n\ncruising\n\n\n\naccelerating-&gt;cruising\n\n\ncruise ON\n\n\n\ncoasting\n\ncoasting\n\n\n\naccelerating-&gt;coasting\n\n\nrel acc\n\n\n\ncruising-&gt;accelerating\n\n\npush acc\n\n\n\ncruising-&gt;coasting\n\n\nrel acc\n\n\n\nbraking\n\nbraking\n\n\n\ncruising-&gt;braking\n\n\npush brake\n\n\n\ncoasting-&gt;braking\n\n\npush brake\n\n\n\nbraking-&gt;still\n\n\nzero vel\n\n\n\nbraking-&gt;cruising\n\n\ncruise ON\n\n\n\nbraking-&gt;coasting\n\n\nrel brake\n\n\n\n\n\n\nFigure 4: Example of a digraph representation of the automaton for a longitudinal control of a ground vehicle\n\n\n\n\n\n\n\n\nBy cruise on I mean switching on some kind of a cruise control system, which keeps the velocity constant.\nIt turns out the optimal control strategy for trains (under some circumstances).\nNote that some of the events are indeed actions started by the driver, but some are just coming from the physics of the vehicle (transition from braking to zero velocity).\n\n\n\nExample 4 (Corridor switch)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\nswitch₁,switch₂\n\n\n\nON-&gt;OFF\n\n\nswitch₁,switch₂\n\n\n\n\n\n\nFigure 5: Example of a digraph representation of the automaton for a corridor switch\n\n\n\n\n\n\nTwo events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.\n\n\n\nExample 5 (Double intensity switching)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npush\n\n\n\nON-&gt;OFF\n\n\npush\n\n\n\nON2\n\nON2\n\n\n\nON-&gt;ON2\n\n\npush\n\n\n\nON2-&gt;OFF\n\n\npush\n\n\n\n\n\n\nFigure 6: Example of a digraph representation of the automaton for double intensity switching\n\n\n\n\n\n\nObviously we need to introduce time into the automaton…",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -697,18 +686,7 @@
     "href": "des_automata.html#state-as-the-value-of-a-state-variable",
     "title": "(State) automata",
     "section": "State as the value of a state variable",
-    "text": "State as the value of a state variable\n\nDefinition of the state space by enumeration doesn’t scale well.\nState can be characterized as the value (sometimes also valuation) of a state variable.\nState variable x is given by\n\nthe name,\nthe “type” (boolean, integer, vector, …).",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#examples-of-state-variables",
-    "href": "des_automata.html#examples-of-state-variables",
-    "title": "(State) automata",
-    "section": "Examples of state variables",
-    "text": "Examples of state variables\n\nCorridor switch: x \\in \\{\\mathrm{false},\\mathrm{true}\\} (also \\{0,1\\}).\nDouble intensity switching:\n\nx \\in \\{0,1,2\\} \\subset \\mathbb Z,\nor \\bm x = \\begin{bmatrix}x_1\\\\ x_2 \\end{bmatrix}, where x_1,x_2 \\in \\{0,1\\}.\n\n\n\n\nValuation is the value of a variable in a particular state.\nIt is not necessarily only numeric.",
+    "text": "State as the value of a state variable\nDefinition of the state space by enumeration (such as \\mathcal X = \\{0,1,2,3,4,5\\}) doesn’t scale well. As an alternative, a state can be characterized by the value (sometimes also valuation) of a state variable. A state variable is then given by\n\nthe name (for example, x),\nthe “type” (boolean, integer, vector, …).\n\n\nExample 6 (Examples of state variables)  \n\nCorridor switch: x \\in \\{\\mathrm{false},\\mathrm{true}\\} (possibly also \\{0,1\\}).\nDouble intensity switching:\n\nx \\in \\{0,1,2\\} \\subset \\mathbb Z,\nor \\bm x = \\begin{bmatrix}x_1\\\\ x_2 \\end{bmatrix}, where x_1,x_2 \\in \\{0,1\\}.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -719,150 +697,18 @@
     "href": "des_automata.html#state-transition-equation",
     "title": "(State) automata",
     "section": "State (transition) equation",
-    "text": "State (transition) equation\n\\boxed{x^+ = f(x,e)}\n\nUpon introduction of discrete-time (index) k x_{k+1} = f(x_k,e_k)\nor x[k+1] = f(x[k],e[k]).\n\n\n\nThe function f can be defined by a computer code rather than a clean mathematical formula.\nThe discrete-time index of the event is sometimes considered shifted, that is $x_{k+1} = f(x_k,e_{k+1}).",
+    "text": "State (transition) equation\nDenoting a new state after a transition as x^+, the state equation reads \\boxed{x^+ = f(x,e)}\nUpon introduction of discrete-time (index) k, it can also be rewritten as x_{k+1} = f(x_k,e_k) or also x[k+1] = f(x[k],e[k]).\n\n\n\n\n\n\nNote\n\n\n\n\nThe function f can be defined by a computer code rather than a clean mathematical formula.\nThe discrete-time index of the event is sometimes considered shifted, that is x_{k+1} = f(x_k,e_{k+1}). You should be aware of this.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
     ]
   },
   {
-    "objectID": "des_automata.html#extension-moore-machine",
-    "href": "des_automata.html#extension-moore-machine",
+    "objectID": "des_automata.html#extensions",
+    "href": "des_automata.html#extensions",
     "title": "(State) automata",
-    "section": "Extension: Moore machine",
-    "text": "Extension: Moore machine\n\nAutomaton with state outputs.\nOutput function assigns outputs to the states y = g(x).\nThe output is produced (emitted) when the (new) state is entered.\nThe output does not depend on the input. When plugged into feedback, no algebraic loops.\n\n\nExample 6 (Moore machine)  \n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nclosed\n\nNO FLOW\nValve\nclosed\n\n\n\ninit-&gt;closed\n\n\n\n\n\npartial\n\nFLOW\nValve\npartially\nopen\n\n\n\nclosed-&gt;partial\n\n\nopen valve one turn\n\n\n\npartial-&gt;closed\n\n\nclose valve one turn\n\n\n\nfull\n\nFLOW\nValve\nfully open\n\n\n\npartial-&gt;full\n\n\nopen valve one turn\n\n\n\nfull-&gt;closed\n\n\nemergency shut off\n\n\n\nfull-&gt;partial\n\n\nclose valve one turn\n\n\n\n\n\n\n\n\nThe outputs are the labels of the states.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#extension-mealy-machine",
-    "href": "des_automata.html#extension-mealy-machine",
-    "title": "(State) automata",
-    "section": "Extension: Mealy machine",
-    "text": "Extension: Mealy machine\n\nAutomaton with input/output transition labels.\nThe transition label e_\\mathrm{i}/e_\\mathrm{o} on the transion from x_1 to x_2 reads as “the input event e_\\mathrm{i} at state x_1 activates the transition to x_2, which outputs the event e_\\mathrm{o}”. x_1\\xrightarrow{e_\\mathrm{i}/e_\\mathrm{o}} x_2\nIt can be viewed as if the output function also considers the input and not only the state y = e_\\mathrm{o} = g(x,e_\\mathrm{i}).\nThe output is produced (emitted) during the transition (before the new state is entered).\n\n\nExample 7 (Mealy machine) Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNo coin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\n10 CZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK / no coffee\n\n\n\n20\n\n20 CZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK / no coffee\n\n\n\n10-&gt;0\n\n\ninsert 20 CZK / coffee\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK / no coffee\n\n\n\n20-&gt;0\n\n\ninsert 10 CZK / coffee\n\n\n\n20-&gt;10\n\n\ninsert 20 CZK / coffee",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#reformulate-the-previous-example-as-a-moore-machine",
-    "href": "des_automata.html#reformulate-the-previous-example-as-a-moore-machine",
-    "title": "(State) automata",
-    "section": "Reformulate the previous example as a Moore machine",
-    "text": "Reformulate the previous example as a Moore machine\nTwo more states wrt Mealy\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNO COFFEE\nNo\ncoin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\nNO COFFEE\n10\nCZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK\n\n\n\n20\n\nNO COFFEE\n20\nCZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK\n\n\n\n30\n\nCOFFEE\n10+20\nCZK\n\n\n\n10-&gt;30\n\n\ninsert 20 CZK\n\n\n\n20-&gt;30\n\n\ninsert 10 CZK\n\n\n\n40\n\nCOFFEE\n20+20\nCZK\n\n\n\n20-&gt;40\n\n\ninsert 20 CZK\n\n\n\n30-&gt;0\n\n\n\n\n\n30-&gt;10\n\n\ninsert 10 CZK\n\n\n\n30-&gt;20\n\n\ninsert 20 CZK\n\n\n\n40-&gt;10\n\n\n\n\n\n40-&gt;20\n\n\ninsert 10 CZK\n\n\n\n40-&gt;30\n\n\ninsert 20 CZK",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#dijkstra-token-passing",
-    "href": "des_automata.html#dijkstra-token-passing",
-    "title": "(State) automata",
-    "section": "Dijkstra token passing",
-    "text": "Dijkstra token passing\n\n\n\n\n\n\n\nG\n\n\n0\n\n0\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n3-&gt;0",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#data-type-for-the-state-vector",
-    "href": "des_automata.html#data-type-for-the-state-vector",
-    "title": "(State) automata",
-    "section": "Data type for the state vector",
-    "text": "Data type for the state vector\n```{julia}\nstruct DijkstraTokenRing\n    number_of_nodes::Int64\n    max_value_of_state_variable::Int64\n    state_vector::Vector{Int64}\nend\n```",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#state-update-transition-function",
-    "href": "des_automata.html#state-update-transition-function",
-    "title": "(State) automata",
-    "section": "State update (transition) function",
-    "text": "State update (transition) function\n```{julia}\nfunction update!(dtr::DijkstraTokenRing)                        \n    n = dtr.number_of_nodes\n    k = dtr.max_value_of_state_variable\n    x = dtr.state_vector\n    xnext = copy(x)\n1    for i in eachindex(x)\n        if i == 1                                              \n2            xnext[i] = (x[i] == x[n]) ? mod(x[i] + 1,k) : x[i]\n        else                                                    \n3            xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]\n        end\n    end\n    dtr.x .= xnext                                              \nend\n```\n\n1\n\nMind the +1 shift. x[2] corresponds to x₁ in the literature.\n\n2\n\nIncrement if the left neighbour is identical.\n\n3\n\nUpdate by the differing left neighbour.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#output-function",
-    "href": "des_automata.html#output-function",
-    "title": "(State) automata",
-    "section": "Output function",
-    "text": "Output function\nIt gives the position of the token.\n```{julia}\nfunction output(dtr::DijkstraTokenRing)\n    x = dtr.state_vector\n    y = similar(x)\n    y[1] = iszero(x[1]-x[end])\n    y[2:end] .= .!iszero.(diff(x))\n    return y\nend\n```",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#section",
-    "href": "des_automata.html#section",
-    "title": "(State) automata",
-    "section": "",
-    "text": "n = 4                           # Concrete number of nodes.\nk = n                           # Concrete max value of a state variable (must be &gt;= n).\nx_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).\ndtr = DijkstraTokenRing(n,k,x_initial)\noutput(dtr)                     # Show where the token is (are).\n\nupdate!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.\nupdate!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    \nupdate!(dtr), output(dtr)",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#extended-state-automaton",
-    "href": "des_automata.html#extended-state-automaton",
-    "title": "(State) automata",
-    "section": "Extended-state automaton",
-    "text": "Extended-state automaton\n\nIndeed, the hyphen is there on purpose – we are extending the state space by additional state variables.\nAugmenting the state variable(s) that define the states/modes/locations (in the graph) by additional (typed) state variables: Int, Enum, Bool,…\n\nTransitions are then guarded by conditions on theses extra state variables.\nBesides the guard condition, the transitions is labelled also by a reset function that resets the extended state variables.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#example-counting-up-to-10",
-    "href": "des_automata.html#example-counting-up-to-10",
-    "title": "(State) automata",
-    "section": "Example: counting up to 10",
-    "text": "Example: counting up to 10\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\nint k=0\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npress\n\n\n\nON-&gt;OFF\n\n\n(press ⋁ k ≥ 10); k=0\n\n\n\nON-&gt;ON\n\n\n(press ∧ k &lt; 10); k=k+1",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#automata-state-machines-in-umlsysml",
-    "href": "des_automata.html#automata-state-machines-in-umlsysml",
-    "title": "(State) automata",
-    "section": "Automata (state machines) in UML/SysML",
-    "text": "Automata (state machines) in UML/SysML\n\n\nThey can do hierarchies and more.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#automata-state-machines-in-openmodelica",
-    "href": "des_automata.html#automata-state-machines-in-openmodelica",
-    "title": "(State) automata",
-    "section": "Automata (state machines) in (Open)Modelica",
-    "text": "Automata (state machines) in (Open)Modelica",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#automata-in-simulink---stateflow-chart",
-    "href": "des_automata.html#automata-in-simulink---stateflow-chart",
-    "title": "(State) automata",
-    "section": "Automata in Simulink -> Stateflow Chart",
-    "text": "Automata in Simulink -&gt; Stateflow Chart",
+    "section": "Extensions",
+    "text": "Extensions\nThe concept of an automaton can be extended in several ways. In particular, the following two extensions introduce the concept of an output to an automaton.\n\nMoore machine\nOne extension of an automaton with outputs is Moore machine. The outputs assigned to the states by the output function y = g(x).\nThe output is produced (emitted) when the (new) state is entered.\nNote, in particular, that the output does not depend on the input. This has a major advantage when a feedback loop is closed around this system, since no algebraic loop is created.\nGraphically, we make a conventions that outputs are the labels of the states.\n\nExample 7 (Moore machine) The following automaton has just three states, but just two outputs (FLOW and NO FLOW).\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nclosed\n\nNO FLOW\nValve\nclosed\n\n\n\ninit-&gt;closed\n\n\n\n\n\npartial\n\nFLOW\nValve\npartially\nopen\n\n\n\nclosed-&gt;partial\n\n\nopen valve one turn\n\n\n\npartial-&gt;closed\n\n\nclose valve one turn\n\n\n\nfull\n\nFLOW\nValve\nfully open\n\n\n\npartial-&gt;full\n\n\nopen valve one turn\n\n\n\nfull-&gt;closed\n\n\nemergency shut off\n\n\n\nfull-&gt;partial\n\n\nclose valve one turn\n\n\n\n\n\n\n\n\n\n\n\nMealy machine\nMealy machine is another extension of an automaton. Here the outputs are associated with the transitions rather than the states.\nSince the events already associated with the states can be viewed as the inputs, we now have input/output transition labels. The transition label e_\\mathrm{i}/e_\\mathrm{o} on the transion from x_1 to x_2 reads as “the input event e_\\mathrm{i} at state x_1 activates the transition to x_2, which outputs the event e_\\mathrm{o}” and can be written as x_1\\xrightarrow{e_\\mathrm{i}/e_\\mathrm{o}} x_2.\nIt can be viewed as if the output function also considers the input and not only the state y = e_\\mathrm{o} = g(x,e_\\mathrm{i}).\nIn contrast with the Moore machine, here the output is produced (emitted) during the transition (before the new state is entered).\n\nExample 8 (Mealy machine) Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNo coin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\n10 CZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK / no coffee\n\n\n\n20\n\n20 CZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK / no coffee\n\n\n\n10-&gt;0\n\n\ninsert 20 CZK / coffee\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK / no coffee\n\n\n\n20-&gt;0\n\n\ninsert 10 CZK / coffee\n\n\n\n20-&gt;10\n\n\ninsert 20 CZK / coffee\n\n\n\n\n\n\n\n\n\n\nExample 9 (Reformulate the previous example as a Moore machine) Two more states wrt Mealy\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNO COFFEE\nNo\ncoin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\nNO COFFEE\n10\nCZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK\n\n\n\n20\n\nNO COFFEE\n20\nCZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK\n\n\n\n30\n\nCOFFEE\n10+20\nCZK\n\n\n\n10-&gt;30\n\n\ninsert 20 CZK\n\n\n\n20-&gt;30\n\n\ninsert 10 CZK\n\n\n\n40\n\nCOFFEE\n20+20\nCZK\n\n\n\n20-&gt;40\n\n\ninsert 20 CZK\n\n\n\n30-&gt;0\n\n\n\n\n\n30-&gt;10\n\n\ninsert 10 CZK\n\n\n\n30-&gt;20\n\n\ninsert 20 CZK\n\n\n\n40-&gt;10\n\n\n\n\n\n40-&gt;20\n\n\ninsert 10 CZK\n\n\n\n40-&gt;30\n\n\ninsert 20 CZK\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThere are transitions from 30 and 40 back to 0 that are not labelled by any event. This does not seem to follow the general rule that transitions are always triggered by events. Not what? It can be resolved upon introducing time as the timeout transitions.\n\n\n\nExample 10 (Dijkstra token passing)  \n\n\n\n\n\n\n\n\nG\n\n\n0\n\n0\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n3-&gt;0\n\n\n\n\n\n\n\n\nFigure 7: Example of a ring topology for Dijkstra token passing in a distributed system\n\n\n\n\n\n\n\nShow the code\nstruct DijkstraTokenRing\n    number_of_nodes::Int64\n    max_value_of_state_variable::Int64\n    state_vector::Vector{Int64}\nend\n\nfunction update!(dtr::DijkstraTokenRing)                        \n    n = dtr.number_of_nodes\n    k = dtr.max_value_of_state_variable\n    x = dtr.state_vector\n    xnext = copy(x)\n    for i in eachindex(x)   # Mind the +1 shift. x[2] corresponds to x₁ in the literature.\n        if i == 1                                              \n            xnext[i] = (x[i] == x[n]) ? mod(x[i] + 1,k) : x[i]  # Increment if the left neighbour is identical.\n        else                                                    \n            xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]         # Update by the differing left neighbour.\n        end\n    end\n    dtr.x .= xnext                                              \nend\n\nfunction output(dtr::DijkstraTokenRing)     # It gives the position of the token. \n    x = dtr.state_vector\n    y = similar(x)\n    y[1] = iszero(x[1]-x[end])\n    y[2:end] .= .!iszero.(diff(x))\n    return y\nend\n\nn = 4                           # Concrete number of nodes.\nk = n                           # Concrete max value of a state variable (must be &gt;= n).\nx_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).\ndtr = DijkstraTokenRing(n,k,x_initial)\noutput(dtr)                     # Show where the token is (are).\n\nupdate!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.\nupdate!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    \nupdate!(dtr), output(dtr)\n\n\n\n\n\nExtended-state automaton\nYet another extension of an automaton is the extended-state automaton. And indeed, the hyphen is there on purpose as we extend the state space by additional state variables.\nIn particular, we augment the state variable(s) that define the states/modes/locations (the nodes in the graph) by additional (typed) state variables: Int, Enum, Bool, …\nTransitions from one mode to another are then guarded by conditions on theses new extra state variables.\nBesides being guarded by a guard condition, a given transition can also be labelled by a reset function that resets the extended-state variables.\n\nExample 11 (Counting up to 10) In this example, there are two modes (on and off), which can be captured by a single binary state variable, say x. But then there is an additional integer variable k, and the two variables together characterize the extended state.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\nint k=0\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npress\n\n\n\nON-&gt;OFF\n\n\n(press ⋁ k ≥ 10); k=0\n\n\n\nON-&gt;ON\n\n\n(press ∧ k &lt; 10); k=k+1\n\n\n\n\n\n\nFigure 8: Example of a digraph representation of the extended-state automaton for counting up to ten",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -884,29 +730,7 @@
     "href": "des_automata.html#languages-and-automata",
     "title": "(State) automata",
     "section": "Languages and automata",
-    "text": "Languages and automata\n\nExtend the transition function: f: \\mathcal X \\times \\mathcal E^\\ast \\rightarrow \\mathcal X, where \\mathcal E^\\ast stands for “all possible sequences of events”.\nLanguage generated by the automaton is \n  \\mathcal L(\\mathcal G) = \\{s\\in\\mathcal E^\\ast \\mid f(x_0,s) \\;\\text{is defined}\\}\n  \nLanguage marked by the automaton (the automaton is accepting or recognizing that language) \n  \\mathcal L_\\mathrm{m}(\\mathcal G) = \\{s\\in\\mathcal L(\\mathcal G) \\mid f(x_0,s) \\in \\mathcal{X}_\\mathrm{m}\\}",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#ex.-languaged-accepted-by-automaton",
-    "href": "des_automata.html#ex.-languaged-accepted-by-automaton",
-    "title": "(State) automata",
-    "section": "Ex.: languaged accepted by automaton",
-    "text": "Ex.: languaged accepted by automaton\n\n\\mathcal{E} = \\{a,b\\}, \\mathcal{L} = \\{a,aa,ba,aaa,aba,baa,bba,\\ldots\\}\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n\n1\n\n\n\n1-&gt;1\n\n\na\n\n\n\n1-&gt;0\n\n\nb\n\n\n\n0-&gt;1\n\n\na\n\n\n\n0-&gt;0\n\n\nb\n\n\n\n\n\n\n\n\n\nWhat if we remove the self loop at state 1? The automaton then accepts languages starting with a and endis with a.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "(State) automata"
-    ]
-  },
-  {
-    "objectID": "des_automata.html#what-is-the-language-view-of-automata-good-for",
-    "href": "des_automata.html#what-is-the-language-view-of-automata-good-for",
-    "title": "(State) automata",
-    "section": "What is the “language view of automata” good for?",
-    "text": "What is the “language view of automata” good for?\n\nDefinitions, analysis, synthesis.\nWe then need language concepts such as\n\nconcatenation of strings: \\quad c = ab\nempty string \\varepsilon: \\quad\\varepsilon a = a \\varepsilon = a\nprefix, suffix\nprefix closure \\bar{\\mathcal{L}} (of the language \\mathcal L)\n…",
+    "text": "Languages and automata\n\nExtend the transition function: f: \\mathcal X \\times \\mathcal E^\\ast \\rightarrow \\mathcal X, where \\mathcal E^\\ast stands for “all possible sequences of events”.\nLanguage generated by the automaton is \n  \\mathcal L(\\mathcal G) = \\{s\\in\\mathcal E^\\ast \\mid f(x_0,s) \\;\\text{is defined}\\}\n  \nLanguage marked by the automaton (the automaton is accepting or recognizing that language) \n  \\mathcal L_\\mathrm{m}(\\mathcal G) = \\{s\\in\\mathcal L(\\mathcal G) \\mid f(x_0,s) \\in \\mathcal{X}_\\mathrm{m}\\}\n  \n\n\nExample 12 (Language accepted by automaton) \n\\mathcal{E} = \\{a,b\\}, \\mathcal{L} = \\{a,aa,ba,aaa,aba,baa,bba,\\ldots\\}\n\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n\n1\n\n\n\n1-&gt;1\n\n\na\n\n\n\n1-&gt;0\n\n\nb\n\n\n\n0-&gt;1\n\n\na\n\n\n\n0-&gt;0\n\n\nb\n\n\n\n\n\n\nFigure 9: Example of a digraph representation of the automaton for the language \\{a^n b^n\\mid n\\in\\mathbb N\\}\n\n\n\n\n\nWhat if we remove the self loop at state 1? The automaton then accepts languages starting with a and endis with a.\n\n\nWhat is the “language view of automata” good for?\n\nDefinitions, analysis, synthesis.\nWe then need language concepts such as\n\nconcatenation of strings: \\quad c = ab\nempty string \\varepsilon: \\quad\\varepsilon a = a \\varepsilon = a\nprefix, suffix\nprefix closure \\bar{\\mathcal{L}} (of the language \\mathcal L)\n…",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -928,7 +752,7 @@
     "href": "des_automata.html#queueing-systems",
     "title": "(State) automata",
     "section": "Queueing systems",
-    "text": "Queueing systems\n\nentities (also customers, jobs, tasks, requests, etc.)\nresources (also servers, processors, etc.): customers are waiting for them\nqueues (also buffers): where waiting is done\n\n. . .",
+    "text": "Queueing systems\n\nentities (also customers, jobs, tasks, requests, etc.)\nresources (also servers, processors, etc.): customers are waiting for them\nqueues (also buffers): where waiting is done",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -939,7 +763,7 @@
     "href": "des_automata.html#examples-of-queueing-systems",
     "title": "(State) automata",
     "section": "Examples of queueing systems",
-    "text": "Examples of queueing systems\n\nentities: people waiting for service in a bank or at a bust stop\nresources: people (again) in a bank at the counter\nqueues: bank lobbies, bus stops, warehouses, …\n\n\nWhat are other examples? - entities: packets, … - resources: processor, computer periphery, router, … - queues: …",
+    "text": "Examples of queueing systems\n\nentities: people waiting for service in a bank or at a bust stop\nresources: people (again) in a bank at the counter\nqueues: bank lobbies, bus stops, warehouses, …\n\n\n\n\n\n\n\nNote\n\n\n\nWhat are other examples? - entities: packets, … - resources: processor, computer periphery, router, … - queues: …",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -972,7 +796,7 @@
     "href": "des_automata.html#queueing-systems-as-automata",
     "title": "(State) automata",
     "section": "Queueing systems as automata",
-    "text": "Queueing systems as automata\n\nevents: \\mathcal E = \\{\\text{arrival},\\text{departure}\\}\nstates: number of customers in the queue \n\\mathcal X = \\{0,1,2,3,\\ldots\\}, \\quad \\mathcal X_0 = \\{0\\}\n\n\nnot a finite state automation, unless the queue is bounded.\n\nstate transition: \nf(x,e) =\n\\begin{cases}\nx+1, & \\text{if}\\; x\\leq 0 \\land e = \\mathrm{arrival}\\\\\nx-1, & \\text{if}\\; x &gt; 0 \\land e = \\mathrm{departure}\n\\end{cases}\n\n\n\nWhether the queue’s length is bounded is a modelling assumption.",
+    "text": "Queueing systems as automata\n\nevents: \\mathcal E = \\{\\text{arrival},\\text{departure}\\}\nstates: number of customers in the queue \n\\mathcal X = \\{0,1,2,3,\\ldots\\}, \\quad \\mathcal X_0 = \\{0\\}\n\n\nnot a finite state automation, unless the queue is bounded.\n\nstate transition: \nf(x,e) =\n\\begin{cases}\nx+1, & \\text{if}\\; x\\leq 0 \\land e = \\mathrm{arrival}\\\\\nx-1, & \\text{if}\\; x &gt; 0 \\land e = \\mathrm{departure}\n\\end{cases}\n\n\n\n\n\n\n\n\nNote\n\n\n\nWhether the queue’s length is bounded is a modelling assumption.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -983,7 +807,7 @@
     "href": "des_automata.html#queueing-system-as-an-automaton",
     "title": "(State) automata",
     "section": "Queueing system as an automaton",
-    "text": "Queueing system as an automaton\n\n\nOnce again, note how the states correspond to the value of the state variable.",
+    "text": "Queueing system as an automaton\n\n\n\n\n\n\n\nNote\n\n\n\nOnce again, note how the states correspond to the value of the state variable.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -1027,7 +851,7 @@
     "href": "des_automata.html#timed-automaton-with-guards-alur-dill",
     "title": "(State) automata",
     "section": "Timed automaton with guards (Alur & Dill)",
-    "text": "Timed automaton with guards (Alur & Dill)\n\none or several resettable clocks: c_i,\\, i=1,\\ldots, k, driven by the ODE \n  \\frac{\\mathrm{d} c_i(t)}{\\mathrm d t} = 1, \\quad c_i(0) = 0.\n  \neach transition labelled by the tripple {guard; event; reset}\n\n\nBoth satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.",
+    "text": "Timed automaton with guards (Alur & Dill)\n\none or several resettable clocks: c_i,\\, i=1,\\ldots, k, driven by the ODE \n  \\frac{\\mathrm{d} c_i(t)}{\\mathrm d t} = 1, \\quad c_i(0) = 0.\n  \neach transition labelled by the tripple {guard; event; reset}\n\n\n\n\n\n\n\nNote\n\n\n\nBoth satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -1324,7 +1148,7 @@
     "href": "verification_barrier.html#convex-relaxation-of-the-barrier-certificate-problem",
     "title": "Barrier certificates",
     "section": "Convex relaxation of the barrier certificate problem",
-    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/vhP5T/src/integrator_interface.jl:600",
+    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/LyRro/src/integrator_interface.jl:600",
     "crumbs": [
       "12. Formal verification",
       "Barrier certificates"
@@ -1507,7 +1331,7 @@
     "href": "complementarity_simulations.html",
     "title": "Simulations using complementarity",
     "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
     "crumbs": [
       "9. Complementarity systems",
       "Simulations using complementarity"
@@ -1518,7 +1342,7 @@
     "href": "complementarity_simulations.html#simulation-using-time-stepping",
     "title": "Simulations using complementarity",
     "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
     "crumbs": [
       "9. Complementarity systems",
       "Simulations using complementarity"
@@ -1826,7 +1650,7 @@
     "href": "des_software.html",
     "title": "Software",
     "section": "",
-    "text": "In this course we will encounter a few more software packages but in this first learning block we will only lightly introduce two, both by The Mathworks:",
+    "text": "The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Software"
@@ -1837,29 +1661,7 @@
     "href": "des_software.html#matlab-and-simulink",
     "title": "Software",
     "section": "Matlab and Simulink",
-    "text": "Matlab and Simulink\n\nStateFlow – fnite state automata within Simulink. Can also model hybrid automata. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(“stateflow”) in Matlab. We will primarily use this tool in our course. It extends nicely to hybrid systems.\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks. We will not particularly need it in our course. Several tools are also available outside Matlab and Simulink:",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#python",
-    "href": "des_software.html#python",
-    "title": "Software",
-    "section": "Python",
-    "text": "Python\nSimPy – discrete-event simulation in Python.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#julia",
-    "href": "des_software.html#julia",
-    "title": "Software",
-    "section": "Julia",
-    "text": "Julia\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
+    "text": "Matlab and Simulink\n\nStateFlow – finite state automata within Simulink. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(\"stateflow\") in Matlab. This is the primary tool for our course, as it extends nicely to hybrid systems. An example is shown in Fig 1 below.\n\n\n\n\n\n\n\nFigure 1: Screenshot of a state “chart” in Simscape\n\n\n\n\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks, although we are not going to rely on this tool in our course.\n\nSeveral tools are also available outside Matlab and Simulink, and it is certainly good to be aware of these alternatives.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Software"
@@ -1870,7 +1672,7 @@
     "href": "des_software.html#openmodelica",
     "title": "Software",
     "section": "(Open)Modelica",
-    "text": "(Open)Modelica\nStarting with Modelica 3.3, some support for state machines is now built into the language. It is already implemented in OpenModelica, see the example.",
+    "text": "(Open)Modelica\nA popular modelling language for physical systems is Modelica. Starting with version 3.3 (several years ago already), it has a support for state machines, see Chapter 17 in the language specification and the screenshot in Fig 2 below. A readable introduction to state machines in Modelica is in [1].\n\n\n\n\n\n\nFigure 2: Screenshot of a state machine diagram in Modelica\n\n\n\nSeveral implementations of Modelica language and compiler exist. On the FOSS side, OpenModelica is a popular choice. Slides from an introdutory presentation [2] about state machines in OpenModelica are available for free download.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Software"
@@ -1881,7 +1683,40 @@
     "href": "des_software.html#uppaal",
     "title": "Software",
     "section": "UPPAAL",
-    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/.",
+    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/. In our course we will only use it in this block/week.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#python",
+    "href": "des_software.html#python",
+    "title": "Software",
+    "section": "Python",
+    "text": "Python\nSimPy – discrete-event simulation in Python. We are not going to use it in our course, but if you are a Python enthusiast, you may want to have a look at it.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#julia",
+    "href": "des_software.html#julia",
+    "title": "Software",
+    "section": "Julia",
+    "text": "Julia\nTwo major packages for discrete-event simulation in Julia are:\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#umlsysml",
+    "href": "des_software.html#umlsysml",
+    "title": "Software",
+    "section": "UML/SysML",
+    "text": "UML/SysML\nIf you have been exposed to software engineering, you have probably seen UML diagrams. Their extension (and restriction at the same time) toward systems that also contain hardware is called SysML. And SysML does have support for defining state machines (by drawing the state machine diagrams), see the screenshot in Fig 3 below.\n\n\n\n\n\n\nFigure 3: Screenshot of a state machine diagram in SysML\n\n\n\nSysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&open-source (FOSS) tool for creating SysML diagrams such as Modelio or Eclipse Papyrus. But we are not going to use them in our course.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Software"
@@ -2475,7 +2310,7 @@
     "href": "intro.html#example-of-a-hybrid-system",
     "title": "What is a hybrid system?",
     "section": "Example of a hybrid system",
-    "text": "Example of a hybrid system",
+    "text": "Example of a hybrid system\n\n\n\nExample of a hybrid system (from [1])",
     "crumbs": [
       "0. Introduction",
       "What is a hybrid system?"
@@ -2486,7 +2321,7 @@
     "href": "intro.html#hybrid-system-is-an-open-and-unbounded-concept",
     "title": "What is a hybrid system?",
     "section": "Hybrid system is an open and unbounded concept",
-    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled…\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
+    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\n\n\n\n\n\n\n\nSystems vs models\n\n\n\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled. After all, we also speak about “second-order systems” when we actually mean “second-order models”, or “LTI systems” when we actually mean “LTI models”.\n\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
     "crumbs": [
       "0. Introduction",
       "What is a hybrid system?"
@@ -2618,7 +2453,7 @@
     "href": "classes_reset.html#example-the-flow-transverses-the-boundary",
     "title": "Reset systems",
     "section": "Example: The flow transverses the boundary",
-    "text": "Example: The flow transverses the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\ns(x₁,x₂) = (x₁+0.05)^2 + (x₂+0.15)^2 - 1.0\n\nf₁(x₁,x₂) = x₁^2 + 2x₂^2\nf₂(x₁,x₂) = 2x₁^2+3x₂^2-2.0\n\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1,f₁(x₁,x₂)] : [1,f₂(x₁,x₂)] \n\nN = 100\nx₁ = range(0, stop = 0.94, length = N)\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n\ns(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
+    "text": "Example: The flow transverses the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\ns(x₁,x₂) = (x₁+0.05)^2 + (x₂+0.15)^2 - 1.0\n\nf₁(x₁,x₂) = x₁^2 + 2x₂^2\nf₂(x₁,x₂) = 2x₁^2+3x₂^2-2.0\n\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1,f₁(x₁,x₂)] : [1,f₂(x₁,x₂)] \n\nN = 100\nx₁ = range(0, stop = 0.94, length = N)\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n\ns(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2640,7 +2475,7 @@
     "href": "classes_reset.html#example-the-flow-pulls-away-from-the-boundary",
     "title": "Reset systems",
     "section": "Example: The flow pulls away from the boundary",
-    "text": "Example: The flow pulls away from the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}-1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [-1, f₁(x₁,x₂)] : [1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.8\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\leq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
+    "text": "Example: The flow pulls away from the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}-1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [-1, f₁(x₁,x₂)] : [1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.8\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\leq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2651,7 +2486,7 @@
     "href": "classes_reset.html#example-the-flow-pushes-towards-the-boundary",
     "title": "Reset systems",
     "section": "Example: The flow pushes towards the boundary",
-    "text": "Example: The flow pushes towards the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}-1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1, f₁(x₁,x₂)] : [-1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\leq 0",
+    "text": "Example: The flow pushes towards the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}-1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1, f₁(x₁,x₂)] : [-1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\leq 0",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2706,7 +2541,7 @@
     "href": "classes_reset.html#another-example-nonexistence-and-nonuniqueness-of-solutions",
     "title": "Reset systems",
     "section": "Another example: nonexistence and nonuniqueness of solutions",
-    "text": "Another example: nonexistence and nonuniqueness of solutions\n\n\nThe system with discontinuous RHS \n\\begin{aligned}\n\\dot x_1 &= -2x_1 - 2x_2\\operatorname*{sgn(x_1)},\\\\\n\\dot x_2 &= x_2 + 4x_1\\operatorname*{sgn(x_1)}\n\\end{aligned}\n\ncan be reformulated as a switched system \n\\begin{aligned}\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & 2\\\\-4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x\\leq 0\\\\\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & -2\\\\4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x&gt; 0\n\\end{aligned}\n\n\n\n\nShow the code\ns(x) = x[1]\n\nf₁(x) = [-2x[1] + 2x[2], x[2] - 4x[1]]\nf₂(x) = [-2x[1] - 2x[2], x[2] + 4x[1]]\n\nf(x) = s(x) &lt;= 0.0 ? f₁(x) : f₂(x) \n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nvlines!(ax,0; ymin = -1.1, ymax = 1.1, color = :red)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227",
+    "text": "Another example: nonexistence and nonuniqueness of solutions\n\n\nThe system with discontinuous RHS \n\\begin{aligned}\n\\dot x_1 &= -2x_1 - 2x_2\\operatorname*{sgn(x_1)},\\\\\n\\dot x_2 &= x_2 + 4x_1\\operatorname*{sgn(x_1)}\n\\end{aligned}\n\ncan be reformulated as a switched system \n\\begin{aligned}\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & 2\\\\-4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x\\leq 0\\\\\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & -2\\\\4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x&gt; 0\n\\end{aligned}\n\n\n\n\nShow the code\ns(x) = x[1]\n\nf₁(x) = [-2x[1] + 2x[2], x[2] - 4x[1]]\nf₂(x) = [-2x[1] - 2x[2], x[2] + 4x[1]]\n\nf(x) = s(x) &lt;= 0.0 ? f₁(x) : f₂(x) \n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nvlines!(ax,0; ymin = -1.1, ymax = 1.1, color = :red)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -3230,7 +3065,7 @@
     "href": "stability_recap.html#attractivity",
     "title": "Recap of stability analysis for continuous dynamical systems",
     "section": "Attractivity",
-    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227",
+    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227",
     "crumbs": [
       "8. Stability",
       "Recap of stability analysis for continuous dynamical systems"
@@ -3274,7 +3109,7 @@
     "href": "stability_recap.html#stability-analysis-via-lyapunov-function",
     "title": "Recap of stability analysis for continuous dynamical systems",
     "section": "Stability analysis via Lyapunov function",
-    "text": "Stability analysis via Lyapunov function\nNow that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the Lyapunov function.\nLyapunov function is a scalar function V(\\cdot)\\in\\mathcal{C}_1 defined on open \\mathcal{D}\\subset \\mathbb{R}^n containing the origin (the equilibrium) that satisfies the following conditions V(0) = 0, \\; V(x) &gt; 0\\, \\text{for all}\\, x\\in \\mathcal{D}\\setminus \\{0\\}, \n \\underbrace{\\left(\\nabla V(x)\\right)^\\top f(x)}_{\\frac{\\mathrm d}{\\mathrm d t}V(x)} \\leq 0.\nIn words, Lyapunov function for a given system and the equilibrium is a function that is positive everywhere except at the origin, where it is zero, and its derivative along the trajectories of the system is nonpositive, which is a way to guarantee that it does not increase along the trajectories If such function exists, the equilibrium is Lyapunov stable.\nIf the latter condition is made strict, that is, if \\left(\\nabla V(x)\\right)^\\top f(x) &lt; 0, which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.",
+    "text": "Stability analysis via Lyapunov function\nNow that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the searching for a Lyapunov function.\nLyapunov function is a scalar function V(\\cdot)\\in\\mathcal{C}_1 defined on open \\mathcal{D}\\subset \\mathbb{R}^n containing the origin (the equilibrium) that satisfies the following conditions V(0) = 0, \\; V(x) &gt; 0\\, \\text{for all}\\, x\\in \\mathcal{D}\\setminus \\{0\\}, \n \\underbrace{\\left(\\nabla V(x)\\right)^\\top f(x)}_{\\frac{\\mathrm d}{\\mathrm d t}V(x)} \\leq 0.\nIn words, Lyapunov function for a given system and the equilibrium is a function that is positive everywhere except at the origin, where it is zero, we call such function positive definite, and its derivative along the trajectories of the system is nonpositive (aka positive semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.\nIf the latter condition is made strict, that is, if \\left(\\nabla V(x)\\right)^\\top f(x) &lt; 0, which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.\nThe interpretation is quite intuitive:",
     "crumbs": [
       "8. Stability",
       "Recap of stability analysis for continuous dynamical systems"
@@ -3384,7 +3219,7 @@
     "href": "hybrid_automata.html",
     "title": "Hybrid automata",
     "section": "",
-    "text": "We start with an autonomous (=no external/control inputs) hybrid automaton. It is a tuple of sets and (set) mappings \n\\boxed{\n\\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, f, \\mathcal I, \\mathcal E, \\mathcal G, \\mathcal R\\},}\n where",
+    "text": "We start with an autonomous (=no external/control inputs) hybrid automaton – it is a tuple of sets and (set) mappings \n\\boxed{\n\\mathcal{H} = \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, f, \\mathcal I, \\mathcal E, \\mathcal G, \\mathcal R\\},}\n where",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
       "Hybrid automata"

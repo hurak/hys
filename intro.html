@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.5">
+<meta name="generator" content="quarto-1.6.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,10 +56,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-79bb3942e891885f9f7af119cd221462.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c8a90968fded0431fd3c9f28aacc3510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -649,7 +669,12 @@ Hybrid systems vs cyberphysical systems
 </section>
 <section id="example-of-a-hybrid-system" class="level2">
 <h2 class="anchored" data-anchor-id="example-of-a-hybrid-system">Example of a hybrid system</h2>
-<p><img src="intro_figures/example_hybrid_system_cassandras_book.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="intro_figures/example_hybrid_system_cassandras_book.png" class="img-fluid figure-img"></p>
+<figcaption>Example of a hybrid system (from <span class="citation" data-cites="cassandrasIntroductionDiscreteEvent2021"><a href="#ref-cassandrasIntroductionDiscreteEvent2021" role="doc-biblioref">[1]</a></span>)</figcaption>
+</figure>
+</div>
 </section>
 <section id="hybrid-system-is-an-open-and-unbounded-concept" class="level2">
 <h2 class="anchored" data-anchor-id="hybrid-system-is-an-open-and-unbounded-concept">Hybrid system is an open and unbounded concept</h2>
@@ -670,8 +695,20 @@ Hybrid systems vs cyberphysical systems
 <h3 class="anchored" data-anchor-id="hybrid-systems-in-modeling-and-simulation">Hybrid systems in modeling and simulation</h3>
 <ul>
 <li>Even when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).</li>
-<li>Strictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled…</li>
 </ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Systems vs models
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Strictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled. After all, we also speak about “second-order systems” when we actually mean “second-order models”, or “LTI systems” when we actually mean “LTI models”.</p>
+</div>
+</div>
 </section>
 <section id="hybrid-systems-in-control-systems" class="level3">
 <h3 class="anchored" data-anchor-id="hybrid-systems-in-control-systems">Hybrid systems in control systems</h3>
@@ -682,10 +719,15 @@ Hybrid systems vs cyberphysical systems
 </ul>
 
 
+
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-cassandrasIntroductionDiscreteEvent2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. G. Cassandras and S. Lafortune, <em>Introduction to <span>Discrete Event Systems</span></em>, 3rd ed. Cham: Springer, 2021. Available: <a href="https://doi.org/10.1007/978-3-030-72274-6">https://doi.org/10.1007/978-3-030-72274-6</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

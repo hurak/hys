@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.5">
+<meta name="generator" content="quarto-1.6.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-79bb3942e891885f9f7af119cd221462.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c8a90968fded0431fd3c9f28aacc3510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -715,7 +715,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="attractivity">Attractivity</h2>
 <p>This is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.</p>
 <p>Perhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.</p>
-<div id="74b4e2d5" class="cell" data-execution_count="1">
+<div id="791a1ca1" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> [(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="fu">*</span>(x[<span class="fl">2</span>]<span class="op">-</span>x[<span class="fl">1</span>])<span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">5</span>)<span class="op">/</span>((x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span><span class="fu">+</span>(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span>)); </span>
@@ -729,7 +729,7 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
-└ @ Makie ~/.julia/packages/Makie/GWb7z/src/scenes.jl:227</code></pre>
+└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
@@ -755,11 +755,12 @@ window.Quarto = {
 </section>
 <section id="stability-analysis-via-lyapunov-function" class="level2">
 <h2 class="anchored" data-anchor-id="stability-analysis-via-lyapunov-function">Stability analysis via Lyapunov function</h2>
-<p>Now that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the <em>Lyapunov function</em>.</p>
-<p>Lyapunov function is a scalar function <span class="math inline">V(\cdot)\in\mathcal{C}_1</span> defined on open <span class="math inline">\mathcal{D}\subset \mathbb{R}^n</span> containing the origin (the equilibrium) that satisfies the following conditions <span class="math display">V(0) = 0, \; V(x) &gt; 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}, </span></p>
+<p>Now that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the searching for a <em>Lyapunov function</em>.</p>
+<p><em>Lyapunov function</em> is a scalar function <span class="math inline">V(\cdot)\in\mathcal{C}_1</span> defined on open <span class="math inline">\mathcal{D}\subset \mathbb{R}^n</span> containing the origin (the equilibrium) that satisfies the following conditions <span class="math display">V(0) = 0, \; V(x) &gt; 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}, </span></p>
 <p><span class="math display"> \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x)} \leq 0.</span></p>
-<p>In words, Lyapunov function for a given system and the equilibrium is a function that is positive everywhere except at the origin, where it is zero, and its derivative along the trajectories of the system is nonpositive, which is a way to guarantee that it does not increase along the trajectories If such function exists, the equilibrium is Lyapunov stable.</p>
+<p>In words, Lyapunov function for a given system and the equilibrium is a function that is positive everywhere except at the origin, where it is zero, we call such function <em>positive definite</em>, and its derivative along the trajectories of the system is nonpositive (aka positive semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.</p>
 <p>If the latter condition is made strict, that is, if <span class="math display">\left(\nabla V(x)\right)^\top f(x) &lt; 0,</span> which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.</p>
+<p>The interpretation is quite intuitive:</p>
 </section>
 <section id="lasalles-invariance-principle" class="level2">
 <h2 class="anchored" data-anchor-id="lasalles-invariance-principle">LaSalle’s invariance principle</h2>
