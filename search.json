@@ -554,7 +554,7 @@
     "href": "petri_nets_timed.html#queueing-system-using-tpn",
     "title": "Timed Petri nets",
     "section": "Queueing system using TPN",
-    "text": "Queueing system using TPN\nWe can also model a queueing system using a TPN. The Petri net is shown in Figure 1.\n\n\n\n\n\n\nFigure 1: Timed Petri net modelling a queueing system\n\n\n\n\nTransitions: \\mathcal{T} = \\{a,s,c\\}\nTimed/delayed transitions: \\mathcal{T}_\\mathrm{D} = \\{a,c\\}\nFiring delays: \\bm v = \\begin{bmatrix}v_a \\\\ v_c\\end{bmatrix}\n\nFor convenience we relabel the firing times of the transitions (instead of t_k we will use a_k, s_k, and c_k): \n\\begin{aligned}\na_k &= a_{k-1} + v_{a,k},\\quad k=1,2,\\ldots,\\quad a_0 = 0\\\\\ns_k &= \\max\\{\\pi_{Q,k},\\pi_{I,k}\\}\\\\\nc_k &= \\pi_{B,k} + v_{c,k}\\\\\n\\pi_{Q,k} &= a_{k},\\quad k=1,2,\\ldots\\\\\n\\pi_{I,k} &= c_{k-1},\\quad k= 2, \\ldots, \\quad \\pi_{I,0}=1\\\\\n\\pi_{B,k} &= s_{k},\\quad k=1,2,\\ldots\\\\\n\\end{aligned}\n\n\n\\begin{aligned}\na_k &= a_{k-1} + v_{a,k},\\quad k=1,2,\\ldots,\\quad a_0 = 0\\\\\ns_k &= \\max\\{a_{k},c_{k-1}\\}\\\\\nc_k &= s_{k} + v_{c,k}\\\\\n&= \\max\\{a_{k},c_{k-1}\\} + v_{c,k},\\quad k=1,\\ldots, \\quad c_0=0\n\\end{aligned}\n\nThe time of completing the k-th task is given by the time at which the previous task was completed and the time needed to complete the k-th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.\n\nExample 4 (Timed Petri net for synchronization of train lines)  \n\n\n\nExample with three train lines\n\n\nSynchronization of departures at a given station so that passenges can change trains.\n\n\n\nTimed Petri net for the example of synchronization of three train lines\n\n\n\nExample 3 (Manufacturing) tbd\n\n\nExtensions\n\nStochastic Petri nets (SPN): the delays are random variables.",
+    "text": "Queueing system using TPN\nWe can also model a queueing system using a TPN. The Petri net is shown in Fig 1.\n\n\n\n\n\n\nFigure 1: Timed Petri net modelling a queueing system\n\n\n\n\nTransitions: \\mathcal{T} = \\{a,s,c\\}\nTimed/delayed transitions: \\mathcal{T}_\\mathrm{D} = \\{a,c\\}\nFiring delays: \\bm v = \\begin{bmatrix}v_a \\\\ v_c\\end{bmatrix}\n\nFor convenience we relabel the firing times of the transitions (instead of t_k we will use a_k, s_k, and c_k): \n\\begin{aligned}\na_k &= a_{k-1} + v_{a,k},\\quad k=1,2,\\ldots,\\quad a_0 = 0\\\\\ns_k &= \\max\\{\\pi_{Q,k},\\pi_{I,k}\\}\\\\\nc_k &= \\pi_{B,k} + v_{c,k}\\\\\n\\pi_{Q,k} &= a_{k},\\quad k=1,2,\\ldots\\\\\n\\pi_{I,k} &= c_{k-1},\\quad k= 2, \\ldots, \\quad \\pi_{I,0}=1\\\\\n\\pi_{B,k} &= s_{k},\\quad k=1,2,\\ldots\\\\\n\\end{aligned}\n\n\n\\begin{aligned}\na_k &= a_{k-1} + v_{a,k},\\quad k=1,2,\\ldots,\\quad a_0 = 0\\\\\ns_k &= \\max\\{a_{k},c_{k-1}\\}\\\\\nc_k &= s_{k} + v_{c,k}\\\\\n&= \\max\\{a_{k},c_{k-1}\\} + v_{c,k},\\quad k=1,\\ldots, \\quad c_0=0\n\\end{aligned}\n\nThe time of completing the k-th task is given by the time at which the previous task was completed and the time needed to complete the k-th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.\n\nExample 3 (Timed Petri net for synchronization of train lines)  \n\n\n\nExample with three train lines\n\n\nSynchronization of departures at a given station so that passenges can change trains.\n\n\n\nTimed Petri net for the example of synchronization of three train lines\n\n\n\n\nExample 4 (Manufacturing) tbd",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Timed Petri nets"
@@ -565,7 +565,7 @@
     "href": "petri_nets_timed.html#extensions",
     "title": "Timed Petri nets",
     "section": "Extensions",
-    "text": "Extensions\n\nStochastic Petri nets (SPN): the delays are random variables.",
+    "text": "Extensions\n\nStochastic Petri nets (SPN)\nDelays are random variables.",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Timed Petri nets"
@@ -763,7 +763,7 @@
     "href": "des_automata.html#timed-automaton",
     "title": "(State) automata",
     "section": "Timed automaton",
-    "text": "Timed automaton\nSo far, even if the automaton corresponded to a physical system (and did not just represent a generator of a language), the time was not included. The transitions were triggered by the events, but we did not specify the time at which the event occurred.\nThere are, however, many situations when it is useful or even crucial to incorporate time. We can then answer questions such as\n\nHow many events of a certain type in a given interval?\nIs the time interval between two events above a given threshold?\nHow long does the system spend in a given state?\n…\n\nThere are several ways how to incorporate time into the automaton. We will follow the concept of a timed automaton with guards (introduced by Alur and Dill in [1], perhaps even better explained in [2]). Within their framework we have\n\none or several resettable clocks: c_i,\\, i=1,\\ldots, k, driven by the ODE \n  \\frac{\\mathrm{d} c_i(t)}{\\mathrm d t} = 1, \\quad c_i(0) = 0;\n  \neach transition labelled by the tripple {guard; event; reset}.\n\n\n\n\n\n\n\nNote\n\n\n\nBoth satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.\n\n\n\nExample 16 (Timed automaton with guards)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\nc₁&lt;1; alarm; -\n\n\n\n\n\n\nFigure 18: Example of a timed automaton with guards\n\n\n\n\n\n\n\nExample 17 (Timed automaton with guards and invariant)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n2\n\n2\nc₁&lt;1\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n-; alarm; -\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁\n\n\n\n\n\n\nFigure 19: Example of a timed automaton with guards and invariant\n\n\n\n\n\n\n\nInvariant vs guard\n\nInvariant (of a location) gives an upper bound on the time the system can stay at the given location. It can leave earlier but not later.\nGuard (of a given transition) gives an enabling condition on leaving the location through the given transition.\n\n\nExample 18 (Several trains approaching a bridge) The example is taken from [3].",
+    "text": "Timed automaton\nSo far, even if the automaton corresponded to a physical system (and did not just represent a generator of a language), the time was not included. The transitions were triggered by the events, but we did not specify the time at which the event occurred.\nThere are, however, many situations when it is useful or even crucial to incorporate time. We can then answer questions such as\n\nHow many events of a certain type in a given interval?\nIs the time interval between two events above a given threshold?\nHow long does the system spend in a given state?\n…\n\nThere are several ways how to incorporate time into the automaton. We will follow the concept of a timed automaton with guards (introduced by Alur and Dill). Within their framework we have\n\none or several resettable clocks: c_i,\\, i=1,\\ldots, k, driven by the ODE \n  \\frac{\\mathrm{d} c_i(t)}{\\mathrm d t} = 1, \\quad c_i(0) = 0;\n  \neach transition labelled by the tripple {guard; event; reset}.\n\n\n\n\n\n\n\nNote\n\n\n\nBoth satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.\n\n\n\nExample 16 (Timed automaton with guards)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\nc₁&lt;1; alarm; -\n\n\n\n\n\n\nFigure 18: Example of a timed automaton with guards\n\n\n\n\n\n\n\nExample 17 (Timed automaton with guards and invariant)  \n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\n0\n\n\n\ninit-&gt;0\n\n\n\n\n\n2\n\n2\nc₁&lt;1\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n-; alarm; -\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n-; msg; c₁\n\n\n\n1-&gt;2\n\n\n0&lt;c₁&lt;1; msg; c₁\n\n\n\n1-&gt;1\n\n\nc₁≥1; msg; c₁\n\n\n\n\n\n\nFigure 19: Example of a timed automaton with guards and invariant\n\n\n\n\n\n\n\nInvariant vs guard\n\nInvariant (of a location) gives an upper bound on the time the system can stay at the given location. It can leave earlier but not later.\nGuard (of a given transition) gives an enabling condition on leaving the location through the given transition.\n\n\nExample 18 (Several trains approaching a bridge) The example is taken from [1].",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -1188,585 +1188,6 @@
     ]
   },
   {
-    "objectID": "demo_error.html",
-    "href": "demo_error.html",
-    "title": "Demo",
-    "section": "",
-    "text": "Lorem ipsum: \\(x^2 + y^2 = 1\\). For this and that ….\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "complementarity_simulations.html",
-    "href": "complementarity_simulations.html",
-    "title": "Simulations using complementarity",
-    "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\nPrecompiling SciMLBaseMakieExt\n  ✓ SciMLBase → SciMLBaseMakieExt\n  1 dependency successfully precompiled in 4 seconds. 295 already precompiled.\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#simulation-using-time-stepping",
-    "href": "complementarity_simulations.html#simulation-using-time-stepping",
-    "title": "Simulations using complementarity",
-    "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\nPrecompiling SciMLBaseMakieExt\n  ✓ SciMLBase → SciMLBaseMakieExt\n  1 dependency successfully precompiled in 4 seconds. 295 already precompiled.\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#example-continued-how-fast-does-the-solution-approach-the-origin",
-    "href": "complementarity_simulations.html#example-continued-how-fast-does-the-solution-approach-the-origin",
-    "title": "Simulations using complementarity",
-    "section": "Example continued: how fast does the solution approach the origin?",
-    "text": "Example continued: how fast does the solution approach the origin?\n\nLet’s use the 1-norm \\|\\bm x\\|_1 = |x_1| + |x_2| to measure how far the trajectory is from the origin.\nHow fast does the trajectory converge to the origin? That, is \n\\frac{\\mathrm d}{\\mathrm dt}\\|\\bm x\\|_1 = ?\n\nConsider each quadrant separately. Let’s start in the first (upper right) quadrant, that is, x_1&gt;0 and x_2&gt;0, and therefore |x_1| = x_1, \\;|x_2| = x_2, and therefore\n\n. . .\n\n\\frac{\\mathrm d}{\\mathrm dt}\\|\\bm x\\|_1 = \\dot x_1 + \\dot x_2 = 1 - 3 = -2.\n\n\nIdentical in the other quadrants. And undefined on the axes.\nThe trajectory will hit the origin in finite time:\n\nFor x_1(0) = 1 and x_2(0) = 1 , the trajectory hits the origin at t=(|x_1(0)|+|x_2(0)|)/2 = 1.\n\nBut with an infinite number of revolutions around the origin…\nHow will a standard algoritm for numerical simulation handle this?",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#forward-euler-with-fixed-step-size",
-    "href": "complementarity_simulations.html#forward-euler-with-fixed-step-size",
-    "title": "Simulations using complementarity",
-    "section": "Forward Euler with fixed step size",
-    "text": "Forward Euler with fixed step size\n\n\\begin{aligned}\n{\\color{blue}x_{1,k+1}} &= x_{1,k} + h (-\\operatorname{sign} x_{1,k} + 2 \\operatorname{sign} x_{2,k})\\\\\n{\\color{blue}x_{2,k+1}} &= x_{1,k} + h (-2\\operatorname{sign} x_{1,k} - \\operatorname{sign} x_{2,k})\n\\end{aligned}\n\n\n\nShow the code\nf(x) = [-sign(x[1]) + 2*sign(x[2]), -2*sign(x[1]) - sign(x[2])]\n\nusing LinearAlgebra\nN = 1000\nx₀ = [-1.0, 1.0]    \nx = [x₀]\ntfinal = norm(x₀,1)/2\ntfinal = 5.0\nh = tfinal/N \nt = range(0.0, step=h, stop=tfinal)\n\nfor i=1:N\n    xnext = x[i] + h*f(x[i]) \n    push!(x,xnext)\nend\n\nX = [getindex.(x, i) for i in 1:length(x[1])]\n\nPlots.plot(t,X,lw=3,label=false,xlabel=\"t\",ylabel=\"x\")",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#backward-euler",
-    "href": "complementarity_simulations.html#backward-euler",
-    "title": "Simulations using complementarity",
-    "section": "Backward Euler",
-    "text": "Backward Euler\n\n\\begin{aligned}\n{\\color{blue} x_{1,k+1}} &= x_{1,k} + h (-\\operatorname{sign} {\\color{blue}x_{1,k+1}} + 2 \\operatorname{sign} {\\color{blue}x_{2,k+1}})\\\\\n{\\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2\\operatorname{sign} {\\color{blue}x_{1,k+1}} - \\operatorname{sign} {\\color{blue}x_{2,k+1}})\n\\end{aligned}",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#formulation-using-lcp",
-    "href": "complementarity_simulations.html#formulation-using-lcp",
-    "title": "Simulations using complementarity",
-    "section": "Formulation using LCP",
-    "text": "Formulation using LCP\n\nInstead solving the above nasty equations, introduce new variables u_1 and u_2 as the outcomes of the \\operatorname{sign} functions: \n\\begin{aligned}\n{\\color{blue} x_{1,k+1}} &= x_{1,k} + h (-{\\color{blue}u_{1}} + 2 {\\color{blue}u_{2}})\\\\\n{\\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2{\\color{blue}u_{1}} - {\\color{blue}u_{2}})\n\\end{aligned}\n\nBut now we have to enforce the relation between \\bm u and \\bm x_{k+1}.\nRecall the standard definition of the \\operatorname{sign} function: \n\\operatorname{sign}(x) = \\begin{cases}\n1 & x&gt;0\\\\\n0 & x=0\\\\\n-1 & x&lt;0\n\\end{cases}\n\nChange the definition to a set-valued function \n\\begin{cases}\n\\operatorname{sign}(x) = 1 & x&gt;0\\\\\n\\operatorname{sign}(x) \\in [-1,1] & x=0\\\\\n\\operatorname{sign}(x) = -1 & x&lt;0\n\\end{cases}\n\nAccordingly, set the relation between \\bm u and \\bm x \n\\begin{cases}\nu_1 = 1 & x_1&gt;0\\\\\nu_1 \\in [-1,1] & x_1=0\\\\\nu_1 = -1 & x_1&lt;0\n\\end{cases}\n and \n\\begin{cases}\nu_2 = 1 & x_2&gt;0\\\\\nu_2 \\in [-1,1] & x_2=0\\\\\nu_2 = -1 & x_2&lt;0\n\\end{cases}\n\nBut these are mixed complementarity contraints! \n\\begin{aligned}\n\\begin{bmatrix}\n{\\color{blue} x_{1,k+1}}\\\\\n{\\color{blue} x_{1,k+1}}\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n-1 \\leq {\\color{blue} u_1} \\leq 1 \\quad &\\bot \\quad -{\\color{blue}x_{1,k+1}}\\\\\n-1 \\leq {\\color{blue} u_2} \\leq 1 \\quad &\\bot \\quad -{\\color{blue}x_{2,k+1}}\n\\end{aligned}",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#possible-combinations",
-    "href": "complementarity_simulations.html#possible-combinations",
-    "title": "Simulations using complementarity",
-    "section": "9 possible combinations",
-    "text": "9 possible combinations\n\nLet’s explore some: x_{1,k+1} = x_{2,k+1} = 0, while u_1 \\in [-1,1] and u_2 \\in [-1,1]:\n\n. . .\n\n\\begin{aligned}\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n& -1 \\leq {\\color{blue} u_1} \\leq 1,  \\quad -1 \\leq {\\color{blue} u_2} \\leq 1\n\\end{aligned}\n\n\nHow does the set of states from which the next state is zero look like? \n\\begin{aligned}\n-\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}^{-1}\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n&= h\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n-1 \\leq {\\color{blue} u_1} \\leq 1,  \\quad -1 &\\leq {\\color{blue} u_2} \\leq 1\n\\end{aligned}\n\n\n. . .\n\n\\begin{bmatrix}\n-h\\\\-h\n\\end{bmatrix}\n\\leq\n\\begin{bmatrix}\n0.2 & 0.4 \\\\\n-0.4 & 0.2\n\\end{bmatrix}\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n\\leq\n\\begin{bmatrix}\nh\\\\ h\n\\end{bmatrix}\n\n\nFor h=0.2\n\n\n\nShow the code\nusing LazySets\nh = 0.2\nH1u = HalfSpace([0.2, 0.4], h)\nH2u = HalfSpace([-0.4, 0.2], h)\nH1l = HalfSpace(-[0.2, 0.4], h)\nH2l = HalfSpace(-[-0.4, 0.2], h)\n\nHa = H1u ∩ H2u ∩ H1l ∩ H2l\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIndeed, if the current state is in this rotated square, then the next state will be zero.",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#another",
-    "href": "complementarity_simulations.html#another",
-    "title": "Simulations using complementarity",
-    "section": "Another",
-    "text": "Another\n\nu_1 = 1, u_2 = 1:\n\n. . .\n\n\\begin{aligned}\n\\begin{bmatrix}\n{\\color{blue} x_{1,k+1}}\\\\\n{\\color{blue} x_{1,k+1}}\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{1}\\\\\n{1}\n\\end{bmatrix}\\\\\n\\color{blue}x_{1,k+1} &\\geq 0\\\\\n\\color{blue}x_{2,k+1} &\\geq 0\n\\end{aligned}\n\n\nwhich can be reformatted to \n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n1\\\\\n1\n\\end{bmatrix}\\geq \\bm 0\n\nand further to \n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n\\geq h\n\\begin{bmatrix}\n-1\\\\\n3\n\\end{bmatrix}\n\n\n. . .\n\n\nShow the code\nusing LazySets\nh = 0.2\nA = [-1.0 2.0; -2.0 -1.0]\nu = [1.0, 1.0]\nb = h*A*u\n\nH1 = HalfSpace([-1.0, 0.0], b[1])\nH2 = HalfSpace([0.0, -1.0], b[2])\nHb = H1 ∩ H2\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#all-nine-regions",
-    "href": "complementarity_simulations.html#all-nine-regions",
-    "title": "Simulations using complementarity",
-    "section": "All nine regions",
-    "text": "All nine regions\n. . .\n\n\nShow the code\nusing LazySets\nh = 0.2\nA = [-1.0 2.0; -2.0 -1.0]\n\nu = [1, -1]\nb = h*A*u\n\nH1 = HalfSpace(-[1.0, 0.0], b[1])\nH2 = HalfSpace([0.0, 1.0], -b[2])\nHc = H1 ∩ H2\n\nu = [-1, 1]\nb = h*A*u\n\nH1 = HalfSpace([1.0, 0.0], -b[1])\nH2 = HalfSpace(-[0.0, 1.0], b[2])\nHd = H1 ∩ H2\n\nu = [-1, -1]\nb = h*A*u\n\nH1 = HalfSpace([1.0, 0.0], -b[1])\nH2 = HalfSpace([0.0, 1.0], -b[2])\nHe = H1 ∩ H2\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)\nPlots.plot!(Hc)\nPlots.plot!(Hd)\nPlots.plot!(He)",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "complementarity_simulations.html#solutions-using-a-mcp-solver",
-    "href": "complementarity_simulations.html#solutions-using-a-mcp-solver",
-    "title": "Simulations using complementarity",
-    "section": "Solutions using a MCP solver",
-    "text": "Solutions using a MCP solver\n\n\nShow the code\nM = [-1 2; -2 -1]\nh = 2e-1\ntfinal = 2.0\nN = tfinal/h\n\nx0 = [-1.0, 1.0]\nx = [x0]\n\nusing JuMP\nusing PATHSolver\n\nfor i = 1:N\n    model = Model(PATHSolver.Optimizer)\n    set_optimizer_attribute(model, \"output\", \"no\")\n    set_silent(model)\n    @variable(model, -1 &lt;= u[1:2] &lt;= 1)\n    @constraint(model, -h*M * u - x[end] ⟂ u)\n    optimize!(model)\n    push!(x, x[end]+h*M*value.(u))\nend\n\nt = range(0.0, step=h, stop=tfinal)\nX = [getindex.(x, i) for i in 1:length(x[1])]\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)\nPlots.plot!(Hc)\nPlots.plot!(Hd)\nPlots.plot!(He)\nPlots.plot!(X[1],X[2],xlabel=\"x₁\",ylabel=\"x₂\",label=\"Time-stepping\",aspect_ratio=:equal,lw=3,markershape=:circle)\nPlots.plot!(sol[1,:],sol[2,:],label=false,lw=3)",
-    "crumbs": [
-      "9. Complementarity systems",
-      "Simulations using complementarity"
-    ]
-  },
-  {
-    "objectID": "des.html",
-    "href": "des.html",
-    "title": "Discrete-event systems",
-    "section": "",
-    "text": "We have already mentioned that hybrid systems are composed of time-driven subsystems and event-driven subsystems. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#discrete-event",
-    "href": "des.html#discrete-event",
-    "title": "Discrete-event systems",
-    "section": "(Discrete) event",
-    "text": "(Discrete) event\nWe need to start with the definition of an event. Sometimes an adjective discrete is added (to get discrete event), although it appears rather redundant.\nThe primary characteristic of an event is instantaneous occurence, that is, an event takes no time.\nWithin the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.\n\n\n\n\n\n\nThe concept of a state\n\n\n\nTrue, here we are making a reference to the concept of a state, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).\n\n\nAlthough it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).\n\nExample 1 (DES state trajectory) In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.\n\n\n\n\n\n\nFigure 1: Example of a state trajectory in response to a sequence of events\n\n\n\nIt is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.\nAlso note that for some events no transitions occur (\\(e_3\\) at \\(t_3\\)).\n\n\n\n\n\n\n\nFrequent notational confusion: does the lower index represent discrete time or an element of a set?\n\n\n\nThe previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between name of the variable and value of the variable. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.\n\n\n\nExample 2 (State trajectory of a continuous-time dynamical systems) Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be \\(\\dot x(t) = f(x)\\). In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.\n\n\n\n\n\n\nFigure 2: Example of a state trajectory of a continuous-time continuous-valued dynamical system\n\n\n\nThe set of states (aka state space) is \\(\\mathbb{R}\\) (or a subset) in this case (in general \\(\\mathbb{R}^n\\) or a subset).\n\n\nExample 3 (State trajectory of a time-discretized (aka sampled-data) system) As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by \\(x_k = f(x_k)\\) in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.\n\n\n\n\n\n\nFigure 3: Example of a state trajectory of time-discretized (aka sampled data) system",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#when-do-events-occur",
-    "href": "des.html#when-do-events-occur",
-    "title": "Discrete-event systems",
-    "section": "When do events occur?",
-    "text": "When do events occur?\nThere are three major possibilities:\n\nwhen action is taken (button press, clutch released, …),\nspontaneously: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),\nwhen some condition is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
-    "href": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
-    "title": "Discrete-event systems",
-    "section": "Sequence of “time-stamped” events (aka timed trace)",
-    "text": "Sequence of “time-stamped” events (aka timed trace)\nThe sequence of pairs (event, time) \\[(e_1,t_1), (e_2,t_2), (e_3,t_3), \\ldots\\]\nis sufficient to characterize an execution of a deterministic system, that is, a system with a unique initial state and a unique transitions at a given state and an event.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
-    "href": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
-    "title": "Discrete-event systems",
-    "section": "DES can be stochastic, but what exactly is stochastic then?",
-    "text": "DES can be stochastic, but what exactly is stochastic then?\nStochasticity can be introduced in\n\nthe event times (e.g. Poisson process),\nbut also in the transitions (e.g. probabilistic automata, more on this later).",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
-    "href": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
-    "title": "Discrete-event systems",
-    "section": "Sometimes time stamps not needed – the ordering of events is enough",
-    "text": "Sometimes time stamps not needed – the ordering of events is enough\nThe sequence of events (aka trace) \\[e_1,e_2,e_3, \\ldots\\] can be enough for some analysis, in which only the order of the events is important.\n\nExample 4 credit_card_swiped, pin_entered, amount_entered, money_withdrawn",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#discrete-event-systems-are-studied-through-their-languages",
-    "href": "des.html#discrete-event-systems-are-studied-through-their-languages",
-    "title": "Discrete-event systems",
-    "section": "Discrete-event systems are studied through their languages",
-    "text": "Discrete-event systems are studied through their languages\nWhen studying discrete-event systems, soon we are exposed to terminology from the formal language theory such as alphabet, word, and language. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.\nWe define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.\n\nAlphabet\n\na set of symbols.\n\nWord (or string)\n\na sequence of symbols from a finite alphabet.\n\nLanguage\n\na set of words from the given alphabet.\n\n\nNow, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.\nIndeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” when in the next section when we introduce the concept of an automaton and some of its properties.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
-    "href": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
-    "title": "Discrete-event systems",
-    "section": "Modelling frameworks for DES (as used in our course)",
-    "text": "Modelling frameworks for DES (as used in our course)\nThese are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems\n\n(State) automaton (pl. automata)\nPetri net\n(max,plus) algebra, MPL systems\n\nWhile the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.\nWe are going to cover all the three frameworks in this course as a prequel to hybrid systems.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Discrete-event systems"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html",
-    "href": "max_plus_algebra.html",
-    "title": "Max-plus algebra",
-    "section": "",
-    "text": "Max-plus algebra, also written as (max,+) algebra (and also known as tropical algebra/geometry and dioid algebra), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely event graphs, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.\nBut before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard algebra.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#algebra",
-    "href": "max_plus_algebra.html#algebra",
-    "title": "Max-plus algebra",
-    "section": "Algebra",
-    "text": "Algebra\nAlgebra is a set of elements equipped with\n\ntwo operations:\n\naddition (plus, +)\nmultiplication (times, ×)\n\nneutral (identity) element with respect to addition: zero, 0 a+0=a.\nneutral (identity) element with respect to multiplication: one, 1 a\\times 1 = a.\n\nInverse elements can also be defined, namely\n\nInverse element wrt addition: -a a+(-a) = 0.\nInverse element wrt multiplication (except for 0): a^{-1} a \\times a^{-1} = 1.\n\nIf the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a field, otherwise it is called a ring.\nProminent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too.\nProminent example of a field is the set of real numbers.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
-    "href": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
-    "title": "Max-plus algebra",
-    "section": "(max,+) algebra: redefining the addition and multiplication",
-    "text": "(max,+) algebra: redefining the addition and multiplication\nElements of the (max,+) algebra are real numbers, but it is still a ring and not a field since the two operations are defined differently.\nThe new operations of addition, which we denote by \\oplus to distinguish it from the standard addition, is defined as \\boxed{\n  x\\oplus y \\equiv \\max(x,y).\n  }\n\nThe new operation of multiplication, which we denote by \\otimes to distinguish it from the standard multiplication, is defined as \\boxed{\n  x\\otimes y \\equiv x+y}.\n\n\n\n\n\n\n\nImportant\n\n\n\nIndeed, there is no typo here, the standard addition is replaced by \\otimes and not \\oplus.\n\n\n\n\n\n\n\n\n(min,+) also possible\n\n\n\nIndeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.\n\n\n\nReals must be extended with the negative infinity\nStrictly speaking, the (max,+) algebra is a broader set than just \\mathbb R. We need to extend the reals with the minus infinity. We denote the extended set by \\mathbb R_\\varepsilon \\boxed{\n\\mathbb R_\\varepsilon \\coloneqq \\mathbb R \\cup \\{-\\infty\\}}.\n\nThe reason for the notation is that a dedicated symbol \\varepsilon is assigned to this minus infinity, that is, \\boxed\n{\\varepsilon \\coloneqq -\\infty.}\n\nIt may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol.\nWe are now going to see the reason for this extension.\n\n\nNeutral elements\n\nNeutral element with respect to \\oplus\nThe neutral element with respect to \\oplus, the zero, is -\\infty. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\oplus \\varepsilon = x,\n because \\max(x,-\\infty) = x.\n\n\nNeutral element with respect to \\otimes\nThe neutral element with respect to \\otimes, the one, is 0. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\otimes \\varepsilon = x,\n because x+0=x.\n\n\n\n\n\n\nNonsymmetric notation, but who cares?\n\n\n\nThe notation is rather nonsymmetric here. We now have a dedicated symbol \\varepsilon for the zero element in the new algebra, but no dedicated symbol for the one element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like mp-zero and mp-one to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX…\n\n\n\n\n\nInverse elements\n\nInverse with respect to \\oplus\nThe inverse element with respect to \\oplus in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for \\varepsilon.\nThis has major consequences, for example, x\\oplus x=x.\nCan you verify this statement? How is is related to the fact that the inverse element with respect to \\oplus does not exist in general?\nThis is the key difference with respect to a conventional algebra, wherein the inverse element of a wrt conventional addition is -a, while here we do not even define \\ominus.\nFormally speaking, the (max,+) algebra is only a semi-ring.\n\n\nInverse with respect to \\otimes\nThe inverse element with respect to \\otimes does not exist for all elements. The \\varepsilon element does not have an inverse element with respect to \\otimes. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
-    "href": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
-    "title": "Max-plus algebra",
-    "section": "Powers and the inverse with respect to \\otimes",
-    "text": "Powers and the inverse with respect to \\otimes\nHaving defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer r\\in\\mathbb Z, the rth power of x, denoted by x^{\\otimes^r}, is defined, unsurprisingly as x^{\\otimes^r} \\coloneqq x\\otimes x \\otimes \\ldots \\otimes x.\nObserve that it corresponds to rx in the conventional algebra x^{\\otimes^r} = rx.\nBut then the inverse element with respect to \\otimes can also be determined using the (-1)th power as x^{\\otimes^{-1}} = -x.\nThis is not actually surprising, is it?\nThere are few more implications. For example,\nx^{\\otimes^0} = 0.\nThere is also no inverse element with respect to \\otimes for \\varepsilon, but it is expected as \\varepsilon is a zero wrt \\oplus. Furthermore, for r\\neq -1, if r&gt;0 , then \\varepsilon^{\\otimes^r} = \\varepsilon, if r&lt;0 , then \\varepsilon^{\\otimes^r} is undefined, which are both expected. Finally, \\varepsilon^{\\otimes^0} = 0 by convention.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
-    "href": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
-    "title": "Max-plus algebra",
-    "section": "Order of evaluation of (max,+) formulas",
-    "text": "Order of evaluation of (max,+) formulas\nIt is the same as that for the conventional algebra:\n1. power, \n2. multiplication, \n3. addition.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
-    "href": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
-    "title": "Max-plus algebra",
-    "section": "(max,+) polynomials (aka tropical polynomials)",
-    "text": "(max,+) polynomials (aka tropical polynomials)\nHaving covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial p(x) = a_{n}\\otimes x^{\\otimes^{n}} \\oplus a_{n-1}\\otimes x^{\\otimes^{n-1}} \\oplus \\ldots \\oplus a_{1}\\otimes x \\oplus a_{0},\n where a_i\\in \\mathbb R_\\varepsilon and n\\in \\mathbb N.\nBy interpreting the operations, this translates to the following function \\boxed\n{p(x) = \\max\\{nx + a_n, (n-1)x + a_{n-1}, \\ldots, x+a_1, a_0\\}.}\n\n\nExample 1 (1D polynomial) Consider the following (max,+) polynomial \np(x) = 2\\otimes x^{\\otimes^{2}} \\oplus 3\\otimes x \\oplus 1.\n\nWe can interpret it in the conventional algebra as \np(x) = \\max\\{2x+2,x+3,1\\},  \n which is a piecewise linear (actually affine) function.\n\n\nCode\nusing Plots\nx = -5:3\nf(x) = max(2*x+2,x+3,1)\nplot(x,f.(x),label=\"\",thickness_scaling = 2)\nxc = [-2,1]\nyc = f.(xc)\nscatter!(xc,yc,markercolor=[:red,:red],label=\"\",thickness_scaling = 2)\n\n\n\n\nExample 2 (Example of a 2D polynomial) Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(5,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"f(x,y)\")\n\n\n\n\nExample 3 (Another 2D polynomial) Consider another 2D (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y \\oplus (-1)\\otimes x^{\\otimes^2} \\oplus 1\\otimes x\\otimes y \\oplus (-1)\\otimes y^{\\otimes^2}.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(15,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"p(x,y)\")\n\n\n\n\n\n\n\n\n\nPiecewise affine (PWA) functions\n\n\n\nPiecewise affine (PWA) functions will turn out a frequent buddy in our course.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#solution-set-zero-set",
-    "href": "max_plus_algebra.html#solution-set-zero-set",
-    "title": "Max-plus algebra",
-    "section": "Solution set (zero set)",
-    "text": "Solution set (zero set)\n…",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#matrix-computations",
-    "href": "max_plus_algebra.html#matrix-computations",
-    "title": "Max-plus algebra",
-    "section": "Matrix computations",
-    "text": "Matrix computations\n\nAddition and multiplication\nWhat is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in \\mathbb R_\\varepsilon, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations. (A\\oplus B)_{ij} = a_{ij}\\oplus b_{ij} = \\max(a_{ij},b_{ij}) \n\\begin{aligned}\n(A\\otimes B)_{ij} &= \\bigoplus_{k=1}^n a_{ik}\\otimes b_{kj}\\\\\n&= \\max_{k=1,\\ldots, n}(a_{ik}+b_{kj})\n\\end{aligned}\n\n\n\nZero and identity matrices\n(max,+) zero matrix \\mathcal{E}_{m\\times n} has all its elements equal to \\varepsilon, that is, \n\\mathcal{E}_{m\\times n} =\n\\begin{bmatrix}\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\n\\end{bmatrix}.\n\n(max,+) identity matrix I_n has 0 on the diagonal and \\varepsilon elsewhere, that is, \nI_{n} =\n\\begin{bmatrix}\n0 & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & 0 & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & 0\n\\end{bmatrix}.\n\n\n\nMatrix powers\nThe zerothe power of a matrix is – unsurprisingly – the identity matrix, that is, A^{\\otimes^0} = I_n.\nThe kth power of a matrix, for k\\in \\mathbb N\\setminus\\{0\\}, is then defined using A^{\\otimes^k} = A\\otimes A^{\\otimes^{k-1}}.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
-    "href": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
-    "title": "Max-plus algebra",
-    "section": "Connection with graph theory – precedence graph",
-    "text": "Connection with graph theory – precedence graph\nConsider A\\in \\mathbb R_\\varepsilon^{n\\times n}. For this matrix, we can define the precedence graph \\mathcal{G}(A) as a weighted directed graph with the vertices 1, 2, …, n, and with the arcs (j,i) with the associated weights a_{ij} for all a_{ij}\\neq \\varepsilon. The kth power of the matrix is then\n\n(A)^{\\otimes^k}_{ij} = \\max_{i_1,\\ldots,i_{k-1}\\in \\{1,2,\\ldots,n\\}} \\{a_{ii_1} + a_{i_1i_2} + \\ldots + a_{i_{k-1}j}\\}\n for all i,j and k\\in \\mathbb N\\setminus 0.\n\nExample 4 (Example) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix}\n\\qquad\nA^{\\otimes^2} =\n\\begin{bmatrix}\n4 & 5 & 3\\\\\n3 & 4 & 3\\\\\n5 & 5 & 6\n\\end{bmatrix}\n\n\n\n\n\n\n\n\n\nG\n\n\n1\n\n1\n\n\n\n1-&gt;1\n\n\n2\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n1\n\n\n\n3\n\n3\n\n\n\n1-&gt;3\n\n\n2\n\n\n\n2-&gt;1\n\n\n3\n\n\n\n2-&gt;3\n\n\n-1\n\n\n\n3-&gt;2\n\n\n0\n\n\n\n3-&gt;3\n\n\n3\n\n\n\n\n\n\nFigure 1: An example of a precedence graph\n\n\n\n\n\n\n\nIrreducibility of a matrix\n\nMatrix in \\mathbb R_\\varepsilon^{n\\times n} is irreducible if its precedence graph is strongly connected.\nMatrix is irreducible iff \n(A \\oplus A^{\\otimes^2} \\oplus \\ldots A^{\\otimes^{n-1}})_{ij} \\neq \\varepsilon \\quad \\forall i,j, i\\neq j.\n\\tag{1}",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
-    "href": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
-    "title": "Max-plus algebra",
-    "section": "Eigenvalues and eigenvectors",
-    "text": "Eigenvalues and eigenvectors\nEigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives \nA\\otimes v = \\lambda \\otimes v.\n\nA few comments:\n\nIn general, total number of (max,+) eigenvalues &lt;n.\nAn irreducible matrix has only one (max,+) eigenvalue.\nGraph-theoretic interpretation: maximum average weight over all elementary circuits…\n\n\nEigenvalue-related property of irreducible matrices\nFor large enough k and c, it holds that \\boxed\n{A^{\\otimes^{k+c}} = \\lambda^{\\otimes^c}\\otimes A^{\\otimes^k}.}",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "max_plus_algebra.html#solving-max-linear-equations",
-    "href": "max_plus_algebra.html#solving-max-linear-equations",
-    "title": "Max-plus algebra",
-    "section": "Solving (max,+) linear equations",
-    "text": "Solving (max,+) linear equations\nWe can also define and solve linear equations within the (max,+) algebra. Considering A\\in \\mathbb R_\\varepsilon^{n\\times n},\\, b\\in \\mathbb R_\\varepsilon^n, we can formulate and solve the equation \nA\\otimes x = b.\n\nIn general no solution even if A is square. However, often we can find some use for a subsolution defined as \nA\\otimes x \\leq b.\n\nTypically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.\n\nExample 5 (Greatest subsolution) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix},\n\\qquad\nb =  \n\\begin{bmatrix}\n1 \\\\ 2 \\\\ 3\n\\end{bmatrix}\n\n\nx =\n\\begin{bmatrix}\n1\\\\ -2 \\\\ 0\n\\end{bmatrix}\n\n\nA \\otimes x =\n\\begin{bmatrix}\n1\\\\ 0 \\\\ 1\n\\end{bmatrix}\n\\leq b\n\n\nWith this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Max-plus algebra"
-    ]
-  },
-  {
-    "objectID": "des_software.html",
-    "href": "des_software.html",
-    "title": "Software",
-    "section": "",
-    "text": "The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#matlab-and-simulink",
-    "href": "des_software.html#matlab-and-simulink",
-    "title": "Software",
-    "section": "Matlab and Simulink",
-    "text": "Matlab and Simulink\n\nStateFlow – finite state automata within Simulink. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(\"stateflow\") in Matlab. This is the primary tool for our course, as it extends nicely to hybrid systems. An example is shown in Fig 1 below.\n\n\n\n\n\n\n\nFigure 1: Screenshot of a state “chart” in Simscape\n\n\n\n\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks, although we are not going to rely on this tool in our course.\n\nSeveral tools are also available outside Matlab and Simulink, and it is certainly good to be aware of these alternatives.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#openmodelica",
-    "href": "des_software.html#openmodelica",
-    "title": "Software",
-    "section": "(Open)Modelica",
-    "text": "(Open)Modelica\nA popular modelling language for physical systems is Modelica. Starting with version 3.3 (several years ago already), it has a support for state machines, see Chapter 17 in the language specification and the screenshot in Fig 2 below. A readable introduction to state machines in Modelica is in [1].\n\n\n\n\n\n\nFigure 2: Screenshot of a state machine diagram in Modelica\n\n\n\nSeveral implementations of Modelica language and compiler exist. On the FOSS side, OpenModelica is a popular choice. Slides from an introdutory presentation [2] about state machines in OpenModelica are available for free download.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#uppaal",
-    "href": "des_software.html#uppaal",
-    "title": "Software",
-    "section": "UPPAAL",
-    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/. In our course we will only use it in this block/week.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#python",
-    "href": "des_software.html#python",
-    "title": "Software",
-    "section": "Python",
-    "text": "Python\nSimPy – discrete-event simulation in Python. We are not going to use it in our course, but if you are a Python enthusiast, you may want to have a look at it.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#julia",
-    "href": "des_software.html#julia",
-    "title": "Software",
-    "section": "Julia",
-    "text": "Julia\nTwo major packages for discrete-event simulation in Julia are:\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "des_software.html#umlsysml",
-    "href": "des_software.html#umlsysml",
-    "title": "Software",
-    "section": "UML/SysML",
-    "text": "UML/SysML\nIf you have been exposed to software engineering, you have probably seen UML diagrams. Their extension (and restriction at the same time) toward systems that also contain hardware is called SysML. And SysML does have support for defining state machines (by drawing the state machine diagrams), see the screenshot in Fig 3 below.\n\n\n\n\n\n\nFigure 3: Screenshot of a state machine diagram in SysML\n\n\n\nSysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&open-source (FOSS) tool for creating SysML diagrams such as Modelio or Eclipse Papyrus. But we are not going to use them in our course.",
-    "crumbs": [
-      "1. Discrete-event systems: Automata",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "stability_references.html",
-    "href": "stability_references.html",
-    "title": "Literature",
-    "section": "",
-    "text": "The lecture was partly built upon the chapter 4 of the textbook [1], which in turn was (to a large extent) built upon chapter 2 of the research monograph [2]. None of these two is available online, but fortunately, the latter has a free shorter online version [3]. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.\nThe lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text [4], which used to be available online, but has resently dissapeared – most probably it is about to be publised as a textbook.\nSome more online resources, in particular for multiple (also piecewise) Lyapunov functions, are [5], [6], [7], [8]. The are all quite readable.\nThe topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph [9] was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material [10], tailored to their Matlab toolbox called CVX. Alternativaly, the text [11] is even richer by two pages. Another recommendable lecture notes are also available for free: [12]. Finally, a section on Semidefinite programming in the documentation for Yalmip software can also serve as learning resource.\nThe topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper [13] is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation [14] can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on Sum-of-squares programming.\n\n\n\n\n Back to topReferences\n\n[1] H. Lin and P. J. Antsaklis, Hybrid Dynamical Systems: Fundamentals and Methods. in Advanced Textbooks in Control and Signal Processing. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: https://doi.org/10.1007/978-3-030-78731-8\n\n\n[2] D. Liberzon, Switching in Systems and Control. in Systems & Control: Foundations & Applications. Boston, MA: Birkhäuser, 2003. Available: https://doi.org/10.1007/978-1-4612-0017-8\n\n\n[3] D. Liberzon, “Switched Systems: Stability Analysis and Control Synthesis,” Lecture {{Notes}}, 2007. Available: http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf\n\n\n[4] J. Lygeros, S. Sastry, and C. Tomlin, “Hybrid Systems: Foundations, advanced topics and applications,” Jan. 2020. Available: https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf\n\n\n[5] R. A. Decarlo, M. S. Branicky, S. Pettersson, and B. Lennartson, “Perspectives and results on the stability and stabilizability of hybrid systems,” Proceedings of the IEEE, vol. 88, no. 7, pp. 1069–1082, Jul. 2000, doi: 10.1109/5.871309.\n\n\n[6] M. Johansson and A. Rantzer, “Computation of piecewise quadratic Lyapunov functions for hybrid systems,” IEEE Transactions on Automatic Control, vol. 43, no. 4, pp. 555–559, Apr. 1998, doi: 10.1109/9.664157.\n\n\n[7] S. Pettersson and B. Lennartson, “Hybrid system stability and robustness verification using linear matrix inequalities,” International Journal of Control, vol. 75, no. 16–17, pp. 1335–1355, Jan. 2002, doi: 10.1080/0020717021000023762.\n\n\n[8] A. Hassibi and S. Boyd, “Quadratic stabilization and control of piecewise-linear systems,” in Proceedings of the 1998 American Control Conference. ACC (IEEE Cat. No.98CH36207), Jun. 1998, pp. 3659–3664 vol.6. doi: 10.1109/ACC.1998.703296.\n\n\n[9] S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, Linear Matrix Inequalities in System and Control Theory. in Studies in Applied and Numerical Mathematics. Society for Industrial and Applied Mathematics, 1994. Accessed: Apr. 16, 2021. [Online]. Available: https://web.stanford.edu/~boyd/lmibook/\n\n\n[10] S. Boyd, “Solving semidefinite programs using cvx,” Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: https://stanford.edu/class/ee363/notes/lmi-cvx.pdf\n\n\n[11] S. Boyd, “EE363 Review Session 4: Linear Matrix Inequalities,” Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: https://stanford.edu/class/ee363/sessions/s4notes.pdf\n\n\n[12] C. W. Scherer and S. Weiland, “Linear matrix inequalities in control,” Jan. 2015. Accessed: Apr. 16, 2021. [Online]. Available: https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf\n\n\n[13] A. Papachristodoulou and S. Prajna, “A tutorial on sum of squares techniques for systems analysis,” in Proceedings of the 2005 American Control Conference, Portland, OR, USA: IEEE, Jun. 2005, pp. 2686–2700 vol. 4. doi: 10.1109/ACC.2005.1470374.\n\n\n[14] A. Papachristodoulou et al., “SOSTOOLS Sums of Squares Optimization Toolbox for Matlab: User’s Guide.” University of Oxford Control Group, Sep. 2021. Available: https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf",
-    "crumbs": [
-      "8. Stability",
-      "Literature"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html",
-    "href": "petri_nets.html",
-    "title": "Petri nets",
-    "section": "",
-    "text": "In this chapter we introduce another formalism for modelling discrete event systems (DES) – Petri nets. Petri nets offer an alternative perspective on discrete even systems compared to automata. And it is good to have alternatives, isn’t it? For some purposes, one framework can be more appropriate than the other.\nFor example, a finite Petri net can model even an infinite state automaton.\nFurthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived GRAFCET language, which in turn served as the basis for the Sequential Function Chart (SFC) language for PLC programming. See the references.\nLast but not least, an elegant algebraic framework based on the so-called (max,+) algebra has been developed for a subset of Petri nets (so-called event graphs) and it would be a shame not to mention it in our course (in the next chapter).",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#definition-of-a-petri-net",
-    "href": "petri_nets.html#definition-of-a-petri-net",
-    "title": "Petri nets",
-    "section": "Definition of a Petri net",
-    "text": "Definition of a Petri net\nSimiliarly as in the case of automata, a Petri net (PN) can be defined as a tuple of sets and functions: \\boxed{PN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w\\},} where\n\n\\mathcal{P} = \\{p_1, \\dots, p_n\\} is a finite set of places,\n\\mathcal{T} = \\{t_1, \\dots, t_m\\} is a finite set of transitions,\n\\mathcal{A} \\subseteq (\\mathcal{P} \\times \\mathcal{T}) \\cup (\\mathcal{T} \\times \\mathcal{P}) is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:\n\n(p_i, t_j) \\in \\mathcal{A} is from place p_i to transition t_j,\n(t_j, p_i) \\in \\mathcal{A} is from transition t_j to place p_i,\n\nw : \\mathcal{A} \\to \\mathbb{N} is a weight function.\n\nSimilarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:\n\nplaces = circles,\ntransitions = bars.\n\nThe nodes of different kinds are connected by arcs (arrowed curves). A integer weights are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.\n\nExample 1 (Simple Petri net) We consider just two places, that is, \\mathcal{P} = \\{p_1, p_2\\}, and one transition, that is, \\mathcal{T} = \\{t\\}. The set of arcs is \\mathcal{A} = \\{\\underbrace{(p_1, t)}_{a_1}, \\underbrace{(t, p_2)}_{a_2}\\}, and the associated weights are w(a_1) = w((p_1, t)) = 2 and w(a_2) = w((t, p_2)) = 1. The Petri net is depicted in Figure 1.\n\n\n\n\n\n\nFigure 1: Example of a simple Petri net\n\n\n\n\n\nAdditional definitions\n\n\\mathcal{I}(t_j) … a set of input places of the transition t_j,\n\\mathcal{O}(t_j) … a set of output places of the transition t_j.\n\n\nExample 2 (More complex Petri net)  \n\n\\mathcal{P} = \\{p_1, p_2, p_3, p_4\\},\n\\mathcal{T} = \\{t_1, t_2, t_3, t_4, t_5\\},\n\\mathcal{A} = \\{(p_1, t_1), (t_1, p_1), (p_1, t_2),\\ldots\\},\nw((p_1, t_1)) = 2, \\; w((t_1, p_1)) = 1, \\; \\ldots\n\n\n\n\n\n\n\nFigure 2: Example of a more complex Petri net\n\n\n\n\n\n\nMarking and marked Petri nets\nAn important concept that we must introduce now is that of marking. It is a function that assigns an integer to each place   x: \\mathcal{P} \\rightarrow \\mathbb{N}.\nThe vector composed of the values of the marking function for all places \\bm x = \\begin{bmatrix}x(p_1)\\\\ x(p_2)\\\\ \\vdots \\\\ x(p_n) \\end{bmatrix} can be viewed as the state vector (although the Petri nets community perhaps would not use this terminology and stick to just marking).\nMarked Petri net is then a Petri net augmented with the marking\nMPN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w,x\\}.\n\nVisualization of marked Petri net using tokens\nMarked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.\n\nExample 3 (Marked Petri net) Consider the Petri net from Example 1. The marking function is x(p_1) = 2 and x(p_2) = 1, which assembled into a vector gives \\bm x = \\begin{bmatrix}1\\\\ 0 \\end{bmatrix}. The marked Petri net is depicted in Figure 3.\n\n\n\n\n\n\nFigure 3: Example of a marked Petri net\n\n\n\nFor another marking, namely \\bm x = \\begin{bmatrix}2\\\\ 1 \\end{bmatrix}, the marked Petri net is depicted in Figure 4.\n\n\n\n\n\n\nFigure 4: Example of a marked Petri net with different marking\n\n\n\n\n\n\n\nEnabling and firing of a transition\nFinally, here comes the enabling (pun intended) component of the definition of a Petri net – enabled transition. A transition t_j does not just happen – we say fire – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition t_j is enabled if \nx(p_i) \\geq w(p_i,t_j)\\quad \\forall p_i \\in \\mathcal{I}(t_j).\n\n\n\n\n\n\n\nCan but does not have to\n\n\n\nThe enabled transition can fire, but it doesn’t have to. We will exploit this in timed PN.\n\n\n\nExample 4 (Enabled transition) See the PN in Example 3: in the first marked PN the transition cannot fire, in the second it can.",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#state-transition-function",
-    "href": "petri_nets.html#state-transition-function",
-    "title": "Petri nets",
-    "section": "State transition function",
-    "text": "State transition function\nWe now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a state transition function. For a Petri net with n places, the state transition function is \nf: \\mathbb N^n \\times \\mathcal{T} \\rightarrow \\mathbb N^n,\n which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).\nThe function is only defined for a transition t_j iff the transition is enabled.\nIf the transition t_j is enabled and fired, the state evolves as \n\\bm x^+ = f(\\bm x, t_j),\n where the individual components of \\bm x evolve according to \\boxed{\n    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \\; i = 1,\\ldots,n.}\n\nThis has a visual interpretation – a fired transition moves tokens from the input to the output places.\n\nExample 5 (Moving tokens around) Consider the PN with the initial marking (state) \\bm x_0 = \\begin{bmatrix}2\\\\ 0\\\\ 0\\\\ 1 \\end{bmatrix} (at discrete time 0), and the transition t_1 enabled\n\n\n\nExample PN in the initial state at time 0, the transition t_1 enabled, but not yet fired\n\n\n\n\n\n\n\n\nConflict in notation. Again. Sorry.\n\n\n\nWe admit the notation here is confusing, because we use the lower index 0 in \\bm x_0 to denote the discrete time, while the lower index 1 in t_1 to denote the transition and the lower indices 1 and 2 in p_1 and p_2 just number the transitions and places, respectively. We could have chosen something like \\bm x(0) or \\bm x[0], but we dare to hope that the context will make it clear.\n\n\nNow we assume that t_1 is fired\n\n\n\n\n\n\nFigure 5: Transition t_1 in the example PN fired at time 1\n\n\n\nThe state vector changes to \\bm x_1 = [1, 1, 1, 1]^\\top, the discrete time is 1 now.\nAs a result of this transition, note that t_1, t_2, t_3 are now enabled.\n\n\n\n\n\n\nNumber of tokens need not be preserved\n\n\n\nIn the example we can see for the first time, that the number of tokens need not be preserved.\n\n\nNow fire the t_2 transition\n\n\n\nTransition t_2 in the example PN fired at time 2\n\n\nThe state vector changes to \\bm x_2 = [1, 1, 0, 2]^\\top, the discrete time is 2 now.\nGood, we can see the idea. But now we go back to time 1 (as in Figure 5) to explore the alternative evolution. With the state vector \\bm x_1 = [1, 1, 1, 1]^\\top and the transitions t_1, t_2, t_3 enabled, we fire t_3 this time.\n\n\n\nTransition t_3 in the example PN fired at time 1\n\n\nThe state changes to \\bm x_2 = [0, 1, 0, 0]^\\top, the discrete time is 2. Apparently the PN evolved into at a different state. The lesson learnt with this example is that the order of firing of enabled transitions matters.\n\n\n\n\n\n\n\nThe order in which the enabled transitions are fired does matter\n\n\n\nThe dependence of the state evolution upon the order of firing the transitions is not surprising. Wwe have already encountered it in automata when the active event set for a given state contains more then a single element.",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#reachability",
-    "href": "petri_nets.html#reachability",
-    "title": "Petri nets",
-    "section": "Reachability",
-    "text": "Reachability\nWe have started talking about states and state transitions in Petri nets, which are all concepts that we are familiar with from dynamical systems. Another such concept is reachability. We explain it through an example.\n\nExample 6 (Not all states are reachable)  \n\n\n\nExample of an unreachability in a Petri net\n\n\nThe Petri net is initial in the state [2,1]^\\top. The only reachable state is [0,2]^\\top.\nBy the way, note that the weight of the arc from the place p_1 to the transition t is 2, so both tokens are removed from the place p_1 when the transition t fires. But then the arc to the place p_2 has weight 1, so only one token is added to the place p_2. The other token is “lost”.\n\n\nReachability tree and graph\nHere we introduce two tools for analysis of reachability of a Petri net.\n\nExample 7 Consider the following example of a Petri net.\n\n\n\nExample of a Petri net for reachability analysis\n\n\nIn Figure 6 we draw a reachability tree for this Petri net.\n\n\n\n\n\n\nFigure 6: Reachability tree for an example Petri net\n\n\n\nIn Figure 7 we draw a reachability graph for this Petri net.\n\n\n\n\n\n\nFigure 7: Reachability graph for an example Petri net",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#number-of-tokens-need-not-be-preserved-1",
-    "href": "petri_nets.html#number-of-tokens-need-not-be-preserved-1",
-    "title": "Petri nets",
-    "section": "Number of tokens need not be preserved",
-    "text": "Number of tokens need not be preserved\nWe have already commented on this before, but we emphasize it here. Indeed, it can be that \n\\sum_{p_i\\in\\mathcal{O}(t_j)}w(t_j,p_i) &lt; \\sum_{p_i\\in\\mathcal{I}(t_j)} w(p_i,t_j)\n\nor\n\n\\sum_{p_i\\in\\mathcal{O}(t_j)}w(t_j,p_i) &gt; \\sum_{p_i\\in\\mathcal{I}(t_j)} w(p_i,t_j)\n\nWith this reminder, we can now hightlight several patters that can be observed in Petri nets.",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#and-convergence-and-divergence",
-    "href": "petri_nets.html#and-convergence-and-divergence",
-    "title": "Petri nets",
-    "section": "AND-convergence, AND-divergence",
-    "text": "AND-convergence, AND-divergence",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#or-convergence-and-or-divergence",
-    "href": "petri_nets.html#or-convergence-and-or-divergence",
-    "title": "Petri nets",
-    "section": "OR-convergence and OR-divergence",
-    "text": "OR-convergence and OR-divergence",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#nondeterminism-in-a-pn",
-    "href": "petri_nets.html#nondeterminism-in-a-pn",
-    "title": "Petri nets",
-    "section": "Nondeterminism in a PN",
-    "text": "Nondeterminism in a PN\nIn the four patters just enumerated, we have seen that the last one – the OR-divergence – is not deterministic. Indeed, consider the following example.\n\nExample 8  \n\n\n\nNondeterminism in a Petri net\n\n\n\nIn other words, we can incorporate a nondeterminism in a model.\n\n\n\n\n\n\nNondeterminism in automata\n\n\n\nRecall that something similar can be encountered in automata, if the active event set for a given state contains more than one element (event,transition).",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#subclasses-of-petri-nets",
-    "href": "petri_nets.html#subclasses-of-petri-nets",
-    "title": "Petri nets",
-    "section": "Subclasses of Petri nets",
-    "text": "Subclasses of Petri nets\nWe can identify two subclasses of Petri nets:\n\nevent graphs,\nstate machines.\n\n\nEvent graph\n\nEach place has just one input and one output transition (all ws equal to 1).\nNo OR-convergence, no OR-divergence.\nAlso known as Decision-free PN.\nIt can model synchronization.\n\n\nExample 9 (Event graph)  \n\n\n\nExample of an event graph\n\n\n\n\n\nState machine\n\nEach transition has just one input and one output place.\nNo AND-convergence, no AND-divergence.\nDoes not model synchronization.\nIt can model race conditions.\nWith no source (input) and sink (output) transitions, the number of tokens is preserved.\n\n\nExample 10 (State machine)  \n\n\n\nExample of a state machine\n\n\n\n\n\nIncidence matrix\nWe consider a Petri net with n places and m transitions. The incidence matrix is defined as \n\\bm A \\in \\mathbb{Z}^{n\\times m},\n where \na_{ij} = w(t_j,p_i) - w(p_i,t_j).\n\n\n\n\n\n\n\nTranspose\n\n\n\nSome define the incidence matrix as the transpose of our definition.\n\n\n\n\nState equation for a Petri net\nWith the incidence matrix defined above, the state equation for a Petri net can be written as \n\\bm x^+ = \\bm x + \\bm A \\bm u,\n where \\bm u is a firing vector for the enabled j-th transition \n\\bm u = \\bm e_j = \\begin{bmatrix}0 \\\\ \\vdots \\\\ 0 \\\\ 1\\\\ 0\\\\ \\vdots\\\\ 0\\end{bmatrix}\n with the 1 at the j-th position.\n\n\n\n\n\n\nNote\n\n\n\nNote that in [1] they define everything in terms of the transposed quantities, but we prefer sticking to the notion of a state vector as a column.\n\n\n\nExample 11 (State equation for a Petri net) Consider the Petri net from Example 5, which we show again below in Figure 8.\n\n\n\n\n\n\nFigure 8: Example of a Petri net\n\n\n\nThe initial state is given by the vector \n\\bm x_0\n=\n\\begin{bmatrix}\n2\\\\ 0\\\\ 0\\\\ 1\n\\end{bmatrix}\n\nThe incidence matrix is \n\\bm A = \\begin{bmatrix}\n-1 & 0 & -1\\\\\n1 & 0 & 0\\\\\n1 & -1 & -1\\\\\n0 & 1 & -1\n\\end{bmatrix}\n\nAnd the state vector evolves according to \n\\begin{aligned}\n\\bm x_1 &= \\bm x_0 + \\bm A \\bm u_1\\\\\n\\bm x_2 &= \\bm x_1 + \\bm A \\bm u_2\\\\\n\\vdots &\n\\end{aligned}\n\n\n\n\n\n\n\n\nCaution\n\n\n\nWe repeat once again just to make sure: the lower index corresponds to the discrete time.",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#queueing-systems-modelled-by-pn",
-    "href": "petri_nets.html#queueing-systems-modelled-by-pn",
-    "title": "Petri nets",
-    "section": "Queueing systems modelled by PN",
-    "text": "Queueing systems modelled by PN\nAlthough Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in Figure 9.\n\n\n\n\n\n\nFigure 9: Queing systems and its components and transitions/events\n\n\n\nWe can associate the transitions with the events in the queing system:\n\na is a spontaneous transition (no input places).\ns needs a customer in the queue and the server being idle.\nc needs the server being busy.\n\nWe can now start drawing the Petri net by drawin the bars corresponding to the transitions. Then in between every two bars, we draw a circle for a place. The places can be associated with three bold-face letters above, namely:\n\\quad \\mathcal{P} = \\{Q, I, B\\}, that is, queue, idle, busy.\n\n\n\nPetri net corresponding to the queing system\n\n\n\n\n\n\n\n\nThe input transition adds tokens to the system\n\n\n\nThe transition a is an input transition – the tokens are added to the system through this transition.\n\n\nNote how we consider the token in the I place. This is not only to express that the server is initially idle, ready to serve as soon as a customer arrives to the queue, it also ensures that no serving of a new customer can start before the serving of the current customer is completed.\nThe initial state: [0,1,0]^\\top. Consider now a particular trace (of transitions/events) \\{a,s,a,a,c,s,a\\}. Verify that this leads to the final state [2,0,1]^\\top.\n\nSome more extensions\nWe can keep adding features to the model of a queing system. In particular,\n\nthe arrival transition always enabled,\nthe server can break down, and then be repaired,\ncompleting the service \\neq customer departure.\n\nThese are incorporated into the Petri net in Figure 10.\n\n\n\n\n\n\nFigure 10: Extended model of a queueing system\n\n\n\nIn the Petri net, d is an output transition – the tokens are removed from the system.\n\nExample 12 (Beverage vending machine) Below we show a Petri net for a beverage vending machine. While building it, we find it useful to identify the events/transitions that can happen in the system.\n\n\n\nPetri net for a beverage vending machine",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "petri_nets.html#some-extensions-of-basic-petri-nets",
-    "href": "petri_nets.html#some-extensions-of-basic-petri-nets",
-    "title": "Petri nets",
-    "section": "Some extensions of basic Petri nets",
-    "text": "Some extensions of basic Petri nets\n\nColoured Petri nets (CPN): tokens can by of several types (colours), and the transitions can be enabled only if the tokens have the right colours.\n…\n\nWe do not cover these extensions in our course. But there is one particular extension that we do want to cover, and this amounts to introducing time into Petri nets, leading to timed Petri nets, which we will discuss in the next chapter.",
-    "crumbs": [
-      "2. Discrete-event systems: Petri nets",
-      "Petri nets"
-    ]
-  },
-  {
-    "objectID": "max_plus_software.html",
-    "href": "max_plus_software.html",
-    "title": "Software",
-    "section": "",
-    "text": "MaxPlus.jl package for Julia by Quentin Quadrat.\nMax-Plus Algebra Toolbox for Matlab by Jarosław Stańczyk.\n\n\n\n\n Back to top",
-    "crumbs": [
-      "3. Discrete-event systems: Max-plus systems",
-      "Software"
-    ]
-  },
-  {
-    "objectID": "solution_types.html",
-    "href": "solution_types.html",
-    "title": "Types of solutions",
-    "section": "",
-    "text": "Now that we know, what a hybrid arc (trajectory) needs to satisfy to be a solution of a hybrid system, we can classify the solutions into several types. And we base this classification on their hybrid time domain E:",
-    "crumbs": [
-      "7. Solution",
-      "Types of solutions"
-    ]
-  },
-  {
-    "objectID": "solution_types.html#examples-of-types-of-solutions",
-    "href": "solution_types.html#examples-of-types-of-solutions",
-    "title": "Types of solutions",
-    "section": "Examples of types of solutions",
-    "text": "Examples of types of solutions\n\nExample 1 (Example of a (non-)maximal solution) \n\\dot x = 1, \\; x(0) = 1\n\n\n(t,j) \\in [0,1] \\times \\{0\\}\n\nNow extend the time domain to \n(t,j) \\in [0,2] \\times \\{0\\}.\n\nCan we extend the solution?\n\n\nExample 2 (Maximal but not complete continuous solution) Finite escape time\n\\dot x = x^2, \\; x(0) = 1,\nx(t) = 1/(1-t)\n\n\nExample 3 (Discontinuous right hand side) \\dot x = \\begin{cases}-1 & x&gt;0\\\\ 1 & x\\leq 0\\end{cases}, \\quad x(0) = -1 (unless the concept of Filippov solution is invoked).\n\n\nExample 4 (Zeno solution of the bouncing ball) Starting on the ground with some initial upward velocity \nh(t) = \\underbrace{h(0)}_0 + v(0)t - \\frac{1}{2}gt^2, \\quad v(0)=1\n\nWhat time will it hit the ground again? \n0 = t - \\frac{1}{2}gt^2 = t(1-\\frac{1}{2}gt)\n\nt_1=\\frac{2}{g}\nSimplify (scale) the computations just to get the qualitative picture: set g=2, which gives t_1 = 1.\nt_1=1:\nv(t_1^+) = \\gamma v(t_1) = \\gamma v(0) = \\gamma\nThe next hit will be at t_1 + \\tau_1 h(t_1 + \\tau_1) = 0 = \\gamma \\tau_1 - \\tau_1^2 = \\tau_1(\\gamma - \\tau_1) \\tau_1 = \\gamma\nt_2 = t_1+\\tau_1 = 1 + \\gamma:\\quad \\ldots\nt_k = 1 + \\gamma + \\gamma^2 + \\ldots + \\gamma^k:\\quad \\ldots \\boxed{\\lim_{k\\rightarrow \\infty} t_k = \\frac{1}{1-\\gamma} &lt; \\infty}\nInfinite number of jumps in a finite time!\n\n\nExample 5 (Water tank)  \n\n\n\nSwitching between two water tanks\n\n\n\n\\max \\{Q_\\mathrm{out,2}, Q_\\mathrm{out,2}\\} \\leq Q_\\mathrm{in} \\leq Q_\\mathrm{out,2} + Q_\\mathrm{out,2}\n\n\n\n\nHybrid automaton for switching between two water tanks",
-    "crumbs": [
-      "7. Solution",
-      "Types of solutions"
-    ]
-  },
-  {
-    "objectID": "solution_types.html#nonblocking-and-nondeterminism",
-    "href": "solution_types.html#nonblocking-and-nondeterminism",
-    "title": "Types of solutions",
-    "section": "(Non)blocking and (non)determinism",
-    "text": "(Non)blocking and (non)determinism\n\n\n\nExample of an automaton exhibitting (non)blocking and (non)determinism\n\n\n\nx(0) = -3\nx(0) = -2\nx(0) = -1\nx(0) = 0",
-    "crumbs": [
-      "7. Solution",
-      "Types of solutions"
-    ]
-  },
-  {
     "objectID": "stability_via_common_lyapunov_function.html",
     "href": "stability_via_common_lyapunov_function.html",
     "title": "Stability via common Lyapunov function",
@@ -1965,6 +1386,578 @@
     ]
   },
   {
+    "objectID": "solution_types.html",
+    "href": "solution_types.html",
+    "title": "Types of solutions",
+    "section": "",
+    "text": "Now that we know, what a hybrid arc (trajectory) needs to satisfy to be a solution of a hybrid system, we can classify the solutions into several types. And we base this classification on their hybrid time domain E:",
+    "crumbs": [
+      "7. Solution",
+      "Types of solutions"
+    ]
+  },
+  {
+    "objectID": "solution_types.html#examples-of-types-of-solutions",
+    "href": "solution_types.html#examples-of-types-of-solutions",
+    "title": "Types of solutions",
+    "section": "Examples of types of solutions",
+    "text": "Examples of types of solutions\n\nExample 1 (Example of a (non-)maximal solution) \n\\dot x = 1, \\; x(0) = 1\n\n\n(t,j) \\in [0,1] \\times \\{0\\}\n\nNow extend the time domain to \n(t,j) \\in [0,2] \\times \\{0\\}.\n\nCan we extend the solution?\n\n\nExample 2 (Maximal but not complete continuous solution) Finite escape time\n\\dot x = x^2, \\; x(0) = 1,\nx(t) = 1/(1-t)\n\n\nExample 3 (Discontinuous right hand side) \\dot x = \\begin{cases}-1 & x&gt;0\\\\ 1 & x\\leq 0\\end{cases}, \\quad x(0) = -1 (unless the concept of Filippov solution is invoked).\n\n\nExample 4 (Zeno solution of the bouncing ball) Starting on the ground with some initial upward velocity \nh(t) = \\underbrace{h(0)}_0 + v(0)t - \\frac{1}{2}gt^2, \\quad v(0)=1\n\nWhat time will it hit the ground again? \n0 = t - \\frac{1}{2}gt^2 = t(1-\\frac{1}{2}gt)\n\nt_1=\\frac{2}{g}\nSimplify (scale) the computations just to get the qualitative picture: set g=2, which gives t_1 = 1.\nt_1=1:\nv(t_1^+) = \\gamma v(t_1) = \\gamma v(0) = \\gamma\nThe next hit will be at t_1 + \\tau_1 h(t_1 + \\tau_1) = 0 = \\gamma \\tau_1 - \\tau_1^2 = \\tau_1(\\gamma - \\tau_1) \\tau_1 = \\gamma\nt_2 = t_1+\\tau_1 = 1 + \\gamma:\\quad \\ldots\nt_k = 1 + \\gamma + \\gamma^2 + \\ldots + \\gamma^k:\\quad \\ldots \\boxed{\\lim_{k\\rightarrow \\infty} t_k = \\frac{1}{1-\\gamma} &lt; \\infty}\nInfinite number of jumps in a finite time!\n\n\nExample 5 (Water tank)  \n\n\n\nSwitching between two water tanks\n\n\n\n\\max \\{Q_\\mathrm{out,2}, Q_\\mathrm{out,2}\\} \\leq Q_\\mathrm{in} \\leq Q_\\mathrm{out,2} + Q_\\mathrm{out,2}\n\n\n\n\nHybrid automaton for switching between two water tanks",
+    "crumbs": [
+      "7. Solution",
+      "Types of solutions"
+    ]
+  },
+  {
+    "objectID": "solution_types.html#nonblocking-and-nondeterminism",
+    "href": "solution_types.html#nonblocking-and-nondeterminism",
+    "title": "Types of solutions",
+    "section": "(Non)blocking and (non)determinism",
+    "text": "(Non)blocking and (non)determinism\n\n\n\nExample of an automaton exhibitting (non)blocking and (non)determinism\n\n\n\nx(0) = -3\nx(0) = -2\nx(0) = -1\nx(0) = 0",
+    "crumbs": [
+      "7. Solution",
+      "Types of solutions"
+    ]
+  },
+  {
+    "objectID": "max_plus_software.html",
+    "href": "max_plus_software.html",
+    "title": "Software",
+    "section": "",
+    "text": "MaxPlus.jl package for Julia by Quentin Quadrat.\nMax-Plus Algebra Toolbox for Matlab by Jarosław Stańczyk.\n\n\n\n\n Back to top",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html",
+    "href": "petri_nets.html",
+    "title": "Petri nets",
+    "section": "",
+    "text": "In this chapter we introduce another formalism for modelling discrete event systems (DES) – Petri nets. Petri nets offer an alternative perspective on discrete even systems compared to automata. And it is good to have alternatives, isn’t it? For some purposes, one framework can be more appropriate than the other.\nFurthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived GRAFCET language, which in turn served as the basis for the Sequential Function Chart (SFC) language for PLC programming. See the references.\nLast but not least, an elegant algebraic framework based on the so-called (max,+) algebra has been developed for a subset of Petri nets (so-called event graphs) and it would be a shame not to mention it in our course (in the next chapter).",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#definition-of-a-petri-net",
+    "href": "petri_nets.html#definition-of-a-petri-net",
+    "title": "Petri nets",
+    "section": "Definition of a Petri net",
+    "text": "Definition of a Petri net\nSimiliarly as in the case of automata, a Petri net (PN) can be defined as a tuple of sets and functions: \\boxed{PN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w\\},} where\n\n\\mathcal{P} = \\{p_1, \\dots, p_n\\} is a finite set of places,\n\\mathcal{T} = \\{t_1, \\dots, t_m\\} is a finite set of transitions,\n\\mathcal{A} \\subseteq (\\mathcal{P} \\times \\mathcal{T}) \\cup (\\mathcal{T} \\times \\mathcal{P}) is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:\n\n(p_i, t_j) \\in \\mathcal{A} is from place p_i to transition t_j,\n(t_j, p_i) \\in \\mathcal{A} is from transition t_j to place p_i,\n\nw : \\mathcal{A} \\to \\mathbb{N} is a weight function.\n\nSimilarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:\n\nplaces = circles,\ntransitions = bars.\n\nThe nodes of different kinds are connected by arcs (arrowed curves). A integer weights are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.\n\nExample 1 (Simple Petri net) We consider just two places, that is, \\mathcal{P} = \\{p_1, p_2\\}, and one transition, that is, \\mathcal{T} = \\{t\\}. The set of arcs is \\mathcal{A} = \\{\\underbrace{(p_1, t)}_{a_1}, \\underbrace{(t, p_2)}_{a_2}\\}, and the associated weights are w(a_1) = w((p_1, t)) = 2 and w(a_2) = w((t, p_2)) = 1. The Petri net is depicted in Fig 1.\n\n\n\n\n\n\nFigure 1: Example of a simple Petri net\n\n\n\n\n\nAdditional definitions\n\n\\mathcal{I}(t_j) … a set of input places of the transition t_j,\n\\mathcal{O}(t_j) … a set of output places of the transition t_j.\n\n\nExample 2 (More complex Petri net)  \n\n\\mathcal{P} = \\{p_1, p_2, p_3, p_4\\},\n\\mathcal{T} = \\{t_1, t_2, t_3, t_4, t_5\\},\n\\mathcal{A} = \\{(p_1, t_1), (t_1, p_1), (p_1, t_2),\\ldots\\},\nw((p_1, t_1)) = 2, \\; w((t_1, p_1)) = 1, \\; \\ldots\n\n\n\n\n\n\n\nFigure 2: Example of a more complex Petri net\n\n\n\n\n\n\nMarking and marked Petri nets\nAn important concept that we must introduce now is that of marking. It is a function that assigns an integer to each place   x: \\mathcal{P} \\rightarrow \\mathbb{N}.\nThe vector composed of the values of the marking function for all places \\bm x = \\begin{bmatrix}x(p_1)\\\\ x(p_2)\\\\ \\vdots \\\\ x(p_n) \\end{bmatrix} can be viewed as the state vector (although the Petri nets community perhaps would not use this terminology and stick to just marking).\nMarked Petri net is then a Petri net augmented with the marking\nMPN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w,x\\}.\n\nVisualization of marked Petri net using tokens\nMarked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.\n\nExample 3 (Marked Petri net) Consider the Petri net from Example 1. The marking function is x(p_1) = 2 and x(p_2) = 1, which assembled into a vector gives \\bm x = \\begin{bmatrix}1\\\\ 0 \\end{bmatrix}. The marked Petri net is depicted in Fig 3.\n\n\n\n\n\n\nFigure 3: Example of a marked Petri net\n\n\n\nFor another marking, namely \\bm x = \\begin{bmatrix}2\\\\ 1 \\end{bmatrix}, the marked Petri net is depicted in Fig 4.\n\n\n\n\n\n\nFigure 4: Example of a marked Petri net with different marking\n\n\n\n\n\n\n\nEnabling and firing of a transition\nFinally, here comes the enabling (pun intended) component of the definition of a Petri net – enabled transition. A transition t_j does not just happen – we say fire – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition t_j is enabled if \nx(p_i) \\geq w(p_i,t_j)\\quad \\forall p_i \\in \\mathcal{I}(t_j).\n\n\n\n\n\n\n\nCan but does not have to\n\n\n\nThe enabled transition can fire, but it doesn’t have to. We will exploit this in timed PN.\n\n\n\nExample 4 (Enabled transition) See the PN in Example 3: in the first marked PN the transition cannot fire, in the second it can.",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#state-transition-function",
+    "href": "petri_nets.html#state-transition-function",
+    "title": "Petri nets",
+    "section": "State transition function",
+    "text": "State transition function\nWe now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a state transition function. For a Petri net with n places, the state transition function is \nf: \\mathbb N^n \\times \\mathcal{T} \\rightarrow \\mathbb N^n,\n which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).\nThe function is only defined for a transition t_j iff the transition is enabled.\nIf the transition t_j is enabled and fired, the state evolves as \n\\bm x^+ = f(\\bm x, t_j),\n where the individual components of \\bm x evolve according to \\boxed{\n    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \\; i = 1,\\ldots,n.}\n\nThis has a visual interpretation – a fired transition moves tokens from the input to the output places.\n\nExample 5 (Moving tokens around) Consider the PN with the initial marking (state) \\bm x_0 = \\begin{bmatrix}2\\\\ 0\\\\ 0\\\\ 1 \\end{bmatrix} (at discrete time 0), and the transition t_1 enabled\n\n\n\nExample PN in the initial state at time 0, the transition t_1 enabled, but not yet fired\n\n\n\n\n\n\n\n\nConflict in notation. Again. Sorry.\n\n\n\nWe admit the notation here is confusing, because we use the lower index 0 in \\bm x_0 to denote the discrete time, while the lower index 1 in t_1 to denote the transition and the lower indices 1 and 2 in p_1 and p_2 just number the transitions and places, respectively. We could have chosen something like \\bm x(0) or \\bm x[0], but we dare to hope that the context will make it clear.\n\n\nNow we assume that t_1 is fired\n\n\n\n\n\n\nFigure 5: Transition t_1 in the example PN fired at time 1\n\n\n\nThe state vector changes to \\bm x_1 = [1, 1, 1, 1]^\\top, the discrete time is 1 now.\nAs a result of this transition, note that t_1, t_2, t_3 are now enabled.\n\n\n\n\n\n\nNumber of tokens need not be preserved\n\n\n\nIn the example we can see for the first time, that the number of tokens need not be preserved.\n\n\nNow fire the t_2 transition\n\n\n\nTransition t_2 in the example PN fired at time 2\n\n\nThe state vector changes to \\bm x_2 = [1, 1, 0, 2]^\\top, the discrete time is 2 now.\nGood, we can see the idea. But now we go back to time 1 (as in Fig 5) to explore the alternative evolution. With the state vector \\bm x_1 = [1, 1, 1, 1]^\\top and the transitions t_1, t_2, t_3 enabled, we fire t_3 this time.\n\n\n\nTransition t_3 in the example PN fired at time 1\n\n\nThe state changes to \\bm x_2 = [0, 1, 0, 0]^\\top, the discrete time is 2. Apparently the PN evolved into at a different state. The lesson learnt with this example is that the order of firing of enabled transitions matters.\n\n\n\n\n\n\n\nThe order in which the enabled transitions are fired does matter\n\n\n\nThe dependence of the state evolution upon the order of firing the transitions is not surprising. Wwe have already encountered it in automata when the active event set for a given state contains more then a single element.",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#reachability",
+    "href": "petri_nets.html#reachability",
+    "title": "Petri nets",
+    "section": "Reachability",
+    "text": "Reachability\nWe have started talking about states and state transitions in Petri nets, which are all concepts that we are familiar with from dynamical systems. Another such concept is reachability. We explain it through an example.\n\nExample 6 (Not all states are reachable)  \n\n\n\nExample of an unreachability in a Petri net\n\n\nThe Petri net is initial in the state [2,1]^\\top. The only reachable state is [0,2]^\\top.\nBy the way, note that the weight of the arc from the place p_1 to the transition t is 2, so both tokens are removed from the place p_1 when the transition t fires. But then the arc to the place p_2 has weight 1, so only one token is added to the place p_2. The other token is “lost”.\n\n\nReachability tree and graph\nHere we introduce two tools for analysis of reachability of a Petri net.\n\nExample 7 Consider the following example of a Petri net.\n\n\n\nExample of a Petri net for reachability analysis\n\n\nIn Fig 6 we draw a reachability tree for this Petri net.\n\n\n\n\n\n\nFigure 6: Reachability tree for an example Petri net\n\n\n\nIn Fig 7 we draw a reachability graph for this Petri net.\n\n\n\n\n\n\nFigure 7: Reachability graph for an example Petri net",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#number-of-tokens-need-not-be-preserved-1",
+    "href": "petri_nets.html#number-of-tokens-need-not-be-preserved-1",
+    "title": "Petri nets",
+    "section": "Number of tokens need not be preserved",
+    "text": "Number of tokens need not be preserved\nWe have already commented on this before, but we emphasize it here. Indeed, it can be that \n\\sum_{p_i\\in\\mathcal{O}(t_j)}w(t_j,p_i) &lt; \\sum_{p_i\\in\\mathcal{I}(t_j)} w(p_i,t_j)\n\nor\n\n\\sum_{p_i\\in\\mathcal{O}(t_j)}w(t_j,p_i) &gt; \\sum_{p_i\\in\\mathcal{I}(t_j)} w(p_i,t_j)\n\nWith this reminder, we can now hightlight several patters that can be observed in Petri nets.",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#and-convergence-and-divergence",
+    "href": "petri_nets.html#and-convergence-and-divergence",
+    "title": "Petri nets",
+    "section": "AND-convergence, AND-divergence",
+    "text": "AND-convergence, AND-divergence",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#or-convergence-and-or-divergence",
+    "href": "petri_nets.html#or-convergence-and-or-divergence",
+    "title": "Petri nets",
+    "section": "OR-convergence and OR-divergence",
+    "text": "OR-convergence and OR-divergence",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#nondeterminism-in-a-pn",
+    "href": "petri_nets.html#nondeterminism-in-a-pn",
+    "title": "Petri nets",
+    "section": "Nondeterminism in a PN",
+    "text": "Nondeterminism in a PN\nIn the four patters just enumerated, we have seen that the last one – the OR-divergence – is not deterministic. Indeed, consider the following example.\n\nExample 8  \n\n\n\nNondeterminism in a Petri net\n\n\n\nIn other words, we can incorporate a nondeterminism in a model.\n\n\n\n\n\n\nNondeterminism in automata\n\n\n\nRecall that something similar can be encountered in automata, if the active event set for a given state contains more than one element (event,transition).",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#subclasses-of-petri-nets",
+    "href": "petri_nets.html#subclasses-of-petri-nets",
+    "title": "Petri nets",
+    "section": "Subclasses of Petri nets",
+    "text": "Subclasses of Petri nets\nWe can identify two subclasses of Petri nets:\n\nevent graphs,\nstate machines.\n\n\nEvent graph\n\nEach place has just one input and one output transition (all ws equal to 1).\nNo OR-convergence, no OR-divergence.\nAlso known as Decision-free PN.\nIt can model synchronization.\n\n\nExample 9 (Event graph)  \n\n\n\nExample of an event graph\n\n\n\n\n\nState machine\n\nEach transition has just one input and one output place.\nNo AND-convergence, no AND-divergence.\nDoes not model synchronization.\nIt can model race conditions.\nWith no source (input) and sink (output) transitions, the number of tokens is preserved.\n\n\nExample 10 (State machine)  \n\n\n\nExample of a state machine\n\n\n\n\n\nIncidence matrix\nWe consider a Petri net with n places and m transitions. The incidence matrix is defined as \n\\bm A \\in \\mathbb{Z}^{n\\times m},\n where \na_{ij} = w(t_j,p_i) - w(p_i,t_j).\n\n\n\n\n\n\n\nTranspose\n\n\n\nSome define the incidence matrix as the transpose of our definition.\n\n\n\n\nState equation for a Petri net\nWith the incidence matrix defined above, the state equation for a Petri net can be written as \n\\bm x^+ = \\bm x + \\bm A \\bm u,\n where \\bm u is a firing vector for the enabled j-th transition \n\\bm u = \\bm e_j = \\begin{bmatrix}0 \\\\ \\vdots \\\\ 0 \\\\ 1\\\\ 0\\\\ \\vdots\\\\ 0\\end{bmatrix}\n with the 1 at the j-th position.\n\n\n\n\n\n\nState vector as a column rather then a row\n\n\n\nNote that in [1] they define everything in terms of the transposed quantities, but we prefer sticking to the notion of a state vector as a column.\n\n\n\nExample 11 (State equation for a Petri net) Consider the Petri net from Example 5, which we show again below in Fig 8.\n\n\n\n\n\n\nFigure 8: Example of a Petri net\n\n\n\nThe initial state is given by the vector \n\\bm x_0\n=\n\\begin{bmatrix}\n2\\\\ 0\\\\ 0\\\\ 1\n\\end{bmatrix}\n\nThe incidence matrix is \n\\bm A = \\begin{bmatrix}\n-1 & 0 & -1\\\\\n1 & 0 & 0\\\\\n1 & -1 & -1\\\\\n0 & 1 & -1\n\\end{bmatrix}\n\nAnd the state vector evolves according to \n\\begin{aligned}\n\\bm x_1 &= \\bm x_0 + \\bm A \\bm u_1\\\\\n\\bm x_2 &= \\bm x_1 + \\bm A \\bm u_2\\\\\n\\vdots &\n\\end{aligned}\n\n\n\n\n\n\n\n\nCaution\n\n\n\nWe repeat once again just to make sure: the lower index corresponds to the discrete time.",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#queueing-systems-modelled-by-pn",
+    "href": "petri_nets.html#queueing-systems-modelled-by-pn",
+    "title": "Petri nets",
+    "section": "Queueing systems modelled by PN",
+    "text": "Queueing systems modelled by PN\nAlthough Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in Fig 9.\n\n\n\n\n\n\nFigure 9: Queing systems and its components and transitions/events\n\n\n\nWe can associate the transitions with the events in the queing system:\n\na is a spontaneous transition (no input places).\ns needs a customer in the queue and the server being idle.\nc needs the server being busy.\n\nWe can now start drawing the Petri net by drawin the bars corresponding to the transitions. Then in between every two bars, we draw a circle for a place. The places can be associated with three bold-face letters above, namely:\n\\quad \\mathcal{P} = \\{Q, I, B\\}, that is, queue, idle, busy.\n\n\n\nPetri net corresponding to the queing system\n\n\n\n\n\n\n\n\nThe input transition adds tokens to the system\n\n\n\nThe transition a is an input transition – the tokens are added to the system through this transition.\n\n\nNote how we consider the token in the I place. This is not only to express that the server is initially idle, ready to serve as soon as a customer arrives to the queue, it also ensures that no serving of a new customer can start before the serving of the current customer is completed.\nThe initial state: [0,1,0]^\\top. Consider now a particular trace (of transitions/events) \\{a,s,a,a,c,s,a\\}. Verify that this leads to the final state [2,0,1]^\\top.\n\nSome more extensions\nWe can keep adding features to the model of a queing system. In particular,\n\nthe arrival transition always enabled,\nthe server can break down, and then be repaired,\ncompleting the service \\neq customer departure.\n\nThese are incorporated into the Petri net in Fig 10.\n\n\n\n\n\n\nFigure 10: Extended model of a queueing system\n\n\n\nIn the Petri net, d is an output transition – the tokens are removed from the system.\n\nExample 12 (Beverage vending machine) Below we show a Petri net for a beverage vending machine. While building it, we find it useful to identify the events/transitions that can happen in the system.\n\n\n\nPetri net for a beverage vending machine",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "petri_nets.html#some-extensions-of-basic-petri-nets",
+    "href": "petri_nets.html#some-extensions-of-basic-petri-nets",
+    "title": "Petri nets",
+    "section": "Some extensions of basic Petri nets",
+    "text": "Some extensions of basic Petri nets\n\nColoured Petri nets (CPN): tokens can by of several types (colours), and the transitions can be enabled only if the tokens have the right colours.\n…\n\nWe do not cover these extensions in our course. But there is one particular extension that we do want to cover, and this amounts to introducing time into Petri nets, leading to timed Petri nets, which we will discuss in the next chapter.",
+    "crumbs": [
+      "2. Discrete-event systems: Petri nets",
+      "Petri nets"
+    ]
+  },
+  {
+    "objectID": "stability_references.html",
+    "href": "stability_references.html",
+    "title": "Literature",
+    "section": "",
+    "text": "The lecture was partly built upon the chapter 4 of the textbook [1], which in turn was (to a large extent) built upon chapter 2 of the research monograph [2]. None of these two is available online, but fortunately, the latter has a free shorter online version [3]. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.\nThe lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text [4], which used to be available online, but has resently dissapeared – most probably it is about to be publised as a textbook.\nSome more online resources, in particular for multiple (also piecewise) Lyapunov functions, are [5], [6], [7], [8]. The are all quite readable.\nThe topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph [9] was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material [10], tailored to their Matlab toolbox called CVX. Alternativaly, the text [11] is even richer by two pages. Another recommendable lecture notes are also available for free: [12]. Finally, a section on Semidefinite programming in the documentation for Yalmip software can also serve as learning resource.\nThe topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper [13] is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation [14] can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on Sum-of-squares programming.\n\n\n\n\n Back to topReferences\n\n[1] H. Lin and P. J. Antsaklis, Hybrid Dynamical Systems: Fundamentals and Methods. in Advanced Textbooks in Control and Signal Processing. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: https://doi.org/10.1007/978-3-030-78731-8\n\n\n[2] D. Liberzon, Switching in Systems and Control. in Systems & Control: Foundations & Applications. Boston, MA: Birkhäuser, 2003. Available: https://doi.org/10.1007/978-1-4612-0017-8\n\n\n[3] D. Liberzon, “Switched Systems: Stability Analysis and Control Synthesis,” Lecture {{Notes}}, 2007. Available: http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf\n\n\n[4] J. Lygeros, S. Sastry, and C. Tomlin, “Hybrid Systems: Foundations, advanced topics and applications,” Jan. 2020. Available: https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf\n\n\n[5] R. A. Decarlo, M. S. Branicky, S. Pettersson, and B. Lennartson, “Perspectives and results on the stability and stabilizability of hybrid systems,” Proceedings of the IEEE, vol. 88, no. 7, pp. 1069–1082, Jul. 2000, doi: 10.1109/5.871309.\n\n\n[6] M. Johansson and A. Rantzer, “Computation of piecewise quadratic Lyapunov functions for hybrid systems,” IEEE Transactions on Automatic Control, vol. 43, no. 4, pp. 555–559, Apr. 1998, doi: 10.1109/9.664157.\n\n\n[7] S. Pettersson and B. Lennartson, “Hybrid system stability and robustness verification using linear matrix inequalities,” International Journal of Control, vol. 75, no. 16–17, pp. 1335–1355, Jan. 2002, doi: 10.1080/0020717021000023762.\n\n\n[8] A. Hassibi and S. Boyd, “Quadratic stabilization and control of piecewise-linear systems,” in Proceedings of the 1998 American Control Conference. ACC (IEEE Cat. No.98CH36207), Jun. 1998, pp. 3659–3664 vol.6. doi: 10.1109/ACC.1998.703296.\n\n\n[9] S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, Linear Matrix Inequalities in System and Control Theory. in Studies in Applied and Numerical Mathematics. Society for Industrial and Applied Mathematics, 1994. Accessed: Apr. 16, 2021. [Online]. Available: https://web.stanford.edu/~boyd/lmibook/\n\n\n[10] S. Boyd, “Solving semidefinite programs using cvx,” Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: https://stanford.edu/class/ee363/notes/lmi-cvx.pdf\n\n\n[11] S. Boyd, “EE363 Review Session 4: Linear Matrix Inequalities,” Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: https://stanford.edu/class/ee363/sessions/s4notes.pdf\n\n\n[12] C. W. Scherer and S. Weiland, “Linear matrix inequalities in control,” Jan. 2015. Accessed: Apr. 16, 2021. [Online]. Available: https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf\n\n\n[13] A. Papachristodoulou and S. Prajna, “A tutorial on sum of squares techniques for systems analysis,” in Proceedings of the 2005 American Control Conference, Portland, OR, USA: IEEE, Jun. 2005, pp. 2686–2700 vol. 4. doi: 10.1109/ACC.2005.1470374.\n\n\n[14] A. Papachristodoulou et al., “SOSTOOLS Sums of Squares Optimization Toolbox for Matlab: User’s Guide.” University of Oxford Control Group, Sep. 2021. Available: https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf",
+    "crumbs": [
+      "8. Stability",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "des_software.html",
+    "href": "des_software.html",
+    "title": "Software",
+    "section": "",
+    "text": "The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#matlab-and-simulink",
+    "href": "des_software.html#matlab-and-simulink",
+    "title": "Software",
+    "section": "Matlab and Simulink",
+    "text": "Matlab and Simulink\n\nStateFlow – finite state automata within Simulink. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(\"stateflow\") in Matlab. This is the primary tool for our course, as it extends nicely to hybrid systems. An example is shown in Fig 1 below.\n\n\n\n\n\n\n\nFigure 1: Screenshot of a state “chart” in Simscape\n\n\n\n\nSimEvents – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the series of introductory videos by the Mathworks, although we are not going to rely on this tool in our course.\n\nSeveral tools are also available outside Matlab and Simulink, and it is certainly good to be aware of these alternatives.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#openmodelica",
+    "href": "des_software.html#openmodelica",
+    "title": "Software",
+    "section": "(Open)Modelica",
+    "text": "(Open)Modelica\nA popular modelling language for physical systems is Modelica. Starting with version 3.3 (several years ago already), it has a support for state machines, see Chapter 17 in the language specification and the screenshot in Fig 2 below. A readable introduction to state machines in Modelica is in [1].\n\n\n\n\n\n\nFigure 2: Screenshot of a state machine diagram in Modelica\n\n\n\nSeveral implementations of Modelica language and compiler exist. On the FOSS side, OpenModelica is a popular choice. Slides from an introdutory presentation [2] about state machines in OpenModelica are available for free download.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#uppaal",
+    "href": "des_software.html#uppaal",
+    "title": "Software",
+    "section": "UPPAAL",
+    "text": "UPPAAL\nDedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at https://uppaal.org/. In our course we will only use it in this block/week. A tutorial is [3].",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#python",
+    "href": "des_software.html#python",
+    "title": "Software",
+    "section": "Python",
+    "text": "Python\nSimPy – discrete-event simulation in Python. We are not going to use it in our course, but if you are a Python enthusiast, you may want to have a look at it.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#julia",
+    "href": "des_software.html#julia",
+    "title": "Software",
+    "section": "Julia",
+    "text": "Julia\nTwo major packages for discrete-event simulation in Julia are:\n\nConcurrentSim.jl – discrete-event simulation in Julia.\nDiscreteEvents.jl – discrete-event simulation in Julia.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "des_software.html#umlsysml",
+    "href": "des_software.html#umlsysml",
+    "title": "Software",
+    "section": "UML/SysML",
+    "text": "UML/SysML\nIf you have been exposed to software engineering, you have probably seen UML diagrams. Their extension (and restriction at the same time) toward systems that also contain hardware is called SysML. And SysML does have support for defining state machines (by drawing the state machine diagrams), see the screenshot in Fig 3 below.\n\n\n\n\n\n\nFigure 3: Screenshot of a state machine diagram in SysML\n\n\n\nSysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&open-source (FOSS) tool for creating SysML diagrams such as Modelio or Eclipse Papyrus. But we are not going to use them in our course.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html",
+    "href": "max_plus_algebra.html",
+    "title": "Max-plus algebra",
+    "section": "",
+    "text": "Max-plus algebra, also written as (max,+) algebra (and also known as tropical algebra/geometry and dioid algebra), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely event graphs, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.\nBut before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard algebra.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#algebra",
+    "href": "max_plus_algebra.html#algebra",
+    "title": "Max-plus algebra",
+    "section": "Algebra",
+    "text": "Algebra\nAlgebra is a set of elements equipped with\n\ntwo operations:\n\naddition (plus, +)\nmultiplication (times, ×)\n\nneutral (identity) element with respect to addition: zero, 0 a+0=a.\nneutral (identity) element with respect to multiplication: one, 1 a\\times 1 = a.\n\nInverse elements can also be defined, namely\n\nInverse element wrt addition: -a a+(-a) = 0.\nInverse element wrt multiplication (except for 0): a^{-1} a \\times a^{-1} = 1.\n\nIf the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a field, otherwise it is called a ring.\nProminent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too.\nProminent example of a field is the set of real numbers.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
+    "href": "max_plus_algebra.html#max-algebra-redefining-the-addition-and-multiplication",
+    "title": "Max-plus algebra",
+    "section": "(max,+) algebra: redefining the addition and multiplication",
+    "text": "(max,+) algebra: redefining the addition and multiplication\nElements of the (max,+) algebra are real numbers, but it is still a ring and not a field since the two operations are defined differently.\nThe new operations of addition, which we denote by \\oplus to distinguish it from the standard addition, is defined as \\boxed{\n  x\\oplus y \\equiv \\max(x,y).\n  }\n\nThe new operation of multiplication, which we denote by \\otimes to distinguish it from the standard multiplication, is defined as \\boxed{\n  x\\otimes y \\equiv x+y}.\n\n\n\n\n\n\n\nImportant\n\n\n\nIndeed, there is no typo here, the standard addition is replaced by \\otimes and not \\oplus.\n\n\n\n\n\n\n\n\n(min,+) also possible\n\n\n\nIndeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.\n\n\n\nReals must be extended with the negative infinity\nStrictly speaking, the (max,+) algebra is a broader set than just \\mathbb R. We need to extend the reals with the minus infinity. We denote the extended set by \\mathbb R_\\varepsilon \\boxed{\n\\mathbb R_\\varepsilon \\coloneqq \\mathbb R \\cup \\{-\\infty\\}}.\n\nThe reason for the notation is that a dedicated symbol \\varepsilon is assigned to this minus infinity, that is, \\boxed\n{\\varepsilon \\coloneqq -\\infty.}\n\nIt may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol.\nWe are now going to see the reason for this extension.\n\n\nNeutral elements\n\nNeutral element with respect to \\oplus\nThe neutral element with respect to \\oplus, the zero, is -\\infty. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\oplus \\varepsilon = x,\n because \\max(x,-\\infty) = x.\n\n\nNeutral element with respect to \\otimes\nThe neutral element with respect to \\otimes, the one, is 0. Indeed, for x \\in \\mathbb R_\\varepsilon \nx \\otimes \\varepsilon = x,\n because x+0=x.\n\n\n\n\n\n\nNonsymmetric notation, but who cares?\n\n\n\nThe notation is rather nonsymmetric here. We now have a dedicated symbol \\varepsilon for the zero element in the new algebra, but no dedicated symbol for the one element in the new algebra. It may be a bit confusing as “the old 0 is the new 1”. Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ① = x. In fact, in some software packages they do define something like mp-zero and mp-one to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry… After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX…\n\n\n\n\n\nInverse elements\n\nInverse with respect to \\oplus\nThe inverse element with respect to \\oplus in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for \\varepsilon.\nThis has major consequences, for example, x\\oplus x=x.\nCan you verify this statement? How is is related to the fact that the inverse element with respect to \\oplus does not exist in general?\nThis is the key difference with respect to a conventional algebra, wherein the inverse element of a wrt conventional addition is -a, while here we do not even define \\ominus.\nFormally speaking, the (max,+) algebra is only a semi-ring.\n\n\nInverse with respect to \\otimes\nThe inverse element with respect to \\otimes does not exist for all elements. The \\varepsilon element does not have an inverse element with respect to \\otimes. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
+    "href": "max_plus_algebra.html#powers-and-the-inverse-with-respect-to-otimes",
+    "title": "Max-plus algebra",
+    "section": "Powers and the inverse with respect to \\otimes",
+    "text": "Powers and the inverse with respect to \\otimes\nHaving defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer r\\in\\mathbb Z, the rth power of x, denoted by x^{\\otimes^r}, is defined, unsurprisingly as x^{\\otimes^r} \\coloneqq x\\otimes x \\otimes \\ldots \\otimes x.\nObserve that it corresponds to rx in the conventional algebra x^{\\otimes^r} = rx.\nBut then the inverse element with respect to \\otimes can also be determined using the (-1)th power as x^{\\otimes^{-1}} = -x.\nThis is not actually surprising, is it?\nThere are few more implications. For example,\nx^{\\otimes^0} = 0.\nThere is also no inverse element with respect to \\otimes for \\varepsilon, but it is expected as \\varepsilon is a zero wrt \\oplus. Furthermore, for r\\neq -1, if r&gt;0 , then \\varepsilon^{\\otimes^r} = \\varepsilon, if r&lt;0 , then \\varepsilon^{\\otimes^r} is undefined, which are both expected. Finally, \\varepsilon^{\\otimes^0} = 0 by convention.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
+    "href": "max_plus_algebra.html#order-of-evaluation-of-max-formulas",
+    "title": "Max-plus algebra",
+    "section": "Order of evaluation of (max,+) formulas",
+    "text": "Order of evaluation of (max,+) formulas\nIt is the same as that for the conventional algebra:\n1. power, \n2. multiplication, \n3. addition.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
+    "href": "max_plus_algebra.html#max-polynomials-aka-tropical-polynomials",
+    "title": "Max-plus algebra",
+    "section": "(max,+) polynomials (aka tropical polynomials)",
+    "text": "(max,+) polynomials (aka tropical polynomials)\nHaving covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial p(x) = a_{n}\\otimes x^{\\otimes^{n}} \\oplus a_{n-1}\\otimes x^{\\otimes^{n-1}} \\oplus \\ldots \\oplus a_{1}\\otimes x \\oplus a_{0},\n where a_i\\in \\mathbb R_\\varepsilon and n\\in \\mathbb N.\nBy interpreting the operations, this translates to the following function \\boxed\n{p(x) = \\max\\{nx + a_n, (n-1)x + a_{n-1}, \\ldots, x+a_1, a_0\\}.}\n\n\nExample 1 (1D polynomial) Consider the following (max,+) polynomial \np(x) = 2\\otimes x^{\\otimes^{2}} \\oplus 3\\otimes x \\oplus 1.\n\nWe can interpret it in the conventional algebra as \np(x) = \\max\\{2x+2,x+3,1\\},  \n which is a piecewise linear (actually affine) function.\n\n\nCode\nusing Plots\nx = -5:3\nf(x) = max(2*x+2,x+3,1)\nplot(x,f.(x),label=\"\",thickness_scaling = 2)\nxc = [-2,1]\nyc = f.(xc)\nscatter!(xc,yc,markercolor=[:red,:red],label=\"\",thickness_scaling = 2)\n\n\n\n\nExample 2 (Example of a 2D polynomial) Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(5,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"f(x,y)\")\n\n\n\n\nExample 3 (Another 2D polynomial) Consider another 2D (max,+) polynomial \np(x,y) = 0 \\otimes x \\otimes y \\oplus (-1)\\otimes x^{\\otimes^2} \\oplus 1\\otimes x\\otimes y \\oplus (-1)\\otimes y^{\\otimes^2}.\n\n\n\nCode\nusing Plots\nx = -2:0.1:2;\ny = -2:0.1:2;\nf(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)\nz = f.(x',y);\nwireframe(x,y,z,legend=false,camera=(15,30))\nxlabel!(\"x\")\nylabel!(\"y\")\nzlabel!(\"p(x,y)\")\n\n\n\n\n\n\n\n\n\nPiecewise affine (PWA) functions\n\n\n\nPiecewise affine (PWA) functions will turn out a frequent buddy in our course.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#solution-set-zero-set",
+    "href": "max_plus_algebra.html#solution-set-zero-set",
+    "title": "Max-plus algebra",
+    "section": "Solution set (zero set)",
+    "text": "Solution set (zero set)\n…",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#matrix-computations",
+    "href": "max_plus_algebra.html#matrix-computations",
+    "title": "Max-plus algebra",
+    "section": "Matrix computations",
+    "text": "Matrix computations\n\nAddition and multiplication\nWhat is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in \\mathbb R_\\varepsilon, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations. (A\\oplus B)_{ij} = a_{ij}\\oplus b_{ij} = \\max(a_{ij},b_{ij}) \n\\begin{aligned}\n(A\\otimes B)_{ij} &= \\bigoplus_{k=1}^n a_{ik}\\otimes b_{kj}\\\\\n&= \\max_{k=1,\\ldots, n}(a_{ik}+b_{kj})\n\\end{aligned}\n\n\n\nZero and identity matrices\n(max,+) zero matrix \\mathcal{E}_{m\\times n} has all its elements equal to \\varepsilon, that is, \n\\mathcal{E}_{m\\times n} =\n\\begin{bmatrix}\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & \\varepsilon\n\\end{bmatrix}.\n\n(max,+) identity matrix I_n has 0 on the diagonal and \\varepsilon elsewhere, that is, \nI_{n} =\n\\begin{bmatrix}\n0 & \\varepsilon & \\ldots & \\varepsilon\\\\\n\\varepsilon & 0 & \\ldots & \\varepsilon\\\\\n\\vdots & \\vdots & \\ddots & \\vdots\\\\\n\\varepsilon & \\varepsilon & \\ldots & 0\n\\end{bmatrix}.\n\n\n\nMatrix powers\nThe zerothe power of a matrix is – unsurprisingly – the identity matrix, that is, A^{\\otimes^0} = I_n.\nThe kth power of a matrix, for k\\in \\mathbb N\\setminus\\{0\\}, is then defined using A^{\\otimes^k} = A\\otimes A^{\\otimes^{k-1}}.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
+    "href": "max_plus_algebra.html#connection-with-graph-theory-precedence-graph",
+    "title": "Max-plus algebra",
+    "section": "Connection with graph theory – precedence graph",
+    "text": "Connection with graph theory – precedence graph\nConsider A\\in \\mathbb R_\\varepsilon^{n\\times n}. For this matrix, we can define the precedence graph \\mathcal{G}(A) as a weighted directed graph with the vertices 1, 2, …, n, and with the arcs (j,i) with the associated weights a_{ij} for all a_{ij}\\neq \\varepsilon. The kth power of the matrix is then\n\n(A)^{\\otimes^k}_{ij} = \\max_{i_1,\\ldots,i_{k-1}\\in \\{1,2,\\ldots,n\\}} \\{a_{ii_1} + a_{i_1i_2} + \\ldots + a_{i_{k-1}j}\\}\n for all i,j and k\\in \\mathbb N\\setminus 0.\n\nExample 4 (Example) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix}\n\\qquad\nA^{\\otimes^2} =\n\\begin{bmatrix}\n4 & 5 & 3\\\\\n3 & 4 & 3\\\\\n5 & 5 & 6\n\\end{bmatrix}\n\n\n\n\n\n\n\n\n\nG\n\n\n1\n\n1\n\n\n\n1-&gt;1\n\n\n2\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n1\n\n\n\n3\n\n3\n\n\n\n1-&gt;3\n\n\n2\n\n\n\n2-&gt;1\n\n\n3\n\n\n\n2-&gt;3\n\n\n-1\n\n\n\n3-&gt;2\n\n\n0\n\n\n\n3-&gt;3\n\n\n3\n\n\n\n\n\n\nFigure 1: An example of a precedence graph\n\n\n\n\n\n\n\nIrreducibility of a matrix\n\nMatrix in \\mathbb R_\\varepsilon^{n\\times n} is irreducible if its precedence graph is strongly connected.\nMatrix is irreducible iff \n(A \\oplus A^{\\otimes^2} \\oplus \\ldots A^{\\otimes^{n-1}})_{ij} \\neq \\varepsilon \\quad \\forall i,j, i\\neq j.\n\\tag{1}",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
+    "href": "max_plus_algebra.html#eigenvalues-and-eigenvectors",
+    "title": "Max-plus algebra",
+    "section": "Eigenvalues and eigenvectors",
+    "text": "Eigenvalues and eigenvectors\nEigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives \nA\\otimes v = \\lambda \\otimes v.\n\nA few comments:\n\nIn general, total number of (max,+) eigenvalues &lt;n.\nAn irreducible matrix has only one (max,+) eigenvalue.\nGraph-theoretic interpretation: maximum average weight over all elementary circuits…\n\n\nEigenvalue-related property of irreducible matrices\nFor large enough k and c, it holds that \\boxed\n{A^{\\otimes^{k+c}} = \\lambda^{\\otimes^c}\\otimes A^{\\otimes^k}.}",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "max_plus_algebra.html#solving-max-linear-equations",
+    "href": "max_plus_algebra.html#solving-max-linear-equations",
+    "title": "Max-plus algebra",
+    "section": "Solving (max,+) linear equations",
+    "text": "Solving (max,+) linear equations\nWe can also define and solve linear equations within the (max,+) algebra. Considering A\\in \\mathbb R_\\varepsilon^{n\\times n},\\, b\\in \\mathbb R_\\varepsilon^n, we can formulate and solve the equation \nA\\otimes x = b.\n\nIn general no solution even if A is square. However, often we can find some use for a subsolution defined as \nA\\otimes x \\leq b.\n\nTypically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.\n\nExample 5 (Greatest subsolution) \nA =\n\\begin{bmatrix}\n2 & 3 & \\varepsilon\\\\\n1 & \\varepsilon & 0\\\\\n2 & -1 & 3\n\\end{bmatrix},\n\\qquad\nb =  \n\\begin{bmatrix}\n1 \\\\ 2 \\\\ 3\n\\end{bmatrix}\n\n\nx =\n\\begin{bmatrix}\n1\\\\ -2 \\\\ 0\n\\end{bmatrix}\n\n\nA \\otimes x =\n\\begin{bmatrix}\n1\\\\ 0 \\\\ 1\n\\end{bmatrix}\n\\leq b\n\n\nWith this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.",
+    "crumbs": [
+      "3. Discrete-event systems: Max-plus systems",
+      "Max-plus algebra"
+    ]
+  },
+  {
+    "objectID": "des.html",
+    "href": "des.html",
+    "title": "Discrete-event systems",
+    "section": "",
+    "text": "We have already mentioned that hybrid systems are composed of time-driven subsystems and event-driven subsystems. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#discrete-event",
+    "href": "des.html#discrete-event",
+    "title": "Discrete-event systems",
+    "section": "(Discrete) event",
+    "text": "(Discrete) event\nWe need to start with the definition of an event. Sometimes an adjective discrete is added (to get discrete event), although it appears rather redundant.\nThe primary characteristic of an event is instantaneous occurence, that is, an event takes no time.\nWithin the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.\n\n\n\n\n\n\nThe concept of a state\n\n\n\nTrue, here we are making a reference to the concept of a state, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).\n\n\nAlthough it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).\n\nExample 1 (DES state trajectory) In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.\n\n\n\n\n\n\nFigure 1: Example of a state trajectory in response to a sequence of events\n\n\n\nIt is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.\nAlso note that for some events no transitions occur (e_3 at t_3).\n\n\n\n\n\n\n\nFrequent notational confusion: does the lower index represent discrete time or an element of a set?\n\n\n\nThe previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between name of the variable and value of the variable. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.\n\n\n\nExample 2 (State trajectory of a continuous-time dynamical systems) Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be \\dot x(t) = f(x). In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.\n\n\n\n\n\n\nFigure 2: Example of a state trajectory of a continuous-time continuous-valued dynamical system\n\n\n\nThe set of states (aka state space) is \\mathbb{R} (or a subset) in this case (in general \\mathbb{R}^n or a subset).\n\n\nExample 3 (State trajectory of a time-discretized (aka sampled-data) system) As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by x_k = f(x_k) in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.\n\n\n\n\n\n\nFigure 3: Example of a state trajectory of time-discretized (aka sampled data) system",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#when-do-events-occur",
+    "href": "des.html#when-do-events-occur",
+    "title": "Discrete-event systems",
+    "section": "When do events occur?",
+    "text": "When do events occur?\nThere are three major possibilities:\n\nwhen action is taken (button press, clutch released, …),\nspontaneously: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),\nwhen some condition is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
+    "href": "des.html#sequence-of-time-stamped-events-aka-timed-trace",
+    "title": "Discrete-event systems",
+    "section": "Sequence of “time-stamped” events (aka timed trace)",
+    "text": "Sequence of “time-stamped” events (aka timed trace)\nThe sequence of pairs (event, time) (e_1,t_1), (e_2,t_2), (e_3,t_3), \\ldots\nis sufficient to characterize an execution of a deterministic system, that is, a system with a unique initial state and a unique transitions at a given state and an event.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
+    "href": "des.html#des-can-be-stochastic-but-what-exactly-is-stochastic-then",
+    "title": "Discrete-event systems",
+    "section": "DES can be stochastic, but what exactly is stochastic then?",
+    "text": "DES can be stochastic, but what exactly is stochastic then?\nStochasticity can be introduced in\n\nthe event times (e.g. Poisson process),\nbut also in the transitions (e.g. probabilistic automata, more on this later).",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "href": "des.html#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough",
+    "title": "Discrete-event systems",
+    "section": "Sometimes time stamps not needed – the ordering of events is enough",
+    "text": "Sometimes time stamps not needed – the ordering of events is enough\nThe sequence of events (aka trace) e_1,e_2,e_3, \\ldots can be enough for some analysis, in which only the order of the events is important.\n\nExample 4 credit_card_swiped, pin_entered, amount_entered, money_withdrawn",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#discrete-event-systems-are-studied-through-their-languages",
+    "href": "des.html#discrete-event-systems-are-studied-through-their-languages",
+    "title": "Discrete-event systems",
+    "section": "Discrete-event systems are studied through their languages",
+    "text": "Discrete-event systems are studied through their languages\nWhen studying discrete-event systems, soon we are exposed to terminology from the formal language theory such as alphabet, word, and language. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.\nWe define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.\n\nAlphabet\n\na set of symbols.\n\nWord (or string)\n\na sequence of symbols from a finite alphabet.\n\nLanguage\n\na set of words from the given alphabet.\n\n\nNow, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.\nIndeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” when in the next section when we introduce the concept of an automaton and some of its properties.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
+    "href": "des.html#modelling-frameworks-for-des-as-used-in-our-course",
+    "title": "Discrete-event systems",
+    "section": "Modelling frameworks for DES (as used in our course)",
+    "text": "Modelling frameworks for DES (as used in our course)\nThese are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems\n\n(State) automaton (pl. automata)\nPetri net\n(max,plus) algebra, MPL systems\n\nWhile the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.\nWe are going to cover all the three frameworks in this course as a prequel to hybrid systems.",
+    "crumbs": [
+      "1. Discrete-event systems: Automata",
+      "Discrete-event systems"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html",
+    "href": "complementarity_simulations.html",
+    "title": "Simulations using complementarity",
+    "section": "",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#simulation-using-time-stepping",
+    "href": "complementarity_simulations.html#simulation-using-time-stepping",
+    "title": "Simulations using complementarity",
+    "section": "",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#example-continued-how-fast-does-the-solution-approach-the-origin",
+    "href": "complementarity_simulations.html#example-continued-how-fast-does-the-solution-approach-the-origin",
+    "title": "Simulations using complementarity",
+    "section": "Example continued: how fast does the solution approach the origin?",
+    "text": "Example continued: how fast does the solution approach the origin?\n\nLet’s use the 1-norm \\|\\bm x\\|_1 = |x_1| + |x_2| to measure how far the trajectory is from the origin.\nHow fast does the trajectory converge to the origin? That, is \n\\frac{\\mathrm d}{\\mathrm dt}\\|\\bm x\\|_1 = ?\n\nConsider each quadrant separately. Let’s start in the first (upper right) quadrant, that is, x_1&gt;0 and x_2&gt;0, and therefore |x_1| = x_1, \\;|x_2| = x_2, and therefore\n\n. . .\n\n\\frac{\\mathrm d}{\\mathrm dt}\\|\\bm x\\|_1 = \\dot x_1 + \\dot x_2 = 1 - 3 = -2.\n\n\nIdentical in the other quadrants. And undefined on the axes.\nThe trajectory will hit the origin in finite time:\n\nFor x_1(0) = 1 and x_2(0) = 1 , the trajectory hits the origin at t=(|x_1(0)|+|x_2(0)|)/2 = 1.\n\nBut with an infinite number of revolutions around the origin…\nHow will a standard algoritm for numerical simulation handle this?",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#forward-euler-with-fixed-step-size",
+    "href": "complementarity_simulations.html#forward-euler-with-fixed-step-size",
+    "title": "Simulations using complementarity",
+    "section": "Forward Euler with fixed step size",
+    "text": "Forward Euler with fixed step size\n\n\\begin{aligned}\n{\\color{blue}x_{1,k+1}} &= x_{1,k} + h (-\\operatorname{sign} x_{1,k} + 2 \\operatorname{sign} x_{2,k})\\\\\n{\\color{blue}x_{2,k+1}} &= x_{1,k} + h (-2\\operatorname{sign} x_{1,k} - \\operatorname{sign} x_{2,k})\n\\end{aligned}\n\n\n\nShow the code\nf(x) = [-sign(x[1]) + 2*sign(x[2]), -2*sign(x[1]) - sign(x[2])]\n\nusing LinearAlgebra\nN = 1000\nx₀ = [-1.0, 1.0]    \nx = [x₀]\ntfinal = norm(x₀,1)/2\ntfinal = 5.0\nh = tfinal/N \nt = range(0.0, step=h, stop=tfinal)\n\nfor i=1:N\n    xnext = x[i] + h*f(x[i]) \n    push!(x,xnext)\nend\n\nX = [getindex.(x, i) for i in 1:length(x[1])]\n\nPlots.plot(t,X,lw=3,label=false,xlabel=\"t\",ylabel=\"x\")",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#backward-euler",
+    "href": "complementarity_simulations.html#backward-euler",
+    "title": "Simulations using complementarity",
+    "section": "Backward Euler",
+    "text": "Backward Euler\n\n\\begin{aligned}\n{\\color{blue} x_{1,k+1}} &= x_{1,k} + h (-\\operatorname{sign} {\\color{blue}x_{1,k+1}} + 2 \\operatorname{sign} {\\color{blue}x_{2,k+1}})\\\\\n{\\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2\\operatorname{sign} {\\color{blue}x_{1,k+1}} - \\operatorname{sign} {\\color{blue}x_{2,k+1}})\n\\end{aligned}",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#formulation-using-lcp",
+    "href": "complementarity_simulations.html#formulation-using-lcp",
+    "title": "Simulations using complementarity",
+    "section": "Formulation using LCP",
+    "text": "Formulation using LCP\n\nInstead solving the above nasty equations, introduce new variables u_1 and u_2 as the outcomes of the \\operatorname{sign} functions: \n\\begin{aligned}\n{\\color{blue} x_{1,k+1}} &= x_{1,k} + h (-{\\color{blue}u_{1}} + 2 {\\color{blue}u_{2}})\\\\\n{\\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2{\\color{blue}u_{1}} - {\\color{blue}u_{2}})\n\\end{aligned}\n\nBut now we have to enforce the relation between \\bm u and \\bm x_{k+1}.\nRecall the standard definition of the \\operatorname{sign} function: \n\\operatorname{sign}(x) = \\begin{cases}\n1 & x&gt;0\\\\\n0 & x=0\\\\\n-1 & x&lt;0\n\\end{cases}\n\nChange the definition to a set-valued function \n\\begin{cases}\n\\operatorname{sign}(x) = 1 & x&gt;0\\\\\n\\operatorname{sign}(x) \\in [-1,1] & x=0\\\\\n\\operatorname{sign}(x) = -1 & x&lt;0\n\\end{cases}\n\nAccordingly, set the relation between \\bm u and \\bm x \n\\begin{cases}\nu_1 = 1 & x_1&gt;0\\\\\nu_1 \\in [-1,1] & x_1=0\\\\\nu_1 = -1 & x_1&lt;0\n\\end{cases}\n and \n\\begin{cases}\nu_2 = 1 & x_2&gt;0\\\\\nu_2 \\in [-1,1] & x_2=0\\\\\nu_2 = -1 & x_2&lt;0\n\\end{cases}\n\nBut these are mixed complementarity contraints! \n\\begin{aligned}\n\\begin{bmatrix}\n{\\color{blue} x_{1,k+1}}\\\\\n{\\color{blue} x_{1,k+1}}\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n-1 \\leq {\\color{blue} u_1} \\leq 1 \\quad &\\bot \\quad -{\\color{blue}x_{1,k+1}}\\\\\n-1 \\leq {\\color{blue} u_2} \\leq 1 \\quad &\\bot \\quad -{\\color{blue}x_{2,k+1}}\n\\end{aligned}",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#possible-combinations",
+    "href": "complementarity_simulations.html#possible-combinations",
+    "title": "Simulations using complementarity",
+    "section": "9 possible combinations",
+    "text": "9 possible combinations\n\nLet’s explore some: x_{1,k+1} = x_{2,k+1} = 0, while u_1 \\in [-1,1] and u_2 \\in [-1,1]:\n\n. . .\n\n\\begin{aligned}\n\\begin{bmatrix}\n0\\\\\n0\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n& -1 \\leq {\\color{blue} u_1} \\leq 1,  \\quad -1 \\leq {\\color{blue} u_2} \\leq 1\n\\end{aligned}\n\n\nHow does the set of states from which the next state is zero look like? \n\\begin{aligned}\n-\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}^{-1}\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n&= h\n\\begin{bmatrix}\n{\\color{blue}u_{1}}\\\\\n{\\color{blue}u_{2}}\n\\end{bmatrix}\\\\\n-1 \\leq {\\color{blue} u_1} \\leq 1,  \\quad -1 &\\leq {\\color{blue} u_2} \\leq 1\n\\end{aligned}\n\n\n. . .\n\n\\begin{bmatrix}\n-h\\\\-h\n\\end{bmatrix}\n\\leq\n\\begin{bmatrix}\n0.2 & 0.4 \\\\\n-0.4 & 0.2\n\\end{bmatrix}\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n\\leq\n\\begin{bmatrix}\nh\\\\ h\n\\end{bmatrix}\n\n\nFor h=0.2\n\n\n\nShow the code\nusing LazySets\nh = 0.2\nH1u = HalfSpace([0.2, 0.4], h)\nH2u = HalfSpace([-0.4, 0.2], h)\nH1l = HalfSpace(-[0.2, 0.4], h)\nH2l = HalfSpace(-[-0.4, 0.2], h)\n\nHa = H1u ∩ H2u ∩ H1l ∩ H2l\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIndeed, if the current state is in this rotated square, then the next state will be zero.",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#another",
+    "href": "complementarity_simulations.html#another",
+    "title": "Simulations using complementarity",
+    "section": "Another",
+    "text": "Another\n\nu_1 = 1, u_2 = 1:\n\n. . .\n\n\\begin{aligned}\n\\begin{bmatrix}\n{\\color{blue} x_{1,k+1}}\\\\\n{\\color{blue} x_{1,k+1}}\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n{1}\\\\\n{1}\n\\end{bmatrix}\\\\\n\\color{blue}x_{1,k+1} &\\geq 0\\\\\n\\color{blue}x_{2,k+1} &\\geq 0\n\\end{aligned}\n\n\nwhich can be reformatted to \n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix} + h\n\\begin{bmatrix}\n-1 & 2 \\\\\n-2 & -1\n\\end{bmatrix}\n\\begin{bmatrix}\n1\\\\\n1\n\\end{bmatrix}\\geq \\bm 0\n\nand further to \n\\begin{bmatrix}\nx_{1,k}\\\\\nx_{2,k}\n\\end{bmatrix}\n\\geq h\n\\begin{bmatrix}\n-1\\\\\n3\n\\end{bmatrix}\n\n\n. . .\n\n\nShow the code\nusing LazySets\nh = 0.2\nA = [-1.0 2.0; -2.0 -1.0]\nu = [1.0, 1.0]\nb = h*A*u\n\nH1 = HalfSpace([-1.0, 0.0], b[1])\nH2 = HalfSpace([0.0, -1.0], b[2])\nHb = H1 ∩ H2\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#all-nine-regions",
+    "href": "complementarity_simulations.html#all-nine-regions",
+    "title": "Simulations using complementarity",
+    "section": "All nine regions",
+    "text": "All nine regions\n. . .\n\n\nShow the code\nusing LazySets\nh = 0.2\nA = [-1.0 2.0; -2.0 -1.0]\n\nu = [1, -1]\nb = h*A*u\n\nH1 = HalfSpace(-[1.0, 0.0], b[1])\nH2 = HalfSpace([0.0, 1.0], -b[2])\nHc = H1 ∩ H2\n\nu = [-1, 1]\nb = h*A*u\n\nH1 = HalfSpace([1.0, 0.0], -b[1])\nH2 = HalfSpace(-[0.0, 1.0], b[2])\nHd = H1 ∩ H2\n\nu = [-1, -1]\nb = h*A*u\n\nH1 = HalfSpace([1.0, 0.0], -b[1])\nH2 = HalfSpace([0.0, 1.0], -b[2])\nHe = H1 ∩ H2\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)\nPlots.plot!(Hc)\nPlots.plot!(Hd)\nPlots.plot!(He)",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
+    "objectID": "complementarity_simulations.html#solutions-using-a-mcp-solver",
+    "href": "complementarity_simulations.html#solutions-using-a-mcp-solver",
+    "title": "Simulations using complementarity",
+    "section": "Solutions using a MCP solver",
+    "text": "Solutions using a MCP solver\n\n\nShow the code\nM = [-1 2; -2 -1]\nh = 2e-1\ntfinal = 2.0\nN = tfinal/h\n\nx0 = [-1.0, 1.0]\nx = [x0]\n\nusing JuMP\nusing PATHSolver\n\nfor i = 1:N\n    model = Model(PATHSolver.Optimizer)\n    set_optimizer_attribute(model, \"output\", \"no\")\n    set_silent(model)\n    @variable(model, -1 &lt;= u[1:2] &lt;= 1)\n    @constraint(model, -h*M * u - x[end] ⟂ u)\n    optimize!(model)\n    push!(x, x[end]+h*M*value.(u))\nend\n\nt = range(0.0, step=h, stop=tfinal)\nX = [getindex.(x, i) for i in 1:length(x[1])]\n\nusing Plots\nPlots.plot(Ha, aspect_ratio=:equal,xlabel=\"x₁\",ylabel=\"x₂\",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))\nPlots.plot!(Hb)\nPlots.plot!(Hc)\nPlots.plot!(Hd)\nPlots.plot!(He)\nPlots.plot!(X[1],X[2],xlabel=\"x₁\",ylabel=\"x₂\",label=\"Time-stepping\",aspect_ratio=:equal,lw=3,markershape=:circle)\nPlots.plot!(sol[1,:],sol[2,:],label=false,lw=3)",
+    "crumbs": [
+      "9. Complementarity systems",
+      "Simulations using complementarity"
+    ]
+  },
+  {
     "objectID": "classes_PWA.html",
     "href": "classes_PWA.html",
     "title": "Piecewise affine systems",
@@ -2068,7 +2061,7 @@
     "href": "des_references.html",
     "title": "Literature",
     "section": "",
-    "text": "Literature for discrete-event systems is vast, but within the control systems community the classical (and award-winning) reference is Cassandras and Lafortune (2021). Note that an electronic version of the previous edition (perfectly acceptable for us) is accessible through the NTK library (possibly upon CTU login). This book is rather thick too and covering its content can easily need a full semestr. However, in our course we will only need the very basics of the theory of (finite state) automata and such basics are presented in Chapters 1 and 2. The extension to timed automata is then presented in Chapter 5.2.\n\nThe basics are also presented in the tutorial paper by the same author(s) Lafortune (2019).\nA very short (but sufficient for us) intro to discrete-event systems that adheres to Cassandras’s style is given in the first chapter of the recent hybrid systems textbook Lin and Antsaklis (2022).\nAlternatively, there are some other recent textbooks that contain decent introductions to the theory of (finite state) automata. These are often surfing on the wave of popularity of the recently fashionable buzzword of cyberphysical or embedded systems, but in essence these deal with the same hybrid systems as we do in our course. The fact is, however, that the modeling formalism can be a bit different from the one in Cassandras (certainly when it comes to notation but also some concepts). One such textbook is Alur (2015), for which an electronic version accessible through the NTK library (upon CTU login). Another one is Mitra (2007). In particular, Chapter 2 serves as an intro to the automata theory. Last but not least, Lee and Seshia (2017), for which an electronic version is freely downloadable.\n\n\n\n\n Back to topReferences\n\nAlur, Rajeev. 2015. Principles of Cyber-Physical Systems. Cambridge, MA, USA: MIT Press. https://mitpress.mit.edu/9780262029117/principles-of-cyber-physical-systems/.\n\n\nCassandras, Christos G., and Stéphane Lafortune. 2021. Introduction to Discrete Event Systems. 3rd ed. Cham: Springer. https://doi.org/10.1007/978-3-030-72274-6.\n\n\nLafortune, Stéphane. 2019. “Discrete Event Systems: Modeling, Observation, and Control.” Annual Review of Control, Robotics, and Autonomous Systems 2 (1): 141–59. https://doi.org/10.1146/annurev-control-053018-023659.\n\n\nLee, Edward Ashford, and Sanjit Arunkumar Seshia. 2017. Introduction to Embedded Systems: A Cyber-Physical Systems Approach. 2nd ed. Cambridge, MA, USA: MIT Press. https://ptolemy.berkeley.edu/books/leeseshia//.\n\n\nLin, Hai, and Panos J. Antsaklis. 2022. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springer. https://doi.org/10.1007/978-3-030-78731-8.\n\n\nMitra, Sayan. 2007. “A Verification Framework for Hybrid Systems.” PhD thesis, Massachusetts Institute of Technology. https://dspace.mit.edu/handle/1721.1/42238.",
+    "text": "Literature for discrete-event systems is vast, but within the control systems community the classical (and award-winning) reference is [1]. Note that an electronic version of the previous edition (perfectly acceptable for us) is accessible through the NTK library (possibly upon CTU login). This book is rather thick too and covering its content can easily need a full semestr. However, in our course we will only need the very basics of the theory of (finite state) automata and such basics are presented in Chapters 1 and 2. The extension to timed automata is then presented in Chapter 5.2, but the particular formalism for timed automata that we mention follows [2], or perhaps even better in [3].\n\nThe basics are also presented in the tutorial paper by the same author(s) [4]. A very short (but sufficient for us) intro to discrete-event systems that adheres to Cassandras’s style is given in the first chapter of the recent hybrid systems textbook [5].\nAlternatively, there are some other recent textbooks that contain decent introductions to the theory of (finite state) automata. These are often surfing on the wave of popularity of the recently fashionable buzzword of cyberphysical or embedded systems, but in essence these deal with the same hybrid systems as we do in our course. The fact is, however, that the modeling formalism can be a bit different from the one in Cassandras (certainly when it comes to notation but also some concepts). One such textbook is [6], for which an electronic version accessible through the NTK library (upon CTU login). Another one is [7]. In particular, Chapter 2 serves as an intro to the automata theory. Last but not least, [8], for which an electronic version is freely downloadable.\n\n\n\n\n Back to topReferences\n\n[1] C. G. Cassandras and S. Lafortune, Introduction to Discrete Event Systems, 3rd ed. Cham: Springer, 2021. Available: https://doi.org/10.1007/978-3-030-72274-6\n\n\n[2] R. Alur and D. L. Dill, “A theory of timed automata,” Theoretical Computer Science, vol. 126, no. 2, pp. 183–235, Apr. 1994, doi: 10.1016/0304-3975(94)90010-8.\n\n\n[3] R. Alur, “Timed Automata,” in Computer Aided Verification, N. Halbwachs and D. Peled, Eds., in Lecture Notes in Computer Science. Berlin, Heidelberg: Springer, 1999, pp. 8–22. doi: 10.1007/3-540-48683-6_3.\n\n\n[4] S. Lafortune, “Discrete Event Systems: Modeling, Observation, and Control,” Annual Review of Control, Robotics, and Autonomous Systems, vol. 2, no. 1, pp. 141–159, 2019, doi: 10.1146/annurev-control-053018-023659.\n\n\n[5] H. Lin and P. J. Antsaklis, Hybrid Dynamical Systems: Fundamentals and Methods. in Advanced Textbooks in Control and Signal Processing. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: https://doi.org/10.1007/978-3-030-78731-8\n\n\n[6] R. Alur, Principles of Cyber-Physical Systems. Cambridge, MA, USA: MIT Press, 2015. Available: https://mitpress.mit.edu/9780262029117/principles-of-cyber-physical-systems/\n\n\n[7] S. Mitra, “A verification framework for hybrid systems,” PhD thesis, Massachusetts Institute of Technology, 2007. Accessed: Sep. 04, 2022. [Online]. Available: https://dspace.mit.edu/handle/1721.1/42238\n\n\n[8] E. A. Lee and S. A. Seshia, Introduction to Embedded Systems: A Cyber-Physical Systems Approach, 2nd ed. Cambridge, MA, USA: MIT Press, 2017. Available: https://ptolemy.berkeley.edu/books/leeseshia//",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Literature"
@@ -2592,7 +2585,7 @@
     "href": "petri_nets_software.html",
     "title": "Software",
     "section": "",
-    "text": "Petri Net Toolbox (probably commercial, not immediately available for download)",
+    "text": "Petri nets constitute a powerful and flexible framework for modelling discrete-event systems, and yet the selection of mature and well-maintained software tools is not particularly wide. How come? Petri nets have already inspired a few other frameworks such as Grafcet and SFC for PLC programming, as we discuss in the overview of the literature. The “vanilla version” of Petri nets then serves mainly for academic research.",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Software"
@@ -2602,8 +2595,8 @@
     "objectID": "petri_nets_software.html#matlab",
     "href": "petri_nets_software.html#matlab",
     "title": "Software",
-    "section": "",
-    "text": "Petri Net Toolbox (probably commercial, not immediately available for download)",
+    "section": "Matlab",
+    "text": "Matlab\n\nPetri Net Toolbox (probably commercial, not immediately available for download)",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Software"
@@ -2625,7 +2618,7 @@
     "href": "petri_nets_software.html#julia",
     "title": "Software",
     "section": "Julia",
-    "text": "Julia\nPetri.jl AlgebraicPetri.jl TimedPetriNetEditor.jl",
+    "text": "Julia\n\nPetri.jl\nAlgebraicPetri.jl\nTimedPetriNetEditor.jl",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Software"
@@ -2636,7 +2629,7 @@
     "href": "petri_nets_software.html#standalone",
     "title": "Software",
     "section": "Standalone",
-    "text": "Standalone\nTimedPetriNetEditor pn-editor (It uses pnrs, a safe rust wrapper for pns written in C)",
+    "text": "Standalone\n\nTimedPetriNetEditor\npn-editor (It uses pnrs, a safe rust wrapper for pns written in C)",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Software"

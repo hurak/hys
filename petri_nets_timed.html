@@ -633,6 +633,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#timed-petri-net-dynamics" id="toc-timed-petri-net-dynamics" class="nav-link" data-scroll-target="#timed-petri-net-dynamics">Timed Petri net dynamics</a></li>
   <li><a href="#queueing-system-using-tpn" id="toc-queueing-system-using-tpn" class="nav-link" data-scroll-target="#queueing-system-using-tpn">Queueing system using TPN</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+  <li><a href="#stochastic-petri-nets-spn" id="toc-stochastic-petri-nets-spn" class="nav-link" data-scroll-target="#stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -763,7 +767,7 @@ Delays associated with transitions and places
 </section>
 <section id="queueing-system-using-tpn" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-system-using-tpn">Queueing system using TPN</h2>
-<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig&nbsp;1</a>.</p>
 <div id="fig-timed-petri-net-simple-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -799,7 +803,7 @@ c_k &amp;= s_{k} + v_{c,k}\\
 </span></p>
 <p>The time of completing the <span class="math inline">k</span>-th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>-th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
 <div id="exm-timed-petri-nets-train" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Timed Petri net for synchronization of train lines)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> &nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="petri_nets_figures/trains.png" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -813,18 +817,19 @@ c_k &amp;= s_{k} + v_{c,k}\\
 <figcaption>Timed Petri net for the example of synchronization of three train lines</figcaption>
 </figure>
 </div>
-<div id="exm-timed-petri-nets-manufacturing" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Manufacturing)</strong></span> tbd</p>
 </div>
+<div id="exm-timed-petri-nets-manufacturing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Manufacturing)</strong></span> tbd</p>
+</div>
+</section>
 <section id="extensions" class="level2">
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
-<ul>
-<li>Stochastic Petri nets (SPN): the delays are random variables.</li>
-</ul>
+<section id="stochastic-petri-nets-spn" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</h3>
+<p>Delays are random variables.</p>
 
 
 </section>
-</div>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

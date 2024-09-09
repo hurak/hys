@@ -1927,7 +1927,7 @@ Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distr
 </div>
 </div>
 </div>
-<div id="1b293721" class="cell">
+<div id="d0b52029" class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
@@ -2494,7 +2494,7 @@ Note
 <li>How long does the system spend in a given state?</li>
 <li>…</li>
 </ul>
-<p>There are several ways how to incorporate time into the automaton. We will follow the concept of a <em>timed automaton with guards</em> (introduced by Alur and Dill in <span class="citation" data-cites="alurTheoryTimedAutomata1994"><a href="#ref-alurTheoryTimedAutomata1994" role="doc-biblioref">[1]</a></span>, perhaps even better explained in <span class="citation" data-cites="alurTimedAutomata1999"><a href="#ref-alurTimedAutomata1999" role="doc-biblioref">[2]</a></span>). Within their framework we have</p>
+<p>There are several ways how to incorporate time into the automaton. We will follow the concept of a <em>timed automaton with guards</em> (introduced by Alur and Dill). Within their framework we have</p>
 <ul>
 <li>one or several resettable clocks: <span class="math inline">c_i,\, i=1,\ldots, k</span>, driven by the ODE <span class="math display">
   \frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0;
@@ -2694,7 +2694,7 @@ Figure&nbsp;19: Example of a timed automaton with guards and invariant
 <li>Guard (of a given transition) gives an enabling condition on leaving the location through the given transition.</li>
 </ul>
 <div id="exm-several-trains-approaching-a-bridge" class="theorem example">
-<p><span class="theorem-title"><strong>Example 18 (Several trains approaching a bridge)</strong></span> The example is taken from <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[3]</a></span>.</p>
+<p><span class="theorem-title"><strong>Example 18 (Several trains approaching a bridge)</strong></span> The example is taken from <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[1]</a></span>.</p>
 </div>
 
 
@@ -2703,14 +2703,8 @@ Figure&nbsp;19: Example of a timed automaton with guards and invariant
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-alurTheoryTimedAutomata1994" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Alur and D. L. Dill, <span>“A theory of timed automata,”</span> <em>Theoretical Computer Science</em>, vol. 126, no. 2, pp. 183–235, Apr. 1994, doi: <a href="https://doi.org/10.1016/0304-3975(94)90010-8">10.1016/0304-3975(94)90010-8</a>.</div>
-</div>
-<div id="ref-alurTimedAutomata1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R. Alur, <span>“Timed <span>Automata</span>,”</span> in <em>Computer <span>Aided Verification</span></em>, N. Halbwachs and D. Peled, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>. Berlin, Heidelberg: Springer, 1999, pp. 8–22. doi: <a href="https://doi.org/10.1007/3-540-48683-6_3">10.1007/3-540-48683-6_3</a>.</div>
-</div>
 <div id="ref-behrmannTutorialUppaal2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">G. Behrmann, A. David, and K. G. Larsen, <span>“A <span>Tutorial</span> on <span>Uppaal</span>,”</span> in <em>Formal <span>Methods</span> for the <span>Design</span> of <span>Real-Time Systems</span></em>, M. Bernardo and F. Corradini, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>, no. 3185., Berlin, Heidelberg: Springer, 2004, pp. 200–236. doi: <a href="https://doi.org/10.1007/978-3-540-30080-9_7">10.1007/978-3-540-30080-9_7</a>.</div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">G. Behrmann, A. David, and K. G. Larsen, <span>“A <span>Tutorial</span> on <span>Uppaal</span>,”</span> in <em>Formal <span>Methods</span> for the <span>Design</span> of <span>Real-Time Systems</span></em>, M. Bernardo and F. Corradini, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>, no. 3185., Berlin, Heidelberg: Springer, 2004, pp. 200–236. doi: <a href="https://doi.org/10.1007/978-3-540-30080-9_7">10.1007/978-3-540-30080-9_7</a>.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
