@@ -667,7 +667,16 @@ The concept of a state
 <p>Although it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).</p>
 <div id="exm-trajectory_discrete-event" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (DES state trajectory)</strong></span> In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.</p>
-<p><img src="des_figures/sample_path_discrete_event_system.png" class="img-fluid" style="width:60.0%"></p>
+<div id="fig-state-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/sample_path_discrete_event_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a state trajectory in response to a sequence of events
+</figcaption>
+</figure>
+</div>
 <p>It is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.</p>
 <p>Also note that for some events no transitions occur (<span class="math inline">\(e_3\)</span> at <span class="math inline">\(t_3\)</span>).</p>
 </div>
@@ -686,12 +695,30 @@ Frequent notational confusion: does the lower index represent discrete time or a
 </div>
 <div id="exm-trajectory-continuous-time" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (State trajectory of a continuous-time dynamical systems)</strong></span> Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be <span class="math inline">\(\dot x(t) = f(x)\)</span>. In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.</p>
-<p><img src="des_figures/sample_path_continuous_time_system.png" class="img-fluid" style="width:60.0%"></p>
+<div id="fig-state-trajectory-continuous-time" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-continuous-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/sample_path_continuous_time_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-continuous-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a state trajectory of a continuous-time continuous-valued dynamical system
+</figcaption>
+</figure>
+</div>
 <p>The set of states (aka state space) is <span class="math inline">\(\mathbb{R}\)</span> (or a subset) in this case (in general <span class="math inline">\(\mathbb{R}^n\)</span> or a subset).</p>
 </div>
 <div id="exm-trajectory-discrete-time" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3 (State trajectory of a time-discretized (aka sampled-data) system)</strong></span> As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by <span class="math inline">\(x_k = f(x_k)\)</span> in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.</p>
-<p><img src="des_figures/sample_path_discrete_time_system.png" class="img-fluid" style="width:60.0%"></p>
+<div id="fig-state-trajectory-discrete-time" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-discrete-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/sample_path_discrete_time_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-discrete-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example of a state trajectory of time-discretized (aka sampled data) system
+</figcaption>
+</figure>
+</div>
 </div>
 </section>
 <section id="when-do-events-occur" class="level2">

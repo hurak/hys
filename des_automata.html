@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -677,23 +697,22 @@ window.Quarto = {
   <li><a href="#composing-automata" id="toc-composing-automata" class="nav-link" data-scroll-target="#composing-automata">Composing automata</a></li>
   <li><a href="#languages-and-automata" id="toc-languages-and-automata" class="nav-link" data-scroll-target="#languages-and-automata">Languages and automata</a>
   <ul class="collapse">
-  <li><a href="#what-is-the-language-view-of-automata-good-for" id="toc-what-is-the-language-view-of-automata-good-for" class="nav-link" data-scroll-target="#what-is-the-language-view-of-automata-good-for">What is the “language view of automata” good for?</a></li>
+  <li><a href="#what-is-the-language-view-of-automata-good-for" id="toc-what-is-the-language-view-of-automata-good-for" class="nav-link" data-scroll-target="#what-is-the-language-view-of-automata-good-for">What is the language view of automata good for?</a></li>
   </ul></li>
   <li><a href="#blocking" id="toc-blocking" class="nav-link" data-scroll-target="#blocking">Blocking</a></li>
-  <li><a href="#queueing-systems" id="toc-queueing-systems" class="nav-link" data-scroll-target="#queueing-systems">Queueing systems</a></li>
+  <li><a href="#queueing-systems" id="toc-queueing-systems" class="nav-link" data-scroll-target="#queueing-systems">Queueing systems</a>
+  <ul class="collapse">
   <li><a href="#examples-of-queueing-systems" id="toc-examples-of-queueing-systems" class="nav-link" data-scroll-target="#examples-of-queueing-systems">Examples of queueing systems</a></li>
-  <li><a href="#why-study" id="toc-why-study" class="nav-link" data-scroll-target="#why-study">Why study?</a></li>
+  <li><a href="#why-shall-we-study-queueing-systems" id="toc-why-shall-we-study-queueing-systems" class="nav-link" data-scroll-target="#why-shall-we-study-queueing-systems">Why shall we study queueing systems?</a></li>
   <li><a href="#networks-of-queueing-systems" id="toc-networks-of-queueing-systems" class="nav-link" data-scroll-target="#networks-of-queueing-systems">Networks of queueing systems</a></li>
   <li><a href="#queueing-systems-as-automata" id="toc-queueing-systems-as-automata" class="nav-link" data-scroll-target="#queueing-systems-as-automata">Queueing systems as automata</a></li>
   <li><a href="#queueing-system-as-an-automaton" id="toc-queueing-system-as-an-automaton" class="nav-link" data-scroll-target="#queueing-system-as-an-automaton">Queueing system as an automaton</a></li>
-  <li><a href="#example-of-a-queueing-system-jobs-processing-by-a-cpu" id="toc-example-of-a-queueing-system-jobs-processing-by-a-cpu" class="nav-link" data-scroll-target="#example-of-a-queueing-system-jobs-processing-by-a-cpu">Example of a queueing system: jobs processing by a CPU</a></li>
   <li><a href="#stochastic-queueing-systems" id="toc-stochastic-queueing-systems" class="nav-link" data-scroll-target="#stochastic-queueing-systems">Stochastic queueing systems</a></li>
-  <li><a href="#timed-automaton" id="toc-timed-automaton" class="nav-link" data-scroll-target="#timed-automaton">Timed automaton</a></li>
-  <li><a href="#timed-automaton-with-guards-alur-dill" id="toc-timed-automaton-with-guards-alur-dill" class="nav-link" data-scroll-target="#timed-automaton-with-guards-alur-dill">Timed automaton with guards (Alur &amp; Dill)</a></li>
-  <li><a href="#ex.-ta-with-guards" id="toc-ex.-ta-with-guards" class="nav-link" data-scroll-target="#ex.-ta-with-guards">Ex.: TA with guards</a></li>
-  <li><a href="#ex.-ta-with-guards-and-invariant" id="toc-ex.-ta-with-guards-and-invariant" class="nav-link" data-scroll-target="#ex.-ta-with-guards-and-invariant">Ex.: TA with guards and invariant</a></li>
+  </ul></li>
+  <li><a href="#timed-automaton" id="toc-timed-automaton" class="nav-link" data-scroll-target="#timed-automaton">Timed automaton</a>
+  <ul class="collapse">
   <li><a href="#invariant-vs-guard" id="toc-invariant-vs-guard" class="nav-link" data-scroll-target="#invariant-vs-guard">Invariant vs guard</a></li>
-  <li><a href="#example-several-trains-approaching-a-bridge" id="toc-example-several-trains-approaching-a-bridge" class="nav-link" data-scroll-target="#example-several-trains-approaching-a-bridge">Example: several trains approaching a bridge</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -908,13 +927,13 @@ Notational confusion 2
 </div>
 <div id="exm-beverage-vending-machine" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Beverage vending machine)</strong></span> &nbsp;</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="8" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-beverage-vending-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-beverage-vending-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<svg width="672" height="480" viewbox="0.00 0.00 851.60 247.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="768" height="480" viewbox="0.00 0.00 851.60 247.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 243)">
 <title>G</title>
 <!-- init -->
@@ -1476,10 +1495,11 @@ Note
 <p>Graphically, we make a conventions that outputs are the <em>labels</em> of the states.</p>
 <div id="exm-moore-machine" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7 (Moore machine)</strong></span> The following automaton has just three states, but just two outputs (<code>FLOW</code> and <code>NO FLOW</code>).</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="7" data-layout-align="default">
 <div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
+<div id="fig-moore-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
 <svg width="672" height="480" viewbox="0.00 0.00 633.77 113.22" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 109.22)">
@@ -1558,7 +1578,11 @@ Note
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Example of a digraph representation of the Moore machine for a valve control
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -1572,12 +1596,13 @@ Note
 <p>In contrast with the Moore machine, here the output is produced (emitted) during the transition (before the new state is entered).</p>
 <div id="exm-mealy-machine" class="theorem example">
 <p><span class="theorem-title"><strong>Example 8 (Mealy machine)</strong></span> Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="8" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-mealy-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mealy-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 731.38 127.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="768" height="480" viewbox="0.00 0.00 731.38 127.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 123)">
 <title>G</title>
 <!-- init -->
@@ -1654,19 +1679,24 @@ Note
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mealy-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Example of a digraph representation of the Mealy machine for a coffee machine
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
 </div>
 <div id="exm-mealy-machine-as-moore-machine" class="theorem example">
 <p><span class="theorem-title"><strong>Example 9 (Reformulate the previous example as a Moore machine)</strong></span> Two more states wrt Mealy</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-width="8" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-mealy-machine-as-moore-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mealy-machine-as-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 918.62 342.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="768" height="480" viewbox="0.00 0.00 918.62 342.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 338.8)">
 <title>G</title>
 <!-- init -->
@@ -1805,7 +1835,11 @@ Note
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mealy-machine-as-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Example of a digraph representation of the Moore machine for a coffee machine
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -1887,13 +1921,13 @@ Note
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dijkstra-token-passing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Example of a ring topology for Dijkstra token passing in a distributed system
+Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distributed system
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="e1485164" class="cell">
+<div id="1b293721" class="cell">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
@@ -1940,7 +1974,7 @@ Figure&nbsp;7: Example of a ring topology for Dijkstra token passing in a distri
 </section>
 <section id="extended-state-automaton" class="level3">
 <h3 class="anchored" data-anchor-id="extended-state-automaton">Extended-state automaton</h3>
-<p>Yet another extension of an automaton is the extended-state automaton. And indeed, the hyphen is there on purpose as we extend the state space by additional state variables.</p>
+<p>Yet another extension of an automaton is the extended-state automaton. And indeed, the hyphen is there on purpose as we extend the state space.</p>
 <p>In particular, we augment the state variable(s) that define the states/modes/locations (the nodes in the graph) by <strong>additional (typed) state variables</strong>: <code>Int</code>, <code>Enum</code>, <code>Bool</code>, …</p>
 <p>Transitions from one mode to another are then <strong>guarded</strong> by conditions on theses new extra state variables.</p>
 <p>Besides being guarded by a guard condition, a given transition can also be labelled by a <strong>reset function</strong> that resets the extended-state variables.</p>
@@ -2005,7 +2039,7 @@ Figure&nbsp;7: Example of a ring topology for Dijkstra token passing in a distri
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-counting-up-to-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Example of a digraph representation of the extended-state automaton for counting up to ten
+Figure&nbsp;11: Example of a digraph representation of the extended-state automaton for counting up to ten
 </figcaption>
 </figure>
 </div>
@@ -2016,13 +2050,16 @@ Figure&nbsp;8: Example of a digraph representation of the extended-state automat
 </section>
 <section id="composing-automata" class="level2">
 <h2 class="anchored" data-anchor-id="composing-automata">Composing automata</h2>
-<p>Synchronization through events: <code>!</code>,<code>?</code></p>
-<div class="cell" data-layout-align="default">
+<p>Any practically useful modelling framework should support decomposition of a large system into smaller subsystems. These should then be able to communicate/synchronize with each other. In automata such synchronization can be realized by <em>sending</em> (or <em>generating</em>) and <em>receiving</em> (or <em>accepting</em>) <em>events</em>. A common choice of symbols for the two is <code>!</code>,<code>?</code>, as illustrated in the following example. But these symbols are just one possible convention, and any other symbols can be used.</p>
+<div id="exm-composing-automata" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12 (Composing automata)</strong></span> &nbsp;</p>
+<div class="cell" data-fig-width="4" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-composing-automata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-composing-automata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 255.99 143.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="384" height="480" viewbox="0.00 0.00 255.99 143.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 139.8)">
 <title>G</title>
 <!-- init -->
@@ -2071,33 +2108,40 @@ Figure&nbsp;8: Example of a digraph representation of the extended-state automat
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-composing-automata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Example illustrating how two automata can be synchronized by sending and receiving events
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>
 </section>
 <section id="languages-and-automata" class="level2">
 <h2 class="anchored" data-anchor-id="languages-and-automata">Languages and automata</h2>
-<ul>
-<li><p>Extend the transition function: <span class="math inline">f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X</span>, where <span class="math inline">\mathcal E^\ast</span> stands for “all possible sequences of events”.</p></li>
-<li><p>Language <strong>generated</strong> by the automaton is <span class="math display">
-  \mathcal L(\mathcal G) = \{s\in\mathcal E^\ast \mid f(x_0,s) \;\text{is defined}\}
-  </span></p></li>
-<li><p>Language <strong>marked</strong> by the automaton (the automaton is <strong>accepting</strong> or <strong>recognizing</strong> that language) <span class="math display">
-  \mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}
-  </span></p></li>
-</ul>
+<p>When studying automata, we often encounter the concept of a <em>language</em>. Indeed, the concept of an automaton is heavily used in the formal laguage theory. Although in our course we are not going to refer to these results, some resources we recommend for our courses do, and so it is useful to understand how automata and languages are related.</p>
+<p>First, we extend the definition of a transition function in that it accepts the current state and not just a single event but a sequence of events, that is</p>
+<p><span class="math display">
+f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X,
+</span> where <span class="math inline">\mathcal E^\ast</span> stands for the set of all possible sequences of events.</p>
+<p>Language <em>generated</em> by the automaton is <span class="math display">
+\mathcal L(\mathcal G) = \{s\in\mathcal E^\ast \mid f(x_0,s) \;\text{is defined}\}
+</span></p>
+<p>Language <em>marked</em> by the automaton (the automaton is <em>accepting</em> or <em>recognizing</em> that language) <span class="math display">
+\mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}
+</span></p>
 <div id="exm-language-automaton" class="theorem example">
-<p><span class="theorem-title"><strong>Example 12 (Language accepted by automaton)</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 13 (Language accepted by automaton)</strong></span> <span class="math display">
 \mathcal{E} = \{a,b\}, \mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}
 </span></p>
-<div class="cell" data-fig-width="3" data-layout-align="default">
+<div class="cell" data-fig-width="3.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-language-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-language-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<svg width="288" height="480" viewbox="0.00 0.00 194.00 79.68" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="336" height="480" viewbox="0.00 0.00 194.00 79.68" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 75.68)">
 <title>G</title>
 <!-- init -->
@@ -2157,16 +2201,16 @@ Figure&nbsp;8: Example of a digraph representation of the extended-state automat
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-language-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Example of a digraph representation of the automaton for the language <span class="math inline">\{a^n b^n\mid n\in\mathbb N\}</span>
+Figure&nbsp;13: Example of an automaton generating the language <span class="math inline">\mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}</span>
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>What if we remove the self loop at state 1? The automaton then accepts languages starting with <em>a</em> and endis with <em>a</em>.</p>
+<p>What if we remove the self loop at state 0? The automaton then accepts languages starting with <em>a</em> and with <em>b</em> being the last event or immediately followed by <em>a</em>.</p>
 </div>
 <section id="what-is-the-language-view-of-automata-good-for" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-the-language-view-of-automata-good-for">What is the “language view of automata” good for?</h3>
+<h3 class="anchored" data-anchor-id="what-is-the-language-view-of-automata-good-for">What is the language view of automata good for?</h3>
 <ul>
 <li>Definitions, analysis, synthesis.</li>
 <li>We then need language concepts such as
@@ -2182,12 +2226,16 @@ Figure&nbsp;9: Example of a digraph representation of the automaton for the lang
 </section>
 <section id="blocking" class="level2">
 <h2 class="anchored" data-anchor-id="blocking">Blocking</h2>
-<div class="cell" data-layout-align="default">
+<p>An important concept in automata is <em>blocking</em>. A state is <em>blocking</em> if there is no transition out of it. An example follows.</p>
+<div id="exm-blocking" class="theorem example">
+<p><span class="theorem-title"><strong>Example 14 (Blocking states)</strong></span> In the automaton in <a href="#fig-blocking" class="quarto-xref">Fig&nbsp;14</a>, state 2 is blocking. It is a <em>deadlock</em> state. States 3 and 4 are <em>livelock</em> states.</p>
+<div class="cell" data-fig-width="6" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-blocking" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-blocking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 400.21 179.75" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="576" height="480" viewbox="0.00 0.00 400.21 179.75" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 175.75)">
 <title>G</title>
 <!-- init -->
@@ -2297,26 +2345,38 @@ Figure&nbsp;9: Example of a digraph representation of the automaton for the lang
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Example of an automaton with blocking states
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-<ul>
-<li>Deadlock at state 2. Livelock at states 3 and 4.</li>
-<li><span class="math inline">\bar{\mathcal{L}}_\mathrm{m}(\mathcal G) \sub \mathcal L(\mathcal G)</span>.</li>
-</ul>
+<p>Language characterization: <span class="math inline">\bar{\mathcal{L}}_\mathrm{m}(\mathcal G) \sub \mathcal L(\mathcal G)</span>.</p>
+</div>
 </section>
 <section id="queueing-systems" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-systems">Queueing systems</h2>
+<p>Queueing systems are a particular and very useful class of discrete-event systems. They consist of these three components:</p>
 <ul>
 <li>entities (also customers, jobs, tasks, requests, etc.)</li>
 <li>resources (also servers, processors, etc.): customers are waiting for them</li>
 <li>queues (also buffers): where waiting is done</li>
 </ul>
-<p><img src="des_figures/queueing_system.png" class="img-fluid"></p>
-</section>
-<section id="examples-of-queueing-systems" class="level2">
-<h2 class="anchored" data-anchor-id="examples-of-queueing-systems">Examples of queueing systems</h2>
+<p>A common graphical representation that contains all these three compoments is in <a href="#fig-queueing-system" class="quarto-xref">Fig&nbsp;15</a>.</p>
+<div id="fig-queueing-system" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-queueing-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/queueing_system.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Queueing system
+</figcaption>
+</figure>
+</div>
+<section id="examples-of-queueing-systems" class="level3">
+<h3 class="anchored" data-anchor-id="examples-of-queueing-systems">Examples of queueing systems</h3>
 <ul>
 <li>entities: people waiting for service in a bank or at a bust stop</li>
 <li>resources: people (again) in a bank at the counter</li>
@@ -2336,33 +2396,34 @@ Note
 </div>
 </div>
 </section>
-<section id="why-study" class="level2">
-<h2 class="anchored" data-anchor-id="why-study">Why study?</h2>
+<section id="why-shall-we-study-queueing-systems" class="level3">
+<h3 class="anchored" data-anchor-id="why-shall-we-study-queueing-systems">Why shall we study queueing systems?</h3>
 <ul>
 <li>Resources are not unlimited</li>
 <li>Tradeoff needed between customer satisfaction and <em>fair</em> resources allocation</li>
 </ul>
 </section>
-<section id="networks-of-queueing-systems" class="level2">
-<h2 class="anchored" data-anchor-id="networks-of-queueing-systems">Networks of queueing systems</h2>
-<p><img src="des_figures/queueing_system_network.png" class="img-fluid"></p>
+<section id="networks-of-queueing-systems" class="level3">
+<h3 class="anchored" data-anchor-id="networks-of-queueing-systems">Networks of queueing systems</h3>
+<p>Queueing systems can be interconnected into networks.</p>
+<div id="fig-queueing-system-network" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-queueing-system-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/queueing_system_network.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Example of a network of queueing systems
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="queueing-systems-as-automata" class="level2">
-<h2 class="anchored" data-anchor-id="queueing-systems-as-automata">Queueing systems as automata</h2>
+<section id="queueing-systems-as-automata" class="level3">
+<h3 class="anchored" data-anchor-id="queueing-systems-as-automata">Queueing systems as automata</h3>
+<p>The reason why we mentioned queueing systems in this part of our course is that they can be modelled as automata. And we already know that in order to define and automaton, we must characterize the key components defining the automaton – three in this case:</p>
 <ul>
-<li><p>events: <span class="math inline">\mathcal E = \{\text{arrival},\text{departure}\}</span></p></li>
+<li><p>events: <span class="math inline">\mathcal E = \{\text{arrival},\text{departure}\}</span>;</p></li>
 <li><p>states: number of customers in the queue <span class="math display">
-\mathcal X = \{0,1,2,3,\ldots\}, \quad \mathcal X_0 = \{0\}
-</span></p>
-<ul>
-<li>not a finite state automation, unless the queue is bounded.</li>
-</ul></li>
-<li><p>state transition: <span class="math display">
-f(x,e) =
-\begin{cases}
-x+1, &amp; \text{if}\; x\leq 0 \land e = \mathrm{arrival}\\
-x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}
-\end{cases}
+\mathcal X = \{0,1,2,3,\ldots\}, \quad \mathcal X_0 = \{0\},
 </span></p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -2375,13 +2436,31 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Whether the queue’s length is bounded is a modelling assumption.</p>
+<p>Obviously this is not a finite state automation – unless the queue is bounded – and whether the queue’s length is bounded is a modelling assumption.</p>
 </div>
 </div>
+<ul>
+<li>state transition: <span class="math display">
+f(x,e) =
+\begin{cases}
+x+1, &amp; \text{if}\; x\leq 0 \land e = \mathrm{arrival}\\
+x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}.
+\end{cases}
+</span></li>
+</ul>
 </section>
-<section id="queueing-system-as-an-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="queueing-system-as-an-automaton">Queueing system as an automaton</h2>
-<p><img src="des_figures/queueing_system_as_automaton.png" class="img-fluid"></p>
+<section id="queueing-system-as-an-automaton" class="level3">
+<h3 class="anchored" data-anchor-id="queueing-system-as-an-automaton">Queueing system as an automaton</h3>
+<div id="fig-queueing-system-as-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-queueing-system-as-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/queueing_system_as_automaton.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-as-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Queueing system as an automaton
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2392,40 +2471,35 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Once again, note how the states correspond to the value of the state variable.</p>
+<p>Note how the states correspond to the value of the state variable.</p>
 </div>
 </div>
+<div id="exm-queueing-system-jobs-processing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15 (Example of a queueing system: jobs processing by a CPU)</strong></span> …</p>
+</div>
 </section>
-<section id="example-of-a-queueing-system-jobs-processing-by-a-cpu" class="level2">
-<h2 class="anchored" data-anchor-id="example-of-a-queueing-system-jobs-processing-by-a-cpu">Example of a queueing system: jobs processing by a CPU</h2>
+<section id="stochastic-queueing-systems" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-queueing-systems">Stochastic queueing systems</h3>
+<p>An important extension of the basic concept of a queueing system is the introduction of randomness. In particular, the arrivals can be modelled using <em>random processes</em>. Similarly, the departures given by the delays (the processing time) of the server can be modelled as random.</p>
+<p>Obviously, the <em>time</em> needs to be included in the automaton, and so far we do not have it there. It is then high time to introduce it.</p>
 </section>
-<section id="stochastic-queueing-systems" class="level2">
-<h2 class="anchored" data-anchor-id="stochastic-queueing-systems">Stochastic queueing systems</h2>
-<ul>
-<li>Arrivals can be modelled using <strong>random processes</strong>.</li>
-<li>Similarly the departures – delays (processing time) of the server can be modelled as random.</li>
-<li>But then <strong>time</strong> needs to be included in the automaton, and so far we do not have it there.</li>
-</ul>
 </section>
 <section id="timed-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="timed-automaton">Timed automaton</h2>
-<ul>
-<li>Motivation
+<p>So far, even if the automaton corresponded to a physical system (and did not just represent a generator of a language), the time was not included. The transitions were triggered by the events, but we did not specify the time at which the event occurred.</p>
+<p>There are, however, many situations when it is useful or even crucial to incorporate time. We can then answer questions such as</p>
 <ul>
 <li>How many events of a certain type in a given interval?</li>
 <li>Is the time interval between two events above a given threshold?</li>
 <li>How long does the system spend in a given state?</li>
 <li>…</li>
-</ul></li>
 </ul>
-</section>
-<section id="timed-automaton-with-guards-alur-dill" class="level2">
-<h2 class="anchored" data-anchor-id="timed-automaton-with-guards-alur-dill">Timed automaton with guards (Alur &amp; Dill)</h2>
+<p>There are several ways how to incorporate time into the automaton. We will follow the concept of a <em>timed automaton with guards</em> (introduced by Alur and Dill in <span class="citation" data-cites="alurTheoryTimedAutomata1994"><a href="#ref-alurTheoryTimedAutomata1994" role="doc-biblioref">[1]</a></span>, perhaps even better explained in <span class="citation" data-cites="alurTimedAutomata1999"><a href="#ref-alurTimedAutomata1999" role="doc-biblioref">[2]</a></span>). Within their framework we have</p>
 <ul>
 <li>one or several resettable clocks: <span class="math inline">c_i,\, i=1,\ldots, k</span>, driven by the ODE <span class="math display">
-  \frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0.
+  \frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0;
   </span></li>
-<li>each transition labelled by the tripple {guard; event; reset}</li>
+<li>each transition labelled by the tripple {<code>guard</code>; <code>event</code>; <code>reset</code>}.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2440,15 +2514,15 @@ Note
 <p>Both satisfaction of the guard and arrival of the event constitute enabling conditions for the transition. They could be wrapped into a single compound condition.</p>
 </div>
 </div>
-</section>
-<section id="ex.-ta-with-guards" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-ta-with-guards">Ex.: TA with guards</h2>
-<div class="cell" data-layout-align="default">
+<div id="exm-timed-automaton-with-guards" class="theorem example">
+<p><span class="theorem-title"><strong>Example 16 (Timed automaton with guards)</strong></span> &nbsp;</p>
+<div class="cell" data-fig-width="9" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-timed-automaton-with-guards" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-automaton-with-guards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 710.75 107.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="864" height="480" viewbox="0.00 0.00 710.75 107.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 103.8)">
 <title>G</title>
 <!-- init -->
@@ -2517,19 +2591,24 @@ Note
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-automaton-with-guards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Example of a timed automaton with guards
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section>
-<section id="ex.-ta-with-guards-and-invariant" class="level2">
-<h2 class="anchored" data-anchor-id="ex.-ta-with-guards-and-invariant">Ex.: TA with guards and invariant</h2>
-<div class="cell" data-layout-align="default">
+</div>
+<div id="exm-timed-automaton-with-guards-and-invariant" class="theorem example">
+<p><span class="theorem-title"><strong>Example 17 (Timed automaton with guards and invariant)</strong></span> &nbsp;</p>
+<div class="cell" data-fig-width="9" data-layout-align="default">
 <div class="cell-output-display">
+<div id="fig-timed-automaton-with-guards-and-invariant" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-automaton-with-guards-and-invariant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 683.80 107.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="864" height="480" viewbox="0.00 0.00 683.80 107.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 103.8)">
 <title>G</title>
 <!-- init -->
@@ -2599,28 +2678,41 @@ Note
 </g>
 </svg>
 </div>
-<p></p></figure><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-automaton-with-guards-and-invariant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Example of a timed automaton with guards and invariant
+</figcaption>
+</figure>
 </div>
 </div>
 </div>
-</section>
-<section id="invariant-vs-guard" class="level2">
-<h2 class="anchored" data-anchor-id="invariant-vs-guard">Invariant vs guard</h2>
+</div>
+<section id="invariant-vs-guard" class="level3">
+<h3 class="anchored" data-anchor-id="invariant-vs-guard">Invariant vs guard</h3>
 <ul>
-<li>Invariant ((of a location)) gives an upper bound on the time the system can stay at the given location. It can leave earlier but not later.</li>
+<li>Invariant (of a location) gives an upper bound on the time the system can stay at the given location. It can leave earlier but not later.</li>
 <li>Guard (of a given transition) gives an enabling condition on leaving the location through the given transition.</li>
 </ul>
-</section>
-<section id="example-several-trains-approaching-a-bridge" class="level2">
-<h2 class="anchored" data-anchor-id="example-several-trains-approaching-a-bridge">Example: several trains approaching a bridge</h2>
-<ul>
-<li>Behrmann, Gerd, Alexandre David, and Kim G. Larsen. ‘A Tutorial on Uppaal’. In Formal Methods for the Design of Real-Time Systems, edited by Marco Bernardo and Flavio Corradini, 200–236. Lecture Notes in Computer Science 3185. Berlin, Heidelberg: Springer, 2004. https://doi.org/10.1007/978-3-540-30080-9_7.</li>
-</ul>
+<div id="exm-several-trains-approaching-a-bridge" class="theorem example">
+<p><span class="theorem-title"><strong>Example 18 (Several trains approaching a bridge)</strong></span> The example is taken from <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[3]</a></span>.</p>
+</div>
+
 
 
 </section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-alurTheoryTimedAutomata1994" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Alur and D. L. Dill, <span>“A theory of timed automata,”</span> <em>Theoretical Computer Science</em>, vol. 126, no. 2, pp. 183–235, Apr. 1994, doi: <a href="https://doi.org/10.1016/0304-3975(94)90010-8">10.1016/0304-3975(94)90010-8</a>.</div>
+</div>
+<div id="ref-alurTimedAutomata1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R. Alur, <span>“Timed <span>Automata</span>,”</span> in <em>Computer <span>Aided Verification</span></em>, N. Halbwachs and D. Peled, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>. Berlin, Heidelberg: Springer, 1999, pp. 8–22. doi: <a href="https://doi.org/10.1007/3-540-48683-6_3">10.1007/3-540-48683-6_3</a>.</div>
+</div>
+<div id="ref-behrmannTutorialUppaal2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">G. Behrmann, A. David, and K. G. Larsen, <span>“A <span>Tutorial</span> on <span>Uppaal</span>,”</span> in <em>Formal <span>Methods</span> for the <span>Design</span> of <span>Real-Time Systems</span></em>, M. Bernardo and F. Corradini, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>, no. 3185., Berlin, Heidelberg: Springer, 2004, pp. 200–236. doi: <a href="https://doi.org/10.1007/978-3-540-30080-9_7">10.1007/978-3-540-30080-9_7</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
