@@ -366,7 +366,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -627,8 +627,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#software-for-solving-optimization-problems-with-complementarity-constraints" id="toc-software-for-solving-optimization-problems-with-complementarity-constraints" class="nav-link active" data-scroll-target="#software-for-solving-optimization-problems-with-complementarity-constraints">Software for solving optimization problems with complementarity constraints</a></li>
-  <li><a href="#software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" id="toc-software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="nav-link" data-scroll-target="#software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Software for modeling and simulation of dynamical systems with complementarity constraints</a></li>
+  <li><a href="#solving-optimization-problems-with-complementarity-constraints" id="toc-solving-optimization-problems-with-complementarity-constraints" class="nav-link active" data-scroll-target="#solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</a></li>
+  <li><a href="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" id="toc-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="nav-link" data-scroll-target="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</a></li>
   </ul>
 </nav>
     </div>
@@ -654,8 +654,8 @@ window.Quarto = {
 </header>
 
 
-<section id="software-for-solving-optimization-problems-with-complementarity-constraints" class="level2">
-<h2 class="anchored" data-anchor-id="software-for-solving-optimization-problems-with-complementarity-constraints">Software for solving optimization problems with complementarity constraints</h2>
+<section id="solving-optimization-problems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</h2>
 <p>Surprisingly, there are not many software packages that can handle complementarity constraints directly.</p>
 <ul>
 <li>Within the realm of free software, I am only aware of <a href="https://pages.cs.wisc.edu/~ferris/path.html">PATH</a> solver. Well, it is not open source and it is not issued under any classical free and open source license. It can be interfaced from Matlab and Julia (and AMPL and GAMS, which are not relevant for our course). For Matlab, compiled mexfiles can be downloaded. For Julia, the solver can be interfaced directly from the popular <a href="https://jump.dev/JuMP.jl/stable/">JuMP</a> package (choosing the <a href="https://jump.dev/JuMP.jl/stable/packages/PATHSolver/#PATHSolver.jl">PATHSolver.jl</a> solver), see the section on <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Complementarity-constraints">Complementarity constraints</a> and <a href="https://jump.dev/JuMP.jl/stable/tutorials/nonlinear/complementarity/">Mixed complementarity problems</a> in JuMP manual.</li>
@@ -670,8 +670,8 @@ window.Quarto = {
 <p><a href="https://www.gurobi.com/solutions/gurobi-optimizer/">Gurobi</a> does not seem to support complementarity constraints.</p>
 <p><a href="https://www.mosek.com">Mosek</a> supports <a href="https://docs.mosek.com/latest/capi/tutorial-djc-optimizer.html">disjunctive constraints</a>, within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.</p>
 </section>
-<section id="software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="level2">
-<h2 class="anchored" data-anchor-id="software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Software for modeling and simulation of dynamical systems with complementarity constraints</h2>
+<section id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</h2>
 <p>Within the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:</p>
 <ul>
 <li><a href="https://nonsmooth.gricad-pages.univ-grenoble-alpes.fr/siconos/">SICONOS</a>

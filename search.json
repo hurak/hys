@@ -224,7 +224,7 @@
     "href": "mld_intro.html",
     "title": "Logic vs inequalities",
     "section": "",
-    "text": "Our motivation is to get rid of the IF-THEN conditions in the model.",
+    "text": "Our goal now is to turn the IF-THEN conditions in the model into linear inequalities. This will allow us to formulate the model as a mathematical program, actually a mixed-integer program (MIP).",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -235,7 +235,7 @@
     "href": "mld_intro.html#propositional-logic-and-connectives",
     "title": "Logic vs inequalities",
     "section": "Propositional logic and connectives",
-    "text": "Propositional logic and connectives\n\nBoolean variable (or elementary proposition) \\(X\\) evaluates to true or false.\n\nFor convenience also 0 or 1, but …\n\nConnectives\n\nConjunction (logical and): \\(X_1 \\land X_2\\)\nDisjunction (logical or): \\(X_1 \\lor X_2\\)\nNegation: \\(\\neg X_2\\) (or \\(\\overline{X_2}\\) or \\(\\sim X_2\\))\nImplication: \\(X_1 \\implies X_2\\)\nEquivalence: \\(X_1 \\iff X_2\\)\nLogical XOR: \\(X_1 \\oplus X_2\\)",
+    "text": "Propositional logic and connectives\nPropositions that are either true or false are composed of elementary propositions (Boolean variables) and connectives.\n\nBoolean variable (or elementary proposition)\n\\(X\\) evaluates to true or false. Oftentimes values 0 and 1 are used, but it should be clear that these are not numbers but logical values.\n\n\nConnectives\n\nConjunction (logical and): \\(X_1 \\land X_2\\)\nDisjunction (logical or): \\(X_1 \\lor X_2\\)\nNegation: \\(\\neg X_2\\) (or \\(\\overline{X_2}\\) or \\(\\sim X_2\\))\nImplication: \\(X_1 \\implies X_2\\)\nEquivalence: \\(X_1 \\iff X_2\\)\nLogical XOR: \\(X_1 \\oplus X_2\\)",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -246,7 +246,7 @@
     "href": "mld_intro.html#equivalences-of-logic-propositions",
     "title": "Logic vs inequalities",
     "section": "Equivalences of logic propositions",
-    "text": "Equivalences of logic propositions\n. . .\n\\[\nX_1 \\implies X_2 \\quad  \\text{is equivalent to} \\quad \\neg X_2 \\implies \\neg X_1\n\\]\n. . .\n\\[\nX_1 \\iff X_2 \\quad  \\text{eq.} \\quad (X_1 \\implies X_2) \\land (X_2 \\implies X_1)\n\\]\n. . .\n\\[\nX_1 \\land X_2 \\qquad  \\text{eq.} \\qquad \\neg (\\neg X_1 \\lor \\neg X_2)\n\\]\n. . .\n\\[\nX_1 \\implies X_2 \\qquad  \\text{eq.} \\qquad \\neg X_1 \\lor X_2\n\\]\n\nThe last one can be seen as follows: it cannot happen that \\(X1 \\land \\neg X2\\), that is, it holds that \\(\\neg(X1 \\land \\neg X2)\\). De Morgan gives \\(\\neg X1 \\lor X2\\)",
+    "text": "Equivalences of logic propositions\nWe will heavily used the following equivalences: \\[\n\\begin{aligned}\nX_1 \\implies X_2 \\qquad  &\\equiv \\qquad \\neg X_2 \\implies \\neg X_1,\\\\\nX_1 \\iff X_2 \\qquad  &\\equiv \\qquad (X_1 \\implies X_2) \\land (X_2 \\implies X_1),\\\\\nX_1 \\land X_2 \\qquad  &\\equiv \\qquad \\neg (\\neg X_1 \\lor \\neg X_2),\\\\\nX_1 \\implies X_2 \\qquad  &\\equiv \\qquad \\neg X_1 \\lor X_2.\n\\end{aligned}\n\\]\nThe last one can be seen as follows: it cannot happen that \\(X1 \\land \\neg X2\\), that is, it holds that \\(\\neg(X1 \\land \\neg X2)\\). De Morgan gives \\(\\neg X1 \\lor X2\\).",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -257,7 +257,7 @@
     "href": "mld_intro.html#binary-variables-related-to-the-boolean-ones",
     "title": "Logic vs inequalities",
     "section": "Binary variables related to the Boolean ones",
-    "text": "Binary variables related to the Boolean ones\n\nAssociate with the Boolean variable \\(X\\) a binary variable \\(\\delta\\in\\{0,1\\}\\) such that \\[\n\\delta =\n\\begin{cases}\n0 & \\text{if} \\; \\neg X\\\\\n1 & \\text{if} \\; X\n\\end{cases}\n\\]",
+    "text": "Binary variables related to the Boolean ones\nUltimately we want to use numerical solvers to solve optimization problems. In order to do that, we need to associate with the Boolean variable \\(X\\) a binary (integer) variable \\(\\delta\\in\\{0,1\\}\\) such that \\[\n\\delta =\n\\begin{cases}\n0 & \\text{if} \\; \\neg X,\\\\\n1 & \\text{if} \\; X.\n\\end{cases}\n\\]\nIn other words, have the the following equivalence \\[X \\qquad \\equiv \\qquad [\\delta = 1].\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -268,84 +268,7 @@
     "href": "mld_intro.html#integer-inequalities-related-to-the-logical-formulas",
     "title": "Logic vs inequalities",
     "section": "Integer (in)equalities related to the logical formulas",
-    "text": "Integer (in)equalities related to the logical formulas",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#and",
-    "href": "mld_intro.html#and",
-    "title": "Logic vs inequalities",
-    "section": "And",
-    "text": "And\n\\[X_1 \\land X_2\\]\n. . .\n\\[[\\delta_1=1] \\land [\\delta_2=1]\\]\n. . .\n\\[\\delta_1=1, \\; \\delta_2=1\\]\n\nAnother (discarded) possibility:\n\n. . .\n\\[\\delta_1 \\delta_2 = 1\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#or",
-    "href": "mld_intro.html#or",
-    "title": "Logic vs inequalities",
-    "section": "Or",
-    "text": "Or\n\\[X_1 \\lor X_2\\]\n. . .\n\\[[\\delta_1=1] \\lor [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 + \\delta_2\\geq 1\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#negation",
-    "href": "mld_intro.html#negation",
-    "title": "Logic vs inequalities",
-    "section": "Negation",
-    "text": "Negation\n\\[\\neg X_1\\]\n. . .\n\\[\\neg [\\delta_1=1]\\]\n. . .\n\\[\\delta_1 = 0\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#xor",
-    "href": "mld_intro.html#xor",
-    "title": "Logic vs inequalities",
-    "section": "Xor",
-    "text": "Xor\n\\[X_1 \\oplus X_2\\]\n. . .\n\\[[\\delta_1=1] \\oplus [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 + \\delta_2 = 1\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#implication",
-    "href": "mld_intro.html#implication",
-    "title": "Logic vs inequalities",
-    "section": "Implication",
-    "text": "Implication\n\\[X_1 \\implies X_2\\]\n. . .\n\\[[\\delta_1=1] \\implies [\\delta_2=1]\\]\n\nequivalently, using \\(\\neg X_1 \\lor X_2\\), \\[\\neg [\\delta_1=1] \\lor [\\delta_2=1],\\]\nwhich translates to \\[(1-\\delta_1) + \\delta_2\\geq 1,\\]\nwhich simplifies to \\[\\delta_1 - \\delta_2 \\leq 0\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#equivalence",
-    "href": "mld_intro.html#equivalence",
-    "title": "Logic vs inequalities",
-    "section": "Equivalence",
-    "text": "Equivalence\n\\[X_1 \\iff X_2\\]\n. . .\n\\[[\\delta_1=1] \\iff [\\delta_2=1]\\]\n. . .\n\\[\\delta_1 - \\delta_2 = 0\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#assignment",
-    "href": "mld_intro.html#assignment",
-    "title": "Logic vs inequalities",
-    "section": "Assignment",
-    "text": "Assignment\n\\[X_3 \\iff (X_1 \\land X_2)\\]\n. . .\n\\[[\\delta_3=1] \\iff ([\\delta_1=1] \\land [\\delta_2=1])\\]\n\nExpressing the equivalence using implications \\[X_3 \\implies X_1,\\; X_3\\implies X_2, \\; (X_1 \\land X_2) \\implies X_3\\]\nThe the last one is equivalent to \\[\\neg (X_1 \\land X_2) \\lor X_3\\]\nwhich can be simplified to \\[\\neg X_1 \\lor \\neg X_2 \\lor X_3\\]\nwhich translates to \\[\\neg [\\delta_1=1] \\lor \\neg [\\delta_2 = 1] \\lor [\\delta_3 = 1]\\]\nwhich finally leads to the inequality \\[(1-\\delta_1) + (1-\\delta_2) + \\delta_3 \\geq 1\\]\nand after simplification \\[\\delta_1 + \\delta_2 - \\delta_3 \\leq 1.\\]\nAnd don’t forget to consider the first to inequalities too \\[\n-\\delta_1 + \\delta_3 \\leq 0, \\quad -\\delta_2 + \\delta_3 \\leq 0.\n\\]",
+    "text": "Integer (in)equalities related to the logical formulas\nHaving introduced binary variables, we now aim at reformulating logical formulas into equivalent integer equalities or inequalities.\n\nAnd (conjunction)\nWe first consider the conjunction of two logical variables \\(X_1\\) and \\(X_2\\): \\[X_1 \\land X_2.\\]\nInvoking the binary variables, we can rewrite this as \\[[\\delta_1=1] \\land [\\delta_2=1],\\] which ultimately translates to \\[\\delta_1=1, \\; \\delta_2=1.\\]\nAnother possibility is \\[\\delta_1 \\delta_2 = 1,\\] but we discard it because it is nonlinear and we prefer the linear version for obvious reasons.\n\n\nOr (disjunction)\n\\[X_1 \\lor X_2\\]\n\\[[\\delta_1=1] \\lor [\\delta_2=1]\\]\n\\[\\delta_1 + \\delta_2\\geq 1\\]\n\n\nNegation\n\\[\\neg X_1\\]\n\\[\\neg [\\delta_1=1]\\]\n\\[\\delta_1 = 0\\]\n\n\nXor\n\\[X_1 \\oplus X_2\\]\n\\[[\\delta_1=1] \\oplus [\\delta_2=1]\\]\n\\[\\delta_1 + \\delta_2 = 1\\]\n\n\nImplication\n\\[X_1 \\implies X_2\\]\n\\[[\\delta_1=1] \\implies [\\delta_2=1]\\]\nEquivalently, using \\(\\neg X_1 \\lor X_2\\) we get \\[\\neg [\\delta_1=1] \\lor [\\delta_2=1],\\] which translates to \\[(1-\\delta_1) + \\delta_2\\geq 1,\\] which simplifies to \\[\\delta_1 - \\delta_2 \\leq 0.\\]\n\n\nEquivalence\n\\[X_1 \\iff X_2\\] \\[[\\delta_1=1] \\iff [\\delta_2=1]\\]\n\\[\\delta_1 - \\delta_2 = 0\\]\n\n\nAssignment\n\\[X_3 \\iff (X_1 \\land X_2)\\]\n\\[[\\delta_3=1] \\iff ([\\delta_1=1] \\land [\\delta_2=1])\\]\nExpressing the equivalence using implications \\[X_3 \\implies X_1,\\; X_3\\implies X_2, \\; (X_1 \\land X_2) \\implies X_3\\]\nThe the last one is equivalent to \\[\\neg (X_1 \\land X_2) \\lor X_3,\\] which can be simplified to \\[\\neg X_1 \\lor \\neg X_2 \\lor X_3,\\] which translates to \\[\\neg [\\delta_1=1] \\lor \\neg [\\delta_2 = 1] \\lor [\\delta_3 = 1],\\] which finally leads to the inequality \\[(1-\\delta_1) + (1-\\delta_2) + \\delta_3 \\geq 1\\] and after simplification \\[\\delta_1 + \\delta_2 - \\delta_3 \\leq 1.\\]\nAnd don’t forget to consider the first two inequalities too \\[\n-\\delta_1 + \\delta_3 \\leq 0, \\quad -\\delta_2 + \\delta_3 \\leq 0.\n\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -356,7 +279,7 @@
     "href": "mld_intro.html#general-transformation-of-boolean-expressions-to-integer-inequalities",
     "title": "Logic vs inequalities",
     "section": "General transformation of Boolean expressions to integer inequalities",
-    "text": "General transformation of Boolean expressions to integer inequalities\n\nFrom Conjunctive Normal Form (CNF) \\[\n\\bigwedge_{j=1}^m \\left[\\left(\\lor_{i\\in \\mathcal{P}_j} X_i\\right) \\lor \\left(\\lor_{i\\in \\mathcal{N}_j} \\neg X_i\\right)\\right]\n\\]\nto 0-1 integer inequalities defining a polyhedron \\[\n\\begin{aligned}\n\\sum_{i\\in \\mathcal{P}_1} \\delta_i + \\sum_{i\\in \\mathcal{N}_1} (1-\\delta_i) &\\geq 1,\\\\\n&\\vdots\\\\\n\\sum_{i\\in \\mathcal{P}_m} \\delta_i + \\sum_{i\\in \\mathcal{N}_m} (1-\\delta_i) &\\geq 1.\n\\end{aligned}\n\\]",
+    "text": "General transformation of Boolean expressions to integer inequalities\nFrom Conjunctive Normal Form (CNF) \\[\n\\bigwedge_{j=1}^m \\left[\\left(\\lor_{i\\in \\mathcal{P}_j} X_i\\right) \\lor \\left(\\lor_{i\\in \\mathcal{N}_j} \\neg X_i\\right)\\right]\n\\] to 0-1 integer inequalities defining a polyhedron \\[\n\\begin{aligned}\n\\sum_{i\\in \\mathcal{P}_1} \\delta_i + \\sum_{i\\in \\mathcal{N}_1} (1-\\delta_i) &\\geq 1,\\\\\n&\\vdots\\\\\n\\sum_{i\\in \\mathcal{P}_m} \\delta_i + \\sum_{i\\in \\mathcal{N}_m} (1-\\delta_i) &\\geq 1.\n\\end{aligned}\n\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -367,18 +290,7 @@
     "href": "mld_intro.html#finite-state-machine-fsm-using-binary-variables",
     "title": "Logic vs inequalities",
     "section": "Finite state machine (FSM) using binary variables",
-    "text": "Finite state machine (FSM) using binary variables\n\nEncode the discrete state variables in binary \\[\nx_b \\in \\{0,1\\}^{n_b}\n\\]\nSimilarly the discrete inputs \\[\nu_b \\in \\{0,1\\}^{m_b}\n\\]\nThe logical state equation then \\[\nx_b(k+1) = f_b(x_b(k),u_b(k),\\delta_e(k))\n\\]",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#example",
-    "href": "mld_intro.html#example",
-    "title": "Logic vs inequalities",
-    "section": "Example",
-    "text": "Example\n. . .\n\n\nState update/transition equation \\[\n\\begin{aligned}\n& x_d(k+1) = \\\\\n&\\begin{cases}\n\\text{Red} & \\text{if}\\; ([x_d = \\text{green}] \\land \\neg [\\delta_3=1]) \\lor ([x_d = \\text{red}] \\land \\neg [\\delta_3=1])\\\\\n\\text{Green} & \\text{if} \\; \\ldots\\\\\n\\text{Blue} & \\text{if} \\; \\ldots\n\\end{cases}\n\\end{aligned}\n\\]\nBinary encoding of the discrete states \\[\n\\text{Red}: x_b = \\begin{bmatrix}0\\\\0 \\end{bmatrix}, \\; \\text{Green}: x_b = \\begin{bmatrix}0\\\\1 \\end{bmatrix}, \\; \\text{Blue}: x_b = \\begin{bmatrix}1\\\\0 \\end{bmatrix}\n\\]\nReformulating the state update equations for binary variables \\[\n\\begin{aligned}\nx_{b1} &= (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land \\neg [\\delta_1=1]) \\\\\n&\\quad (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land [\\delta_1=1]) \\land [u_{b2}=1]\\\\\n&\\quad (\\neg [x_{b1} = 1] \\land [x_{b2} = 1]  \\land \\neg [u_{b1}=1] \\land [\\delta_3=1])\\\\\n&\\quad \\lor ([x_{b1} = 1]\\land \\neg [\\delta_2=1])\\\\\nx_{b2} &= \\ldots\n\\end{aligned}\n\\]\nSimplify, convert to CNF.",
+    "text": "Finite state machine (FSM) using binary variables\nEncode the discrete state variables in binary \\[\nx_b \\in \\{0,1\\}^{n_b}\n\\]\nSimilarly the discrete inputs \\[\nu_b \\in \\{0,1\\}^{m_b}\n\\]\nThe logical state equation then \\[\nx_b(k+1) = f_b(x_b(k),u_b(k),\\delta_e(k))\n\\]\n\nExample 1 (Example)  \n\n\n\n\n\n\nFigure 1: Example of a FSM\n\n\n\nThe state update/transition equation is \\[\n\\begin{aligned}\nx_d(k+1) =\n\\begin{cases}\n\\text{Red} & \\text{if}\\; ([x_d = \\text{green}] \\land \\neg [\\delta_3=1]) \\lor ([x_d = \\text{red}] \\land \\neg [\\delta_3=1])\\\\\n\\text{Green} & \\text{if} \\; \\ldots\\\\\n\\text{Blue} & \\text{if} \\; \\ldots\n\\end{cases}\n\\end{aligned}\n\\]\nBinary encoding of the discrete states \\[\n\\text{Red}: x_b = \\begin{bmatrix}0\\\\0 \\end{bmatrix}, \\; \\text{Green}: x_b = \\begin{bmatrix}0\\\\1 \\end{bmatrix}, \\; \\text{Blue}: x_b = \\begin{bmatrix}1\\\\0 \\end{bmatrix}\n\\]\nReformulating the state update equations for binary variables \\[\n\\begin{aligned}\nx_{b1} &= (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land \\neg [\\delta_1=1]) \\\\\n&\\quad (\\neg [x_{b1} = 1] \\land \\neg [x_{b2} = 1]  \\land [\\delta_1=1]) \\land [u_{b2}=1]\\\\\n&\\quad (\\neg [x_{b1} = 1] \\land [x_{b2} = 1]  \\land \\neg [u_{b1}=1] \\land [\\delta_3=1])\\\\\n&\\quad \\lor ([x_{b1} = 1]\\land \\neg [\\delta_2=1])\\\\\nx_{b2} &= \\ldots\n\\end{aligned}\n\\]\nFinally, simplify, convert to CNF.",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -389,40 +301,7 @@
     "href": "mld_intro.html#mixing-logical-and-continuous",
     "title": "Logic vs inequalities",
     "section": "Mixing logical and continuous",
-    "text": "Mixing logical and continuous\n\nsee Indicator variables.",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#logical-implies-continuous",
-    "href": "mld_intro.html#logical-implies-continuous",
-    "title": "Logic vs inequalities",
-    "section": "Logical implies continuous",
-    "text": "Logical implies continuous\n\\[X \\implies [f(x)\\leq 0]\\]\n. . .\n\\[[\\delta = 1] \\implies [f(x)\\leq 0]\\]\n\nintroduce \\(M\\) \\[\nf(x) \\leq (1-\\delta) M\n\\]\nthat is large enough so that when \\(\\delta=0\\), there is no practical restriction on \\(f\\).\n\nBig-M technique.",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#continuous-implies-logical",
-    "href": "mld_intro.html#continuous-implies-logical",
-    "title": "Logic vs inequalities",
-    "section": "Continuous implies logical",
-    "text": "Continuous implies logical\n\\[[f(x)\\leq 0] \\implies X\\]\n. . .\n\\[[f(x)\\leq 0] \\implies [\\delta = 1]\\]\n\nEquivalently \\[\\neg [\\delta = 1] \\implies \\neg [f(x)\\leq 0],\\]\nthat is, \\[[\\delta = 0] \\implies [f(x) &gt; 0]\\]\nIntroduce \\(m\\) such that \\(f(x)&gt;0\\) is enforced when \\(\\delta=0\\) \\[\nf(x) &gt; m\\delta\n\\]\nbut small enough that there is no restriction on \\(f\\) when \\(\\delta=1\\).\nFor numerical reasons, modify to nonstrict inequality \\[\nf(x) \\geq \\epsilon + (m-\\epsilon)\\delta,\n\\] where \\(\\epsilon\\approx 0\\) (for example, machine epsilon).",
-    "crumbs": [
-      "10. Mixed logical dynamical (MLD) systems",
-      "Logic vs inequalities"
-    ]
-  },
-  {
-    "objectID": "mld_intro.html#equivalence-between-logical-and-continuous",
-    "href": "mld_intro.html#equivalence-between-logical-and-continuous",
-    "title": "Logic vs inequalities",
-    "section": "Equivalence between logical and continuous",
-    "text": "Equivalence between logical and continuous\n\nCombining the previous two implications.\n\n. . .\n\\[\n\\begin{aligned}\nf(x) &\\leq (1-\\delta) M,\\\\\nf(x) &\\geq \\epsilon + (m-\\epsilon)\\delta.\n\\end{aligned}\n\\]",
+    "text": "Mixing logical and continuous\n\nsee Indicator variables.\n\n\nLogical implies continuous\n\\[X \\implies [f(x)\\leq 0]\\]\n\\[[\\delta = 1] \\implies [f(x)\\leq 0]\\]\n\nintroduce \\(M\\) \\[\nf(x) \\leq (1-\\delta) M\n\\]\nthat is large enough so that when \\(\\delta=0\\), there is no practical restriction on \\(f\\).\n\nBig-M technique.\n\n\n\n\nContinuous implies logical\n\\[[f(x)\\leq 0] \\implies X\\]\n\\[[f(x)\\leq 0] \\implies [\\delta = 1]\\]\n\nEquivalently \\[\\neg [\\delta = 1] \\implies \\neg [f(x)\\leq 0],\\]\nthat is, \\[[\\delta = 0] \\implies [f(x) &gt; 0]\\]\nIntroduce \\(m\\) such that \\(f(x)&gt;0\\) is enforced when \\(\\delta=0\\) \\[\nf(x) &gt; m\\delta\n\\]\nbut small enough that there is no restriction on \\(f\\) when \\(\\delta=1\\).\nFor numerical reasons, modify to nonstrict inequality \\[\nf(x) \\geq \\epsilon + (m-\\epsilon)\\delta,\n\\] where \\(\\epsilon\\approx 0\\) (for example, machine epsilon).\n\n\n\nEquivalence between logical and continuous\n\nCombining the previous two implications.\n\n\\[\n\\begin{aligned}\nf(x) &\\leq (1-\\delta) M,\\\\\nf(x) &\\geq \\epsilon + (m-\\epsilon)\\delta.\n\\end{aligned}\n\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -433,7 +312,7 @@
     "href": "mld_intro.html#if-then-else-rule-as-an-inequality",
     "title": "Logic vs inequalities",
     "section": "IF-THEN-ELSE rule as an inequality",
-    "text": "IF-THEN-ELSE rule as an inequality\n\nIf \\(X\\)\n\nthen \\(z = a^\\top x + b^\\top u + f\\),\nelse \\(z = 0\\).\n\nIt can be expressed as a product \\[\nz = \\delta\\,(a^\\top x + b^\\top u + f)\n\\]\n\n. . .\n\\[\n\\begin{aligned}\nz &\\leq M\\delta,\\\\\n- z &\\leq -m\\delta,\\\\\nz &\\leq a^\\top x + b^\\top u + f - m(1-\\delta),\\\\\n-z &\\leq -(a^\\top x + b^\\top u + f) + M(1-\\delta).\n\\end{aligned}\n\\]\n\nThe reasoning is that if \\(\\delta=0\\), then \\(z\\) is restricted, while \\(a^\\top x + b^\\top u + f\\) is not. And the other way around.",
+    "text": "IF-THEN-ELSE rule as an inequality\n\nIf \\(X\\)\n\nthen \\(z = a^\\top x + b^\\top u + f\\),\nelse \\(z = 0\\).\n\nIt can be expressed as a product \\[\nz = \\delta\\,(a^\\top x + b^\\top u + f)\n\\]\n\n\\[\n\\begin{aligned}\nz &\\leq M\\delta,\\\\\n- z &\\leq -m\\delta,\\\\\nz &\\leq a^\\top x + b^\\top u + f - m(1-\\delta),\\\\\n-z &\\leq -(a^\\top x + b^\\top u + f) + M(1-\\delta).\n\\end{aligned}\n\\]\n\nThe reasoning is that if \\(\\delta=0\\), then \\(z\\) is restricted, while \\(a^\\top x + b^\\top u + f\\) is not. And the other way around.",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -444,7 +323,7 @@
     "href": "mld_intro.html#another-if-then-else-rule",
     "title": "Logic vs inequalities",
     "section": "Another IF-THEN-ELSE rule",
-    "text": "Another IF-THEN-ELSE rule\n\nIf \\(X\\)\n\nthen \\(z = a_1^\\top x + b_1^\\top u + f_1\\),\nelse \\(z = a_2^\\top x + b_2^\\top u + f_2\\).\n\nIt can be expressed as \\[\n\\begin{aligned}\nz &= \\delta\\,(a_1^\\top x + b_1^\\top u + f_1) \\\\\n&\\quad + (1-\\delta)(a_2^\\top x + b_2^\\top u + f_2)\n\\end{aligned}\n\\]\n\n. . .\n\\[\n\\begin{aligned}\n(m_2-M_1)\\delta  + z &\\leq a_2^\\top x + b_2^\\top u + f_2,\\\\\n(m_1-M_2)\\delta  - z &\\leq -a_2^\\top x - b_2^\\top u - f_2,\\\\\n(m_1-M_2)(1-\\delta)  + z &\\leq a_1^\\top x + b_1^\\top u + f_1,\\\\\n(m_2-M_1)(1-\\delta)  - z &\\leq -a_1^\\top x - b_1^\\top u - f_1.\n\\end{aligned}\n\\]",
+    "text": "Another IF-THEN-ELSE rule\n\nIf \\(X\\)\n\nthen \\(z = a_1^\\top x + b_1^\\top u + f_1\\),\nelse \\(z = a_2^\\top x + b_2^\\top u + f_2\\).\n\nIt can be expressed as \\[\n\\begin{aligned}\nz &= \\delta\\,(a_1^\\top x + b_1^\\top u + f_1) \\\\\n&\\quad + (1-\\delta)(a_2^\\top x + b_2^\\top u + f_2)\n\\end{aligned}\n\\]\n\n\\[\n\\begin{aligned}\n(m_2-M_1)\\delta  + z &\\leq a_2^\\top x + b_2^\\top u + f_2,\\\\\n(m_1-M_2)\\delta  - z &\\leq -a_2^\\top x - b_2^\\top u - f_2,\\\\\n(m_1-M_2)(1-\\delta)  + z &\\leq a_1^\\top x + b_1^\\top u + f_1,\\\\\n(m_2-M_1)(1-\\delta)  - z &\\leq -a_1^\\top x - b_1^\\top u - f_1.\n\\end{aligned}\n\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -466,7 +345,7 @@
     "href": "mld_intro.html#switched-affine-system",
     "title": "Logic vs inequalities",
     "section": "Switched affine system",
-    "text": "Switched affine system\n\nWe want to get rid of the IF-THEN and formulate the switching mechanism into the format of inequalities too.\n\n. . .\n\\[\nx_c(k+1) = \\sum_{i=1}^s z_i(k),  \n\\]\n\nwhere \\[\nz_1(k) =\n\\begin{cases}\nA_1 x_c(k) + B_1 u_c(k) + f_1 & \\text{if}\\;i(k)=1\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n. . .\n\\[\\quad \\vdots\\]\n. . .\n\\[\nz_s(k) =\n\\begin{cases}\nA_s x_c(k) + B_s u_c(k) + f_s & \\text{if}\\;i(k)=s\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\nFor each \\(i\\in \\{1, 2, \\ldots, s\\}\\)\n\n. . .\n\\[\n\\begin{aligned}\nz_i &\\leq M_i\\delta_i,\\\\\n- z_i &\\leq -m_i\\delta_i,\\\\\nz_i &\\leq a_i^\\top x + b_i^\\top u + f_i - m_i(1-\\delta_i),\\\\\n-z_i &\\leq -(a_i^\\top x + b_i^\\top u + f_i) + M_i(1-\\delta_i).\n\\end{aligned}\n\\]",
+    "text": "Switched affine system\n\nWe want to get rid of the IF-THEN and formulate the switching mechanism into the format of inequalities too.\n\n\\[\nx_c(k+1) = \\sum_{i=1}^s z_i(k),  \n\\]\n\nwhere \\[\nz_1(k) =\n\\begin{cases}\nA_1 x_c(k) + B_1 u_c(k) + f_1 & \\text{if}\\;i(k)=1\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\n\\[\\quad \\vdots\\]\n\\[\nz_s(k) =\n\\begin{cases}\nA_s x_c(k) + B_s u_c(k) + f_s & \\text{if}\\;i(k)=s\\\\\n0 & \\text{otherwise}\n\\end{cases}\n\\]\n\nFor each \\(i\\in \\{1, 2, \\ldots, s\\}\\)\n\n\\[\n\\begin{aligned}\nz_i &\\leq M_i\\delta_i,\\\\\n- z_i &\\leq -m_i\\delta_i,\\\\\nz_i &\\leq a_i^\\top x + b_i^\\top u + f_i - m_i(1-\\delta_i),\\\\\n-z_i &\\leq -(a_i^\\top x + b_i^\\top u + f_i) + M_i(1-\\delta_i).\n\\end{aligned}\n\\]",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -510,7 +389,7 @@
     "href": "mld_intro.html#piecewise-affine-systems",
     "title": "Logic vs inequalities",
     "section": "Piecewise affine systems",
-    "text": "Piecewise affine systems\n. . .\n\\[\n\\begin{aligned}\nx(k+1) &= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\\\\ny(k) &= C_{i(k)}x(k) + D_{i(k)} u(k) + g_{i(k)}\\\\\n& \\; H_{i(k)} x(k) + J_{i(k)} u(k) \\leq K_{i(k)}\n\\end{aligned}\n\\]\n\nDHA, MLD, PWA are equivalent.",
+    "text": "Piecewise affine systems\n\\[\n\\begin{aligned}\nx(k+1) &= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\\\\ny(k) &= C_{i(k)}x(k) + D_{i(k)} u(k) + g_{i(k)}\\\\\n& \\; H_{i(k)} x(k) + J_{i(k)} u(k) \\leq K_{i(k)}\n\\end{aligned}\n\\]\n\nDHA, MLD, PWA are equivalent.",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Logic vs inequalities"
@@ -664,7 +543,7 @@
     "href": "des_automata.html#execution-of-an-automaton",
     "title": "(State) automata",
     "section": "Execution of an automaton",
-    "text": "Execution of an automaton\n\nx_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\nSometimes also written as x_1,e_1,x_2,e_2,\\ldots\n\n\n\n\n\n\n\n\nNotational confusion\n\n\n\nx_k for some k is the name of a particular state. It is not the name of a (yet to be introduced) state variable; In fact, it can be viewed of its value (also valuation).\n\n\n\nSome authors strictly distinguish between the state variable and the state (variable valuation),\n\nsimilarly as in probability theory random variable X vs its value x, as in F(x) = P(X\\leq x);\n\nsome do not, but then it may lead to confusion;\nyet some others avoid the problem by not introducing state variables and only working with enumerated states.\n\n\n\n\n\n\n\n\nNotational confusion 2\n\n\n\nEven worse, it is also tempting to interpret the lower index k as (discrete) time, but nope, in the previous k is not the time index.\nAgain, some authors do not distinguish…",
+    "text": "Execution of an automaton\n\nx_1\\xrightarrow{e_1} x_2\\xrightarrow{e_2} x_1 \\xrightarrow{e_1} x_2 \\xrightarrow{e_4} x_3\\ldots\nSometimes also written as x_1,e_1,x_2,e_2,\\ldots\n\n\n\n\n\n\n\n\nNotational confusion\n\n\n\nHere x_k for some k is the name of a particular state. It is not the name of a (yet to be introduced) state variable; In fact, it can be viewed as its value (also valuation).\n\n\n\nSome authors strictly distinguish between the state variable and the state (variable valuation),\n\nsimilarly as in probability theory random variable X vs its value x, as in F(x) = P(X\\leq x);\n\nsome do not, but then it may lead to confusion;\nyet some others avoid the problem by not introducing state variables and only working with enumerated states.\n\n\n\n\n\n\n\n\nNotational confusion 2\n\n\n\nEven worse, it is also tempting to interpret the lower index k as (discrete) time, but nope, in the previous k is not the time index.\nAgain, some authors do not distinguish…",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "(State) automata"
@@ -785,7 +664,51 @@
     "href": "classes_references.html",
     "title": "Literature",
     "section": "",
-    "text": "Back to top",
+    "text": "There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "classes_references.html#reset-control-systems",
+    "href": "classes_references.html#reset-control-systems",
+    "title": "Literature",
+    "section": "Reset control systems",
+    "text": "Reset control systems\nThe origing of the reset control can be traced to the paper [1]. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph [2]. Alternatively, papers such as [3], [4], [5], or [6] can provide another concise introduction to the topic.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "classes_references.html#switched-systems",
+    "href": "classes_references.html#switched-systems",
+    "title": "Literature",
+    "section": "Switched systems",
+    "text": "Switched systems\nReadable introduction to switched systems is in the slim book [7]. The book is not freely available online, but a useful excerpt can be found in the lecture notes [8].\nSwitched systems can also be viewed as system described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book [9]. The main concepts and results can also be found in the tutorial [10], perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook [11], chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic Chebfun toolbox.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "classes_references.html#piecewise-affine-pwa-systems",
+    "href": "classes_references.html#piecewise-affine-pwa-systems",
+    "title": "Literature",
+    "section": "Piecewise affine (PWA) systems",
+    "text": "Piecewise affine (PWA) systems\nIn our course we based our treatment of PWA systems on the monograph [12]. It is not freely available online, but it is based on the author’s PhD thesis [13], which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still a good starting point. From about the same time, the paper [14] reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control [15], but again, no freely online version. The book refers to the Matlab toolbox documented in [16]. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), it gives some insight into how the whole concept of a PWA approximation can be used in control design.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "classes_references.html#piecewise-affine-linear-approximation",
+    "href": "classes_references.html#piecewise-affine-linear-approximation",
+    "title": "Literature",
+    "section": "Piecewise affine (linear) approximation",
+    "text": "Piecewise affine (linear) approximation\nThere is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): [17] (although it is only restricted to convex functions), [18], …",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Literature"
@@ -983,7 +906,7 @@
     "href": "mld_references.html",
     "title": "Literature",
     "section": "",
-    "text": "The MLD description of discrete-time hybrid systems was originally introduced in [1], but perhaps even more accessible introduction is in Chapter 16 of the freely downloadable book [2].\nJust in case some issues are still unclear, in particular those related to the connection between the constraints (inequalities) imposed on continuous (aka real) variables and logical conditions imposed on binary variable, you may like the little bit more formal discussion in Section 2.2 of the thesis [3]. Strictly speaking, this use of binary (0-1 integer) variables to encode some constraints on real variables is standard in optimization and is described elsewhere – search for the indicator variables or indicator constraints. A recommendable general resource is the book (unfortunately not available online) [4], in particular its section 9.1.3 on Indicator variables.\nAll the theoretical concepts and procedures introduced in this lecture (and in those corresponding papers and books) are straightforward but rather tedious to actually implement. There is a HYSDEL language for modelling hybrid systems (discrete hybrid automata as considered in this lecture) that automates these procedures. The HYSDEL language is described not only in the documentation but also in the dedicated paper [5], which can also serve as a learning resource for the topic.\n\nCase studies\nBatch evaporator [6] and [7].\n\n\n\n\n\n Back to topReferences\n\n[1] A. Bemporad and M. Morari, “Control of systems integrating logic, dynamics, and constraints,” Automatica, vol. 35, no. 3, pp. 407–427, Mar. 1999, doi: 10.1016/S0005-1098(98)00178-2.\n\n\n[2] F. Borrelli, A. Bemporad, and M. Morari, Predictive Control for Linear and Hybrid Systems. Cambridge, New York: Cambridge University Press, 2017. Available: http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf\n\n\n[3] D. Mignone, “Control and estimation of hybrid systems with mathematical optimization,” Doctoral {{Thesis}}, ETH Zurich, 2002. doi: 10.3929/ethz-a-004279802.\n\n\n[4] H. P. Williams, Model Building in Mathematical Programming, 5th ed. Hoboken, N.J: Wiley, 2013.\n\n\n[5] F. D. Torrisi and A. Bemporad, “HYSDEL—a tool for generating computational hybrid models for analysis and synthesis problems,” IEEE Transactions on Control Systems Technology, vol. 12, no. 2, pp. 235–249, Mar. 2004, doi: 10.1109/TCST.2004.824309.\n\n\n[6] A. Bemporad, F. D. Torrisi, and M. Morari, “Discrete-time Hybrid Modeling and Verification of the Batch Evaporator Process Benchmark,” European Journal of Control, vol. 7, no. 4, pp. 382–399, Jan. 2001, doi: 10.3166/ejc.7.382-399.\n\n\n[7] S. Kowalewski and O. Stursberg, “The Batch Evaporator: A Benchmark Example for Safety Analysis of Processing Systems under Logic Control,” in Proceedings 4th Int. Workshop on Discrete Event Systems (WODES’98), Cagliari, Italy: IEE, London, Aug. 1998, pp. 302–307.",
+    "text": "The MLD description of discrete-time hybrid systems was originally introduced in [1], but perhaps even more accessible introduction is in Chapter 16 of the freely downloadable book [2]. In our text here we followed their expositions.\nJust in case some issues are still unclear, in particular those related to the connection between the constraints (inequalities) imposed on continuous (aka real) variables and logical conditions imposed on binary variable, you may like the little bit more formal discussion in Section 2.2 of the thesis [3]. Strictly speaking, this use of binary (0-1 integer) variables to encode some constraints on real variables is standard in optimization and is described elsewhere – search for indicator variables or indicator constraints. A recommendable general resource is the book (unfortunately not available online) [4], in particular its section 9.1.3 on Indicator variables.\nAll the theoretical concepts and procedures introduced in this lecture (and in those corresponding papers and books) are straightforward but rather tedious to actually implement. There is a HYSDEL language for modelling hybrid systems (discrete hybrid automata as considered in this lecture) that automates these procedures. The HYSDEL language is described not only in the documentation but also in the dedicated paper [5], which can also serve as a learning resource for the topic.\n\nCase studies\nBatch evaporator [6] and [7].\n\n\n\n\n\n Back to topReferences\n\n[1] A. Bemporad and M. Morari, “Control of systems integrating logic, dynamics, and constraints,” Automatica, vol. 35, no. 3, pp. 407–427, Mar. 1999, doi: 10.1016/S0005-1098(98)00178-2.\n\n\n[2] F. Borrelli, A. Bemporad, and M. Morari, Predictive Control for Linear and Hybrid Systems. Cambridge, New York: Cambridge University Press, 2017. Available: http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf\n\n\n[3] D. Mignone, “Control and estimation of hybrid systems with mathematical optimization,” Doctoral {{Thesis}}, ETH Zurich, 2002. doi: 10.3929/ethz-a-004279802.\n\n\n[4] H. P. Williams, Model Building in Mathematical Programming, 5th ed. Hoboken, N.J: Wiley, 2013.\n\n\n[5] F. D. Torrisi and A. Bemporad, “HYSDEL—a tool for generating computational hybrid models for analysis and synthesis problems,” IEEE Transactions on Control Systems Technology, vol. 12, no. 2, pp. 235–249, Mar. 2004, doi: 10.1109/TCST.2004.824309.\n\n\n[6] A. Bemporad, F. D. Torrisi, and M. Morari, “Discrete-time Hybrid Modeling and Verification of the Batch Evaporator Process Benchmark,” European Journal of Control, vol. 7, no. 4, pp. 382–399, Jan. 2001, doi: 10.3166/ejc.7.382-399.\n\n\n[7] S. Kowalewski and O. Stursberg, “The Batch Evaporator: A Benchmark Example for Safety Analysis of Processing Systems under Logic Control,” in Proceedings 4th Int. Workshop on Discrete Event Systems (WODES’98), Cagliari, Italy: IEE, London, Aug. 1998, pp. 302–307.",
     "crumbs": [
       "10. Mixed logical dynamical (MLD) systems",
       "Literature"
@@ -1016,7 +939,7 @@
     "href": "verification_barrier.html#convex-relaxation-of-the-barrier-certificate-problem",
     "title": "Barrier certificates",
     "section": "Convex relaxation of the barrier certificate problem",
-    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/jU6iu/src/integrator_interface.jl:600",
+    "text": "Convex relaxation of the barrier certificate problem\nWe relax the third condition so that it holds not only at B(\\bm x) = 0 but everywhere. The three conditions are then B(\\bm x) &gt; 0,\\quad \\forall \\bm x \\in \\mathcal X_\\mathrm{u},\nB(\\bm x) \\leq 0,\\quad \\forall \\bm x \\in \\mathcal X_0,\n\\nabla B(\\bm x)^\\top \\mathbf f(\\bm x, \\bm d) \\leq 0,\\quad \\forall \\bm x\\in \\mathcal X, \\bm d \\in \\mathcal D.\nLet’s now demonstrate this by means of an example.\n\nExample 1 Consider the system modelled by \n\\begin{aligned}\n\\dot x_1 &= x_2\\\\\n\\dot x_2 &= -x_1 + \\frac{p}{3}x_1^3 - x_2,\n\\end{aligned}\n where the parameter p\\in [0.9,1.1].\nThe initial set is given by \n\\mathcal X_0 = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1-1.5)^2 + x_2^2 \\leq 0.25 \\}\n and the unsafe set is given by \n\\mathcal X_\\mathrm{u} = \\{ \\bm x \\in \\mathbb R^2 \\mid (x_1+1)^2 + (x_2+1)^2 \\leq 0.16 \\}.\n\nThe vector field \\mathbf f and the initial and unsafe sets are shown in the figure below.\n\n\nCode\nusing SumOfSquares\nusing DynamicPolynomials\nusing MosekTools    \n\noptimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() =&gt; true)\nmodel = SOSModel(optimizer)\n@polyvar x[1:2] \n\np = 1;\n\nf = [ x[2],\n     -x[1] + (p/3)*x[1]^3 - x[2]]\n\ng₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}\nh₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}\n\nX = monomials(x, 0:4)\n@variable(model, B, Poly(X))\n\nε = 0.001\n@constraint(model, B &gt;= ε, domain = @set(g₁ &gt;= 0))\n\n@constraint(model, B &lt;= 0, domain = @set(h₁ &gt;= 0))\n\nusing LinearAlgebra # Needed for `dot`\ndBdt = dot(differentiate(B, x), f)\n@constraint(model, -dBdt &gt;= 0)\n\nJuMP.optimize!(model)\n\nJuMP.primal_status(model)\n\nimport DifferentialEquations, Plots, ImplicitPlots\nfunction phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())\n    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"X₀\", linecolor=:blue)\n    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"Xᵤ\", linecolor=:teal)\n    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label=\"B = 0\", linecolor=:red)\n    Plots.plot(X₀plot)\n    Plots.plot!(Xᵤplot)\n    Plots.plot!(Bplot)\n    ∇(vx, vy) = [fi(x[1] =&gt; vx, x[2] =&gt; vy) for fi in f]\n    ∇pt(v, p, t) = ∇(v[1], v[2])\n    function traj(v0)\n        tspan = (0.0, Δt)\n        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)\n        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)\n    end\n    ticks = -5:0.5:5\n    X = repeat(ticks, 1, length(ticks))\n    Y = X'\n    Plots.quiver!(X, Y, quiver = (x, y) -&gt; ∇(x, y) / quiver_scaling, linewidth=0.5)\n    for x0 in X0\n        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)\n    end\n    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))\nend\n\nphase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])\n\n\n┌ Warning: To maintain consistency with solution indexing, keyword argument vars will be removed in a future version. Please use keyword argument idxs instead.\n│   caller = ip:0x0\n└ @ Core :-1\n┌ Warning: At t=4.42311829094011, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139012671019052. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).\n└ @ SciMLBase ~/.julia/packages/SciMLBase/j8jQg/src/integrator_interface.jl:600",
     "crumbs": [
       "12. Formal verification",
       "Barrier certificates"
@@ -1060,7 +983,29 @@
     "href": "classes_switched.html",
     "title": "Switched systems",
     "section": "",
-    "text": "About this site\n\n\n\n Back to top",
+    "text": "In switched systems, some variables reset (jump) and stay constant between resets (they model discrete states), and some variables only flow and do not reset (jump).\nIt is a common notational convention to type the discrete state as a lower index as in \n\\dot{\\bm x} = \\bm f_q(\\bm x), \\qquad q \\in \\{1,2, \\ldots, m\\}.\nThe variable q determines, which right-hand side function is “active” at a given moment. The question now is, what dictates the evolution of the variable q? In other words, drives the switching, the transition between the modes? It turns out that the switching can be time-driven or state-driven:\nWhile there is not much to add to the former case, the latter might need some more explanation.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Switched systems"
+    ]
+  },
+  {
+    "objectID": "classes_switched.html#state-dependent-switching",
+    "href": "classes_switched.html#state-dependent-switching",
+    "title": "Switched systems",
+    "section": "State-dependent switching",
+    "text": "State-dependent switching\nLet’s consider just two domains \\mathcal X_1 and \\mathcal X_2. The transition to the other mode is triggered by the continuous state of the system crossing the boundary between the two domains. The boundary is defined by the function s(\\bm x) (called switching function), which is zero on the boundary, see the Fig 2.\n\n\n\n\n\n\nFigure 2: State-dependent switching\n\n\n\nThrough examples we now illustrate the possible behaviors of the system when the flow transverses the boundary, when it pulls away from the boundary, and when it pushes towards the boundary.\n\nExample 1 (The flow transverses the boundary) We consider the two right-hand sides of the state equation \n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n and \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n and the switching function \ns(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1.\n\nThe state portrait that also shows the switching function is generated using the following code.\n\n\nShow the code\ns(x₁,x₂) = (x₁+0.05)^2 + (x₂+0.15)^2 - 1.0\n\nf₁(x₁,x₂) = x₁^2 + 2x₂^2\nf₂(x₁,x₂) = 2x₁^2+3x₂^2-2.0\n\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1,f₁(x₁,x₂)] : [1,f₂(x₁,x₂)] \n\nN = 100\nx₁ = range(0, stop = 0.94, length = N)\n\nusing CairoMakie\nfig = Figure(size = (600, 600),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n\n\n\n\n\n\n\nThe state portrait also shows a particular initial state \\bm x_0 using a blue dot. Note that the projection of both vector fields \\mathbf f_1 and \\mathbf f_2 evaluated at \\bm x_0 onto the normal (the gradient) of the switching function at \\bm x_0 is positive, that is \n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0.\n\nThis is consistent with the observation that the flow goes through the boundary.\nWe can also plot a particular solution of the ODE using the following code.\n\n\nShow the code\nusing DifferentialEquations\nF(u, p, t) = f(u[1],u[2])\nu0 = [0.0,0.4]\ntspan = (0.0, 1.0)\nprob = ODEProblem(F, u0, tspan)\nsol = solve(prob, Tsit5(), reltol = 1e-8, abstol = 1e-8)\n\nusing Plots\nPlots.plot(sol,lw=3,xaxis=\"Time\",yaxis=\"x\",label=false)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrictly speaking, this solution does not satisfy the differential equation on the boundary of the two domains (the derivative of x_2 does not exist there). This is visually recognized in the above plot as the sharp corner in the solution. But other than that, the solution is perfectly “reasonable” – for a while the system evolves according to one state equations, then at one particular moment the system starts evolving according to another state equation. That is it. Not much more to see here.\n\n\nExample 2 (The flow pulls away from the boundary) We now consider another pair of the right-hand sides. \n\\bm f_1(\\bm x) = \\begin{bmatrix}-1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n and \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}.\n\nThe switching function is the same as in the previous example.\nThe state portrait is below.\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [-1, f₁(x₁,x₂)] : [1, f₂(x₁,x₂)] \n\nfig = Figure(size = (600, 600),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.8\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n\n\n\n\n\n\n\nWe focus on the blue dot again. The projections of the two vector fields onto the normal of the switching function satisfy \n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\leq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0.\n\nThe only interpretation of this situation is that a unique solution does not start at \\bm x_0. Again, not much more to see here.\n\n\nExample 3 (The flow pushes towards the boundary) And one last pair of the right-hand sides: \n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n and \n\\bm f_2(\\bm x) = \\begin{bmatrix}-1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}.\n\nThe state-portrait is below.\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1, f₁(x₁,x₂)] : [-1, f₂(x₁,x₂)] \n\nfig = Figure(size = (600, 600),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n\n\n\n\n\n\n\nThe projections of the two vector fields onto the normal of the switching function satisfy \n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\leq 0.\n\nBut this is interesting! Once the trajectory hits the switching curve and tries to penetrate it futher, it is pushed back to the switching curve. It it tries to penetrate it further, it is pushed back to the switching curve again. And so on. But then, how does the state evolve from \\bm x_0?\nHint: solve the ODE numerically with some finite step size. The solution will exhibit zig-zagging or chattering along the switching curve, away from the blue point. Now, keep shrinking the step size. The solution will ultimately “slide” smoothly along the switching curve. Perhaps this was your guess. One thing should worry you, hoever: such “sliding” solution satisfies neither of the two state equations!\nWe will make this more rigorous in a moment, but right now we just wanted to tease the intuition.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Switched systems"
+    ]
+  },
+  {
+    "objectID": "classes_switched.html#conditions-for-existence-and-uniqueness-of-solutions-of-ode",
+    "href": "classes_switched.html#conditions-for-existence-and-uniqueness-of-solutions-of-ode",
+    "title": "Switched systems",
+    "section": "Conditions for existence and uniqueness of solutions of ODE",
+    "text": "Conditions for existence and uniqueness of solutions of ODE\nIn order to analyze the situations such as the previous example, we need to recapitulate some elementary facts about the existence and uniqueness of solutions of ordinary differential equations (ODEs). And then we are going to add some new stuff.\nConsider the ODE\n\\dot x(t) = f(x(t),t).\nWe ask the following two questions:\n\nUnder which conditions does a solution exists?\nUnder which conditions the solution is unique?\n\nTo answer both, the function f() must be analyzed.\nBut before we answer the two questions, we must ask even more fundamental question:\n\nWhat does it mean that a function x(t) is a solution of the the ODE?\n\nHowever trivial this question may seem, it is not. There are actually several concepts of a solution of an orrdinary differential equation.\n\nClassical solution (Peano, also Cauchy-Peano)\n\nf(x(t),t) is continuous with respect to both x and t .\nExistence of a solution is guaranteed locally (on some finite interval), but uniqueness is not.\n\nBut it does not exclude uniqueness in all cases, it is just that it is not guaranteed.\n\nA solution is guaranteed to be continuously differentiable ( x\\in\\mathrm C^1 ). Such function x(t) satisfies the ODE \\dot x(t) = f(x(t),t) \\; \\forall t , that is why such solution is called classical.\nExample of a solution that exists only on a finite interval is \n\\dot x(t) = x^2(t),\\; x(0) = 1,\n\nfor which the solution is x(t) = \\frac{1}{1-t} . The solution blows up at t=1 .\n\nExample of nonuniqueness is provided by \\dot x(t) = \\sqrt{x(t)}, \\; x(0) = 0.\n\nOne possible solution is x(t) = \\frac{1}{4}t^2 . Another is x(t) = 0 . Yet another example is x(t) = \\frac{1}{4}(t-t_0)^2 . It is related to the Leaky bucket example.\n\n\n\nStrenghtening the requirement of continuity (Pickard-Lindelöf)\n\nf(x(t),t) is continuous with respect to t but a stricter condition is imposed with respect to x – Lipschitz continuity.\nNot only existence but also uniqueness of a solution is guaranteed.\n\nBut similarly as with Peano conditions, here too the condition is not necessary, it is just sufficient – even if the function f is not Lipschitz continuous, there may exist a unique solution.\nSince the condition is stricter than mere continuity, whatever goodies hold here too. In particular, the solution is guaranteed to be continuously differentiable.\nIf the function is only locally Lipschitz, the solution is guaranteed on some finite interval. If the function is (globally) Lipschitz, the solution is guaranteed on an unbounded interval.\n\n\n\n\nExtending the set of solutions (Carathéodory)\n\nIn contrast with the classical solution, here the x(t) can fail to satisfy the ODE at some isolated points in time.\nThis Carathéodory (or extended) solution x(t) is more than just continuous (even more than uniformly continuos) but less than contiuously differentiable (aka \\mathcal C^1) – it is absolutely continuous.\nIt is a solution of the integral equation (indeed, an equation) x(t) = x(t_0) + \\int_{t_0}^t f(x(\\tau),\\tau)\\mathrm{d}\\tau,\nwhere we use Lebesque integral (instead of Riemann).\nFor a continuous f, solutions x are just classical (smooth).\nf can be, however, “some kind of discontinuous” with respect to t. In particular, it must be measurable wrt t. It includes the case when f(x,t) is piecewise continuous with respect to t (sampled data control with ZOH).\nIf the function f is discontinuous with respect to x, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.\n\n\nExample 4 (Nonexistence and nonuniqueness of solutions) The system with discontinuous RHS \n\\begin{aligned}\n\\dot x_1 &= -2x_1 - 2x_2\\operatorname*{sgn(x_1)},\\\\\n\\dot x_2 &= x_2 + 4x_1\\operatorname*{sgn(x_1)}\n\\end{aligned}\n\ncan be reformulated as a switched system \n\\begin{aligned}\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & 2\\\\-4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x\\leq 0\\\\\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & -2\\\\4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x&gt; 0\n\\end{aligned}\n\n\n\nShow the code\ns(x) = x[1]\n\nf₁(x) = [-2x[1] + 2x[2], x[2] - 4x[1]]\nf₂(x) = [-2x[1] - 2x[2], x[2] + 4x[1]]\n\nf(x) = s(x) &lt;= 0.0 ? f₁(x) : f₂(x) \n\nusing CairoMakie\nfig = Figure(size = (600, 600),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nvlines!(ax,0; ymin = -1.1, ymax = 1.1, color = :red)\nfig\n\n\n\n\n\n\n\n\n\n\n\n\nSliding mode dynamics (on simple boundaries)\n\nAttractive sliding mode at \\bm x_\\mathrm{s}, if there is a trajectory that ends at \\bm x_\\mathrm{s}, but no trajectory that starts at \\bm x_\\mathrm{s}.\n\n\n\nGeneralized solutions (Filippov)\n\nx() is a Filippov solution on [t_0,t_1] if for almost all t \n\\dot x(t) \\in \\overline{\\operatorname*{co}}\\{f(x(t),t)\\},\n\n(Previous) example: \\mathcal{S}^+ = \\{\\bm x \\mid x_1=0 \\land x_2\\geq 0\\} \n\\begin{aligned}\n\\dot{\\bm x} &\\in \\overline{\\operatorname*{co}}\\{\\bm A_1\\bm x_1, \\bm A_2\\bm x_2\\}\\\\\n&= \\alpha_1(t) \\bm A_1\\bm x_1 + \\alpha_2(t) \\bm A_2\\bm x_2,\n\\end{aligned}\n where \\alpha_1(t), \\alpha_2(t) \\geq 0, \\alpha_1(t) + \\alpha_2(t) = 1.\nNot all weights keep the solution on \\mathcal S^+.\n\nWe must have \\dot x_1 = 0 for \\bm x(t) \\in \\mathcal S^+: \n  \\alpha_1(t) [-2x_1 + 2x_2] + \\alpha_2(t) [-2x_1 - 2x_2] = 0\n  \n\nCombining with \\alpha_1(t) + \\alpha_2(t) = 1: \n\\alpha_1(t) = \\alpha_2(t) = 1/2.\n\nThe dynamics on the sliding mode is \n\\dot x_1 = 0, \\quad \\dot x_2 = x_2, \\quad \\bm x \\in \\mathcal{S}^+.\n\n\n\n\nPossible nonuniqueness on intersection of boundaries",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Switched systems"
@@ -1166,8 +1111,8 @@
     ]
   },
   {
-    "objectID": "complementarity_software.html#software-for-solving-optimization-problems-with-complementarity-constraints",
-    "href": "complementarity_software.html#software-for-solving-optimization-problems-with-complementarity-constraints",
+    "objectID": "complementarity_software.html#solving-optimization-problems-with-complementarity-constraints",
+    "href": "complementarity_software.html#solving-optimization-problems-with-complementarity-constraints",
     "title": "Software",
     "section": "",
     "text": "Surprisingly, there are not many software packages that can handle complementarity constraints directly.\n\nWithin the realm of free software, I am only aware of PATH solver. Well, it is not open source and it is not issued under any classical free and open source license. It can be interfaced from Matlab and Julia (and AMPL and GAMS, which are not relevant for our course). For Matlab, compiled mexfiles can be downloaded. For Julia, the solver can be interfaced directly from the popular JuMP package (choosing the PATHSolver.jl solver), see the section on Complementarity constraints and Mixed complementarity problems in JuMP manual.\n\nWhen restricted to Matlab, there are several options, all of them commercial:\n\nOptimization Toolbox for Matlab does not offer a specialized solver for complementarity problems. The fmincon function can only handle it as a general nonlinear constraint g_1(x)g_2(x).\nTomlab toolbox has some support for complementarity constraints.\nKnitro solver (by Artelys) has some support for complementarity constraints.\nYALMIP toolbox supports definining the complementarity constraints through the command complements: F = complements(w &gt;= 0, z &gt;= 0). By default, it converts the problem into the format suitable for a mixed-integer solver. If Knitro is available, it can be interfaced.\n\nGurobi does not seem to support complementarity constraints.\nMosek supports disjunctive constraints, within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.",
@@ -1177,11 +1122,11 @@
     ]
   },
   {
-    "objectID": "complementarity_software.html#software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints",
-    "href": "complementarity_software.html#software-for-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints",
+    "objectID": "complementarity_software.html#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints",
+    "href": "complementarity_software.html#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints",
     "title": "Software",
-    "section": "Software for modeling and simulation of dynamical systems with complementarity constraints",
-    "text": "Software for modeling and simulation of dynamical systems with complementarity constraints\nWithin the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:\n\nSICONOS\n\nC++, Python\nphysical domain independent\n\nPINOCCHIO\n\nC++, Python\nspecialized for robotics",
+    "section": "Modeling and simulation of dynamical systems with complementarity constraints",
+    "text": "Modeling and simulation of dynamical systems with complementarity constraints\nWithin the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:\n\nSICONOS\n\nC++, Python\nphysical domain independent\n\nPINOCCHIO\n\nC++, Python\nspecialized for robotics",
     "crumbs": [
       "9. Complementarity systems",
       "Software"
@@ -1445,7 +1390,7 @@
     "href": "petri_nets.html#definition-of-a-petri-net",
     "title": "Petri nets",
     "section": "Definition of a Petri net",
-    "text": "Definition of a Petri net\nSimiliarly as in the case of automata, a Petri net (PN) can be defined as a tuple of sets and functions: \\boxed{PN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w\\},} where\n\n\\mathcal{P} = \\{p_1, \\dots, p_n\\} is a finite set of places,\n\\mathcal{T} = \\{t_1, \\dots, t_m\\} is a finite set of transitions,\n\\mathcal{A} \\subseteq (\\mathcal{P} \\times \\mathcal{T}) \\cup (\\mathcal{T} \\times \\mathcal{P}) is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:\n\n(p_i, t_j) \\in \\mathcal{A} is from place p_i to transition t_j,\n(t_j, p_i) \\in \\mathcal{A} is from transition t_j to place p_i,\n\nw : \\mathcal{A} \\to \\mathbb{N} is a weight function.\n\nSimilarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:\n\nplaces = circles,\ntransitions = bars.\n\nThe nodes of different kinds are connected by arcs (arrowed curves). A integer weights are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.\n\nExample 1 (Simple Petri net) We consider just two places, that is, \\mathcal{P} = \\{p_1, p_2\\}, and one transition, that is, \\mathcal{T} = \\{t\\}. The set of arcs is \\mathcal{A} = \\{\\underbrace{(p_1, t)}_{a_1}, \\underbrace{(t, p_2)}_{a_2}\\}, and the associated weights are w(a_1) = w((p_1, t)) = 2 and w(a_2) = w((t, p_2)) = 1. The Petri net is depicted in Fig 1.\n\n\n\n\n\n\nFigure 1: Example of a simple Petri net\n\n\n\n\n\nAdditional definitions\n\n\\mathcal{I}(t_j) … a set of input places of the transition t_j,\n\\mathcal{O}(t_j) … a set of output places of the transition t_j.\n\n\nExample 2 (More complex Petri net)  \n\n\\mathcal{P} = \\{p_1, p_2, p_3, p_4\\},\n\\mathcal{T} = \\{t_1, t_2, t_3, t_4, t_5\\},\n\\mathcal{A} = \\{(p_1, t_1), (t_1, p_1), (p_1, t_2),\\ldots\\},\nw((p_1, t_1)) = 2, \\; w((t_1, p_1)) = 1, \\; \\ldots\n\n\n\n\n\n\n\nFigure 2: Example of a more complex Petri net\n\n\n\n\n\n\nMarking and marked Petri nets\nAn important concept that we must introduce now is that of marking. It is a function that assigns an integer to each place   x: \\mathcal{P} \\rightarrow \\mathbb{N}.\nThe vector composed of the values of the marking function for all places \\bm x = \\begin{bmatrix}x(p_1)\\\\ x(p_2)\\\\ \\vdots \\\\ x(p_n) \\end{bmatrix} can be viewed as the state vector (although the Petri nets community perhaps would not use this terminology and stick to just marking).\nMarked Petri net is then a Petri net augmented with the marking\nMPN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w,x\\}.\n\nVisualization of marked Petri net using tokens\nMarked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.\n\nExample 3 (Marked Petri net) Consider the Petri net from Example 1. The marking function is x(p_1) = 2 and x(p_2) = 1, which assembled into a vector gives \\bm x = \\begin{bmatrix}1\\\\ 0 \\end{bmatrix}. The marked Petri net is depicted in Fig 3.\n\n\n\n\n\n\nFigure 3: Example of a marked Petri net\n\n\n\nFor another marking, namely \\bm x = \\begin{bmatrix}2\\\\ 1 \\end{bmatrix}, the marked Petri net is depicted in Fig 4.\n\n\n\n\n\n\nFigure 4: Example of a marked Petri net with different marking\n\n\n\n\n\n\n\nEnabling and firing of a transition\nFinally, here comes the enabling (pun intended) component of the definition of a Petri net – enabled transition. A transition t_j does not just happen – we say fire – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition t_j is enabled if \nx(p_i) \\geq w(p_i,t_j)\\quad \\forall p_i \\in \\mathcal{I}(t_j).\n\n\n\n\n\n\n\nCan but does not have to\n\n\n\nThe enabled transition can fire, but it doesn’t have to. We will exploit this in timed PN.\n\n\n\nExample 4 (Enabled transition) See the PN in Example 3: in the first marked PN the transition cannot fire, in the second it can.",
+    "text": "Definition of a Petri net\nSimilarly as in the case of automata, a Petri net (PN) can be defined as a tuple of sets and functions: \\boxed{PN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w\\},} where\n\n\\mathcal{P} = \\{p_1, \\dots, p_n\\} is a finite set of places,\n\\mathcal{T} = \\{t_1, \\dots, t_m\\} is a finite set of transitions,\n\\mathcal{A} \\subseteq (\\mathcal{P} \\times \\mathcal{T}) \\cup (\\mathcal{T} \\times \\mathcal{P}) is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:\n\n(p_i, t_j) \\in \\mathcal{A} is from place p_i to transition t_j,\n(t_j, p_i) \\in \\mathcal{A} is from transition t_j to place p_i,\n\nw : \\mathcal{A} \\to \\mathbb{N} is a weight function.\n\nSimilarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:\n\nplaces = circles,\ntransitions = bars.\n\nThe nodes of different kinds are connected by arcs (arrowed curves). A integer weights are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.\n\nExample 1 (Simple Petri net) We consider just two places, that is, \\mathcal{P} = \\{p_1, p_2\\}, and one transition, that is, \\mathcal{T} = \\{t\\}. The set of arcs is \\mathcal{A} = \\{\\underbrace{(p_1, t)}_{a_1}, \\underbrace{(t, p_2)}_{a_2}\\}, and the associated weights are w(a_1) = w((p_1, t)) = 2 and w(a_2) = w((t, p_2)) = 1. The Petri net is depicted in Fig 1.\n\n\n\n\n\n\nFigure 1: Example of a simple Petri net\n\n\n\n\n\nAdditional definitions\n\n\\mathcal{I}(t_j) … a set of input places of the transition t_j,\n\\mathcal{O}(t_j) … a set of output places of the transition t_j.\n\n\nExample 2 (More complex Petri net)  \n\n\\mathcal{P} = \\{p_1, p_2, p_3, p_4\\},\n\\mathcal{T} = \\{t_1, t_2, t_3, t_4, t_5\\},\n\\mathcal{A} = \\{(p_1, t_1), (t_1, p_1), (p_1, t_2),\\ldots\\},\nw((p_1, t_1)) = 2, \\; w((t_1, p_1)) = 1, \\; \\ldots\n\n\n\n\n\n\n\nFigure 2: Example of a more complex Petri net\n\n\n\n\n\n\nMarking and marked Petri nets\nAn important concept that we must introduce now is that of marking. It is a function that assigns an integer to each place   x: \\mathcal{P} \\rightarrow \\mathbb{N}.\nThe vector composed of the values of the marking function for all places \\bm x = \\begin{bmatrix}x(p_1)\\\\ x(p_2)\\\\ \\vdots \\\\ x(p_n) \\end{bmatrix} can be viewed as the state vector (although the Petri nets community perhaps would not use this terminology and stick to just marking).\nMarked Petri net is then a Petri net augmented with the marking\nMPN = \\{\\mathcal{P}, \\mathcal{T}, \\mathcal{A}, w,x\\}.\n\nVisualization of marked Petri net using tokens\nMarked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.\n\nExample 3 (Marked Petri net) Consider the Petri net from Example 1. The marking function is x(p_1) = 2 and x(p_2) = 1, which assembled into a vector gives \\bm x = \\begin{bmatrix}1\\\\ 0 \\end{bmatrix}. The marked Petri net is depicted in Fig 3.\n\n\n\n\n\n\nFigure 3: Example of a marked Petri net\n\n\n\nFor another marking, namely \\bm x = \\begin{bmatrix}2\\\\ 1 \\end{bmatrix}, the marked Petri net is depicted in Fig 4.\n\n\n\n\n\n\nFigure 4: Example of a marked Petri net with different marking\n\n\n\n\n\n\n\nEnabling and firing of a transition\nFinally, here comes the enabling (pun intended) component of the definition of a Petri net – enabled transition. A transition t_j does not just happen – we say fire – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition t_j is enabled if \nx(p_i) \\geq w(p_i,t_j)\\quad \\forall p_i \\in \\mathcal{I}(t_j).\n\n\n\n\n\n\n\nCan but does not have to\n\n\n\nThe enabled transition can fire, but it doesn’t have to. We will exploit this in timed PN.\n\n\n\nExample 4 (Enabled transition) See the PN in Example 3: in the first marked PN the transition cannot fire, in the second it can.",
     "crumbs": [
       "2. Discrete-event systems: Petri nets",
       "Petri nets"
@@ -1852,7 +1797,7 @@
     "href": "complementarity_simulations.html",
     "title": "Simulations using complementarity",
     "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/WgbrE/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
     "crumbs": [
       "9. Complementarity systems",
       "Simulations using complementarity"
@@ -1863,7 +1808,7 @@
     "href": "complementarity_simulations.html#simulation-using-time-stepping",
     "title": "Simulations using complementarity",
     "section": "",
-    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
+    "text": "\\begin{aligned}\n\\dot x_1 &= -\\operatorname{sign} x_1 + 2 \\operatorname{sign} x_2\\\\\n\\dot x_2 &= -2\\operatorname{sign} x_1 -\\operatorname{sign} x_2\n\\end{aligned}\n\n\n\nShow the code\nf₁(x) = -sign(x[1]) + 2*sign(x[2])\nf₂(x) = -2*sign(x[1]) - sign(x[2])\nf(x) = [f₁(x), f₂(x)]\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/WgbrE/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nusing DifferentialEquations\n\nfunction f!(dx,x,p,t)\n    dx[1] = -sign(x[1]) + 2*sign(x[2])\n    dx[2] = -2*sign(x[1]) - sign(x[2])\nend\n\nx0 = [-1.0, 1.0]\ntfinal = 2.0\ntspan = (0.0,tfinal)\nprob = ODEProblem(f!,x0,tspan)\nsol = solve(prob)\n\nusing Plots\nPlots.plot(sol,xlabel=\"t\",ylabel=\"x\",label=false,lw=3)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nShow the code\nPlots.plot(sol[1,:],sol[2,:],xlabel=\"x₁\",ylabel=\"x₂\",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))",
     "crumbs": [
       "9. Complementarity systems",
       "Simulations using complementarity"
@@ -1960,12 +1905,23 @@
   {
     "objectID": "classes_PWA.html",
     "href": "classes_PWA.html",
-    "title": "Piecewise affine systems",
+    "title": "Piecewise affine (PWA) systems",
     "section": "",
-    "text": "About this site\n\n\n\n Back to top",
+    "text": "This is a subclass of switched systems where the functions on the right-hand side of the differential equations are affine functions of the state. For some (historical) reason these systems are also called piecewise linear (PWL).\nWe are going to restrict ourselves to state-driven switching.\nFirst, we consider the autonomous case, that is, systems without inputs: \n\\dot{\\bm x}\n=\n\\begin{cases}\n\\bm A_1 \\bm x + \\bm b_1, & \\mathrm{if}\\, \\bm H_1 \\bm x + \\bm g_1 \\leq 0,\\\\\n\\vdots\\\\\n\\bm A_m \\bm x + \\bm b_m, & \\mathrm{if}\\, \\bm H_m \\bm x + \\bm g_m \\leq 0.\n\\end{cases}\nThe nonautonomous case of systems with inputs is then: \n\\dot{\\bm x}\n=\n\\begin{cases}\n\\bm A_1 \\bm x + \\bm B_1 u + \\bm c_1, & \\mathrm{if}\\, \\bm H_1 \\bm x + \\bm g_1 \\leq 0,\\\\\n\\vdots\\\\\n\\bm A_m \\bm x + \\bm B_m + \\bm c_m, & \\mathrm{if}\\, \\bm H_m \\bm x + \\bm g_m \\leq 0.\n\\end{cases}",
     "crumbs": [
       "6. Some classes of hybrid systems",
-      "Piecewise affine systems"
+      "Piecewise affine (PWA) systems"
+    ]
+  },
+  {
+    "objectID": "classes_PWA.html#approximation-of-smooth-systems",
+    "href": "classes_PWA.html#approximation-of-smooth-systems",
+    "title": "Piecewise affine (PWA) systems",
+    "section": "Approximation of smooth systems",
+    "text": "Approximation of smooth systems\nWhile the example with the saturated linear state feedback can be modelled as a PWA system exactly, there are many practical cases, in which the system is not exactly PWA affine but we want to approximate it as such.\n\nExample 2 (Smooth system approximated by a PWA system) Consider the following nonlinear system \n\\begin{bmatrix}\n\\dot x_1\\\\\\dot x_2\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nx_2\\\\\n-x_2 |x_2| - x_1 (1+x_1^2)\n\\end{bmatrix}\n\nOur task is to approximate this system by a PWA system. Equivalently, we need to find a PWA approximation for the right-hand side function.",
+    "crumbs": [
+      "6. Some classes of hybrid systems",
+      "Piecewise affine (PWA) systems"
     ]
   },
   {
@@ -2204,7 +2160,7 @@
     "href": "classes_reset.html",
     "title": "Reset systems",
     "section": "",
-    "text": "We have introduced two major modeling frameworks for hybrid systems – hybrid automata and hybrid (state) equations. Now we are ready to model any hybrid system. It turns out useful, however, to single out a few special classes of hybrid systems. Their special features are reflected in a special structure of their models (automata or equations). The special classes of hybrid systems that we are going to discuss are",
+    "text": "We have introduced two major modeling frameworks for hybrid systems – hybrid automata and hybrid (state) equations. Now we are ready to model any hybrid system. It turns out useful, however, to pick a few special classes of hybrid systems. Their special features are reflected in a special structure of their models (automata or equations). The special classes of hybrid systems that we are going to discuss are",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2215,29 +2171,7 @@
     "href": "classes_reset.html#reset-systems",
     "title": "Reset systems",
     "section": "Reset systems",
-    "text": "Reset systems\nThey are also called impulsive systems (the reason is going to be clear soon). In a hybrid system, some variables reset (jump) and flow, some only flow, but there are no variables that only reset. In other words, in reset systems we can identify no discrete states.\n\n\n\n\n\n\nThe bouncing ball is one example,\nanother one is -&gt;\n\n\nThis characterization of resets systems is not perfect, because as we discussed, even when staying constant between two jumps, the system is, technically speaking, also flowing. It is just a special type of flow.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#example-reset-oscillator",
-    "href": "classes_reset.html#example-reset-oscillator",
-    "title": "Reset systems",
-    "section": "Example: Reset oscillator",
-    "text": "Example: Reset oscillator\n. . .\n\n\\begin{bmatrix}\n\\dot x_1\\\\ \\dot x_2\n\\end{bmatrix}\n=\n\\begin{bmatrix}\n0 & 1\\\\ -1 & 2\\delta\n\\end{bmatrix}\n\\begin{bmatrix}\nx_1\\\\x_2\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\1\n\\end{bmatrix},\n\\quad \\bm x \\in \\mathcal C,\n\n. . .\n\nx_1^+ = -x_1, \\quad \\bm x \\in \\mathcal D,\n\n. . .\nwhere \n\\begin{aligned}\n\\mathcal D &= \\{\\bm x \\in \\mathbb R^2 \\mid x_1&lt;0, x_2=0\\}\\\\\n\\mathcal C &= \\mathbb R^2\\setminus\\mathcal D.\n\\end{aligned}",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#reset-oscillator-simulation-outcomes",
-    "href": "classes_reset.html#reset-oscillator-simulation-outcomes",
-    "title": "Reset systems",
-    "section": "Reset oscillator simulation outcomes",
-    "text": "Reset oscillator simulation outcomes\n\n\nShow the code\nusing DifferentialEquations\n\nδ = 0.1\nA = [0.0 1.0;\n    -1.0 2δ]\nb = [0.0; 1.0]\n\nx0 = [0.2, 0.0]\ntspan = (0.0, 100)\nf(x, p, t) = A*x + b\ncond_fcn(x, t, integrator) = x[1]&lt;0 ? x[2] : 1.0\naffect!(integrator) = integrator.u[1] = -integrator.u[1]\ncb = ContinuousCallback(cond_fcn, affect!)\nprob = ODEProblem(f, x0, tspan)\n\nsol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)\n\nusing Plots\nplot(sol[1,:],sol[2,:],lw=2,legend=false, tickfontsize=12, xtickfontsize=12, ytickfontsize=12)\nxlabel!(\"x₁\")\nylabel!(\"x₂\")",
+    "text": "Reset systems\nThey are also called impulsive systems (the reason is going to be clear soon). In a hybrid system, some variables reset (jump) and flow, others only flow, but there are no variables that only reset. In other words, in reset systems we can identify no discrete states. In the digraph representation of the reset system, we can only observe a single node.\n\n\n\n\n\n\nFigure 1: Reset system\n\n\n\nWe can recognize the bouncing ball as a prominent example of a reset system. Another example follows.\n\n\n\n\n\n\nWarning\n\n\n\nOur wording of the definition of a reset system is not perfect, because as we have discussed earlier, even when staying constant between two jumps, the state variable is, technically speaking, also flowing – it is just a special type of flow.\n\n\n\nExample 1 (Reset oscillator) We consider a hybrid system state-space modelled by the following hybrid equations: \n\\begin{aligned}\n\\begin{bmatrix}\n\\dot x_1\\\\ \\dot x_2\n\\end{bmatrix}\n&=\n\\begin{bmatrix}\n0 & 1\\\\ -1 & 2\\delta\n\\end{bmatrix}\n\\begin{bmatrix}\nx_1\\\\x_2\n\\end{bmatrix}\n+\n\\begin{bmatrix}\n0\\\\1\n\\end{bmatrix},\n\\quad \\bm x \\in \\mathcal C,\\\\\nx_1^+ &= -x_1, \\quad \\bm x \\in \\mathcal D,\n\\end{aligned}\n where \n\\begin{aligned}\n\\mathcal D &= \\{\\bm x \\in \\mathbb R^2 \\mid x_1&lt;0, x_2=0\\},\\\\\n\\mathcal C &= \\mathbb R^2\\setminus\\mathcal D.\n\\end{aligned}\n\nSimulation outcomes for some concrete value of the small positive parameter \\delta are shown in the following figure.\n\n\nShow the code\nusing DifferentialEquations\n\nδ = 0.1\nA = [0.0 1.0;\n    -1.0 2δ]\nb = [0.0; 1.0]\n\nx0 = [0.2, 0.0]\ntspan = (0.0, 100)\nf(x, p, t) = A*x + b\ncond_fcn(x, t, integrator) = x[1]&lt;0 ? x[2] : 1.0\naffect!(integrator) = integrator.u[1] = -integrator.u[1]\ncb = ContinuousCallback(cond_fcn, affect!)\nprob = ODEProblem(f, x0, tspan)\n\nsol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)\n\nusing Plots\nplot(sol[1,:],sol[2,:],lw=2,legend=false, tickfontsize=12, xtickfontsize=12, ytickfontsize=12)\nxlabel!(\"x₁\")\nylabel!(\"x₂\")\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIsn’t it fascinating that a linear system augmented with resetting can exhibit such a complex behavior?",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2248,7 +2182,7 @@
     "href": "classes_reset.html#cleggs-integrator-ci",
     "title": "Reset systems",
     "section": "Clegg’s integrator (CI)",
-    "text": "Clegg’s integrator (CI)\n\nAs soon as the sign of the input changes, the integrator resets to zero.\n\nThe integrator that the sign of its input and output identical.\n\nOriginally presented in the form of an analog circuit (opamps, diodes, resistors, capacitors).\nUnlike the traditional (linear) integrator, the CI exhibits much smaller phase lag (some 38 vs 90 deg).\n\n\nThe reset (or jump) condition can is often formulated as an equality, but we formulate it as an inequality.",
+    "text": "Clegg’s integrator (CI)\nClegg’s integrator is a reset element that can be used in control systems.\nIts function is as follows. As soon as the sign of the input changes, the integrator resets to zero.\nThe integrator keeps the sign of its input and output identical.\nUnlike the traditional (linear) integrator, the CI exhibits much smaller phase lag (some 38 vs 90 deg).\nIt may be of historical curiosity that originally the concept was presented in the form of an analog circuit (opamps, diodes, resistors, capacitors). See the references if you are interested.\n\n\n\n\n\n\nNote\n\n\n\nThe reset (or jump) condition can is often formulated as an equality, but we formulate it as an inequality.",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2259,7 +2193,7 @@
     "href": "classes_reset.html#first-order-reset-element-fore",
     "title": "Reset systems",
     "section": "First-order reset element (FORE)",
-    "text": "First-order reset element (FORE)\n. . .\n\n\n\n\n\n\nplant G(s) = \\frac{s+1}{s(s+0.2)}\ncontroller \n\\begin{array}{lr}\n\\dot u = a u + k e, & \\mathrm{when}\\; e\\neq 0,\\\\\nu^+ = 0, & \\mathrm{when}\\; e = 0.\n\\end{array}",
+    "text": "First-order reset element (FORE)\nAnother simple reset element that can be used in control systems is known as FORE (first-order reset element) described by \n\\begin{array}{lr}\n\\dot u = a u + k e, & \\mathrm{when}\\; e\\neq 0,\\\\\nu^+ = 0, & \\mathrm{when}\\; e = 0.\n\\end{array}\n\n\nExample 2 (FORE) Consider a plant modelled by G(s) = \\frac{s+1}{s(s+0.2)} and FORE controller in the feedback loop as in Fig 2.\n\n\n\n\n\n\nFigure 2: First-order reset element (FORE) in a feedback loop",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2270,216 +2204,7 @@
     "href": "classes_reset.html#when-not-to-use-reset-control",
     "title": "Reset systems",
     "section": "When (not) to use reset control?",
-    "text": "When (not) to use reset control?\n\nCannot another linear controller be found that performs even bettern than the FORE?\nCannot it happen that upon introducing resetting into a linear controller, closed-loop stability is lost?\nUse reset control with care.\nCan be helfpul if the linearly-controller plant is subject to fundamental limitations of achievable control performance:\n\nintegrators and unstable poles,\nzeros in the right half-plane (non-minimum phase),\ndelays,\n…",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#switched-systems",
-    "href": "classes_reset.html#switched-systems",
-    "title": "Reset systems",
-    "section": "Switched systems",
-    "text": "Switched systems\n\nSome variables reset (reset) and stay constant between resets (they model discrete states),\nand some variables only flow and do not reset.\n\n. . .",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#switched-systems-1",
-    "href": "classes_reset.html#switched-systems-1",
-    "title": "Reset systems",
-    "section": "Switched systems",
-    "text": "Switched systems\n\n\\dot{\\bm x} = \\bm f_q(\\bm x)\n\n. . .\nq \\in \\{1,2, \\ldots, m\\} can be\n\ntime-driven: \\dot{\\bm x} = \\bm f_{q(t)}(\\bm x)\nstate-driven: \n\\dot{\\bm x}\n=\n\\begin{cases}\n\\bm f_1(\\bm x), & \\mathrm{if}\\, \\bm x \\in \\mathcal{X}_1,\\\\\n\\vdots\\\\\n\\bm f_m(\\bm x), & \\mathrm{if}\\, \\bm x \\in \\mathcal{X}_m.\n\\end{cases}",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#state-dependent-switching",
-    "href": "classes_reset.html#state-dependent-switching",
-    "title": "Reset systems",
-    "section": "State-dependent switching",
-    "text": "State-dependent switching",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#example-the-flow-transverses-the-boundary",
-    "href": "classes_reset.html#example-the-flow-transverses-the-boundary",
-    "title": "Reset systems",
-    "section": "Example: The flow transverses the boundary",
-    "text": "Example: The flow transverses the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\ns(x₁,x₂) = (x₁+0.05)^2 + (x₂+0.15)^2 - 1.0\n\nf₁(x₁,x₂) = x₁^2 + 2x₂^2\nf₂(x₁,x₂) = 2x₁^2+3x₂^2-2.0\n\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1,f₁(x₁,x₂)] : [1,f₂(x₁,x₂)] \n\nN = 100\nx₁ = range(0, stop = 0.94, length = N)\n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n\ns(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#solution",
-    "href": "classes_reset.html#solution",
-    "title": "Reset systems",
-    "section": "Solution?",
-    "text": "Solution?\n\n\nShow the code\nusing DifferentialEquations\nF(u, p, t) = f(u[1],u[2])\nu0 = [0.0,0.4]\ntspan = (0.0, 1.0)\nprob = ODEProblem(F, u0, tspan)\nsol = solve(prob, Tsit5(), reltol = 1e-8, abstol = 1e-8)\n\nusing Plots\nPlots.plot(sol,lw=3,xaxis=\"Time\",yaxis=\"x\",label=false)\n\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis solution does not satisfy the differential equation on the boundary of the two domains (the derivative of x_2 does not exist there).",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#example-the-flow-pulls-away-from-the-boundary",
-    "href": "classes_reset.html#example-the-flow-pulls-away-from-the-boundary",
-    "title": "Reset systems",
-    "section": "Example: The flow pulls away from the boundary",
-    "text": "Example: The flow pulls away from the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}-1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [-1, f₁(x₁,x₂)] : [1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.8\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\leq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\geq 0",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#example-the-flow-pushes-towards-the-boundary",
-    "href": "classes_reset.html#example-the-flow-pushes-towards-the-boundary",
-    "title": "Reset systems",
-    "section": "Example: The flow pushes towards the boundary",
-    "text": "Example: The flow pushes towards the boundary\n\n\n\n\\bm f_1(\\bm x) = \\begin{bmatrix}1\\\\ x_1^2 + 2x_2^2\\end{bmatrix}\n \n\\bm f_2(\\bm x) = \\begin{bmatrix}-1\\\\ 2x_1^2+3x_2^2-2\\end{bmatrix}\n\n\n\n\nShow the code\nf(x₁,x₂) = s(x₁,x₂) &lt;= 0.0 ? [1, f₁(x₁,x₂)] : [-1, f₂(x₁,x₂)] \n\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,(x₁,x₂)-&gt;Point2f(f(x₁,x₂)), 0..1.5, 0..1.5, colormap = :magma)\nlines!(ax,x₁,sqrt.(1 .- (x₁ .+ 0.05).^2) .- 0.15, color = :red, linewidth=5)\nx10 = 0.5\nx20 = sqrt(1 - (x10 + 0.05)^2) - 0.15\nMakie.scatter!(ax,[x10],[x20],color=:blue,markersize=30)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227\n\n\n\n\n\n\n\n\n\n\n\n. . .\n\n\\left.\\left(\\nabla s\\right)^\\top \\bm f_1\\right|_{\\bm x_0} \\geq 0, \\quad \\left.\\left(\\nabla s\\right)^\\top \\bm f_2\\right|_{\\bm x_0} \\leq 0",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#recap-of-conditions-for-existence-and-uniqueness-of-solutions-of-ode",
-    "href": "classes_reset.html#recap-of-conditions-for-existence-and-uniqueness-of-solutions-of-ode",
-    "title": "Reset systems",
-    "section": "Recap of conditions for existence and uniqueness of solutions of ODE",
-    "text": "Recap of conditions for existence and uniqueness of solutions of ODE\n\nConsider the ODE \\dot x(t) = f(x(t),t)\nQuestions:\n\nUnder which conditions does a solution exists?\nUnder which conditions the solution is unique?\n\nTo answer both, the function f() must be analyzed.\nBut even more fundamentally: what does it mean that a function x(t) is a solution of the the ODE?\nAccessible discussion in the online available book Trefethen, Lloyd N., Ásgeir Birkisson, and Tobin A. Driscoll. Exploring ODEs. Philadelphia: SIAM, 2017. http://people.maths.ox.ac.uk/trefethen/ExplODE/, chapters 3 and 11.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#classical-solution-peano-also-cauchy-peano",
-    "href": "classes_reset.html#classical-solution-peano-also-cauchy-peano",
-    "title": "Reset systems",
-    "section": "Classical solution (Peano, also Cauchy-Peano)",
-    "text": "Classical solution (Peano, also Cauchy-Peano)\n\nf(x(t),t) is continuous with respect to both x and t .\nExistence of a solution is guaranteed locally (on some finite interval), but uniqueness is not.\n\nBut it does not exclude uniqueness in all cases, it is just that it is not guaranteed.\n\nA solution is guaranteed to be continuously differentiable ( x\\in\\mathrm C^1 ). Such function x(t) satisfies the ODE \\dot x(t) = f(x(t),t) \\; \\forall t , that is why such solution is called classical.\nExample of a solution that exists only on a finite interval is \n\\dot x(t) = x^2(t),\\; x(0) = 1,\n\nfor which the solution is x(t) = \\frac{1}{1-t} . The solution blows up at t=1 .\n\nExample of nonuniqueness is provided by \\dot x(t) = \\sqrt{x(t)}, \\; x(0) = 0.\n\nOne possible solution is x(t) = \\frac{1}{4}t^2 . Another is x(t) = 0 . Yet another example is x(t) = \\frac{1}{4}(t-t_0)^2 . It is related to the Leaky bucket example.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#strenghtening-the-requirement-of-continuity-pickard-lindelöf",
-    "href": "classes_reset.html#strenghtening-the-requirement-of-continuity-pickard-lindelöf",
-    "title": "Reset systems",
-    "section": "Strenghtening the requirement of continuity (Pickard-Lindelöf)",
-    "text": "Strenghtening the requirement of continuity (Pickard-Lindelöf)\n\nf(x(t),t) is continuous with respect to t but a stricter condition is imposed with respect to x – Lipschitz continuity.\nNot only existence but also uniqueness of a solution is guaranteed.\n\nBut similarly as with Peano conditions, here too the condition is not necessary, it is just sufficient – even if the function f is not Lipschitz continuous, there may exist a unique solution.\nSince the condition is stricter than mere continuity, whatever goodies hold here too. In particular, the solution is guaranteed to be continuously differentiable.\nIf the function is only locally Lipschitz, the solution is guaranteed on some finite interval. If the function is (globally) Lipschitz, the solution is guaranteed on an unbounded interval.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#extending-the-set-of-solutions-carathéodory",
-    "href": "classes_reset.html#extending-the-set-of-solutions-carathéodory",
-    "title": "Reset systems",
-    "section": "Extending the set of solutions (Carathéodory)",
-    "text": "Extending the set of solutions (Carathéodory)\n\nIn contrast with the classical solution, here the x(t) can fail to satisfy the ODE at some isolated points in time.\nThis Carathéodory (or extended) solution x(t) is more than just continuous (even more than uniformly continuos) but less than contiuously differentiable (aka \\mathcal C^1) – it is absolutely continuous.\nIt is a solution of the integral equation (indeed, an equation) x(t) = x(t_0) + \\int_{t_0}^t f(x(\\tau),\\tau)\\mathrm{d}\\tau,\nwhere we use Lebesque integral (instead of Riemann).\nFor a continuous f, solutions x are just classical (smooth).\nf can be, however, “some kind of discontinuous” with respect to t. In particular, it must be measurable wrt t. It includes the case when f(x,t) is piecewise continuous with respect to t (sampled data control with ZOH).\nIf the function f is discontinuous with respect to x, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#another-example-nonexistence-and-nonuniqueness-of-solutions",
-    "href": "classes_reset.html#another-example-nonexistence-and-nonuniqueness-of-solutions",
-    "title": "Reset systems",
-    "section": "Another example: nonexistence and nonuniqueness of solutions",
-    "text": "Another example: nonexistence and nonuniqueness of solutions\n\n\nThe system with discontinuous RHS \n\\begin{aligned}\n\\dot x_1 &= -2x_1 - 2x_2\\operatorname*{sgn(x_1)},\\\\\n\\dot x_2 &= x_2 + 4x_1\\operatorname*{sgn(x_1)}\n\\end{aligned}\n\ncan be reformulated as a switched system \n\\begin{aligned}\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & 2\\\\-4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x\\leq 0\\\\\n\\dot{\\bm x} &= \\begin{bmatrix}-2 & -2\\\\4 & 1\\end{bmatrix}\\begin{bmatrix}x_1\\\\ x_2\\end{bmatrix}, \\; \\bm x&gt; 0\n\\end{aligned}\n\n\n\n\nShow the code\ns(x) = x[1]\n\nf₁(x) = [-2x[1] + 2x[2], x[2] - 4x[1]]\nf₂(x) = [-2x[1] - 2x[2], x[2] + 4x[1]]\n\nf(x) = s(x) &lt;= 0.0 ? f₁(x) : f₂(x) \n\nusing CairoMakie\nfig = Figure(resolution = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nvlines!(ax,0; ymin = -1.1, ymax = 1.1, color = :red)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#sliding-mode-dynamics-on-simple-boundaries",
-    "href": "classes_reset.html#sliding-mode-dynamics-on-simple-boundaries",
-    "title": "Reset systems",
-    "section": "Sliding mode dynamics (on simple boundaries)",
-    "text": "Sliding mode dynamics (on simple boundaries)\n\nAttractive sliding mode at \\bm x_\\mathrm{s}, if there is a trajectory that ends at \\bm x_\\mathrm{s}, but no trajectory that starts at \\bm x_\\mathrm{s}.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#generalized-solutions-filippov",
-    "href": "classes_reset.html#generalized-solutions-filippov",
-    "title": "Reset systems",
-    "section": "Generalized solutions (Filippov)",
-    "text": "Generalized solutions (Filippov)\n\nx() is a Filippov solution on [t_0,t_1] if for almost all t \n\\dot x(t) \\in \\overline{\\operatorname*{co}}\\{f(x(t),t)\\},\n\n(Previous) example: \\mathcal{S}^+ = \\{\\bm x \\mid x_1=0 \\land x_2\\geq 0\\} \n\\begin{aligned}\n\\dot{\\bm x} &\\in \\overline{\\operatorname*{co}}\\{\\bm A_1\\bm x_1, \\bm A_2\\bm x_2\\}\\\\\n&= \\alpha_1(t) \\bm A_1\\bm x_1 + \\alpha_2(t) \\bm A_2\\bm x_2,\n\\end{aligned}\n where \\alpha_1(t), \\alpha_2(t) \\geq 0, \\alpha_1(t) + \\alpha_2(t) = 1.\nNot all weights keep the solution on \\mathcal S^+.\n\nWe must have \\dot x_1 = 0 for \\bm x(t) \\in \\mathcal S^+: \n  \\alpha_1(t) [-2x_1 + 2x_2] + \\alpha_2(t) [-2x_1 - 2x_2] = 0\n  \n\nCombining with \\alpha_1(t) + \\alpha_2(t) = 1: \n\\alpha_1(t) = \\alpha_2(t) = 1/2.\n\nThe dynamics on the sliding mode is \n\\dot x_1 = 0, \\quad \\dot x_2 = x_2, \\quad \\bm x \\in \\mathcal{S}^+.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#possible-nonuniqueness-on-intersection-of-boundaries",
-    "href": "classes_reset.html#possible-nonuniqueness-on-intersection-of-boundaries",
-    "title": "Reset systems",
-    "section": "Possible nonuniqueness on intersection of boundaries",
-    "text": "Possible nonuniqueness on intersection of boundaries",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#piecewise-affine-pwa-systems",
-    "href": "classes_reset.html#piecewise-affine-pwa-systems",
-    "title": "Reset systems",
-    "section": "Piecewise affine (PWA) systems",
-    "text": "Piecewise affine (PWA) systems\n\nAlso piecewise linear (PWL) systems.\nLet’s focus on state-driven switching only.\nAutonomous (no inputs) \n\\dot{\\bm x}\n=\n\\begin{cases}\n\\bm A_1 \\bm x + \\bm b_1, & \\mathrm{if}\\, \\bm H_1 \\bm x + \\bm g_1 \\leq 0,\\\\\n\\vdots\\\\\n\\bm A_m \\bm x + \\bm b_m, & \\mathrm{if}\\, \\bm H_m \\bm x + \\bm g_m \\leq 0.\n\\end{cases}\n\nNonautonomous (with inputs) \n\\dot{\\bm x}\n=\n\\begin{cases}\n\\bm A_1 \\bm x + \\bm B_1 u + \\bm c_1, & \\mathrm{if}\\, \\bm H_1 \\bm x + \\bm g_1 \\leq 0,\\\\\n\\vdots\\\\\n\\bm A_m \\bm x + \\bm B_m + \\bm c_m, & \\mathrm{if}\\, \\bm H_m \\bm x + \\bm g_m \\leq 0.\n\\end{cases}",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#example-linear-system-with-saturated-state-feedback",
-    "href": "classes_reset.html#example-linear-system-with-saturated-state-feedback",
-    "title": "Reset systems",
-    "section": "Example: Linear system with saturated state feedback",
-    "text": "Example: Linear system with saturated state feedback\n. . .\n\n\n\n\n\n. . .\n\n\\dot{\\bm x} = \\bm A\\bm x + \\bm b \\,\\mathrm{sat}(v), \\quad v = \\bm k^T \\bm x.",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#piecewise-affine-dynamics",
-    "href": "classes_reset.html#piecewise-affine-dynamics",
-    "title": "Reset systems",
-    "section": "Piecewise affine dynamics",
-    "text": "Piecewise affine dynamics\n\n\\dot{\\bm x} =\n\\begin{cases}\n\\bm A \\bm x - \\bm b, & \\mathrm{if}\\, \\bm x \\in \\mathcal{X}_1,\\\\\n(\\bm A + \\bm b \\bm k^\\top )\\bm x, & \\mathrm{if}\\, \\bm x \\in \\mathcal{X}_2,\\\\\n\\bm A \\bm x + \\bm b, & \\mathrm{if}\\, \\bm x \\in \\mathcal{X}_3,\\\\\n\\end{cases}\n\n. . .\n\n\n\n\n\n. . .\n\n\\begin{aligned}\n\\mathcal{X}_1 &= \\{\\bm x \\mid \\bm H_1\\bm x + g_1 \\leq 0\\}\\\\\n\\mathcal{X}_2 &= \\{\\bm x \\mid \\bm H_2\\bm x + \\bm g_2 \\leq 0\\}\\\\\n\\mathcal{X}_3 &= \\{\\bm x \\mid \\bm H_3\\bm x + g_3 \\leq 0\\}\n\\end{aligned}\n\n. . .\n\n\\begin{aligned}\n\\bm H_1 &= \\bm k^\\top, \\quad g_1 = 1,\\\\\n\\bm H_2 &= \\begin{bmatrix}-\\bm k^\\top\\\\\\bm k^\\top\\end{bmatrix}, \\quad \\bm g_2 = \\begin{bmatrix}-1\\\\-1\\end{bmatrix},\\\\\n\\bm H_3 &= -\\bm k^\\top, \\quad g_3 = 1.\n\\end{aligned}",
-    "crumbs": [
-      "6. Some classes of hybrid systems",
-      "Reset systems"
-    ]
-  },
-  {
-    "objectID": "classes_reset.html#approximation-of-smooth-systems",
-    "href": "classes_reset.html#approximation-of-smooth-systems",
-    "title": "Reset systems",
-    "section": "Approximation of smooth systems",
-    "text": "Approximation of smooth systems\n\n\\begin{bmatrix}\nx_1\\\\x_2\n\\end{bmatrix}\n=\n\\begin{bmatrix}\nx_2\\\\\n-x_2 |x_2| - x_1 (1+x_1^2)\n\\end{bmatrix}",
+    "text": "When (not) to use reset control?\nHowever conceptually simple, reset control is not a panacea. Analysis and design of reset control systems is not straightforward compared to the traditional linear control systems. In particular, guaranteeing closed-loop stability upon introduction of resetting into a linear controller is not easy and may require advanced concepts (some of them we are going to introduce later in the course). Therefore we should use reset control with care. We should always do our best to find (another) linear controller that has a performance comparable or even better than reset control system.\nBut reset control can be helfpul if the plant is subject to fundamental limitations of achievable control performance such as\n\nintegrators and unstable poles,\nzeros in the right half-plane (non-minimum phase),\ndelays,\n…\n\nIn these situations reset control can be a way to beat the so-called waterbed effect.",
     "crumbs": [
       "6. Some classes of hybrid systems",
       "Reset systems"
@@ -2926,7 +2651,7 @@
     "href": "stability_recap.html#attractivity",
     "title": "Recap of stability analysis for continuous dynamical systems",
     "section": "Attractivity",
-    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/8h0bl/src/scenes.jl:227",
+    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig\n\n\n┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.\n└ @ Makie ~/.julia/packages/Makie/WgbrE/src/scenes.jl:227",
     "crumbs": [
       "8. Stability",
       "Recap of stability analysis for continuous dynamical systems"
