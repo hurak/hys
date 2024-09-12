@@ -1,0 +1,249 @@
+@article{bergeroPowerDEVSToolHybrid2011,
+  title = {{{PowerDEVS}}: A Tool for Hybrid System Modeling and Real-Time Simulation},
+  shorttitle = {{{PowerDEVS}}},
+  author = {Bergero, Federico and Kofman, Ernesto},
+  year = {2011},
+  month = jan,
+  journal = {SIMULATION},
+  volume = {87},
+  number = {1-2},
+  pages = {113--132},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0037-5497},
+  doi = {10.1177/0037549710368029},
+  url = {https://doi.org/10.1177/0037549710368029},
+  urldate = {2021-05-13},
+  abstract = {In this paper we introduce a general-purpose software tool for discrete event system specification (DEVS) modeling and simulation oriented to the simulation of hybrid systems. The environment, called PowerDEVS, allows atomic DEVS models to be defined in C++ language that can then be coupled graphically in hierarchical block diagrams to create more complex systems. The environment automatically translates the graphically coupled models into a C++ code which executes the simulation. A remarkable feature of PowerDEVS is the possibility to perform simulations under a real-time operating system (RTAI) synchronizing with a real-time clock, which permits the design and automatic implementation of synchronous and asynchronous digital controllers. Combined with its continuous system simulation library, PowerDEVS is also an efficient tool for real-time simulation of physical systems. Another feature is the interconnection between PowerDEVS and the numerical package Scilab. PowerDEVS simulations can make use of Scilab workspace variables and functions, and the results can be sent back to Scilab for further processing and data analysis. In addition to describing the main features of the software tool, the article also illustrates its use with some examples which show its simplicity and efficiency.},
+  langid = {english}
+}
+
+@article{bergeroTimeDiscretizationState2016,
+  title = {Time Discretization versus State Quantization in the Simulation of a One-Dimensional Advection--Diffusion--Reaction Equation},
+  author = {Bergero, Federico and Fern{\'a}ndez, Joaqu{\'i}n and Kofman, Ernesto and Portapila, Margarita},
+  year = {2016},
+  month = jan,
+  journal = {SIMULATION},
+  volume = {92},
+  number = {1},
+  pages = {47--61},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0037-5497},
+  doi = {10.1177/0037549715616683},
+  url = {https://doi.org/10.1177/0037549715616683},
+  urldate = {2021-05-13},
+  abstract = {In this article, we study the effects of replacing the time discretization by the quantization of the state variables on a one-dimensional (1D) advection--diffusion--reaction (ADR) problem. For that purpose the 1D ADR equation is first discretized in space using a regular grid, to obtain a set of time-dependent ordinary differential equations (ODEs). Then we compare the simulation performance using classic discrete time algorithms and using quantized state systems (QSS) methods. The performance analysis is done for different sets of diffusion and reaction parameters and also changing the space discretization refinement. This analysis shows that, in advection--reaction-dominated situations, the second-order linearly implicit QSS method outperforms all of the conventional algorithms (DOPRI, Radau and DASSL) by more than one order of magnitude.},
+  langid = {english}
+}
+
+@inproceedings{bliudzeOperationalSemanticsHybrid2014,
+  title = {An {{Operational Semantics}} for {{Hybrid Systems Involving Behavioral Abstraction}}},
+  booktitle = {Proceedings of the 10th {{International ModelicaConference}}},
+  author = {Bliudze, Simon and Furic, S{\'e}bastien},
+  year = {2014},
+  number = {CONF},
+  pages = {693},
+  publisher = {Link{\"o}ping University Electronic Press, Link{\"o}pings universitet},
+  doi = {10.3384/ECP14096693},
+  url = {https://infoscience.epfl.ch/record/199085},
+  urldate = {2021-06-04},
+  abstract = {We discuss the challenges of building a simulation framework for hybrid systems, in particular the well-known Zeno effect and correct composition of models idealised by abstracting irrelevant behavioural details (e.g. the bounce dynamics of a bouncing ball or the process of fuse melting in an electrical circuit). We argue that the cornerstone of addressing these challenges is the definition of a semantic framework with an appropriate underlying model of time. Using two simple examples, we illustrate the properties of such a model and explain why existing models are not sufficient. Finally, we propose a new Zeno-free semantic model that allows mixing discrete and continuous behaviour in a rigorous way and provides for the compositional behavioural abstraction. Although it is based on non-standard analysis, we explain how our semantic model can be used to develop hybrid system simulators.},
+  isbn = {978-91-7519-380-9},
+  langid = {english}
+}
+
+@inproceedings{bliudzeSoundnessBehaviouralAbstraction2014,
+  title = {On the {{Soundness}} of {{Behavioural Abstraction}} in {{Hybrid Systems}}},
+  booktitle = {Infoscience},
+  author = {Bliudze, Simon and Furic, S{\'e}bastien},
+  year = {2014},
+  number = {POST\_TALK},
+  address = {Cargese, Corsica},
+  url = {https://infoscience.epfl.ch/record/214835},
+  urldate = {2021-06-04},
+  abstract = {We discuss the challenges of building a simulation framework for hybrid systems, in particular the well-known Zeno effect and correct composition of models idealised by abstracting irrelevant behavioural details (e.g. the bounce dynamics of a bouncing ball or the process of fuse melting in an electrical circuit). We argue that the cornerstone of addressing these challenges is the definition of a semantic framework with an appropriate underlying model of time. Using two simple examples, we illustrate the properties of such a model and explain why existing models are not sufficient. Finally, we propose a new Zeno-free semantic model that allows mixing discrete and continuous behaviour in a rigorous way and provides for the compositional behavioural abstraction. Although it is based on non-standard analysis, we explain how our semantic model can be used to develop hybrid system simulators.},
+  langid = {english}
+}
+
+@inproceedings{cellierQuantizedStateSystem,
+  title = {Quantized {{State System Simulation}}},
+  booktitle = {Proceedings of 2008 {{International Simulation Multi-conference}} ({{ISMc}}'08)},
+  author = {Cellier, Fran{\c c}ois E and Kofman, Ernesto and Migoni, Gustavo and Bortolotto, Mario},
+  publisher = {Society for Modeling \& Simulation International},
+  address = {Edinburgh},
+  url = {http://scs.org/wp-content/uploads/2015/10/2008-SummerSim-Mullti-SCS.pdf},
+  abstract = {The paper introduces a new family of numerical ODE solvers called Quantized State System (QSS) methods. Given a set of ODEs in its state-space representation, the QSS methods replace the classic time slicing by a quantization of the states, leading to an asynchronous discrete-event simulation model instead of a discretetime difference equation model.},
+  langid = {english}
+}
+
+@article{dipietroImprovingLinearlyImplicit2019,
+  title = {Improving {{Linearly Implicit Quantized State System Methods}}},
+  author = {Di Pietro, Franco and Migoni, Gustavo and Kofman, Ernesto},
+  year = {2019},
+  month = feb,
+  journal = {SIMULATION},
+  volume = {95},
+  number = {2},
+  pages = {127--144},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0037-5497},
+  doi = {10.1177/0037549718766689},
+  url = {https://doi.org/10.1177/0037549718766689},
+  urldate = {2021-05-13},
+  abstract = {In this article we propose a modification to Linearly Implicit Quantized State System Methods (LIQSS), a family of methods for solving stiff Ordinary Differential Equations (ODEs) that replace the classic time discretization by the quantization of the state variables. LIQSS methods were designed to efficiently simulate stiff systems, but they only work when the system has a particular structure. The proposed modification overcomes this limitation, allowing the algorithms to efficiently simulate stiff systems with more general structures. Besides describing the new methods and their algorithmic descriptions, the article analyzes the algorithms performance in the simulation of some complex systems.},
+  langid = {english}
+}
+
+@article{fernandezStandaloneQuantizedState2014,
+  title = {A Stand-Alone Quantized State System Solver for Continuous System Simulation},
+  author = {Fern{\'a}ndez, Joaqu{\'i}n and Kofman, Ernesto},
+  year = {2014},
+  month = jul,
+  journal = {SIMULATION},
+  volume = {90},
+  number = {7},
+  pages = {782--799},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0037-5497},
+  doi = {10.1177/0037549714536255},
+  url = {https://doi.org/10.1177/0037549714536255},
+  urldate = {2021-05-13},
+  abstract = {This article introduces a stand-alone implementation of the quantized state system (QSS) integration methods for continuous and hybrid system simulation. QSS methods replace the time discretization of classic numerical integration by the quantization of the state variables. These algorithms lead to discrete event approximations of the original continuous systems and show some advantages over classic numerical integration schemes., For simplicity, most implementations of QSS methods were confined to discrete event simulation engines. The problem is that they were not fully efficient, as they wasted much of the computational load in the discrete event simulation mechanism. The stand-alone QSS solver presented here overcomes this problem, improving in more than one order of magnitude the computation times of the previous discrete event implementations., Besides describing the solver structure and functionality, the article analyzes four different models and compares the performance of the new solver with that of the discrete event implementation, and with that of different classic solvers.},
+  langid = {english}
+}
+
+@inproceedings{florosDiscretizingTimeStates2010,
+  title = {{Discretizing Time or States?}},
+  booktitle = {{3rd International Workshop on Equation-Based Object-OrientedModeling Languages and Tools}},
+  author = {Floros, Xenofon and Cellier, Fran{\c c}ois E and Kofman, Ernesto},
+  year = {2010},
+  month = sep,
+  pages = {107--115},
+  publisher = {Link{\"o}ping University Electronic Press},
+  address = {Oslo, Norway},
+  url = {https://ep.liu.se/konferensartikel.aspx?series=ecp&issue=47&Article_No=12},
+  urldate = {2021-06-05},
+  langid = {swedish}
+}
+
+@article{kofmanDiscreteEventSimulation2004,
+  title = {Discrete Event Simulation of Hybrid Systems},
+  author = {Kofman, E.},
+  year = {2004},
+  journal = {SIAM Journal on Scientific Computing},
+  volume = {25},
+  number = {5},
+  pages = {1771--1797},
+  doi = {10.1137/S1064827502418379},
+  abstract = {This paper describes the quantization-based integration methods and extends their use to the simulation of hybrid systems. Using the fact that these methods approximate ordinary differential equations (ODEs) and differential algebraic equations (DAEs) by discrete event systems, it is shown how hybrid systems can be approximated by pure discrete event simulation models (within the DEVS formalism framework). In this way, the treatment and detection of events representing discontinuities - which constitute an important problem for classic ODE solvers - is notably simplified. It can be also seen that the main advantages of quantization-based methods (error control, reduction of computational costs, possibilities of parallelization, sparsity exploitation, etc.) are still verified in the presence of discontinuities. Finally, some examples which illustrate the use and the advantages of the methodology in hybrid systems are discussed.}
+}
+
+@article{kofmanQuantizedstateControlMethod2003,
+  title = {Quantized-State Control: {{A}} Method for Discrete Event Control of Continuous Systems},
+  shorttitle = {Quantized-State Control},
+  author = {Kofman, E.},
+  year = {2003},
+  journal = {Latin American Applied Research},
+  volume = {33},
+  number = {4},
+  pages = {399--406},
+  abstract = {This paper introduces a new method for the digital implementation of controllers designed in continuous time. Through the quantization of its state and input variables the original continuous controller is mapped into a discrete event model within the DEVS formalism framework that can be implemented in a digital device. Under certain conditions on the original continuous control system (CCS), this implementation guarantees regional convergence in finite time of system trajectories to arbitrarily small regions around the equilibrium points even in the presence of A/D and D/A quantization effects. The convergence of the new scheme to the CCS is demonstrated when the quantization width goes to zero. Further, a design algorithm for the digital controller is given, which fulfills specifications of admissible final error and convergence speed. Also discussed is the computational efficiency of the scheme, along practical implementation issues. Two numerical examples are provided illustrating some benefits of the new method.}
+}
+
+@article{kofmanQuantizedstateSystemsDEVS2001,
+  title = {Quantized-State Systems: A {{DEVS Approach}} for Continuous System Simulation},
+  shorttitle = {Quantized-State Systems},
+  author = {Kofman, Ernesto and Junco, Sergio},
+  year = {2001},
+  month = sep,
+  journal = {Transactions of the Society for Computer Simulation International},
+  volume = {18},
+  number = {3},
+  pages = {123--132},
+  issn = {0740-6797},
+  url = {https://dl.acm.org/doi/abs/10.5555/609891.609893},
+  abstract = {A new class of dynamical systems, Quantized State Systems or QSS, is introduced in this paper. QSS are continuous time systems where the input trajectories are piecewise constant functions and the state variable trajectories--being themselves piecewise linear functions--are converted into piecewise constant functions via a quantization function equipped with hysteresis. It is shown that QSS can be exactly represented and simulated by a discrete event model, within the framework of the DEVS-approach. Further, it is shown that QSS can be used to approximate continuous systems, thus allowing their discrete-event simulation in opposition to the classical discrete-time simulation. It is also shown that in an approximating QSS, some stability properties of the original system are conserved and the solutions of the QSS go to the solutions of the original system when the quantization goes to zero.}
+}
+
+@article{kofmanRelativeErrorControl2009,
+  title = {Relative Error Control in Quantization Based Integration},
+  author = {Kofman, E.},
+  year = {2009},
+  journal = {Latin American Applied Research},
+  volume = {39},
+  number = {3},
+  pages = {231--237},
+  abstract = {This paper introduces a method to achieve reltive error control in Quantized State System (QSS) methods. Based on the use of logarithmic quantization, the proposed methodology solves the problem of quantum selection.}
+}
+
+@article{kofmanSecondOrderApproximationDEVS2002,
+  title = {A {{Second-Order Approximation}} for {{DEVS Simulation}} of {{Continuous Systems}}},
+  author = {Kofman, E.},
+  year = {2002},
+  journal = {SIMULATION},
+  volume = {78},
+  number = {2},
+  pages = {76--89},
+  doi = {10.1177/0037549702078002206},
+  abstract = {In this article, based on the methodology of discrete event simulation of continuous systems via quantized state systems (QSS), a new second-order approximation, called second-order quantized state systems (QSS2), is proposed. This new approximation, which satisfies the same stability and convergence properties that were deduced for QSS in previous works, also allows reducing the number of calculations with respect to the former method. It is shown that in the particular case of linear time-invariant (LTI) systems, the QSS2 can be exactly represented by a DEVS model, and in nonlinear systems, an approximated DEVS model can be also obtained. For the LTI case, a closed formula giving the necessary quantization that allows achieving a bound in the error during the whole simulation is deduced. This formula, which stands for both QSS and QSS2 approaches, also proves that for any quantization, the error is always bounded. {\copyright} 2002, Sage Publications. All rights reserved.}
+}
+
+@article{kofmanThirdOrderDiscrete2006,
+  title = {A Third Order Discrete Event Method for Continuous System Simulation},
+  author = {Kofman, E.},
+  year = {2006},
+  journal = {Latin American Applied Research},
+  volume = {36},
+  number = {2},
+  pages = {101--108},
+  abstract = {This paper introduces a new numerical method for integration of ordinary differential equations. Following the idea of quantization based integration, i.e., replacing the time discretization by state quantization, this new method performs a third order approximation allowing to achieve better accuracy than their first and second order predecessors. It is shown that the new algorithm satisfies the same theoretical properties of the previous methods and also shares their main advantages in the integration of discontinuous systems.}
+}
+
+@article{migoniLinearlyImplicitQuantizationbased2013,
+  title = {Linearly Implicit Quantization-Based Integration Methods for Stiff Ordinary Differential Equations},
+  author = {Migoni, Gustavo and Bortolotto, Mario and Kofman, Ernesto and Cellier, Fran{\c c}ois E.},
+  year = {2013},
+  month = jun,
+  journal = {Simulation Modelling Practice and Theory},
+  volume = {35},
+  pages = {118--136},
+  issn = {1569-190X},
+  doi = {10.1016/j.simpat.2013.03.004},
+  url = {https://www.sciencedirect.com/science/article/pii/S1569190X13000403},
+  urldate = {2021-05-13},
+  abstract = {In this paper, new integration methods for stiff ordinary differential equations (ODEs) are developed. Following the idea of quantization-based integration (QBI), i.e., replacing the time discretization by state quantization, the proposed algorithms generalize the idea of linearly implicit algorithms. Also, the implementation of the new algorithms in a DEVS simulation tool is discussed. The efficiency of these new methods is verified by comparing their performance in the simulation of two benchmark problems with that of other numerical stiff ODE solvers. In particular, the advantages of these new algorithms for the simulation of electronic circuits are demonstrated.},
+  langid = {english}
+}
+
+@article{vantendelooEvaluationDEVSSimulation2017,
+  title = {An Evaluation of {{DEVS}} Simulation Tools},
+  author = {Van Tendeloo, Yentl and Vangheluwe, Hans},
+  year = {2017},
+  month = feb,
+  journal = {SIMULATION},
+  volume = {93},
+  number = {2},
+  pages = {103--121},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0037-5497},
+  doi = {10.1177/0037549716678330},
+  url = {https://doi.org/10.1177/0037549716678330},
+  urldate = {2021-05-13},
+  abstract = {DEVS is a popular formalism for modeling complex dynamic systems using a discrete-event abstraction. Owing to its popularity, and the simplicity of the simulation kernel, a number of tools have been constructed by academia and industry. However, each of these tools has distinct design goals and a specific programming language implementation. Consequently, each supports a specific set of formalisms, combined with a specific set of features. Performance differs significantly between different tools. We provide an overview of the current state of eight different DEVS simulation tools: ADEVS, CD++, DEVS-Suite, MS4 Me, PowerDEVS, PythonPDEVS, VLE, and X-S-Y. We compare supported formalisms, compliance, features, and performance. This paper aims to help modelers in deciding which tools to use to solve their specific problems. It further aims to help tool builders, by showing the aspects of their tools that could be extended in future tool versions.},
+  langid = {english}
+}
+
+@inproceedings{zeiglerTheoryQuantizedSystems1998,
+  title = {Theory of Quantized Systems: Formal Basis for {{DEVS}}/{{HLA}} Distributed Simulation Environment},
+  shorttitle = {Theory of Quantized Systems},
+  booktitle = {Enabling {{Technology}} for {{Simulation Science II}}},
+  author = {Zeigler, Bernard P. and Lee, J. S.},
+  year = {1998},
+  month = aug,
+  volume = {3369},
+  pages = {49--58},
+  publisher = {{International Society for Optics and Photonics}},
+  doi = {10.1117/12.319354},
+  url = {https://www.spiedigitallibrary.org/conference-proceedings-of-spie/3369/0000/Theory-of-quantized-systems--formal-basis-for-DEVS-HLA/10.1117/12.319354.short},
+  urldate = {2021-06-05},
+  abstract = {In the context of a DARPA ASTT project, we are developing an HLA-compliant distributed simulation environment based on the DEVS formalism. This environment will provide a user- friendly, high-level tool-set for developing interoperable discrete and continuous simulation models. One application is the study of contract-based predictive filtering. This paper presents a new approach to predictive filtering based on a process called 'quantization' to reduce state update transmission. Quantization, which generates state updates only at quantum level crossings, abstracts a sender model into a DEVS representation. This affords an alternative, efficient approach to embedding continuous models within distributed discrete event simulations. Applications of quantization to message traffic reduction are discussed. The theory has been validated by DEVSJAVA simulations of test cases. It will be subject to further test in actual distributed simulations using the DEVS/HLA modeling and simulation environment.}
+}

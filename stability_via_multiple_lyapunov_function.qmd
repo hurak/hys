@@ -1,5 +1,346 @@
 ---
-title: "Multiple Lyapunov function"
+title: "Stability via multiple Lyapunov functions"
+bibliography: ref_hybrid.bib
+#csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+#engine: julia
 ---
 
-About this site
+## Example: CQLF cannot be found
+
+::: {.notes}
+Example 4.11 from Lin & Antsaklis (2022)
+:::
+
+## Multiple Lyapunov Function (MLF) approach to analysis of stability {.scrollable}
+
+- Not just a single common Lyapunov function $V(\bm x)$.
+- Instead, several Lyapunov-like functions $V_i(\bm x),\; i=1,\ldots,r,$ that are Lyapunov on some subsets of the state space $\Omega_i$.
+- Stitch them together to form
+$$
+V(x) =
+\begin{cases}
+V_1(x) & \text{if } x\in \Omega_1, \\
+\vdots\\
+V_r(x) & \text{if } x\in \Omega_r, \\
+\end{cases}
+$$
+
+## S-procedure {.scrollable}
+
+- A result about solvability of two or more quadratic inequalities, not necessarily convex ones. 
+    - For convex problems we have nonlinear Farkas' lemma.
+
+- Origin in the control theory (analysis of stability of nonlinear systems, hence the S letter) with the first rigorous result provided by Yakubovich in 1970s.
+
+- It gives conditions under which (satisfaction of) one quadratic inequality follows from (satisfaction of) another one (or more), that is, it gives a condition under which the following implication holds:
+
+- Quadratic inequality #1 satisfied by some $x$ $\Rightarrow$ Quadratic inequality #0 satisfied by the same $x$.
+
+- In other words, it gives a condition under which the solution set of the inequality #1 denoted as $\mathcal X_1$ is included in the solution set $\mathcal X_0$ of the inequality #0.
+
+## S-procedure with nonstrict inequalities {.scrollable}
+
+- Consider the general quadratic functions 
+$$F_i(x) = x^\top A_i x + 2b_i^\top x + c_i, \; i=0,\ldots, p.$$ 
+- Question: under which conditions $F_0(x) \geq 0$ for all $x$ satisfying $F_i(x)\geq 0,\; i=1,\ldots,p$ ?
+- In other words, we are looking for conditions under which the implication 
+$$
+F_i(x) \geq 0,\; i=1,\ldots,p \quad \Rightarrow \quad F_0(x) \geq 0 
+$$   
+holds.  
+
+- In the simplest (yet relevant) case $n=1$ we search for conditions under which $F_0(x) \geq 0$ for all $x$ satisfying $F_1(x)\geq 0$, 
+- that is, conditions under which the implication
+$$
+F_1(x) \geq 0 \quad \Rightarrow \quad F_0(x) \geq 0 
+$$   
+holds.  
+	
+## Sufficient conditions {.scrollable}
+
+The existence of $\alpha_i\geq 0,\; i=1,\ldots,p$ such that
+$$
+F_0(x)-\sum_{i=1}^p \alpha_i F_i(x) \geq 0.
+$$ 	  
+
+- Generally not necessary, the condition is conservative.  
+- It can be formulated as an LMI
+$$
+\begin{bmatrix}
+A_0 & b_0 \\
+b_0^\top & c_0
+\end{bmatrix} -
+\sum_{i=1}^p
+\alpha_i
+\begin{bmatrix}
+A_i & b_i \\
+b_i^\top & c_i
+\end{bmatrix} 
+\succeq 0
+$$	
+where $\alpha_i \geq 0,\; i=1,\ldots,p$.
+
+## Sufficient and also necessary {.scrollable}
+
+- It is nontrivial that for $p=1$ it is also necessary, provided that there is some $x_0$ such that $F_1(x_0)>0$ . 
+
+- Then we have the following equivalence between the two constraints:
+$$
+\begin{aligned}
+F_0(x) &\geq 0 \; \forall x \;\mathrm{satisfying}\; F_1(x)\geq 0 \\ 
+&\Longleftrightarrow \\
+F_0(x)-\alpha F_1(x) &\geq 0,\;\text{for some}\; \alpha\in\mathbb{R}, \; \alpha\geq 0,
+\end{aligned}
+$$ 	  
+
+- which again can be formulated as an LMI, namely   
+$$
+\begin{bmatrix}
+A_0 & b_0 \\
+b_0^\top & c_0
+\end{bmatrix} - \alpha
+\begin{bmatrix}
+A_1 & b_1 \\
+b_1^\top & c_1
+\end{bmatrix} 
+\succeq 0,\quad \alpha\geq 0.
+$$
+      
+
+## More on S-procedure {.scrollable}
+
+- There are several variants
+    - strict, nonstrict or mixed inequalities, 
+    - just two or more, 
+    - some of the constraints can be equations.
+
+- Literature (freely available online)
+    - Boyd, S., El Ghaoui, L., Feron, E., Balakrishnan, V., 1994. Linear Matrix Inequalities in System and Control Theory.  SIAM. Pages 23 and 24.
+    - Boyd, S., Vandenberghe, L., 2004. Convex Optimization. Cambridge University Press. Page 655.
+
+## Piecewise quadratic Lyapunov function
+
+- Quadratic Lyapunov-like functions, that is, quadratic functions $V_i(\bm x) = \bm x^\top \mathbf P_i \bm x$ that qualify as Lyapunov functions only on respective subsets $\Omega_i\sub \mathbb R^n$:
+
+. . .
+
+$$
+V_i(\bm x) = \bm x^\top \mathbf P_i \bm x > 0\quad \forall \;\bm x\in \Omega_i
+$$	
+
+. . .
+
+$$
+\dot V_i(\bm x) = \bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x < 0\quad \forall \;\bm x\in \Omega_i
+$$
+
+## Using comparison functions and nonstrict inequalities
+
+. . .
+
+$$
+\alpha_1 \bm x^\top \mathbf I \bm x \leq \bm x^\top \mathbf P_i \bm x \leq \alpha_2 \bm x^\top \mathbf I \bm x \quad \forall \;\bm x\in \Omega_i
+$$
+
+. . .
+
+$$
+\bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x \leq  -\alpha_3 \bm x^\top \mathbf I \bm x\quad \forall \;\bm x\in \Omega_i
+$$ 
+
+## Characterization of subsets of state space using LMI {.scrollable}
+
+- Some subsets $\Omega_i\sub \mathbb R^n$ characterized using linear and quadratic inequalities can be formulated as within the LMI framework as
+$$
+	  \bm x^\top \mathbf Q_i \bm x \geq 0.
+$$ 
+- In particular, centered ellipsoids and cones.
+
+- For example,  
+$$
+\begin{aligned}
+\Omega_i &= \{\bm x \in \mathbb R^n \mid (\mathbf c^\top \bm x \geq 0 \land \mathbf d^\top \bm x \geq 0) \\
+& \qquad \qquad \qquad \lor (\mathbf c^\top \bm x \leq 0 \land \mathbf d^\top \bm x \leq 0)\}.
+\end{aligned}
+$$		
+
+- This constraint can be reformulated as
+$$
+(\mathbf c^\top \bm x) (\mathbf d^\top \bm x) \geq 0,
+$$		
+
+- which can be reformatted to 
+$$
+\bm x^\top \mathbf c \mathbf d^\top \bm x \geq 0,
+$$		
+
+- which can further be symmetrized to
+$$
+\bm x^\top \left(\frac{\mathbf c \mathbf d^\top + \mathbf d \mathbf c^\top}{2}\right) \bm x \geq 0.
+$$	
+
+- More general sets (general polyhedra, noncentered ellipsoids) can also be modelled using LMI too... 
+
+## Combining the subset characterization and Lyapunov-ness using the S-procedure {.scrollable}
+
+. . .
+
+$$
+\alpha_i \bm x^\top \mathbf I \bm x \leq \bm x^\top \mathbf P_i \bm x,
+$$
+
+. . .
+
+$$
+\bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x \leq  -\gamma_i \bm x^\top \mathbf I \bm x,
+$$
+
+. . .
+
+both for all $\bm x\in \Omega_i$, that is, all $\bm x$ such that $\bm x^\top \mathbf Q_i \bm x \geq 0$.
+
+. . .
+
+$$
+\mathbf P_i - \alpha_i \mathbf I - \mu_i \mathbf Q_i \succeq 0,\quad \mu_i \geq 0,\; \alpha_i > 0,
+$$ 
+
+. . .
+
+$$
+\mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i + \gamma_i \mathbf I + \xi_i \mathbf Q \preceq 0,\quad \mu_i \geq 0,\; \gamma_i > 0.
+$$
+
+## More general sets {.scrollable}
+
+. . .
+
+$$
+\bm x^\top \mathbf Q \bm x + 2\mathbf r^\top \bm x + s \geq 0
+$$
+
+. . .
+
+$$
+\begin{bmatrix}
+\bm x^\top & 1
+\end{bmatrix}
+\underbrace{
+\begin{bmatrix}
+\mathbf Q & \mathbf r \\ \mathbf r^\top & s
+\end{bmatrix}}_{\bar{\mathbf{Q}}}
+\underbrace{
+\begin{bmatrix}
+\bm x \\ 1
+\end{bmatrix}}_{\bar{\bm x}}
+\geq 0
+$$ 
+
+. . .
+
+$$
+\begin{bmatrix}
+\mathbf Q & \mathbf r \\ \mathbf r^\top & s
+\end{bmatrix}
+\succeq 0
+$$
+
+## Example: affine subspace
+
+. . .
+
+$$
+\mathbf c^\top \bm x + d \geq 0
+$$
+
+. . .
+
+$$
+\begin{bmatrix}
+\bm x^\top & 1
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf 0 & \mathbf c \\ \mathbf c^\top & 2d
+\end{bmatrix}
+\begin{bmatrix}
+\bm x \\ 1
+\end{bmatrix}
+\geq 0
+$$
+
+. . .
+
+$$
+\begin{bmatrix}
+\mathbf 0 & \mathbf c \\ \mathbf c^\top & 2d
+\end{bmatrix}
+\succeq 0
+$$
+
+## But then the Lyapunov-like functions and system matrices must also be extended
+
+. . .
+
+$$
+V(\bm x) =
+\begin{bmatrix}
+\bm x^\top & 1
+\end{bmatrix}
+\underbrace{
+\begin{bmatrix}
+\mathbf P & \mathbf P_{12} \\ \mathbf P_{12} & P_{22}
+\end{bmatrix}}_{\bar{\mathbf P}}
+\begin{bmatrix}
+\bm x \\ 1
+\end{bmatrix}
+$$
+
+. . .
+
+$$
+\bar{\mathbf{A}} =
+\begin{bmatrix}
+\mathbf A & \mathbf 0 \\ \mathbf 0 & 0
+\end{bmatrix}
+$$
+
+## Continuity conditions {.scrollable}
+
+- The boundary between the regions $\Omega_i$ and $\Omega_j$ described by 
+$$
+\Omega_{ij} = \{\bm x \in \mathbb R^n \mid \mathbf F_{ij} \bm z + \mathbf{l}_{ij}\},
+$$
+where $\bm z\in \mathbb R^p$, $\mathbf F_{ij}\in \mathbb R^{n\times p}$, and $\mathbf l_{ij}\in \mathbb R^{n}$. 
+
+- The continuity conditions are
+$$
+V_i(\bm x) = V_j(\bm x) \quad \forall \bm x \in \Omega_{ij}, 
+$$
+
+- which can be reformulated as
+$$
+\begin{aligned}
+&\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \mathbf P_i \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) \\
+& \qquad + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_i + r_i \\
+&= \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \mathbf P_j \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) \\
+& \qquad + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_j + r_j
+\end{aligned}.
+$$
+
+- Collecting the terms with equal powers of $\bm z$.
+$$
+\begin{aligned}
+\mathbf F_{ij}^\top (\mathbf P_1 - \mathbf P_2) \mathbf F_{ij} &= 0, \\
+\mathbf F_{ij}^\top (\mathbf P_1 - \mathbf P_2) \mathbf l_{ij} + (\mathbf q_1-\mathbf q_2)  &= 0, \\
+\mathbf l_{ij}^\top (\mathbf P_1 - \mathbf P_2)\mathbf l_{ij} + 2\mathbf l_{ij}^\top (\mathbf q_1-\mathbf q_2) + r_1-r_2 &= 0.
+\end{aligned}
+$$
+

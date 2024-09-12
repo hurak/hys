@@ -1,0 +1,20 @@
+---
+title: "Literature"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_mpc.bib
+    - ref_integer_and_mixed_integer.bib
+csl: ieee-control-systems.csl
+format:
+    html     
+---
+
+The MLD description of discrete-time hybrid systems was originally introduced in @bemporadControlSystemsIntegrating1999, but perhaps even more accessible introduction is in Chapter 16 of the freely downloadable book @borrelliPredictiveControlLinear2017. In our text here we followed their expositions.
+
+Just in case some issues are still unclear, in particular those related to the connection between the constraints (inequalities) imposed on continuous (aka real) variables and logical conditions imposed on binary variable, you may like the little bit more formal discussion in Section 2.2 of the thesis @mignoneControlEstimationHybrid2002. Strictly speaking, this use of binary (0-1 integer) variables to encode some constraints on real variables is standard in optimization and is described elsewhere – search for *indicator variables* or *indicator constraints*. A recommendable general resource is the book (unfortunately not available online) @williamsModelBuildingMathematical2013, in particular its section 9.1.3 on Indicator variables.
+
+All the theoretical concepts and procedures introduced in this lecture (and in those corresponding papers and books) are straightforward but rather tedious to actually implement. There is a HYSDEL language for modelling hybrid systems (discrete hybrid automata as considered in this lecture) that automates these procedures. The HYSDEL language is described not only in the documentation but also in the dedicated paper @torrisiHYSDELToolGenerating2004, which can also serve as a learning resource for the topic.
+
+### Case studies
+
+Batch evaporator @bemporadDiscretetimeHybridModeling2001 and @kowalewskiBatchEvaporatorBenchmark1998.

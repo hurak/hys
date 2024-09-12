@@ -1,0 +1,16 @@
+---
+title: "Software"
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+#engine: julia
+---
+
+There is a well-developed and actively maintained Matlab toolbox
+
+- Sanfelice, Ricardo, and Pablo Nanez. ‘Hybrid Equations (HyEQ) Toolbox for Matlab’. Version 3.0, 15 October 2022. [https://github.com/pnanez/HyEQ_Toolbox](https://github.com/pnanez/HyEQ_Toolbox). Documentation at [https://hyeq.github.io](https://hyeq.github.io). 
+
+The toolbox can also be installed directly from Matlab through their Add-Ons Explorer. As the stable version is already two years old and they also offer a beta version 3.1.0.04, which was last updated on April 28, 2024, the beta version seems the way to go for our purposes. The authors will certainly appreciate any feedback.
+
+Other programming languages seem to be missing a similar toolbox/package. How about developing one in Julia?

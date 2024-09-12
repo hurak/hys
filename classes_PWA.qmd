@@ -1,0 +1,104 @@
+---
+title: "Piecewise affine (PWA) systems"
+bibliography: 
+    - ref_PWA.bib
+    - ref_PWA_approx.bib
+#csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig 
+#engine: julia
+---
+
+This is a subclass of switched systems where the functions on the right-hand side of the differential equations are affine functions of the state. For some (historical) reason these systems are also called *piecewise linear* (PWL).
+
+We are going to restrict ourselves to state-driven switching.
+
+First, we consider the autonomous case, that is, systems without inputs: 
+$$
+\dot{\bm x} 
+= 
+\begin{cases}
+\bm A_1 \bm x + \bm b_1, & \mathrm{if}\, \bm H_1 \bm x + \bm g_1 \leq 0,\\
+\vdots\\
+\bm A_m \bm x + \bm b_m, & \mathrm{if}\, \bm H_m \bm x + \bm g_m \leq 0.
+\end{cases}
+$$
+
+The nonautonomous case of systems with inputs is then:
+$$
+\dot{\bm x} 
+= 
+\begin{cases}
+\bm A_1 \bm x + \bm B_1 u + \bm c_1, & \mathrm{if}\, \bm H_1 \bm x + \bm g_1 \leq 0,\\
+\vdots\\
+\bm A_m \bm x + \bm B_m + \bm c_m, & \mathrm{if}\, \bm H_m \bm x + \bm g_m \leq 0.
+\end{cases}
+$$
+
+::: {#exm-saturated-state-feedback}
+## Linear system with saturated linear state feedback
+In this example we consider a linear system with a saturated linear state feedback as in @fig-saturated-state-feedback.
+
+![Linear system with a saturated linear state feedback](classes_figures/saturated_state_feedback.png){width=50% #fig-saturated-state-feedback}
+
+The state equations for the close-loop system are
+$$
+\dot{\bm x} = \bm A\bm x + \bm b \,\mathrm{sat}(v), \quad v = \bm k^T \bm x,
+$$
+which can be reformulated as a piecewise affine system
+$$
+\dot{\bm x} = 
+\begin{cases}
+\bm A \bm x - \bm b, & \mathrm{if}\, \bm x \in \mathcal{X}_1,\\
+(\bm A + \bm b \bm k^\top )\bm x, & \mathrm{if}\, \bm x \in \mathcal{X}_2,\\
+\bm A \bm x + \bm b, & \mathrm{if}\, \bm x \in \mathcal{X}_3,\\
+\end{cases}
+$$
+where the partitioning of the space of control inputs is shown in @fig-saturated-state-feedback-partitioning.
+
+![Partitioning the control input space](classes_figures/saturated_state_feedback_partitioning.png){width=50% #fig-saturated-state-feedback-partitioning}
+
+Expressed in the state space, the partitioning is
+$$
+\begin{aligned}
+\mathcal{X}_1 &= \{\bm x \mid \bm H_1\bm x + g_1 \leq 0\},\\
+\mathcal{X}_2 &= \{\bm x \mid \bm H_2\bm x + \bm g_2 \leq 0\},\\
+\mathcal{X}_3 &= \{\bm x \mid \bm H_3\bm x + g_3 \leq 0\},
+\end{aligned}
+$$
+where
+$$
+\begin{aligned}
+\bm H_1 &= \bm k^\top, \quad g_1 = 1,\\
+\bm H_2 &= \begin{bmatrix}-\bm k^\top\\\bm k^\top\end{bmatrix}, \quad \bm g_2 = \begin{bmatrix}-1\\-1\end{bmatrix},\\
+\bm H_3 &= -\bm k^\top, \quad g_3 = 1.
+\end{aligned}
+$$
+:::
+
+## Approximation of smooth systems
+
+While the example with the saturated linear state feedback can be modelled as a PWA system exactly, there are many practical cases, in which the system is not exactly PWA affine but we want to approximate it as such.
+
+::: {#exm-smooth-approximation}
+## Smooth system approximated by a PWA system
+Consider the following nonlinear system
+$$
+\begin{bmatrix}
+\dot x_1\\\dot x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+x_2\\
+-x_2 |x_2| - x_1 (1+x_1^2)
+\end{bmatrix}
+$$
+
+Our task is to approximate this system by a PWA system. Equivalently, we need to find a PWA approximation for the right-hand side function.
+
+:::

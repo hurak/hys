@@ -1,0 +1,24 @@
+---
+title: "Software"
+---
+
+Petri nets constitute a powerful and flexible framework for modelling discrete-event systems, and yet the selection of mature and well-maintained software tools is not particularly wide. How come? Petri nets have already inspired a few other frameworks such as Grafcet and SFC for PLC programming, as we discuss in the [overview of the literature](petri_nets_references.qmd). The "vanilla version" of Petri nets then serves mainly for academic research.
+
+## Matlab
+
+- [Petri Net Toolbox](http://www.pntool.ac.tuiasi.ro) (probably commercial, not immediately available for download)
+
+## Python
+
+[SNAKES](https://snakes.ibisc.univ-evry.fr) ([github](https://github.com/fpom/snakes))
+
+## Julia
+
+- [Petri.jl](https://github.com/AlgebraicJulia/Petri.jl)
+- [AlgebraicPetri.jl](https://github.com/AlgebraicJulia/AlgebraicPetri.jl)
+- [TimedPetriNetEditor.jl](https://github.com/Lecrapouille/TimedPetriNetEditor)
+
+## Standalone
+
+- [TimedPetriNetEditor](https://github.com/Lecrapouille/TimedPetriNetEditor)
+- [pn-editor](https://gitlab.com/porky11/pn-editor) (It uses pnrs, a safe rust wrapper for pns written in C)

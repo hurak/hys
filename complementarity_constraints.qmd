@@ -1,21 +1,29 @@
 ---
 title: "Complementarity constraints"
+bibliography: ref_hybrid.bib
+#csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+#engine: julia
 ---
 
 ## Why complementarity constraints?
 
-Yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms, is based on complementaristy constraints. Before we introduce that modelling framework in the next section, we first explain the very concept of complementarity constraints.
+In this chapter we are going to present yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms. It is based on *complementarity constraints*. Before we introduce the modelling framework in the next section, we first explain the very concept of complementarity constraints and the related optimization problems.
 
 ## Definition of complementarity constraints
 
-Two variables $x\in\mathbb R$ and $y\in\mathbb R$ satisfy the complementarity constraint if $x$ or $y$ is equal to zero and both are nonnegative 
+Two variables $x\in\mathbb R$ and $y\in\mathbb R$ satisfy the c*omplementarity constraint* if $x$ or $y$ is equal to zero and both are nonnegative 
 
 $$xy=0, \; x\geq 0,\; y\geq 0,$$  
 
-or, using a dedicated compact notation:  
+or, using a dedicated compact notation  
 $$\boxed{0\leq x \perp y \geq 0.}$$
 
 ::: {.callout-warning}
@@ -28,4 +36,142 @@ $$\boxed{\bm 0\leq \bm x \perp \bm y \geq \bm 0.}$$
 
 ## Geometric interpretation of complementarity constraints 
 
-The set of admissible pairs $(x,y)$ in the $\mathbb R^2$ plane is constrained to the L-shaped subset given by the nonnegative $x$ and $y$ semi-axes (including the origin). The set is obviously nonconvex.
+The set of admissible pairs $(x,y)$ in the $\mathbb R^2$ plane is constrained to the L-shaped subset given by the nonnegative $x$ and $y$ semi-axes (including the origin). 
+
+![The set of solutions satisfying a complementarity constraint](complementarity_figures/l_shaped_complementarity_set.png){width=30%}
+
+Optimization over these constraints is difficult, and not only because the feasible set is nonconvex, but also because *constraint qualification* conditions are not satisfied. Still, some results and tools are available for some classes of optimization problems with these constraints.
+
+## Linear complementarity problem (LCP) {.scrollable}
+
+For a given square matrix $\mathbf M$ and a vector $\mathbf q$ , the *linear complementarity problem* (LCP) asks for finding two vectors $\bm w$ and $\bm z$ satisfying
+$$
+  \begin{aligned}
+  \bm w-\mathbf M\bm z &= \mathbf q \\
+  \bm 0 \leq \bm w &\perp \bm z \geq \bm 0.
+  \end{aligned}
+$$
+
+Just by moving all the provided data to the right hand side we get
+$$
+  \begin{aligned}
+  \bm w &= \underbrace{\mathbf M\bm z + \mathbf q}_{\mathbf f(\bm z)} \\
+  \mathbf 0 \leq \mathbf f(\bm z) &\perp \bm z \geq \mathbf 0,
+  \end{aligned}
+$$  
+from which we can immediately guess how the linear problem needs to be modified so that we get a *nonlinear complementarity problem* (NLCP).  
+
+## Existence of a unique solution 
+
+A unique solution exists for every vector $\mathbf q$ if and only if the matrix $\mathbf M$ is a P-matrix (something like positive definite, but not exactly, look it up yourself).
+
+## LCP related to LP and QP {.scrollable}
+
+Note that the KKT conditions for LP and QP come in the form of LCP.
+
+Consider the QP problem with inequality constraints
+$$\text{minimize} \quad \frac{1}{2}\bm x^\top \mathbf Q \bm x + \mathbf c^\top \bm x$$ $$\text{subject to} \quad \mathbf A\bm x \geq \mathbf b,\quad \bm x\geq \mathbf 0,$$	
+
+The KKT conditions can be written (and compare these to the conditions for the equality-constrained QP)
+$$
+\begin{aligned}
+\mathbf 0\leq \bm x &\perp \mathbf Q\bm x - \mathbf A^\top \bm \lambda + \mathbf c \geq \mathbf 0\\
+\mathbf 0\leq \bm \lambda &\perp \mathbf A\bm x -\mathbf b \geq \mathbf 0.
+\end{aligned}
+$$	
+
+These can be reformatted as
+$$
+\mathbf 0\leq \underbrace{\begin{bmatrix}\bm x\\ \bm \lambda\end{bmatrix}}_{\bm z} 
+\perp
+\underbrace{\begin{bmatrix} \mathbf Q & -\mathbf A^\top \\ \mathbf A & \mathbf 0\end{bmatrix}\begin{bmatrix}\bm x\\ \bm \lambda\end{bmatrix} + \begin{bmatrix} \mathbf c \\ -\mathbf b \end{bmatrix}}_{\mathbf M\bm z+\mathbf q}\geq 0.$$ 
+
+## Nonlinear complementarity problem
+
+Given a vector function $\mathbf f: \mathbb R^n\rightarrow \mathbb R^n$, find a vector $\bm x\in\mathbb R^n$ satisfying
+$$
+\bm 0\leq \bm x \perp \mathbf f(\bm x) \geq \bm 0.
+$$
+
+## Mixed complementarity problem (MCP) {.scrollable}
+
+An extension of complementarity constraint to the situation in which the variable $x$ is lower- and upper-bounded. In particular, it can be stated as
+$$
+  l \leq x \leq u \perp f(x).
+$$  
+
+The convention for interpretation is
+
+- If $x$ is strictly within the interval, that is, $l < x < u$ , then $f(x)=0$,
+- If $x=l$ , then $f(x)\geq 0$ ,
+- if $x=u$ , then $f(x)\leq 0$ .
+
+## Extended linear complementarity problem (ELCP) {.scrollable}
+
+Given some matrices $\mathbf A$ and $\mathbf B$ , vectors $\mathbf c$ and $\mathbf d$ , and $m$ subsets $\phi_j \sub \{1,2,\ldots,p\}$ , find a vector $\bm x$ such that
+$$
+  \begin{aligned}
+  \sum_{j=1}^m\prod_{i\in\phi_j}(\mathbf A\bm x - \mathbf c)_i &= 0,\\
+  \mathbf A\bm x &\geq \mathbf c,\\
+  \mathbf B\bm x &= \mathbf d,
+  \end{aligned}
+$$  
+or show that no such $\bm x$ exists.
+
+The first equation is equivalent to 
+$$
+\forall j \in \{1, \ldots, m\} \; \exist i \in \phi_j \;\text{such that} \; (\mathbf A\bm x − \mathbf c)_i = 0.
+$$
+
+Geometric interpretation: union of some faces of a polyhedron.
+
+## Mathematical program with complementarity constraints (MPCC)
+
+The mathematical program with complementarity constraints (MPCC) is 
+$$
+  \begin{aligned}
+  \operatorname*{minimize}_{\bm x\in\mathbb R^n} & \;f(\bm x)\\
+  \text{subject to} & \;0\leq h(\bm x) \perp g(\bm x) \geq 0.
+  \end{aligned}
+$$
+
+Special case of *Mathematical program with equilibrium constraints (MPEC)*.
+
+## Mathematical program with equilibrium constraints (MPEC)
+
+Optimization problem in which some variable should satisfy equilibrium constraints:
+$$
+  \begin{aligned}
+  \min_{x_1,x_2} &\; f(x_1,x_2)\\
+  \text{subject to}&\; \nabla_{x_2} \phi(x_1,x_2) = 0
+  \end{aligned}
+$$
+
+For convex $\phi()$ it can be reformulated into a *Bilevel optimization* problem.
+
+## Bilevel optimization
+
+Optimization problem in which some variables are constrained to be results of some inner optimization.
+In the simplest form
+$$
+\begin{aligned}
+  \min_{x_1,x_2} &\; f(x_1,x_2)\\
+  \text{s. t.}\ &\; x_2 = \text{arg}\,\min_{x_2} \;\phi(x_1,x_2)
+\end{aligned}
+$$
+
+## Disjunctive constraints
+
+A number of affine constraints combined with $\lor$ and $\land$ logical operators.
+
+$$
+T_1 \lor T_2 \lor \ldots \lor T_m,
+$$
+where 
+$$
+T_i = T_{i1} \land T_{i1} \land \ldots \land T_{in_{i}},
+$$ 
+where 
+$$
+T_{ij} = c_{ij}x + d_{ij} \in \mathcal D_{ij}.
+$$

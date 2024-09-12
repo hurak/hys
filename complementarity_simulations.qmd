@@ -1,0 +1,427 @@
+---
+title: "Simulations using complementarity"
+bibliography: ref_hybrid.bib
+#csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+#engine: julia
+---
+
+## Simulation using time-stepping
+
+$$
+\begin{aligned}
+\dot x_1 &= -\operatorname{sign} x_1 + 2 \operatorname{sign} x_2\\
+\dot x_2 &= -2\operatorname{sign} x_1 -\operatorname{sign} x_2
+\end{aligned}
+$$
+
+```{julia}
+f₁(x) = -sign(x[1]) + 2*sign(x[2])
+f₂(x) = -2*sign(x[1]) - sign(x[2])
+f(x) = [f₁(x), f₂(x)]
+
+using CairoMakie
+fig = Figure(resolution = (800, 800),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)
+fig
+```
+
+```{julia}
+using DifferentialEquations
+
+function f!(dx,x,p,t)
+    dx[1] = -sign(x[1]) + 2*sign(x[2])
+    dx[2] = -2*sign(x[1]) - sign(x[2])
+end
+
+x0 = [-1.0, 1.0]
+tfinal = 2.0
+tspan = (0.0,tfinal)
+prob = ODEProblem(f!,x0,tspan)
+sol = solve(prob)
+
+using Plots
+Plots.plot(sol,xlabel="t",ylabel="x",label=false,lw=3)
+```
+
+```{julia}
+Plots.plot(sol[1,:],sol[2,:],xlabel="x₁",ylabel="x₂",label=false,aspect_ratio=:equal,lw=3,xlims=(-1.2,0.5))
+```
+
+## Example continued: how fast does the solution approach the origin? {.scrollable}
+
+- Let's use the 1-norm $\|\bm x\|_1 = |x_1| + |x_2|$ to measure how far the trajectory is from the origin.
+- How fast does the trajectory converge to the origin? That, is
+$$
+\frac{\mathrm d}{\mathrm dt}\|\bm x\|_1 = ?
+$$
+- Consider each quadrant separately. Let's start in the first (upper right) quadrant, that is, $x_1>0$ and $x_2>0$, and therefore $|x_1| = x_1, \;|x_2| = x_2$, and therefore
+
+. . .
+
+$$
+\frac{\mathrm d}{\mathrm dt}\|\bm x\|_1 = \dot x_1 + \dot x_2 = 1 - 3 = -2.
+$$
+
+- Identical in the other quadrants. And undefined on the axes.
+- The trajectory will hit the origin in finite time: 
+	- For $x_1(0) = 1$ and $x_2(0) = 1$ , the trajectory hits the origin at $t=(|x_1(0)|+|x_2(0)|)/2 = 1$.
+- But with an infinite number of revolutions around the origin...
+
+- How will a standard algoritm for numerical simulation handle this?
+
+## Forward Euler with fixed step size {.scrollable}
+$$
+\begin{aligned}
+{\color{blue}x_{1,k+1}} &= x_{1,k} + h (-\operatorname{sign} x_{1,k} + 2 \operatorname{sign} x_{2,k})\\
+{\color{blue}x_{2,k+1}} &= x_{1,k} + h (-2\operatorname{sign} x_{1,k} - \operatorname{sign} x_{2,k})
+\end{aligned}
+$$
+
+```{julia}
+f(x) = [-sign(x[1]) + 2*sign(x[2]), -2*sign(x[1]) - sign(x[2])]
+
+using LinearAlgebra
+N = 1000
+x₀ = [-1.0, 1.0]    
+x = [x₀]
+tfinal = norm(x₀,1)/2
+tfinal = 5.0
+h = tfinal/N 
+t = range(0.0, step=h, stop=tfinal)
+
+for i=1:N
+    xnext = x[i] + h*f(x[i]) 
+    push!(x,xnext)
+end
+
+X = [getindex.(x, i) for i in 1:length(x[1])]
+
+Plots.plot(t,X,lw=3,label=false,xlabel="t",ylabel="x")
+```
+
+## Backward Euler
+$$
+\begin{aligned}
+{\color{blue} x_{1,k+1}} &= x_{1,k} + h (-\operatorname{sign} {\color{blue}x_{1,k+1}} + 2 \operatorname{sign} {\color{blue}x_{2,k+1}})\\
+{\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2\operatorname{sign} {\color{blue}x_{1,k+1}} - \operatorname{sign} {\color{blue}x_{2,k+1}})
+\end{aligned}
+$$
+
+## Formulation using LCP {.scrollable} 
+
+- Instead solving the above nasty equations, introduce new variables $u_1$ and $u_2$ as the outcomes of the $\operatorname{sign}$ functions:
+$$
+\begin{aligned}
+{\color{blue} x_{1,k+1}} &= x_{1,k} + h (-{\color{blue}u_{1}} + 2 {\color{blue}u_{2}})\\
+{\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2{\color{blue}u_{1}} - {\color{blue}u_{2}})
+\end{aligned}
+$$
+
+- But now we have to enforce the **relation** between $\bm u$ and $\bm x_{k+1}$.
+- Recall the standard definition of the $\operatorname{sign}$ function:
+$$
+\operatorname{sign}(x) = \begin{cases}
+1 & x>0\\
+0 & x=0\\
+-1 & x<0
+\end{cases}
+$$
+
+- Change the definition to a set-valued function
+$$
+\begin{cases}
+\operatorname{sign}(x) = 1 & x>0\\
+\operatorname{sign}(x) \in [-1,1] & x=0\\
+\operatorname{sign}(x) = -1 & x<0
+\end{cases}
+$$
+
+- Accordingly, set the relation between $\bm u$ and $\bm x$
+$$
+\begin{cases}
+u_1 = 1 & x_1>0\\
+u_1 \in [-1,1] & x_1=0\\
+u_1 = -1 & x_1<0
+\end{cases}
+$$
+and
+$$
+\begin{cases}
+u_2 = 1 & x_2>0\\
+u_2 \in [-1,1] & x_2=0\\
+u_2 = -1 & x_2<0
+\end{cases}
+$$
+
+- But these are *mixed complementarity contraints*!
+$$
+\begin{aligned}
+\begin{bmatrix}
+{\color{blue} x_{1,k+1}}\\
+{\color{blue} x_{1,k+1}}
+\end{bmatrix}
+ &= 
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix} + h 
+\begin{bmatrix}
+-1 & 2 \\
+-2 & -1
+\end{bmatrix}
+\begin{bmatrix}
+{\color{blue}u_{1}}\\
+{\color{blue}u_{2}}
+\end{bmatrix}\\
+-1 \leq {\color{blue} u_1} \leq 1 \quad &\bot \quad -{\color{blue}x_{1,k+1}}\\
+-1 \leq {\color{blue} u_2} \leq 1 \quad &\bot \quad -{\color{blue}x_{2,k+1}}
+\end{aligned}
+$$
+
+## 9 possible combinations {.scrollable}
+
+- Let's explore some: $x_{1,k+1} = x_{2,k+1} = 0$, while $u_1 \in [-1,1]$ and $u_2 \in [-1,1]$:
+
+. . .
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+0\\
+0
+\end{bmatrix}
+ &= 
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix} + h 
+\begin{bmatrix}
+-1 & 2 \\
+-2 & -1
+\end{bmatrix}
+\begin{bmatrix}
+{\color{blue}u_{1}}\\
+{\color{blue}u_{2}}
+\end{bmatrix}\\
+& -1 \leq {\color{blue} u_1} \leq 1,  \quad -1 \leq {\color{blue} u_2} \leq 1
+\end{aligned}
+$$
+
+- How does the set of states from which the next state is zero look like?
+$$
+\begin{aligned}
+-\begin{bmatrix}
+-1 & 2 \\
+-2 & -1
+\end{bmatrix}^{-1}
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix}
+&= h 
+\begin{bmatrix}
+{\color{blue}u_{1}}\\
+{\color{blue}u_{2}}
+\end{bmatrix}\\
+ -1 \leq {\color{blue} u_1} \leq 1,  \quad -1 &\leq {\color{blue} u_2} \leq 1
+\end{aligned}
+$$
+
+. . .
+
+$$
+\begin{bmatrix}
+-h\\-h
+\end{bmatrix}
+\leq
+\begin{bmatrix}
+0.2 & 0.4 \\
+-0.4 & 0.2
+\end{bmatrix}
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix}
+\leq
+\begin{bmatrix}
+h\\ h
+\end{bmatrix}
+$$
+
+- For $h=0.2$
+```{julia}
+using LazySets
+h = 0.2
+H1u = HalfSpace([0.2, 0.4], h)
+H2u = HalfSpace([-0.4, 0.2], h)
+H1l = HalfSpace(-[0.2, 0.4], h)
+H2l = HalfSpace(-[-0.4, 0.2], h)
+
+Ha = H1u ∩ H2u ∩ H1l ∩ H2l
+
+using Plots
+Plots.plot(Ha, aspect_ratio=:equal,xlabel="x₁",ylabel="x₂",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))
+```
+
+- Indeed, if the current state is in this rotated square, then the next state will be zero.
+
+## Another {.scrollable}
+
+- $u_1 = 1$, $u_2 = 1$:
+
+. . .
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+{\color{blue} x_{1,k+1}}\\
+{\color{blue} x_{1,k+1}}
+\end{bmatrix}
+ &= 
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix} + h 
+\begin{bmatrix}
+-1 & 2 \\
+-2 & -1
+\end{bmatrix}
+\begin{bmatrix}
+{1}\\
+{1}
+\end{bmatrix}\\
+\color{blue}x_{1,k+1} &\geq 0\\
+\color{blue}x_{2,k+1} &\geq 0
+\end{aligned}
+$$
+
+- which can be reformatted to
+$$ 
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix} + h 
+\begin{bmatrix}
+-1 & 2 \\
+-2 & -1
+\end{bmatrix}
+\begin{bmatrix}
+1\\
+1
+\end{bmatrix}\geq \bm 0
+$$
+
+- and further to
+$$ 
+\begin{bmatrix} 
+ x_{1,k}\\
+ x_{2,k}
+\end{bmatrix} 
+\geq h 
+\begin{bmatrix}
+-1\\
+3
+\end{bmatrix}
+$$
+
+. . .
+
+```{julia}
+using LazySets
+h = 0.2
+A = [-1.0 2.0; -2.0 -1.0]
+u = [1.0, 1.0]
+b = h*A*u
+
+H1 = HalfSpace([-1.0, 0.0], b[1])
+H2 = HalfSpace([0.0, -1.0], b[2])
+Hb = H1 ∩ H2
+
+using Plots
+Plots.plot(Ha, aspect_ratio=:equal,xlabel="x₁",ylabel="x₂",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))
+Plots.plot!(Hb)
+```
+
+## All nine regions {.scrollable}
+
+. . .
+
+```{julia}
+using LazySets
+h = 0.2
+A = [-1.0 2.0; -2.0 -1.0]
+
+u = [1, -1]
+b = h*A*u
+
+H1 = HalfSpace(-[1.0, 0.0], b[1])
+H2 = HalfSpace([0.0, 1.0], -b[2])
+Hc = H1 ∩ H2
+
+u = [-1, 1]
+b = h*A*u
+
+H1 = HalfSpace([1.0, 0.0], -b[1])
+H2 = HalfSpace(-[0.0, 1.0], b[2])
+Hd = H1 ∩ H2
+
+u = [-1, -1]
+b = h*A*u
+
+H1 = HalfSpace([1.0, 0.0], -b[1])
+H2 = HalfSpace([0.0, 1.0], -b[2])
+He = H1 ∩ H2
+
+using Plots
+Plots.plot(Ha, aspect_ratio=:equal,xlabel="x₁",ylabel="x₂",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))
+Plots.plot!(Hb)
+Plots.plot!(Hc)
+Plots.plot!(Hd)
+Plots.plot!(He)
+```
+
+## Solutions using a MCP solver {.scrollable}
+
+```{julia}
+M = [-1 2; -2 -1]
+h = 2e-1
+tfinal = 2.0
+N = tfinal/h
+
+x0 = [-1.0, 1.0]
+x = [x0]
+
+using JuMP
+using PATHSolver
+
+for i = 1:N
+    model = Model(PATHSolver.Optimizer)
+    set_optimizer_attribute(model, "output", "no")
+    set_silent(model)
+    @variable(model, -1 <= u[1:2] <= 1)
+    @constraint(model, -h*M * u - x[end] ⟂ u)
+    optimize!(model)
+    push!(x, x[end]+h*M*value.(u))
+end
+
+t = range(0.0, step=h, stop=tfinal)
+X = [getindex.(x, i) for i in 1:length(x[1])]
+
+using Plots
+Plots.plot(Ha, aspect_ratio=:equal,xlabel="x₁",ylabel="x₂",label=false,xlims=(-1.5,1.5),ylims=(-1.5,1.5))
+Plots.plot!(Hb)
+Plots.plot!(Hc)
+Plots.plot!(Hd)
+Plots.plot!(He)
+Plots.plot!(X[1],X[2],xlabel="x₁",ylabel="x₂",label="Time-stepping",aspect_ratio=:equal,lw=3,markershape=:circle)
+Plots.plot!(sol[1,:],sol[2,:],label=false,lw=3)
+```

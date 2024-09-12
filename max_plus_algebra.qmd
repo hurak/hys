@@ -1,0 +1,405 @@
+---
+title: "Max-plus algebra"
+bibliography: 
+    - ref_max_plus.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+execute: 
+    enabled: false
+#engine: julia
+jupyter: julia-1.10   
+---
+
+*Max-plus algebra*, also written as (max,+) algebra (and also known as *tropical algebra/geometry* and *dioid algebra*), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely *event graphs*, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.
+
+But before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard *algebra*. 
+
+::: {.callout-warning}
+## Algebra is not only a branch of mathematics
+Confusingly enough, algebra is used both as a name of both a branch of mathematics and a special mathematical structure. In what follows, we use the term *algebra* to refer to the latter.
+:::
+
+## Algebra 
+
+Algebra is a set of elements equipped with
+
+- two operations: 
+    - addition (plus, +)
+    - multiplication (times, ×)
+- neutral (identity) element with respect to addition: zero, 0
+    $$a+0=a.$$
+- neutral (identity) element with respect to multiplication: one, 1
+    $$a\times 1 = a.$$
+
+Inverse elements can also be defined, namely
+
+- Inverse element wrt addition: $-a$
+    $$a+(-a) = 0.$$
+- Inverse element wrt multiplication (except for 0): $a^{-1}$
+    $$a \times a^{-1} = 1.$$
+
+If the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a *field*, otherwise it is called a *ring*. 
+
+Prominent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too. 
+
+Prominent example of a field is the set of real numbers.
+
+## (max,+) algebra: redefining the addition and multiplication
+
+Elements of the (max,+) algebra are real numbers, but it is still a ring and not a field since the two operations are defined differently. 
+
+The new operations of addition, which we denote by $\oplus$ to distinguish it from the standard addition, is defined as 
+$$\boxed{
+  x\oplus y \equiv \max(x,y).
+  }
+$$   
+
+The new operation of multiplication, which we denote by $\otimes$ to distinguish it from the standard multiplication, is defined as
+$$\boxed{
+  x\otimes y \equiv x+y}. 
+$$  
+
+::: {.callout-important}
+Indeed, there is no typo here, the standard addition is replaced by $\otimes$ and not $\oplus$.
+:::
+
+::: {.callout-note}
+## (min,+) also possible 
+Indeed, we can also define the (min,+) algebra. But for our later purposes in modelling we prefer the (max,+) algebra.
+:::
+
+### Reals must be extended with the negative infinity
+
+Strictly speaking, the (max,+) algebra is a broader set than just $\mathbb R$. We need to extend the reals with the minus infinity. We denote the extended set by $\mathbb R_\varepsilon$
+$$\boxed{
+ \mathbb R_\varepsilon \coloneqq \mathbb R \cup \{-\infty\}}.
+$$   
+
+The reason for the notation is that a dedicated symbol $\varepsilon$  is assigned to this minus infinity, that is, 
+$$\boxed
+{\varepsilon \coloneqq -\infty.}
+$$
+
+It may yield some later expressions less cluttered. Of course, at the cost of introducing one more symbol. 
+
+We are now going to see the reason for this extension.
+
+### Neutral elements
+
+#### Neutral element with respect to $\oplus$
+
+The neutral element with respect to $\oplus$, the *zero*, is $-\infty$. Indeed, for $x \in \mathbb R_\varepsilon$
+$$
+x \oplus \varepsilon = x,
+$$
+because $\max(x,-\infty) = x$.
+
+#### Neutral element with respect to $\otimes$
+
+The neutral element with respect to $\otimes$, the *one*, is $0$. Indeed, for $x \in \mathbb R_\varepsilon$
+$$
+x \otimes \varepsilon = x,
+$$
+because $x+0=x$.
+
+::: {.callout-note}
+## Nonsymmetric notation, but who cares?
+The notation is rather nonsymmetric here. We now have a dedicated symbol $\varepsilon$ for the *zero* element in the new algebra, but no dedicated symbol for the *one* element in the new algebra. It may be a bit confusing as "the old 0 is the new 1". Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ①  = x. In fact, in some software packages they do define something like `mp-zero` and `mp-one` to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry... After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX...
+:::
+
+### Inverse elements
+
+#### Inverse with respect to $\oplus$
+
+The inverse element with respect to $\oplus$ in general does not exist! Think about it for a few moments, this is not necessarily intuitive. For which element(s) does it exist? Only for $\varepsilon$.
+
+This has major consequences, for example, 
+$$x\oplus x=x.$$
+
+Can you verify this statement? How is is related to the fact that the inverse element with respect to $\oplus$ does not exist in general?
+
+This is the key difference with respect to a conventional algebra, wherein the inverse element of $a$ wrt conventional addition is $-a$, while here we do not even define $\ominus$.
+
+Formally speaking, the (max,+) algebra is only a *semi-ring*.
+
+#### Inverse with respect to $\otimes$
+
+The inverse element with respect to $\otimes$ does not exist for all elements. The $\varepsilon$ element does not have an inverse element with respect to $\otimes$. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.
+
+## Powers and the inverse with respect to $\otimes$
+
+Having defined the fundamental operations and the fundamental elements, we can proceed with other operations. Namely, we consider powers. Fot an integer $r\in\mathbb Z$,  the $r$th power of $x$, denoted by $x^{\otimes^r}$, is defined, unsurprisingly as
+$$x^{\otimes^r} \coloneqq x\otimes x \otimes \ldots \otimes x.$$
+
+Observe that it corresponds to $rx$ in the conventional algebra 
+$$x^{\otimes^r} = rx.$$
+
+But then the inverse element with respect to $\otimes$ can also be determined using the (-1)th power as 
+$$x^{\otimes^{-1}} = -x.$$
+
+This is not actually surprising, is it?
+
+There are few more implications. For example,  
+$$x^{\otimes^0} = 0.$$
+
+There is also no inverse element with respect to $\otimes$ for $\varepsilon$, but it is expected as $\varepsilon$ is a zero wrt $\oplus$. Furthermore, for $r\neq -1$, if $r>0$ , then $\varepsilon^{\otimes^r} = \varepsilon$, if $r<0$ , then $\varepsilon^{\otimes^r}$ is undefined, which are both expected. Finally, $\varepsilon^{\otimes^0} = 0$ by convention.
+
+## Order of evaluation of (max,+) formulas
+
+It is the same as that for the conventional algebra:
+
+    1. power, 
+    2. multiplication, 
+    3. addition.
+
+## (max,+) polynomials (aka tropical polynomials)
+
+Having covered addition, multiplication and powers, we can now define (max,+) polynomials. In order to get started, consider the the univariate polynomial
+$$p(x) = a_{n}\otimes x^{\otimes^{n}} \oplus a_{n-1}\otimes x^{\otimes^{n-1}} \oplus \ldots \oplus a_{1}\otimes x \oplus a_{0},
+$$
+where $a_i\in \mathbb R_\varepsilon$ and $n\in \mathbb N$.
+
+By interpreting the operations, this translates to the following function
+$$\boxed
+{p(x) = \max\{nx + a_n, (n-1)x + a_{n-1}, \ldots, x+a_1, a_0\}.}
+$$
+
+::: {#exm-tropical-polynomial}
+## 1D polynomial
+Consider the following (max,+) polynomial
+$$
+p(x) = 2\otimes x^{\otimes^{2}} \oplus 3\otimes x \oplus 1.
+$$
+
+We can interpret it in the conventional algebra as
+$$
+p(x) = \max\{2x+2,x+3,1\},  
+$$
+which is a piecewise linear (actually affine) function.
+```{julia}
+using Plots
+x = -5:3
+f(x) = max(2*x+2,x+3,1)
+plot(x,f.(x),label="",thickness_scaling = 2)
+xc = [-2,1]
+yc = f.(xc)
+scatter!(xc,yc,markercolor=[:red,:red],label="",thickness_scaling = 2)
+```
+:::
+
+::: {#exm-tropical-polynomial-2d}
+## Example of a 2D polynomial
+Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial
+$$
+p(x,y) = 0 \otimes x \otimes y.
+$$
+
+```{julia}
+using Plots
+x = -2:0.1:2;
+y = -2:0.1:2;
+f(x,y) = max(0,x,y)
+z = f.(x',y);
+wireframe(x,y,z,legend=false,camera=(5,30))
+xlabel!("x")
+ylabel!("y")
+zlabel!("f(x,y)")
+```
+:::
+
+::: {#exm-another-tropical-polynomial-2d}
+## Another 2D polynomial
+Consider another 2D (max,+) polynomial
+$$
+p(x,y) = 0 \otimes x \otimes y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
+$$
+
+```{julia}
+using Plots
+x = -2:0.1:2;
+y = -2:0.1:2;
+f(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)
+z = f.(x',y);
+wireframe(x,y,z,legend=false,camera=(15,30))
+xlabel!("x")
+ylabel!("y")
+zlabel!("p(x,y)")
+```
+:::
+
+::: {.callout-note}
+## Piecewise affine (PWA) functions 
+Piecewise affine (PWA) functions will turn out a frequent buddy in our course.
+:::
+
+## Solution set (zero set)
+...
+
+## Matrix computations 
+
+### Addition and multiplication
+
+What is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in $\mathbb R_\varepsilon$, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations.
+$$(A\oplus B)_{ij} = a_{ij}\oplus b_{ij} = \max(a_{ij},b_{ij})$$
+$$
+\begin{aligned}
+(A\otimes B)_{ij} &= \bigoplus_{k=1}^n a_{ik}\otimes b_{kj}\\ 
+&= \max_{k=1,\ldots, n}(a_{ik}+b_{kj})
+\end{aligned}
+$$
+
+
+### Zero and identity matrices
+
+(max,+) zero matrix $\mathcal{E}_{m\times n}$ has all its elements equal to $\varepsilon$, that is, 
+$$
+\mathcal{E}_{m\times n} = 
+\begin{bmatrix}
+\varepsilon & \varepsilon & \ldots & \varepsilon\\
+\varepsilon & \varepsilon & \ldots & \varepsilon\\
+\vdots & \vdots & \ddots & \vdots\\
+\varepsilon & \varepsilon & \ldots & \varepsilon
+\end{bmatrix}.
+$$
+
+(max,+) identity matrix $I_n$ has 0 on the diagonal and $\varepsilon$ elsewhere, that is, 
+$$
+I_{n} = 
+\begin{bmatrix}
+0 & \varepsilon & \ldots & \varepsilon\\
+\varepsilon & 0 & \ldots & \varepsilon\\
+\vdots & \vdots & \ddots & \vdots\\
+\varepsilon & \varepsilon & \ldots & 0
+\end{bmatrix}.
+$$
+
+### Matrix powers
+
+The zerothe power of a matrix is – unsurprisingly – the identity matrix, that is,
+$$A^{\otimes^0} = I_n.$$
+
+The kth power of a matrix, for $k\in \mathbb N\setminus\{0\}$, is then defined using
+$$A^{\otimes^k} = A\otimes A^{\otimes^{k-1}}.$$
+
+## Connection with graph theory – precedence graph
+
+Consider $A\in \mathbb R_\varepsilon^{n\times n}$. For this matrix, we can define the *precedence graph* $\mathcal{G}(A)$ as a weighted directed graph with the vertices 1, 2, ..., n, and with the arcs $(j,i)$ with the associated weights $a_{ij}$ for all $a_{ij}\neq \varepsilon$. The kth power of the matrix is then
+
+$$
+(A)^{\otimes^k}_{ij} = \max_{i_1,\ldots,i_{k-1}\in \{1,2,\ldots,n\}} \{a_{ii_1} + a_{i_1i_2} + \ldots + a_{i_{k-1}j}\}
+$$
+for all $i,j$ and $k\in \mathbb N\setminus 0$.
+
+::: {#exm-power-of-matrix-of-precedence-graph}
+## Example
+$$
+A = 
+\begin{bmatrix}
+2 & 3 & \varepsilon\\
+1 & \varepsilon & 0\\
+2 & -1 & 3
+\end{bmatrix}
+\qquad
+A^{\otimes^2} = 
+\begin{bmatrix}
+4 & 5 & 3\\
+3 & 4 & 3\\
+5 & 5 & 6
+\end{bmatrix}
+$$
+```{dot}
+//| label: fig-precedence-graph
+//| fig-cap: An example of a precedence graph
+//| fig-width: 4.0
+digraph G {
+    bgcolor = "transparent";
+    rankdir = "LR";
+    node [shape = circle width=0.6 margin=0 fixedsize=true];
+    1 -> 1 [label = "2"];
+    1 -> 2 [label = "1"];
+    2 -> 1 [label = "3"];
+    2 -> 3 [label = "-1"];
+    1 -> 3 [label = "2"];
+    3 -> 2 [label = "0"];
+    3 -> 3 [label = "3"];
+}
+```
+:::
+
+### Irreducibility of a matrix
+
+- Matrix in $\mathbb R_\varepsilon^{n\times n}$ is *irreducible* if its precedence graph is *strongly connected*. 
+- Matrix is irreducible iff
+$$
+(A \oplus A^{\otimes^2} \oplus \ldots A^{\otimes^{n-1}})_{ij} \neq \varepsilon \quad \forall i,j, i\neq j.
+$${#eq-power-of-irreducible-matrix}
+
+## Eigenvalues and eigenvectors
+
+Eigenvalues and eigenvectors constitute another instance of a straightforward import of concepts from the conventional algebra into the (max,+) algebra – just take the standard definition of an eigenvalue-eigenvector pair and replace the conventional operations with the (max,+) alternatives
+$$
+A\otimes v = \lambda \otimes v.
+$$
+
+A few comments:
+
+- In general, total number of (max,+) eigenvalues $<n$.
+- An irreducible matrix has only one (max,+) eigenvalue.
+- Graph-theoretic interpretation: maximum average weight over all elementary circuits... 
+
+### Eigenvalue-related property of irreducible matrices
+
+For large enough $k$ and $c$, it holds that
+$$\boxed
+{A^{\otimes^{k+c}} = \lambda^{\otimes^c}\otimes A^{\otimes^k}.}
+$$
+
+## Solving (max,+) linear equations
+
+We can also define and solve linear equations within the (max,+) algebra. Considering $A\in \mathbb R_\varepsilon^{n\times n},\, b\in \mathbb R_\varepsilon^n$, we can formulate and solve the equation
+$$
+A\otimes x = b. 
+$$
+
+In general no solution even if $A$ is square. However, often we can find some use for a *subsolution* defined as
+$$
+A\otimes x \leq b.
+$$
+
+Typically we search for the maximal subsolution instead, or subsolutions optimal in some other sense.
+
+::: {#exm-greatest-subsolution}
+## Greatest subsolution
+$$
+A = 
+\begin{bmatrix}
+2 & 3 & \varepsilon\\
+1 & \varepsilon & 0\\
+2 & -1 & 3
+\end{bmatrix},
+\qquad
+b =  
+\begin{bmatrix}
+1 \\ 2 \\ 3
+\end{bmatrix}
+$$
+
+$$
+x = 
+\begin{bmatrix}
+1\\ -2 \\ 0
+\end{bmatrix}
+$$
+
+$$
+A \otimes x = 
+\begin{bmatrix}
+1\\ 0 \\ 1
+\end{bmatrix}
+\leq b
+$$
+:::
+
+With this introduction to the (max,+) algebra, we are now ready to move on to the modeling of discrete-event systems using the max-plus linear (MPL) systems.

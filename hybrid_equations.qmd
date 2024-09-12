@@ -1,5 +1,556 @@
 ---
 title: "Hybrid equations"
+bibliography: ref_stability.bib
+csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+#engine: julia
 ---
 
-About this site
+Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called *hybrid equations*, sometimes also *hybrid state equations* to emphasize that what we are after is some kind of analogy with state equations $\dot{x}(t) = f(x(t), u(t))$ and $x_{k+1} = g(x_k, u_k)$ that we are familiar with from (continuous-valued) dynamical systems. 
+
+Sometimes it also called *event-flow equations* or *jump-flow* equations.
+
+These are the key ideas:
+
+- The (state) variables can change values discontinuously upon occurence of events – they *jump*.
+- Between the jumps they evolve continuously – they *flow*.
+- Some variables may only flow, they never jump.
+- The variables staying constant between the jumps do flow too.
+
+The major advantage of this modeling framework is that we do not have to distinguish. This is in contrast with hybrid automata, where we have to start by classifying the state variables as either continuous or discrete before moving on. kIn the current framework we treat all the variables identically – they mostly flow and occasionally (perhaps never, which is OK) jump.
+
+## Hybrid (state) equations 
+
+It is high time to introduce hybrid (state) equations. Here they come
+$$
+\begin{aligned}
+\dot{x} &= f(x), \quad x \in \mathcal{C},\\
+x^+ &= g(x), \quad x \in \mathcal{D}.
+\end{aligned}
+$$
+where 
+
+- $f$ is the *flow map*,
+- $\mathcal{C}$ is the *flow set*,
+- $g$ is the *jump map*, 
+- $\mathcal{D}$ is the *jump set*.
+
+This model of a hybrid system is thus parameterized by the quadruple $\{f, \mathcal C, g, \mathcal D\}$.
+
+## Hybrid (state) inclusions
+
+We now extend the presented framework of hybrid equations a bit. Namely, the functions on the right hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets!
+$$
+\begin{aligned}
+\dot{x} &\in \mathcal F(x), \quad x \in \mathcal{C},\\
+x^+ &\in \mathcal G(x), \quad x \in \mathcal{D}.
+\end{aligned}
+$$
+where 
+
+- $\mathcal{F}$ is the set-valued *flow map*,
+- $\mathcal{C}$ is the *flow set*,
+- $\mathcal{G}$ is the set-valued *jump map*, 
+- $\mathcal{D}$ is the *jump set*.
+
+## Output equations
+
+Typically a full model is only formed upon defining some output variables (oftentimes just a subset of possibly scaled state variables or their linear combinations). These output variables then obey some output equation
+$$
+y(x) = h(x),
+$$
+
+or 
+$$
+y(x) = h(x,u).
+$$
+
+::: {#exm-bouncing-ball}
+## Bouncing ball
+This is the "hello world example" for hybrid systems with state jumps (pun intended). The state variables are the height and the vertical speed of the ball.
+$$
+\bm x \in \mathbb{R}^2, \qquad \bm x = \begin{bmatrix}x_1 \\ x_2\end{bmatrix}.
+$$
+
+The quadruple defining the hybrid equations is
+$$
+\mathcal{C} = \{\bm x \in \mathbb{R}^2 \mid x_1>0 \lor (x_1 = 0, x_2\geq 0)\},
+$$
+$$
+f(\bm x) = \begin{bmatrix}x_2 \\ -g\end{bmatrix}, \qquad g = 9.81,
+$$
+$$
+\mathcal{D} = \{\bm x \in \mathbb{R}^2 \mid x_1 = 0, x_2 < 0\},
+$$
+$$
+g(\bm x) = \begin{bmatrix}x_1 \\ -\alpha x_2\end{bmatrix}, \qquad \alpha = 0.8.
+$$
+
+The two sets and two maps are illustrated below.
+
+![Maps and sets for the bouncing ball example](hybrid_equations_figures/bouncing_ball_maps_and_sets.png){width=55%}
+:::
+
+::: {#exm-bouncing-ball-on-piston}
+## Bouncing ball on a controlled piston
+
+We now extend the simple bouncing ball example by adding a vertically moving piston. The piston is controlled by a force.
+
+![Example of a ball bouncing on a vertically moving piston](hybrid_equations_figures/bouncing_ball_on_a_piston.png){width=40%}
+
+In our analysis we neglect the sizes (for simplicity).
+
+The collision happens when $x_\mathrm{b} = x_\mathrm{p}$, and $v_\mathrm{b} < v_\mathrm{p}$.
+
+The conservation of momentum after a collision reads
+$$
+m_\mathrm{b}v_\mathrm{b}^+ + m_\mathrm{p}v_\mathrm{p}^+ = m_\mathrm{b}v_\mathrm{b} + m_\mathrm{p}v_\mathrm{p}.
+$${#eq-momentum-conservation}
+
+The collision is modelled using a restitution coefficient
+$$
+v_\mathrm{p}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}).
+$${#eq-restitution}
+
+From the momentum conservation @eq-momentum-conservation
+$$
+v_\mathrm{p}^+ = \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+
+$$
+
+we substitute to @eq-restitution to get
+$$
+\frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}),
+$$
+from which we express $v_\mathbb{b}^+$
+$$
+\begin{aligned}
+v_\mathrm{b}^+ &= \frac{1}{1+\frac{m_\mathrm{b}}{m_\mathrm{p}}}\left(\frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} + \gamma (v_\mathrm{p} - v_\mathrm{b})\right)\\
+&= \frac{m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}\left(\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{p}}v_\mathrm{b} + (1+\gamma)v_\mathrm{p}\right)\\
+&= \frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}v_\mathrm{b} + \frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}v_\mathrm{p}
+\end{aligned}.
+$$
+
+Substitute to the expression for $v_\mathbb{p}^+$ to get
+$$
+\begin{aligned}
+v_\mathrm{p}^+ &= \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}\left(\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}v_\mathrm{b} + \frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}v_\mathrm{p}\right)\\
+&= \frac{m_\mathrm{b}}{m_\mathrm{p}}\left(1-\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}\right) v_\mathrm{b} \\
+&\qquad\qquad + \left(1-\frac{m_\mathrm{b}}{m_\mathrm{p}}\frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}\right) v_\mathrm{p}\\
+&= \frac{m_\mathrm{b}}{m_\mathrm{b}+m_\mathrm{p}}(1+\gamma) v_\mathrm{b} + \frac{m_\mathrm{p}-\gamma m_\mathrm{b}}{m_\mathrm{p}+m_\mathrm{b}} v_\mathrm{p}.
+\end{aligned}
+$$
+
+Finally we can simplify the expressions a bit by introducing $m=\frac{m_\mathrm{b}}{m_\mathrm{b}+m_\mathrm{p}}$. The jump equation is then
+$$
+\begin{bmatrix}
+v_\mathrm{b}^+\\
+v_\mathrm{p}^+
+\end{bmatrix}
+=
+\begin{bmatrix}
+m - \gamma (1-m) & (1+\gamma)(1-m)\\
+m(1+\gamma) & 1-m-\gamma m
+\end{bmatrix}
+\begin{bmatrix}
+v_\mathrm{b}\\
+v_\mathrm{p}
+\end{bmatrix}.
+$$
+:::
+
+::: {#exm-synchronization-of-fireflies}
+## Synchronization of fireflies
+
+This is a famous example in synchronization. We consider $n$ fireflies, $x_i$ is the $i$-th firefly's clock, normalized to $[0,1]$. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by $\varepsilon \%$.
+
+Here is how we model the problem using the four-tuple $\{f, \mathcal C, g, \mathcal D\}$:
+$$
+\mathcal{C} = [0,1)^n = \{\bm x \in \mathbb R^n\mid x_i \in [0,1),\; i=1,\ldots,n \},
+$$
+$$
+\bm f = [f_1, f_2, \ldots, f_n]^\top,\quad f_i = 1, \quad i=1,\ldots,n,
+$$
+$$
+\mathcal{D} = \{\bm x \in [0,1]^n \mid \max_i x_i = 1 \},
+$$
+
+$$
+\begin{aligned}
+\bm g &= [g_1, \ldots, g_n]^\top,\\ 
+& \qquad g_i(x_i) = 
+\begin{cases} 
+(1 + \varepsilon)x_i, & \text{if } (1+\varepsilon)x_i < 1, \\ 
+0, & \text{otherwise}.
+\end{cases}
+\end{aligned}
+$$
+:::
+
+
+::: {#exm-thyristor-control}
+## Thyristor control
+
+Consider the circuit below.
+
+![Example of a thyristor control](hybrid_equations_figures/thyristor_control.png){width=50%}
+
+We consider a harmonic input voltage, that is, 
+$$
+\begin{aligned}
+\dot v_0 &= \omega v_1\\
+\dot v_1 &= -\omega v_0.
+\end{aligned}
+$$
+
+The thyristor can be *on* (discrete state $q=1$) or *off* ($q=0$). The firing time $\tau$ is given by the firing angle $\alpha \in (0,\pi)$.
+
+The state vector is
+$$
+\bm x = 
+\begin{bmatrix}
+v_0\\ v_1 \\ i_\mathrm{L} \\ v_\mathrm{C} \\ q \\ \tau
+\end{bmatrix}.
+$$
+
+The flow map is
+$$
+\bm f(\bm x)
+=
+\begin{bmatrix}
+\omega v_1\\
+-\omega v_0\\
+q \frac{v_\mathrm{C}-Ri_\mathrm{L}}{L}\\
+-\frac{1}{CR}v_\mathrm{C} + \frac{1}{CR}v_\mathrm{0} - \frac{1}{C}i_\mathrm{L}\\
+0\\
+1
+\end{bmatrix}.
+$$
+
+The flow set is
+$$
+\begin{aligned}
+\mathcal{C} &= \{\bm x \mid q=0,\, \tau<\frac{\alpha}{\omega},\, i_\mathrm{L}=0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}>0\}
+\end{aligned}.
+$$
+
+The jump set is
+$$
+\begin{aligned}
+\mathcal{D} &= \{\bm x \mid q=0,\, \tau\geq \frac{\alpha}{\omega},\, i_\mathrm{L}=0,\, v_\mathrm{C}>0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}=0,\, v_\mathrm{C}<0\}
+\end{aligned}.
+$$
+
+The jump map is
+$$
+\bm g(\bm x) = 
+\begin{bmatrix}
+u_0\\ u_1 \\ i_\mathrm{L} \\ v_\mathrm{C} \\ {\color{red} 1-q} \\ {\color{red} 0}
+\end{bmatrix}.
+$$
+
+The last condition in the jump set comes from the requirement that not only must the current through the inductor be zero, but also it must be decreasing. And from the state equation it follows that the voltage on the capacitor must be negative.
+:::
+
+::: {#exm-sampled-data-feedback}
+## Sampled-data feedback control
+
+Another example of a dynamical system that fits nicely into the hybrid equations framework is sampled-data feedback control system. Within the feedback loop in @fig-sampled-data-feedback, we recognize a continuous-time plant and a discrete-time controller.
+
+![Sampled data feedback control](hybrid_equations_figures/sample_and_hold.png){width=70% #fig-sampled-data-feedback}
+
+The plant is modelled by $\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},u), \; y = h(x_\mathrm{p})$. The controller samples the output $T$-periodically and computes its own output as a nonlinear function $u = \kappa(r-y)$.
+
+The closed-loop model is then 
+$$
+\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},\kappa(r-h(x_\mathrm{p}))), \; y = h(x_\mathrm{p}).
+$$
+
+The closed-loop state vector is
+$$
+\bm x = 
+\begin{bmatrix}
+x_\mathrm{p}\\ u \\ \tau
+\end{bmatrix}
+\in
+\mathbb R^n \times \mathbb R^m \times \mathbb R.
+$$
+
+The flow set is
+$$
+\begin{aligned}
+\mathcal{C} &= \{\bm x \mid \tau \in [0,T)\}
+\end{aligned}
+$$
+
+The flow map is
+$$
+\bm f(\bm x)
+=
+\begin{bmatrix}
+f_\mathrm{p}(x_\mathrm{p},u)\\
+0\\
+1
+\end{bmatrix}
+$$
+
+The jump set is
+$$
+\begin{aligned}
+\mathcal{D} &= \{\bm x \mid \tau = T\}
+\end{aligned}
+$$
+or rather 
+$$
+\begin{aligned}
+\mathcal{D} &= \{\bm x \mid \tau \geq T\}
+\end{aligned}
+$$
+
+The jump map is
+$$
+\bm g(\bm x) = 
+\begin{bmatrix}
+x_\mathrm{p}\\
+\kappa(r-y)\\
+0
+\end{bmatrix}
+$$
+
+You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theoris. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time $T$ may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework. 
+:::
+
+## Hybridness after closing the loop
+
+We have defined *hybrid systems*, but what exactly is hybrid when we close a feedback loop? There are three possibilities:
+
+- Hybrid plant + continuous controller.
+- Hybrid plant + hybrid controller.
+- Continuous plant + hybrid controller.
+
+The first case is encountered when we use a standard controller such as a PID controller to control a system whose dynamics can be characterized/modelled as hybrid. The second scenario considers a controller that mimicks the behavior of a hybrid system. The third case is perhaps the least intuitive: although the plant to be controller is continuous(-valued), it may still make sense to design and implement a hybrid controller, see the next paragraph. 
+
+## Impossibility to stabilize without a hybrid controller
+
+::: {#exm-unicycle-stabilization}
+## Unicycle stabilization
+We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with controlled forward speed and yaw (turning) angular rate.
+
+![Unicycle vehicle](hybrid_equations_figures/unicycle_stabilization.png){width=30%}
+
+The vehicle is modelled by
+$$
+\begin{aligned}
+\dot x &= v \cos \theta,\\
+\dot y &= v \sin \theta,\\
+\dot \theta &= \omega,
+\end{aligned}
+$$
+
+$$
+\bm x = \begin{bmatrix}
+x\\ y\\ \theta
+\end{bmatrix},
+\quad 
+\bm u = \begin{bmatrix}
+v\\ \omega
+\end{bmatrix}.
+$$
+
+It is known that this system cannot be stabilized by a continuous feedback controller. The general result that applies here was published in @brockettAsymptoticStabilityFeedback1983. The condition of stabilizability by a time-invariant continuous state feedback is that the image of every neighborhood of the origin under $(\bm x,\bm u) \mapsto \bm f(\bm x, \bm u)$ contains some neighborhood of the origin. This is not the case here. The map from the state-control space to the velocity space is
+
+$$
+\begin{bmatrix}
+x\\ y\\ \theta\\ v\\ \omega 
+\end{bmatrix}
+\mapsto
+\begin{bmatrix}
+v \cos \theta\\
+v \sin \theta \\
+\omega
+\end{bmatrix}.
+$$
+
+Now consider a neighborhood of the origin such that $|\theta|<\frac{\pi}{2}$. It is impossible to get $\bm f(\bm x, \bm u) = \begin{bmatrix}
+0\\ f_2 \\ 0\end{bmatrix}, \; f_2\neq 0$. Hence, stabilization by a continuous feedback $\bm u = \kappa (\bm x)$ is impossible. 
+
+But it is possible to stabilize the vehicle using a discontinuous feedback. And discontinuous feedback controllr can be viewed as switching control, which in turn can be seen as instance of a hybrid controller.
+:::
+
+::: {#exm-stabilization-on-a-circle}
+## Global stabilization on a circle
+
+We now demonstration of a general phenomenon of stabilization on a manifold. We will see that even if stabilization by a continous feedback is possible, it might not guarantee global stability.
+
+The dynamics of a particle sliding around a unit circle $\mathbb S_1$ is modelled by  
+$$
+\dot{\bm x} = u\begin{bmatrix}0 & -1\\ 1 & 0\end{bmatrix}\bm x,
+$$
+where $\bm x \in \mathbb S^1,\quad u\in \mathbb R$.
+
+The point to be stabilized is $\bm x^* = \begin{bmatrix}1\\ 0\end{bmatrix}$.
+
+![Stabilization on a circle](hybrid_equations_figures/stabilization_on_a_circle.png){width=30%}
+
+What is required from a globally stabilizing controller? 
+
+- Solutions stay in $\mathbb S^1$,
+- Solutions converge to $\bm x^*$,
+- If a solution starts near $\bm x^*$, it stays near.
+
+One candidate is 
+$$\kappa(\bm x) = -x_2.$$
+
+Define the (Lyapunov) function 
+$$V(\bm x) = 1-x_1.$$
+
+Its time derivative along the solution trajectory
+$$
+\begin{aligned}
+\dot V &= \left(\nabla_{\bm{x}}V\right)^\top \dot{\bm x}\\
+&= \begin{bmatrix}-1 & 0\end{bmatrix}\left(-x_2\begin{bmatrix}0 & -1\\ 1 & 0\end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)\\
+&= -x_2^2\\
+&= -(1-x_1^2).
+\end{aligned}
+$$
+
+It follows that 
+$$
+\dot V < 0 \quad \forall \bm x \in \mathbb S^1 \setminus \{-1,1\}.
+$$
+
+With $u=-x_2$ the point $\bm x^*$ is stable but not globally atractive.
+
+Can we do better? Yes, we can. But we need to incorporate some switching into the controller. Loosely speaking anywhere except for the state (-1,0), we can apply the previously design controller, and at the troublesome state (-1,0), or actually in some region around it, we need to switch to another controller that would drive the system away from the problematic region. 
+
+But we will take this example as an opportunity to go one step further and instead of just a switching controller we design a hybrid controller. The difference is that within a hybrid controller we can incorporate some hysteresis, which is a robustifying feature. In order to to that, we need to introduce a new state variable $q\in\{0,1\}$. Determination of the flow and jump sets is sketched in @fig-stabilization-on-a-circle-hybrid.
+
+![Definition of the sets defining a hybrid controller](hybrid_equations_figures/stabilization_on_a_circle_hybrid.png){width=30% #fig-stabilization-on-a-circle-hybrid}
+
+The two feedback controllers are given by
+$$
+\begin{aligned}
+\kappa(\bm x,0) &= \kappa_0(\bm x) = -x_2,\\
+\kappa(\bm x,1) &= \kappa_1(\bm x) = -x_1.
+\end{aligned}
+$$
+
+The flow map is (DIY)
+$$
+f(\bm x, q) = \ldots
+$$
+
+The flow set is
+$$
+\mathcal{C} = (\mathcal C_0 \times \{0\}) \cup (\mathcal C_1 \times \{1\}).
+$$
+
+The jump set is
+$$
+\mathcal{D} = (\mathcal D_0 \times \{0\}) \cup (\mathcal D_1 \times \{1\}).
+$$
+
+The jump map is
+$$
+g(\bm x, q) = 1-q \quad \forall [\bm x, q]^\top \in \mathcal D.
+$$
+
+Simulation using Julia is provided below.
+
+```{julia}
+#| label: fig-simulation-stabilization-on-a-circle
+#| fig-cap: "Simulation of stabilization on a circle using a hybrid controller"
+
+using OrdinaryDiffEq
+
+# Defining the sets and functions for the hybrid equations
+
+c₀, c₁ = -2/3, -1/3
+
+C(x,q) = (x[1] >= c₀ && q == 0) || (x[1] <= c₁ && q == 1) # Actually not really needed, just a complement of D.
+D(x,q) = (x[1] < c₀ && q == 0) || (x[1] > c₁ && q == 1) 
+
+g(x,q) = 1-q
+
+κ(x,q) = q==0 ? -x[2] : -x[1] 
+
+function f!(dx,x,q,t)               # Already in the format for the ODE solver.
+    A = [0.0 -1.0; 1.0 0.0] 
+    dx .= A*x*κ(x,q)
+end
+
+# Defining the initial conditions for the simulation
+
+cᵢ = (c₀+c₁)/2
+x₀ = [cᵢ,sqrt(1-cᵢ^2)]
+q₀ = 1
+
+# Setting up the simulation problem
+
+tspan = (0.0,10.0)
+prob = ODEProblem(f!,x₀,tspan,q₀)
+
+function condition(x,t,integrator)
+    q = integrator.p 
+    return D(x,q)
+end
+
+function affect!(integrator)
+    q = integrator.p
+    x = integrator.u 
+    integrator.p = g(x,q)
+end
+
+cb = DiscreteCallback(condition,affect!)
+
+# Solving the simulation problem
+
+sol = solve(prob,Tsit5(),callback=cb,dtmax=0.1) # ContinuousCallback more suitable here
+
+# Plotting the results of the simulation
+
+using Plots
+gr(tickfontsize=12,legend_font_pointsize=12,guidefontsize=12)
+
+plot(sol,label=["x₁" "x₂"],xaxis="t",yaxis="x",lw=2)
+hline!([c₀], label="c₀")
+hline!([c₁], label="c₁")
+```
+
+The solution can also be visualized in the state space.
+
+```{julia}
+#| label: fig-simulation-stabilization-on-a-circle-XY
+#| fig-cap: "Simulation of stabilization on a circle using a hybrid controller"
+plot(sol,vars=(1,2),label="",xaxis="x₁",yaxis="x₂",lw=2,aspect_ratio=1)
+vline!([c₀], label="c₀")
+vline!([c₁], label="c₁")
+scatter!([x₀[1]],[x₀[2]],label="x init")
+scatter!([1],[0],label="x ref")
+```
+:::
+
+## Supervisory control
+
+Yet another problem that can benefit from being formulated as a hybrid system is *supervisory control*. 
+
+![Supervisory control](hybrid_equations_figures/supervisory_control.png){width=60%}
+
+
+## Combining local and global controllers ($\subset$ supervisory control)
+
+As a subset of supervisory control we can view a controller that switches between a global and a local controller.
+
+![Combining global and local controllers](hybrid_equations_figures/local_global_controllers.png){width=60%}
+
+Local controllers have good transient response but only work well in a small region around the equilibrium state.
+Global controllers have poor transient response but work well in a larger region around the equilibrium state.
+
+A useful example is that of swinging up and stabilization of a pendulum: the local controller can be designer for a linear model obtained by linearization about the upright orientation of the pendulum. But such controller can only be expected to perform well in some small region around the upright orientation. The global controller is designed to bring the pendulum into that small region.
+
+The flow and jump sets for the local and global controllers are in @fig-local-global-sets. Can you tell, which is which? Remember that by introducing the discrete variable $q$, some hysteresis is in the game here.
+
+![Flow and jump sets for a local and a global controller](hybrid_equations_figures/local_global_controllers_sets.png){width=60% #fig-local-global-sets}

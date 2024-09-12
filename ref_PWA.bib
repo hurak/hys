@@ -1,0 +1,383 @@
+@inproceedings{abdalmoatyMeasuresLMIsOptimal2013,
+  title = {Measures and {{LMIs}} for Optimal Control of Piecewise-Affine Systems},
+  booktitle = {2013 {{European Control Conference}} ({{ECC}})},
+  author = {Abdalmoaty, M. Rasheed and Henrion, Didier and Rodrigues, Luis},
+  year = {2013},
+  month = jul,
+  pages = {3173--3178},
+  doi = {10.23919/ECC.2013.6669627},
+  abstract = {This paper considers the class of deterministic continuous-time optimal control problems (OCPs) with piecewise-affine (PWA) vector field, polynomial Lagrangian and semialgebraic input and state constraints. The OCP is first relaxed as an infinite-dimensional linear program (LP) over a space of occupation measures. This LP is then approached by an asymptotically converging hierarchy of linear matrix inequality (LMI) relaxations. The relaxed dual of the original LP returns a polynomial approximation of the value function that solves the Hamilton-Jacobi-Bellman (HJB) equation of the OCP. Based on this polynomial approximation, a suboptimal policy is developed to construct a state feedback in a sample-and-hold manner. The results show that the suboptimal policy succeeds in providing a suboptimal state feedback law that drives the system relatively close to the optimal trajectories and respects the given constraints.}
+}
+
+@inproceedings{sadraddiniSamplingBasedPolytopicTrees2019,
+  title = {Sampling-{{Based Polytopic Trees}} for {{Approximate Optimal Control}} of {{Piecewise Affine Systems}}},
+  booktitle = {2019 {{International Conference}} on {{Robotics}} and {{Automation}} ({{ICRA}})},
+  author = {Sadraddini, Sadra and Tedrake, Russ},
+  year = {2019},
+  month = may,
+  pages = {7690--7696},
+  issn = {2577-087X},
+  doi = {10.1109/ICRA.2019.8793634},
+  abstract = {Piecewise affine (PWA) systems are widely used to model highly nonlinear behaviors such as contact dynamics in robot locomotion and manipulation. Existing control techniques for PWA systems have computational drawbacks, both in offline design and online implementation. In this paper, we introduce a method to obtain feedback control policies and a corresponding set of admissible initial conditions for discrete-time PWA systems such that all the closed-loop trajectories reach a goal polytope, while a cost function is optimized. The idea is conceptually similar to LQR-trees [1], which consists of 3 steps: (1) open-loop trajectory optimization, (2) feedback control for computation of ``funnels'' of states around trajectories, and (3) repeating (1) and (2) in a way that the funnels are grown backward from the goal in a tree fashion and fill the state-space as much as possible. We show PWA dynamics can be exploited to combine step (1) and (2) into a single step that is tackled using mixed-integer convex programming, which makes the method suitable for dealing with hard constraints. Illustrative examples on contact-based dynamics are presented.}
+}
+
+@inproceedings{hassibiQuadraticStabilizationControl1998,
+  title = {Quadratic Stabilization and Control of Piecewise-Linear Systems},
+  booktitle = {Proceedings of the 1998 {{American Control Conference}}. {{ACC}} ({{IEEE Cat}}. {{No}}.{{98CH36207}})},
+  author = {Hassibi, A. and Boyd, S.},
+  year = {1998},
+  month = jun,
+  volume = {6},
+  pages = {3659-3664 vol.6},
+  issn = {0743-1619},
+  doi = {10.1109/ACC.1998.703296},
+  abstract = {We consider analysis and controller synthesis of piecewise-linear systems. The method is based on constructing quadratic and piecewise-quadratic Lyapunov functions that prove stability and performance for the system. It is shown that proving stability and performance, or designing (state-feedback) controllers, can be cast, as convex optimization problems involving linear matrix inequalities that can be solved very efficiently. A couple of simple examples are included to demonstrate applications of the methods described.}
+}
+
+@book{johanssonPiecewiseLinearControl2003,
+  title = {Piecewise {{Linear Control Systems}}: {{A Computational Approach}}},
+  shorttitle = {Piecewise {{Linear Control Systems}}},
+  author = {Johansson, Mikael K.-J.},
+  year = {2003},
+  series = {Lecture {{Notes}} in {{Control}} and {{Information Sciences}}},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  url = {https://doi.org/10.1007/3-540-36801-9},
+  isbn = {978-3-540-44124-3},
+  langid = {english}
+}
+
+@article{julianCanonicalPiecewiselinearApproximation1998,
+  title = {Canonical Piecewise-Linear Approximation of Smooth Functions},
+  author = {Julian, P. and Jordan, M. and Desages, A.},
+  year = {1998},
+  month = may,
+  journal = {IEEE Transactions on Circuits and Systems I: Fundamental Theory and Applications},
+  volume = {45},
+  number = {5},
+  pages = {567--571},
+  issn = {1057-7122},
+  doi = {10.1109/81.668868},
+  abstract = {This paper deals with the approximation of smooth functions using canonical piecewise-linear functions. The developing of tools in the field of analysis and control of nonlinear systems based on this kind of functions, as well as its efficiency in the representation of electronic devices, motivates the development of useful methods to obtain accurate approximations. A recursive method is proposed to obtain simultaneously all the parameters required and its convergence is studied. In addition, an iterative method to introduce new partitions on the domain, when the error obtained is not satisfactory, is described. This method takes advantage of the partitions already found to reduce the total number of parameters that the algorithm has to handle},
+  langid = {english}
+}
+
+@article{kangGlobalRepresentationMultidimensional1978,
+  title = {A Global Representation of Multidimensional Piecewise-Linear Functions with Linear Partitions},
+  author = {Kang, S. and Chua, L.},
+  year = {1978},
+  month = nov,
+  journal = {IEEE Transactions on Circuits and Systems},
+  volume = {25},
+  number = {11},
+  pages = {938--940},
+  issn = {0098-4094},
+  doi = {10.1109/TCS.1978.1084401},
+  abstract = {An analytical representation is introduced form-dimensional piecewise-linear functions which are affine over convex polyhedral regions bounded by linear partitions. Explicit formulas are presented to compute the coefficients associated with this representation along with an example.},
+  langid = {english}
+}
+
+@article{chuaCanonicalPiecewiselinearRepresentation1988,
+  title = {Canonical Piecewise-Linear Representation},
+  author = {Chua, L. O and Deng, A. -C},
+  year = {1988},
+  month = jan,
+  journal = {IEEE Transactions on Circuits and Systems},
+  volume = {35},
+  number = {1},
+  pages = {101--111},
+  issn = {0098-4094},
+  doi = {10.1109/31.1705},
+  abstract = {Every continuous piecewise-linear function of one variable f :R1{$\rightarrow$}R1 has a unique canonical piecewise-linear representation. However, only a subclass of higher-dimensional piecewise-linear functions f:Rn{$\rightarrow$}Rn, n{$>$}1, has a canonical piecewise-linear representation. It is proved that the necessary and sufficient conditions for the existence of a canonical piecewise-linear representation is that fpossess a consistent variation property. The geometrical constraints imposed by this property are analyzed and discussed in detail along with many examples},
+  langid = {english}
+}
+
+@article{rantzerPiecewiseLinearQuadratic2000,
+  title = {Piecewise Linear Quadratic Optimal Control},
+  author = {Rantzer, A. and Johansson, M.},
+  year = {2000},
+  month = apr,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {45},
+  number = {4},
+  pages = {629--637},
+  issn = {0018-9286},
+  doi = {10.1109/9.847100},
+  abstract = {The use of piecewise quadratic cost functions is extended from stability analysis of piecewise linear systems to performance analysis and optimal control. Lower bounds on the optimal control cost are obtained by semidefinite programming based on the Bellman inequality. This also gives an approximation to the optimal control law. An upper bound to the optimal cost is obtained by another convex optimization problem using the given control law. A compact matrix notation is introduced to support the calculations and it is proved that the framework of piecewise linear systems can be used to analyze smooth nonlinear dynamics with arbitrary accuracy},
+  langid = {english}
+}
+
+@article{sontagNonlinearRegulationPiecewise1981,
+  title = {Nonlinear Regulation: {{The}} Piecewise Linear Approach},
+  shorttitle = {Nonlinear Regulation},
+  author = {Sontag, E.},
+  year = {1981},
+  month = apr,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {26},
+  number = {2},
+  pages = {346--358},
+  issn = {0018-9286},
+  doi = {10.1109/TAC.1981.1102596},
+  abstract = {This paper approaches nonlinear control problems through the use of (discrete-time) piecewise linear systems. These are systems whose next-state and output maps are both described by PL maps, i.e., by maps which are affine on each of the components of a finite polyhedral partition. Various results on state and output feedback, observers, and inverses, standard for linear systems, are proved for PL systems. Many of these results are then used in the study of more general (both discrete- and continuous-time) systems, using suitable approximations.},
+  langid = {english}
+}
+
+@inproceedings{sontagLinearNonlinearComplexity1995,
+  title = {From Linear to Nonlinear: Some Complexity Comparisons},
+  shorttitle = {From Linear to Nonlinear},
+  booktitle = {, {{Proceedings}} of the 34th {{IEEE Conference}} on {{Decision}} and {{Control}}, 1995},
+  author = {Sontag, E.},
+  year = {1995-12-13/1995-12-15},
+  volume = {3},
+  pages = {2916-2920 vol.3},
+  publisher = {IEEE},
+  doi = {10.1109/CDC.1995.478585},
+  abstract = {This paper deals with the computational complexity, and in some cases undecidability, of several problems in nonlinear control. The objective is to compare the theoretical difficulty of solving such problems to the corresponding problems for linear systems. In particular, the problem of null-controllability for systems with saturations (of a ``neural network'' type) is mentioned, as well as problems regarding piecewise linear (hybrid) systems. A comparison of accessibility, which can be checked fairly simply by Lie-algebraic methods, and controllability, which is at least NP-hard for bilinear systems, is carried out. Finally, some remarks are given on analog computation in this context},
+  isbn = {0-7803-2685-7},
+  langid = {english}
+}
+
+@book{christophersenOptimalControlConstrained2007,
+  title = {Optimal {{Control}} of {{Constrained Piecewise Affine Systems}}},
+  author = {Christophersen, Frank J.},
+  year = {2007},
+  series = {Lecture {{Notes}} in {{Control}} and {{Information Sciences}}},
+  publisher = {Springer},
+  address = {Berlin; Heidelberg},
+  url = {https://doi.org/10.1007/978-3-540-72701-9},
+  urldate = {2022-08-01},
+  isbn = {978-3-540-72700-2},
+  langid = {english}
+}
+
+@inproceedings{fekriPWATOOLSMATLABToolbox2012,
+  title = {{{PWATOOLS}}: {{A MATLAB}} Toolbox for Piecewise-Affine Controller Synthesis},
+  shorttitle = {{{PWATOOLS}}},
+  booktitle = {2012 {{American Control Conference}} ({{ACC}})},
+  author = {Fekri, Mohsen Zamani and Samadi, Behzad and Rodrigues, Luis},
+  year = {2012},
+  month = jun,
+  pages = {4484--4489},
+  issn = {2378-5861},
+  doi = {10.1109/ACC.2012.6315609},
+  abstract = {A toolbox for piecewise-affine (PWA) systems called PWATOOLS is introduced in this paper. Numerical control synthesis methodologies for PWA and nonlinear systems have been implemented in this toolbox. Although several Lyapunov-based PWA control synthesis approaches exist in the literature, to the best of our knowledge there is no software toolbox that implements these methods for continuous-time PWA systems that is also capable of analyzing nonlinear systems and synthesizing PWA controllers for them. PWATOOLS is proposed to fill this gap as a software toolbox with the ability to analyze and synthesize PWA controllers for nonlinear systems. The toolbox proposed in this paper has been written to serve as an educational as well as a modeling, analysis and synthesis tool. PWATOOLS uses Yalmip, SeDuMi and PENBMI to find solutions for the sufficient conditions for stability analysis of the models or the synthesis of PWA controllers. An example in active flutter supression illustrates the use of this new toolbox.}
+}
+
+@book{xuControlEstimationPiecewise2014,
+  title = {Control and {{Estimation}} of {{Piecewise Affine Systems}}},
+  author = {Xu, Jun and Xie, Lihua},
+  year = {2014},
+  month = apr,
+  series = {Woodhead {{Publishing Reviews Mechanical Engineering}}},
+  publisher = {Woodhead Publishing},
+  address = {Amsterdam},
+  isbn = {978-1-78242-161-0},
+  langid = {english}
+}
+
+@book{rodriguesPiecewiseAffineControl2019,
+  title = {Piecewise {{Affine Control}}: {{Continuous-Time}}, {{Sampled-Data}}, and {{Networked Systems}}},
+  shorttitle = {Piecewise {{Affine Control}}},
+  author = {Rodrigues, Luis and Samadi, Behzad and Moarref, Miad},
+  year = {2019},
+  series = {Advances in {{Design}} and {{Control}}},
+  publisher = {{Society for Industrial and Applied Mathematics}},
+  address = {Philadelphia},
+  url = {https://doi.org/10.1137/1.9781611975901},
+  abstract = {Engineering systems operate through actuators, most of which will exhibit phenomena such as saturation or zones of no operation, commonly known as dead zones. These are examples of piecewise-affine characteristics, and they can have a considerable impact on the stability and performance of engineering systems. This book targets controller design for piecewise affine systems, fulfilling both stability and performance requirements. The authors present a unified computational methodology for the analysis and synthesis of piecewise affine controllers, taking an approach that is capable of handling sliding modes, sampled-data, and networked systems. They introduce algorithms that will be applicable to nonlinear systems approximated by piecewise affine systems, and they feature several examples from areas such as switching electronic circuits, autonomous vehicles, neural networks, and aerospace applications. Piecewise Affine Control: Continuous-Time, Sampled-Data, and Networked Systems is intended for graduate students, advanced senior undergraduate students, and researchers in academia and industry. It is also appropriate for engineers working on applications where switched linear and affine models are important. Initially proposed in view of applications to materials science, the Cahn--Hilliard equation is now applied in many other areas, including image processing, biology, ecology, astronomy, and chemistry. In particular, the author addresses applications to image inpainting and tumor growth. Many chapters include open problems and directions for future research. The Cahn--Hilliard Equation: Recent Advances and Applications is intended for graduate students and researchers in applied mathematics, especially those interested in phase separation models and their generalizations and applications to other fields. Materials scientists also will find this text of interest.},
+  isbn = {978-1-61197-589-5},
+  langid = {english}
+}
+
+@phdthesis{johanssonPiecewiseLinearControl1999,
+  title = {Piecewise {{Linear Control Systems}}},
+  author = {Johansson, Mikael},
+  year = {1999},
+  address = {Lund, Sweden},
+  url = {http://lup.lub.lu.se/record/19355},
+  urldate = {2011-08-01},
+  abstract = {This thesis treats analysis and design of piecewise linear control systems. Piecewise linear systems capture many of the most common nonlinearities in engineering systems, and they can also be used for approximation of other nonlinear systems. Several aspects of linear systems with quadratic constraints are generalized to piecewise linear systems with piecewise quadratic constraints. It is shown how uncertainty models for linear systems can be extended to piecewise linear systems, and how these extensions give insight into the classical trade-offs between fidelity and complexity of a model. Stability of piecewise linear systems is investigated using piecewise quadratic Lyapunov functions. Piecewise quadratic Lyapunov functions are much more powerful than the commonly used quadratic Lyapunov functions. It is shown how piecewise quadratic Lyapunov functions can be computed via convex optimization in terms of linear matrix inequalities. The computations are based on a compact parameterization of continuous piecewise quadratic functions and conditional analysis using the S-procedure. A unifying framework for computation of a variety of Lyapunov functions via convex optimization is established based on this parameterization. Systems with attractive sliding modes and systems with bounded regions of attraction are also treated. Dissipativity analysis and optimal control problems with piecewise quadratic cost functions are solved via convex optimization. The basic results are extended to fuzzy systems, hybrid systems and smooth nonlinear systems. It is shown how Lyapunov functions with a discontinuous dependence on the discrete state can be computed via convex optimization. An automated procedure for increasing the flexibility of the Lyapunov function candidate is suggested based on linear programming duality. A Matlab toolbox that implements several of the results derived in the thesis is presented.},
+  school = {Department of Automatic Control, Lund Institute of Technology}
+}
+
+@article{kangSingularitiesNonlinearCircuit2018,
+  title = {Singularities of {{Nonlinear Circuit Theory}} and {{Applications}}: {{Achievements}} of {{Professor Leon Ong Chua}}},
+  shorttitle = {Singularities of {{Nonlinear Circuit Theory}} and {{Applications}}},
+  author = {Kang, Sung-Mo},
+  year = {2018},
+  journal = {IEEE Circuits and Systems Magazine},
+  volume = {18},
+  number = {2},
+  pages = {10--13},
+  issn = {1558-0830},
+  doi = {10.1109/MCAS.2018.2821723},
+  abstract = {Professor Leon O. Chua is globally recognized as a profound founder of modern nonlinear circuit theory and original researcher. It was my personal fortune to become one of Leon's early graduate students at the University of California, Berkeley in 1972 soon after his move to UC Berkeley from Purdue University. The Circuits and Systems faculty at that time included late professors Ernest Kuh, Charles Desoer and professors Lofti Zadeh, Elijah Jury, and Lucien Polak, among others. The Integrated Circuits faculty was consisted of late professor Donald Peterson and professor David Hodges, and their associates. Leon?s graduate research group included Robert Schilling, Douglas Green, formerly of UCLA, John Wyatt of MIT, and some years later Stephen Boyd of Stanford University, Michael Peter Kennedy of the University College Cork, Ireland, and Chai Wah Wu of IBM Yorktown Heights, NY. His brilliance and passion for research attracted many talents. For CAS Society Leon hosted the 1974 San Francisco ISCAS and served as president in 1977. I met many distinguished visitors and many of them have become life-long colleagues- to mention a few, professor Timothy Trick of the University of Illinois at Urbana-Champaign, late professor Tamas Roska from Hungary, professor Akio Ushida of Tokushima University, Japan. It is difficult to list Leon's life-long achievements in a limited space. Here I will try to describe a subset that I have had some involvement under Leon's guidance. My own research topics included modeling of nonlinear devices and systems. The world of nonlinear circuits and systems is considered broad and Leon's research strategy was to classify and investigate particular classes of nonlinear systems. Leon's first book on nonlinear network theory [1] describes specific nonlinear systems. One of projects that I was initially worked on was on development of a canonical representation of piecewise linear functions using a combination of linear functions, absolute value functions with different breakpoints and jump discontinuities as [2]}
+}
+
+@article{bianchiniLinearFractionalRepresentations2021,
+  title = {Linear {{Fractional Representations}} and {{L}}{$_2$}-{{Stability Analysis}} of {{Continuous Piecewise Affine Systems}}},
+  author = {Bianchini, Gianni and Paoletti, Simone and Vicino, Antonio},
+  year = {2021},
+  month = jan,
+  journal = {IEEE Control Systems Letters},
+  volume = {5},
+  number = {1},
+  pages = {229--234},
+  issn = {2475-1456},
+  doi = {10.1109/LCSYS.2020.3001173},
+  abstract = {This letter addresses L2-stability analysis of discrete-time continuous piecewise affine systems described in input-output form by linear combinations of basis piecewise affine functions. The proposed approach exploits an equivalent representation of these systems as the feedback interconnection of a linear system and a diagonal static block with repeated scalar nonlinearity. This representation enables the use of analysis results for systems with repeated nonlinearities based on integral quadratic constraints. This leads to a sufficient condition for L2-stability that can be checked via the solution of a single linear matrix inequality, whose dimension grows linearly with the number of basis piecewise affine functions defining the system. Numerical examples corroborate the proposed approach by providing a comparison with an alternative approach based on the computation of piecewise polynomial storage functions.}
+}
+
+@article{bemporadObservabilityControllabilityPiecewise2000,
+  title = {Observability and Controllability of Piecewise Affine and Hybrid Systems},
+  author = {Bemporad, A. and {Ferrari-Trecate}, G. and Morari, M.},
+  year = {2000},
+  month = oct,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {45},
+  number = {10},
+  pages = {1864--1876},
+  issn = {1558-2523},
+  doi = {10.1109/TAC.2000.880987},
+  abstract = {We prove, in a constructive way, the equivalence between piecewise affine systems and a broad class of hybrid systems described by interacting linear dynamics, automata, and propositional logic. By focusing our investigation on the former class, we show through counterexamples that observability and controllability properties cannot be easily deduced from those of the component linear subsystems. Instead, we propose practical numerical tests based on mixed-integer linear programming.}
+}
+
+@article{kvasnicaAutomaticDerivationOptimal2011,
+  title = {Automatic {{Derivation}} of {{Optimal Piecewise Affine Approximations}} of {{Nonlinear Systems}}},
+  author = {Kvasnica, Michal and Sz{\"u}cs, Alexander and Fikar, Miroslav},
+  year = {2011},
+  month = jan,
+  journal = {IFAC Proceedings Volumes},
+  series = {18th {{IFAC World Congress}}},
+  volume = {44},
+  number = {1},
+  pages = {8675--8680},
+  issn = {1474-6670},
+  doi = {10.3182/20110828-6-IT-1002.01104},
+  url = {https://www.sciencedirect.com/science/article/pii/S1474667016450032},
+  urldate = {2022-11-11},
+  abstract = {The paper proposes a method for deriving optimal piecewise affine (PWA) approximations of nonlinear systems with known analytic form. The procedure employs nonlinear optimization to derive an approximation of maximal accuracy and given complexity. We show that under mild assumptions, the task can be transformed into a series of one-dimensional approximations. An automatic procedure for generation of such approximations is discussed as well.},
+  langid = {english}
+}
+
+@article{pettitAnalyzingPiecewiseLinear1995,
+  title = {Analyzing Piecewise Linear Dynamical Systems},
+  author = {Pettit, N.B.O.L. and Wellstead, P.E.},
+  year = {1995},
+  month = oct,
+  journal = {IEEE Control Systems Magazine},
+  volume = {15},
+  number = {5},
+  pages = {43--50},
+  issn = {1941-000X},
+  doi = {10.1109/37.466263},
+  abstract = {This article presents a method of analyzing mixed logic/dynamic systems. The article describes the development of a computational tool for the analysis of piecewise linear (PL) dynamical systems. Unfortunately, many PL controllers are developed from ad hoc "intelligent systems" ideas which do not aim or allow the associated dynamic behavior to be predicted. An example of such a system is the anti-skid braking system in a car, where the controller is rule-based and designed using the engineer's knowledge of the system. The only current viable approach to testing such a system is by using extensive simulation and prototype testing, which must be repeated for each of the different car models on which it is installed. Anything that provides insight into the logic and dynamic interaction of such a system would be useful: hence the development of the work in this article. Similarly, systems with programmable logic controllers and gain schedulers also fall into the class of piecewise linear systems. The authors take ideas and known results from linear systems, convex set theory, and computational geometry and synthesize them to create an analysis tool for studying a class of systems that mix logic and dynamics. We choose to develop a computational analysis tool primarily because the traditional theoretical analysis of piecewise linear processes is intractable, except, that is, for certain local dynamic behavior.{$<>$}}
+}
+
+@article{vandenbergheGeneralizedLinearComplementarity1989,
+  title = {The Generalized Linear Complementarity Problem Applied to the Complete Analysis of Resistive Piecewise-Linear Circuits},
+  author = {Vandenberghe, L. and {de Moor}, B.L. and Vandewalle, J.},
+  year = {1989},
+  month = nov,
+  journal = {IEEE Transactions on Circuits and Systems},
+  volume = {36},
+  number = {11},
+  pages = {1382--1391},
+  issn = {1558-1276},
+  doi = {10.1109/31.41295},
+  abstract = {An important application of complementarity theory consists in solving sets of piecewise-linear equations and hence in the analysis of piecewise-linear resistive circuits. The authors show how a generalized version of the linear complementarity problem can be used to analyze a broad class of piecewise-linear circuits. Nonlinear resistors that are neither voltage nor current controlled can be allowed, and no restrictions on the linear part of the circuit have to be made. As a second contribution, the authors describe an algorithm for the solution of the generalized complementarity problem and show how it can be applied to yield a complete description of the DC solution set as well as of driving-point and transfer characteristics.{$<>$}}
+}
+
+@article{vascaNewPerspectiveModeling2009,
+  title = {A {{New Perspective}} for {{Modeling Power Electronics Converters}}: {{Complementarity Framework}}},
+  shorttitle = {A {{New Perspective}} for {{Modeling Power Electronics Converters}}},
+  author = {Vasca, Francesco and Iannelli, Luigi and Camlibel, M. Kanat and Frasca, Roberto},
+  year = {2009},
+  month = feb,
+  journal = {IEEE Transactions on Power Electronics},
+  volume = {24},
+  number = {2},
+  pages = {456--468},
+  issn = {1941-0107},
+  doi = {10.1109/TPEL.2008.2007420},
+  abstract = {The switching behavior of power converters with ldquoidealrdquo electronic devices (EDs) makes it difficult to define a switched model that describes the dynamics of the converter in all possible operating conditions, i.e., a ldquocompleterdquo model. Indeed, simplifying assumptions on the sequences of modes are usually adopted, also in order to obtain averaged models and discrete-time maps. In this paper, we show how the complementarity framework can be used to represent complete switched models of a wide class of power converters, with EDs having characteristics represented by piecewise-affine (even complicated) relations. The model equations can be written in an easy and compact way without the enumeration of all converter modes, eventually formalizing the procedure to an algorithm. The complementarity model can be used to perform transient simulations and time-domain analysis. Mathematical tools coming from nonlinear programming allow to simulate numerically the transient behavior of even complex power converters. Also rigorous time-domain analysis is possible without excluding pathological situations like, for instance, inconsistent initial conditions and simultaneous switchings. Basic converter topologies are used as examples to show the construction procedure for the complementarity models and their usefulness for simulating the dynamic evolution also for nontrivial operating conditions.}
+}
+
+@article{imuraCharacterizationWellposednessPiecewiselinear2000,
+  title = {Characterization of Well-Posedness of Piecewise-Linear Systems},
+  author = {Imura, J. and {van der Schaft}, A.},
+  year = {2000},
+  month = sep,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {45},
+  number = {9},
+  pages = {1600--1619},
+  issn = {1558-2523},
+  doi = {10.1109/9.880612},
+  url = {https://ieeexplore.ieee.org/abstract/document/880612},
+  urldate = {2023-11-06},
+  abstract = {One of the basic issues in the study of hybrid systems is the well-posedness (existence and uniqueness of solutions) problem of discontinuous dynamical systems. The paper addresses this problem for a class of piecewise-linear discontinuous systems under the definition of solutions of Caratheodory. The concepts of jump solutions or of sliding modes are not considered here. In this sense, the problem to be discussed is one of the most basic problems in the study of well-posedness for discontinuous dynamical systems. First, we derive necessary and sufficient conditions for bimodal systems to be well-posed, in terms of an analysis based on lexicographic inequalities and the smooth continuation property of solutions. Next, its extensions to the multimodal case are discussed. As an application to switching control, in the case that two state feedback gains are switched according to a criterion depending on the state, we give a characterization of all admissible state feedback gains for which the closed loop system remains well-posed.}
+}
+
+@techreport{hedlundPWLToolMatlabToolbox1999,
+  type = {Technical Report},
+  title = {{{PWLTool}} - a {{Matlab Toolbox}} for {{Piecewise Linear System}}},
+  author = {Hedlund, Sven and Johansson, Mikael},
+  year = {1999},
+  month = mar,
+  number = {TFRT-7582},
+  address = {Lund, Sweden},
+  institution = {Department of Automatic Control, Lund Institute of Technology (LTH)},
+  url = {https://lup.lub.lu.se/search/files/48387263/TFRT_7582.pdf},
+  abstract = {This manual describes a Matlab toolbox for computational analysis of piecewise linear systems. Key features of the toolbox are modeling, simulation, analysis, and optimal control for piecewise linear systems. The simulation routines detect sliding modes and simulate equivalent dynamics. The analysis and design are based on computation of piecewise quadratic Lyapunov functions. The computations are performed using convex optimization in terms of linear matrix inequalities (LMIs).}
+}
+
+@article{johanssonComputationPiecewiseQuadratic1998a,
+  title = {Computation of Piecewise Quadratic {{Lyapunov}} Functions for Hybrid Systems},
+  author = {Johansson, M. and Rantzer, A.},
+  year = {1998},
+  month = apr,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {43},
+  number = {4},
+  pages = {555--559},
+  issn = {1558-2523},
+  doi = {10.1109/9.664157},
+  url = {https://ieeexplore.ieee.org/document/664157},
+  urldate = {2023-11-15},
+  abstract = {This paper presents a computational approach to stability analysis of nonlinear and hybrid systems. The search for a piecewise quadratic Lyapunov function is formulated as a convex optimization problem in terms of linear matrix inequalities. The relation to frequency domain methods such as the circle and Popov criteria is explained. Several examples are included to demonstrate the flexibility and power of the approach.}
+}
+
+@article{szucsOptimalPiecewiseAffine2012,
+  title = {Optimal {{Piecewise Affine Approximations}} of {{Nonlinear Functions Obtained}} from {{Measurements}}},
+  author = {Sz{\H u}cs, Alexander and Kvasnica, Michal and Fikar, Miroslav},
+  year = {2012},
+  month = jan,
+  journal = {IFAC Proceedings Volumes},
+  series = {4th {{IFAC Conference}} on {{Analysis}} and {{Design}} of {{Hybrid Systems}}},
+  volume = {45},
+  number = {9},
+  pages = {160--165},
+  issn = {1474-6670},
+  doi = {10.3182/20120606-3-NL-3011.00061},
+  url = {https://www.sciencedirect.com/science/article/pii/S1474667015371901},
+  urldate = {2023-11-16},
+  abstract = {The paper describes a two-stage procedure for obtaining piecewise affine approximations of static nonlinearities obtained from measured data. In the first step we search for a suitable function which fits the data while minimizing the fitting error. Subsequently we show how to approximate, in an optimal fashion, the nonlinear fitting function by a piecewise affine function of pre-specified complexity. We illustrate that approximation of arbitrary nonlinear functions boils down to a series of one-dimensional approximations, rendering the procedure efficient from a computational point of view.}
+}
+
+@article{ferrari-trecateAnalysisDiscretetimePiecewise2002,
+  title = {Analysis of Discrete-Time Piecewise Affine and Hybrid Systems},
+  author = {{Ferrari-Trecate}, Giancarlo and Cuzzola, Francesco Alessandro and Mignone, Domenico and Morari, Manfred},
+  year = {2002},
+  month = dec,
+  journal = {Automatica},
+  volume = {38},
+  number = {12},
+  pages = {2139--2146},
+  issn = {0005-1098},
+  doi = {10.1016/S0005-1098(02)00142-5},
+  url = {https://www.sciencedirect.com/science/article/pii/S0005109802001425},
+  urldate = {2023-11-20},
+  abstract = {In this paper, we present various algorithms both for stability and performance analysis of discrete-time piece-wise affine (PWA) systems. For stability, different classes of Lyapunov functions are considered and it is shown how to compute them through linear matrix inequalities that take into account the switching structure of the systems. We also show that the continuity of the Lyapunov function is not required in discrete time. Moreover, the tradeoff between the degree of conservativeness and computational requirements is discussed. Finally, by using arguments from the dissipativity theory for nonlinear systems, we generalize our approach to analyze the l2-gain of PWA systems.}
+}

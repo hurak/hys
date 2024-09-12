@@ -1,0 +1,87 @@
+---
+title: "Stability of hybrid systems"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_stability.bib
+csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+#engine: julia
+---
+
+We will restrict ourselves to the stability of hybrid automata. The framework of hybrid equations offers alternative ways to analyze stability.
+
+## Equilibrium of a hybrid automaton
+
+With no loss of generality the equilibrium is often assumed at the origin, that is, 
+$$\bm x_\mathrm{eq} = \mathbf 0,$$
+but in the immediately following definitions we do not have to invoke this assumption.
+
+For a hybrid system with $\dot{\bm x} = \underbrace{\mathbf f(q,\bm x)}_{\mathbf f_q(\bm x)}$, the equilibrium $\bm x_\mathrm{eq}$ satisfies
+
+- $\mathbf 0 = \mathbf f_q(\bm x_\mathrm{eq})$ for all $q\in \mathcal Q$,
+- the reset map $r(q,q',\bm x_\mathrm{eq}) = \bm x_\mathrm{eq}$.
+
+::: {.callout-warning}
+The first condition above appears in several resources. For example, in the definition 4.9 in the section 4.2 in @linHybridDynamicalSystems2022 or the definition 8.2 in the section 8.2 in (no longer available online) @lygerosHybridSystemsFoundations2020. But it appears unnecessarily restrictive.  
+:::
+
+The second condition states that the system can be regarded as resting at the equlibrium even if it jumps from one discrete state (mode) to another (while staying in the equilibrium continuous state).
+
+## Stability of a hybrid automaton
+
+The equilibrium $x_\mathrm{eq}$(=0) is stable if for a given $\varepsilon > 0$ there exists $\delta > 0$ such that for all hybrid systems executions/trajectories starting at $(q_0,x_0)$, 
+$$
+\|x_0\| < \delta \Rightarrow \|x(\tau)\| < \varepsilon, \; \forall \tau \in \mathcal{T},
+$$
+where $\tau$ is a hybrid time and $\mathcal{T}$ is the hybrid time domain.
+
+## Asymptotic stability
+
+The equilibrium is stable and furthermore we can choose some $\delta$ such that
+$$
+\|x_0\| < \delta \quad \Rightarrow \quad \lim_{\tau\rightarrow \tau_\infty} \|x(\tau)\| = 0,
+$$
+where $\tau_\infty<\infty$ if the execution is Zeno and $\tau_\infty=\infty$ otherwise.
+
+## Is stability of the individual dynamics enough?
+
+![Hybrid automaton that is unstable due to switching even though the two modes are stable](stability_figures/switching_between_stable.png){width=45%}
+
+$$
+A_1 = 
+\begin{bmatrix}
+-1 & -100\\ 10 & -1
+\end{bmatrix}, \quad
+A_2 = 
+\begin{bmatrix}
+-1 & 10\\ -100 & -1
+\end{bmatrix}
+$$
+
+- Both are stable.
+- Switching can be destabilizing.
+
+## Can the individual dynamics be unstable?
+
+![Hybrid automaton that is stable thanks to switching even though the two modes are unstable](stability_figures/switching_between_unstable.png){width=45%}
+
+$$
+A_1 = 
+\begin{bmatrix}
+1 & -100\\ 10 & 1
+\end{bmatrix}, \quad
+A_2 = 
+\begin{bmatrix}
+1 & 10\\ -100 & 1
+\end{bmatrix}
+$$
+
+- Both are unstable.
+- Switching can be stabilizing.

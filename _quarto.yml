@@ -11,70 +11,84 @@ website:
     contents:
       - section: "0. Introduction"
         contents:
-          - introduction.qmd
-          - references_intro.qmd
+          - intro.qmd
+          - intro_outline.qmd
+          - intro_references.qmd
       - section: "1. Discrete-event systems: Automata"
         contents:
-          - discrete_event_systems.qmd
-          - automata.qmd  
-          - references_automata.qmd
+          - des.qmd
+          - des_automata.qmd  
+          - des_software.qmd
+          - des_references.qmd
       - section: "2. Discrete-event systems: Petri nets"  
         contents:  
           - petri_nets.qmd  
-          - references_petri_nets.qmd
+          - petri_nets_timed.qmd 
+          - petri_nets_software.qmd 
+          - petri_nets_references.qmd
       - section: "3. Discrete-event systems: Max-plus systems"  
         contents:
+          - max_plus_algebra.qmd
           - max_plus_systems.qmd  
-          - references_max_plus.qmd
+          - max_plus_software.qmd
+          - max_plus_references.qmd
       - section: "4. Hybrid systems: Hybrid automata"
         contents:
           - hybrid_automata.qmd
-          - references_hybrid_automata.qmd
+          - hybrid_automata_software.qmd
+          - hybrid_automata_references.qmd
       - section: "5. Hybrid systems: Hybrid equations"
         contents:
           - hybrid_equations.qmd
-          - references_hybrid_equations.qmd
+          - hybrid_equations_software.qmd
+          - hybrid_equations_references.qmd
       - section: "6. Some classes of hybrid systems"
         contents:
-          - reset_systems.qmd
-          - switched_systems.qmd
-          - piecewise_affine_systems.qmd
-          - references_reset_switched_piecewise.qmd
+          - classes_reset.qmd
+          - classes_switched.qmd
+          - classes_PWA.qmd
+          - classes_software.qmd
+          - classes_references.qmd
       - section: "7. Solution"
         contents:
           - solution_concepts.qmd
-          - solution_conditions.qmd
-          - references_solution.qmd
+          - solution_types.qmd
+          - solution_references.qmd
       - section: "8. Stability"
         contents:
-          - stability_of_hybrid_systems.qmd
+          - stability_recap.qmd
+          - stability_concepts.qmd
           - stability_via_common_lyapunov_function.qmd
           - stability_via_multiple_lyapunov_function.qmd
-          - references_stability.qmd
+          - stability_software.qmd
+          - stability_references.qmd
       - section: "9. Complementarity systems"
         contents:
           - complementarity_constraints.qmd
           - complementarity_systems.qmd
-          - simulation_using_complementarity_constraints.qmd
-          - references_complementarity.qmd
+          - complementarity_simulations.qmd
+          - complementarity_software.qmd
+          - complementarity_references.qmd
       - section: "10. Mixed logical dynamical (MLD) systems"
         contents:
-          - why_mld.qmd
-          - discrete_hybrid_automata.qmd
-          - mixed_logical_dynamical_systems.qmd
-          - references_mld.qmd
+          - mld_why.qmd
+          - mld_DHA.qmd
+          - mld_intro.qmd
+          - mld_software.qmd
+          - mld_references.qmd
       - section: "11. Model predictive control (MPC) for MLD systems"
         contents:
-          - online_mpc_for_mld_systems.qmd
-          - explicit_mpc_for_mld_systems.qmd
-          - references_mpc.qmd
+          - mpc_mld_online.qmd
+          - mpc_mld_explicit.qmd
+          - mpc_mld_software.qmd
+          - mpc_mld_references.qmd
       - section: "12. Formal verification"
         contents:
-          - what_is_verification.qmd
-          - reachability.qmd
-          - barrier_function.qmd
-          - temporal_logics.qmd
-          - references_verification.qmd
+          - verification_intro.qmd
+          - verification_reachability.qmd
+          - verification_barrier.qmd
+          - verification_temporal_logics.qmd
+          - verification_references.qmd
   back-to-top-navigation: true
 
 format:

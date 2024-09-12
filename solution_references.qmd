@@ -1,0 +1,11 @@
+---
+title: "Literature"
+bibliography: ref_hybrid.bib
+csl: ieee-control-systems.csl
+format:
+    html     
+---
+
+Any discussion of the concept(s) of solution of a hybrid system must start with the concept of a hybrid time and hybrid time domain. Within the hybrid automata framework this is discussed in the references that we have already made. A particularly popular and recommendable are the (online available) lecture notes @lygerosLectureNotesHybrid2004. Its updated and extended version @lygerosHybridSystemsFoundations2020 is no longer available online – we can only guess that the authors are turning it into a printed textbook. Another hybrid automata textbook that discusses these concepts is @linHybridDynamicalSystems2022 (section 2.2.3), but it is not available online either. Anyway, the same concept is also discussed within the hybrid equations framework as introduced, for example, in @goebelHybridDynamicalSystems2009, which can be downloaded (within institutional subscription). In fact, we find their version of hybrid time and hybrid time domain even more (visually) appealing.  
+
+A transition from one discrete state to another, even if not accompanied by a jump (or reset) of the continuous state variable can be modeled as a discontinuity of the functions on right hand side of the differential equation. Depending on circumstances, more or less peculiar phenomena can occur due to these discontinuities.These issues are discussed in quite some detail in the (fairly readable) paper @cortesDiscontinuousDynamicalSystems2008. Very much recommendable. 

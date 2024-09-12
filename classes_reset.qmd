@@ -1,0 +1,138 @@
+---
+title: "Reset systems"
+bibliography: ref_hybrid.bib
+#csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig 
+#engine: julia
+---
+
+We have introduced two major modeling frameworks for hybrid systems – hybrid automata and hybrid (state) equations. Now we are ready to model any hybrid system. It turns out useful, however, to pick a few special classes of hybrid systems. Their special features are reflected in a special structure of their models (automata or equations). The special classes of hybrid systems that we are going to discuss are
+
+- reset systems, 
+- switched systems, 
+- piecewise affine (PWA) systems.
+
+## Reset systems
+
+They are also called *impulsive systems* (the reason is going to be clear soon). In a hybrid system, some variables reset (jump) and flow, others only flow, 
+but there are no variables that only reset. In other words, in reset systems we can identify no discrete states. In the digraph representation of the reset system, we can only observe a single node.
+
+![Reset system](classes_figures/reset_system.png){width=40% #fig-reset-system}
+
+We can recognize the bouncing ball as a prominent example of a reset system. Another example follows.
+
+::: {.callout-warning}
+Our wording of the definition of a reset system is not perfect, because as we have discussed earlier, even when staying constant between two jumps, the state variable is, technically speaking, also flowing – it is just a special type of flow. 
+:::
+
+::: {#exm-reset-oscillator}
+## Reset oscillator
+
+We consider a hybrid system state-space modelled by the following hybrid equations:
+$$
+\begin{aligned}
+\begin{bmatrix}
+\dot x_1\\ \dot x_2
+\end{bmatrix}
+&=
+\begin{bmatrix}
+0 & 1\\ -1 & 2\delta
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\x_2
+\end{bmatrix}
++
+\begin{bmatrix}
+0\\1
+\end{bmatrix},
+\quad \bm x \in \mathcal C,\\
+x_1^+ &= -x_1, \quad \bm x \in \mathcal D,
+\end{aligned}
+$$
+where 
+$$
+\begin{aligned}
+\mathcal D &= \{\bm x \in \mathbb R^2 \mid x_1<0, x_2=0\},\\
+\mathcal C &= \mathbb R^2\setminus\mathcal D.
+\end{aligned}
+$$
+
+Simulation outcomes for some concrete value of the small positive parameter $\delta$ are shown in the following figure.
+```{julia}
+using DifferentialEquations
+
+δ = 0.1
+A = [0.0 1.0;
+    -1.0 2δ]
+b = [0.0; 1.0]
+
+x0 = [0.2, 0.0]
+tspan = (0.0, 100)
+f(x, p, t) = A*x + b
+cond_fcn(x, t, integrator) = x[1]<0 ? x[2] : 1.0
+affect!(integrator) = integrator.u[1] = -integrator.u[1]
+cb = ContinuousCallback(cond_fcn, affect!)
+prob = ODEProblem(f, x0, tspan)
+
+sol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)
+
+using Plots
+plot(sol[1,:],sol[2,:],lw=2,legend=false, tickfontsize=12, xtickfontsize=12, ytickfontsize=12)
+xlabel!("x₁")
+ylabel!("x₂")
+```
+
+Isn't it fascinating that a linear system augmented with resetting can exhibit such a complex behavior?
+:::
+
+## Clegg's integrator (CI)
+
+Clegg's integrator is a reset element that can be used in control systems.
+
+Its function is as follows. As soon as the sign of the input changes, the integrator resets to zero.
+
+The integrator keeps the sign of its input and output identical.
+ 
+Unlike the traditional (linear) integrator, the CI exhibits much smaller phase lag (some 38 vs 90 deg). 
+
+It may be of historical curiosity that originally the concept was presented in the form of an analog circuit (opamps, diodes, resistors, capacitors). See the references if you are interested.
+
+::: {.callout-note}
+The reset (or jump) condition can is often formulated as an equality, but we formulate it as an inequality.
+:::
+
+## First-order reset element (FORE)
+
+Another simple reset element that can be used in control systems is known as FORE (first-order reset element) described by 
+$$
+\begin{array}{lr}
+\dot u = a u + k e, & \mathrm{when}\; e\neq 0,\\
+u^+ = 0, & \mathrm{when}\; e = 0.
+\end{array}
+$$
+
+::: {#exm-fore}
+## FORE
+Consider a plant modelled by $G(s) = \frac{s+1}{s(s+0.2)}$ and FORE controller in the feedback loop as in @fig-fore.
+
+![First-order reset element (FORE) in a feedback loop](classes_figures/fore.png){width=60% #fig-fore}
+:::
+
+## When (not) to use reset control? 
+
+However conceptually simple, reset control is not a panacea. Analysis and design of reset control systems is not straightforward compared to the traditional linear control systems. In particular, guaranteeing closed-loop stability upon introduction of resetting into a linear controller is not easy and may require advanced concepts (some of them we are going to introduce later in the course). Therefore we should use reset control with care. We should always do our best to find (another) linear controller that has a performance comparable or even better than reset control system.
+
+But reset control can be helfpul if the plant is subject to *fundamental limitations of achievable control performance* such as
+
+- integrators and unstable poles, 
+- zeros in the right half-plane (non-minimum phase), 
+- delays,
+- ...
+
+In these situations reset control can be a way to beat the so-called *waterbed effect*.

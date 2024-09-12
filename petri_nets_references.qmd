@@ -1,0 +1,25 @@
+---
+title: "Literature"
+bibliography: 
+    - ref_des.bib
+    - ref_petri_nets.bib
+    - ref_max_plus.bib
+    - ref_PLC.bib
+csl: ieee-control-systems.csl 
+format:
+    html     
+---
+
+Literature for Petri nets is vast, but a decent (and perfectly satisfactory) introduction can be found in Chapter 4 and 5.3 (for the timed PN) of the classical (and award-winning) reference @cassandrasIntroductionDiscreteEvent2021. Note that electronic version (in fact, PDF) is accessible through the NTK library (upon CTU login, for example to usermap first).
+
+A nice introduction is also in Chapter 2 of the freely online available book @baccelliSynchronizationLinearityAlgebra2001. 
+
+The survey paper that is particularly focused on Petri nets from the control systems perspective is @giuaPetriNetsAutomatic2018 and it gives a wealth of other references.
+
+A few more monographs, mostly inclined towards control systems, are @moodySupervisoryControlDiscrete1998, @hruzModelingControlDiscreteevent2007, @reisigUnderstandingPetriNets2013.
+
+## Petri nets and their derivatives such as Grafcet in international standards
+
+We mention at the beginning of this chapter that Petri nets have made it to international standards. Here they are: @ISOIEC1590912019, @ISOIEC1590922011, and @ISOIEC1590932021. 
+
+Based on Petri nets, another framework has been derived and standardized, namely *GRAFCET*, see @IEC6084820132013 and @johnssonGrafchartItsRelations1998, upon which, in turn, the popular *Sequential Function Chart* (SFC) language for PLC programming @IEC611313Programmable2013 is based.

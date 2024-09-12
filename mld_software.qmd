@@ -1,0 +1,19 @@
+---
+title: "Software"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_mpc.bib
+    - ref_integer_and_mixed_integer.bib
+csl: ieee-control-systems.csl
+format:
+    html     
+---
+
+The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language for encoding a discrete hybrid automaton and subsequently generating the MLD description:
+
+- [HYSDEL](http://people.ee.ethz.ch/~cohysys/hysdel/). It is essentially both a modelling language and its compiler (or parser). It can be used on its own or it can be used from within some other toolboxes. In particular, developed by the same authors is
+- [Hybrid Toolbox](http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/). While installing the toolbox, HYSDEL is also installed automatically. 
+
+Alternatively, there is a more general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies
+
+- [Multiparametric Toolbox 3](https://www.mpt3.org/). 

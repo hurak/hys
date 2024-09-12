@@ -1,0 +1,355 @@
+@article{banosImpulsiveDynamicalSystems2016,
+  title = {An Impulsive Dynamical Systems Framework for Reset Control Systems},
+  author = {Ba{\~n}os, Alfonso and Mulero, Juan I. and Barreiro, Antonio and Dav{\'o}, Miguel A.},
+  year = {2016},
+  month = oct,
+  journal = {International Journal of Control},
+  volume = {89},
+  number = {10},
+  pages = {1985--2007},
+  publisher = {Taylor \& Francis},
+  issn = {0020-7179},
+  doi = {10.1080/00207179.2016.1146969},
+  url = {https://doi.org/10.1080/00207179.2016.1146969},
+  urldate = {2023-10-29},
+  abstract = {Impulsive dynamical systems is a well-established area of dynamical systems theory, and it is used in this work to analyse several basic properties of reset control systems: existence and uniqueness of solutions, and continuous dependence on the initial condition (well-posedness). The work scope is about reset control systems with a linear and time-invariant base system, and a zero-crossing resetting law. A necessary and sufficient condition for existence and uniqueness of solutions, based on the well-posedness of reset instants, is developed. As a result, it is shown that reset control systems (with strictly proper plants) do not have Zeno solutions. It is also shown that full reset and partial reset (with a special structure) always produce well-posed reset instants. Moreover, a definition of continuous dependence on the initial condition is developed, and also a sufficient condition for reset control systems to satisfy that property. Finally, this property is used to analyse sensitivity of reset control systems to sensor noise. This work also includes a number of illustrative examples motivating the key concepts and main results.}
+}
+
+@book{banosResetControlSystems2012,
+  title = {Reset {{Control Systems}}},
+  author = {Ba{\~n}os, Alfonso and Barreiro, Antonio},
+  year = {2012},
+  series = {Advances in {{Industrial Control}}},
+  publisher = {Springer},
+  address = {London; New York},
+  url = {https://doi.org/10.1007/978-1-4471-2250-0},
+  isbn = {978-1-4471-2216-6},
+  langid = {english}
+}
+
+@article{banosResetTimesDependentStability2011,
+  title = {Reset {{Times-Dependent Stability}} of {{Reset Control Systems}}},
+  author = {Banos, A. and Carrasco, J. and Barreiro, A.},
+  year = {2011},
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {56},
+  number = {1},
+  pages = {217--223},
+  issn = {0018-9286},
+  doi = {10.1109/TAC.2010.2088892},
+  abstract = {Reset control systems are a special type of impulsive hybrid systems in which the time evolution depends both on continuous dynamics between resets and the discrete dynamics corresponding to the reset instants. In this work, stability of reset control systems is approached by using an equivalent (time-varying) discrete time system, introducing new sufficient stability conditions that explicitly depend on the reset times. The stability conditions overcome previous results such as the -condition and can be also applied to reset systems with unstable base system. In addition, stabilization of reset control systems is approached for systems with stable base system, resulting in that a reset control system can be always stabilized if reset intervals are forced to be large enough, avoiding resets at some crossings if necessary.}
+}
+
+@article{beerensResetIntegralControl2019,
+  title = {Reset Integral Control for Improved Settling of {{PID-based}} Motion Systems with Friction},
+  author = {Beerens, R. and Bisoffi, A. and Zaccarian, L. and Heemels, W. P. M. H. and Nijmeijer, H. and {van de Wouw}, N.},
+  year = {2019},
+  month = sep,
+  journal = {Automatica},
+  volume = {107},
+  pages = {483--492},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2019.06.017},
+  url = {https://www.sciencedirect.com/science/article/pii/S0005109819303103},
+  urldate = {2024-03-09},
+  abstract = {We present a reset control approach to improve the transient performance of a PID-controlled motion system subject to Coulomb and viscous friction. A reset integrator is applied to circumvent the depletion and refilling process of a linear integrator when the solution overshoots the setpoint, thereby significantly reducing the settling time. Robustness for unknown static friction levels is obtained. The closed-loop system is formulated through a hybrid systems framework, within which stability is proven using a discontinuous Lyapunov-like function and a meagre-limsup invariance argument. The working principle of the proposed reset controller is analyzed in an experimental benchmark study of an industrial high-precision positioning machine.}
+}
+
+@article{beerensResetPIDDesign2022,
+  title = {Reset {{PID Design}} for {{Motion Systems With Stribeck Friction}}},
+  author = {Beerens, Ruud and Bisoffi, Andrea and Zaccarian, Luca and Nijmeijer, Henk and Heemels, Maurice and {van de Wouw}, Nathan},
+  year = {2022},
+  month = jan,
+  journal = {IEEE Transactions on Control Systems Technology},
+  volume = {30},
+  number = {1},
+  pages = {294--310},
+  issn = {1558-0865},
+  doi = {10.1109/TCST.2021.3063420},
+  abstract = {We present a reset control approach to achieve setpoint regulation of a motion system with a proportional-integral-derivative (PID)-based controller, subject to Coulomb friction and a velocity-weakening (Stribeck) contribution. While classical PID control results in persistent oscillations (hunting), the proposed reset mechanism induces asymptotic stability of the setpoint and significant overshoot reduction. Moreover, robustness to an unknown static friction level and an unknown Stribeck contribution is guaranteed. The closed-loop dynamics are formulated in a hybrid systems framework, using a novel hybrid description of the static friction element, and the asymptotic stability of the setpoint is proven accordingly. The working principle of the controller is demonstrated experimentally on a motion stage of an electron microscope, showing superior performance over classical PID control.}
+}
+
+@article{bekerFundamentalPropertiesReset2004,
+  title = {Fundamental Properties of Reset Control Systems},
+  author = {Beker, Orhan and Hollot, C.V. and Chait, Y. and Han, H.},
+  year = {2004},
+  month = jun,
+  journal = {Automatica},
+  volume = {40},
+  number = {6},
+  pages = {905--915},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2004.01.004},
+  url = {http://www.sciencedirect.com/science/article/pii/S0005109804000196},
+  urldate = {2013-10-16},
+  abstract = {Reset controllers are linear controllers that reset some of their states to zero when their input is zero. We are interested in their feedback connection with linear plants, and in this paper we establish fundamental closed-loop properties including stability and asymptotic tracking. This paper considers more general reset structures than previously considered, allowing for higher-order controllers and partial-state resetting. It gives a testable necessary and sufficient condition for quadratic stability and links it to both uniform bounded-input bounded-state stability and steady-state performance. Unlike previous related research, which includes the study of impulsive differential equations, our stability results require no assumptions on the evolution of reset times.}
+}
+
+@article{bekerPlantIntegratorExample2001,
+  title = {Plant with Integrator: An Example of Reset Control Overcoming Limitations of Linear Feedback},
+  shorttitle = {Plant with Integrator},
+  author = {Beker, O. and Hollot, C.V. and Chait, Y.},
+  year = {2001},
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {46},
+  number = {11},
+  pages = {1797--1799},
+  issn = {0018-9286},
+  doi = {10.1109/9.964694},
+  abstract = {The purpose of this paper is twofold: 1) to give conditions under which linear feedback control of a plant containing integrator must overshoot; and 2) to give an example of reset control that does not overshoot under such constraints}
+}
+
+@article{buitenhuisFrequencydomainModellingReset2023,
+  title = {Frequency-Domain Modelling of Reset Control Systems Using an Impulsive Description},
+  author = {Buitenhuis, R. N. and Saikumar, N. and HosseinNia, S. Hassan},
+  year = {2023},
+  month = aug,
+  journal = {Nonlinear Analysis: Hybrid Systems},
+  volume = {49},
+  pages = {101341},
+  issn = {1751-570X},
+  doi = {10.1016/j.nahs.2023.101341},
+  url = {https://www.sciencedirect.com/science/article/pii/S1751570X23000122},
+  urldate = {2024-03-09},
+  abstract = {The ever-increasing industry desire for improved performance makes linear controller design run into fundamental limitations. Nonlinear control methods such as Reset Control (RC) are needed to overcome these. RC is a promising candidate since, unlike other nonlinear methods, it easily integrates into the industry-preferred PID design framework. Thus far, RC has been analysed in the frequency domain either through describing function analysis or by direct closed-loop numerical computation. The former computes a simplified closed-loop RC response by assuming a sufficient low-pass behaviour. In doing so it ignores all harmonics, which literature has found to cause significant modelling prediction errors. The latter gives a precise solution, but by its direct closed-loop computation does not clearly show how open-loop RC design translates to closed-loop performance. The main contribution of this work is aimed at overcoming these limitations by considering an alternative approach for modelling RC using state-dependent impulse inputs. This permits accurately computing closed-loop RC behaviour starting from the underlying linear system, improving system understanding. A frequency-domain description for closed-loop RC is obtained, which is solved analytically by using several well-defined assumptions. This analytical solution is verified using a simulated high-precision stage, critically examining sources of modelling errors. The accuracy of the proposed method is further substantiated using controllers designed for various specifications.}
+}
+
+@article{cleggNonlinearIntegratorServomechanisms1958,
+  title = {A Nonlinear Integrator for Servomechanisms},
+  author = {Clegg, J. C.},
+  year = {1958},
+  journal = {American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the},
+  volume = {77},
+  number = {1},
+  pages = {41--42},
+  issn = {0097-2185},
+  doi = {10.1109/TAI.1958.6367399},
+  abstract = {INTEGRATION in the forward part of a servomechanism loop has long been known to reduce steady-state errors. With one perfect integrator, there will be no steady-state error following a simple step-function input; with two tandem integrators there will be no steady-state error due to a ramp input, etc. The major drawback to the linear integrator is the time delay involved. Each linear integrator introduces 90 degrees of phase lag at all frequencies, and so it takes only two integrators to make a basically unstable system. A nonlinear integrator is to be described which is superior in this respect to a linear type.}
+}
+
+@article{deenenProjectionbasedIntegratorsImproved2021,
+  title = {Projection-Based Integrators for Improved Motion Control: {{Formalization}}, Well-Posedness and Stability of Hybrid Integrator-Gain Systems},
+  shorttitle = {Projection-Based Integrators for Improved Motion Control},
+  author = {Deenen, Daniel Andreas and Sharif, Bardia and {van den Eijnden}, Sebastiaan and Nijmeijer, Hendrik and Heemels, Maurice and Heertjes, Marcel},
+  year = {2021},
+  month = nov,
+  journal = {Automatica},
+  volume = {133},
+  pages = {109830},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2021.109830},
+  url = {https://www.sciencedirect.com/science/article/pii/S0005109821003502},
+  urldate = {2024-03-09},
+  abstract = {In this paper we formally describe the hybrid integrator-gain system (HIGS), which is a nonlinear integrator designed to avoid the limitations typically associated with linear integrators. The HIGS keeps the sign of its input and output equal, thereby inducing less phase lag than a linear integrator, much like the famous Clegg integrator. The HIGS achieves the reduced phase lag by projection of the controller dynamics instead of using resets of the integrator state, which forms a potential benefit of this control element. To formally analyze HIGS-controlled systems, we present an appropriate mathematical framework for describing these novel systems. Based on this framework, HIGS-controlled systems are proven to be well-posed in the sense of existence and forward completeness of solutions. Moreover, we propose two approaches for analyzing (input-to-state) stability of the resulting nonlinear closed-loop systems: (i) circle-criterion-like conditions based on (measured) frequency response data, and (ii) LMI-based conditions exploiting a new construction of piecewise quadratic Lyapunov functions. A motion control example is used to illustrate the results.}
+}
+
+@article{guoStabilityAnalysisDesign2009,
+  title = {Stability Analysis and Design of Reset Systems: {{Theory}} and an Application},
+  shorttitle = {Stability Analysis and Design of Reset Systems},
+  author = {Guo, Yuqian and Wang, Youyi and Xie, Lihua and Zheng, Jinchuan},
+  year = {2009},
+  month = feb,
+  journal = {Automatica},
+  volume = {45},
+  number = {2},
+  pages = {492--497},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2008.08.016},
+  url = {http://www.sciencedirect.com/science/article/pii/S0005109808004585},
+  urldate = {2013-10-16},
+  abstract = {This paper investigates stability analysis and design of reset control systems where the reset time instants are pre-specified. Firstly, in order to quantify stability of reset control systems, we propose an approach which does not rely on the stability of base linear systems. Based on this, some Lie-algebraic conditions for stability of reset control systems are obtained. Then, we develop a method for reset law design which aims at improving transient responses of the base linear systems. In addition, observer-based design is also considered. We prove that under some mild conditions, reset controller and observer can be designed separately. The obtained results are applied to short-span-seeking control of a kind of single stage hard disk drive servo systems. Simulations show that the proposed design is much more capable of improving transient response than traditional control design techniques.}
+}
+
+@article{guoStabilityAnalysisDesign2012,
+  title = {Stability Analysis and Design of Reset Control Systems with Discrete-Time Triggering Conditions},
+  author = {Guo, Yuqian and Gui, Weihua and Yang, Chunhua and Xie, Lihua},
+  year = {2012},
+  month = mar,
+  journal = {Automatica},
+  volume = {48},
+  number = {3},
+  pages = {528--535},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2011.12.001},
+  url = {http://www.sciencedirect.com/science/article/pii/S000510981100570X},
+  urldate = {2013-10-16},
+  abstract = {In a reset control system, reset actions are usually triggered whenever a continuous signal crosses a hyperplane. In the computer-based implementation, however, the continuous triggering signal is sampled and the triggering condition is then replaced by a discrete-time counterpart. In this work, we are concerned with the stability analysis and design of reset control systems based directly on discrete-time triggering conditions. First, a relationship between reset control systems and switched systems is established and some stability criteria are then obtained. Second, it is revealed through an example that a well-designed reset control system can be regarded as a hybrid system combining an underdamped baseline system with an overdamped reset mode. The reset matrix, which is assumed to be zero in general, can be adjusted to increase the damping ratio and thus further improve the transient performance. Based on this observation, a design guideline for single-input and single-output (SISO) systems is proposed. Lastly, a hard disk drive example is investigated to demonstrate the proposed design procedure.}
+}
+
+@article{chaitHorowitzContributionsReset2002,
+  title = {On {{Horowitz}}'s Contributions to Reset Control},
+  author = {Chait, Yossi and Hollot, C. V.},
+  year = {2002},
+  journal = {International Journal of Robust and Nonlinear Control},
+  volume = {12},
+  number = {4},
+  pages = {335--355},
+  doi = {10.1002/rnc.652},
+  url = {http://dx.doi.org/10.1002/rnc.652},
+  urldate = {2010-04-16},
+  abstract = {History shows that Prof. Isaac Horowitz was often ahead of the curve in his feedback control research, especially in developing quantitatively driven design procedures. In some topics, his work was so out of line with the main stream that it has received virtually no recognition from the control community until a few decades later. In this paper, we present recent research that was directly motivated by Horowitz's pioneering work on reset controllers in the 1970s. Reset controllers are linear controllers that reset some of their states to zero when their inputs reach a threshold. Horowitz motivated their use by showing that with qualitative design, they can exhibit better performance trade-offs than those in linear, time-invariant systems. This paper supports and advances his thinking by presenting recent theoretical and experimental results on reset control. Copyright {\copyright} 2002 John Wiley \& Sons, Ltd.}
+}
+
+@article{karbasizadehContinuousResetElement2022,
+  title = {Continuous Reset Element: {{Transient}} and Steady-State Analysis for Precision Motion Systems},
+  shorttitle = {Continuous Reset Element},
+  author = {Karbasizadeh, Nima and HosseinNia, S. Hassan},
+  year = {2022},
+  month = sep,
+  journal = {Control Engineering Practice},
+  volume = {126},
+  pages = {105232},
+  issn = {0967-0661},
+  doi = {10.1016/j.conengprac.2022.105232},
+  url = {https://www.sciencedirect.com/science/article/pii/S096706612200106X},
+  urldate = {2024-03-09},
+  abstract = {This paper addresses the main goal of using reset control in precision motion control systems, breaking of the well-known ``Waterbed effect''. A new architecture for reset elements will be introduced which has a continuous output signal as opposed to conventional reset elements. A steady-state precision study is presented, showing the steady-state precision is preserved while the peak of sensitivity is reduced. The architecture is then used for a ``Constant in Gain Lead in Phase'' (CgLp) element and a numerical analysis on transient response shows a significant improvement in transient response. It is shown that by following the presented guideline for tuning, settling time can be reduced and at the same time a non-overshoot step response can be achieved. A practical example is presented to verify the results and also to show that the proposed element can achieve a complex-order behaviour.}
+}
+
+@article{krishnanSynthesisNonlinearFeedback1974,
+  title = {Synthesis of a Non-Linear Feedback System with Significant Plant-Ignorance for Prescribed System Tolerances{\dag}},
+  author = {Krishnan, K. R. and Horowitz, I. M.},
+  year = {1974},
+  month = apr,
+  journal = {International Journal of Control},
+  volume = {19},
+  number = {4},
+  pages = {689--706},
+  publisher = {Taylor \& Francis},
+  issn = {0020-7179},
+  doi = {10.1080/00207177408932666},
+  url = {https://doi.org/10.1080/00207177408932666},
+  urldate = {2023-10-29},
+  abstract = {In the design of a linear feedback system to achieve prescribed response tolerances despite significant plant uncertainty, the principal price paid is in the amplification of sensor noise, which tends to saturate the plant elements. This noise amplification is due to the fixed relation between gain and phase of an analytic function, which forces relatively slow reduction of the loop transmission magnitude, as a function of frequency. A nonlinear element, the Clegg Integrator (C.I.), is used to alleviate this relation, permitting faster reduction of the loop transmission magnitude. The major difficulty is in finding a description of C.I. usable for synthesis. This is done by considering the class of step inputs, and locating the C.I. such that, from the inputs and the system output specifications, the nature of the inputs to the C.I. is known, permitting an equivalent linear characterization. A quantitative design procedure is then available to precisely design to achieve specified tolerances. A design example is included illustrating the superior features of the non-linear system, for a specific input class.}
+}
+
+@article{nesicStabilityPropertiesReset2008,
+  title = {Stability Properties of Reset Systems},
+  author = {Ne{\v s}i{\'c}, Dragan and Zaccarian, Luca and Teel, Andrew R.},
+  year = {2008},
+  month = aug,
+  journal = {Automatica},
+  volume = {44},
+  number = {8},
+  pages = {2019--2026},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2007.11.014},
+  url = {http://www.sciencedirect.com/science/article/pii/S0005109808000472},
+  urldate = {2013-10-16},
+  abstract = {Stability properties for a class of reset systems, such as systems containing a Clegg integrator, are investigated. We present Lyapunov based results for verifying L 2 and exponential stability of reset systems. Our results generalize the available results in the literature and can be easily modified to cover L p stability for arbitrary p {$\in$} [ 1 , {$\infty$} ] . Several examples illustrate that introducing resets in a linear system may reduce the L 2 gain if the reset controller parameters are carefully tuned.}
+}
+
+@article{paesaOptimalResetAdaptive2011,
+  title = {Optimal Reset Adaptive Observer Design},
+  author = {Paesa, D. and Ba{\~n}os, A. and Sagues, C.},
+  year = {2011},
+  month = oct,
+  journal = {Systems \& Control Letters},
+  volume = {60},
+  number = {10},
+  pages = {877--883},
+  issn = {0167-6911},
+  doi = {10.1016/j.sysconle.2011.07.007},
+  url = {http://www.sciencedirect.com/science/article/pii/S0167691111001629},
+  urldate = {2013-10-16},
+  abstract = {A reset adaptive observer (ReAO) is an adaptive observer consisting of an integrator and a reset law that resets the output of the integrator depending on a predefined reset condition. The inclusion of reset elements can improve the observer performance but it can also destroy the stability of the estimation process if the ReAO is not properly tuned. As contribution, a method to optimally tune the parameters and gains of the ReAO is presented. They are optimally chosen by solving the L 2 gain minimization problem, which can be rewritten as an equivalent LMI problem. The effectiveness of the proposed method is checked by simulations comparing the results of an optimal ReAO with an optimal traditional adaptive observer.}
+}
+
+@article{paesaResetObserversApplied2011,
+  title = {Reset Observers Applied to {{MIMO}} Systems},
+  author = {Paesa, D. and Franco, C. and Llorente, S. and {Lopez-Nicolas}, G. and Sagues, C.},
+  year = {2011},
+  month = apr,
+  journal = {Journal of Process Control},
+  volume = {21},
+  number = {4},
+  pages = {613--619},
+  issn = {0959-1524},
+  doi = {10.1016/j.jprocont.2010.12.011},
+  url = {http://www.sciencedirect.com/science/article/pii/S0959152410002581},
+  urldate = {2013-10-16},
+  abstract = {A Reset observer (ReO) is a novel sort of observer consisting of an integrator, and a reset law that resets the output of the integrator depending on a predefined switching condition. For SISO systems, the switching condition is defined in such a manner that the ReO is reset when the output estimation error and the reset term have different sign. However, the way to define the reset condition to deal with MIMO systems has not been analyzed previously. As contributions, we provide a formulation to handle ReO for MIMO systems, and an algorithm to compute its L 2 gain for performance purposes. Additionally, the effectiveness of our proposed MIMO ReO is analyzed by simulations.}
+}
+
+@inproceedings{paesaResetObserversLinear2011,
+  title = {Reset Observers for Linear Time-Delay Systems. {{A}} Delay-Independent Approach},
+  booktitle = {2011 50th {{IEEE Conference}} on {{Decision}} and {{Control}} and {{European Control Conference}} ({{CDC-ECC}})},
+  author = {Paesa, D. and Banos, A. and Sagues, C.},
+  year = {2011},
+  pages = {4152--4157},
+  doi = {10.1109/CDC.2011.6160206},
+  abstract = {A Reset observer (ReO) is a novel sort of observer consisting of an integrator, and a reset law that resets the output of the integrator depending on a predefined condition over its input and/or output. The introduction of the reset element in the adaptive laws can decrease the overshooting and settling time of the estimation process without sacrificing the rising time. Motivated by the interest in the design of state observers for systems with time-delay, which is an issue that often appears in process control, this paper contributes with the extension of the ReO to the time-delay system framework. The time-independent stability analysis of our proposal is addressed by means of linear matrix inequalities (LMIs). Simulation results show the potential benefit of the proposed reset observer compared with traditional linear observers.}
+}
+
+@article{saikumarCorrigendumLoopshapingReset2023,
+  title = {Corrigendum to ``{{Loop-shaping}} for Reset Control Systems: {{A}} Higher-Order Sinusoidal-Input Describing Functions Approach'' [{{Control Engineering Practice}} 111 (2021) 104808]},
+  shorttitle = {Corrigendum to ``{{Loop-shaping}} for Reset Control Systems},
+  author = {Saikumar, Niranjan and Heinen, Kars and HosseinNia, S. Hassan},
+  year = {2023},
+  month = aug,
+  journal = {Control Engineering Practice},
+  volume = {137},
+  pages = {105565},
+  issn = {0967-0661},
+  doi = {10.1016/j.conengprac.2023.105565},
+  url = {https://www.sciencedirect.com/science/article/pii/S096706612300134X},
+  urldate = {2024-03-09}
+}
+
+@article{saikumarLoopshapingResetControl2021,
+  title = {Loop-Shaping for Reset Control Systems: {{A}} Higher-Order Sinusoidal-Input Describing Functions Approach},
+  shorttitle = {Loop-Shaping for Reset Control Systems},
+  author = {Saikumar, Niranjan and Heinen, Kars and HosseinNia, S. Hassan},
+  year = {2021},
+  month = jun,
+  journal = {Control Engineering Practice},
+  volume = {111},
+  pages = {104808},
+  issn = {0967-0661},
+  doi = {10.1016/j.conengprac.2021.104808},
+  url = {https://www.sciencedirect.com/science/article/pii/S096706612100085X},
+  urldate = {2024-03-09},
+  abstract = {The ever-growing demands on speed and precision from the precision motion industry have pushed control requirements to reach the limitations of linear control theory. Nonlinear controllers like reset provide a viable alternative since they can be easily integrated into the existing linear controller structure and designed using industry-preferred loop-shaping techniques. However, currently, loop-shaping is achieved using the describing function (DF) and performance analysed using linear control sensitivity functions not applicable for reset control systems, resulting in a significant deviation between expected and practical results. This major bottleneck to the wider adaptation of reset control is overcome in this paper with two important contributions. First, an extension of frequency-domain tools for reset controllers in the form of higher-order sinusoidal-input describing functions (HOSIDFs) is presented, providing greater insight into their behaviour. Second, a novel method that uses the DF and HOSIDFs of the open-loop reset control system for the estimation of the closed-loop sensitivity functions is proposed, establishing for the first time --- the relation between open-loop and closed-loop behaviour of reset control systems in the frequency domain. The accuracy of the proposed solution is verified in both simulation and practice on a precision positioning stage and these results are further analysed to obtain insights into the tuning considerations for reset controllers.}
+}
+
+@article{wuResetIntegralDerivativeControl2007,
+  title = {Reset {{Integral-Derivative Control}} for {{HDD Servo Systems}}},
+  author = {Wu, Daowei and Guo, Guoxiao and Wang, Youyi},
+  year = {2007},
+  month = jan,
+  journal = {IEEE Transactions on Control Systems Technology},
+  volume = {15},
+  number = {1},
+  pages = {161--167},
+  issn = {1558-0865},
+  doi = {10.1109/TCST.2006.883230},
+  abstract = {Ever-decreasing track width to nanometer level becomes a great challenge for servo systems to fulfill short-span seeking and track-following in hard-disk drives (HDDs). This paper utilizes the reset integral-derivative element (RIDE), an integral-derivative controller whose states are set to zero when its input is zero, in both single- and dual-stage HDD servo systems. The RIDE can reduce the overshoot of step response, which will speed up the short-span seeking operation. Furthermore, the capability to suppress output disturbances in track-following is also found to be improved. Compared with linear control methods for short-span seeking, our results show that the merits of reset design are the simpleness in implementation and the robustness to plant uncertainties}
+}
+
+@inproceedings{zaccarianFirstOrderReset2005a,
+  title = {First Order Reset Elements and the {{Clegg}} Integrator Revisited},
+  booktitle = {Proceedings of the 2005, {{American Control Conference}}, 2005.},
+  author = {Zaccarian, L. and Nesic, D. and Teel, A.R.},
+  year = {2005},
+  month = jun,
+  pages = {563-568 vol. 1},
+  issn = {2378-5861},
+  doi = {10.1109/ACC.2005.1470016},
+  abstract = {We revisit a class of reset control systems containing first order reset elements (FORE) and Clegg integrators and propose a new class of models for these systems. The proposed model generalizes the models available in the literature and we illustrate, using the Clegg integrator, that it is more appropriate for describing the behavior of reset systems. Then, we state computable sufficient conditions for L/sub 2/ stability of the new class of models. Our results are based on LMIs and they exploit quadratic and piecewise quadratic Lyapunov functions. Finally, a result on stabilization of linear minimum phase systems with relative degree one using high gain FOREs is stated. We present two examples to illustrate our results. In particular, we show that for some systems a FORE can achieve lower L/sub 2/ gain than the underlying linear controller without resets.}
+}
+
+@article{zhengExperimentalDemonstrationReset2000,
+  title = {Experimental Demonstration of Reset Control Design},
+  author = {Zheng, Y. and Chait, Y. and Hollot, C.V. and Steinbuch, M. and Norg, M.},
+  year = {2000},
+  month = feb,
+  journal = {Control Engineering Practice},
+  volume = {8},
+  number = {2},
+  pages = {113--120},
+  issn = {0967-0661},
+  doi = {10.1016/S0967-0661(99)00131-8},
+  url = {http://www.sciencedirect.com/science/article/pii/S0967066199001318},
+  urldate = {2013-10-16},
+  abstract = {Using the describing function method, engineers in the 1950s and 1960s conceived of novel nonlinear compensators in an attempt to overcome performance limitations inherent in linear time-invariant (LTI) control systems. This paper is concerned with a subset of such devices called ``reset controllers'', which are LTI systems equipped with mechanisms and laws to reset their states to zero. This paper reports on a design procedure and a laboratory experiment, the first to be reported in the literature, in which the resulting reset controller provides better design tradeoffs than LTI compensation. Specifically, it is shown that reset control increases the level of sensor-noise suppression without sacrificing either disturbance-rejection performance or gain/phase margins.}
+}
