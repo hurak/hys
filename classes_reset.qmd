@@ -9,7 +9,7 @@ format:
         code-summary: "Show the code"
 crossref:
   fig-prefix: Fig 
-#engine: julia
+engine: julia
 ---
 
 We have introduced two major modeling frameworks for hybrid systems – hybrid automata and hybrid (state) equations. Now we are ready to model any hybrid system. It turns out useful, however, to pick a few special classes of hybrid systems. Their special features are reflected in a special structure of their models (automata or equations). The special classes of hybrid systems that we are going to discuss are
