@@ -65,7 +65,7 @@ $$
 
 Simulation outcomes for some concrete value of the small positive parameter $\delta$ are shown in the following figure.
 ```{julia}
-using DifferentialEquations
+using OrdinaryDiffEq
 
 δ = 0.1
 A = [0.0 1.0;
@@ -95,17 +95,34 @@ Isn't it fascinating that a linear system augmented with resetting can exhibit s
 
 Clegg's integrator is a reset element that can be used in control systems.
 
-Its function is as follows. As soon as the sign of the input changes, the integrator resets to zero.
-
-The integrator keeps the sign of its input and output identical.
+Its function is as follows. As soon as the sign of the input changes, the integrator resets to zero. As a consequence, the integrator keeps the sign of its input and output identical.
  
 Unlike the traditional (linear) integrator, the CI exhibits much smaller phase lag (some 38 vs 90 deg). 
 
-It may be of historical curiosity that originally the concept was presented in the form of an analog circuit (opamps, diodes, resistors, capacitors). See the references if you are interested.
+::: {#exm-clegg}
+## Response of Clegg's integrator to a sinusoidal input
+Here is a response of the Clegg's integrator to a sinusoidal input.
+``` {julia}
+using OrdinaryDiffEq
+f(x, u, t) = u(t)                               # We adhere to the control systems notation that x is the state variable and u is the input.
+x0 = 0.0                                        # The initial state.
+tspan = (0.0, 10)                               # The time span.
+u = t -> 1.0*sin(t)                             # The (control) input.
+cond_fcn(x, t, integrator) = integrator.p(t)    # The condition function. If zero, the event is triggered.
+affect!(integrator) = integrator.u = 0.0        # Beware that internally, u is the state variable. Here, the state variable is reset to zero.
+cb = ContinuousCallback(cond_fcn, affect!)
+prob = ODEProblem(f, x0, tspan, u)
+sol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)
 
-::: {.callout-note}
-The reset (or jump) condition can is often formulated as an equality, but we formulate it as an inequality.
+using Plots
+t = sol.t
+plot(sol.t,u.(t),label="u",lw=2)
+plot!(sol,lw=2,label="x", tickfontsize=12, xtickfontsize=12, ytickfontsize=12)
+xlabel!("t")
+```
 :::
+
+It may be of historical curiosity that originally the concept was presented in the form of an analog circuit (opamps, diodes, resistors, capacitors). See the references if you are interested.
 
 ## First-order reset element (FORE)
 
