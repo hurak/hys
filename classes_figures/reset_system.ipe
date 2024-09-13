@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.28">
-<info created="D:20231027162449" modified="D:20231027162931"/>
+<ipe version="70218" creator="Ipe 7.2.29">
+<info created="D:20231027162449" modified="D:20240913092913"/>
 <preamble>\usepackage{bm}</preamble>
 <ipestyle name="ElectricalEngineering">
 <symbol name="arrow/arc(spx)">
@@ -3065,12 +3065,9 @@ h
 256 576
 175.672 661.299 c
 </path>
-<text matrix="1 0 0 1 0 16" transformations="translations" pos="128 704" stroke="black" type="label" width="56.43" height="23.124" depth="15.73" halign="center" valign="center" size="Large" style="math">\begin{aligned}
-x_1 &amp; = f_1(\bm x)\\
-x_2 &amp; = f_2(\bm x)
-\end{aligned}</text>
 <text transformations="translations" pos="128 672" stroke="black" type="label" width="29.834" height="9.813" depth="0.17" halign="center" valign="center" size="Large" style="math">\bm x \in \mathcal{I}</text>
 <text transformations="translations" pos="192 784" stroke="black" type="label" width="30.348" height="9.808" depth="1.39" halign="center" valign="center" size="Large" style="math">\bm x \in \mathcal{G}</text>
-<text matrix="1 0 0 1 32 -16" transformations="translations" pos="208 656" stroke="black" type="label" width="54.181" height="10.389" depth="4.06" halign="center" valign="center" size="Large" style="math">x_1^+ = r(\bm x)</text>
+<text matrix="1 0 0 1 32 -16" transformations="translations" pos="208 656" stroke="black" type="label" width="54.381" height="10.39" depth="1.67" halign="center" valign="center" size="Large" style="math">\bm x^+ = r(\bm x)</text>
+<text transformations="translations" pos="128 704" stroke="black" type="label" width="44.605" height="9.915" depth="1.67" halign="center" valign="baseline" size="Large" style="math">\bm x = \mathbf f(\bm x)</text>
 </page>
 </ipe>
