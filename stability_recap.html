@@ -715,7 +715,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="attractivity">Attractivity</h2>
 <p>This is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.</p>
 <p>Perhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.</p>
-<div id="65e77dea" class="cell" data-execution_count="1">
+<div id="90615860" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> [(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="fu">*</span>(x[<span class="fl">2</span>]<span class="op">-</span>x[<span class="fl">1</span>])<span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">5</span>)<span class="op">/</span>((x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span><span class="fu">+</span>(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span>)); </span>
@@ -729,7 +729,7 @@ window.Quarto = {
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
-└ @ Makie ~/.julia/packages/Makie/WgbrE/src/scenes.jl:227</code></pre>
+└ @ Makie ~/.julia/packages/Makie/gG38B/src/scenes.jl:227</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>

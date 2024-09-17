@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -578,8 +598,16 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reachability-analysis" id="toc-reachability-analysis" class="nav-link active" data-scroll-target="#reachability-analysis">Reachability analysis</a></li>
+  <li><a href="#barier-certificates" id="toc-barier-certificates" class="nav-link" data-scroll-target="#barier-certificates">Barier certificates</a></li>
+  <li><a href="#temporal-logics" id="toc-temporal-logics" class="nav-link" data-scroll-target="#temporal-logics">Temporal logics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -603,10 +631,54 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The topic of verification of hybrid systems is vast. While we only reserved a single week/chapter/block for it, it would easily fill a dedicated course, supported by a couple of books. Having a smaller time budget, we have still found some encouragement that modest introduction is feasible in the Chapter 3 of <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>. Although we are not following the book closely, we are covering some of their topics.</p>
+<p>Among general references for hybrid system verification, we can recommend <span class="citation" data-cites="mitraVerifyingCyberPhysicalSystems2021"><a href="#ref-mitraVerifyingCyberPhysicalSystems2021" role="doc-biblioref">[2]</a></span>. Although the book is not freely available for download, its web page contains quite some additional material such as slides and codes.</p>
+<section id="reachability-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="reachability-analysis">Reachability analysis</h2>
+<p><span class="citation" data-cites="althoffSetPropagationTechniques2021"><a href="#ref-althoffSetPropagationTechniques2021" role="doc-biblioref">[3]</a></span> <span class="citation" data-cites="althoffCORA2024Manual2023"><a href="#ref-althoffCORA2024Manual2023" role="doc-biblioref">[4]</a></span></p>
+</section>
+<section id="barier-certificates" class="level2">
+<h2 class="anchored" data-anchor-id="barier-certificates">Barier certificates</h2>
+<p><span class="citation" data-cites="prajnaSafetyVerificationHybrid2004"><a href="#ref-prajnaSafetyVerificationHybrid2004" role="doc-biblioref">[5]</a></span></p>
+</section>
+<section id="temporal-logics" class="level2">
+<h2 class="anchored" data-anchor-id="temporal-logics">Temporal logics</h2>
+<p><span class="citation" data-cites="baierPrinciplesModelChecking2008"><a href="#ref-baierPrinciplesModelChecking2008" role="doc-biblioref">[6]</a></span>, <span class="citation" data-cites="clarkeModelChecking2018"><a href="#ref-clarkeModelChecking2018" role="doc-biblioref">[7]</a></span></p>
+<p><span class="citation" data-cites="murrayLectureLinearTemporal2020"><a href="#ref-murrayLectureLinearTemporal2020" role="doc-biblioref">[8]</a></span>, <span class="citation" data-cites="wongpiromsarnLectureModelChecking2020"><a href="#ref-wongpiromsarnLectureModelChecking2020" role="doc-biblioref">[9]</a></span>.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-mitraVerifyingCyberPhysicalSystems2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">S. Mitra, <em>Verifying <span>Cyber-Physical Systems</span>: <span>A Path</span> to <span>Safe Autonomy</span></em>. in Cyber <span>Physical Systems Series</span>. Cambridge, MA, USA: MIT Press, 2021. Available: <a href="https://sayanmitracode.github.io/cpsbooksite/about.html">https://sayanmitracode.github.io/cpsbooksite/about.html</a></div>
+</div>
+<div id="ref-althoffSetPropagationTechniques2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">M. Althoff, G. Frehse, and A. Girard, <span>“Set <span>Propagation Techniques</span> for <span>Reachability Analysis</span>,”</span> <em>Annual Review of Control, Robotics, and Autonomous Systems</em>, vol. 4, no. 1, pp. 369–395, 2021, doi: <a href="https://doi.org/10.1146/annurev-control-071420-081941">10.1146/annurev-control-071420-081941</a>.</div>
+</div>
+<div id="ref-althoffCORA2024Manual2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Althoff, N. Kochdumper, M. Wetzlinger, and T. Ladner, <span>“<span>CORA</span> 2024 <span>Manual</span>.”</span> 2023. Accessed: Jan. 10, 2023. [Online]. Available: <a href="https://tumcps.github.io/CORA/data/archive/manual/Cora2024Manual.pdf">https://tumcps.github.io/CORA/data/archive/manual/Cora2024Manual.pdf</a></div>
+</div>
+<div id="ref-prajnaSafetyVerificationHybrid2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">S. Prajna and A. Jadbabaie, <span>“Safety <span>Verification</span> of <span>Hybrid Systems Using Barrier Certificates</span>,”</span> in <em>Hybrid <span>Systems</span>: <span>Computation</span> and <span>Control</span></em>, R. Alur and G. J. Pappas, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>. Berlin, Heidelberg: Springer, 2004, pp. 477–492. doi: <a href="https://doi.org/10.1007/978-3-540-24743-2_32">10.1007/978-3-540-24743-2_32</a>.</div>
+</div>
+<div id="ref-baierPrinciplesModelChecking2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">C. Baier and J.-P. Katoen, <em>Principles of <span>Model Checking</span></em>. Cambridge, MA, USA: MIT Press, 2008. Available: <a href="https://mitpress.mit.edu/books/principles-model-checking">https://mitpress.mit.edu/books/principles-model-checking</a></div>
+</div>
+<div id="ref-clarkeModelChecking2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">E. M. Clarke, Jr, O. Grumberg, D. Kroening, D. Peled, and H. Veith, <em>Model <span>Checking</span></em>, 2nd ed. in Cyber <span>Physical Systems Series</span>. Cambridge, MA, USA: MIT Press, 2018. Available: <a href="https://mitpress.mit.edu/9780262038836/model-checking/">https://mitpress.mit.edu/9780262038836/model-checking/</a></div>
+</div>
+<div id="ref-murrayLectureLinearTemporal2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">R. M. Murray, U. Topcu, and N. Wongpiromsarn, <span>“Lecture 3 <span>Linear Temporal Logic</span> (<span>LTL</span>).”</span> Belgrade (Serbia), Mar. 2020. Available: <a href="http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf">http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf</a></div>
+</div>
+<div id="ref-wongpiromsarnLectureModelChecking2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">N. Wongpiromsarn, R. M. Murray, and U. Topcu, <span>“Lecture 4 <span>Model Checking</span> and <span>Logic Synthesis</span>.”</span> Belgrade (Serbia), Mar. 2020. Available: <a href="http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf">http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
