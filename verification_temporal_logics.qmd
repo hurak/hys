@@ -1,8 +1,19 @@
 ---
 title: "Temporal logics"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_verification.bib
+    - ref_temporal.bib
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig 
+#jupyter: julia-1.10
+engine: julia   
 ---
 
 It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that "if this and that conditions are satisfied, then yet another condition must not hold", and so on. 
@@ -76,16 +87,3 @@ $$
 - Existential quantifiers needed
     - $\mathbf{A}$: For all
     - $\mathbf{E}$: There exists
-
-## Literature
-
-- Lin, Hai, and Panos J. Antsaklis. Hybrid Dynamical Systems: Fundamentals and Methods. Advanced Textbooks in Control and Signal Processing. Cham: Springher, 2022. Chapter 3.
-- Mitra, Sayan. Verifying Cyber-Physical Systems: A Path to Safe Autonomy. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2021. [https://sayanmitracode.github.io/cpsbooksite/about.html](https://sayanmitracode.github.io/cpsbooksite/about.html).
-
-- Baier, Christel, and Joost-Pieter Katoen. Principles of Model Checking. Cambridge, MA, USA: MIT Press, 2008.
-
-- Clarke, Edmund M., Jr, Orna Grumberg, Daniel Kroening, Doron Peled, and Helmut Veith. Model Checking. 2nd ed. Cyber Physical Systems Series. Cambridge, MA, USA: MIT Press, 2018.
-
-- Murray, Richard M, Ufuk Topcu, and Nok Wongpiromsarn. ‘Lecture 3 Linear Temporal Logic (LTL)’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. [http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf](http://www.cds.caltech.edu/~murray/courses/eeci-sp2020/L3_ltl-09Mar2020.pdf).
-
-- Wongpiromsarn, Nok, Richard M. Murray, and Ufuk Topcu. ‘Lecture 4 Model Checking and Logic Synthesis’. Lecture presented at the EECI-IGSC, Belgrade (Serbia), 9 March 2020. [http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf](http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf).

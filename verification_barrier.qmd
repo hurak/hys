@@ -1,12 +1,18 @@
 ---
 title: "Barrier certificates"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_verification.bib
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
-execute:
-    enabled: true
-jupyter: julia-1.10        
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig 
+#jupyter: julia-1.10
+engine: julia        
 ---
 
 This is another technique for verification of safety of hybrid system. Unlike the optimal-control based and set-propagation based techniques, it is not based on explicit computational characterization of the evolution of states in time. Instead, it is based on searching for a function of a state that satisfies certain properties. The function is called a barrier function and it serves as a certificate of safety.

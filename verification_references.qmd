@@ -1,6 +1,27 @@
 ---
 title: "Literature"
-bibliography: ref_hybrid.bib
-format:
-    html     
+bibliography: 
+    - ref_hybrid.bib
+    - ref_verification.bib
+    - ref_temporal.bib
+csl: ieee-control-systems.csl
+format: html
 ---
+
+The topic of verification of hybrid systems is vast. While we only reserved a single week/chapter/block for it, it would easily fill a dedicated course, supported by a couple of books. Having a smaller time budget, we have still found some encouragement that modest introduction is feasible in the Chapter 3 of @linHybridDynamicalSystems2022. Although we are not following the book closely, we are covering some of their topics. 
+
+Among general references for hybrid system verification, we can recommend @mitraVerifyingCyberPhysicalSystems2021. Although the book is not freely available for download, its web page contains quite some additional material such as slides and codes.
+
+## Reachability analysis
+
+@althoffSetPropagationTechniques2021 @althoffCORA2024Manual2023
+
+## Barier certificates
+
+@prajnaSafetyVerificationHybrid2004
+
+## Temporal logics 
+
+@baierPrinciplesModelChecking2008, @clarkeModelChecking2018 
+
+@murrayLectureLinearTemporal2020, @wongpiromsarnLectureModelChecking2020.
