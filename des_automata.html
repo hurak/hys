@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.10">
+<meta name="generator" content="quarto-1.6.12">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>(State) automata – B(E)3M35HYS – Hybrid systems</title>
+<title>State automata – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,10 +91,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-79bb3942e891885f9f7af119cd221462.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-dfc1da386edd7eb88e4a058ca2485388.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -179,7 +179,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./des.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="./des_automata.html">(State) automata</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./des.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="./des_automata.html">State automata</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -251,7 +251,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -719,9 +719,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./des.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="./des_automata.html">(State) automata</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./des.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="./des_automata.html">State automata</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">(State) automata</h1>
+<h1 class="title">State automata</h1>
 </div>
 
 
@@ -763,7 +763,7 @@ Some comments on the notation
 <div class="callout-body-container callout-body">
 <ul>
 <li>The set of states is often denoted by <span class="math inline">\mathcal Q</span> to spare the letter <span class="math inline">\mathcal X</span> for the continuous valued state space of hybrid systems.</li>
-<li>The set of events is often denoted by <span class="math inline">\mathcal A</span> to spare the letter <span class="math inline">\mathcal E</span> for the set of transitions (edges), because <span class="math inline">F</span> and <span class="math inline">f</span> may also need to be spared for the continuous-valued transitions. But then the letter <span class="math inline">\mathcal A</span> actually fits this purpose nicely because the event set is also called the alphabet.</li>
+<li>The set of events is often denoted by <span class="math inline">\mathcal A</span> to spare the letter <span class="math inline">\mathcal E</span> for the set of transitions (edges in the corresponding graph), because <span class="math inline">F</span> and <span class="math inline">f</span> may also need to be spared for the continuous-valued transitions. But then the letter <span class="math inline">\mathcal A</span> actually fits this purpose nicely because the event set is also called the alphabet.</li>
 </ul>
 </div>
 </div>
@@ -1356,12 +1356,163 @@ Figure&nbsp;5: Example of a digraph representation of the automaton for a corrid
 </div>
 </div>
 </div>
-<ul>
-<li>Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.</li>
-</ul>
+<p>Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.</p>
+</div>
+<div id="exm-JK-flip-flop" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (JK flip-flop)</strong></span> We now consider the classical JK flip-flop logical circuit. It symbol is in <a href="#fig-JK-flip-flop" class="quarto-xref">Fig&nbsp;7</a> and the truth table follows. Our goal is to represent its functionality using a state automaton.</p>
+<div id="fig-JK-flip-flop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/JK-flip-flop.png" class="img-fluid figure-img" style="width:20.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Symbol for a JK flip-flop logical circuit
+</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">J</span></th>
+<th><span class="math inline">K</span></th>
+<th><span class="math inline">Q_k</span></th>
+<th><span class="math inline">Q_{k+1}</span></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>No change</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>No change</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Reset</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>Set</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>Toggle</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>Toggle</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-fig-width="4.5" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-JK-flip-flop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="432" height="480" viewbox="0.00 0.00 285.04 88.75" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 84.75)">
+<title>G</title>
+<!-- init -->
+<g id="node1" class="node">
+<title>init</title>
+<text text-anchor="middle" x="27" y="-20.25" font-family="Times,serif" font-size="14.00">init</text>
+</g>
+<!-- Low -->
+<g id="node2" class="node">
+<title>Low</title>
+<ellipse fill="none" stroke="black" cx="112.5" cy="-24.45" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="112.5" y="-20.25" font-family="Times,serif" font-size="14.00">Low</text>
+</g>
+<!-- init&#45;&gt;Low -->
+<g id="edge1" class="edge">
+<title>init-&gt;Low</title>
+<path fill="none" stroke="black" d="M54.42,-24.45C62.78,-24.45 72.08,-24.45 80.72,-24.45"></path>
+<polygon fill="black" stroke="black" points="80.81,-27.95 90.81,-24.45 80.81,-20.95 80.81,-27.95"></polygon>
+</g>
+<!-- Low&#45;&gt;Low -->
+<g id="edge5" class="edge">
+<title>Low-&gt;Low</title>
+<path fill="none" stroke="black" d="M105.22,-44.78C104.21,-54.91 106.64,-63.95 112.5,-63.95 116.25,-63.95 118.6,-60.24 119.53,-54.91"></path>
+<polygon fill="black" stroke="black" points="123.04,-54.86 119.78,-44.78 116.04,-54.69 123.04,-54.86"></polygon>
+<text text-anchor="middle" x="112.5" y="-68.15" font-family="Times,serif" font-size="14.00">¬J ∧ ¬K ∧ clk</text>
+</g>
+<!-- High -->
+<g id="node3" class="node">
+<title>High</title>
+<ellipse fill="none" stroke="black" cx="236.21" cy="-24.45" rx="21.5" ry="21.5"></ellipse>
+<text text-anchor="middle" x="236.21" y="-20.25" font-family="Times,serif" font-size="14.00">High</text>
+</g>
+<!-- Low&#45;&gt;High -->
+<g id="edge2" class="edge">
+<title>Low-&gt;High</title>
+<path fill="none" stroke="black" d="M134.15,-24.45C153.38,-24.45 182.32,-24.45 204.3,-24.45"></path>
+<polygon fill="black" stroke="black" points="204.47,-27.95 214.47,-24.45 204.47,-20.95 204.47,-27.95"></polygon>
+<text text-anchor="middle" x="174.36" y="-28.65" font-family="Times,serif" font-size="14.00">J ∧ clk</text>
+</g>
+<!-- High&#45;&gt;Low -->
+<g id="edge3" class="edge">
+<title>High-&gt;Low</title>
+<path fill="none" stroke="black" d="M217.95,-12.77C211.56,-9.1 204.08,-5.52 196.71,-3.65 177.45,1.22 171.27,1.22 152,-3.65 147.86,-4.7 143.68,-6.29 139.67,-8.14"></path>
+<polygon fill="black" stroke="black" points="138.02,-5.05 130.76,-12.77 141.25,-11.26 138.02,-5.05"></polygon>
+<text text-anchor="middle" x="174.36" y="-7.65" font-family="Times,serif" font-size="14.00">K ∧ clk</text>
+</g>
+<!-- High&#45;&gt;High -->
+<g id="edge4" class="edge">
+<title>High-&gt;High</title>
+<path fill="none" stroke="black" d="M225.58,-43.15C223.41,-53.92 226.96,-63.95 236.21,-63.95 242.43,-63.95 246.07,-59.43 247.14,-53.19"></path>
+<polygon fill="black" stroke="black" points="250.63,-53.04 246.85,-43.15 243.64,-53.24 250.63,-53.04"></polygon>
+<text text-anchor="middle" x="236.21" y="-68.15" font-family="Times,serif" font-size="14.00">¬J ∧ ¬K ∧ clk</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: JK flip-flop as an automaton
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 <div id="exm-double-intensity-switching" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5 (Double intensity switching)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 6 (Double intensity switching)</strong></span> &nbsp;</p>
 <div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-double-intensity-switching" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1433,15 +1584,13 @@ Figure&nbsp;5: Example of a digraph representation of the automaton for a corrid
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-double-intensity-switching-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Example of a digraph representation of the automaton for double intensity switching
+Figure&nbsp;8: Example of a digraph representation of the automaton for double intensity switching
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<ul>
-<li>Obviously we need to introduce <em>time</em> into the automaton…</li>
-</ul>
+<p>Obviously we need to introduce <em>time</em> into the automaton…</p>
 </div>
 </section>
 <section id="state-as-the-value-of-a-state-variable" class="level2">
@@ -1452,7 +1601,7 @@ Figure&nbsp;6: Example of a digraph representation of the automaton for double i
 <li>the “type” (boolean, integer, vector, …).</li>
 </ul>
 <div id="exm-state-variable" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Examples of state variables)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 7 (Examples of state variables)</strong></span> &nbsp;</p>
 <ul>
 <li>Corridor switch: <span class="math inline">x \in \{\mathrm{false},\mathrm{true}\}</span> (possibly also <span class="math inline">\{0,1\}</span>).</li>
 <li>Double intensity switching:
@@ -1494,7 +1643,7 @@ Note
 <p>Note, in particular, that the output does not depend on the input. This has a major advantage when a feedback loop is closed around this system, since no <em>algebraic loop</em> is created.</p>
 <p>Graphically, we make a conventions that outputs are the <em>labels</em> of the states.</p>
 <div id="exm-moore-machine" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (Moore machine)</strong></span> The following automaton has just three states, but just two outputs (<code>FLOW</code> and <code>NO FLOW</code>).</p>
+<p><span class="theorem-title"><strong>Example 8 (Moore machine)</strong></span> The following automaton has just three states, but just two outputs (<code>FLOW</code> and <code>NO FLOW</code>).</p>
 <div class="cell" data-fig-width="7" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-moore-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1580,7 +1729,7 @@ Note
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Example of a digraph representation of the Moore machine for a valve control
+Figure&nbsp;9: Example of a digraph representation of the Moore machine for a valve control
 </figcaption>
 </figure>
 </div>
@@ -1595,7 +1744,7 @@ Figure&nbsp;7: Example of a digraph representation of the Moore machine for a va
 <p>It can be viewed as if the output function also considers the input and not only the state <span class="math display">y = e_\mathrm{o} = g(x,e_\mathrm{i}).</span></p>
 <p>In contrast with the Moore machine, here the output is produced (emitted) during the transition (before the new state is entered).</p>
 <div id="exm-mealy-machine" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8 (Mealy machine)</strong></span> Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.</p>
+<p><span class="theorem-title"><strong>Example 9 (Mealy machine)</strong></span> Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.</p>
 <div class="cell" data-fig-width="8" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-mealy-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1681,7 +1830,7 @@ Figure&nbsp;7: Example of a digraph representation of the Moore machine for a va
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mealy-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Example of a digraph representation of the Mealy machine for a coffee machine
+Figure&nbsp;10: Example of a digraph representation of the Mealy machine for a coffee machine
 </figcaption>
 </figure>
 </div>
@@ -1689,7 +1838,7 @@ Figure&nbsp;8: Example of a digraph representation of the Mealy machine for a co
 </div>
 </div>
 <div id="exm-mealy-machine-as-moore-machine" class="theorem example">
-<p><span class="theorem-title"><strong>Example 9 (Reformulate the previous example as a Moore machine)</strong></span> Two more states wrt Mealy</p>
+<p><span class="theorem-title"><strong>Example 10 (Reformulate the previous example as a Moore machine)</strong></span> Two more states wrt Mealy</p>
 <div class="cell" data-fig-width="8" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-mealy-machine-as-moore-machine" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1837,7 +1986,7 @@ Figure&nbsp;8: Example of a digraph representation of the Mealy machine for a co
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mealy-machine-as-moore-machine-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Example of a digraph representation of the Moore machine for a coffee machine
+Figure&nbsp;11: Example of a digraph representation of the Moore machine for a coffee machine
 </figcaption>
 </figure>
 </div>
@@ -1858,7 +2007,7 @@ Note
 </div>
 </div>
 <div id="exm-dijkstra-token-passing" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10 (Dijkstra token passing)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 11 (Dijkstra token passing)</strong></span> &nbsp;</p>
 <div class="cell" data-fig-width="3.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-dijkstra-token-passing" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1921,13 +2070,13 @@ Note
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dijkstra-token-passing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distributed system
+Figure&nbsp;12: Example of a ring topology for Dijkstra token passing in a distributed system
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div id="6a886519" class="cell">
+<div id="2" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
@@ -1948,7 +2097,7 @@ Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distr
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            xnext[i] <span class="op">=</span> (x[i] <span class="op">!=</span> x[i<span class="op">-</span><span class="fl">1</span>]) ? x[i<span class="op">-</span><span class="fl">1</span>] <span class="op">:</span> x[i]         <span class="co"># Update by the differing left neighbour.</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dtr.x <span class="op">.=</span> xnext                                              </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dtr.state_vector <span class="op">.=</span> xnext                                              </span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">output</span>(dtr<span class="op">::</span><span class="dt">DijkstraTokenRing</span>)     <span class="co"># It gives the position of the token. </span></span>
@@ -1961,14 +2110,24 @@ Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distr
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">4</span>                           <span class="co"># Concrete number of nodes.</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> n                           <span class="co"># Concrete max value of a state variable (must be &gt;= n).</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>x_initial <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">0</span><span class="op">:</span>k,n)         <span class="co"># Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> x_initial <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">0</span><span class="op">:</span>k,n)         <span class="co"># Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>dtr <span class="op">=</span> <span class="fu">DijkstraTokenRing</span>(n,k,x_initial)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">output</span>(dtr)                     <span class="co"># Show where the token is (are).</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">output</span>(dtr)                     <span class="co"># Show where the token is (are).</span></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Perform the update, show the state vector and show where the token is.</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Repeat a few times to see the stabilization.    </span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Perform the update, show the state vector and show where the token is.</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Repeat a few times to see the stabilization.    </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stdout">
+<pre><code>x_initial = rand(0:k, n) = [3, 4, 3, 2]
+output(dtr) = [0, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([3, 3, 4, 3], [1, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([0, 3, 3, 4], [0, 1, 0, 1])
+(update!(dtr), output(dtr)) = ([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+</div>
 </div>
 </div>
 </section>
@@ -1979,7 +2138,7 @@ Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distr
 <p>Transitions from one mode to another are then <strong>guarded</strong> by conditions on theses new extra state variables.</p>
 <p>Besides being guarded by a guard condition, a given transition can also be labelled by a <strong>reset function</strong> that resets the extended-state variables.</p>
 <div id="exm-extended-state-automaton" class="theorem example">
-<p><span class="theorem-title"><strong>Example 11 (Counting up to 10)</strong></span> In this example, there are two modes (<code>on</code> and <code>off</code>), which can be captured by a single binary state variable, say <span class="math inline">x</span>. But then there is an additional integer variable <code>k</code>, and the two variables together characterize the extended state.</p>
+<p><span class="theorem-title"><strong>Example 12 (Counting up to 10)</strong></span> In this example, there are two modes (<code>on</code> and <code>off</code>), which can be captured by a single binary state variable, say <span class="math inline">x</span>. But then there is an additional integer variable <code>k</code>, and the two variables together characterize the extended state.</p>
 <div class="cell" data-fig-width="6.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-counting-up-to-10" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2039,7 +2198,7 @@ Figure&nbsp;10: Example of a ring topology for Dijkstra token passing in a distr
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-counting-up-to-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Example of a digraph representation of the extended-state automaton for counting up to ten
+Figure&nbsp;13: Example of a digraph representation of the extended-state automaton for counting up to ten
 </figcaption>
 </figure>
 </div>
@@ -2052,7 +2211,7 @@ Figure&nbsp;11: Example of a digraph representation of the extended-state automa
 <h2 class="anchored" data-anchor-id="composing-automata">Composing automata</h2>
 <p>Any practically useful modelling framework should support decomposition of a large system into smaller subsystems. These should then be able to communicate/synchronize with each other. In automata such synchronization can be realized by <em>sending</em> (or <em>generating</em>) and <em>receiving</em> (or <em>accepting</em>) <em>events</em>. A common choice of symbols for the two is <code>!</code>,<code>?</code>, as illustrated in the following example. But these symbols are just one possible convention, and any other symbols can be used.</p>
 <div id="exm-composing-automata" class="theorem example">
-<p><span class="theorem-title"><strong>Example 12 (Composing automata)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 13 (Composing automata)</strong></span> &nbsp;</p>
 <div class="cell" data-fig-width="4" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-composing-automata" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2110,7 +2269,7 @@ Figure&nbsp;11: Example of a digraph representation of the extended-state automa
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-composing-automata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Example illustrating how two automata can be synchronized by sending and receiving events
+Figure&nbsp;14: Example illustrating how two automata can be synchronized by sending and receiving events
 </figcaption>
 </figure>
 </div>
@@ -2132,7 +2291,7 @@ f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X,
 \mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}
 </span></p>
 <div id="exm-language-automaton" class="theorem example">
-<p><span class="theorem-title"><strong>Example 13 (Language accepted by automaton)</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 14 (Language accepted by automaton)</strong></span> <span class="math display">
 \mathcal{E} = \{a,b\}, \mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}
 </span></p>
 <div class="cell" data-fig-width="3.5" data-layout-align="default">
@@ -2201,7 +2360,7 @@ f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X,
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-language-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Example of an automaton generating the language <span class="math inline">\mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}</span>
+Figure&nbsp;15: Example of an automaton generating the language <span class="math inline">\mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}</span>
 </figcaption>
 </figure>
 </div>
@@ -2228,7 +2387,7 @@ Figure&nbsp;13: Example of an automaton generating the language <span class="mat
 <h2 class="anchored" data-anchor-id="blocking">Blocking</h2>
 <p>An important concept in automata is <em>blocking</em>. A state is <em>blocking</em> if there is no transition out of it. An example follows.</p>
 <div id="exm-blocking" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14 (Blocking states)</strong></span> In the automaton in <a href="#fig-blocking" class="quarto-xref">Fig&nbsp;14</a>, state 2 is blocking. It is a <em>deadlock</em> state. States 3 and 4 are <em>livelock</em> states.</p>
+<p><span class="theorem-title"><strong>Example 15 (Blocking states)</strong></span> In the automaton in <a href="#fig-blocking" class="quarto-xref">Fig&nbsp;16</a>, state 2 is blocking. It is a <em>deadlock</em> state. States 3 and 4 are <em>livelock</em> states.</p>
 <div class="cell" data-fig-width="6" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-blocking" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2347,7 +2506,7 @@ Figure&nbsp;13: Example of an automaton generating the language <span class="mat
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-blocking-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Example of an automaton with blocking states
+Figure&nbsp;16: Example of an automaton with blocking states
 </figcaption>
 </figure>
 </div>
@@ -2364,14 +2523,14 @@ Figure&nbsp;14: Example of an automaton with blocking states
 <li>resources (also servers, processors, etc.): customers are waiting for them</li>
 <li>queues (also buffers): where waiting is done</li>
 </ul>
-<p>A common graphical representation that contains all these three compoments is in <a href="#fig-queueing-system" class="quarto-xref">Fig&nbsp;15</a>.</p>
+<p>A common graphical representation that contains all these three compoments is in <a href="#fig-queueing-system" class="quarto-xref">Fig&nbsp;17</a>.</p>
 <div id="fig-queueing-system" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-queueing-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="des_figures/queueing_system.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Queueing system
+Figure&nbsp;17: Queueing system
 </figcaption>
 </figure>
 </div>
@@ -2392,7 +2551,12 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>What are other examples? - entities: packets, … - resources: processor, computer periphery, router, … - queues: …</p>
+<p>What are other examples?</p>
+<ul>
+<li>entities: packets, …</li>
+<li>resources: processor, computer periphery, router, …</li>
+<li>queues: …</li>
+</ul>
 </div>
 </div>
 </section>
@@ -2412,7 +2576,7 @@ Note
 <img src="des_figures/queueing_system_network.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-network-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Example of a network of queueing systems
+Figure&nbsp;18: Example of a network of queueing systems
 </figcaption>
 </figure>
 </div>
@@ -2457,7 +2621,7 @@ x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}.
 <img src="des_figures/queueing_system_as_automaton.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-as-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Queueing system as an automaton
+Figure&nbsp;19: Queueing system as an automaton
 </figcaption>
 </figure>
 </div>
@@ -2475,7 +2639,7 @@ Note
 </div>
 </div>
 <div id="exm-queueing-system-jobs-processing" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15 (Example of a queueing system: jobs processing by a CPU)</strong></span> …</p>
+<p><span class="theorem-title"><strong>Example 16 (Example of a queueing system: jobs processing by a CPU)</strong></span> …</p>
 </div>
 </section>
 <section id="stochastic-queueing-systems" class="level3">
@@ -2515,7 +2679,7 @@ Note
 </div>
 </div>
 <div id="exm-timed-automaton-with-guards" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16 (Timed automaton with guards)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 17 (Timed automaton with guards)</strong></span> &nbsp;</p>
 <div class="cell" data-fig-width="9" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-timed-automaton-with-guards" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2593,7 +2757,7 @@ Note
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-automaton-with-guards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Example of a timed automaton with guards
+Figure&nbsp;20: Example of a timed automaton with guards
 </figcaption>
 </figure>
 </div>
@@ -2601,7 +2765,7 @@ Figure&nbsp;18: Example of a timed automaton with guards
 </div>
 </div>
 <div id="exm-timed-automaton-with-guards-and-invariant" class="theorem example">
-<p><span class="theorem-title"><strong>Example 17 (Timed automaton with guards and invariant)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 18 (Timed automaton with guards and invariant)</strong></span> &nbsp;</p>
 <div class="cell" data-fig-width="9" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-timed-automaton-with-guards-and-invariant" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2680,7 +2844,7 @@ Figure&nbsp;18: Example of a timed automaton with guards
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-automaton-with-guards-and-invariant-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Example of a timed automaton with guards and invariant
+Figure&nbsp;21: Example of a timed automaton with guards and invariant
 </figcaption>
 </figure>
 </div>
@@ -2694,7 +2858,7 @@ Figure&nbsp;19: Example of a timed automaton with guards and invariant
 <li>Guard (of a given transition) gives an enabling condition on leaving the location through the given transition.</li>
 </ul>
 <div id="exm-several-trains-approaching-a-bridge" class="theorem example">
-<p><span class="theorem-title"><strong>Example 18 (Several trains approaching a bridge)</strong></span> The example is taken from <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[1]</a></span>.</p>
+<p><span class="theorem-title"><strong>Example 19 (Several trains approaching a bridge)</strong></span> The example is taken from <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[1]</a></span> and is included in the demos coming with the Uppaal tool.</p>
 </div>
 
 
