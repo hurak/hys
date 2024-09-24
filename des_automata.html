@@ -714,7 +714,7 @@ window.Quarto = {
   <li><a href="#invariant-vs-guard" id="toc-invariant-vs-guard" class="nav-link" data-scroll-target="#invariant-vs-guard">Invariant vs guard</a></li>
   </ul></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -2119,14 +2119,14 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra token passing in a distr
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [2, 4, 1, 2]
-output(dtr) = [1, 1, 1, 1]
-(update!(dtr), output(dtr)) = ([3, 2, 4, 1], [0, 1, 1, 1])
-(update!(dtr), output(dtr)) = ([3, 3, 2, 4], [0, 0, 1, 1])
-(update!(dtr), output(dtr)) = ([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [2, 1, 1, 0]
+output(dtr) = [0, 1, 0, 1]
+(update!(dtr), output(dtr)) = ([2, 2, 1, 1], [0, 0, 1, 0])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 1], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
+<pre><code>([2, 2, 2, 2], [1, 0, 0, 0])</code></pre>
 </div>
 </div>
 </div>
@@ -3311,7 +3311,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
