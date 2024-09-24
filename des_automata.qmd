@@ -1,5 +1,5 @@
 ---
-title: "(State) automata"
+title: "State automata"
 bibliography: "ref_des.bib"
 csl: "ieee-control-systems.csl"
 format:
@@ -10,8 +10,9 @@ format:
 crossref:
   fig-prefix: Fig 
 execute:
-    enabled: false
-#engine: julia
+    enabled: true
+#jupyter: julia-1.10
+engine: julia
 ---
 
 Having just discussed the concept of a discrete-event system, we now introduce the most popular modeling framework for such systems: a *state automaton*, or just an *automaton* (plural automata). It is also known as a *state machine* or a *(discrete) transition system*.
@@ -33,7 +34,7 @@ where
 ::: {.callout-note}
 ## Some comments on the notation
 - The set of states is often denoted by $\mathcal Q$ to spare the letter $\mathcal X$ for the continuous valued state space of hybrid systems.
-- The set of events is often denoted by $\mathcal A$ to spare the letter $\mathcal E$ for the set of transitions (edges), because $F$ and $f$ may also need to be spared for the continuous-valued transitions. But then the letter $\mathcal A$ actually fits this purpose nicely because the event set is also called the alphabet.
+- The set of events is often denoted by $\mathcal A$ to spare the letter $\mathcal E$ for the set of transitions (edges in the corresponding graph), because $F$ and $f$ may also need to be spared for the continuous-valued transitions. But then the letter $\mathcal A$ actually fits this purpose nicely because the event set is also called the alphabet.
 :::
 
 ## Marked states
@@ -232,7 +233,43 @@ digraph G {
 }
 ```
 
-- Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.
+Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.
+:::
+
+::: {#exm-JK-flip-flop}
+## JK flip-flop
+
+We now consider the classical JK flip-flop logical circuit. It symbol is in @fig-JK-flip-flop and the truth table follows. Our goal is to represent its functionality using a state automaton.
+
+![Symbol for a JK flip-flop logical circuit](des_figures/JK-flip-flop.png){#fig-JK-flip-flop width=25%}
+
+| $J$ | $K$ | $Q_k$ | $Q_{k+1}$ | Description  |
+|-----|-----|-------|-----------|--------------|
+| 0   | 0   |  0    |   0       | No change    |
+| 0   | 0   |  1    |   1       | No change    |
+| 0   | 1   |  0    |   0       | Reset        |
+| 0   | 1   |  1    |   0       | Reset        |
+| 1   | 0   |  0    |   1       | Set          |
+| 1   | 0   |  1    |   1       | Set          |
+| 1   | 1   |  0    |   1       | Toggle       |
+| 1   | 1   |  1    |   0       | Toggle       |
+
+```{dot}
+//| label: fig-JK-flip-flop
+//| fig-cap: JK flip-flop as an automaton
+//| fig-width: 4.5
+digraph G {
+    bgcolor = "transparent";
+    rankdir = "LR";
+    node [shape = plaintext]; init
+    node [shape = circle width=0.6 margin=0 fixedsize=true];
+    init -> Low;
+    Low -> High [label = "J ∧ clk"];
+    High -> Low [label = "K ∧ clk"];
+    High -> High [label = "¬J ∧ ¬K ∧ clk"];
+    Low -> Low [label = "¬J ∧ ¬K ∧ clk"];
+}
+```
 :::
 
 ::: {#exm-double-intensity-switching}
@@ -255,7 +292,7 @@ digraph G {
 }
 ```
 
-- Obviously we need to introduce *time* into the automaton...
+Obviously we need to introduce *time* into the automaton...
 :::
 
 ## State as the value of a state variable
@@ -444,7 +481,7 @@ function update!(dtr::DijkstraTokenRing)
             xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]         # Update by the differing left neighbour.
         end
     end
-    dtr.x .= xnext                                              
+    dtr.state_vector .= xnext                                              
 end
 
 function output(dtr::DijkstraTokenRing)     # It gives the position of the token. 
@@ -457,13 +494,13 @@ end
 
 n = 4                           # Concrete number of nodes.
 k = n                           # Concrete max value of a state variable (must be >= n).
-x_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).
+@show x_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).
 dtr = DijkstraTokenRing(n,k,x_initial)
-output(dtr)                     # Show where the token is (are).
+@show output(dtr)                     # Show where the token is (are).
 
-update!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.
-update!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    
-update!(dtr), output(dtr)
+@show update!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.
+@show update!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    
+@show update!(dtr), output(dtr)
 ```
 :::
 
@@ -632,6 +669,7 @@ A common graphical representation that contains all these three compoments is in
 
 :::{.callout-note}
 What are other examples?
+
 - entities: packets, ...
 - resources: processor, computer periphery, router, ...
 - queues: ...
@@ -766,6 +804,6 @@ digraph G {
 
 ::: {#exm-several-trains-approaching-a-bridge}
 ## Several trains approaching a bridge
-The example is taken from @behrmannTutorialUppaal2004.
+The example is taken from @behrmannTutorialUppaal2004 and is included in the demos coming with the Uppaal tool.
 
 :::

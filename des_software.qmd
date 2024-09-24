@@ -50,3 +50,9 @@ If you have been exposed to software engineering, you have probably seen [UML](h
 
 SysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&open-source (FOSS) tool for creating SysML diagrams such as [Modelio](https://www.modelio.org) or [Eclipse Papyrus](https://eclipse.dev/papyrus/). But we are not going to use them in our course.
 
+## Drawing tools
+
+Last but not least, you may want only to *draw* state automata (state machines). While there is no shortage of general WYSIWYG drawing and diagramming tools, you may want to consider [Graphviz](https://graphviz.org) software that processes text description of automata in [DOT](https://graphviz.org/doc/info/lang.html) language. This is what I used in this lecture. As an alternative, but still text-based, you may want to give a try to [Mermaid](https://mermaid.js.org), which [can also draw what they call state diagrams](https://mermaid.js.org/syntax/stateDiagram.html).
+
+If you still prefer WISYWIG tools, have a look at [IPE](https://ipe.otfried.org), which I also used for some other figures in this lecture and in the rest of the course. Unlike most other tools, it also allows to enter LaTeX math.
+

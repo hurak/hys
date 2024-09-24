@@ -111,13 +111,13 @@ Language
 
 Now, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.
 
-Indeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this "jargon" when in the next section when we introduce the concept of an automaton and some of its properties.
+Indeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this "jargon" in the next section when we introduce the concept of an automaton and some of its properties.
 
 ## Modelling frameworks for DES (as used in our course)
 
-These are the three frameworks that we are going to cover in our course. They may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems
+These are the three frameworks that we are going to cover in our course. There may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems
 
-- (State) automaton (pl. automata)
+- State automaton (pl. automata)
 - Petri net
 - (max,plus) algebra, MPL systems
 
