@@ -1363,7 +1363,7 @@ Figure&nbsp;5: Example of a digraph representation of the automaton for a corrid
 <div id="fig-JK-flip-flop" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="des_figures/JK-flip-flop.png" class="img-fluid figure-img" style="width:20.0%">
+<img src="des_figures/JK-flip-flop.png" class="img-fluid figure-img" style="width:25.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6: Symbol for a JK flip-flop logical circuit
@@ -2119,14 +2119,14 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra token passing in a distr
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [3, 4, 3, 2]
-output(dtr) = [0, 1, 1, 1]
-(update!(dtr), output(dtr)) = ([3, 3, 4, 3], [1, 0, 1, 1])
-(update!(dtr), output(dtr)) = ([0, 3, 3, 4], [0, 1, 0, 1])
-(update!(dtr), output(dtr)) = ([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [2, 4, 1, 2]
+output(dtr) = [1, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([3, 2, 4, 1], [0, 1, 1, 1])
+(update!(dtr), output(dtr)) = ([3, 3, 2, 4], [0, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+<pre><code>([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
 </div>
 </div>
 </div>
