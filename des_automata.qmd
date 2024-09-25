@@ -5,7 +5,7 @@ csl: "ieee-control-systems.csl"
 format:
     html:
         html-math-method: katex
-        code-fold: true
+        code-fold: show
         code-summary: "Show the code"
 crossref:
   fig-prefix: Fig 
@@ -444,11 +444,15 @@ There are transitions from 30 and 40 back to 0 that are not labelled by any even
 :::
 
 ::: {#exm-dijkstra-token-passing}
-## Dijkstra token passing
+## Dijkstra's token passing
+
+The motivation for this example is to show that it is perhaps not always productive to insist on visual description of the automaton using a graph. The four components of our formal definition of an automaton are just enough, and they translate directly to a code.
+
+The example comes from the field of distributed computing systems. It considers several computers that are connected in *ring* topology, and the communication is just one-directional as @fig-dijkstra-token-passing shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.
 
 ```{dot}
 //| label: fig-dijkstra-token-passing
-//| fig-cap: Example of a ring topology for Dijkstra token passing in a distributed system
+//| fig-cap: Example of a ring topology for Dijkstra's token passing in a distributed system
 //| fig-width: 3.5
 digraph G {
     layout=circo;
@@ -461,6 +465,8 @@ digraph G {
     3 -> 0;
 }
 ```
+
+One popular method for this is called Dijkstra's token passing. Each computer keeps a single integer value as its state variable. And it forwards this integer value to the neighbour (in the clockwise direction in our setting). Upon receiving the value from the other neighbour (in the counter-clockwise direction), it updates its own value according to the rule displayed in the code below. At every clock tick, the state vector (composed of the individual state variables) is updated according to the function `update!()` in the code. Based on the value of the state vector, an output is computed, which decodes the informovation about the location of the token from the state vector. Again, the details are in the `output()` function. 
 
 ```{julia}
 struct DijkstraTokenRing
@@ -484,24 +490,32 @@ function update!(dtr::DijkstraTokenRing)
     dtr.state_vector .= xnext                                              
 end
 
-function output(dtr::DijkstraTokenRing)     # It gives the position of the token. 
+function output(dtr::DijkstraTokenRing)     # Token = 1, no token = 0 at the given position. 
     x = dtr.state_vector
     y = similar(x)
     y[1] = iszero(x[1]-x[end])
     y[2:end] .= .!iszero.(diff(x))
     return y
 end
+```
 
+We now rund the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.
+```{julia}
 n = 4                           # Concrete number of nodes.
-k = n                           # Concrete max value of a state variable (must be >= n).
-@show x_initial = rand(0:k,n)         # Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).
+k = n                           # Concrete max value of a state variable (>= n).
+@show x_initial = rand(0:k,n)   # Initial state vector, not necessarily acceptable (>1 token in the ring).
 dtr = DijkstraTokenRing(n,k,x_initial)
-@show output(dtr)                     # Show where the token is (are).
+@show output(dtr)               # Show where the token is (are).
 
-@show update!(dtr), output(dtr)       # Perform the update, show the state vector and show where the token is.
-@show update!(dtr), output(dtr)       # Repeat a few times to see the stabilization.    
+@show update!(dtr), output(dtr) # Perform the update, show the state vector and show where the token is.
+@show update!(dtr), output(dtr) # Repeat a few times to see the stabilization.    
+@show update!(dtr), output(dtr)
+@show update!(dtr), output(dtr)
 @show update!(dtr), output(dtr)
 ```
+
+We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.
+
 :::
 
 ### Extended-state automaton
