@@ -2007,7 +2007,8 @@ Note
 </div>
 </div>
 <div id="exm-dijkstra-token-passing" class="theorem example">
-<p><span class="theorem-title"><strong>Example 11 (Dijkstra token passing)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 11 (Dijkstra’s token passing)</strong></span> The motivation for this example is to show that it is perhaps not always productive to insist on visual description of the automaton using a graph. The four components of our formal definition of an automaton are just enough, and they translate directly to a code.</p>
+<p>The example comes from the field of distributed computing systems. It considers several computers that are connected in <em>ring</em> topology, and the communication is just one-directional as <a href="#fig-dijkstra-token-passing" class="quarto-xref">Fig&nbsp;12</a> shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.</p>
 <div class="cell" data-fig-width="3.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-dijkstra-token-passing" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2070,14 +2071,15 @@ Note
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dijkstra-token-passing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Example of a ring topology for Dijkstra token passing in a distributed system
+Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a distributed system
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>One popular method for this is called Dijkstra’s token passing. Each computer keeps a single integer value as its state variable. And it forwards this integer value to the neighbour (in the clockwise direction in our setting). Upon receiving the value from the other neighbour (in the counter-clockwise direction), it updates its own value according to the rule displayed in the code below. At every clock tick, the state vector (composed of the individual state variables) is updated according to the function <code>update!()</code> in the code. Based on the value of the state vector, an output is computed, which decodes the informovation about the location of the token from the state vector. Again, the details are in the <code>output()</code> function.</p>
 <div id="2" class="cell" data-execution_count="1">
-<details class="code-fold">
+<details open="" class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    number_of_nodes<span class="op">::</span><span class="dt">Int64</span></span>
@@ -2100,35 +2102,48 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra token passing in a distr
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    dtr.state_vector <span class="op">.=</span> xnext                                              </span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">output</span>(dtr<span class="op">::</span><span class="dt">DijkstraTokenRing</span>)     <span class="co"># It gives the position of the token. </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">output</span>(dtr<span class="op">::</span><span class="dt">DijkstraTokenRing</span>)     <span class="co"># Position of the token. </span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> dtr.state_vector</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> <span class="fu">similar</span>(x)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    y[<span class="fl">1</span>] <span class="op">=</span> <span class="fu">iszero</span>(x[<span class="fl">1</span>]<span class="op">-</span>x[<span class="kw">end</span>])</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    y[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>] <span class="op">.=</span> .!<span class="fu">iszero</span>.(<span class="fu">diff</span>(x))</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">4</span>                           <span class="co"># Concrete number of nodes.</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> n                           <span class="co"># Concrete max value of a state variable (must be &gt;= n).</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> x_initial <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">0</span><span class="op">:</span>k,n)         <span class="co"># Initial state vector that does not necessarily guarantee acceptability (more than 1 token in the ring).</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>dtr <span class="op">=</span> <span class="fu">DijkstraTokenRing</span>(n,k,x_initial)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">output</span>(dtr)                     <span class="co"># Show where the token is (are).</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Perform the update, show the state vector and show where the token is.</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)       <span class="co"># Repeat a few times to see the stabilization.    </span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>output (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>We now rund the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.</p>
+<div id="4" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">4</span>                           <span class="co"># Concrete number of nodes.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> n                           <span class="co"># Concrete max value of a state variable (&gt;= n).</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> x_initial <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">0</span><span class="op">:</span>k,n)   <span class="co"># Initial state vector, not necessarily acceptable (&gt;1 token in the ring).</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dtr <span class="op">=</span> <span class="fu">DijkstraTokenRing</span>(n,k,x_initial)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">output</span>(dtr)               <span class="co"># Show where the token is (are).</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr) <span class="co"># Perform the update, show the state vector and show where the token is.</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr) <span class="co"># Repeat a few times to see the stabilization.    </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [2, 1, 1, 0]
-output(dtr) = [0, 1, 0, 1]
-(update!(dtr), output(dtr)) = ([2, 2, 1, 1], [0, 0, 1, 0])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 1], [0, 0, 0, 1])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [2, 0, 1, 3]
+output(dtr) = [0, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([2, 2, 0, 1], [0, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 0], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])
+(update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])
+(update!(dtr), output(dtr)) = ([3, 3, 2, 2], [0, 0, 1, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([2, 2, 2, 2], [1, 0, 0, 0])</code></pre>
+<pre><code>([3, 3, 2, 2], [0, 0, 1, 0])</code></pre>
 </div>
 </div>
+<p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>
 </div>
 </section>
 <section id="extended-state-automaton" class="level3">
