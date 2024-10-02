@@ -796,12 +796,8 @@ Figure&nbsp;2: Timed Petri net modelling a queueing system
 </figcaption>
 </figure>
 </div>
-<ul>
-<li>Transitions: <span class="math inline">\mathcal{T} = \{a,s,c\}</span></li>
-<li>Timed/delayed transitions: <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span></li>
-<li>Firing delays: <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span></li>
-</ul>
-<p>For convenience we relabel the firing times of the transitions (instead of <span class="math inline">t_k</span> we will use <span class="math inline">a_k</span>, <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>): <span class="math display">
+<p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Equation&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Equation&nbsp;1</a> gives <span class="math display">
 \begin{aligned}
 a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
 s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
@@ -811,7 +807,7 @@ c_k &amp;= \pi_{B,k} + v_{c,k}\\
 \pi_{B,k} &amp;= s_{k},\quad k=1,2,\ldots\\
 \end{aligned}
 </span></p>
-<p><span class="math display">
+<p>Combining gives the desired update equations <span class="math display">
 \begin{aligned}
 a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
 s_k &amp;= \max\{a_{k},c_{k-1}\}\\
@@ -844,7 +840,7 @@ c_k &amp;= s_{k} + v_{c,k}\\
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
 <section id="stochastic-petri-nets-spn" class="level3">
 <h3 class="anchored" data-anchor-id="stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</h3>
-<p>Delays are random variables.</p>
+<p>Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petr nets can be concived, in which delays are random variables.</p>
 
 
 </section>
