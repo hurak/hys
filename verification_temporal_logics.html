@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.12">
+<meta name="generator" content="quarto-1.6.15">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c16024045118334bcf8b3c6839b687d3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -666,32 +666,32 @@ window.Quarto = {
 <p><span class="theorem-title"><strong>Example 1</strong></span> Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee fairness). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
 </div>
 <p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
-<table class="caption-top table">
+<table class="caption-top">
 <caption>Temporal operators</caption>
 <thead>
-<tr class="header">
+<tr>
 <th>Symbol</th>
 <th>Alternative symbol</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\mathbf{F}</span></td>
 <td><span class="math inline">\Diamond</span></td>
 <td>Eventually (<strong>F</strong>inally)</td>
 </tr>
-<tr class="even">
+<tr>
 <td><span class="math inline">\mathbf{G}</span></td>
 <td><span class="math inline">\Box</span></td>
 <td><strong>G</strong>lobally (Always)</td>
 </tr>
-<tr class="odd">
+<tr>
 <td><span class="math inline">\mathbf{X}</span></td>
 <td><span class="math inline">\bigcirc</span></td>
 <td>Ne<strong>X</strong>t</td>
 </tr>
-<tr class="even">
+<tr>
 <td><span class="math inline">\mathbf{U}</span></td>
 <td><span class="math inline">\sqcup</span></td>
 <td><strong>U</strong>ntill</td>
