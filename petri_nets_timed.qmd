@@ -7,7 +7,7 @@ format:
     html:
         html-math-method: katex
         code-fold: true
-crossref:
+crossref: 
   fig-prefix: Fig 
 #engine: julia
 ---
@@ -19,7 +19,7 @@ $$\boxed{\mathrm{ENABLING} \neq \text{FIRING}.}$$
 
 Well then, the enabled transitions do not have to fire *immediately*, but they can possibly fire with some *delay* after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn't it?
 
-For the $j$-th transition, the delay of the $k$-th firing is $v_{j,k}$, 
+For the $j$th transition, the delay of the $k$th firing is $v_{j,k}$, 
 $$v_j = \{v_{j,1}, v_{j,2}, \ldots \}.$$
 
 But not all transitions have to be timed. Denote the timed transitions $\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}$. We define the *clock structure* for a PN as $$\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.$$
@@ -56,50 +56,58 @@ With the introduction of time into the Petri nets, we can now study the dynamics
 
 Some notation:
 
-- $\{\tau_{j,1}, \tau_{j,2}, \ldots\}$ are firing times of the $j$-th transition.
-- $\{\pi_{i,1},\pi_{i,2},\ldots\}$ are times when the $i$-th place receives a token.
-- $x_i = x(p_i)$ is the number of tokens at the $i$-th place,
-- $x_{i,k} = \left.x(p_i)\right|_k$, that is, after the $k$-th firing.
+- $\{\tau_{j,1}, \tau_{j,2}, \ldots\}$ are the firing times of the $j$th transition,
+- $\{\pi_{i,1},\pi_{i,2},\ldots\}$ are the times when the $i$th place receives a token, 
+- $x_i = x(p_i)$ is the number of tokens at the $i$th place,
+- $x_{i,k} = \left.x(p_i)\right|_k$, is the number of tokens at the $i$th place after the $k$th firing.
 
-And some assumptions:
-
-- Assume first that $x_{i,0} = 0$:
+Now, assume first that $x_{i,0} = 0$. We can then relate the time of the arrival of the token to the place with the firing of the transition from which the token arrives
 $$\pi_{i,k} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j).$$
 
-- But generally $x_{i,0} \neq 0$: 
+But generally $x_{i,0} \neq 0$ and the above relation needs to be modified to 
 $$\pi_{i,k+x_{i,0}} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j),$$
+or, equivalently
+$$\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).}$${#eq-pi-tau}
 
-- equivalently
-$$\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).}$$
+This can be read in the following way. If there are initially, say, 3 tokens in the place, the time of the arrival of the 4th token is the time of the first firing of the transition from which the 4th token arrives.
 
-- For an untimed transition with a single input place
+Good. Keep this result in mind. Now we go for another.
+
+For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place
 $$
 \tau_{j,k} = \pi_{i,k}. 
 $$
 
-- For a timed transition with a single input place
+Modifying this result for a timed transition with a single input place we get
 $$
 \tau_{j,k} = \pi_{i,k} + v_{j,k}. 
 $$
 
-- For a timed transition with multiple input places
+In words, the firing time is given by the time of the arrival of the token to the place, which enables the transition, and the delay associated with the transition.
+
+Finally, we extend this result to the case of a timed transition with multiple input places
 $$\boxed{
 \tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.} 
-$$
+$${#eq-tau-pi}
+
+This is the other promised important result. Keep both boxed formulas @eq-pi-tau and @eq-tau-pi handy, they will be needed in what is coming. 
 
 ::: {#exm-timed-Petri-net-dynamics}
 ## Timed Petri net dynamics
 
-![Example of a Petri net for which the dynamics is analyzed](petri_nets_figures/timed_petri_net_dynamics.png){width=40%}
+Consider the Petri net with three places and two transitions, one of which is timed, as in @fig-timed-petri-net-dynamics.
 
+![Example of a Petri net for which the dynamics is analyzed](petri_nets_figures/timed_petri_net_dynamics.png){width=40% #fig-timed-petri-net-dynamics}
 
+We first use @eq-tau-pi to write down the firing times of the two transitions
 $$
 \begin{aligned}
 \tau_{1,k} &= \max\{\pi_{1,k},\pi_{3,k}\}\\
-\tau_{2,k} &= \pi_{2,k}+v_{2,k}
+\tau_{2,k} &= \pi_{2,k}+v_{2,k}.
 \end{aligned}
 $$
 
+Now we apply @eq-pi-tau to write down the times of the arrival of the tokens to the places
 $$
 \begin{aligned}
 \pi_{1,k} &= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
@@ -108,14 +116,21 @@ $$
 \end{aligned}
 $$
 
-
+Substituting from the latter into the former we get
 $$
 \begin{aligned}
 \tau_{1,k} &= \max\{\tau_{1,k-1},\tau_{1,k-1}+v_{2,k}\}\\
 &= \tau_{1,k-1}+v_{2,k}, \quad \tau_{1,k} = 0\\
-\tau_{2,k} &= \tau_{1,k-1}+v_{2,k}
+\tau_{2,k} &= \tau_{1,k-1}+v_{2,k}.
 \end{aligned}
 $$
+
+This is the ultimate model for the dynamics of the Petri net. Should we need it, we can also get similar expressions for the times of the arrival of the tokens to the places.
+:::
+
+::: {.callout-important}
+## Update equations for times and not states
+While with state equations we compute a sequences of values of the state vector $(\bm x_0, \bm x_1, \bm x_2, \ldots)$, in other words, we compute the evolution of the state in time, here we compute the sequences of times when some events occurs (either a transition fires or a token arrives to a places and thus enables the output transition). The update scheme resembles the state equations, but the interpretation is different. 
 :::
 
 
@@ -125,11 +140,9 @@ We can also model a queueing system using a TPN. The Petri net is shown in @fig-
 
 ![Timed Petri net modelling a queueing system](petri_nets_figures/timed_petri_net_simple_queue.png){width=50% #fig-timed-petri-net-simple-queue}
 
-- Transitions: $\mathcal{T} = \{a,s,c\}$
-- Timed/delayed transitions: $\mathcal{T}_\mathrm{D} = \{a,c\}$
-- Firing delays: $\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}$
+Of the three transitions $\mathcal{T} = \{a,s,c\}$, which we have already identified previously, we assume that only are times, namely $\mathcal{T}_\mathrm{D} = \{a,c\}$. The associated firing delays are $\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}$.
 
-For convenience we relabel the firing times of the transitions (instead of $t_k$ we will use $a_k$, $s_k$, and $c_k$):
+For convenience we relabel the firing times of the transitions. Instead of $t_{a,k}$ we will use $a_k$, and similarly $s_k$, and $c_k$. Application of @eq-tau-pi and  @eq-pi-tau gives
 $$
 \begin{aligned}
 a_k &= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
@@ -141,6 +154,7 @@ c_k &= \pi_{B,k} + v_{c,k}\\
 \end{aligned}
 $$
 
+Combining gives the desired update equations
 $$
 \begin{aligned}
 a_k &= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
@@ -150,7 +164,7 @@ c_k &= s_{k} + v_{c,k}\\
 \end{aligned}
 $$
 
-The time of completing the $k$-th task is given by the time at which the previous task was completed and the time needed to complete the $k$-th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive. 
+The time of completing the $k$th task is given by the time at which the previous task was completed and the time needed to complete the $k$th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive. 
 
 ::: {#exm-timed-petri-nets-train}
 ## Timed Petri net for synchronization of train lines
@@ -158,7 +172,6 @@ The time of completing the $k$-th task is given by the time at which the previou
 ![Example with three train lines](petri_nets_figures/trains.png){width=60%}
 
 Synchronization of departures at a given station so that passenges can change trains.
-
 
 ![Timed Petri net for the example of synchronization of three train lines](petri_nets_figures/trains_petri_net.png){width=60%}
 :::
@@ -172,4 +185,4 @@ tbd
 
 ### Stochastic Petri nets (SPN)
 
-Delays are random variables.
+Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petr nets can be concived, in which delays are random variables.
