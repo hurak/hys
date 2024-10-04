@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.15">
+<meta name="generator" content="quarto-1.6.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c16024045118334bcf8b3c6839b687d3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -666,7 +666,7 @@ window.Quarto = {
 <section id="delays-associated-with-transitions" class="level2">
 <h2 class="anchored" data-anchor-id="delays-associated-with-transitions">Delays associated with transitions</h2>
 <p>Well then, the enabled transitions do not have to fire <em>immediately</em>, but they can possibly fire with some <em>delay</em> after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn’t it?</p>
-<p>For the <span class="math inline">j</span>th transition, the delay of the <span class="math inline">k</span>th firing is <span class="math inline">v_{j,k}</span>, <span class="math display">v_j = \{v_{j,1}, v_{j,2}, \ldots \}.</span></p>
+<p>For the <span class="math inline">j</span>th transition, the delay of the <span class="math inline">k</span>th firing is <span class="math inline">v_{j,k}</span>, and we collect the sequence of delayes into <span class="math display">v_j = \{v_{j,1}, v_{j,2}, \ldots \}.</span></p>
 <p>But not all transitions have to be timed. Denote the timed transitions <span class="math inline">\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}</span>. We define the <em>clock structure</em> for a PN as <span class="math display">\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.</span></p>
 <p>The definition of a <em>timed Petri net</em> (TPN) is then obtained by augmenting the definition of a Petri net with the clock structure</p>
 <p><span class="math display">\boxed{TPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w, x, \mathcal{V}\}}.</span></p>
@@ -689,12 +689,12 @@ Rectangles instead of bars
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sometimes instead of a bar, the untimed transitions are modelled using similarly thing rectangles as the timed transitions, but filled.</p>
+<p>Sometimes instead of a bar, the untimed transitions are modelled using similarly thin rectangles as the timed transitions, but filled.</p>
 </div>
 </div>
 <section id="places-can-also-be-delayed" class="level3">
 <h3 class="anchored" data-anchor-id="places-can-also-be-delayed">Places can also be delayed</h3>
-<p>With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places (and yet in some other literature delays are <em>only</em> associated with delays). Such delays associated with places are called <em>holding time</em> for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.</p>
+<p>With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places. And yet in some other literature delays are <em>only</em> associated with places. Such delays associated with places are called <em>holding time</em> for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -705,7 +705,7 @@ Delays associated with transitions and places
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tell the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.</p>
+<p>There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tells the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.</p>
 </div>
 </div>
 </section>
@@ -779,7 +779,7 @@ Update equations for times and not states
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>While with state equations we compute a sequences of values of the state vector <span class="math inline">(\bm x_0, \bm x_1, \bm x_2, \ldots)</span>, in other words, we compute the evolution of the state in time, here we compute the sequences of times when some events occurs (either a transition fires or a token arrives to a places and thus enables the output transition). The update scheme resembles the state equations, but the interpretation is different.</p>
+<p>While with state equations we compute a sequences of values of the state vector <span class="math inline">(\bm x_0, \bm x_1, \bm x_2, \ldots)</span>, in other words, we compute the evolution of the state in time, here we compute the sequences of times when transitions fire (or token arrive to places). This update scheme for times resembles the state equations, but the interpretation is different.</p>
 </div>
 </div>
 </section>
@@ -817,18 +817,37 @@ c_k &amp;= s_{k} + v_{c,k}\\
 </span></p>
 <p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
 <div id="exm-timed-petri-nets-train" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="petri_nets_figures/trains.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Example with three train lines</figcaption>
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig&nbsp;3</a>.</p>
+<div id="fig-trains" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/trains.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example with three train lines
+</figcaption>
 </figure>
 </div>
-<p>Synchronization of departures at a given station so that passenges can change trains.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="petri_nets_figures/trains_petri_net.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Timed Petri net for the example of synchronization of three train lines</figcaption>
+<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig&nbsp;4</a>.</p>
+<div id="fig-fig-trains-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/trains_petri_net.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig&nbsp;5</a>.</p>
+<div id="fig-trains-petri-net-delayed-places" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/trains_petri_net_delayed_places.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
 </figure>
 </div>
 </div>
