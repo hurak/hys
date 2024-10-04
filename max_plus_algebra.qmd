@@ -7,12 +7,12 @@ format:
         html-math-method: katex
         code-fold: true
 execute: 
-    enabled: false
-#engine: julia
-jupyter: julia-1.10   
+    enabled: true
+engine: julia
+#jupyter: julia-1.10   
 ---
 
-*Max-plus algebra*, also written as (max,+) algebra (and also known as *tropical algebra/geometry* and *dioid algebra*), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely *event graphs*, which we introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations for classical linear dynamical systems. We call these max-plus linear systems, or just MPL systems. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.
+*Max-plus algebra*, also written as (max,+) algebra (and also known as *tropical algebra/geometry* and *dioid algebra*), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely *event graphs*, which we have previously introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations $\bm x_{k+1} = \mathbf A \bm x_k + \mathbf B \bm u_k$ for classical linear dynamical systems. We call these *max-plus linear systems*, or just *MPL systems*. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.
 
 But before we get to these applications, we first need to introduce the (max,+) algebra itself. And before we do that, we recapitulate the definition of a standard *algebra*. 
 
@@ -26,11 +26,11 @@ Confusingly enough, algebra is used both as a name of both a branch of mathemati
 Algebra is a set of elements equipped with
 
 - two operations: 
-    - addition (plus, +)
-    - multiplication (times, ×)
-- neutral (identity) element with respect to addition: zero, 0
-    $$a+0=a.$$
-- neutral (identity) element with respect to multiplication: one, 1
+    - addition (plus, +),
+    - multiplication (times, ×),
+- neutral (identity) element with respect to addition: zero, 0,
+    $$a+0=a,$$
+- neutral (identity) element with respect to multiplication: one, 1,
     $$a\times 1 = a.$$
 
 Inverse elements can also be defined, namely
@@ -42,7 +42,7 @@ Inverse elements can also be defined, namely
 
 If the inverse wrt multiplication exists for every (nonzero) element, the algebra is called a *field*, otherwise it is called a *ring*. 
 
-Prominent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too. 
+Prominent examples of a ring are integers and polynomials. For integers, it is only the numbers 1 and -1 that have integer inverses. For polynomials, it is only zero-th degree polynomials that have inverses qualifying as polynomials too. An example from the control theory is the ring of proper stable transfer functions, in which  only the non-minimum phase transfer functions with zero relative degree have inverses, and thus qualify as units.
 
 Prominent example of a field is the set of real numbers.
 
@@ -106,7 +106,7 @@ because $x+0=x$.
 
 ::: {.callout-note}
 ## Nonsymmetric notation, but who cares?
-The notation is rather nonsymmetric here. We now have a dedicated symbol $\varepsilon$ for the *zero* element in the new algebra, but no dedicated symbol for the *one* element in the new algebra. It may be a bit confusing as "the old 0 is the new 1". Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we could have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ①  = x. In fact, in some software packages they do define something like `mp-zero` and `mp-one` to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry... After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX...
+The notation is rather nonsymmetric here. We now have a dedicated symbol $\varepsilon$ for the *zero* element in the new algebra, but no dedicated symbol for the *one* element in the new algebra. It may be a bit confusing as "the old 0 is the new 1". Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we should have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ①  = x. In fact, in some software packages they do define something like `mp-zero` and `mp-one` to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry... After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX...
 :::
 
 ### Inverse elements
@@ -126,7 +126,7 @@ Formally speaking, the (max,+) algebra is only a *semi-ring*.
 
 #### Inverse with respect to $\otimes$
 
-The inverse element with respect to $\otimes$ does not exist for all elements. The $\varepsilon$ element does not have an inverse element with respect to $\otimes$. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse either.
+The inverse element with respect to $\otimes$ does not exist for all elements. The $\varepsilon$ element does not have an inverse element with respect to $\otimes$. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse there either.
 
 ## Powers and the inverse with respect to $\otimes$
 
@@ -150,9 +150,9 @@ There is also no inverse element with respect to $\otimes$ for $\varepsilon$, bu
 
 It is the same as that for the conventional algebra:
 
-    1. power, 
-    2. multiplication, 
-    3. addition.
+1. power, 
+2. multiplication, 
+3. addition.
 
 ## (max,+) polynomials (aka tropical polynomials)
 
@@ -241,7 +241,7 @@ Piecewise affine (PWA) functions will turn out a frequent buddy in our course.
 
 ### Addition and multiplication
 
-What is nice about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in $\mathbb R_\varepsilon$, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations.
+What is attractive about the whole (max,+) framework is that it also extends nicely to matrices. For matrices, whose elements are in $\mathbb R_\varepsilon$, we define the operations of addition and multiplication identically as in the conventional case, we just use different definitions of the two basic scalar operations.
 $$(A\oplus B)_{ij} = a_{ij}\oplus b_{ij} = \max(a_{ij},b_{ij})$$
 $$
 \begin{aligned}
@@ -280,12 +280,12 @@ $$
 The zerothe power of a matrix is – unsurprisingly – the identity matrix, that is,
 $$A^{\otimes^0} = I_n.$$
 
-The kth power of a matrix, for $k\in \mathbb N\setminus\{0\}$, is then defined using
+The $k$th power of a matrix, for $k\in \mathbb N\setminus\{0\}$, is then defined using
 $$A^{\otimes^k} = A\otimes A^{\otimes^{k-1}}.$$
 
 ## Connection with graph theory – precedence graph
 
-Consider $A\in \mathbb R_\varepsilon^{n\times n}$. For this matrix, we can define the *precedence graph* $\mathcal{G}(A)$ as a weighted directed graph with the vertices 1, 2, ..., n, and with the arcs $(j,i)$ with the associated weights $a_{ij}$ for all $a_{ij}\neq \varepsilon$. The kth power of the matrix is then
+Consider $A\in \mathbb R_\varepsilon^{n\times n}$. For this matrix, we can define the *precedence graph* $\mathcal{G}(A)$ as a weighted directed graph with the vertices 1, 2, ..., n, and with the arcs $(j,i)$ with the associated weights $a_{ij}$ for all $a_{ij}\neq \varepsilon$. The $k$th power of the matrix is then
 
 $$
 (A)^{\otimes^k}_{ij} = \max_{i_1,\ldots,i_{k-1}\in \{1,2,\ldots,n\}} \{a_{ii_1} + a_{i_1i_2} + \ldots + a_{i_{k-1}j}\}

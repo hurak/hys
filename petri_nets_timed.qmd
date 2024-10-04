@@ -19,7 +19,7 @@ $$\boxed{\mathrm{ENABLING} \neq \text{FIRING}.}$$
 
 Well then, the enabled transitions do not have to fire *immediately*, but they can possibly fire with some *delay* after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn't it?
 
-For the $j$th transition, the delay of the $k$th firing is $v_{j,k}$, 
+For the $j$th transition, the delay of the $k$th firing is $v_{j,k}$, and we collect the sequence of delayes into
 $$v_j = \{v_{j,1}, v_{j,2}, \ldots \}.$$
 
 But not all transitions have to be timed. Denote the timed transitions $\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}$. We define the *clock structure* for a PN as $$\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.$$
@@ -38,16 +38,16 @@ Model of processing multiple tasks: task 1 and task 2 are processed sequentially
 
 :::{.callout-note}
 ## Rectangles instead of bars
-Sometimes instead of a bar, the untimed transitions are modelled using similarly thing rectangles as the timed transitions, but filled.
+Sometimes instead of a bar, the untimed transitions are modelled using similarly thin rectangles as the timed transitions, but filled.
 :::
 
 ### Places can also be delayed
 
-With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places (and yet in some other literature delays are *only* associated with delays). Such delays associated with places are called *holding time* for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.
+With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places. And yet in some other literature delays are *only* associated with places. Such delays associated with places are called *holding time* for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.
 
 ::: {.callout-caution}
 ## Delays associated with transitions and places
-There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tell the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.
+There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tells the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.
 :::
 
 ## Timed Petri net dynamics
@@ -130,7 +130,7 @@ This is the ultimate model for the dynamics of the Petri net. Should we need it,
 
 ::: {.callout-important}
 ## Update equations for times and not states
-While with state equations we compute a sequences of values of the state vector $(\bm x_0, \bm x_1, \bm x_2, \ldots)$, in other words, we compute the evolution of the state in time, here we compute the sequences of times when some events occurs (either a transition fires or a token arrives to a places and thus enables the output transition). The update scheme resembles the state equations, but the interpretation is different. 
+While with state equations we compute a sequences of values of the state vector $(\bm x_0, \bm x_1, \bm x_2, \ldots)$, in other words, we compute the evolution of the state in time, here we compute the sequences of times when transitions fire (or token arrive to places). This update scheme for times resembles the state equations, but the interpretation is different. 
 :::
 
 
@@ -169,11 +169,17 @@ The time of completing the $k$th task is given by the time at which the previous
 ::: {#exm-timed-petri-nets-train}
 ## Timed Petri net for synchronization of train lines
 
-![Example with three train lines](petri_nets_figures/trains.png){width=60%}
+We consider three closed rail tracks and two stations as in @fig-trains.
 
-Synchronization of departures at a given station so that passenges can change trains.
+![Example with three train lines](petri_nets_figures/trains.png){width=60% #fig-trains}
 
-![Timed Petri net for the example of synchronization of three train lines](petri_nets_figures/trains_petri_net.png){width=60%}
+Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in @fig-fig-trains-petri-net.
+
+![Timed Petri net for the example of synchronization of three train lines](petri_nets_figures/trains_petri_net.png){width=60% #fig-fig-trains-petri-net}
+
+If time is associated with the places, the Petri net simplifies significantly to @fig-trains-petri-net-delayed-places.
+
+![Timed Petri net for the example of synchronization of three train lines](petri_nets_figures/trains_petri_net_delayed_places.png){width=50% #fig-trains-petri-net-delayed-places}
 :::
 
 ::: {#exm-timed-petri-nets-manufacturing}
