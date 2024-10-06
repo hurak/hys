@@ -21,7 +21,7 @@ Timed Petri net (event graph) for the example is in @fig-production_system_petri
 
 The Petri net can be made more compact by associating the delays also with the places, as in @fig-production_system_petri_net below. 
 
-![Example of a production system modelled by a timed Petri net (both places and transitions are timed)](figures/production_system_petri_net.png){width=60% #fig-production_system_petri_net}
+![Example of a production system modelled by a timed Petri net (both places and transitions are timed)](figures/production_system_petri_net.png){width=65% #fig-production_system_petri_net}
 
 With the outputs from the three transitions (the rectangles) after the kth event labelled by $x_{1,k}$, $x_{2,k}$, and $x_{3,k}$, the state equations are
 $$

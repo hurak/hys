@@ -62,7 +62,7 @@ where
     - It is a set of values that the state variables are allowed to attain while staying in the given location; if the state of the systems evolves towards the boundary of this set with a tendency to leave it, the system must be ready to leave that location by transitioning to another location.  
 
 ::: {.callout-caution}
-Strictly speaking, $\mathcal{I}$ is a mapping and not a set. It is only the mapping evaluated at a given location $q$, that is, $\mathcal{I}(q)$ is a set.
+Strictly speaking, $\mathcal{I}$ is a mapping and not a set. Only the mapping evaluated at a given location $q$, that is, $\mathcal{I}(q)$, is a set.
 :::    
 
 - $\mathcal E\subseteq \mathcal Q \times \mathcal Q$ is a set of *transitions*.
@@ -116,7 +116,7 @@ Finally, $\mathcal R$ (or $r$) is not specified as the $x$ variable (the tempera
 
 The graphical representation of the thermostat hybrid automaton is shown below.
 
-![Hybrid automaton for a thermostat](hybrid_automata_figures/thermostat_automaton.png){width=60%}
+![Hybrid automaton for a thermostat](hybrid_automata_figures/thermostat_automaton.png){width=60% #fig-thermostat-automaton}
 
 We have two final remarks about this model: 
 
@@ -175,7 +175,7 @@ upon introduction of these two types of external inputs:
 ::: {#exm-button-controlled-LED}
 ## Button-controlled LED
 
-![Automaton for a button controlled LED](hybrid_automata_figures/button_controlled_LED.png){width=80%}
+![Automaton for a button controlled LED](hybrid_automata_figures/button_controlled_LED.png){width=80% #fig-button-controlled-LED}
 
 $$
 \mathcal{Q} = \{\mathrm{off}, \mathrm{dim}, \mathrm{bright}\},\quad \mathcal{Q}_0 = \{\mathrm{off}\}
@@ -227,7 +227,7 @@ $$
 
 We consider a water tank with one inflow and two outflows – one at the bottom, the other at some nonzero height $h_\mathrm{m}$. The water level $h$ is the continuous state variable.
 
-![Water tank example](hybrid_automata_figures/water_tank.png){width=50%}
+![Water tank example](hybrid_automata_figures/water_tank.png){width=50% #fig-water-tank}
 
 The model essentially expresses that the change in the volume is given by the difference between the inflow and the outflows. The outflows are proportional to the square root of the water level (Torricelli's law)
 $$
@@ -240,7 +240,7 @@ $$
 
 Apparently things change when the water level crosses (in any direction) the height $h_\mathrm{m}$. This can be modelled using a hybrid automaton.
 
-![Automaton for a water tank example](hybrid_automata_figures/water_tank_automaton.png){width=80%}
+![Automaton for a water tank example](hybrid_automata_figures/water_tank_automaton.png){width=80% #fig-water-tank-automaton}
 
 One lesson to learn from this example is that the transition from one mode to another is not necessarily due to some computer-controlled switch. Instead, it is our modelling choice. It is an approximation that assumes negligible diameter of the middle pipe. But taking into the consideration the volume of the tank, it is probably a justifiable approximation.
 :::
@@ -250,7 +250,7 @@ One lesson to learn from this example is that the transition from one mode to an
 
 We assume that a ball is falling from some initial nonzero height above the table. After hitting the table, it bounces back, loosing a portion of the energy (the deformation is not perfectly elastic). 
 
-![Bouncing ball example](hybrid_automata_figures/bouncing_ball.png){width=25%}
+![Bouncing ball example](hybrid_automata_figures/bouncing_ball.png){width=25% #fig-bouncing-ball}
 
 The state equation during the free fall is
 $$
@@ -342,12 +342,12 @@ A simple mechanical model that is occasionally used in the walking robot communi
 
 A hybrid automaton for the rimless wheel is below.
 
-![Hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton.png){width=90%}
+![Hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton.png){width=90% #fig-rimless-wheel-automaton}
 
 Alternatively, we do not represent the discrete state graphically as a node in the graph but rather as another state variable $s \in \{0, 1, \ldots, 5\}$ within a single location.
 
 
-![Alternative hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton_single_location.png){width=50%}
+![Alternative hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton_single_location.png){width=50% #fig-rimless-wheel-automaton-single-location}
 :::
 
 ::: {#exm-DC-DC-boost-converter}
@@ -361,7 +361,7 @@ The switch introduces two modes of operation. But the (ideal) diode introduces a
 
 ### The switch closed
 
-![DC-DC boost converter: the switch closed](hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png){width=50%}
+![DC-DC boost converter: the switch closed](hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png){width=50% #fig-dc-dc-boost-converter-mode-CLOSED}
 
 $$
 \begin{bmatrix}
@@ -387,7 +387,7 @@ $$
 
 ### Continuous conduction mode (CCM)
 
-![DC-DC boost converter: continuous conduction mode (CCM)](hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png){width=50%}
+![DC-DC boost converter: continuous conduction mode (CCM)](hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png){width=50% #fig-dc-dc-boost-converter-mode-CCM}
 
 $$
 \begin{bmatrix}
@@ -413,7 +413,7 @@ $$
 
 ### Discontinuous cond. mode (DCM)
 
-![DC-DC boost converter: discontinuous conduction model (DCM)](hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png){width=50%}
+![DC-DC boost converter: discontinuous conduction model (DCM)](hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png){width=50% #fig-dc-dc-boost-converter-mode-DCM}
 
 $$
 \begin{bmatrix}
@@ -441,6 +441,6 @@ $$
 Possibly the events of opening and closing the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.
 :::
 
-![Hybrid automaton for a DC-DC boost converter](hybrid_automata_figures/dc_dc_boost_converter_automaton.png){width=80%}
+![Hybrid automaton for a DC-DC boost converter](hybrid_automata_figures/dc_dc_boost_converter_automaton.png){width=80% #fig-dc-dc-boost-converter-automaton}
 
 :::
