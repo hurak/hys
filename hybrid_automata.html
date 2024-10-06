@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.20">
+<meta name="generator" content="quarto-1.6.21">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -715,7 +715,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Strictly speaking, <span class="math inline">\mathcal{I}</span> is a mapping and not a set. It is only the mapping evaluated at a given location <span class="math inline">q</span>, that is, <span class="math inline">\mathcal{I}(q)</span> is a set.</p>
+<p>Strictly speaking, <span class="math inline">\mathcal{I}</span> is a mapping and not a set. Only the mapping evaluated at a given location <span class="math inline">q</span>, that is, <span class="math inline">\mathcal{I}(q)</span>, is a set.</p>
 </div>
 </div>
 <ul>
@@ -758,10 +758,14 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 </span></p>
 <p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump.</p>
 <p>The graphical representation of the thermostat hybrid automaton is shown below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/thermostat_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>Hybrid automaton for a thermostat</figcaption>
+<div id="fig-thermostat-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thermostat-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/thermostat_automaton.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermostat-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Hybrid automaton for a thermostat
+</figcaption>
 </figure>
 </div>
 <p>We have two final remarks about this model:</p>
@@ -819,10 +823,14 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 </ul>
 <div id="exm-button-controlled-LED" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/button_controlled_LED.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a button controlled LED</figcaption>
+<div id="fig-button-controlled-LED" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-button-controlled-LED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/button_controlled_LED.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-button-controlled-LED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Automaton for a button controlled LED
+</figcaption>
 </figure>
 </div>
 <p><span class="math display">
@@ -867,10 +875,14 @@ r((\mathrm{off},\mathrm{press},\mathrm{dim}),x) = 0,
 </div>
 <div id="exm-water-tank" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3 (Water tank)</strong></span> We consider a water tank with one inflow and two outflows – one at the bottom, the other at some nonzero height <span class="math inline">h_\mathrm{m}</span>. The water level <span class="math inline">h</span> is the continuous state variable.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Water tank example</figcaption>
+<div id="fig-water-tank" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-water-tank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/water_tank.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-water-tank-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Water tank example
+</figcaption>
 </figure>
 </div>
 <p>The model essentially expresses that the change in the volume is given by the difference between the inflow and the outflows. The outflows are proportional to the square root of the water level (Torricelli’s law) <span class="math display">
@@ -881,34 +893,42 @@ Q_\mathrm{in} - Q_\mathrm{out,bottom}, &amp; h\leq h_\mathrm{m}
 \end{cases}
 </span></p>
 <p>Apparently things change when the water level crosses (in any direction) the height <span class="math inline">h_\mathrm{m}</span>. This can be modelled using a hybrid automaton.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Automaton for a water tank example</figcaption>
+<div id="fig-water-tank-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-water-tank-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-water-tank-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Automaton for a water tank example
+</figcaption>
 </figure>
 </div>
 <p>One lesson to learn from this example is that the transition from one mode to another is not necessarily due to some computer-controlled switch. Instead, it is our modelling choice. It is an approximation that assumes negligible diameter of the middle pipe. But taking into the consideration the volume of the tank, it is probably a justifiable approximation.</p>
 </div>
 <div id="exm-bouncing-ball" class="theorem example">
 <p><span class="theorem-title"><strong>Example 4 (Bouncing ball)</strong></span> We assume that a ball is falling from some initial nonzero height above the table. After hitting the table, it bounces back, loosing a portion of the energy (the deformation is not perfectly elastic).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/bouncing_ball.png" class="img-fluid figure-img" style="width:25.0%"></p>
-<figcaption>Bouncing ball example</figcaption>
+<div id="fig-bouncing-ball" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bouncing-ball-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/bouncing_ball.png" class="img-fluid figure-img" style="width:25.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bouncing-ball-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Bouncing ball example
+</figcaption>
 </figure>
 </div>
 <p>The state equation during the free fall is <span class="math display">
 \dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}.
 </span></p>
 <p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
-<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig&nbsp;6</a>.</p>
 <div id="fig-bouncing-ball-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="hybrid_automata_figures/bouncing_ball_automaton.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Hybrid automaton for a bouncing ball eaxample
+Figure&nbsp;6: Hybrid automaton for a bouncing ball eaxample
 </figcaption>
 </figure>
 </div>
@@ -961,64 +981,76 @@ m\dot v = 0, \qquad v=0, \; |F_\mathrm{a}| &lt; F_\mathrm{c}
 </span> <span class="math display">
 F_\mathrm{f} = \begin{cases}\operatorname*{sat}(F_\mathrm{a},F_\mathrm{c}), &amp; v=0\\F_\mathrm{c}\operatorname*{sgn}(v), &amp; \mathrm{else}\end{cases}
 </span></p>
-<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Fig&nbsp;2</a>.</p>
+<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Fig&nbsp;7</a>.</p>
 <div id="fig-karnopp-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="hybrid_automata_figures/karnopp_automaton.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Hybrid automaton for the Karnopp model of friction
+Figure&nbsp;7: Hybrid automaton for the Karnopp model of friction
 </figcaption>
 </figure>
 </div>
 </div>
 <div id="exm-rimless-wheel" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Fig&nbsp;3</a>.</p>
+<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Fig&nbsp;8</a>.</p>
 <div id="fig-rimless-wheel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="hybrid_automata_figures/rimless_wheel.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Rimless wheel
+Figure&nbsp;8: Rimless wheel
 </figcaption>
 </figure>
 </div>
 <p>A hybrid automaton for the rimless wheel is below.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>Hybrid automaton for a rimless wheel</figcaption>
+<div id="fig-rimless-wheel-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rimless-wheel-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/rimless_wheel_automaton.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rimless-wheel-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Hybrid automaton for a rimless wheel
+</figcaption>
 </figure>
 </div>
 <p>Alternatively, we do not represent the discrete state graphically as a node in the graph but rather as another state variable <span class="math inline">s \in \{0, 1, \ldots, 5\}</span> within a single location.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/rimless_wheel_automaton_single_location.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Alternative hybrid automaton for a rimless wheel</figcaption>
+<div id="fig-rimless-wheel-automaton-single-location" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rimless-wheel-automaton-single-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/rimless_wheel_automaton_single_location.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rimless-wheel-automaton-single-location-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Alternative hybrid automaton for a rimless wheel
+</figcaption>
 </figure>
 </div>
 </div>
 <div id="exm-DC-DC-boost-converter" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> The enabling mechanism for a DC-DC converter is switching. Although the switching is realized with a semiconductor switch, for simplicity of the exposition we consider a manual switch in <a href="#fig-dc-dc-boost-converter" class="quarto-xref">Fig&nbsp;4</a> below.</p>
+<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> The enabling mechanism for a DC-DC converter is switching. Although the switching is realized with a semiconductor switch, for simplicity of the exposition we consider a manual switch in <a href="#fig-dc-dc-boost-converter" class="quarto-xref">Fig&nbsp;11</a> below.</p>
 <div id="fig-dc-dc-boost-converter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dc-dc-boost-converter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="hybrid_automata_figures/dc_dc_boost_converter_circuit.png" class="img-fluid figure-img" style="width:40.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: DC-DC boost converter
+Figure&nbsp;11: DC-DC boost converter
 </figcaption>
 </figure>
 </div>
 <p>The switch introduces two modes of operation. But the (ideal) diode introduces a mode transition too.</p>
 <section id="the-switch-closed" class="level3">
 <h3 class="anchored" data-anchor-id="the-switch-closed">The switch closed</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: the switch closed</figcaption>
+<div id="fig-dc-dc-boost-converter-mode-CLOSED" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dc-dc-boost-converter-mode-CLOSED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CLOSED.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-mode-CLOSED-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: DC-DC boost converter: the switch closed
+</figcaption>
 </figure>
 </div>
 <p><span class="math display">
@@ -1045,10 +1077,14 @@ v_0
 </section>
 <section id="continuous-conduction-mode-ccm" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-conduction-mode-ccm">Continuous conduction mode (CCM)</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: continuous conduction mode (CCM)</figcaption>
+<div id="fig-dc-dc-boost-converter-mode-CCM" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dc-dc-boost-converter-mode-CCM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/dc_dc_boost_converter_mode_CCM.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-mode-CCM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: DC-DC boost converter: continuous conduction mode (CCM)
+</figcaption>
 </figure>
 </div>
 <p><span class="math display">
@@ -1075,10 +1111,14 @@ v_0
 </section>
 <section id="discontinuous-cond.-mode-dcm" class="level3">
 <h3 class="anchored" data-anchor-id="discontinuous-cond.-mode-dcm">Discontinuous cond. mode (DCM)</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>DC-DC boost converter: discontinuous conduction model (DCM)</figcaption>
+<div id="fig-dc-dc-boost-converter-mode-DCM" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dc-dc-boost-converter-mode-DCM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/dc_dc_boost_converter_mode_DCM.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-mode-DCM-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: DC-DC boost converter: discontinuous conduction model (DCM)
+</figcaption>
 </figure>
 </div>
 <p><span class="math display">
@@ -1105,10 +1145,14 @@ v_0
 <div class="notes">
 <p>Possibly the events of opening and closing the switch can be driven by time: opening the switch is derived from the value of an input signal, closing the switch is periodic.</p>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="hybrid_automata_figures/dc_dc_boost_converter_automaton.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Hybrid automaton for a DC-DC boost converter</figcaption>
+<div id="fig-dc-dc-boost-converter-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dc-dc-boost-converter-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="hybrid_automata_figures/dc_dc_boost_converter_automaton.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dc-dc-boost-converter-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Hybrid automaton for a DC-DC boost converter
+</figcaption>
 </figure>
 </div>
 </section>
