@@ -282,7 +282,7 @@ $$
 $$
 
 $$
-\mathcal{I} = \{\mathbb R^2 \mid x_1 > 0 \lor (x_1 = 0 \land x_2 > 0)\}
+\mathcal{I} = \{\mathbb R^2 \mid x_1 > 0 \lor (x_1 = 0 \land x_2 \geq 0)\}
 $$
 
 $$
@@ -302,12 +302,15 @@ r((q,q),\bm x) = \begin{bmatrix}x_1\\ -\gamma x_2 \end{bmatrix},
 $$
 where $\gamma$ is the coefficient of restitution (e.g., $\gamma = 0.9$).
 
-::: {.callout-note}
+::: {.callout-warning}
 ## Comment on the invariant set for the bouncing ball
 
 Some authors characterize the invariant set as $x_1\geq 0$. But this means that as the ball touches the ground, nothing forces it to leave the location and do the transition. Instead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition. The current definition avoids this. 
+:::
 
-On the other hand, when solving the model numerically, the use of inequalities to define sets is inevitable. And some numerical solvers, in particular optimization solvers, cannot handle strict inequalities. That is perhaps why some authors are quite relaxed about this issue. We will encounter it later on.
+::: {.callout-note}
+## Another comment on the invariant set for the bouncing ball
+While the previous remark certainly holds, when solving the model numerically, the use of inequalities to define sets is inevitable. And some numerical solvers, in particular optimization solvers, cannot handle strict inequalities. That is perhaps why some authors are quite relaxed about this issue. We will encounter it later on.
 :::
 
 :::
