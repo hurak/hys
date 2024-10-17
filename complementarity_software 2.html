@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -197,7 +197,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -366,7 +366,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -423,6 +423,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -430,13 +436,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -510,8 +522,17 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -539,6 +560,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -600,10 +627,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#software-for-solving-optimization-problems-with-complementarity-constraints" id="toc-software-for-solving-optimization-problems-with-complementarity-constraints" class="nav-link active" data-scroll-target="#software-for-solving-optimization-problems-with-complementarity-constraints">Software for solving optimization problems with complementarity constraints</a></li>
-  <li><a href="#software-for-modeling-and-simulation-of-dynamical-systems-complementarity-constraints" id="toc-software-for-modeling-and-simulation-of-dynamical-systems-complementarity-constraints" class="nav-link" data-scroll-target="#software-for-modeling-and-simulation-of-dynamical-systems-complementarity-constraints">Software for modeling and simulation of dynamical systems complementarity constraints</a></li>
+  <li><a href="#solving-optimization-problems-with-complementarity-constraints" id="toc-solving-optimization-problems-with-complementarity-constraints" class="nav-link active" data-scroll-target="#solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</a></li>
+  <li><a href="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" id="toc-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="nav-link" data-scroll-target="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -627,8 +654,8 @@ window.Quarto = {
 </header>
 
 
-<section id="software-for-solving-optimization-problems-with-complementarity-constraints" class="level2">
-<h2 class="anchored" data-anchor-id="software-for-solving-optimization-problems-with-complementarity-constraints">Software for solving optimization problems with complementarity constraints</h2>
+<section id="solving-optimization-problems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</h2>
 <p>Surprisingly, there are not many software packages that can handle complementarity constraints directly.</p>
 <ul>
 <li>Within the realm of free software, I am only aware of <a href="https://pages.cs.wisc.edu/~ferris/path.html">PATH</a> solver. Well, it is not open source and it is not issued under any classical free and open source license. It can be interfaced from Matlab and Julia (and AMPL and GAMS, which are not relevant for our course). For Matlab, compiled mexfiles can be downloaded. For Julia, the solver can be interfaced directly from the popular <a href="https://jump.dev/JuMP.jl/stable/">JuMP</a> package (choosing the <a href="https://jump.dev/JuMP.jl/stable/packages/PATHSolver/#PATHSolver.jl">PATHSolver.jl</a> solver), see the section on <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Complementarity-constraints">Complementarity constraints</a> and <a href="https://jump.dev/JuMP.jl/stable/tutorials/nonlinear/complementarity/">Mixed complementarity problems</a> in JuMP manual.</li>
@@ -640,11 +667,11 @@ window.Quarto = {
 <li><a href="https://www.artelys.com/solvers/knitro/">Knitro</a> solver (by Artelys) has some <a href="https://www.artelys.com/docs/knitro/2_userGuide/complementarity.html">support for complementarity constraints</a>.</li>
 <li><a href="https://yalmip.github.io">YALMIP</a> toolbox supports definining the complementarity constraints through the command <a href="https://yalmip.github.io/command/complements/">complements</a>: <code>F = complements(w &gt;= 0, z &gt;= 0)</code>. By default, it converts the problem into the format suitable for a mixed-integer solver. If Knitro is available, it can be interfaced.</li>
 </ul>
-<p>Gurobi does not seem to support complementarity constraints.</p>
-<p>Mosek supports <a href="https://docs.mosek.com/latest/capi/tutorial-djc-optimizer.html">disjunctive constraints</a>, within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.</p>
+<p><a href="https://www.gurobi.com/solutions/gurobi-optimizer/">Gurobi</a> does not seem to support complementarity constraints.</p>
+<p><a href="https://www.mosek.com">Mosek</a> supports <a href="https://docs.mosek.com/latest/capi/tutorial-djc-optimizer.html">disjunctive constraints</a>, within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.</p>
 </section>
-<section id="software-for-modeling-and-simulation-of-dynamical-systems-complementarity-constraints" class="level2">
-<h2 class="anchored" data-anchor-id="software-for-modeling-and-simulation-of-dynamical-systems-complementarity-constraints">Software for modeling and simulation of dynamical systems complementarity constraints</h2>
+<section id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</h2>
 <p>Within the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:</p>
 <ul>
 <li><a href="https://nonsmooth.gricad-pages.univ-grenoble-alpes.fr/siconos/">SICONOS</a>
@@ -755,7 +782,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1103,7 +1130,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

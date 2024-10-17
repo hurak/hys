@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.2">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,16 +51,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./mpc_mld_online.html" rel="next">
-<link href="./mld_DHA.html" rel="prev">
+<link href="./mld_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -154,7 +174,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -184,6 +210,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,6 +278,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -265,6 +303,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,7 +343,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -327,8 +377,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,6 +400,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -357,13 +413,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -403,6 +465,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -431,8 +499,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link active">
@@ -460,6 +537,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -516,8 +599,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#case-studies" id="toc-case-studies" class="nav-link active" data-scroll-target="#case-studies">Case studies</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -541,10 +630,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The MLD description of discrete-time hybrid systems was originally introduced in <span class="citation" data-cites="bemporadControlSystemsIntegrating1999"><a href="#ref-bemporadControlSystemsIntegrating1999" role="doc-biblioref">[1]</a></span>, but perhaps even more accessible introduction is in Chapter 16 of the freely downloadable book <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[2]</a></span>. In our text here we followed their expositions.</p>
+<p>Just in case some issues are still unclear, in particular those related to the connection between the constraints (inequalities) imposed on continuous (aka real) variables and logical conditions imposed on binary variable, you may like the little bit more formal discussion in Section 2.2 of the thesis <span class="citation" data-cites="mignoneControlEstimationHybrid2002"><a href="#ref-mignoneControlEstimationHybrid2002" role="doc-biblioref">[3]</a></span>. Strictly speaking, this use of binary (0-1 integer) variables to encode some constraints on real variables is standard in optimization and is described elsewhere – search for <em>indicator variables</em> or <em>indicator constraints</em>. A recommendable general resource is the book (unfortunately not available online) <span class="citation" data-cites="williamsModelBuildingMathematical2013"><a href="#ref-williamsModelBuildingMathematical2013" role="doc-biblioref">[4]</a></span>, in particular its section 9.1.3 on Indicator variables.</p>
+<p>All the theoretical concepts and procedures introduced in this lecture (and in those corresponding papers and books) are straightforward but rather tedious to actually implement. There is a HYSDEL language for modelling hybrid systems (discrete hybrid automata as considered in this lecture) that automates these procedures. The HYSDEL language is described not only in the documentation but also in the dedicated paper <span class="citation" data-cites="torrisiHYSDELToolGenerating2004"><a href="#ref-torrisiHYSDELToolGenerating2004" role="doc-biblioref">[5]</a></span>, which can also serve as a learning resource for the topic.</p>
+<section id="case-studies" class="level3">
+<h3 class="anchored" data-anchor-id="case-studies">Case studies</h3>
+<p>Batch evaporator <span class="citation" data-cites="bemporadDiscretetimeHybridModeling2001"><a href="#ref-bemporadDiscretetimeHybridModeling2001" role="doc-biblioref">[6]</a></span> and <span class="citation" data-cites="kowalewskiBatchEvaporatorBenchmark1998"><a href="#ref-kowalewskiBatchEvaporatorBenchmark1998" role="doc-biblioref">[7]</a></span>.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-bemporadControlSystemsIntegrating1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Bemporad and M. Morari, <span>“Control of systems integrating logic, dynamics, and constraints,”</span> <em>Automatica</em>, vol. 35, no. 3, pp. 407–427, Mar. 1999, doi: <a href="https://doi.org/10.1016/S0005-1098(98)00178-2">10.1016/S0005-1098(98)00178-2</a>.</div>
+</div>
+<div id="ref-borrelliPredictiveControlLinear2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">F. Borrelli, A. Bemporad, and M. Morari, <em>Predictive <span>Control</span> for <span>Linear</span> and <span>Hybrid Systems</span></em>. Cambridge, New York: Cambridge University Press, 2017. Available: <a href="http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf">http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf</a></div>
+</div>
+<div id="ref-mignoneControlEstimationHybrid2002" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Mignone, <span>“Control and estimation of hybrid systems with mathematical optimization,”</span> Doctoral {{Thesis}}, ETH Zurich, 2002. doi: <a href="https://doi.org/10.3929/ethz-a-004279802">10.3929/ethz-a-004279802</a>.</div>
+</div>
+<div id="ref-williamsModelBuildingMathematical2013" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H. P. Williams, <em>Model <span>Building</span> in <span>Mathematical Programming</span></em>, 5th ed. Hoboken, N.J: Wiley, 2013.</div>
+</div>
+<div id="ref-torrisiHYSDELToolGenerating2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">F. D. Torrisi and A. Bemporad, <span>“<span>HYSDEL</span>—a tool for generating computational hybrid models for analysis and synthesis problems,”</span> <em>IEEE Transactions on Control Systems Technology</em>, vol. 12, no. 2, pp. 235–249, Mar. 2004, doi: <a href="https://doi.org/10.1109/TCST.2004.824309">10.1109/TCST.2004.824309</a>.</div>
+</div>
+<div id="ref-bemporadDiscretetimeHybridModeling2001" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">A. Bemporad, F. D. Torrisi, and M. Morari, <span>“Discrete-time <span>Hybrid Modeling</span> and <span>Verification</span> of the <span>Batch Evaporator Process Benchmark</span>,”</span> <em>European Journal of Control</em>, vol. 7, no. 4, pp. 382–399, Jan. 2001, doi: <a href="https://doi.org/10.3166/ejc.7.382-399">10.3166/ejc.7.382-399</a>.</div>
+</div>
+<div id="ref-kowalewskiBatchEvaporatorBenchmark1998" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. Kowalewski and O. Stursberg, <span>“The <span>Batch Evaporator</span>: <span>A Benchmark Example</span> for <span>Safety Analysis</span> of <span>Processing Systems</span> under <span>Logic Control</span>,”</span> in <em>Proceedings 4th <span>Int</span>. <span>Workshop</span> on <span>Discrete Event Systems</span> (<span>WODES</span>’98)</em>, Cagliari, Italy: IEE, London, Aug. 1998, pp. 302–307.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -967,8 +1086,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./mld_DHA.html" class="pagination-link" aria-label="Discrete hybrid automata">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Discrete hybrid automata</span>
+      <a href="./mld_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -985,7 +1104,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

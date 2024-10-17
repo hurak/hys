@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Mixed logical dynamical – B(E)3M35HYS – Hybrid systems</title>
+<title>Logic vs inequalities – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,15 +30,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./mld_software.html" rel="next">
+<link href="./mld_DHA.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,9 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      B(E)3M35HYS – Hybrid systems
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs inequalities</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -183,7 +183,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -287,6 +287,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -306,6 +312,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -340,7 +352,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -368,8 +386,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -391,6 +409,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -398,13 +422,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -444,6 +474,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -472,8 +508,17 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -501,6 +546,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,24 +613,31 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#propositional-logic-and-connectives" id="toc-propositional-logic-and-connectives" class="nav-link active" data-scroll-target="#propositional-logic-and-connectives">Propositional logic and connectives</a></li>
+  <li><a href="#propositional-logic-and-connectives" id="toc-propositional-logic-and-connectives" class="nav-link active" data-scroll-target="#propositional-logic-and-connectives">Propositional logic and connectives</a>
+  <ul class="collapse">
+  <li><a href="#boolean-variable-or-elementary-proposition" id="toc-boolean-variable-or-elementary-proposition" class="nav-link" data-scroll-target="#boolean-variable-or-elementary-proposition">Boolean variable (or elementary proposition)</a></li>
+  <li><a href="#connectives" id="toc-connectives" class="nav-link" data-scroll-target="#connectives">Connectives</a></li>
+  </ul></li>
   <li><a href="#equivalences-of-logic-propositions" id="toc-equivalences-of-logic-propositions" class="nav-link" data-scroll-target="#equivalences-of-logic-propositions">Equivalences of logic propositions</a></li>
   <li><a href="#binary-variables-related-to-the-boolean-ones" id="toc-binary-variables-related-to-the-boolean-ones" class="nav-link" data-scroll-target="#binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</a></li>
-  <li><a href="#integer-inequalities-related-to-the-logical-formulas" id="toc-integer-inequalities-related-to-the-logical-formulas" class="nav-link" data-scroll-target="#integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</a></li>
-  <li><a href="#and" id="toc-and" class="nav-link" data-scroll-target="#and">And</a></li>
-  <li><a href="#or" id="toc-or" class="nav-link" data-scroll-target="#or">Or</a></li>
+  <li><a href="#integer-inequalities-related-to-the-logical-formulas" id="toc-integer-inequalities-related-to-the-logical-formulas" class="nav-link" data-scroll-target="#integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</a>
+  <ul class="collapse">
+  <li><a href="#and-conjunction" id="toc-and-conjunction" class="nav-link" data-scroll-target="#and-conjunction">And (conjunction)</a></li>
+  <li><a href="#or-disjunction" id="toc-or-disjunction" class="nav-link" data-scroll-target="#or-disjunction">Or (disjunction)</a></li>
   <li><a href="#negation" id="toc-negation" class="nav-link" data-scroll-target="#negation">Negation</a></li>
   <li><a href="#xor" id="toc-xor" class="nav-link" data-scroll-target="#xor">Xor</a></li>
   <li><a href="#implication" id="toc-implication" class="nav-link" data-scroll-target="#implication">Implication</a></li>
   <li><a href="#equivalence" id="toc-equivalence" class="nav-link" data-scroll-target="#equivalence">Equivalence</a></li>
   <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment">Assignment</a></li>
+  </ul></li>
   <li><a href="#general-transformation-of-boolean-expressions-to-integer-inequalities" id="toc-general-transformation-of-boolean-expressions-to-integer-inequalities" class="nav-link" data-scroll-target="#general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</a></li>
   <li><a href="#finite-state-machine-fsm-using-binary-variables" id="toc-finite-state-machine-fsm-using-binary-variables" class="nav-link" data-scroll-target="#finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#mixing-logical-and-continuous" id="toc-mixing-logical-and-continuous" class="nav-link" data-scroll-target="#mixing-logical-and-continuous">Mixing logical and continuous</a></li>
+  <li><a href="#mixing-logical-and-continuous" id="toc-mixing-logical-and-continuous" class="nav-link" data-scroll-target="#mixing-logical-and-continuous">Mixing logical and continuous</a>
+  <ul class="collapse">
   <li><a href="#logical-implies-continuous" id="toc-logical-implies-continuous" class="nav-link" data-scroll-target="#logical-implies-continuous">Logical implies continuous</a></li>
   <li><a href="#continuous-implies-logical" id="toc-continuous-implies-logical" class="nav-link" data-scroll-target="#continuous-implies-logical">Continuous implies logical</a></li>
   <li><a href="#equivalence-between-logical-and-continuous" id="toc-equivalence-between-logical-and-continuous" class="nav-link" data-scroll-target="#equivalence-between-logical-and-continuous">Equivalence between logical and continuous</a></li>
+  </ul></li>
   <li><a href="#if-then-else-rule-as-an-inequality" id="toc-if-then-else-rule-as-an-inequality" class="nav-link" data-scroll-target="#if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</a></li>
   <li><a href="#another-if-then-else-rule" id="toc-another-if-then-else-rule" class="nav-link" data-scroll-target="#another-if-then-else-rule">Another IF-THEN-ELSE rule</a></li>
   <li><a href="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" id="toc-generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="nav-link" data-scroll-target="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</a></li>
@@ -589,14 +647,14 @@ window.Quarto = {
   <li><a href="#hysdel-language" id="toc-hysdel-language" class="nav-link" data-scroll-target="#hysdel-language">HYSDEL language</a></li>
   <li><a href="#piecewise-affine-systems" id="toc-piecewise-affine-systems" class="nav-link" data-scroll-target="#piecewise-affine-systems">Piecewise affine systems</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs inequalities</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Mixed logical dynamical</h1>
+<h1 class="title">Logic vs inequalities</h1>
 </div>
 
 
@@ -613,15 +671,16 @@ window.Quarto = {
 </header>
 
 
-<p>Our motivation is to get rid of the IF-THEN conditions in the model.</p>
-<section id="propositional-logic-and-connectives" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="propositional-logic-and-connectives">Propositional logic and connectives</h2>
-<ul>
-<li>Boolean variable (or elementary proposition) <span class="math inline">\(X\)</span> evaluates to <code>true</code> or <code>false</code>.
-<ul>
-<li>For convenience also <code>0</code> or <code>1</code>, but …</li>
-</ul></li>
-<li>Connectives
+<p>Our goal now is to turn the IF-THEN conditions in the model into linear inequalities. This will allow us to formulate the model as a mathematical program, actually a <em>mixed-integer program</em> (MIP).</p>
+<section id="propositional-logic-and-connectives" class="level2">
+<h2 class="anchored" data-anchor-id="propositional-logic-and-connectives">Propositional logic and connectives</h2>
+<p>Propositions that are either true or false are composed of elementary <em>propositions</em> (Boolean variables) and <em>connectives</em>.</p>
+<section id="boolean-variable-or-elementary-proposition" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-variable-or-elementary-proposition">Boolean variable (or elementary proposition)</h3>
+<p><span class="math inline">\(X\)</span> evaluates to <code>true</code> or <code>false</code>. Oftentimes values <code>0</code> and <code>1</code> are used, but it should be clear that these are not numbers but logical values.</p>
+</section>
+<section id="connectives" class="level3">
+<h3 class="anchored" data-anchor-id="connectives">Connectives</h3>
 <ul>
 <li>Conjunction (logical and): <span class="math inline">\(X_1 \land X_2\)</span></li>
 <li>Disjunction (logical or): <span class="math inline">\(X_1 \lor X_2\)</span></li>
@@ -629,167 +688,130 @@ window.Quarto = {
 <li>Implication: <span class="math inline">\(X_1 \implies X_2\)</span></li>
 <li>Equivalence: <span class="math inline">\(X_1 \iff X_2\)</span></li>
 <li>Logical XOR: <span class="math inline">\(X_1 \oplus X_2\)</span></li>
-</ul></li>
 </ul>
+</section>
 </section>
 <section id="equivalences-of-logic-propositions" class="level2">
 <h2 class="anchored" data-anchor-id="equivalences-of-logic-propositions">Equivalences of logic propositions</h2>
-<p>. . .</p>
-<p><span class="math display">\[
-X_1 \implies X_2 \quad  \text{is equivalent to} \quad \neg X_2 \implies \neg X_1
+<p>We will heavily used the following equivalences: <span class="math display">\[
+\begin{aligned}
+X_1 \implies X_2 \qquad  &amp;\equiv \qquad \neg X_2 \implies \neg X_1,\\
+X_1 \iff X_2 \qquad  &amp;\equiv \qquad (X_1 \implies X_2) \land (X_2 \implies X_1),\\
+X_1 \land X_2 \qquad  &amp;\equiv \qquad \neg (\neg X_1 \lor \neg X_2),\\
+X_1 \implies X_2 \qquad  &amp;\equiv \qquad \neg X_1 \lor X_2.
+\end{aligned}
 \]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[
-X_1 \iff X_2 \quad  \text{eq.} \quad (X_1 \implies X_2) \land (X_2 \implies X_1)
-\]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[
-X_1 \land X_2 \qquad  \text{eq.} \qquad \neg (\neg X_1 \lor \neg X_2)
-\]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[
-X_1 \implies X_2 \qquad  \text{eq.} \qquad \neg X_1 \lor X_2
-\]</span></p>
-<div class="notes">
-<p>The last one can be seen as follows: it cannot happen that <span class="math inline">\(X1 \land \neg X2\)</span>, that is, it holds that <span class="math inline">\(\neg(X1 \land \neg X2)\)</span>. De Morgan gives <span class="math inline">\(\neg X1 \lor X2\)</span></p>
-</div>
+<p>The last one can be seen as follows: it cannot happen that <span class="math inline">\(X1 \land \neg X2\)</span>, that is, it holds that <span class="math inline">\(\neg(X1 \land \neg X2)\)</span>. De Morgan gives <span class="math inline">\(\neg X1 \lor X2\)</span>.</p>
 </section>
 <section id="binary-variables-related-to-the-boolean-ones" class="level2">
 <h2 class="anchored" data-anchor-id="binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</h2>
-<ul>
-<li>Associate with the Boolean variable <span class="math inline">\(X\)</span> a binary variable <span class="math inline">\(\delta\in\{0,1\}\)</span> such that <span class="math display">\[
+<p>Ultimately we want to use numerical solvers to solve optimization problems. In order to do that, we need to associate with the Boolean variable <span class="math inline">\(X\)</span> a binary (integer) variable <span class="math inline">\(\delta\in\{0,1\}\)</span> such that <span class="math display">\[
 \delta =
 \begin{cases}
-0 &amp; \text{if} \; \neg X\\
-1 &amp; \text{if} \; X
+0 &amp; \text{if} \; \neg X,\\
+1 &amp; \text{if} \; X.
 \end{cases}
-\]</span></li>
-</ul>
+\]</span></p>
+<p>In other words, have the the following equivalence <span class="math display">\[X \qquad \equiv \qquad [\delta = 1].\]</span></p>
 </section>
 <section id="integer-inequalities-related-to-the-logical-formulas" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</h2>
+<p>Having introduced binary variables, we now aim at reformulating logical formulas into equivalent integer equalities or inequalities.</p>
+<section id="and-conjunction" class="level3">
+<h3 class="anchored" data-anchor-id="and-conjunction">And (conjunction)</h3>
+<p>We first consider the conjunction of two logical variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>: <span class="math display">\[X_1 \land X_2.\]</span></p>
+<p>Invoking the binary variables, we can rewrite this as <span class="math display">\[[\delta_1=1] \land [\delta_2=1],\]</span> which ultimately translates to <span class="math display">\[\delta_1=1, \; \delta_2=1.\]</span></p>
+<p>Another possibility is <span class="math display">\[\delta_1 \delta_2 = 1,\]</span> but we discard it because it is nonlinear and we prefer the linear version for obvious reasons.</p>
 </section>
-<section id="and" class="level2">
-<h2 class="anchored" data-anchor-id="and">And</h2>
-<p><span class="math display">\[X_1 \land X_2\]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[[\delta_1=1] \land [\delta_2=1]\]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[\delta_1=1, \; \delta_2=1\]</span></p>
-<ul>
-<li>Another (discarded) possibility:</li>
-</ul>
-<p>. . .</p>
-<p><span class="math display">\[\delta_1 \delta_2 = 1\]</span></p>
-</section>
-<section id="or" class="level2">
-<h2 class="anchored" data-anchor-id="or">Or</h2>
+<section id="or-disjunction" class="level3">
+<h3 class="anchored" data-anchor-id="or-disjunction">Or (disjunction)</h3>
 <p><span class="math display">\[X_1 \lor X_2\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[\delta_1=1] \lor [\delta_2=1]\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[\delta_1 + \delta_2\geq 1\]</span></p>
 </section>
-<section id="negation" class="level2">
-<h2 class="anchored" data-anchor-id="negation">Negation</h2>
+<section id="negation" class="level3">
+<h3 class="anchored" data-anchor-id="negation">Negation</h3>
 <p><span class="math display">\[\neg X_1\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[\neg [\delta_1=1]\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[\delta_1 = 0\]</span></p>
 </section>
-<section id="xor" class="level2">
-<h2 class="anchored" data-anchor-id="xor">Xor</h2>
+<section id="xor" class="level3">
+<h3 class="anchored" data-anchor-id="xor">Xor</h3>
 <p><span class="math display">\[X_1 \oplus X_2\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[\delta_1=1] \oplus [\delta_2=1]\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[\delta_1 + \delta_2 = 1\]</span></p>
 </section>
-<section id="implication" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="implication">Implication</h2>
+<section id="implication" class="level3">
+<h3 class="anchored" data-anchor-id="implication">Implication</h3>
 <p><span class="math display">\[X_1 \implies X_2\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[\delta_1=1] \implies [\delta_2=1]\]</span></p>
-<ul>
-<li><p>equivalently, using <span class="math inline">\(\neg X_1 \lor X_2\)</span>, <span class="math display">\[\neg [\delta_1=1] \lor [\delta_2=1],\]</span></p></li>
-<li><p>which translates to <span class="math display">\[(1-\delta_1) + \delta_2\geq 1,\]</span></p></li>
-<li><p>which simplifies to <span class="math display">\[\delta_1 - \delta_2 \leq 0\]</span></p></li>
-</ul>
+<p>Equivalently, using <span class="math inline">\(\neg X_1 \lor X_2\)</span> we get <span class="math display">\[\neg [\delta_1=1] \lor [\delta_2=1],\]</span> which translates to <span class="math display">\[(1-\delta_1) + \delta_2\geq 1,\]</span> which simplifies to <span class="math display">\[\delta_1 - \delta_2 \leq 0.\]</span></p>
 </section>
-<section id="equivalence" class="level2">
-<h2 class="anchored" data-anchor-id="equivalence">Equivalence</h2>
-<p><span class="math display">\[X_1 \iff X_2\]</span></p>
-<p>. . .</p>
-<p><span class="math display">\[[\delta_1=1] \iff [\delta_2=1]\]</span></p>
-<p>. . .</p>
+<section id="equivalence" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence">Equivalence</h3>
+<p><span class="math display">\[X_1 \iff X_2\]</span> <span class="math display">\[[\delta_1=1] \iff [\delta_2=1]\]</span></p>
 <p><span class="math display">\[\delta_1 - \delta_2 = 0\]</span></p>
 </section>
-<section id="assignment" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="assignment">Assignment</h2>
+<section id="assignment" class="level3">
+<h3 class="anchored" data-anchor-id="assignment">Assignment</h3>
 <p><span class="math display">\[X_3 \iff (X_1 \land X_2)\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[\delta_3=1] \iff ([\delta_1=1] \land [\delta_2=1])\]</span></p>
-<ul>
-<li><p>Expressing the equivalence using implications <span class="math display">\[X_3 \implies X_1,\; X_3\implies X_2, \; (X_1 \land X_2) \implies X_3\]</span></p></li>
-<li><p>The the last one is equivalent to <span class="math display">\[\neg (X_1 \land X_2) \lor X_3\]</span></p></li>
-<li><p>which can be simplified to <span class="math display">\[\neg X_1 \lor \neg X_2 \lor X_3\]</span></p></li>
-<li><p>which translates to <span class="math display">\[\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1]\]</span></p></li>
-<li><p>which finally leads to the inequality <span class="math display">\[(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1\]</span></p></li>
-<li><p>and after simplification <span class="math display">\[\delta_1 + \delta_2 - \delta_3 \leq 1.\]</span></p></li>
-<li><p>And don’t forget to consider the first to inequalities too <span class="math display">\[
+<p>Expressing the equivalence using implications <span class="math display">\[X_3 \implies X_1,\; X_3\implies X_2, \; (X_1 \land X_2) \implies X_3\]</span></p>
+<p>The the last one is equivalent to <span class="math display">\[\neg (X_1 \land X_2) \lor X_3,\]</span> which can be simplified to <span class="math display">\[\neg X_1 \lor \neg X_2 \lor X_3,\]</span> which translates to <span class="math display">\[\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],\]</span> which finally leads to the inequality <span class="math display">\[(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1\]</span> and after simplification <span class="math display">\[\delta_1 + \delta_2 - \delta_3 \leq 1.\]</span></p>
+<p>And don’t forget to consider the first two inequalities too <span class="math display">\[
 -\delta_1 + \delta_3 \leq 0, \quad -\delta_2 + \delta_3 \leq 0.
-\]</span></p></li>
-</ul>
+\]</span></p>
 </section>
-<section id="general-transformation-of-boolean-expressions-to-integer-inequalities" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</h2>
-<ul>
-<li><p>From Conjunctive Normal Form (CNF) <span class="math display">\[
+</section>
+<section id="general-transformation-of-boolean-expressions-to-integer-inequalities" class="level2">
+<h2 class="anchored" data-anchor-id="general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</h2>
+<p>From Conjunctive Normal Form (CNF) <span class="math display">\[
 \bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right]
-\]</span></p></li>
-<li><p>to 0-1 integer inequalities defining a polyhedron <span class="math display">\[
+\]</span> to 0-1 integer inequalities defining a polyhedron <span class="math display">\[
 \begin{aligned}
 \sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &amp;\geq 1,\\
 &amp;\vdots\\
 \sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &amp;\geq 1.
 \end{aligned}
-\]</span></p></li>
-</ul>
+\]</span></p>
 </section>
 <section id="finite-state-machine-fsm-using-binary-variables" class="level2">
 <h2 class="anchored" data-anchor-id="finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</h2>
-<ul>
-<li><p>Encode the discrete state variables in binary <span class="math display">\[
+<p>Encode the discrete state variables in binary <span class="math display">\[
 x_b \in \{0,1\}^{n_b}
-\]</span></p></li>
-<li><p>Similarly the discrete inputs <span class="math display">\[
+\]</span></p>
+<p>Similarly the discrete inputs <span class="math display">\[
 u_b \in \{0,1\}^{m_b}
-\]</span></p></li>
-<li><p>The logical state equation then <span class="math display">\[
+\]</span></p>
+<p>The logical state equation then <span class="math display">\[
 x_b(k+1) = f_b(x_b(k),u_b(k),\delta_e(k))
-\]</span></p></li>
-</ul>
-</section>
-<section id="example" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="example">Example</h2>
-<p>. . .</p>
-<p><img src="figures/fsm_example.png" class="img-fluid" style="width:80.0%"></p>
-<ul>
-<li><p>State update/transition equation <span class="math display">\[
+\]</span></p>
+<div id="exm-fsm-example" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Example)</strong></span> &nbsp;</p>
+<div id="fig-fsm-example" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mld_figures/fsm_example.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a FSM
+</figcaption>
+</figure>
+</div>
+<p>The state update/transition equation is <span class="math display">\[
 \begin{aligned}
-&amp; x_d(k+1) = \\
-&amp;\begin{cases}
+x_d(k+1) =
+\begin{cases}
 \text{Red} &amp; \text{if}\; ([x_d = \text{green}] \land \neg [\delta_3=1]) \lor ([x_d = \text{red}] \land \neg [\delta_3=1])\\
 \text{Green} &amp; \text{if} \; \ldots\\
 \text{Blue} &amp; \text{if} \; \ldots
 \end{cases}
 \end{aligned}
-\]</span></p></li>
-<li><p>Binary encoding of the discrete states <span class="math display">\[
+\]</span></p>
+<p>Binary encoding of the discrete states <span class="math display">\[
 \text{Red}: x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: x_b = \begin{bmatrix}1\\0 \end{bmatrix}
-\]</span></p></li>
-<li><p>Reformulating the state update equations for binary variables <span class="math display">\[
+\]</span></p>
+<p>Reformulating the state update equations for binary variables <span class="math display">\[
 \begin{aligned}
 x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land \neg [\delta_1=1]) \\
 &amp;\quad (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1]) \land [u_{b2}=1]\\
@@ -797,20 +819,18 @@ x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land \neg [\delta_1=1
 &amp;\quad \lor ([x_{b1} = 1]\land \neg [\delta_2=1])\\
 x_{b2} &amp;= \ldots
 \end{aligned}
-\]</span></p></li>
-<li><p>Simplify, convert to CNF.</p></li>
-</ul>
+\]</span></p>
+<p>Finally, simplify, convert to CNF.</p>
+</div>
 </section>
 <section id="mixing-logical-and-continuous" class="level2">
 <h2 class="anchored" data-anchor-id="mixing-logical-and-continuous">Mixing logical and continuous</h2>
 <ul>
 <li>see Indicator variables.</li>
 </ul>
-</section>
-<section id="logical-implies-continuous" class="level2">
-<h2 class="anchored" data-anchor-id="logical-implies-continuous">Logical implies continuous</h2>
+<section id="logical-implies-continuous" class="level3">
+<h3 class="anchored" data-anchor-id="logical-implies-continuous">Logical implies continuous</h3>
 <p><span class="math display">\[X \implies [f(x)\leq 0]\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[\delta = 1] \implies [f(x)\leq 0]\]</span></p>
 <ul>
 <li><p>introduce <span class="math inline">\(M\)</span> <span class="math display">\[
@@ -822,10 +842,9 @@ f(x) \leq (1-\delta) M
 </ul></li>
 </ul>
 </section>
-<section id="continuous-implies-logical" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="continuous-implies-logical">Continuous implies logical</h2>
+<section id="continuous-implies-logical" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-implies-logical">Continuous implies logical</h3>
 <p><span class="math display">\[[f(x)\leq 0] \implies X\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[[f(x)\leq 0] \implies [\delta = 1]\]</span></p>
 <ul>
 <li><p>Equivalently <span class="math display">\[\neg [\delta = 1] \implies \neg [f(x)\leq 0],\]</span></p></li>
@@ -839,12 +858,11 @@ f(x) \geq \epsilon + (m-\epsilon)\delta,
 \]</span> where <span class="math inline">\(\epsilon\approx 0\)</span> (for example, machine epsilon).</p></li>
 </ul>
 </section>
-<section id="equivalence-between-logical-and-continuous" class="level2">
-<h2 class="anchored" data-anchor-id="equivalence-between-logical-and-continuous">Equivalence between logical and continuous</h2>
+<section id="equivalence-between-logical-and-continuous" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence-between-logical-and-continuous">Equivalence between logical and continuous</h3>
 <ul>
 <li>Combining the previous two implications.</li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[
 \begin{aligned}
 f(x) &amp;\leq (1-\delta) M,\\
@@ -852,8 +870,9 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 \end{aligned}
 \]</span></p>
 </section>
-<section id="if-then-else-rule-as-an-inequality" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</h2>
+</section>
+<section id="if-then-else-rule-as-an-inequality" class="level2">
+<h2 class="anchored" data-anchor-id="if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</h2>
 <ul>
 <li>If <span class="math inline">\(X\)</span>
 <ul>
@@ -864,7 +883,6 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 z = \delta\,(a^\top x + b^\top u + f)
 \]</span></li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[
 \begin{aligned}
 z &amp;\leq M\delta,\\
@@ -877,8 +895,8 @@ z &amp;\leq a^\top x + b^\top u + f - m(1-\delta),\\
 <p>The reasoning is that if <span class="math inline">\(\delta=0\)</span>, then <span class="math inline">\(z\)</span> is restricted, while <span class="math inline">\(a^\top x + b^\top u + f\)</span> is not. And the other way around.</p>
 </div>
 </section>
-<section id="another-if-then-else-rule" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h2>
+<section id="another-if-then-else-rule" class="level2">
+<h2 class="anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h2>
 <ul>
 <li>If <span class="math inline">\(X\)</span>
 <ul>
@@ -892,7 +910,6 @@ z &amp;= \delta\,(a_1^\top x + b_1^\top u + f_1) \\
 \end{aligned}
 \]</span></li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[
 \begin{aligned}
 (m_2-M_1)\delta  + z &amp;\leq a_2^\top x + b_2^\top u + f_2,\\
@@ -911,12 +928,11 @@ h_i(x_c(k), u_c(k)) &amp;\geq \epsilon + (m_i-\epsilon) \delta_{e,i}
 \end{aligned}
 \]</span></p>
 </section>
-<section id="switched-affine-system" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="switched-affine-system">Switched affine system</h2>
+<section id="switched-affine-system" class="level2">
+<h2 class="anchored" data-anchor-id="switched-affine-system">Switched affine system</h2>
 <ul>
 <li>We want to get rid of the <code>IF-THEN</code> and formulate the switching mechanism into the format of inequalities too.</li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[
 x_c(k+1) = \sum_{i=1}^s z_i(k),  
 \]</span></p>
@@ -929,9 +945,7 @@ A_1 x_c(k) + B_1 u_c(k) + f_1 &amp; \text{if}\;i(k)=1\\
 \end{cases}
 \]</span></li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[\quad \vdots\]</span></p>
-<p>. . .</p>
 <p><span class="math display">\[
 z_s(k) =
 \begin{cases}
@@ -942,7 +956,6 @@ A_s x_c(k) + B_s u_c(k) + f_s &amp; \text{if}\;i(k)=s\\
 <ul>
 <li>For each <span class="math inline">\(i\in \{1, 2, \ldots, s\}\)</span></li>
 </ul>
-<p>. . .</p>
 <p><span class="math display">\[
 \begin{aligned}
 z_i &amp;\leq M_i\delta_i,\\
@@ -970,7 +983,6 @@ E_\delta \delta &amp;+ E_z z(k) \leq E_u u(k) + E_x x(k) + E_0
 </section>
 <section id="piecewise-affine-systems" class="level2">
 <h2 class="anchored" data-anchor-id="piecewise-affine-systems">Piecewise affine systems</h2>
-<p>. . .</p>
 <p><span class="math display">\[
 \begin{aligned}
 x(k+1) &amp;= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\
@@ -1078,7 +1090,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1406,6 +1418,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./mld_DHA.html" class="pagination-link" aria-label="Discrete hybrid automata">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Discrete hybrid automata</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./mld_software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1414,7 +1438,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

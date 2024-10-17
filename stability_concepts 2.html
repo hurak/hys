@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.2">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,16 +51,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./stability_via_common_lyapunov_function.html" rel="next">
-<link href="./solution_references.html" rel="prev">
+<link href="./stability_recap.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,6 +89,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_concepts.html">Stability of hybrid systems</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_concepts.html">Stability of hybrid systems</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,7 +217,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -184,6 +253,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -246,6 +321,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -265,6 +346,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,7 +386,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -327,8 +420,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -350,6 +443,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -357,13 +456,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -403,6 +508,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -431,8 +542,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -460,6 +580,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -516,13 +642,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#equilibrium-of-a-hybrid-automaton" id="toc-equilibrium-of-a-hybrid-automaton" class="nav-link active" data-scroll-target="#equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</a></li>
+  <li><a href="#stability-of-a-hybrid-automaton" id="toc-stability-of-a-hybrid-automaton" class="nav-link" data-scroll-target="#stability-of-a-hybrid-automaton">Stability of a hybrid automaton</a></li>
+  <li><a href="#asymptotic-stability" id="toc-asymptotic-stability" class="nav-link" data-scroll-target="#asymptotic-stability">Asymptotic stability</a></li>
+  <li><a href="#is-stability-of-the-individual-dynamics-enough" id="toc-is-stability-of-the-individual-dynamics-enough" class="nav-link" data-scroll-target="#is-stability-of-the-individual-dynamics-enough">Is stability of the individual dynamics enough?</a></li>
+  <li><a href="#can-the-individual-dynamics-be-unstable" id="toc-can-the-individual-dynamics-be-unstable" class="nav-link" data-scroll-target="#can-the-individual-dynamics-be-unstable">Can the individual dynamics be unstable?</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_concepts.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_concepts.html">Stability of hybrid systems</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_concepts.html">Stability of hybrid systems</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Stability of hybrid systems</h1>
 </div>
@@ -541,11 +677,100 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<p>We will restrict ourselves to the stability of hybrid automata. The framework of hybrid equations offers alternative ways to analyze stability.</p>
+<section id="equilibrium-of-a-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</h2>
+<p>With no loss of generality the equilibrium is often assumed at the origin, that is, <span class="math display">\bm x_\mathrm{eq} = \mathbf 0,</span> but in the immediately following definitions we do not have to invoke this assumption.</p>
+<p>For a hybrid system with <span class="math inline">\dot{\bm x} = \underbrace{\mathbf f(q,\bm x)}_{\mathbf f_q(\bm x)}</span>, the equilibrium <span class="math inline">\bm x_\mathrm{eq}</span> satisfies</p>
+<ul>
+<li><span class="math inline">\mathbf 0 = \mathbf f_q(\bm x_\mathrm{eq})</span> for all <span class="math inline">q\in \mathcal Q</span>,</li>
+<li>the reset map <span class="math inline">r(q,q',\bm x_\mathrm{eq}) = \bm x_\mathrm{eq}</span>.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The first condition above appears in several resources. For example, in the definition 4.9 in the section 4.2 in <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span> or the definition 8.2 in the section 8.2 in (no longer available online) <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[2]</a></span>. But it appears unnecessarily restrictive.</p>
+</div>
+</div>
+<p>The second condition states that the system can be regarded as resting at the equlibrium even if it jumps from one discrete state (mode) to another (while staying in the equilibrium continuous state).</p>
+</section>
+<section id="stability-of-a-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="stability-of-a-hybrid-automaton">Stability of a hybrid automaton</h2>
+<p>The equilibrium <span class="math inline">x_\mathrm{eq}</span>(=0) is stable if for a given <span class="math inline">\varepsilon &gt; 0</span> there exists <span class="math inline">\delta &gt; 0</span> such that for all hybrid systems executions/trajectories starting at <span class="math inline">(q_0,x_0)</span>, <span class="math display">
+\|x_0\| &lt; \delta \Rightarrow \|x(\tau)\| &lt; \varepsilon, \; \forall \tau \in \mathcal{T},
+</span> where <span class="math inline">\tau</span> is a hybrid time and <span class="math inline">\mathcal{T}</span> is the hybrid time domain.</p>
+</section>
+<section id="asymptotic-stability" class="level2">
+<h2 class="anchored" data-anchor-id="asymptotic-stability">Asymptotic stability</h2>
+<p>The equilibrium is stable and furthermore we can choose some <span class="math inline">\delta</span> such that <span class="math display">
+\|x_0\| &lt; \delta \quad \Rightarrow \quad \lim_{\tau\rightarrow \tau_\infty} \|x(\tau)\| = 0,
+</span> where <span class="math inline">\tau_\infty&lt;\infty</span> if the execution is Zeno and <span class="math inline">\tau_\infty=\infty</span> otherwise.</p>
+</section>
+<section id="is-stability-of-the-individual-dynamics-enough" class="level2">
+<h2 class="anchored" data-anchor-id="is-stability-of-the-individual-dynamics-enough">Is stability of the individual dynamics enough?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stability_figures/switching_between_stable.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Hybrid automaton that is unstable due to switching even though the two modes are stable</figcaption>
+</figure>
+</div>
+<p><span class="math display">
+A_1 =
+\begin{bmatrix}
+-1 &amp; -100\\ 10 &amp; -1
+\end{bmatrix}, \quad
+A_2 =
+\begin{bmatrix}
+-1 &amp; 10\\ -100 &amp; -1
+\end{bmatrix}
+</span></p>
+<ul>
+<li>Both are stable.</li>
+<li>Switching can be destabilizing.</li>
+</ul>
+</section>
+<section id="can-the-individual-dynamics-be-unstable" class="level2">
+<h2 class="anchored" data-anchor-id="can-the-individual-dynamics-be-unstable">Can the individual dynamics be unstable?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="stability_figures/switching_between_unstable.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Hybrid automaton that is stable thanks to switching even though the two modes are unstable</figcaption>
+</figure>
+</div>
+<p><span class="math display">
+A_1 =
+\begin{bmatrix}
+1 &amp; -100\\ 10 &amp; 1
+\end{bmatrix}, \quad
+A_2 =
+\begin{bmatrix}
+1 &amp; 10\\ -100 &amp; 1
+\end{bmatrix}
+</span></p>
+<ul>
+<li>Both are unstable.</li>
+<li>Switching can be stabilizing.</li>
+</ul>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -968,13 +1193,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./solution_references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="./stability_recap.html" class="pagination-link" aria-label="Recap of stability analysis for continuous dynamical systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Recap of stability analysis for continuous dynamical systems</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./stability_via_common_lyapunov_function.html" class="pagination-link" aria-label="Common Lyapunov function">
-        <span class="nav-page-text">Common Lyapunov function</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./stability_via_common_lyapunov_function.html" class="pagination-link" aria-label="Stability via common Lyapunov function">
+        <span class="nav-page-text">Stability via common Lyapunov function</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -986,7 +1211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

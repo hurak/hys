@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -154,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -258,6 +278,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -277,6 +303,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -311,7 +343,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -339,8 +377,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -362,6 +400,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -369,13 +413,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -415,6 +465,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -443,8 +499,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -472,6 +537,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -534,12 +605,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#matlab-and-simulink" id="toc-matlab-and-simulink" class="nav-link active" data-scroll-target="#matlab-and-simulink">Matlab and Simulink</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
   <li><a href="#openmodelica" id="toc-openmodelica" class="nav-link" data-scroll-target="#openmodelica">(Open)Modelica</a></li>
   <li><a href="#uppaal" id="toc-uppaal" class="nav-link" data-scroll-target="#uppaal">UPPAAL</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
+  <li><a href="#umlsysml" id="toc-umlsysml" class="nav-link" data-scroll-target="#umlsysml">UML/SysML</a></li>
+  <li><a href="#drawing-tools" id="toc-drawing-tools" class="nav-link" data-scroll-target="#drawing-tools">Drawing tools</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -563,37 +636,93 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this course we will encounter a few more software packages but in this first learning block we will only lightly introduce two, both by The Mathworks:</p>
+<p>The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)</p>
 <section id="matlab-and-simulink" class="level2">
 <h2 class="anchored" data-anchor-id="matlab-and-simulink">Matlab and Simulink</h2>
 <ul>
-<li><a href="https://www.mathworks.com/products/stateflow.html">StateFlow</a> – fnite state automata within Simulink. Can also model hybrid automata. A nice interactive tutorial is launched directly within Simulink upon entering learning.simulink.launchOnramp(“stateflow”) in Matlab. We will primarily use this tool in our course. It extends nicely to hybrid systems.</li>
-<li><a href="https://www.mathworks.com/products/simevents.html">SimEvents</a> – oriented towards one instance of the (state) automata, namely queuing systems. You may want to have a look at the <a href="https://www.mathworks.com/videos/series/understanding-discrete-event-simulation.html">series of introductory videos</a> by the Mathworks. We will not particularly need it in our course. Several tools are also available outside Matlab and Simulink:</li>
+<li><a href="https://www.mathworks.com/products/stateflow.html">StateFlow</a> – finite state automata within Simulink. A nice interactive tutorial is launched directly within Simulink upon entering <code>learning.simulink.launchOnramp("stateflow")</code> in Matlab. This is the primary tool for our course, as it extends nicely to hybrid systems. An example is shown in <a href="#fig-statechart-stateflow" class="quarto-xref">Fig&nbsp;1</a> below.</li>
 </ul>
+<div id="fig-statechart-stateflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statechart-stateflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/aircontrol-chart_stateflow.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statechart-stateflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Screenshot of a state “chart” in Simscape
+</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://www.mathworks.com/products/simevents.html">SimEvents</a> – oriented towards one instance of the (state) automata, namely <em>queuing systems</em>. You may want to have a look at the <a href="https://www.mathworks.com/videos/series/understanding-discrete-event-simulation.html">series of introductory videos</a> by the Mathworks, although we are not going to rely on this tool in our course.</li>
+</ul>
+<p>Several tools are also available outside Matlab and Simulink, and it is certainly good to be aware of these alternatives.</p>
+</section>
+<section id="openmodelica" class="level2">
+<h2 class="anchored" data-anchor-id="openmodelica">(Open)Modelica</h2>
+<p>A popular modelling language for physical systems is <a href="https://www.modelica.org">Modelica</a>. Starting with version 3.3 (several years ago already), it has a support for state machines, see Chapter 17 in the <a href="https://specification.modelica.org/master/state-machines.html">language specification</a> and the screenshot in <a href="#fig-statemachine-modelica" class="quarto-xref">Fig&nbsp;2</a> below. A readable introduction to state machines in Modelica is in <span class="citation" data-cites="elmqvistStateMachinesModelica2012"><a href="#ref-elmqvistStateMachinesModelica2012" role="doc-biblioref">[1]</a></span>.</p>
+<div id="fig-statemachine-modelica" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statemachine-modelica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/statemachine_modelica.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statemachine-modelica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Screenshot of a state machine diagram in Modelica
+</figcaption>
+</figure>
+</div>
+<p>Several implementations of Modelica language and compiler exist. On the FOSS side, <a href="https://openmodelica.org">OpenModelica</a> is a popular choice. Slides from an introdutory presentation <span class="citation" data-cites="thieleStateMachinesOpenModelica2015"><a href="#ref-thieleStateMachinesOpenModelica2015" role="doc-biblioref">[2]</a></span> about state machines in OpenModelica are available for free download.</p>
+</section>
+<section id="uppaal" class="level2">
+<h2 class="anchored" data-anchor-id="uppaal">UPPAAL</h2>
+<p>Dedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at <a href="https://uppaal.org">https://uppaal.org/</a>. In our course we will only use it in this block/week. A tutorial is <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[3]</a></span>.</p>
 </section>
 <section id="python" class="level2">
 <h2 class="anchored" data-anchor-id="python">Python</h2>
-<p><a href="https://simpy.readthedocs.io/en/latest/">SimPy</a> – discrete-event simulation in Python.</p>
+<p><a href="https://simpy.readthedocs.io/en/latest/">SimPy</a> – discrete-event simulation in Python. We are not going to use it in our course, but if you are a Python enthusiast, you may want to have a look at it.</p>
 </section>
 <section id="julia" class="level2">
 <h2 class="anchored" data-anchor-id="julia">Julia</h2>
+<p>Two major packages for discrete-event simulation in Julia are:</p>
 <ul>
 <li><a href="https://github.com/JuliaDynamics/ConcurrentSim.jl">ConcurrentSim.jl</a> – discrete-event simulation in Julia.</li>
 <li><a href="https://github.com/JuliaDynamics/DiscreteEvents.jl">DiscreteEvents.jl</a> – discrete-event simulation in Julia.</li>
 </ul>
 </section>
-<section id="openmodelica" class="level2">
-<h2 class="anchored" data-anchor-id="openmodelica">(Open)Modelica</h2>
-<p>Starting with Modelica 3.3, <a href="https://specification.modelica.org/v3.4/Ch17.html">some support for state machines</a> is now built into the language. It is already implemented in OpenModelica, see the <a href="https://openmodelica.org/images/docs/openmodelica2015/OpenModelica2015-talk14-OMStateMachines_Bernhard%20Thiele.pdf">example</a>.</p>
+<section id="umlsysml" class="level2">
+<h2 class="anchored" data-anchor-id="umlsysml">UML/SysML</h2>
+<p>If you have been exposed to software engineering, you have probably seen <a href="https://www.uml.org">UML</a> diagrams. Their extension (and restriction at the same time) toward systems that also contain hardware is called <a href="https://sysml.org">SysML</a>. And SysML does have support for defining state machines (by drawing the <a href="(https://sysml.org/sysml-faq/what-is-state-machine-diagram.html)">state machine diagrams</a>), see the screenshot in <a href="#fig-statemachine-sysml" class="quarto-xref">Fig&nbsp;3</a> below.</p>
+<div id="fig-statemachine-sysml" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statemachine-sysml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="des_figures/statemachine_sysml.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statemachine-sysml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Screenshot of a state machine diagram in SysML
+</figcaption>
+</figure>
+</div>
+<p>SysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&amp;open-source (FOSS) tool for creating SysML diagrams such as <a href="https://www.modelio.org">Modelio</a> or <a href="https://eclipse.dev/papyrus/">Eclipse Papyrus</a>. But we are not going to use them in our course.</p>
 </section>
-<section id="uppaal" class="level2">
-<h2 class="anchored" data-anchor-id="uppaal">UPPAAL</h2>
-<p>Dedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at <a href="https://uppaal.org">https://uppaal.org/</a>.</p>
+<section id="drawing-tools" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-tools">Drawing tools</h2>
+<p>Last but not least, you may want only to <em>draw</em> state automata (state machines). While there is no shortage of general WYSIWYG drawing and diagramming tools, you may want to consider <a href="https://graphviz.org">Graphviz</a> software that processes text description of automata in <a href="https://graphviz.org/doc/info/lang.html">DOT</a> language. This is what I used in this lecture. As an alternative, but still text-based, you may want to give a try to <a href="https://mermaid.js.org">Mermaid</a>, which <a href="https://mermaid.js.org/syntax/stateDiagram.html">can also draw what they call state diagrams</a>.</p>
+<p>If you still prefer WISYWIG tools, have a look at <a href="https://ipe.otfried.org">IPE</a>, which I also used for some other figures in this lecture and in the rest of the course. Unlike most other tools, it also allows to enter LaTeX math.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-elmqvistStateMachinesModelica2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Elmqvist, F. Gaucher, S. E. Mattson, and F. Dupont, <span>“State <span>Machines</span> in <span>Modelica</span>,”</span> in <em>Proceedings of 9th <span>International MODELICA Conference</span></em>, Munich, Germany, Sep. 2012, pp. 37–46. doi: <a href="https://doi.org/10.3384/ecp1207637">10.3384/ecp1207637</a>.</div>
+</div>
+<div id="ref-thieleStateMachinesOpenModelica2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">B. Thiele, <span>“State <span>Machines</span> in <span>OpenModelica</span> - <span>Current Status</span> and <span>Further Development</span>.”</span> Feb. 2015. Available: <a href="https://openmodelica.org/images/docs/openmodelica2015/OpenModelica2015-talk14-OMStateMachines_Bernhard%20Thiele.pdf">https://openmodelica.org/images/docs/openmodelica2015/OpenModelica2015-talk14-OMStateMachines_Bernhard%20Thiele.pdf</a></div>
+</div>
+<div id="ref-behrmannTutorialUppaal2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">G. Behrmann, A. David, and K. G. Larsen, <span>“A <span>Tutorial</span> on <span>Uppaal</span>,”</span> in <em>Formal <span>Methods</span> for the <span>Design</span> of <span>Real-Time Systems</span></em>, M. Bernardo and F. Corradini, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>, no. 3185., Berlin, Heidelberg: Springer, 2004, pp. 200–236. doi: <a href="https://doi.org/10.1007/978-3-540-30080-9_7">10.1007/978-3-540-30080-9_7</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -686,7 +815,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1016,8 +1145,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./des_automata.html" class="pagination-link" aria-label="(State) automata">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">(State) automata</span>
+      <a href="./des_automata.html" class="pagination-link" aria-label="State automata">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">State automata</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1034,7 +1163,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

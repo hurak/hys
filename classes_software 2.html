@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.4">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,10 +57,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -154,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">(State) automata</span></a>
+ <span class="menu-text">State automata</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -323,7 +343,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Piecewise affine systems</span></a>
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -357,8 +377,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./solution_conditions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Solution conditions</span></a>
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -380,6 +400,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability of hybrid systems</span></a>
   </div>
@@ -387,13 +413,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Lyapunov function</span></a>
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multiple Lyapunov function</span></a>
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -433,6 +465,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -461,8 +499,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">mld.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
@@ -490,6 +537,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -572,28 +625,38 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Reset systems, switched systems, and piecewise affine (PWA) systems can all be viewed as special classes of hybrid systems, and as such can be modelled and simulated using software for hybrid systems (or even general purpose modelling and simulation software).</p>
-<p>However, there are dedicated software tools/packages/libraries for PWA systems:</p>
+<p>However, there are also some dedicated software tools/packages/libraries for PWA systems:</p>
 <ul>
 <li><a href="https://www.plexim.com/products/plecs">PLECS</a>
 <ul>
 <li>Power electronics</li>
 <li>Commercial</li>
 </ul></li>
-<li>Multiparametric Toolbox (MPT) for Matlab
+<li><a href="https://www.mpt3.org">Multiparametric Toolbox (MPT) for Matlab</a>
 <ul>
 <li>General</li>
-<li>Special data type/class (and some related functions) for PWA systems is available in Multi-Parametric Toolbox (MPT) for Matlab, see the section on Modeling of dynamical systems in MPT3.</li>
-<li>FOSS</li>
+<li>Special data type/class (and some related functions) for PWA systems is available in the section on <a href="https://www.mpt3.org/UI/Systems">Modeling of dynamical systems in MPT3</a>.</li>
+<li>Free and open source.</li>
 </ul></li>
 </ul>
-<p>Some PWA stuff…</p>
-<p>There is also PWATOOLS toolbox for Matlab, which accompanies the recently published book Rodrigues, Luis, Behzad Samadi, and Miad Moarref. Piecewise Affine Control: Continuous-Time, Sampled-Data, and Networked Systems. Advances in Design and Control. Philadelphia: Society for Industrial and Applied Mathematics, 2019. Unfortunately, this ten-year old toolbox is no longer working in recent releases of Matlab and the author is no longer maintaining it…</p>
-<p>There are also some traces of PWLTool toolbox for Matlab on the internet, but this one seems even older, obviously back then accompanying the book Johansson, Mikael K.-J. Piecewise Linear Control Systems: A Computational Approach. Lecture Notes in Control and Information Sciences. Berlin, Heidelberg: Springer, 2003. https://doi.org/10.1007/3-540-36801-9.</p>
+<p>Although some more free and open-source software packages for PWA systems can be found on the internet, none of them (at as far as we know) is actively developed or at least maintained anymore:</p>
+<ul>
+<li><a href="https://github.com/bsamadi/PWATOOLS">PWATOOLS</a> toolbox for Matlab, which accompanies the recently published book <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019">Rodrigues, Samadi, and Moarref (<a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">2019</a>)</span>. Unfortunately, this ten-year old toolbox is no longer working with the recent releases of Matlab and the author is no longer maintaining it.</li>
+<li><a href="https://portal.research.lu.se/en/publications/pwltool-a-matlab-toolbox-for-piecewise-linear-system">PWLTool</a> toolbox for Matlab: some traces of this toolbox can be found on the internet, but this one seems even older, obviously back then accompanying the book <span class="citation" data-cites="johanssonPiecewiseLinearControl2003">Johansson (<a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">2003</a>)</span>.</li>
+</ul>
 <p>Overall, besides the MPT toolbox that is still being actively developed (by our colleagues at STU Bratislava), not much is currently available within the open-source software domain… :-(</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
+Johansson, Mikael K.-J. 2003. <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer. <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a>.
+</div>
+<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
+Rodrigues, Luis, Behzad Samadi, and Miad Moarref. 2019. <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>. <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -686,7 +749,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1016,8 +1079,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./classes_PWA.html" class="pagination-link" aria-label="Piecewise affine systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Piecewise affine systems</span>
+      <a href="./classes_PWA.html" class="pagination-link" aria-label="Piecewise affine (PWA) systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Piecewise affine (PWA) systems</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -1034,7 +1097,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-</div>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

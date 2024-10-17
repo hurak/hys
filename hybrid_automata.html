@@ -753,7 +753,7 @@ Caution
 <div id="exm-thermostat" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Thermostat – the hello world example of a hybrid automaton)</strong></span> The thermostat is a device that turns some heater <code>on</code> or <code>off</code> (or sets some valve open or closed) based on the sensed temperature. The goal is to keep the temperature around, say, <span class="math inline">18^\circ</span> C.</p>
 <p>Naturally, the discrete states (modes, locations) are <code>on</code> and <code>off</code>. Initially, the heater is <code>off</code>. We can identify the first two components of the hybrid automaton: <span class="math display">\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}</span></p>
-<p>The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval <span class="math inline">(5,10)</span>. Two more components of the hybrid automaton follow: <span class="math display">\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}</span></p>
+<p>The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval <span class="math inline">[5,10]</span>. Two more components of the hybrid automaton follow: <span class="math display">\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}</span></p>
 <p>In the two modes <code>on</code> and <code>off</code>, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say: <span class="math display">
 f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 </span> which gives another component for the hybrid automaton.</p>
@@ -764,7 +764,7 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 \mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
 </span></p>
 <p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump. Well, it is specified implicitly as an identity mapping <span class="math inline">r(x)=x</span>.</p>
-<p>The graphical representation of the thermostat hybrid automaton is shown below.</p>
+<p>The graphical representation of the thermostat hybrid automaton is shown in <a href="#fig-thermostat-automaton" class="quarto-xref">Fig&nbsp;1</a>.</p>
 <div id="fig-thermostat-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thermostat-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -775,58 +775,50 @@ Figure&nbsp;1: Hybrid automaton for a thermostat
 </figcaption>
 </figure>
 </div>
-<p>We have two final remarks about this model:</p>
-<ul>
-<li>Since not just a single initial temperature but rather a range of initial temperatures is considered, the model is not deterministic.</li>
-<li>The quality of this regulation is such that the temperatures go up and down. This is due to the type of the control (hysteretic control).</li>
-</ul>
+<p>Is this model <em>deterministic</em>? There are actually two reasons why it is not:</p>
+<ol type="1">
+<li>If we regard the characterization of the initial state (the temperature in this case) as a part of the model, which is the convention that we adhere to in our course, the model is nondeterministic.</li>
+<li>Since the invariant for a given mode and the guard set for the only transition to the other model overlap, the response of the system is not uniquely determined. Consider the case when the system is in the <code>off</code> mode and the temperature is 16.5. The system can either stay in the <code>off</code> mode or switch to the <code>on</code> mode.</li>
+</ol>
 </div>
 <section id="hybrid-automaton-with-external-events-and-control-inputs" class="level2">
 <h2 class="anchored" data-anchor-id="hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</h2>
 <p>We now extend the hybrid automaton with two new components:</p>
 <ul>
-<li>a set <span class="math inline">\mathcal{A}</span> of (external) actions (also events or symbols),</li>
+<li>a set <span class="math inline">\mathcal{A}</span> of (external) events (also actions or symbols),</li>
 <li>a set <span class="math inline">\mathcal{U}</span> external continuous-valued inputs (control inputs or disturbances).</li>
 </ul>
 <p><span class="math display">\boxed{
   \mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, \mathcal I, \mathcal A, \mathcal U, f, \mathcal E, \mathcal G, \mathcal R\} ,}
 </span> where</p>
 <ul>
-<li><span class="math inline">\mathcal A = \{a_1,a_2,\ldots, a_s\}</span> is a set of actions
+<li><p><span class="math inline">\mathcal A = \{a_1,a_2,\ldots, a_s\}</span> is a set of events</p>
 <ul>
 <li>The role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another.</li>
-<li>Unlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be “time-stamped”.</li>
+<li>Unlike in pure discrete-event systems, here they are considered within a model that does recognize passing of time – each action must be “time-stamped”.</li>
+<li>In simulations such timed event can be represented by an edge in the signal. In this regard, it might be tempting not to introduce it as a seperate entity, but it is useful to do so.</li>
 </ul></li>
-</ul>
-<div class="notes">
-<p>In simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.</p>
-</div>
-<ul>
 <li><p><span class="math inline">\mathcal U\in\mathbb R^m</span> is a set of continuous-valued inputs</p>
 <ul>
 <li>Real-valued functions of time.</li>
-<li>Control inputs, disturbances, references, noises.</li>
+<li>Control inputs, disturbances, references, noises. In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.</li>
 </ul></li>
 </ul>
-<div class="notes">
-<p>In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.</p>
-</div>
 <section id="some-modifications-needed" class="level3">
 <h3 class="anchored" data-anchor-id="some-modifications-needed">Some modifications needed</h3>
-<p>upon introduction of these two types of external inputs:</p>
+<p>Upon introduction of these two types of external inputs we must modify the components of the definition we provided earlier:</p>
 <ul>
 <li><p><span class="math inline">f: \mathcal Q \times \mathcal X \times \mathcal U \rightarrow \mathbb R^n</span> is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation <span class="math inline">\dot x = f_q(x,u)</span>.</p></li>
 <li><p><span class="math inline">\mathcal E\subseteq \mathcal Q \times (\mathcal A) \times \mathcal Q</span> is a set of transitions now possibly parameterized by the actions (as in classical automata).</p></li>
-<li><p><span class="math inline">\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}</span> is a location invariant now augmented with a subset of the control input set.</p></li>
-<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set.</p></li>
+<li><p><span class="math inline">\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}</span> is a location invariant now augmented with a subset of the control input set. The necessary condition for staying in the given mode can be thus imposed not only on <span class="math inline">x</span> but also on <span class="math inline">u</span>.</p></li>
+<li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set. The necessary condition for a given transition can be thus imposed not only on <span class="math inline">x</span> but also on <span class="math inline">u</span>.</p></li>
 <li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}</span> is a (state) reset map that is now additionally parameterized by the control input.</p></li>
-<li><p>The guard set for the given location gives just necessary (also <em>enabling</em>) conditions for the transition (<span class="math inline">x\in \mathcal{G}(q)</span>).</p></li>
-<li><p>If enabled, the transition can happen if one of the two things is satisfied:</p>
+</ul>
+<p>If enabled, the transition can happen if one of the two things is satisfied:</p>
 <ul>
 <li>the continous state leaves the invariant set of the given location,<br>
 </li>
 <li>an external event occurs.</li>
-</ul></li>
 </ul>
 <div id="exm-button-controlled-LED" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
@@ -925,7 +917,7 @@ Figure&nbsp;5: Bouncing ball example
 </figure>
 </div>
 <p>The state equation during the free fall is <span class="math display">
-\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}.
+\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \bm x = \begin{bmatrix}10\\0\end{bmatrix}.
 </span></p>
 <p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
 <p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig&nbsp;6</a>.</p>
@@ -946,7 +938,7 @@ Figure&nbsp;6: Hybrid automaton for a bouncing ball eaxample
 \mathcal{X} = \mathbb R^2, \; \mathcal{X}_0 = \left\{\begin{bmatrix}10\\0\end{bmatrix}\right\}
 </span></p>
 <p><span class="math display">
-\mathcal{I} = \{\mathbb R^2 \mid x_1 &gt; 0 \lor (x_1 = 0 \land x_2 &gt; 0)\}
+\mathcal{I} = \{\mathbb R^2 \mid x_1 &gt; 0 \lor (x_1 = 0 \land x_2 \geq 0)\}
 </span></p>
 <p><span class="math display">
 f(\bm x) = \begin{bmatrix} x_2\\ -g\end{bmatrix}
@@ -960,7 +952,7 @@ f(\bm x) = \begin{bmatrix} x_2\\ -g\end{bmatrix}
 <p><span class="math display">
 r((q,q),\bm x) = \begin{bmatrix}x_1\\ -\gamma x_2 \end{bmatrix},
 </span> where <span class="math inline">\gamma</span> is the coefficient of restitution (e.g., <span class="math inline">\gamma = 0.9</span>).</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -971,7 +963,19 @@ Comment on the invariant set for the bouncing ball
 </div>
 <div class="callout-body-container callout-body">
 <p>Some authors characterize the invariant set as <span class="math inline">x_1\geq 0</span>. But this means that as the ball touches the ground, nothing forces it to leave the location and do the transition. Instead, the ball must penetrate the ground, however tiny distance, in order to trigger the transition. The current definition avoids this.</p>
-<p>On the other hand, when solving the model numerically, the use of inequalities to define sets is inevitable. And some numerical solvers, in particular optimization solvers, cannot handle strict inequalities. That is perhaps why some authors are quite relaxed about this issue. We will encounter it later on.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Another comment on the invariant set for the bouncing ball
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While the previous remark certainly holds, when solving the model numerically, the use of inequalities to define sets is inevitable. And some numerical solvers, in particular optimization solvers, cannot handle strict inequalities. That is perhaps why some authors are quite relaxed about this issue. We will encounter it later on.</p>
 </div>
 </div>
 </div>
