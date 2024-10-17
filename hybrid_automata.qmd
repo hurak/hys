@@ -9,10 +9,19 @@ format:
         code-summary: "Show the code"
 crossref:
   fig-prefix: Fig 
-#engine: julia
+engine: julia
 ---
 
-We start with an *autonomous* (=no external/control inputs) *hybrid automaton* – it is a tuple of sets and (set) mappings 
+Well, here we are at last. After these three introductory topics on discrete-event systems, we'll finally get into hybrid systems.
+
+There are two frameworks for modelling hybrid systems:
+
+- hybrid automaton, and
+- hybrid (state) equations.
+
+Here we start with the former and save the latter for the next chapter/week. 
+
+First we consider an *autonomous* (=no external/control inputs) *hybrid automaton* – it is a tuple of sets and (set) mappings 
 $$
 \boxed{
  \mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\},}
