@@ -102,7 +102,7 @@ The thermostat is a device that turns some heater `on` or `off` (or sets some va
 Naturally, the discrete states (modes, locations) are `on` and `off`. Initially, the heater is `off`. We can identify the first two components of the hybrid automaton:
 $$\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}$$
 
-The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval $(5,10)$. Two more components of the hybrid automaton follow: 
+The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval $[5,10]$. Two more components of the hybrid automaton follow: 
 $$\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}$$
 
 In the two modes `on` and `off`, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say:
@@ -120,24 +120,23 @@ $$
 \mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
 $$  
 
-
 Finally, $\mathcal R$ (or $r$) is not specified as the $x$ variable (the temperature) doesn't jump. Well, it is specified implicitly as an identity mapping $r(x)=x$.
 
-The graphical representation of the thermostat hybrid automaton is shown below.
+The graphical representation of the thermostat hybrid automaton is shown in @fig-thermostat-automaton.
 
 ![Hybrid automaton for a thermostat](hybrid_automata_figures/thermostat_automaton.png){width=60% #fig-thermostat-automaton}
 
-We have two final remarks about this model: 
+Is this model *deterministic*? There are actually two reasons why it is not:
 
-- Since not just a single initial temperature but rather a range of initial temperatures is considered, the model is not deterministic. 
-- The quality of this regulation is such that the temperatures go up and down. This is due to the type of the control (hysteretic control). 
+1. If we regard the characterization of the initial state (the temperature in this case) as a part of the model, which is the convention that we adhere to in our course, the model is nondeterministic.
+2. Since the invariant for a given mode and the guard set for the only transition to the other model overlap, the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode.
 :::
 
 ## Hybrid automaton with external events and control inputs
 
 We now extend the hybrid automaton with two new components:
     
-- a set $\mathcal{A}$ of (external) actions (also events or symbols), 
+- a set $\mathcal{A}$ of (external) events (also actions or symbols), 
 - a set $\mathcal{U}$ external continuous-valued inputs (control inputs or disturbances).
 
 $$\boxed{
@@ -145,41 +144,34 @@ $$\boxed{
 $$
 where 
 
-- $\mathcal A = \{a_1,a_2,\ldots, a_s\}$ is a set of actions 
+- $\mathcal A = \{a_1,a_2,\ldots, a_s\}$ is a set of events 
     - The role identical as in a (finite) state automaton: an external event triggers an (enabled) transition from the current discrete state (mode, location) to another. 
-    - Unlike in pure discrete-event systems, here they are within a model that does recognize passing of time – each action must be "time-stamped". 
-
-::: {.notes}
-In simulations such timed event can be represented by an edge in the signal. In this regards, it perhaps does not even need to be considered as a seperate entity. But it very often is.
-:::
+    - Unlike in pure discrete-event systems, here they are considered within a model that does recognize passing of time – each action must be "time-stamped". 
+    - In simulations such timed event can be represented by an edge in the signal. In this regard, it might be tempting not to introduce it as a seperate entity, but it is useful to do so.
 
 - $\mathcal U\in\mathbb R^m$ is a set of continuous-valued inputs 
 
     - Real-valued functions of time.
-    - Control inputs, disturbances,  references, noises. 
-
-::: {.notes}
-In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.  
-:::
+    - Control inputs, disturbances,  references, noises. In applications it will certainly be useful to distinghuish these roles, but here we keep just a single type of such an external variable, we do not have to distinguish.  
 
 ### Some modifications needed
 
-upon introduction of these two types of external inputs:
+Upon introduction of these two types of external inputs we must modify the components of the definition we provided earlier:
 
 - $f: \mathcal Q \times \mathcal X \times \mathcal U \rightarrow \mathbb R^n$ is a vector field that now depends not only on the location but also on the external (control) input, that is, at a given location we consider the state equation $\dot x = f_q(x,u)$.  
 
 - $\mathcal E\subseteq \mathcal Q \times (\mathcal A) \times \mathcal Q$ is a set of transitions now possibly parameterized by the actions (as in classical automata).  
 
-- $\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}$ is a location invariant now augmented with a subset of the control input set. 
+- $\mathcal I : \mathcal Q \rightarrow 2^{\mathcal{X}\times \mathcal U}$ is a location invariant now augmented with a subset of the control input set. The necessary condition for staying in the given mode can be thus imposed not only on $x$ but also on $u$. 
 
-- $\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}$ is a guard set now augmented with a subset of the control input set. 
+- $\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}$ is a guard set now augmented with a subset of the control input set. The necessary condition for a given transition can be thus imposed not only on $x$ but also on $u$. 
 
 - $\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}$ is a (state) reset map that is now additionally parameterized by the control input. 
 
-- The guard set for the given location gives just necessary (also *enabling*) conditions for the transition ($x\in \mathcal{G}(q)$). 
-- If enabled, the transition can happen if one of the two things is satisfied: 
-    - the continous state leaves the invariant set of the given location,   
-    - an external event occurs. 
+If enabled, the transition can happen if one of the two things is satisfied: 
+
+- the continous state leaves the invariant set of the given location,   
+- an external event occurs. 
 
 ::: {#exm-button-controlled-LED}
 ## Button-controlled LED
@@ -263,7 +255,7 @@ We assume that a ball is falling from some initial nonzero height above the tabl
 
 The state equation during the free fall is
 $$
-\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \begin{bmatrix}10,0\end{bmatrix}.
+\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \bm x = \begin{bmatrix}10\\0\end{bmatrix}.
 $$
 
 But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.
