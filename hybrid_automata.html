@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.21">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -656,7 +656,14 @@ window.Quarto = {
 </header>
 
 
-<p>We start with an <em>autonomous</em> (=no external/control inputs) <em>hybrid automaton</em> – it is a tuple of sets and (set) mappings <span class="math display">
+<p>Well, here we are at last. After these three introductory topics on discrete-event systems, we’ll finally get into hybrid systems.</p>
+<p>There are two frameworks for modelling hybrid systems:</p>
+<ul>
+<li>hybrid automaton, and</li>
+<li>hybrid (state) equations.</li>
+</ul>
+<p>Here we start with the former and save the latter for the next chapter/week.</p>
+<p>First we consider an <em>autonomous</em> (=no external/control inputs) <em>hybrid automaton</em> – it is a tuple of sets and (set) mappings <span class="math display">
 \boxed{
 \mathcal{H} = \{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\},}
 </span> where</p>
@@ -756,7 +763,7 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 <p><span class="math display">
 \mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
 </span></p>
-<p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump.</p>
+<p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump. Well, it is specified implicitly as an identity mapping <span class="math inline">r(x)=x</span>.</p>
 <p>The graphical representation of the thermostat hybrid automaton is shown below.</p>
 <div id="fig-thermostat-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">

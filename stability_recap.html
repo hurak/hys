@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.21">
+<meta name="generator" content="quarto-1.6.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-018089954d508eae8a473f0b7f0491f0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-0c8af03b2fbd4cf44d6703e337af0e8d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-c61ea5f314fc3b38fd61882899b1938d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -715,7 +715,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="attractivity">Attractivity</h2>
 <p>This is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.</p>
 <p>Perhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.</p>
-<div id="cd70a890" class="cell" data-execution_count="1">
+<div id="2" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> [(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="fu">*</span>(x[<span class="fl">2</span>]<span class="op">-</span>x[<span class="fl">1</span>])<span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">5</span>)<span class="op">/</span>((x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="fu">*</span>(<span class="fl">1</span><span class="fu">+</span>(x[<span class="fl">1</span>]<span class="op">^</span><span class="fl">2</span><span class="op">+</span>x[<span class="fl">2</span>]<span class="op">^</span><span class="fl">2</span>)<span class="op">^</span><span class="fl">2</span>)); </span>
@@ -727,14 +727,10 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">streamplot!</span>(ax,<span class="fu">x-&gt;Point2f</span>(<span class="fu">f</span>(x)), <span class="op">-</span><span class="fl">1.5</span><span class="op">..</span><span class="fl">1.5</span>, <span class="op">-</span><span class="fl">1.5</span><span class="op">..</span><span class="fl">1.5</span>, colormap <span class="op">=</span> <span class="op">:</span>magma)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>┌ Warning: Found `resolution` in the theme when creating a `Scene`. The `resolution` keyword for `Scene`s and `Figure`s has been deprecated. Use `Figure(; size = ...` or `Scene(; size = ...)` instead, which better reflects that this is a unitless size and not a pixel resolution. The key could also come from `set_theme!` calls or related theming functions.
-└ @ Makie ~/.julia/packages/Makie/eERNK/src/scenes.jl:227</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 <figure class="figure">
-<p><img src="stability_recap_files/figure-html/cell-2-output-2.svg" class="img-fluid figure-img"></p>
+<p><img src="stability_recap_files/figure-html/cell-2-output-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
