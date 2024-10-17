@@ -9,10 +9,7 @@ format:
         code-summary: "Show the code"
 crossref:
   fig-prefix: Fig
-execute: 
-    enabled: true
-engine: julia
-#jupyter: julia-1.11   
+engine: julia  
 ---
 
 *Max-plus algebra*, also written as (max,+) algebra (and also known as *tropical algebra/geometry* and *dioid algebra*), is an algebraic framework in which we can model and analyze a class of discrete-event systems, namely *event graphs*, which we have previously introduced as a subset of Petri nets. The framework is appealing in that the models than look like state equations $\bm x_{k+1} = \mathbf A \bm x_k + \mathbf B \bm u_k$ for classical linear dynamical systems. We call these *max-plus linear systems*, or just *MPL systems*. Concepts such as poles, stability and observability can be defined, following closely the standard definitions. In fact, we can even formulate control problems for these models in a way that mimicks the conventional control theory for LTI systems, including MPC control.
@@ -196,7 +193,7 @@ scatter!(xc,yc,markercolor=[:red,:red],label="",thickness_scaling = 2)
 ## Example of a 2D polynomial
 Nothing prevents us from defining a polynomial in two (and more) variables. For example, consider the following (max,+) polynomial
 $$
-p(x,y) = 0 \otimes x \otimes y.
+p(x,y) = 0 \oplus x \oplus y.
 $$
 
 ```{julia}
@@ -216,7 +213,7 @@ zlabel!("f(x,y)")
 ## Another 2D polynomial
 Consider another 2D (max,+) polynomial
 $$
-p(x,y) = 0 \otimes x \otimes y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
+p(x,y) = 0 \oplus x \oplus y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\otimes y \oplus (-1)\otimes y^{\otimes^2}.
 $$
 
 ```{julia}
