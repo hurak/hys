@@ -7,7 +7,7 @@ format:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
-#engine: julia
+engine: julia
 ---
 
 Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called *hybrid equations*, sometimes also *hybrid state equations* to emphasize that what we are after is some kind of analogy with state equations $\dot{x}(t) = f(x(t), u(t))$ and $x_{k+1} = g(x_k, u_k)$ that we are familiar with from (continuous-valued) dynamical systems. 
