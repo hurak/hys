@@ -10,26 +10,24 @@ format:
 engine: julia
 ---
 
-Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called *hybrid equations*, sometimes also *hybrid state equations* to emphasize that what we are after is some kind of analogy with state equations $\dot{x}(t) = f(x(t), u(t))$ and $x_{k+1} = g(x_k, u_k)$ that we are familiar with from (continuous-valued) dynamical systems. 
-
-Sometimes it also called *event-flow equations* or *jump-flow* equations.
+Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called *hybrid equations*, sometimes also *hybrid state equations* to emphasize that what we are after is some kind of analogy with state equations $\dot{x}(t) = f(x(t), u(t))$ and $x_{k+1} = g(x_k, u_k)$ that we are familiar with from (continuous-valued) dynamical systems. Sometimes it also called *event-flow equations* or *jump-flow* equations.
 
 These are the key ideas:
 
 - The (state) variables can change values discontinuously upon occurence of events – they *jump*.
 - Between the jumps they evolve continuously – they *flow*.
 - Some variables may only flow, they never jump.
-- The variables staying constant between the jumps do flow too.
+- The variables staying constant between the jumps can be viewed as flowing too.
 
-The major advantage of this modeling framework is that we do not have to distinguish. This is in contrast with hybrid automata, where we have to start by classifying the state variables as either continuous or discrete before moving on. kIn the current framework we treat all the variables identically – they mostly flow and occasionally (perhaps never, which is OK) jump.
+The major advantage of this modeling framework is that we do not have to distinguish between the two types of state variables. This is in contrast with hybrid automata, where we have to start by classifying the state variables as either continuous or discrete before moving on. In the current framework we treat all the variables identically – they mostly flow and occasionally (perhaps never, which is OK) jump.
 
-## Hybrid (state) equations 
+## Hybrid equations 
 
-It is high time to introduce hybrid (state) equations. Here they come
+It is high time to introduce hybrid (state) equations – here they come
 $$
 \begin{aligned}
 \dot{x} &= f(x), \quad x \in \mathcal{C},\\
-x^+ &= g(x), \quad x \in \mathcal{D}.
+x^+ &= g(x), \quad x \in \mathcal{D},
 \end{aligned}
 $$
 where 
@@ -41,9 +39,9 @@ where
 
 This model of a hybrid system is thus parameterized by the quadruple $\{f, \mathcal C, g, \mathcal D\}$.
 
-## Hybrid (state) inclusions
+## Hybrid inclusions
 
-We now extend the presented framework of hybrid equations a bit. Namely, the functions on the right hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets!
+We now extend the presented framework of hybrid equations a bit. Namely, the functions on the right-hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets!
 $$
 \begin{aligned}
 \dot{x} &\in \mathcal F(x), \quad x \in \mathcal{C},\\
@@ -61,12 +59,12 @@ where
 
 Typically a full model is only formed upon defining some output variables (oftentimes just a subset of possibly scaled state variables or their linear combinations). These output variables then obey some output equation
 $$
-y(x) = h(x),
+y(t) = h(x(t)),
 $$
 
 or 
 $$
-y(x) = h(x,u).
+y(t) = h(x(t),u(t)).
 $$
 
 ::: {#exm-bouncing-ball}
@@ -92,7 +90,7 @@ $$
 
 The two sets and two maps are illustrated below.
 
-![Maps and sets for the bouncing ball example](hybrid_equations_figures/bouncing_ball_maps_and_sets.png){width=55%}
+![Maps and sets for the bouncing ball example](hybrid_equations_figures/bouncing_ball_maps_and_sets.png){width=55% #fig-bouncing-ball-maps-and-sets}
 :::
 
 ::: {#exm-bouncing-ball-on-piston}
@@ -196,7 +194,7 @@ $$
 
 Consider the circuit below.
 
-![Example of a thyristor control](hybrid_equations_figures/thyristor_control.png){width=50%}
+![Example of a thyristor control](hybrid_equations_figures/thyristor_control.png){width=40% #fig-thyristor-control}
 
 We consider a harmonic input voltage, that is, 
 $$
@@ -339,7 +337,7 @@ The first case is encountered when we use a standard controller such as a PID co
 ## Unicycle stabilization
 We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with controlled forward speed and yaw (turning) angular rate.
 
-![Unicycle vehicle](hybrid_equations_figures/unicycle_stabilization.png){width=30%}
+![Unicycle vehicle](hybrid_equations_figures/unicycle_stabilization.png){width=30% #fig-unicycle-stabilization}
 
 The vehicle is modelled by
 $$
@@ -393,7 +391,7 @@ where $\bm x \in \mathbb S^1,\quad u\in \mathbb R$.
 
 The point to be stabilized is $\bm x^* = \begin{bmatrix}1\\ 0\end{bmatrix}$.
 
-![Stabilization on a circle](hybrid_equations_figures/stabilization_on_a_circle.png){width=30%}
+![Stabilization on a circle](hybrid_equations_figures/stabilization_on_a_circle.png){width=30% #fig-stabilization-on-a-circle}
 
 What is required from a globally stabilizing controller? 
 
@@ -525,7 +523,8 @@ The solution can also be visualized in the state space.
 ```{julia}
 #| label: fig-simulation-stabilization-on-a-circle-XY
 #| fig-cap: "Simulation of stabilization on a circle using a hybrid controller"
-plot(sol,vars=(1,2),label="",xaxis="x₁",yaxis="x₂",lw=2,aspect_ratio=1)
+
+plot(sol,idxs=(1,2),label="",xaxis="x₁",yaxis="x₂",lw=2,aspect_ratio=1)
 vline!([c₀], label="c₀")
 vline!([c₁], label="c₁")
 scatter!([x₀[1]],[x₀[2]],label="x init")
@@ -537,14 +536,14 @@ scatter!([1],[0],label="x ref")
 
 Yet another problem that can benefit from being formulated as a hybrid system is *supervisory control*. 
 
-![Supervisory control](hybrid_equations_figures/supervisory_control.png){width=60%}
+![Supervisory control](hybrid_equations_figures/supervisory_control.png){width=60% #fig-supervisory-control}
 
 
 ## Combining local and global controllers ($\subset$ supervisory control)
 
 As a subset of supervisory control we can view a controller that switches between a global and a local controller.
 
-![Combining global and local controllers](hybrid_equations_figures/local_global_controllers.png){width=60%}
+![Combining global and local controllers](hybrid_equations_figures/local_global_controllers.png){width=60% #fig-local-global-controllers}
 
 Local controllers have good transient response but only work well in a small region around the equilibrium state.
 Global controllers have poor transient response but work well in a larger region around the equilibrium state.

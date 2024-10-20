@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.28">
-<info created="D:20231020094506" modified="D:20231020195500"/>
+<ipe version="70218" creator="Ipe 7.2.29">
+<info created="D:20231020094506" modified="D:20241018195917"/>
 <preamble>\usepackage{amsmath}
 \usepackage{bm}</preamble>
 <ipestyle name="basic">
@@ -315,7 +315,11 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<path layer="alpha" stroke="lightblue" pen="ultrafat">
+<path layer="alpha" stroke="black" arrow="normal/normal">
+64 640 m
+336 640 l
+</path>
+<path stroke="lightblue" pen="ultrafat">
 192 640 m
 320 640 l
 </path>
@@ -325,10 +329,6 @@ h
 320 736 l
 320 640 l
 h
-</path>
-<path stroke="black" arrow="normal/normal">
-64 640 m
-336 640 l
 </path>
 <path stroke="black" arrow="normal/normal">
 192 576 m
@@ -363,5 +363,6 @@ h
 256 640 m
 224 664 l
 </path>
+<use name="mark/disk(sx)" pos="192 640" size="normal" stroke="lightblue"/>
 </page>
 </ipe>
