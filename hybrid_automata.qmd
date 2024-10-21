@@ -348,7 +348,7 @@ A hybrid automaton for the rimless wheel is below.
 
 ![Hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton.png){width=90% #fig-rimless-wheel-automaton}
 
-Alternatively, we do not represent the discrete state graphically as a node in the graph but rather as another state variable $s \in \{0, 1, \ldots, 5\}$ within a single location.
+Alternatively, we do not represent the discrete state graphically as a node in the graph but rather as another – extending – state variable $s \in \{0, 1, \ldots, 5\}$ within a single location.
 
 
 ![Alternative hybrid automaton for a rimless wheel](hybrid_automata_figures/rimless_wheel_automaton_single_location.png){width=50% #fig-rimless-wheel-automaton-single-location}
