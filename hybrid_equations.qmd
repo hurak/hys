@@ -32,10 +32,10 @@ x^+ &= g(x), \quad x \in \mathcal{D},
 $$
 where 
 
-- $f$ is the *flow map*,
-- $\mathcal{C}$ is the *flow set*,
-- $g$ is the *jump map*, 
-- $\mathcal{D}$ is the *jump set*.
+- $f: \mathcal{C} \rightarrow \mathbb R^n$ is the *flow map*,
+- $\mathcal{C}\subset \mathbb R^n$ is the *flow set*,
+- $g: \mathcal{D} \rightarrow \mathbb R^n$ is the *jump map*, 
+- $\mathcal{D}\subset \mathbb R^n$ is the *jump set*.
 
 This model of a hybrid system is thus parameterized by the quadruple $\{f, \mathcal C, g, \mathcal D\}$.
 
@@ -335,7 +335,7 @@ The first case is encountered when we use a standard controller such as a PID co
 
 ::: {#exm-unicycle-stabilization}
 ## Unicycle stabilization
-We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with controlled forward speed and yaw (turning) angular rate.
+We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with the controlled forward speed $v$ and the yaw (turning) angular rate $\omega$.
 
 ![Unicycle vehicle](hybrid_equations_figures/unicycle_stabilization.png){width=30% #fig-unicycle-stabilization}
 
@@ -379,11 +379,18 @@ But it is possible to stabilize the vehicle using a discontinuous feedback. And 
 :::
 
 ::: {#exm-stabilization-on-a-circle}
-## Global stabilization on a circle
+## Global asymptotic stabilization on a circle
 
-We now demonstration of a general phenomenon of stabilization on a manifold. We will see that even if stabilization by a continous feedback is possible, it might not guarantee global stability.
+We now give a demonstration of a general phenomenon of stabilization on a manifold. We will see that even if asymptotic stabilization by a continuous feedback is possible, it may not be possible to guarantee it globally.
 
-The dynamics of a particle sliding around a unit circle $\mathbb S_1$ is modelled by  
+::: {.callout-tip}
+## Why control on manifolds?
+First, recall that a manifold is a solution set for a system of nonlinear equations. A prominent example is a unit circle $\mathbb S_1 = \{\bm x \in \mathbb R^2 \mid x_1^2 + x_2^2 - 1 = 0\}$. An extension to two variables is then $\mathbb S_2 = \{\bm x \in \mathbb R^4  \mid x_1^2 + x_2^2 - 1 = 0, \, x_3^2 + x_4^2 - 1 = 0\}$. Now, why shall we bother to study control within this type of a state space? It turns out that such models of state space are most appropriate in mechatronic/robotic systems wherein angular variables range more than $360^\circ$. We worked on this kind of a system some time ago when designing a control system for [inertially stabilized gimballed camera platforms](https://wiki.control.fel.cvut.cz/archiv/aa4cc/content/inertial-stabilization-and-visual-servoing-aerial-surveilance.html).
+
+{{< video https://www.youtube.com/embed/H5z9sNyhgxg?si=v1DmBsI__rgpEZYs >}}
+:::
+
+In this example we restrict the motion of of a particle to sliding around a unit circle $\mathbb S_1$ is modelled by  
 $$
 \dot{\bm x} = u\begin{bmatrix}0 & -1\\ 1 & 0\end{bmatrix}\bm x,
 $$
@@ -391,9 +398,9 @@ where $\bm x \in \mathbb S^1,\quad u\in \mathbb R$.
 
 The point to be stabilized is $\bm x^* = \begin{bmatrix}1\\ 0\end{bmatrix}$.
 
-![Stabilization on a circle](hybrid_equations_figures/stabilization_on_a_circle.png){width=30% #fig-stabilization-on-a-circle}
+![Asymptotic stabilization on a circle](hybrid_equations_figures/stabilization_on_a_circle.png){width=30% #fig-stabilization-on-a-circle}
 
-What is required from a globally stabilizing controller? 
+What is required from a globally asymptotically stabilizing controller? 
 
 - Solutions stay in $\mathbb S^1$,
 - Solutions converge to $\bm x^*$,
@@ -405,28 +412,31 @@ $$\kappa(\bm x) = -x_2.$$
 Define the (Lyapunov) function 
 $$V(\bm x) = 1-x_1.$$
 
-Its time derivative along the solution trajectory
+Indeed, it does qualify as a Lyapunov function because it is zero at $\bm x^*$ and positive elsewhere. Furthermore, its time derivative along the solution trajectory is
 $$
 \begin{aligned}
 \dot V &= \left(\nabla_{\bm{x}}V\right)^\top \dot{\bm x}\\
 &= \begin{bmatrix}-1 & 0\end{bmatrix}\left(-x_2\begin{bmatrix}0 & -1\\ 1 & 0\end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)\\
 &= -x_2^2\\
-&= -(1-x_1^2).
+&= -(1-x_1^2),
 \end{aligned}
 $$
-
-It follows that 
+from which it follows that 
 $$
 \dot V < 0 \quad \forall \bm x \in \mathbb S^1 \setminus \{-1,1\}.
 $$
 
-With $u=-x_2$ the point $\bm x^*$ is stable but not globally atractive.
+With $u=-x_2$ the point $\bm x^*$ is stable but not globally atractive, hence it is not globally asymptotically stable.
 
-Can we do better? Yes, we can. But we need to incorporate some switching into the controller. Loosely speaking anywhere except for the state (-1,0), we can apply the previously design controller, and at the troublesome state (-1,0), or actually in some region around it, we need to switch to another controller that would drive the system away from the problematic region. 
+Can we do better? 
 
-But we will take this example as an opportunity to go one step further and instead of just a switching controller we design a hybrid controller. The difference is that within a hybrid controller we can incorporate some hysteresis, which is a robustifying feature. In order to to that, we need to introduce a new state variable $q\in\{0,1\}$. Determination of the flow and jump sets is sketched in @fig-stabilization-on-a-circle-hybrid.
+Yes, we can. But we need to incorporate some switching into the controller. Loosely speaking anywhere except for the state (-1,0), we can apply the previously designed controller, and at the troublesome state (-1,0), or actually in some region around it, we need to switch to another controller that would drive the system away from the problematic region. 
+
+But we will take this example as an opportunity to go one step further and instead of just a switching controller we design a hybrid controller. The difference is that within a hybrid controller we can incorporate some hysteresis, which is a robustifying feature. In order to do that, we need to introduce a new state variable $q\in\{0,1\}$. Determination of the flow and jump sets is sketched in @fig-stabilization-on-a-circle-hybrid.
 
 ![Definition of the sets defining a hybrid controller](hybrid_equations_figures/stabilization_on_a_circle_hybrid.png){width=30% #fig-stabilization-on-a-circle-hybrid}
+
+Note that there is no hysteresis if $c_0=c_1$, in which case the hybrid controller reduces to a switching controller (but more on switching controllers in the next chapter).
 
 The two feedback controllers are given by
 $$
@@ -539,7 +549,7 @@ Yet another problem that can benefit from being formulated as a hybrid system is
 ![Supervisory control](hybrid_equations_figures/supervisory_control.png){width=60% #fig-supervisory-control}
 
 
-## Combining local and global controllers ($\subset$ supervisory control)
+## Combining local and global controllers $\subset$ supervisory control
 
 As a subset of supervisory control we can view a controller that switches between a global and a local controller.
 
