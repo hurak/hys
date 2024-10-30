@@ -627,7 +627,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#approximation-of-smooth-systems" id="toc-approximation-of-smooth-systems" class="nav-link active" data-scroll-target="#approximation-of-smooth-systems">Approximation of smooth systems</a></li>
+  <li><a href="#approximation-of-nonlinear-systems" id="toc-approximation-of-nonlinear-systems" class="nav-link active" data-scroll-target="#approximation-of-nonlinear-systems">Approximation of nonlinear systems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -654,7 +654,7 @@ window.Quarto = {
 
 
 <p>This is a subclass of switched systems where the functions on the right-hand side of the differential equations are affine functions of the state. For some (historical) reason these systems are also called <em>piecewise linear</em> (PWL).</p>
-<p>We are going to restrict ourselves to state-driven switching.</p>
+<p>We are going to reformulate such systems as switched systems with state-driven switching.</p>
 <p>First, we consider the autonomous case, that is, systems without inputs: <span class="math display">
 \dot{\bm x}
 =
@@ -719,11 +719,11 @@ Figure&nbsp;2: Partitioning the control input space
 \end{aligned}
 </span></p>
 </div>
-<section id="approximation-of-smooth-systems" class="level2">
-<h2 class="anchored" data-anchor-id="approximation-of-smooth-systems">Approximation of smooth systems</h2>
+<section id="approximation-of-nonlinear-systems" class="level2">
+<h2 class="anchored" data-anchor-id="approximation-of-nonlinear-systems">Approximation of nonlinear systems</h2>
 <p>While the example with the saturated linear state feedback can be modelled as a PWA system exactly, there are many practical cases, in which the system is not exactly PWA affine but we want to approximate it as such.</p>
-<div id="exm-smooth-approximation" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Smooth system approximated by a PWA system)</strong></span> Consider the following nonlinear system <span class="math display">
+<div id="exm-nonlinear-approximation" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Nonlinear system approximated by a PWA system)</strong></span> Consider the following nonlinear system <span class="math display">
 \begin{bmatrix}
 \dot x_1\\\dot x_2
 \end{bmatrix}
