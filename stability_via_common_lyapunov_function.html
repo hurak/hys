@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.6.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-221fe5343bfc431ca4da048bedf8cd68.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fec4eca8e712537310c7ebcc1543822c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -627,8 +627,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hybrid-system-stability-analysis-via-lyapunov-like-function" id="toc-hybrid-system-stability-analysis-via-lyapunov-like-function" class="nav-link active" data-scroll-target="#hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</a></li>
-  <li><a href="#stricter-condition" id="toc-stricter-condition" class="nav-link" data-scroll-target="#stricter-condition">Stricter condition</a></li>
+  <li><a href="#hybrid-system-stability-analysis-via-lyapunov-function" id="toc-hybrid-system-stability-analysis-via-lyapunov-function" class="nav-link active" data-scroll-target="#hybrid-system-stability-analysis-via-lyapunov-function">Hybrid system stability analysis via Lyapunov function</a>
+  <ul class="collapse">
+  <li><a href="#stricter-condition-on-lyapunov-function" id="toc-stricter-condition-on-lyapunov-function" class="nav-link" data-scroll-target="#stricter-condition-on-lyapunov-function">Stricter condition on Lyapunov function</a></li>
+  </ul></li>
   <li><a href="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" id="toc-further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="nav-link" data-scroll-target="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</a></li>
   <li><a href="#global-uniform-asymptotic-stability" id="toc-global-uniform-asymptotic-stability" class="nav-link" data-scroll-target="#global-uniform-asymptotic-stability">(Global) uniform asymptotic stability</a></li>
   <li><a href="#common-quadratic-lyapunov-function-cqlf" id="toc-common-quadratic-lyapunov-function-cqlf" class="nav-link" data-scroll-target="#common-quadratic-lyapunov-function-cqlf">Common quadratic Lyapunov function (CQLF)</a></li>
@@ -643,7 +645,6 @@ window.Quarto = {
   <li><a href="#how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist" id="toc-how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist" class="nav-link" data-scroll-target="#how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist">How to get an SOS representation of a polynomial (or prove that none exist)?</a></li>
   <li><a href="#but-how-to-determine-the-coefficients-of-the-matrix" id="toc-but-how-to-determine-the-coefficients-of-the-matrix" class="nav-link" data-scroll-target="#but-how-to-determine-the-coefficients-of-the-matrix">But how to determine the coefficients of the matrix?</a></li>
   <li><a href="#searching-for-a-positive-polynomial-lyapunov-function" id="toc-searching-for-a-positive-polynomial-lyapunov-function" class="nav-link" data-scroll-target="#searching-for-a-positive-polynomial-lyapunov-function">Searching for a positive polynomial Lyapunov function</a></li>
-  <li><a href="#solving-sos-problems" id="toc-solving-sos-problems" class="nav-link" data-scroll-target="#solving-sos-problems">Solving SOS problems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -669,104 +670,125 @@ window.Quarto = {
 </header>
 
 
-<section id="hybrid-system-stability-analysis-via-lyapunov-like-function" class="level2">
-<h2 class="anchored" data-anchor-id="hybrid-system-stability-analysis-via-lyapunov-like-function">Hybrid system stability analysis via Lyapunov(-like) function</h2>
-<p><span class="math inline">V(q,x)</span> smooth in <span class="math inline">x</span> such that</p>
-<p><span class="math display">
-V(q,0) = 0, \quad V(q,x) &gt; 0 \; \text{for all nonzero} \; x,
+<p>Having just recalled the stability analysis based on searching for a Lyapunov function, we now extend the analysis to hybrid systems, in particular, hybrid automata.</p>
+<section id="hybrid-system-stability-analysis-via-lyapunov-function" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-system-stability-analysis-via-lyapunov-function">Hybrid system stability analysis via Lyapunov function</h2>
+<p>In contrast to continuous systems where Lyapunov functin should decrease along the state trajectory to certify asymptotic stability (or at least should not increase to certify Lyapunov stability), in hybrid systems the requirement can be relaxed a bit.</p>
+<p>A Lyapunov function should still decrease along the continuous state trajectory while the system resides in a given discrete state (mode), but during the transition between the modes the function can be discontinuous, and can even increase. But then upon return to the same discrete state, the function should have lower value than it had last time it entered the state to certify asymptotic stability (or at least not larger for Lyapunov stability), see <a href="#fig-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-lyapunov-like-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_figures/lyapunov_like_function.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of an evolution of a Lyapunov function of a hybrid automaton in time
+</figcaption>
+</figure>
+</div>
+<p>Formally, the function <span class="math inline">V(q,x)</span> has two variables <span class="math inline">q</span> and <span class="math inline">x</span>, it is smooth in <span class="math inline">x</span>, and<br>
+<span class="math display">
+V(q,0) = 0, \quad V(q,x) &gt; 0 \; \text{for all nonzero} \; x \; \text{and for all nonzero} \; q,
 </span></p>
 <p><span class="math display">
-\left(\nabla_x V(q,x)\right)^\top f(q,x) \leq 0
+\left(\nabla_x V(q,x)\right)^\top f(q,x) &lt; 0  \; \text{for all nonzero} \; x \; \text{and for all nonzero} \; q,
 </span></p>
-<p>and</p>
-<p><img src="stability_figures/lyapunov_like_function.png" class="img-fluid"></p>
+<p>and the discontinuitieds at transitions must satisfy the conditions sketched in <a href="#fig-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;1</a>. If Lyapunov stability is enough, the strict inequality can be relaxed to nonstrict.</p>
+<section id="stricter-condition-on-lyapunov-function" class="level3">
+<h3 class="anchored" data-anchor-id="stricter-condition-on-lyapunov-function">Stricter condition on Lyapunov function</h3>
+<p>Verifying the properties just described is not easy. Perhaps the only way is to simulate the system, evaluate the function along the trajectory and check if the conditions are satisfied, which is hardly useful. A stricter condition is in <a href="#fig-stricter-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;2</a>. Here we require that during transitions to another mode, the fuction should not increase. Discontinuous reductions in value are allowed, but enforcing continuity introduced yet another simplification that can be plausible for analysis.</p>
+<div id="fig-stricter-lyapunov-like-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stricter-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_figures/stricter_lyapunov_like_function.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stricter-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of an evolution of a restricted Lyapunov function of a hybrid automaton in time
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="stricter-condition" class="level2">
-<h2 class="anchored" data-anchor-id="stricter-condition">Stricter condition</h2>
-<p><img src="stability_figures/stricter_lyapunov_like_function.png" class="img-fluid"></p>
 </section>
 <section id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="level2">
 <h2 class="anchored" data-anchor-id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</h2>
-<ul>
-<li>Just a single Lyapunov function <span class="math inline">V(x)</span> common for all discrete states (modes, locations) <span class="math inline">q</span>.</li>
-<li>Implies that arbitrary switching is allowed.
-<ul>
-<li><span class="math inline">\rightarrow</span> conservative.</li>
-</ul></li>
-<li>For switched systems, the analysis can be interpreted within the framework of differential inclusions <span class="math display">
-\dot x \in \{f_1(x), f_2(x),\ldots,f_m(x)\}
-</span></li>
-</ul>
+<p>In the above, we have considered a Lyapunov function <span class="math inline">V(q,x)</span> that is mode-dependent. But what if we could find a single Lyapunov function <span class="math inline">V(x)</span> that is common for all modes <span class="math inline">q</span>? This would be a great simplification.</p>
+<p>This, however, implies that at a given state <span class="math inline">x</span>, arbitrary transition to another mode <span class="math inline">q</span> is possible. We add and adjective <em>uniform</em> the stabilty (either Lyapunov or asymptotic) to emphasize that the function is common for all modes.</p>
+<p>In terminology of switched systems, we say that arbitrary switching is allowed. And staying in the domain of switched systems, the analysis can be interpreted within the framework of differential inclusions <span class="math display">
+\dot x \in \{f_1(x), f_2(x),\ldots,f_m(x)\}.
+</span></p>
 </section>
 <section id="global-uniform-asymptotic-stability" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="global-uniform-asymptotic-stability">(Global) uniform asymptotic stability</h2>
-<p>. . .</p>
-<p>There exists <span class="math inline">V(q)</span> such that</p>
-<p>. . .</p>
-<p><span class="math display">\boxed{\kappa_1(\|x\|) \leq V(x) \leq \kappa_2(\|x\|),}</span></p>
-<ul>
-<li>where <span class="math inline">\kappa_1(\cdot), \kappa_2(\cdot)</span> are class <span class="math inline">\mathcal{K}</span> comparison functions,<br>
-</li>
-<li>global for <span class="math inline">\kappa_1(\cdot)\in\mathcal{K}_\infty</span>,</li>
-</ul>
-<p>. . .</p>
-<p>and <span class="math display">
+<p>Having agreed that we are now searching for a single function <span class="math inline">V(x)</span>, the function must satisfy <span class="math display">\boxed{\kappa_1(\|x\|) \leq V(x) \leq \kappa_2(\|x\|),}</span> where <span class="math inline">\kappa_1(\cdot), \kappa_2(\cdot)</span> are class <span class="math inline">\mathcal{K}</span> comparison functions, and <span class="math inline">\kappa_1(\cdot)\in\mathcal{K}_\infty</span> if global asymptotic stability is needed, and <span class="math display">
 \boxed{\left(\nabla V(x)\right)^\top f_q(x) \leq -\rho(\|x\|),\quad q\in\mathcal{Q},}
-</span> where <span class="math inline">\rho(\cdot)</span> is a positive definite continuous function, zero at the origin.</p>
-<p>. . .</p>
-<p>Converse theorem for global uniform asymptotic stability (GUAS).</p>
-<ul>
-<li>Nice, a CLF exists for a GUAS system, but how do we find it?</li>
-<li>Restrict the set of candidate functions…</li>
-</ul>
+</span> where <span class="math inline">\rho(\cdot)</span> is a positive definite continuous function, zero at the origin. If all these are satisfied, the system is (globally) uniformly asymptotically stable (GUAS).</p>
+<p>Similarly as we did in continuous systems, we must ask if stability implies existence of a common Lyapunov function. An affirmative answer comes in the form of a <em>converse theorem</em> for global uniform asymptotic stability (GUAS).</p>
+<p>This is great, a CLF exists for a GUAS system, but how do we find it? We must restrict the set of candidate functions and then search within the set. Obviously, if we fail to find a function in the set, we must extend the set and search again…</p>
 </section>
-<section id="common-quadratic-lyapunov-function-cqlf" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="common-quadratic-lyapunov-function-cqlf">Common quadratic Lyapunov function (CQLF)</h2>
-<ul>
-<li><p>A single quadratic Lyapunov function <span class="math display">
+<section id="common-quadratic-lyapunov-function-cqlf" class="level2">
+<h2 class="anchored" data-anchor-id="common-quadratic-lyapunov-function-cqlf">Common quadratic Lyapunov function (CQLF)</h2>
+<p>An immediate restriction of a set of Lyapunov functions is to quadratic functions <span class="math display">
 V(x) = x^\top P x,
-</span> where <span class="math inline">P=P^\top \succ 0</span>.</p></li>
-<li><p>In principle could be used for nonlinear systems, but let’s consider linear systems here.</p></li>
-<li><p>Consider <span class="math inline">r</span> continuous-time LTI systems parameterized by the system matrices <span class="math inline">A_i</span> for <span class="math inline">i=1,\ldots, r</span> as <span class="math display">
+</span> where <span class="math inline">P=P^\top \succ 0</span>.</p>
+<p>This restriction is also quite natural because for linear systems, it is known that we do not have to consider anything more complicated than quadratic functions. This does not hold in general for nonlinear and hybrid systems. But it is a good start. If we succeed in finding a quadratic Lyapunov function, we can be sure that the system is stable.</p>
+<p>Here we start by considering a hybrid automaton for which at each mode the dynamics is linear. We consider <span class="math inline">r</span> continuous-time LTI systems parameterized by the system matrices <span class="math inline">A_i</span> for <span class="math inline">i=1,\ldots, r</span> as <span class="math display">
 \dot x = A_i x(t).
-</span></p></li>
-<li><p>Time derivatives of <span class="math inline">V(x)</span> along the trajectory of the <span class="math inline">i</span>-th system <span class="math display">
-\dot V(x) = x^\top(A_i^\top P + PA_i)x,
-</span></p></li>
-<li><p>which, upon introduction of new matrix variables <span class="math inline">Q_i=Q_i^\top</span> given by<br>
+</span></p>
+<p>Time derivatives of <span class="math inline">V(x)</span> along the trajectory of the <span class="math inline">i</span>-th system <span class="math display">
+  \nabla V(x)^\top \left.\frac{\mathrm d x}{\mathrm d t}\right|_{\dot x = A_i x} = x^\top(A_i^\top P + PA_i)x,
+</span></p>
+<p>which, upon introduction of new matrix variables <span class="math inline">Q_i=Q_i^\top</span> given by<br>
 <span class="math display">
-A_i^\top P + PA_i = Q_i,\qquad i=1,\ldots, r
-</span></p></li>
-<li><p>yields<br>
+  A_i^\top P + PA_i = Q_i,\qquad i=1,\ldots, r
+</span> yields<br>
 <span class="math display">
-\dot V(x) = x^\top Q_ix,
-</span></p></li>
-<li><p>from which it follows that <strong>all</strong> <span class="math inline">Q_i</span> must satisfy<br>
+  \dot V(x) = x^\top Q_ix,
+</span> from which it follows that <span class="math inline">Q_i</span> (for all <span class="math inline">i=1,\ldots,r</span>) must satisfy<br>
 <span class="math display">
-x^\top Q_i x \leq 0,\qquad i=1,\ldots, r
+  x^\top Q_i x \leq 0,\qquad i=1,\ldots, r
 </span><br>
 for (Lyapunov) stability and<br>
 <span class="math display">
-x^\top Q_i x &lt; 0,\qquad i=1,\ldots, r
+  x^\top Q_i x &lt; 0,\qquad i=1,\ldots, r
 </span><br>
-for asymptotic stability.</p></li>
-</ul>
-<div class="notes">
-<p>A comment on the notation <span class="math inline">\dot V(x)</span>: how come that it can be given with several right hand sides, one for each <span class="math inline">Q_i</span>? The answer is that perhaps the notation <span class="math inline">\dot V(x)</span> does not reflect well that this time derivatives is evaluated along a particular solution.</p>
-</div>
+for asymptotic stability.</p>
+<p>As a matter of fact, we could proceeded without introducing new variables <span class="math inline">Q_i</span> and just write the conditions directly in terms of <span class="math inline">A_i</span> and <span class="math inline">P</span> <span class="math display">
+  x^\top (A_i^\top P + PA_i) x \leq 0,\qquad i=1,\ldots, r
+</span><br>
+for (Lyapunov) stability and<br>
+<span class="math display">
+  x^\top (A_i^\top P + PA_i) x &lt; 0,\qquad i=1,\ldots, r
+</span><br>
+for asymptotic stability.</p>
 </section>
 <section id="linear-matrix-inequality-lmi" class="level2">
 <h2 class="anchored" data-anchor-id="linear-matrix-inequality-lmi">Linear matrix inequality (LMI)</h2>
-<p>. . .</p>
+<p>The conditions of quadratic stability that we have just derived are conditions on functions. However, in this case of a quadratic Lyapunov function and linear systems, the condition can also be written directly in terms of matrices. For that we use the concept of a <em>linear matrix inequality</em> (LMI).</p>
+<p>Recall that a linear inequality is an inequality of the form <span class="math inline">\underbrace{a_0 a_1x_1 + a_2x_2 + \ldots + a_rx_r}_{a(x)} &gt; 0</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Linear vs.&nbsp;affine
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We could perhaps argue that as the function <span class="math inline">a(x)</span> is an affine and not linear, the inequality should be called an <em>affine inequality</em>. However, the term <em>linear inequality</em> is well established in the literature. It can be perhaps justified by moving the constant term to the right-hand side, in which case we have a linear function on the left and a constant term on the right, which is the same situation as in the <span class="math inline">Ax=b</span> equation, which we call linear without hesitation.</p>
+</div>
+</div>
+<p>A linear matrix inequality is a generalization of this concept where the coefficients are matrices.</p>
 <p><span class="math display">
+\underbrace{A_0 + A_1x_1 + A_2x_2 + \ldots + A_rx_r}_{A(x)} \succ 0.
+</span></p>
+<p>Besides having matrix coefficients, another crucial difference is the meaning of the inequality. In this case it should not be interpreted component-wise but rather <span class="math inline">A(x)\succ 0</span> means that the matrix <span class="math inline">A(x)</span> is positive definite.</p>
+<p>Alternatively, the individual scalar variables can be assembled into matrices, in which case the LMI can have the form with matrix variables <span class="math display">
 F(X) = F_0 + F_1XG_1 + F_2XG_2 + \ldots + F_kXG_k \succ 0,
-</span> where the inequality reads “positive definite”.</p>
-<ul>
-<li>Feasibility LMI problem: does <span class="math inline">X=X^\top</span> exist such that the LMI <span class="math inline">F(X)\succ 0</span> is satisfied?</li>
-</ul>
+</span> but the meaning of the inequality remains the same.</p>
+<p>The use of LMIs is widespread in control theory. Here we formulate the LMI feasibility problem: does <span class="math inline">X=X^\top</span> exist such that the LMI <span class="math inline">F(X)\succ 0</span> is satisfied?</p>
 </section>
-<section id="cqlf-as-an-lmi" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="cqlf-as-an-lmi">CQLF as an LMI</h2>
+<section id="cqlf-as-an-lmi" class="level2">
+<h2 class="anchored" data-anchor-id="cqlf-as-an-lmi">CQLF as an LMI</h2>
 <p><span class="math display">
 \begin{aligned}
 P &amp;\succ 0,\\
@@ -957,13 +979,6 @@ V(s) - \phi(x) \quad \text{is SOS},}
 \boxed
 {\left(\nabla V(x)\right)^\top f(x)\quad \text{is SOS}}
 </span></p>
-</section>
-<section id="solving-sos-problems" class="level2">
-<h2 class="anchored" data-anchor-id="solving-sos-problems">Solving SOS problems</h2>
-<ul>
-<li>Matlab: SOSTOOLS, …</li>
-<li>Julia: SumOfSquares.jl</li>
-</ul>
 
 
 </section>
@@ -1051,8 +1066,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1163,7 +1176,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

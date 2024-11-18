@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.32">
+<meta name="generator" content="quarto-1.6.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -57,10 +57,10 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2486e1f0a3ee9ee1fc393803a1361cdb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-221fe5343bfc431ca4da048bedf8cd68.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-fec4eca8e712537310c7ebcc1543822c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -647,7 +647,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#equilibrium-of-a-hybrid-automaton" id="toc-equilibrium-of-a-hybrid-automaton" class="nav-link active" data-scroll-target="#equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</a></li>
+  <li><a href="#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton" id="toc-equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton" class="nav-link active" data-scroll-target="#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton">Equilibrium of a hybrid system modelled by a hybrid automaton</a></li>
+  <li><a href="#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations" id="toc-equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations" class="nav-link" data-scroll-target="#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations">Equilibrium of a hybrid system modelled by hybrid equations</a></li>
   <li><a href="#stability-of-a-hybrid-automaton" id="toc-stability-of-a-hybrid-automaton" class="nav-link" data-scroll-target="#stability-of-a-hybrid-automaton">Stability of a hybrid automaton</a></li>
   <li><a href="#asymptotic-stability" id="toc-asymptotic-stability" class="nav-link" data-scroll-target="#asymptotic-stability">Asymptotic stability</a></li>
   <li><a href="#is-stability-of-the-individual-dynamics-enough" id="toc-is-stability-of-the-individual-dynamics-enough" class="nav-link" data-scroll-target="#is-stability-of-the-individual-dynamics-enough">Is stability of the individual dynamics enough?</a></li>
@@ -677,40 +678,50 @@ window.Quarto = {
 </header>
 
 
-<p>We will restrict ourselves to the stability of hybrid automata. The framework of hybrid equations offers alternative ways to analyze stability.</p>
-<section id="equilibrium-of-a-hybrid-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="equilibrium-of-a-hybrid-automaton">Equilibrium of a hybrid automaton</h2>
-<p>With no loss of generality the equilibrium is often assumed at the origin, that is, <span class="math display">\bm x_\mathrm{eq} = \mathbf 0,</span> but in the immediately following definitions we do not have to invoke this assumption.</p>
-<p>For a hybrid system with <span class="math inline">\dot{\bm x} = \underbrace{\mathbf f(q,\bm x)}_{\mathbf f_q(\bm x)}</span>, the equilibrium <span class="math inline">\bm x_\mathrm{eq}</span> satisfies</p>
-<ul>
-<li><span class="math inline">\mathbf 0 = \mathbf f_q(\bm x_\mathrm{eq})</span> for all <span class="math inline">q\in \mathcal Q</span>,</li>
-<li>the reset map <span class="math inline">r(q,q',\bm x_\mathrm{eq}) = \bm x_\mathrm{eq}</span>.</li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
+<p>As we have recalled in the <a href="./stability_recap.html">recap section on stability of continuous dynamical systems</a>, stability is a property of an <em>equilibrium</em>. But what is an equilibrium of a hybrid systems? It turns out that the definition is not as straightforward as in the continuous case. It also depends on the chosen framework for modelling of hybrid systems.</p>
+<section id="equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton">Equilibrium of a hybrid system modelled by a hybrid automaton</h2>
+<p>First, an equilibrium of a hybrid automaton is a point <span class="math inline">\bm x_\mathrm{eq}</span> in the continuous state space <span class="math inline">\mathcal X\subset \mathbb R^n</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The first condition above appears in several resources. For example, in the definition 4.9 in the section 4.2 in <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span> or the definition 8.2 in the section 8.2 in (no longer available online) <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[2]</a></span>. But it appears unnecessarily restrictive.</p>
+<p>Although we often assume the equilibrium at the origin, that is, <span class="math inline">\bm x_\mathrm{eq} = \mathbf 0</span>, the assumption does not have to be invoked in order to provide the definition.</p>
 </div>
 </div>
+<p>We now consider a hybrid automaton for which the dynamics of each individual <em>mode</em> <span class="math inline">q</span> is given by <span class="math inline">\dot{\bm x} = \mathbf f_q(\bm x)</span>. The <em>invariants</em> (or <em>domains</em>) of each mode are <span class="math inline">\mathcal X_q, \, q=1, \ldots, m</span>.</p>
+<p>The definition of the equilibrium <span class="math inline">\bm x_\mathrm{eq}</span> that is ofter found in the literature imposes these two conditions:</p>
+<ul>
+<li><span class="math inline">\mathbf 0 = \mathbf f_q(\bm x_\mathrm{eq})</span> for all <span class="math inline">q\in \mathcal Q</span>,</li>
+<li>the reset map <span class="math inline">r(q,q',\bm x_\mathrm{eq}) = \bm x_\mathrm{eq}</span>.</li>
+</ul>
+<p>The first condition states that the point in the continuous state space should qualify as an equilibrium for each mode. This might appear unnecessarily restrictive (what if the particular <span class="math inline">\bm x_\mathrm{eq}</span> is not an element of <span class="math inline">\mathcal X_q</span> for all <span class="math inline">q</span>?) as we discuss later. But note that this definition appears in several resources. For example, in the definition 4.9 in the section 4.2 in <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span> or the definition 8.2 in the section 8.2 in (no longer available online) <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[2]</a></span>.</p>
 <p>The second condition states that the system can be regarded as resting at the equlibrium even if it jumps from one discrete state (mode) to another (while staying in the equilibrium continuous state).</p>
+</section>
+<section id="equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations" class="level2">
+<h2 class="anchored" data-anchor-id="equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations">Equilibrium of a hybrid system modelled by hybrid equations</h2>
+<p>The state vector within this modelling framework is composed by both the discrete and continuous state variables. The two conditions for the equilibrium of a hybrid automata can be translated into the hybrid equation framework, which means that the equilibrium is not just a single point but rather a set of points.</p>
+<div id="exm-equilibrium-hybrid-equations" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Equilibrium of a hybrid system modelled by hybrid equations)</strong></span> Consider a hybrid system modelled by hybrid equations, for which the state space is given by <span class="math inline">\mathcal X = \{0,1\} \times \mathbb R</span>. The dynamics of the system is given by</p>
+</div>
+<p>This makes the analysis significantly more challenging. Therefore, in our lecture we will only consider stability of hybrid automata.</p>
 </section>
 <section id="stability-of-a-hybrid-automaton" class="level2">
 <h2 class="anchored" data-anchor-id="stability-of-a-hybrid-automaton">Stability of a hybrid automaton</h2>
-<p>The equilibrium <span class="math inline">x_\mathrm{eq}</span>(=0) is stable if for a given <span class="math inline">\varepsilon &gt; 0</span> there exists <span class="math inline">\delta &gt; 0</span> such that for all hybrid systems executions/trajectories starting at <span class="math inline">(q_0,x_0)</span>, <span class="math display">
-\|x_0\| &lt; \delta \Rightarrow \|x(\tau)\| &lt; \varepsilon, \; \forall \tau \in \mathcal{T},
+<p>The equilibrium <span class="math inline">\bm x_\mathrm{eq}=\mathbf 0</span> is stable if for a given <span class="math inline">\varepsilon &gt; 0</span> there exists <span class="math inline">\delta &gt; 0</span> such that for all hybrid systems executions/trajectories starting at <span class="math inline">(q_0,\bm x_0)</span>, <span class="math display">
+\|\bm x_0\| &lt; \delta \Rightarrow \|\bm x(\tau)\| &lt; \varepsilon, \; \forall \tau \in \mathcal{T},
 </span> where <span class="math inline">\tau</span> is a hybrid time and <span class="math inline">\mathcal{T}</span> is the hybrid time domain.</p>
 </section>
 <section id="asymptotic-stability" class="level2">
 <h2 class="anchored" data-anchor-id="asymptotic-stability">Asymptotic stability</h2>
 <p>The equilibrium is stable and furthermore we can choose some <span class="math inline">\delta</span> such that <span class="math display">
-\|x_0\| &lt; \delta \quad \Rightarrow \quad \lim_{\tau\rightarrow \tau_\infty} \|x(\tau)\| = 0,
+\|\bm x_0\| &lt; \delta \quad \Rightarrow \quad \lim_{\tau\rightarrow \tau_\infty} \|\bm x(\tau)\| = 0,
 </span> where <span class="math inline">\tau_\infty&lt;\infty</span> if the execution is Zeno and <span class="math inline">\tau_\infty=\infty</span> otherwise.</p>
 </section>
 <section id="is-stability-of-the-individual-dynamics-enough" class="level2">
@@ -853,8 +864,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -965,7 +974,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
