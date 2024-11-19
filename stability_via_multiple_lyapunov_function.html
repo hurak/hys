@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -40,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fec4eca8e712537310c7ebcc1543822c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-65372f768075fabf8551abaa78c2ba37.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -627,12 +661,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#example-cqlf-cannot-be-found" id="toc-example-cqlf-cannot-be-found" class="nav-link active" data-scroll-target="#example-cqlf-cannot-be-found">Example: CQLF cannot be found</a></li>
-  <li><a href="#multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" id="toc-multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" class="nav-link" data-scroll-target="#multiple-lyapunov-function-mlf-approach-to-analysis-of-stability">Multiple Lyapunov Function (MLF) approach to analysis of stability</a></li>
-  <li><a href="#s-procedure" id="toc-s-procedure" class="nav-link" data-scroll-target="#s-procedure">S-procedure</a></li>
+  <li><a href="#multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" id="toc-multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" class="nav-link active" data-scroll-target="#multiple-lyapunov-function-mlf-approach-to-analysis-of-stability">Multiple Lyapunov Function (MLF) approach to analysis of stability</a></li>
+  <li><a href="#s-procedure" id="toc-s-procedure" class="nav-link" data-scroll-target="#s-procedure">S-procedure</a>
+  <ul class="collapse">
   <li><a href="#s-procedure-with-nonstrict-inequalities" id="toc-s-procedure-with-nonstrict-inequalities" class="nav-link" data-scroll-target="#s-procedure-with-nonstrict-inequalities">S-procedure with nonstrict inequalities</a></li>
   <li><a href="#sufficient-conditions" id="toc-sufficient-conditions" class="nav-link" data-scroll-target="#sufficient-conditions">Sufficient conditions</a></li>
   <li><a href="#sufficient-and-also-necessary" id="toc-sufficient-and-also-necessary" class="nav-link" data-scroll-target="#sufficient-and-also-necessary">Sufficient and also necessary</a></li>
+  </ul></li>
   <li><a href="#more-on-s-procedure" id="toc-more-on-s-procedure" class="nav-link" data-scroll-target="#more-on-s-procedure">More on S-procedure</a></li>
   <li><a href="#piecewise-quadratic-lyapunov-function" id="toc-piecewise-quadratic-lyapunov-function" class="nav-link" data-scroll-target="#piecewise-quadratic-lyapunov-function">Piecewise quadratic Lyapunov function</a></li>
   <li><a href="#using-comparison-functions-and-nonstrict-inequalities" id="toc-using-comparison-functions-and-nonstrict-inequalities" class="nav-link" data-scroll-target="#using-comparison-functions-and-nonstrict-inequalities">Using comparison functions and nonstrict inequalities</a></li>
@@ -667,60 +702,183 @@ window.Quarto = {
 </header>
 
 
-<section id="example-cqlf-cannot-be-found" class="level2">
-<h2 class="anchored" data-anchor-id="example-cqlf-cannot-be-found">Example: CQLF cannot be found</h2>
-<div class="notes">
-<p>Example 4.11 from Lin &amp; Antsaklis (2022)</p>
+<p>We start with an example in which we show it can happen that even if the hybrid (switched) system is stable, there is no common quadratic Lyapunov function.</p>
+<div id="exm-no-cqlf" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (No common quadratic Lyapunov function can be found)</strong></span> We consider a switched system with two modes, linear models of which are parameterized by the matrices <span class="math inline">\mathbf A_1</span> and <span class="math inline">\mathbf A_2</span>:</p>
+<div id="2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A₁ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">0.1</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A₂ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">2</span>; <span class="fl">1</span> <span class="op">-</span><span class="fl">0.1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability">Multiple Lyapunov Function (MLF) approach to analysis of stability</h2>
-<ul>
-<li>Not just a single common Lyapunov function <span class="math inline">V(\bm x)</span>.</li>
-<li>Instead, several Lyapunov-like functions <span class="math inline">V_i(\bm x),\; i=1,\ldots,r,</span> that are Lyapunov on some subsets of the state space <span class="math inline">\Omega_i</span>.</li>
-<li>Stitch them together to form <span class="math display">
+<p>Switching curve is given by <span class="math inline">x_1=0</span>, that is, the vertical axis. State portrait is in <a href="#fig-no-cqlf" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="cell-fig-no-cqlf" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f₁</span>(x) <span class="op">=</span> A₁<span class="op">*</span>x</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f₂</span>(x) <span class="op">=</span> A₂<span class="op">*</span>x</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> x[<span class="fl">1</span>] <span class="op">&lt;=</span> <span class="fl">0.0</span> ? <span class="fu">f₁</span>(x) <span class="op">:</span> <span class="fu">f₂</span>(x)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">CairoMakie</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> <span class="fu">Figure</span>(size <span class="op">=</span> (<span class="fl">800</span>, <span class="fl">800</span>),fontsize<span class="op">=</span><span class="fl">20</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], xlabel <span class="op">=</span> <span class="st">"x₁"</span>, ylabel <span class="op">=</span> <span class="st">"x₂"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">streamplot!</span>(ax,(x₁,x₂)<span class="fu">-&gt;Point2f</span>(<span class="fu">f</span>([x₁,x₂])), <span class="op">-</span><span class="fl">2.0</span><span class="op">..</span><span class="fl">2.0</span>, <span class="op">-</span><span class="fl">2.0</span><span class="op">..</span><span class="fl">2.0</span>, colormap <span class="op">=</span> <span class="op">:</span>magma)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vlines!</span>(ax,<span class="fl">0.0</span>,ymin<span class="op">=-</span><span class="fl">2.0</span>,ymax<span class="op">=</span><span class="fl">2.0</span>, color <span class="op">=</span> <span class="op">:</span>red, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-no-cqlf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-no-cqlf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_via_multiple_lyapunov_function_files/figure-html/fig-no-cqlf-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-no-cqlf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: State portrait for the switched system with no common quadratic Lyapunov function
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The equilibrium (the origin) of this switched system appears stable.</p>
+<p>The individual systems are stable, which we can immediately see by computing the eigenvalues of the matrices <span class="math inline">A_1</span> and <span class="math inline">A_2</span>:</p>
+<div id="6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eigvals</span>(A₁), <span class="fu">eigvals</span>(A₂)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>(ComplexF64[-0.1 - 1.4142135623730951im, -0.1 + 1.4142135623730951im], ComplexF64[-0.1 - 1.4142135623730951im, -0.1 + 1.4142135623730951im])</code></pre>
+</div>
+</div>
+<p>We now try to find a common quadratic Lyapunov function for both subsystems. We will formulate the problem as an LMI feasibility problem.</p>
+<div id="8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Convex</span>, <span class="bu">SCS</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X + X*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X + X*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> [constraint₁, constraint₂]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">satisfy</span>(constraints)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>Problem statistics
+  problem is DCP         : true
+  number of variables    : 1 (4 scalar elements)
+  number of constraints  : 3 (12 scalar elements)
+  number of coefficients : 24
+  number of atoms        : 10
+
+Solution summary
+  termination status : INFEASIBLE
+  primal status      : INFEASIBLE_POINT
+  dual status        : INFEASIBILITY_CERTIFICATE
+
+Expression graph
+  satisfy
+   └─ nothing
+  subject to
+   ├─ PSD constraint (convex)
+   │  └─ + (affine; real)
+   │     ├─ 2×2 Matrix{Float64}
+   │     └─ Convex.NegateAtom (affine; real)
+   │        └─ …
+   ├─ PSD constraint (convex)
+   │  └─ + (affine; real)
+   │     ├─ 2×2 Matrix{Float64}
+   │     └─ Convex.NegateAtom (affine; real)
+   │        └─ …
+   ├─ PSD constraint (convex)
+   │  └─ 2×2 real variable (id: 523…342)
+   ⋮</code></pre>
+</div>
+</div>
+<p>The solver does not find a solution, which means that there is no common quadratic Lyapunov function for both subsystems. Well, perhaps trying another solver or two would make our conclusion more robust – <code>MosekTools</code> is another recommendable alternative to <code>SCS</code>.</p>
+<p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute Lyapunov functions for the two subsystems.</p>
+<div id="10" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>problem₁ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₁)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₁,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X₁.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2×2 Matrix{Float64}:
+ 423.71     12.5739
+  12.5739  212.123</code></pre>
+</div>
+</div>
+<div id="12" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X₂ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X₂ + X₂*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>problem₂ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₂)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₂,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>X₂.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2×2 Matrix{Float64}:
+ 212.123   -12.5739
+ -12.5739  423.71</code></pre>
+</div>
+</div>
+<p>Generally, a Lyapunov function has the property that its sublevel set <span class="math inline">\{\bm x \mid V(\bm x) \leq \alpha\}</span> is <em>forward (also positive) invariant</em>. We plot invariant sets corresponding to some particular value for both subsystems superposed on the state portrait in <a href="#fig-no-cqlf-with-lyapunov-invariant-sets" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="cell-fig-no-cqlf-with-lyapunov-invariant-sets" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x1s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x2s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V₁</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₁.value<span class="op">*</span>x</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V₂</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₂.value<span class="op">*</span>x</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>V1s <span class="op">=</span> [<span class="fu">V₁</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>V2s <span class="op">=</span> [<span class="fu">V₂</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V1s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>blue)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V2s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>green)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div id="fig-no-cqlf-with-lyapunov-invariant-sets" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-no-cqlf-with-lyapunov-invariant-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_via_multiple_lyapunov_function_files/figure-html/fig-no-cqlf-with-lyapunov-invariant-sets-output-1.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-no-cqlf-with-lyapunov-invariant-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Invariant ellipses for the two subsystems superposed on the state portrait
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see in <a href="#fig-no-cqlf-with-lyapunov-invariant-sets" class="quarto-xref">Fig.&nbsp;2</a> that none of the two ellipses works as an invariant set for the switched system – a state trajectory entering the set leaves it afterwards. No way to to come up with a single ellipse (hence a single quadratic Lyapunov function) that would work here.</p>
+</div>
+<p>Good, we have seen in the example that it is not always possible to find a common quadratic Lyapunov function for a switched system, even it it is stable. We need to expand the set of functions in which we search for a Lyapunov function. We have proposed one way to do it in the previouse chapter wherein we considered higher degree polynomials on which we imposed the nonnegativity constraint through in the form of SOS constraint. Here we are going to consider another approach. We are goint to stitch together several <em>Lyapunov-like</em> functions, each of which is a Lyapunov function only on some subset of the state space (that is why we call them just Lyapunov-like and not Lyapunov). This approach is sometimes called the <em>Multiple Lyapunov Function</em> (MLF) approach, or <em>Piecewise Lyapunov Function</em> approach.</p>
+<section id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability">Multiple Lyapunov Function (MLF) approach to analysis of stability</h2>
+<p>Instead of just a single <em>common Lyapunov function</em> <span class="math inline">V(\bm x)</span>, we are now going to consider several Lyapunov-like functions <span class="math inline">V_i(\bm x),\; i=1,\ldots,r,</span> that qualify as Lyapunov function only on some subsets of the state space <span class="math inline">\Omega_i</span>. And we “stitch” them together to form a piecewise Lyapunov function <span class="math inline">V(\bm x)</span>: <span class="math display">
 V(x) =
 \begin{cases}
-V_1(x) &amp; \text{if } x\in \Omega_1, \\
+V_1(\bm x) &amp; \text{if } \bm x\in \Omega_1, \\
 \vdots\\
-V_r(x) &amp; \text{if } x\in \Omega_r, \\
+V_r(\bm x) &amp; \text{if } \bm x\in \Omega_r.
 \end{cases}
-</span></li>
-</ul>
+</span></p>
 </section>
-<section id="s-procedure" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="s-procedure">S-procedure</h2>
-<ul>
-<li><p>A result about solvability of two or more quadratic inequalities, not necessarily convex ones.</p>
-<ul>
-<li>For convex problems we have nonlinear Farkas’ lemma.</li>
-</ul></li>
-<li><p>Origin in the control theory (analysis of stability of nonlinear systems, hence the S letter) with the first rigorous result provided by Yakubovich in 1970s.</p></li>
-<li><p>It gives conditions under which (satisfaction of) one quadratic inequality follows from (satisfaction of) another one (or more), that is, it gives a condition under which the following implication holds:</p></li>
-<li><p>Quadratic inequality #1 satisfied by some <span class="math inline">x</span> <span class="math inline">\Rightarrow</span> Quadratic inequality #0 satisfied by the same <span class="math inline">x</span>.</p></li>
-<li><p>In other words, it gives a condition under which the solution set of the inequality #1 denoted as <span class="math inline">\mathcal X_1</span> is included in the solution set <span class="math inline">\mathcal X_0</span> of the inequality #0.</p></li>
-</ul>
-</section>
-<section id="s-procedure-with-nonstrict-inequalities" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="s-procedure-with-nonstrict-inequalities">S-procedure with nonstrict inequalities</h2>
-<ul>
-<li><p>Consider the general quadratic functions <span class="math display">F_i(x) = x^\top A_i x + 2b_i^\top x + c_i, \; i=0,\ldots, p.</span></p></li>
-<li><p>Question: under which conditions <span class="math inline">F_0(x) \geq 0</span> for all <span class="math inline">x</span> satisfying <span class="math inline">F_i(x)\geq 0,\; i=1,\ldots,p</span> ?</p></li>
-<li><p>In other words, we are looking for conditions under which the implication <span class="math display">
-F_i(x) \geq 0,\; i=1,\ldots,p \quad \Rightarrow \quad F_0(x) \geq 0
+<section id="s-procedure" class="level2">
+<h2 class="anchored" data-anchor-id="s-procedure">S-procedure</h2>
+<p>In order to restrict the requirement of positive definiteness of the Lyapunov function to some region in the state space, and similarly for the regurement of negative definiteness of its time derivative, we need to introduce the the <em>S-procedure</em>. This is a result about solvability of two or more quadratic inequalities, not necessarily convex ones (for convex problems we have nonlinear Farkas’ lemma). Origins of this result can be found in the control theory (analysis of stability of nonlinear systems, hence the S letter) with the first rigorous result provided by Yakubovich in 1970s.</p>
+<p>It gives conditions under which (satisfaction of) one quadratic inequality follows from (satisfaction of) another one (or more). Namely, it gives a condition under which the following implication holds:</p>
+<p><span class="math display">\boxed
+{\text{Quadratic inequality \#1 satisfied by some}\; \bm x \Rightarrow \text{Quadratic inequality \#0 satisfied by the same}\; \bm x.}
+</span></p>
+<p>In other words, it gives a condition under which the solution set of the inequality #1 denoted as <span class="math inline">\mathcal X_1</span> is included in the solution set <span class="math inline">\mathcal X_0</span> of the inequality #0.</p>
+<section id="s-procedure-with-nonstrict-inequalities" class="level3">
+<h3 class="anchored" data-anchor-id="s-procedure-with-nonstrict-inequalities">S-procedure with nonstrict inequalities</h3>
+<p>Consider the general quadratic functions <span class="math display">F_i(\bm x) = \bm x^\top \mathbf A_i \bm x + 2\mathbf b_i^\top \bm x + c_i, \; i=0,\ldots, p.</span></p>
+<p>The question is: under which conditions it holds that <span class="math inline">F_0(\bm x) \geq 0</span> for all <span class="math inline">\bm x</span> satisfying <span class="math inline">F_i(\bm x)\geq 0,\; i=1,\ldots,p</span> ?</p>
+<p>In other words, we are looking for conditions under which the implication <span class="math display">
+F_i(\bm x) \geq 0,\; i=1,\ldots,p \quad \Rightarrow \quad F_0(\bm x) \geq 0
 </span><br>
-holds.</p></li>
-<li><p>In the simplest (yet relevant) case <span class="math inline">n=1</span> we search for conditions under which <span class="math inline">F_0(x) \geq 0</span> for all <span class="math inline">x</span> satisfying <span class="math inline">F_1(x)\geq 0</span>,</p></li>
-<li><p>that is, conditions under which the implication <span class="math display">
-F_1(x) \geq 0 \quad \Rightarrow \quad F_0(x) \geq 0
+holds.</p>
+<p>In the simplest (yet relevant) case <span class="math inline">p=1</span> we search for conditions under which <span class="math inline">F_0(\bm x) \geq 0</span> for all <span class="math inline">\bm x</span> satisfying <span class="math inline">F_1(\bm x)\geq 0</span>, that is, conditions under which the implication <span class="math display">
+F_1(\bm x) \geq 0 \quad \Rightarrow \quad F_0(\bm x) \geq 0
 </span><br>
-holds.</p></li>
-</ul>
+holds.</p>
 </section>
-<section id="sufficient-conditions" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="sufficient-conditions">Sufficient conditions</h2>
+<section id="sufficient-conditions" class="level3">
+<h3 class="anchored" data-anchor-id="sufficient-conditions">Sufficient conditions</h3>
 <p>The existence of <span class="math inline">\alpha_i\geq 0,\; i=1,\ldots,p</span> such that <span class="math display">
-F_0(x)-\sum_{i=1}^p \alpha_i F_i(x) \geq 0.
+F_0(\bm x)-\sum_{i=1}^p \alpha_i F_i(\bm x) \geq 0.
 </span></p>
 <ul>
 <li>Generally not necessary, the condition is conservative.<br>
@@ -741,8 +899,8 @@ b_i^\top &amp; c_i
 where <span class="math inline">\alpha_i \geq 0,\; i=1,\ldots,p</span>.</li>
 </ul>
 </section>
-<section id="sufficient-and-also-necessary" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="sufficient-and-also-necessary">Sufficient and also necessary</h2>
+<section id="sufficient-and-also-necessary" class="level3 scrollable">
+<h3 class="scrollable anchored" data-anchor-id="sufficient-and-also-necessary">Sufficient and also necessary</h3>
 <ul>
 <li><p>It is nontrivial that for <span class="math inline">p=1</span> it is also necessary, provided that there is some <span class="math inline">x_0</span> such that <span class="math inline">F_1(x_0)&gt;0</span> .</p></li>
 <li><p>Then we have the following equivalence between the two constraints: <span class="math display">
@@ -765,6 +923,7 @@ b_1^\top &amp; c_1
 \succeq 0,\quad \alpha\geq 0.
 </span></p></li>
 </ul>
+</section>
 </section>
 <section id="more-on-s-procedure" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="more-on-s-procedure">More on S-procedure</h2>
