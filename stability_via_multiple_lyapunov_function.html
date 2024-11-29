@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.36">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,10 +71,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-01c78b5cd655e4cd89133cf59d535862.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-65372f768075fabf8551abaa78c2ba37.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8c89492777ddc1c6ab649c9c2f2ee7ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -517,7 +517,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./complementarity_simulations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simulations using complementarity</span></a>
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -784,11 +784,26 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 205…208)
+   │  └─ 2×2 real variable (id: 181…944)
    ⋮</code></pre>
 </div>
 </div>
-<p>The solver does not find a solution, which means that there is no common quadratic Lyapunov function for both subsystems. Well, perhaps trying another solver or two would make our conclusion more robust – <code>MosekTools</code> is another recommendable alternative to <code>SCS</code>.</p>
+<p>The solver does not find a solution. Well, perhaps trying another solver or two would make our conclusion more robust (<code>MosekTools</code> is another recommendable alternative to <code>SCS</code>). But we are now be tempted to conclude that there is no common quadratic Lyapunov function for both subsystems.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Dual LMI problem confirms the infeasibility of the primal one
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is possible to formulate a dual LMI problem. Its feasibility certifies infeasibility of the primal one. Namely, the problem is, if there are matrices <span class="math inline">\mathbf R_1\succ 0</span> and <span class="math inline">\mathbf R_2\succ 0</span> such that the following LMI holds: <span class="math display">
+\mathbf R_1\mathbf A_1^\top+\mathbf A_1\mathbf R_1 + \mathbf R_2\mathbf A_2^\top+\mathbf A_2\mathbf R_2 \prec 0.
+</span></p>
+</div>
+</div>
 <p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute Lyapunov functions for the two subsystems.</p>
 <div id="10" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
