@@ -813,10 +813,9 @@ x_d(k+1) =
 \]</span></p>
 <p>Reformulating the state update equations for binary variables <span class="math display">\[
 \begin{aligned}
-x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land \neg [\delta_1=1]) \\
-&amp;\quad (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1]) \land [u_{b2}=1]\\
-&amp;\quad (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land \neg [u_{b1}=1] \land [\delta_3=1])\\
-&amp;\quad \lor ([x_{b1} = 1]\land \neg [\delta_2=1])\\
+x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
+&amp;\quad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
+&amp;\quad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
 x_{b2} &amp;= \ldots
 \end{aligned}
 \]</span></p>
