@@ -730,7 +730,7 @@ q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
 0&amp;\leq i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D \perp \bar u_D \geq 0,
 \end{aligned}
 </span><br>
-and voila, we finally got the LCS description. We can also reformat it into the vector format <span class="math display">
+and voila, we finally got the LCS description. We can also reformat it into the matrix-vector form <span class="math display">
 \begin{aligned}
 \begin{bmatrix}
 i_L' \\ q_C'
@@ -795,8 +795,25 @@ Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
 <span class="math display">
       y(t) u(t) = 0.
 </span></p>
-<p>All the above three constraints can be written compactly as a complementarity constraing <span class="math display">
+<p>All the above three constraints can be written compactly as a complementarity constraint <span class="math display">
     0\leq y(t) \perp u(t) \geq 0.
+</span></p>
+<p>Once again, for convenience we now reformat the results in the matrix-vector form</p>
+<p><span class="math display">
+\begin{aligned}
+\begin{bmatrix} \dot x_1\\ \dot x_2\\ \dot x_3\\ \dot x_4 \end{bmatrix}
+&amp;=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+-\frac{k_1+k_2}{m_1} &amp; \frac{k_2}{m_1} &amp; 0 &amp; 0\\
+\frac{k_2}{m_2} &amp; -\frac{k_2}{m_2} &amp; 0 &amp; 0
+\end{bmatrix}
+\begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix} +
+\begin{bmatrix} 0\\ 0\\ \frac{1}{m_1}\\ 0 \end{bmatrix} u,\\
+y &amp;= \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
+0 &amp;\leq y \perp u \geq 0.
+\end{aligned}
 </span></p>
 </div>
 </section>
