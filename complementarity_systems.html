@@ -814,15 +814,16 @@ and it is positive if and only if the left cart hits the hard stop<br>
 \begin{bmatrix}
 0 &amp; 0 &amp; 1 &amp; 0\\
 0 &amp; 0 &amp; 0 &amp; 1\\
--\frac{k_1+k_2}{m_1} &amp; \frac{k_2}{m_1} &amp; 0 &amp; 0\\
-\frac{k_2}{m_2} &amp; -\frac{k_2}{m_2} &amp; 0 &amp; 0
+{\color{blue}-\frac{k_1+k_2}{m_1}} &amp; {\color{blue}\frac{k_2}{m_1}} &amp; 0 &amp; 0\\
+{\color{blue}\frac{k_2}{m_2}} &amp; {\color{blue}-\frac{k_2}{m_2}} &amp; 0 &amp; 0
 \end{bmatrix}
 \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix} +
-\begin{bmatrix} 0 &amp; 0\\ 0 &amp; 0\\ \frac{1}{m_1} &amp;-\frac{1}{m_1}\\ 0 &amp; \frac{1}{m_2}\end{bmatrix} \begin{bmatrix} u_1\\u_2\end{bmatrix},\\
-\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} &amp;= \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0\\ -1 &amp; 1 &amp; 0 &amp; 0\end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
+\begin{bmatrix} 0 &amp; 0\\ 0 &amp; 0\\ {\color{blue}\frac{1}{m_1}} &amp; {\color{blue}-\frac{1}{m_1}}\\ {\color{blue}0} &amp; {\color{blue}\frac{1}{m_2}}\end{bmatrix} \begin{bmatrix} u_1\\u_2\end{bmatrix},\\
+\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} &amp;= \begin{bmatrix} {\color{blue}1} &amp; {\color{blue}0} &amp; 0 &amp; 0\\ {\color{blue}-1} &amp; {\color{blue}1} &amp; 0 &amp; 0\end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
 \mathbf 0 &amp;\leq \bm y \perp \bm u \geq \mathbf 0.
 \end{aligned}
 \tag{2}</span></span></p>
+<p>Note that we highlighted in blue three submatrices that will come in handy in the next section.</p>
 </div>
 </section>
 <section id="complementarity-system-as-a-feedback-interconnection" class="level2">
