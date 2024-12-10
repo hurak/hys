@@ -662,7 +662,7 @@ window.Quarto = {
 </ul>
 <p>When restricted to Matlab, there are several options, all of them commercial:</p>
 <ul>
-<li><a href="https://www.mathworks.com/help/optim/index.html">Optimization Toolbox for Matlab</a> does not offer a specialized solver for complementarity problems. The <code>fmincon</code> function can only handle it as a general nonlinear constraint <span class="math inline">g_1(x)g_2(x)</span>.</li>
+<li><a href="https://www.mathworks.com/help/optim/index.html">Optimization Toolbox for Matlab</a> does not offer a specialized solver for complementarity problems. The <code>fmincon</code> function can only handle it as a general nonlinear constraint <span class="math inline">g_1(x)g_2(x)=0, \, g_1(x) \geq 0, \, g_2(x) \geq 0</span>.</li>
 <li><a href="https://tomopt.com/tomlab/">Tomlab</a> toolbox has some <a href="https://tomopt.com/docs/quickguide/quickguide029.php">support for complementarity constraints</a>.</li>
 <li><a href="https://www.artelys.com/solvers/knitro/">Knitro</a> solver (by Artelys) has some <a href="https://www.artelys.com/docs/knitro/2_userGuide/complementarity.html">support for complementarity constraints</a>.</li>
 <li><a href="https://yalmip.github.io">YALMIP</a> toolbox supports definining the complementarity constraints through the command <a href="https://yalmip.github.io/command/complements/">complements</a>: <code>F = complements(w &gt;= 0, z &gt;= 0)</code>. By default, it converts the problem into the format suitable for a mixed-integer solver. If Knitro is available, it can be interfaced.</li>

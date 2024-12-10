@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Petri nets – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./petri_nets_timed.html" rel="next">
+<link href="./des_references.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./petri_nets.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="./petri_nets.html">Petri nets</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_why.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why another framework?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Formal verification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#definition-of-a-petri-net" id="toc-definition-of-a-petri-net" class="nav-link active" data-scroll-target="#definition-of-a-petri-net">Definition of a Petri net</a>
+  <ul class="collapse">
+  <li><a href="#additional-definitions" id="toc-additional-definitions" class="nav-link" data-scroll-target="#additional-definitions">Additional definitions</a></li>
+  <li><a href="#marking-and-marked-petri-nets" id="toc-marking-and-marked-petri-nets" class="nav-link" data-scroll-target="#marking-and-marked-petri-nets">Marking and marked Petri nets</a></li>
+  <li><a href="#enabling-and-firing-of-a-transition" id="toc-enabling-and-firing-of-a-transition" class="nav-link" data-scroll-target="#enabling-and-firing-of-a-transition">Enabling and firing of a transition</a></li>
+  </ul></li>
+  <li><a href="#state-transition-function" id="toc-state-transition-function" class="nav-link" data-scroll-target="#state-transition-function">State transition function</a></li>
+  <li><a href="#reachability" id="toc-reachability" class="nav-link" data-scroll-target="#reachability">Reachability</a>
+  <ul class="collapse">
+  <li><a href="#reachability-tree-and-graph" id="toc-reachability-tree-and-graph" class="nav-link" data-scroll-target="#reachability-tree-and-graph">Reachability tree and graph</a></li>
+  </ul></li>
+  <li><a href="#number-of-tokens-need-not-be-preserved-1" id="toc-number-of-tokens-need-not-be-preserved-1" class="nav-link" data-scroll-target="#number-of-tokens-need-not-be-preserved-1">Number of tokens need not be preserved</a></li>
+  <li><a href="#and-convergence-and-divergence" id="toc-and-convergence-and-divergence" class="nav-link" data-scroll-target="#and-convergence-and-divergence">AND-convergence, AND-divergence</a></li>
+  <li><a href="#or-convergence-and-or-divergence" id="toc-or-convergence-and-or-divergence" class="nav-link" data-scroll-target="#or-convergence-and-or-divergence">OR-convergence and OR-divergence</a></li>
+  <li><a href="#nondeterminism-in-a-pn" id="toc-nondeterminism-in-a-pn" class="nav-link" data-scroll-target="#nondeterminism-in-a-pn">Nondeterminism in a PN</a></li>
+  <li><a href="#subclasses-of-petri-nets" id="toc-subclasses-of-petri-nets" class="nav-link" data-scroll-target="#subclasses-of-petri-nets">Subclasses of Petri nets</a>
+  <ul class="collapse">
+  <li><a href="#event-graph" id="toc-event-graph" class="nav-link" data-scroll-target="#event-graph">Event graph</a></li>
+  <li><a href="#state-machine" id="toc-state-machine" class="nav-link" data-scroll-target="#state-machine">State machine</a></li>
+  <li><a href="#incidence-matrix" id="toc-incidence-matrix" class="nav-link" data-scroll-target="#incidence-matrix">Incidence matrix</a></li>
+  <li><a href="#state-equation-for-a-petri-net" id="toc-state-equation-for-a-petri-net" class="nav-link" data-scroll-target="#state-equation-for-a-petri-net">State equation for a Petri net</a></li>
+  </ul></li>
+  <li><a href="#queueing-systems-modelled-by-pn" id="toc-queueing-systems-modelled-by-pn" class="nav-link" data-scroll-target="#queueing-systems-modelled-by-pn">Queueing systems modelled by PN</a>
+  <ul class="collapse">
+  <li><a href="#some-more-extensions" id="toc-some-more-extensions" class="nav-link" data-scroll-target="#some-more-extensions">Some more extensions</a></li>
+  </ul></li>
+  <li><a href="#some-extensions-of-basic-petri-nets" id="toc-some-extensions-of-basic-petri-nets" class="nav-link" data-scroll-target="#some-extensions-of-basic-petri-nets">Some extensions of basic Petri nets</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./petri_nets.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="./petri_nets.html">Petri nets</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Petri nets</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this chapter we introduce another formalism for modelling discrete event systems (DES) – Petri nets. Petri nets offer an alternative perspective on discrete even systems compared to automata. And it is good to have alternatives, isn’t it? For some purposes, one framework can be more appropriate than the other.</p>
+<p>Furthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived <em>GRAFCET</em> language, which in turn served as the basis for the <em>Sequential Function Chart</em> (SFC) language for PLC programming. See the <a href="./petri_nets_references.html">references</a>.</p>
+<p>Last but not least, an elegant algebraic framework based on the so-called (max,+) algebra has been developed for a subset of Petri nets (so-called event graphs) and it would be a shame not to mention it in our course (in the next chapter).</p>
+<section id="definition-of-a-petri-net" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-a-petri-net">Definition of a Petri net</h2>
+<p>Similarly as in the case of automata, a <em>Petri net</em> (PN) can be defined as a tuple of sets and functions: <span class="math display">\boxed{PN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w\},}</span> where</p>
+<ul>
+<li><span class="math inline">\mathcal{P} = \{p_1, \dots, p_n\}</span> is a finite set of places,</li>
+<li><span class="math inline">\mathcal{T} = \{t_1, \dots, t_m\}</span> is a finite set of transitions,</li>
+<li><span class="math inline">\mathcal{A} \subseteq (\mathcal{P} \times \mathcal{T}) \cup (\mathcal{T} \times \mathcal{P})</span> is a finite set of arcs, and these arcs are directed and since there are two types of nodes, there are also two types of arcs:
+<ul>
+<li><span class="math inline">(p_i, t_j) \in \mathcal{A}</span> is from place <span class="math inline">p_i</span> to transition <span class="math inline">t_j</span>,</li>
+<li><span class="math inline">(t_j, p_i) \in \mathcal{A}</span> is from transition <span class="math inline">t_j</span> to place <span class="math inline">p_i</span>,</li>
+</ul></li>
+<li><span class="math inline">w : \mathcal{A} \to \mathbb{N}</span> is a weight function.</li>
+</ul>
+<p>Similarly as in the case of automata, Petri nets can be visualized using graphs. But this time, we need to invoke the concept of a weighted bipartite graph. That is, a graph with two types of nodes:</p>
+<ul>
+<li><em>places</em> = circles,</li>
+<li><em>transitions</em> = bars.</li>
+</ul>
+<p>The nodes of different kinds are connected by <em>arcs</em> (arrowed curves). A integer <em>weights</em> are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.</p>
+<div id="exm-simple-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Simple Petri net)</strong></span> We consider just two places, that is, <span class="math inline">\mathcal{P} = \{p_1, p_2\}</span>, and one transition, that is, <span class="math inline">\mathcal{T} = \{t\}</span>. The set of arcs is <span class="math inline">\mathcal{A} = \{\underbrace{(p_1, t)}_{a_1}, \underbrace{(t, p_2)}_{a_2}\}</span>, and the associated weights are <span class="math inline">w(a_1) = w((p_1, t)) = 2</span> and <span class="math inline">w(a_2) = w((t, p_2)) = 1</span>. The Petri net is depicted in <a href="#fig-simple-petri-net" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<div id="fig-simple-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simple-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simple-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a simple Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="additional-definitions" class="level3">
+<h3 class="anchored" data-anchor-id="additional-definitions">Additional definitions</h3>
+<ul>
+<li><span class="math inline">\mathcal{I}(t_j)</span> … a set of input places of the transition <span class="math inline">t_j</span>,</li>
+<li><span class="math inline">\mathcal{O}(t_j)</span> … a set of output places of the transition <span class="math inline">t_j</span>.</li>
+</ul>
+<div id="exm-more-complex-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (More complex Petri net)</strong></span> &nbsp;</p>
+<ul>
+<li><span class="math inline">\mathcal{P} = \{p_1, p_2, p_3, p_4\}</span>,</li>
+<li><span class="math inline">\mathcal{T} = \{t_1, t_2, t_3, t_4, t_5\}</span>,</li>
+<li><span class="math inline">\mathcal{A} = \{(p_1, t_1), (t_1, p_1), (p_1, t_2),\ldots\}</span>,</li>
+<li><span class="math inline">w((p_1, t_1)) = 2, \; w((t_1, p_1)) = 1, \; \ldots</span></li>
+</ul>
+<div id="fig-more-complex-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-more-complex-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/complicated_petri_net.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-more-complex-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a more complex Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="marking-and-marked-petri-nets" class="level3">
+<h3 class="anchored" data-anchor-id="marking-and-marked-petri-nets">Marking and marked Petri nets</h3>
+<p>An important concept that we must introduce now is that of <em>marking</em>. It is a function that assigns an integer to each place <span class="math display">  x: \mathcal{P} \rightarrow \mathbb{N}.</span></p>
+<p>The vector composed of the values of the marking function for all places <span class="math display">\bm x = \begin{bmatrix}x(p_1)\\ x(p_2)\\ \vdots \\ x(p_n) \end{bmatrix}</span> can be viewed as the <em>state vector</em> (although the Petri nets community perhaps would not use this terminology and stick to just marking).</p>
+<p>Marked Petri net is then a Petri net augmented with the marking</p>
+<p><span class="math display">MPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w,x\}.</span></p>
+<section id="visualization-of-marked-petri-net-using-tokens" class="level4">
+<h4 class="anchored" data-anchor-id="visualization-of-marked-petri-net-using-tokens">Visualization of marked Petri net using tokens</h4>
+<p>Marked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.</p>
+<div id="exm-marked-petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Marked Petri net)</strong></span> Consider the Petri net from <a href="#exm-simple-petri-net" class="quarto-xref">Example&nbsp;1</a>. The marking function is <span class="math inline">x(p_1) = 2</span> and <span class="math inline">x(p_2) = 1</span>, which assembled into a vector gives <span class="math inline">\bm x = \begin{bmatrix}1\\ 0 \end{bmatrix}</span>. The marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-1" class="quarto-xref">Fig&nbsp;3</a>.</p>
+<div id="fig-simplest-petri-net-marked-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simplest-petri-net-marked-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net_marked_1.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplest-petri-net-marked-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example of a marked Petri net
+</figcaption>
+</figure>
+</div>
+<p>For another marking, namely <span class="math inline">\bm x = \begin{bmatrix}2\\ 1 \end{bmatrix}</span>, the marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-2" class="quarto-xref">Fig&nbsp;4</a>.</p>
+<div id="fig-simplest-petri-net-marked-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simplest-petri-net-marked-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/simplest_petri_net_marked_2.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simplest-petri-net-marked-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Example of a marked Petri net with different marking
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="enabling-and-firing-of-a-transition" class="level3">
+<h3 class="anchored" data-anchor-id="enabling-and-firing-of-a-transition">Enabling and firing of a transition</h3>
+<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">
+x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
+</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Can but does not have to
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The enabled transition can <em>fire</em>, but it doesn’t have to. We will exploit this in timed PN.</p>
+</div>
+</div>
+<div id="exm-enabled-transition" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Enabled transition)</strong></span> See the PN in <a href="#exm-marked-petri-net" class="quarto-xref">Example&nbsp;3</a>: in the first marked PN the transition cannot fire, in the second it can.</p>
+</div>
+</section>
+</section>
+<section id="state-transition-function" class="level2">
+<h2 class="anchored" data-anchor-id="state-transition-function">State transition function</h2>
+<p>We now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a <em>state transition function</em>. For a Petri net with <span class="math inline">n</span> places, the state transition function is <span class="math display">
+f: \mathbb N^n \times \mathcal{T} \rightarrow \mathbb N^n,
+</span> which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).</p>
+<p>The function is only defined for a transition <span class="math inline">t_j</span> iff the transition is enabled.</p>
+<p>If the transition <span class="math inline">t_j</span> is enabled and fired, the state evolves as <span class="math display">
+\bm x^+ = f(\bm x, t_j),
+</span> where the individual components of <span class="math inline">\bm x</span> evolve according to <span class="math display">\boxed{
+    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \; i = 1,\ldots,n.}
+</span></p>
+<p>This has a visual interpretation – a fired transition moves tokens from the input to the output places.</p>
+<div id="exm-moving-tokens-around" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Moving tokens around)</strong></span> Consider the PN with the initial marking (state) <span class="math inline">\bm x_0 = \begin{bmatrix}2\\ 0\\ 0\\ 1 \end{bmatrix}</span> (at discrete time 0), and the transition <span class="math inline">t_1</span> enabled</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_1.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Example PN in the initial state at time 0, the transition <span class="math inline">t_1</span> enabled, but not yet fired</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conflict in notation. Again. Sorry.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We admit the notation here is confusing, because we use the lower index 0 in <span class="math inline">\bm x_0</span> to denote the discrete time, while the lower index 1 in <span class="math inline">t_1</span> to denote the transition and the lower indices 1 and 2 in <span class="math inline">p_1</span> and <span class="math inline">p_2</span> just number the transitions and places, respectively. We could have chosen something like <span class="math inline">\bm x(0)</span> or <span class="math inline">\bm x[0]</span>, but we dare to hope that the context will make it clear.</p>
+</div>
+</div>
+<p>Now we assume that <span class="math inline">t_1</span> is fired</p>
+<div id="fig-example-PN-time-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-example-PN-time-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/transition_as_moving_tokens_2.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-example-PN-time-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Transition <span class="math inline">t_1</span> in the example PN fired at time 1
+</figcaption>
+</figure>
+</div>
+<p>The state vector changes to <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span>, the discrete time is 1 now.</p>
+<p>As a result of this transition, note that <span class="math inline">t_1, t_2, t_3</span> are now enabled.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Number of tokens need not be preserved
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the example we can see for the first time, that the number of tokens need not be preserved.</p>
+</div>
+</div>
+<p>Now fire the <span class="math inline">t_2</span> transition</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_3.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Transition <span class="math inline">t_2</span> in the example PN fired at time 2</figcaption>
+</figure>
+</div>
+<p>The state vector changes to <span class="math inline">\bm x_2 = [1, 1, 0, 2]^\top</span>, the discrete time is 2 now.</p>
+<p>Good, we can see the idea. But now we go back to time 1 (as in <a href="#fig-example-PN-time-1" class="quarto-xref">Fig&nbsp;5</a>) to explore the alternative evolution. With the state vector <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span> and the transitions <span class="math inline">t_1, t_2, t_3</span> enabled, we fire <span class="math inline">t_3</span> this time.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/transition_as_moving_tokens_4.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Transition <span class="math inline">t_3</span> in the example PN fired at time 1</figcaption>
+</figure>
+</div>
+<p>The state changes to <span class="math inline">\bm x_2 = [0, 1, 0, 0]^\top</span>, the discrete time is 2. Apparently the PN evolved into at a different state. The lesson learnt with this example is that the order of firing of enabled transitions matters.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The order in which the enabled transitions are fired does matter
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The dependence of the state evolution upon the order of firing the transitions is not surprising. Wwe have already encountered it in automata when the active event set for a given state contains more then a single element.</p>
+</div>
+</div>
+</section>
+<section id="reachability" class="level2">
+<h2 class="anchored" data-anchor-id="reachability">Reachability</h2>
+<p>We have started talking about states and state transitions in Petri nets, which are all concepts that we are familiar with from dynamical systems. Another such concept is <em>reachability</em>. We explain it through an example.</p>
+<div id="exm-unreachable-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 (Not all states are reachable)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/unreachable_petri_net.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Example of an unreachability in a Petri net</figcaption>
+</figure>
+</div>
+<p>The Petri net is initial in the state <span class="math inline">[2,1]^\top</span>. The only reachable state is <span class="math inline">[0,2]^\top</span>.</p>
+<p>By the way, note that the weight of the arc from the place <span class="math inline">p_1</span> to the transition <span class="math inline">t</span> is 2, so both tokens are removed from the place <span class="math inline">p_1</span> when the transition <span class="math inline">t</span> fires. But then the arc to the place <span class="math inline">p_2</span> has weight 1, so only one token is added to the place <span class="math inline">p_2</span>. The other token is “lost”.</p>
+</div>
+<section id="reachability-tree-and-graph" class="level3">
+<h3 class="anchored" data-anchor-id="reachability-tree-and-graph">Reachability tree and graph</h3>
+<p>Here we introduce two tools for analysis of reachability of a Petri net.</p>
+<div id="exm-reachability-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7</strong></span> Consider the following example of a Petri net.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_for_reachability_analysis.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Example of a Petri net for reachability analysis</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-reachability-tree" class="quarto-xref">Fig&nbsp;6</a> we draw a <em>reachability tree</em> for this Petri net.</p>
+<div id="fig-reachability-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reachability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/reachability_tree.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reachability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Reachability tree for an example Petri net
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-reachability-graph" class="quarto-xref">Fig&nbsp;7</a> we draw a reachability graph for this Petri net.</p>
+<div id="fig-reachability-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reachability-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/reachability_graph.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reachability-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Reachability graph for an example Petri net
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="number-of-tokens-need-not-be-preserved-1" class="level2">
+<h2 class="anchored" data-anchor-id="number-of-tokens-need-not-be-preserved-1">Number of tokens need not be preserved</h2>
+<p>We have already commented on this before, but we emphasize it here. Indeed, it can be that <span class="math display">
+\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &lt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
+</span></p>
+<p>or</p>
+<p><span class="math display">
+\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &gt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
+</span></p>
+<p>With this reminder, we can now hightlight several patters that can be observed in Petri nets.</p>
+</section>
+<section id="and-convergence-and-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="and-convergence-and-divergence">AND-convergence, AND-divergence</h2>
+<p><img src="petri_nets_figures/and_convergence_and_divergence.png" class="img-fluid" width="600"></p>
+</section>
+<section id="or-convergence-and-or-divergence" class="level2">
+<h2 class="anchored" data-anchor-id="or-convergence-and-or-divergence">OR-convergence and OR-divergence</h2>
+<p><img src="petri_nets_figures/or_convergence_and_divergence.png" class="img-fluid" width="600"></p>
+</section>
+<section id="nondeterminism-in-a-pn" class="level2">
+<h2 class="anchored" data-anchor-id="nondeterminism-in-a-pn">Nondeterminism in a PN</h2>
+<p>In the four patters just enumerated, we have seen that the last one – the OR-divergence – is not deterministic. Indeed, consider the following example.</p>
+<div id="exm-conflict-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_with_a_conflict.png" class="img-fluid figure-img" style="width:15.0%"></p>
+<figcaption>Nondeterminism in a Petri net</figcaption>
+</figure>
+</div>
+</div>
+<p>In other words, we can incorporate a nondeterminism in a model.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nondeterminism in automata
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that something similar can be encountered in automata, if the <em>active event set</em> for a given state contains more than one element (event,transition).</p>
+</div>
+</div>
+</section>
+<section id="subclasses-of-petri-nets" class="level2">
+<h2 class="anchored" data-anchor-id="subclasses-of-petri-nets">Subclasses of Petri nets</h2>
+<p>We can identify two subclasses of Petri nets:</p>
+<ul>
+<li>event graphs,</li>
+<li>state machines.</li>
+</ul>
+<section id="event-graph" class="level3">
+<h3 class="anchored" data-anchor-id="event-graph">Event graph</h3>
+<ul>
+<li>Each place has just one input and one output transition (all <span class="math inline">w</span>s equal to 1).</li>
+<li>No OR-convergence, no OR-divergence.</li>
+<li>Also known as <em>Decision-free PN</em>.</li>
+<li>It can model <em>synchronization</em>.</li>
+</ul>
+<div id="exm-event-graph" class="theorem example">
+<p><span class="theorem-title"><strong>Example 9 (Event graph)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/event_graph.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Example of an event graph</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="state-machine" class="level3">
+<h3 class="anchored" data-anchor-id="state-machine">State machine</h3>
+<ul>
+<li>Each transition has just one input and one output place.</li>
+<li>No AND-convergence, no AND-divergence.</li>
+<li>Does not model synchronization.</li>
+<li>It can model <em>race conditions</em>.</li>
+<li>With no source (input) and sink (output) transitions, the number of tokens is preserved.</li>
+</ul>
+<div id="exm-state-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10 (State machine)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/state_machine_as_petri_net.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Example of a state machine</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="incidence-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="incidence-matrix">Incidence matrix</h3>
+<p>We consider a Petri net with <span class="math inline">n</span> places and <span class="math inline">m</span> transitions. The incidence matrix is defined as <span class="math display">
+\bm A \in \mathbb{Z}^{n\times m},
+</span> where <span class="math display">
+a_{ij} = w(t_j,p_i) - w(p_i,t_j).
+</span></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Transpose
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some define the incidence matrix as the transpose of our definition.</p>
+</div>
+</div>
+</section>
+<section id="state-equation-for-a-petri-net" class="level3">
+<h3 class="anchored" data-anchor-id="state-equation-for-a-petri-net">State equation for a Petri net</h3>
+<p>With the incidence matrix defined above, the state equation for a Petri net can be written as <span class="math display">
+\bm x^+ = \bm x + \bm A \bm u,
+</span> where <span class="math inline">\bm u</span> is a <em>firing vector</em> for the <em>enabled</em> <span class="math inline">j</span>-th transition <span class="math display">
+\bm u = \bm e_j = \begin{bmatrix}0 \\ \vdots \\ 0 \\ 1\\ 0\\ \vdots\\ 0\end{bmatrix}
+</span> with the 1 at the <span class="math inline">j</span>-th position.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+State vector as a column rather then a row
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that in <span class="citation" data-cites="cassandrasIntroductionDiscreteEvent2021"><a href="#ref-cassandrasIntroductionDiscreteEvent2021" role="doc-biblioref">[1]</a></span> they define everything in terms of the transposed quantities, but we prefer sticking to the notion of a state vector as a column.</p>
+</div>
+</div>
+<div id="exm-state-equation-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11 (State equation for a Petri net)</strong></span> Consider the Petri net from <a href="#exm-moving-tokens-around" class="quarto-xref">Example&nbsp;5</a>, which we show again below in <a href="#fig-state-equation-PN" class="quarto-xref">Fig&nbsp;8</a>.</p>
+<div id="fig-state-equation-PN" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-equation-PN-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/transition_as_moving_tokens_1.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-equation-PN-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Example of a Petri net
+</figcaption>
+</figure>
+</div>
+<p>The initial state is given by the vector <span class="math display">
+\bm x_0
+=
+\begin{bmatrix}
+2\\ 0\\ 0\\ 1
+\end{bmatrix}
+</span></p>
+<p>The incidence matrix is <span class="math display">
+\bm A = \begin{bmatrix}
+-1 &amp; 0 &amp; -1\\
+1 &amp; 0 &amp; 0\\
+1 &amp; -1 &amp; -1\\
+0 &amp; 1 &amp; -1
+\end{bmatrix}
+</span></p>
+<p>And the state vector evolves according to <span class="math display">
+\begin{aligned}
+\bm x_1 &amp;= \bm x_0 + \bm A \bm u_1\\
+\bm x_2 &amp;= \bm x_1 + \bm A \bm u_2\\
+\vdots &amp;
+\end{aligned}
+</span></p>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We repeat once again just to make sure: the lower index corresponds to the discrete time.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="queueing-systems-modelled-by-pn" class="level2">
+<h2 class="anchored" data-anchor-id="queueing-systems-modelled-by-pn">Queueing systems modelled by PN</h2>
+<p>Although Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in <a href="#fig-queueing-system-with-events" class="quarto-xref">Fig&nbsp;9</a>.</p>
+<div id="fig-queueing-system-with-events" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-queueing-system-with-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/queueing_system_with_events.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-queueing-system-with-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Queing systems and its components and transitions/events
+</figcaption>
+</figure>
+</div>
+<p>We can associate the transitions with the events in the queing system:</p>
+<ul>
+<li><span class="math inline">a</span> is a spontaneous transition (no input places).</li>
+<li><span class="math inline">s</span> needs a customer in the <strong>q</strong>ueue and the server being <strong>i</strong>dle.</li>
+<li><span class="math inline">c</span> needs the server being <strong>b</strong>usy.</li>
+</ul>
+<p>We can now start drawing the Petri net by drawin the bars corresponding to the transitions. Then in between every two bars, we draw a circle for a place. The places can be associated with three bold-face letters above, namely:</p>
+<p><span class="math display">\quad \mathcal{P} = \{Q, I, B\},</span> that is, queue, idle, busy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/petri_net_simple_queue.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Petri net corresponding to the queing system</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+The input transition adds tokens to the system
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The transition <span class="math inline">a</span> is an input transition – the tokens are added to the system through this transition.</p>
+</div>
+</div>
+<p>Note how we consider the token in the <span class="math inline">I</span> place. This is not only to express that the server is initially idle, ready to serve as soon as a customer arrives to the queue, it also ensures that no serving of a new customer can start before the serving of the current customer is completed.</p>
+<p>The initial state: <span class="math inline">[0,1,0]^\top</span>. Consider now a particular trace (of transitions/events) <span class="math inline">\{a,s,a,a,c,s,a\}</span>. Verify that this leads to the final state <span class="math inline">[2,0,1]^\top</span>.</p>
+<section id="some-more-extensions" class="level3">
+<h3 class="anchored" data-anchor-id="some-more-extensions">Some more extensions</h3>
+<p>We can keep adding features to the model of a queing system. In particular,</p>
+<ul>
+<li>the arrival transition always enabled,</li>
+<li>the server can break down, and then be repaired,</li>
+<li>completing the service <span class="math inline">\neq</span> customer departure.</li>
+</ul>
+<p>These are incorporated into the Petri net in <a href="#fig-petri-net-modified-queue" class="quarto-xref">Fig&nbsp;10</a>.</p>
+<div id="fig-petri-net-modified-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-petri-net-modified-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="petri_nets_figures/petri_net_modified_queue.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-petri-net-modified-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Extended model of a queueing system
+</figcaption>
+</figure>
+</div>
+<p>In the Petri net, <span class="math inline">d</span> is an output transition – the tokens are removed from the system.</p>
+<div id="exm-beverage-vending-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12 (Beverage vending machine)</strong></span> Below we show a Petri net for a beverage vending machine. While building it, we find it useful to identify the events/transitions that can happen in the system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="petri_nets_figures/beverage_vending_machine_petri_net.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Petri net for a beverage vending machine</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</section>
+<section id="some-extensions-of-basic-petri-nets" class="level2">
+<h2 class="anchored" data-anchor-id="some-extensions-of-basic-petri-nets">Some extensions of basic Petri nets</h2>
+<ul>
+<li>Coloured Petri nets (CPN): tokens can by of several types (colours), and the transitions can be enabled only if the tokens have the right colours.</li>
+<li>…</li>
+</ul>
+<p>We do not cover these extensions in our course. But there is one particular extension that we do want to cover, and this amounts to introducing time into Petri nets, leading to timed Petri nets, which we will discuss in the next chapter.</p>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-cassandrasIntroductionDiscreteEvent2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. G. Cassandras and S. Lafortune, <em>Introduction to <span>Discrete Event Systems</span></em>, 3rd ed. Cham: Springer, 2021. Available: <a href="https://doi.org/10.1007/978-3-030-72274-6">https://doi.org/10.1007/978-3-030-72274-6</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./des_references.html" class="pagination-link" aria-label="Literature">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./petri_nets_timed.html" class="pagination-link" aria-label="Timed Petri nets">
+        <span class="nav-page-text">Timed Petri nets</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
