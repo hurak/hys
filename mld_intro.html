@@ -594,7 +594,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reachability</span></a>
+ <span class="menu-text">Reachability analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -910,22 +910,22 @@ z &amp;\leq a^\top x + b^\top u + f - m(1-\delta),\\
 <ul>
 <li>If <span class="math inline">X</span>
 <ul>
-<li>then <span class="math inline">z = a_1^\top x + b_1^\top u + f_1</span>,</li>
-<li>else <span class="math inline">z = a_2^\top x + b_2^\top u + f_2</span>.</li>
+<li>then <span class="math inline">z = a_1^\top x + b_1^\top u + a_1</span>,</li>
+<li>else <span class="math inline">z = a_2^\top x + b_2^\top u + a_2</span>.</li>
 </ul></li>
 <li>It can be expressed as <span class="math display">
 \begin{aligned}
-z &amp;= \delta\,(a_1^\top x + b_1^\top u + f_1) \\
-&amp;\quad + (1-\delta)(a_2^\top x + b_2^\top u + f_2)
+z &amp;= \delta\,(a_1^\top x + b_1^\top u + a_1) \\
+&amp;\quad + (1-\delta)(a_2^\top x + b_2^\top u + a_2)
 \end{aligned}
 </span></li>
 </ul>
 <p><span class="math display">
 \begin{aligned}
-(m_2-M_1)\delta  + z &amp;\leq a_2^\top x + b_2^\top u + f_2,\\
-(m_1-M_2)\delta  - z &amp;\leq -a_2^\top x - b_2^\top u - f_2,\\
-(m_1-M_2)(1-\delta)  + z &amp;\leq a_1^\top x + b_1^\top u + f_1,\\
-(m_2-M_1)(1-\delta)  - z &amp;\leq -a_1^\top x - b_1^\top u - f_1.
+(m_2-M_1)\delta  + z &amp;\leq a_2^\top x + b_2^\top u + a_2,\\
+(m_1-M_2)\delta  - z &amp;\leq -a_2^\top x - b_2^\top u - a_2,\\
+(m_1-M_2)(1-\delta)  + z &amp;\leq a_1^\top x + b_1^\top u + a_1,\\
+(m_2-M_1)(1-\delta)  - z &amp;\leq -a_1^\top x - b_1^\top u - a_1.
 \end{aligned}
 </span></p>
 </section>
@@ -950,7 +950,7 @@ x_c(k+1) = \sum_{i=1}^s z_i(k),
 <li>where <span class="math display">
 z_1(k) =
 \begin{cases}
-A_1 x_c(k) + B_1 u_c(k) + f_1 &amp; \text{if}\;i(k)=1\\
+A_1 x_c(k) + B_1 u_c(k) + a_1 &amp; \text{if}\;i(k)=1\\
 0 &amp; \text{otherwise}
 \end{cases}
 </span></li>
@@ -988,11 +988,9 @@ E_\delta \delta &amp;+ E_z z(k) \leq E_u u(k) + E_x x(k) + E_0.
 <section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
 <div id="exm-mld-switched" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Switched linear system)</strong></span> <span class="math display">
-\dot x(t) = a_i x(t) + b_i u(t), \quad i\in\{0,1\},
-</span> where <span class="math inline">i=0</span> if <span class="math inline">x(t)&lt; 0</span> and <span class="math inline">i=1</span> otherwise (that is, if <span class="math inline">x\geq 0</span>). Discretizing the system, we get <span class="math display">
-x_{k+1} = f_i x(t) + g_i u(t), \quad i\in\{0,1\},
-</span> where, again, <span class="math inline">i=0</span> if <span class="math inline">x(t)&lt; 0</span> and <span class="math inline">i=1</span> otherwise. The coefficients of the discrete model follow from the ZOH discretization, that is, <span class="math inline">f_i = e^{a_i T_s}</span> and <span class="math inline">g_i = \int_0^{T_s} e^{a_i \tau} d\tau b_i</span>.</p>
+<p><span class="theorem-title"><strong>Example 2 (Switched linear system)</strong></span> We consider a discrete-time switched system that switches between two linear systems <span class="math display">
+x_{k+1} = a_i x(t) + b_i u(t), \quad i\in\{0,1\},
+</span> where <span class="math inline">i=0</span> if <span class="math inline">x(t)&lt; 0</span> and <span class="math inline">i=1</span> otherwise.</p>
 <p>The auxilliary binary variable <span class="math inline">\delta</span> is introduced to encode the switching condition: <span class="math display">
 [\delta = 1] \iff [-x\leq 0].
 </span></p>
@@ -1004,26 +1002,26 @@ x_{k+1} = f_i x(t) + g_i u(t), \quad i\in\{0,1\},
 </span> where <span class="math inline">m</span> and <span class="math inline">M</span> are lower and upper bounds on <span class="math inline">x</span>, respectively, and <span class="math inline">\epsilon</span> is a small positive number. Say, if it is known that <span class="math inline">x\in [-10,10]</span>, then <span class="math inline">m=-10</span>, <span class="math inline">M=10</span>. We can set <span class="math inline">\epsilon = 10^{-8}</span>.</p>
 <p>Furthermore, just a single continuous (real) variable <span class="math inline">z</span> is introduced to encode one of two modes of the system: <span class="math display">
 \begin{aligned}\\
-[\delta = 1] \iff z &amp;= f_2 x_k + g_2 u_k,\\
-[\delta = 0] \iff z &amp;= f_1 x_k + g_1 u_k.
+[\delta = 1] \iff z &amp;= a_2 x_k + b_2 u_k,\\
+[\delta = 0] \iff z &amp;= a_1 x_k + b_1 u_k.
 \end{aligned}
 </span></p>
 <p>This can be rewritten as <span class="math display">
 \begin{aligned}
-(m_1-M_2)\delta + z &amp;\leq f_1 x_k + g_1 u_k,\\
-(m_2-M_1)\delta - z &amp;\leq -f_1 x_k - g_1 u_k,\\
-(m_2-M_1)(1-\delta) + z &amp;\leq f_2 x_k + g_2 u_k,\\
-(m_1-M_2)(1-\delta) - z &amp;\leq -f_2 x_k - g_2 u_k,
+(m_1-M_2)\delta + z &amp;\leq a_1 x_k + b_1 u_k,\\
+(m_2-M_1)\delta - z &amp;\leq -a_1 x_k - b_1 u_k,\\
+(m_2-M_1)(1-\delta) + z &amp;\leq a_2 x_k + b_2 u_k,\\
+(m_1-M_2)(1-\delta) - z &amp;\leq -a_2 x_k - b_2 u_k,
 \end{aligned}
-</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">f_1 x_k + g_1 u_k</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">f_2 x_k + g_2 u_k</span>.</p>
+</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">a_1 x_k + b_1 u_k</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">a_2 x_k + b_2 u_k</span>.</p>
 <p>Collecting all the six inequalities (and reformatting them) we get <span class="math display">
 \begin{aligned}
 M\delta &amp;\leq x + M,\\
 (m-\epsilon)\delta &amp;\leq -x - \epsilon,\\
-(m_1-M_2)\delta + z &amp;\leq f_1 x_k + g_1 u_k,\\
-(m_2-M_1)\delta - z &amp;\leq -f_1 x_k - g_1 u_k,\\
-(M_1-m_2)\delta + z &amp;\leq f_2 x_k + g_2 u_k + (M_1-m_2),\\
-(M_2-m_1)\delta - z &amp;\leq - f_2 x_k - g_2 u_k + (M_2-m_1).
+(m_1-M_2)\delta + z &amp;\leq a_1 x_k + b_1 u_k,\\
+(m_2-M_1)\delta - z &amp;\leq -a_1 x_k - b_1 u_k,\\
+(M_1-m_2)\delta + z &amp;\leq a_2 x_k + b_2 u_k + (M_1-m_2),\\
+(M_2-m_1)\delta - z &amp;\leq - a_2 x_k - b_2 u_k + (M_2-m_1).
 \end{aligned}
 </span></p>
 <p>We can rewrite these in a compact way as <span class="math display">
@@ -1031,7 +1029,7 @@ E_\delta \delta + E_z z \leq E_x x_k + E_u u_k + E_0,
 </span> where <span class="math display">
 \begin{aligned}
 E_\delta &amp;= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
-E_x &amp;= \begin{bmatrix} 1\\ -1\\ f_1\\ -f_1\\ f_2\\ -f_2\end{bmatrix},\qquad E_u = \begin{bmatrix} 0\\ 0\\ g_1\\ -g_1\\ g_2\\ -g_2\end{bmatrix},\qquad E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
+E_x &amp;= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad E_u = \begin{bmatrix} 0\\ 0\\ b_1\\ -b_1\\ b_2\\ -b_2\end{bmatrix},\qquad E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
 \end{aligned}
 </span></p>
 <p>On top of these inequalities, we need to add the state update equation. It is, however, particularly simple in this case: <span class="math display">

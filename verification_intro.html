@@ -69,6 +69,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -551,7 +594,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reachability</span></a>
+ <span class="menu-text">Reachability analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -579,8 +622,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#verification-vs-validation" id="toc-verification-vs-validation" class="nav-link active" data-scroll-target="#verification-vs-validation">Verification vs validation</a></li>
+  <li><a href="#approches-to-verification" id="toc-approches-to-verification" class="nav-link" data-scroll-target="#approches-to-verification">Approches to verification</a></li>
+  <li><a href="#model-checking-as-one-of-formal-verification-approaches" id="toc-model-checking-as-one-of-formal-verification-approaches" class="nav-link" data-scroll-target="#model-checking-as-one-of-formal-verification-approaches">Model checking as one of formal verification approaches</a></li>
+  <li><a href="#labelled-transition-system-lts" id="toc-labelled-transition-system-lts" class="nav-link" data-scroll-target="#labelled-transition-system-lts">Labelled Transition system (LTS)</a></li>
+  <li><a href="#two-special-types-of-specifications" id="toc-two-special-types-of-specifications" class="nav-link" data-scroll-target="#two-special-types-of-specifications">Two special types of specifications</a>
+  <ul class="collapse">
+  <li><a href="#safety-also-invariance" id="toc-safety-also-invariance" class="nav-link" data-scroll-target="#safety-also-invariance">Safety (also invariance)</a></li>
+  <li><a href="#liveness-also-progress" id="toc-liveness-also-progress" class="nav-link" data-scroll-target="#liveness-also-progress">Liveness (also progress)</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -604,9 +661,192 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About…</p>
+<p>It has become nearly a tradition in our course that the terminology we use is often heavily overloaded. The term “verification” is no exception. Although are providing a definition below, to which which are going to adhere in this course, it is important to be aware that the term is used in many different contexts and with different meanings.</p>
+<section id="verification-vs-validation" class="level2">
+<h2 class="anchored" data-anchor-id="verification-vs-validation">Verification vs validation</h2>
+<p>One particular opportunity for confusion is the related term “validation”. According to <a href="https://www.pmi.org/pmbok-guide-standards/foundational/pmbok">PMBOK Guide</a>:</p>
+<dl>
+<dt>Validation</dt>
+<dd>
+The assurance that a product, service, or system meets the needs of the customer and other identified stakeholders. It often involves acceptance and suitability with external customers.
+</dd>
+<dt>Verification</dt>
+<dd>
+The evaluation of whether or not a product, service, or system complies with a regulation, requirement, specification, or imposed condition. It is often an internal process.
+</dd>
+</dl>
+<p>Undoubtedly, other definitions can be found, but we are going to stick to viewing verification as a process of checking if a system satisfies given specifications or requirements. Whether these correctly capture the needs of the customer is a different question, and it is the subject of validation.</p>
+</section>
+<section id="approches-to-verification" class="level2">
+<h2 class="anchored" data-anchor-id="approches-to-verification">Approches to verification</h2>
+<ul>
+<li>Testing – just run the system and see if it behaves as expected. Disadvantages are obvious: cost, time, coverage.</li>
+<li>Simulation – reduces these disadvantages, but not completely.</li>
+<li>Analytical techniques, also known as <em>formal verification</em> – the aim is to <em>prove</em> satisfaction of specifications <em>for all</em> possible conditions/evolutions of the system. The specifications (or requirements) are given in a formal (mathematical) language. Formal (mathematical) methods are then used.</li>
+</ul>
+</section>
+<section id="model-checking-as-one-of-formal-verification-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="model-checking-as-one-of-formal-verification-approaches">Model checking as one of formal verification approaches</h2>
+<p>There are several classes of formal verification techniques. One of them is <em>model checking</em>. It is based on a model of the system. For discrete-event and hybrid system the model is in the form of <em>Labelled Transition System (LTS)</em>. The outcome of the model checking is a <em>proof</em> or a <em>counterexample</em>.</p>
+</section>
+<section id="labelled-transition-system-lts" class="level2">
+<h2 class="anchored" data-anchor-id="labelled-transition-system-lts">Labelled Transition system (LTS)</h2>
+<p><em>Labelled transition system (LTS)</em> is essentially a variant of a (hybrid) automaton. Labels are attached to the states rather than the transitions. The labels come from the set <span class="math inline">\mathcal{P}</span> of atomic propositions <span class="math inline">\mathcal{P} = \{p_1, p_2, \ldots, p_n\}</span>.</p>
+<p><em>Labelling function</em> <span class="math inline">l: \mathcal X \to 2^\mathcal{P}</span> assigns a set of atomic propositions to each state.</p>
+<div id="exm-lts-beverage" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (LTS for a beverage vending machine)</strong></span> We consider our good old friend – the beverage vending machine. We draw (again) its automaton, but also consider the set of atomic propositions <span class="math inline">\mathcal{P} = \{\text{pending},\text{paid},\text{delivered}\}</span> and we label the states with these.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-lts-beverage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lts-beverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 851.60 247.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 243)">
+<title>G</title>
+<!-- init -->
+<g id="node1" class="node">
+<title>init</title>
+<text text-anchor="middle" x="27" y="-115.3" font-family="Times,serif" font-size="14.00">init</text>
+</g>
+<!-- waiting -->
+<g id="node2" class="node">
+<title>waiting</title>
+<ellipse fill="none" stroke="black" cx="141.5" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="141.5" y="-179.7" font-family="Times,serif" font-size="14.00">{}</text>
+<text text-anchor="middle" x="141.5" y="-114.9" font-family="Times,serif" font-size="14.00">waiting</text>
+</g>
+<!-- init&#45;&gt;waiting -->
+<g id="edge1" class="edge">
+<title>init-&gt;waiting</title>
+<path fill="none" stroke="black" d="M54.09,-119.5C62.1,-119.5 71.27,-119.5 80.57,-119.5"></path>
+<polygon fill="black" stroke="black" points="80.66,-123 90.66,-119.5 80.66,-116 80.66,-123"></polygon>
+</g>
+<!-- swiped -->
+<g id="node3" class="node">
+<title>swiped</title>
+<ellipse fill="none" stroke="black" cx="361.29" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="361.29" y="-179.7" font-family="Times,serif" font-size="14.00">{pending}</text>
+<text text-anchor="middle" x="361.29" y="-114.9" font-family="Times,serif" font-size="14.00">swiped</text>
+</g>
+<!-- waiting&#45;&gt;swiped -->
+<g id="edge2" class="edge">
+<title>waiting-&gt;swiped</title>
+<path fill="none" stroke="black" d="M190.1,-104.52C196.73,-102.94 203.49,-101.59 210,-100.7 246.46,-95.72 256.33,-95.72 292.79,-100.7 296.04,-101.14 299.36,-101.7 302.7,-102.35"></path>
+<polygon fill="black" stroke="black" points="302.18,-105.82 312.69,-104.52 303.66,-98.98 302.18,-105.82"></polygon>
+<text text-anchor="middle" x="251.4" y="-104.7" font-family="Times,serif" font-size="14.00">swipe card</text>
+</g>
+<!-- swiped&#45;&gt;waiting -->
+<g id="edge3" class="edge">
+<title>swiped-&gt;waiting</title>
+<path fill="none" stroke="black" d="M310.43,-119.5C278.32,-119.5 236.38,-119.5 202.45,-119.5"></path>
+<polygon fill="black" stroke="black" points="202.19,-116 192.19,-119.5 202.19,-123 202.19,-116"></polygon>
+<text text-anchor="middle" x="251.4" y="-123.7" font-family="Times,serif" font-size="14.00">reject payment</text>
+</g>
+<!-- paid -->
+<g id="node4" class="node">
+<title>paid</title>
+<ellipse fill="none" stroke="black" cx="585.74" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="585.74" y="-179.7" font-family="Times,serif" font-size="14.00">{paid}</text>
+<text text-anchor="middle" x="585.74" y="-114.9" font-family="Times,serif" font-size="14.00">paid</text>
+</g>
+<!-- swiped&#45;&gt;paid -->
+<g id="edge4" class="edge">
+<title>swiped-&gt;paid</title>
+<path fill="none" stroke="black" d="M411.94,-119.5C445.27,-119.5 489.37,-119.5 524.68,-119.5"></path>
+<polygon fill="black" stroke="black" points="524.86,-123 534.86,-119.5 524.86,-116 524.86,-123"></polygon>
+<text text-anchor="middle" x="473.52" y="-123.7" font-family="Times,serif" font-size="14.00">accept payment</text>
+</g>
+<!-- coke_dispensed -->
+<g id="node5" class="node">
+<title>coke_dispensed</title>
+<ellipse fill="none" stroke="black" cx="793.1" cy="-188.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="793.1" y="-241.1" font-family="Times,serif" font-size="14.00">{paid, delivered}</text>
+<text text-anchor="middle" x="793.1" y="-192.3" font-family="Times,serif" font-size="14.00">coke</text>
+<text text-anchor="middle" x="793.1" y="-175.5" font-family="Times,serif" font-size="14.00">dispensed</text>
+</g>
+<!-- paid&#45;&gt;coke_dispensed -->
+<g id="edge5" class="edge">
+<title>paid-&gt;coke_dispensed</title>
+<path fill="none" stroke="black" d="M633.85,-135.33C664.01,-145.46 703.31,-158.67 735.21,-169.38"></path>
+<polygon fill="black" stroke="black" points="734.26,-172.76 744.85,-172.62 736.48,-166.12 734.26,-172.76"></polygon>
+<text text-anchor="middle" x="689.42" y="-167.7" font-family="Times,serif" font-size="14.00">choose coke</text>
+</g>
+<!-- fanta_dispensed -->
+<g id="node6" class="node">
+<title>fanta_dispensed</title>
+<ellipse fill="none" stroke="black" cx="793.1" cy="-50.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="793.1" y="-103.1" font-family="Times,serif" font-size="14.00">{paid, delivered}</text>
+<text text-anchor="middle" x="793.1" y="-54.3" font-family="Times,serif" font-size="14.00">fanta</text>
+<text text-anchor="middle" x="793.1" y="-37.5" font-family="Times,serif" font-size="14.00">dispensed</text>
+</g>
+<!-- paid&#45;&gt;fanta_dispensed -->
+<g id="edge6" class="edge">
+<title>paid-&gt;fanta_dispensed</title>
+<path fill="none" stroke="black" d="M633.85,-103.67C664.01,-93.54 703.31,-80.33 735.21,-69.62"></path>
+<polygon fill="black" stroke="black" points="736.48,-72.88 744.85,-66.38 734.26,-66.24 736.48,-72.88"></polygon>
+<text text-anchor="middle" x="689.42" y="-98.7" font-family="Times,serif" font-size="14.00">choose fanta</text>
+</g>
+<!-- coke_dispensed&#45;&gt;waiting -->
+<g id="edge7" class="edge">
+<title>coke_dispensed-&gt;waiting</title>
+<path fill="none" stroke="black" d="M742.73,-192.78C654.97,-199.23 466.38,-207.91 310.79,-179.5 271.63,-172.35 229.44,-157.29 197.1,-144.05"></path>
+<polygon fill="black" stroke="black" points="198.4,-140.8 187.82,-140.19 195.71,-147.26 198.4,-140.8"></polygon>
+<text text-anchor="middle" x="473.52" y="-202.7" font-family="Times,serif" font-size="14.00">take coke</text>
+</g>
+<!-- fanta_dispensed&#45;&gt;waiting -->
+<g id="edge8" class="edge">
+<title>fanta_dispensed-&gt;waiting</title>
+<path fill="none" stroke="black" d="M742.47,-46.89C654.7,-41.54 466.63,-34.69 310.79,-60.5 271.59,-66.99 229.4,-81.8 197.07,-94.96"></path>
+<polygon fill="black" stroke="black" points="195.7,-91.74 187.8,-98.8 198.38,-98.21 195.7,-91.74"></polygon>
+<text text-anchor="middle" x="473.52" y="-50.7" font-family="Times,serif" font-size="14.00">take fanta</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lts-beverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: LTS for a beverage vending machine
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Having the states labelled with atomic propositions, we can now formulate specifications in terms of these propositions. For example, we can express the following two specifications:</p>
+<ul>
+<li><p>Specification #1: The machine never dispenses a beverage without being paid, that is, <span class="math display">
+\text{delivered} \Rightarrow \text{paid}.
+</span></p></li>
+<li><p>Specification #2: If the user pays, the machine will <em>eventually</em> dispenses a beverage.</p></li>
+</ul>
+<p>The trouble with the latter specification is: how do we formally express the “eventually” part? It turns out that the classical propositional logic is not enough. We will need to introduce temporal logic(s). This we will do in one of the next sections.</p>
+</div>
+<p>Before we move on, we can highlight two common types of spefications that can do without temporal logics.</p>
+</section>
+<section id="two-special-types-of-specifications" class="level2">
+<h2 class="anchored" data-anchor-id="two-special-types-of-specifications">Two special types of specifications</h2>
+<ul>
+<li>Safety (also invariance)</li>
+<li>Liveness (also progress)</li>
+</ul>
+<section id="safety-also-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="safety-also-invariance">Safety (also invariance)</h3>
+<p><em>Safety</em> (yikes, another rather overloaded term) means that “something bad never happens”. Within state models (state automata and hybrid automata), this can be formulated as the system never entering the bad (unsafe) region of the state space.</p>
+<p>Equivalently, it can be phrased as “something good always holds”. With the state perspective, the system always stays in a good (safe) region of the state space.</p>
+<p>How do we check safety? There are several techniques. In our course we are going to introduce two that are very popular in the control systems community:</p>
+<ul>
+<li>Reachability analysis,</li>
+<li>Barrier certificates.</li>
+</ul>
+</section>
+<section id="liveness-also-progress" class="level3">
+<h3 class="anchored" data-anchor-id="liveness-also-progress">Liveness (also progress)</h3>
+<p>It can be phrased as “something good will eventually happen”. Liveness (or progress) specifications be formulated in the state spacee too. The system is required to eventually reach a certain state or a subset in the state space. Depending on the flavour of the liveness specification, the initial set may be specified or not.</p>
+<p>Control systems community must immediately recognize here one fundamental property that does clasify as a liveness property: stability. A stable system will eventually reach a certain state – the equlibrium.</p>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1033,8 +1273,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./verification_reachability.html" class="pagination-link" aria-label="Reachability">
-        <span class="nav-page-text">Reachability</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./verification_reachability.html" class="pagination-link" aria-label="Reachability analysis">
+        <span class="nav-page-text">Reachability analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1046,7 +1286,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

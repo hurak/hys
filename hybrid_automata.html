@@ -594,7 +594,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reachability</span></a>
+ <span class="menu-text">Reachability analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -757,7 +757,7 @@ Caution
 <p>In the two modes <code>on</code> and <code>off</code>, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say: <span class="math display">
 f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 </span> which gives another component for the hybrid automaton.</p>
-<p>The control logic of the thermostat is captured by the <span class="math inline">\mathcal I</span> and <span class="math inline">\mathcal G</span> components of the hybrid automaton. Let’s determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval <span class="math inline">(18 \pm 2)^\circ</span> is acceptable. <span class="math display">
+<p>The control logic of the thermostat is captured by the <span class="math inline">\mathcal I</span> and <span class="math inline">\mathcal G</span> components of the hybrid automaton. Let’s determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval <span class="math inline">(18 \pm 2)^\circ</span> C is acceptable. <span class="math display">
 \mathcal I(\text{off}) = \{x\mid x&gt; 16\},\quad \mathcal I(\text{on}) = \{x\mid x&lt; 20\},
 </span></p>
 <p><span class="math display">

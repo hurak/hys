@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Reachability – B(E)3M35HYS – Hybrid systems</title>
+<title>Reachability analysis – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +69,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -82,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./verification_intro.html">12. Formal verification</a></li><li class="breadcrumb-item"><a href="./verification_reachability.html">Reachability</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./verification_intro.html">12. Formal verification</a></li><li class="breadcrumb-item"><a href="./verification_reachability.html">Reachability analysis</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -551,7 +594,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Reachability</span></a>
+ <span class="menu-text">Reachability analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -579,15 +622,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#reachability-computations-for-hybrid-systems" id="toc-reachability-computations-for-hybrid-systems" class="nav-link active" data-scroll-target="#reachability-computations-for-hybrid-systems">Reachability computations for hybrid systems</a>
+  <ul class="collapse">
+  <li><a href="#reachability-analysis-based-on-optimal-control" id="toc-reachability-analysis-based-on-optimal-control" class="nav-link" data-scroll-target="#reachability-analysis-based-on-optimal-control">Reachability analysis based on optimal control</a></li>
+  <li><a href="#reachability-analysis-based-on-set-propagation" id="toc-reachability-analysis-based-on-set-propagation" class="nav-link" data-scroll-target="#reachability-analysis-based-on-set-propagation">Reachability analysis based on set propagation</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./verification_intro.html">12. Formal verification</a></li><li class="breadcrumb-item"><a href="./verification_reachability.html">Reachability</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./verification_intro.html">12. Formal verification</a></li><li class="breadcrumb-item"><a href="./verification_reachability.html">Reachability analysis</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Reachability</h1>
+<h1 class="title">Reachability analysis</h1>
 </div>
 
 
@@ -604,9 +657,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>About this site</p>
+<ul>
+<li><p>For autonomous systems: Given a set of initial states <span class="math inline">\mathcal X_0</span>, determine the set of states <span class="math inline">\mathcal X_{\mathrm{reach}}</span> that can be reached from <span class="math inline">X_0</span> over the time interval <span class="math inline">(0,t)</span>.</p></li>
+<li><p>For non-autonomous (controlled) system: Given a set of initial states <span class="math inline">\mathcal X_0</span>, determine the set of states <span class="math inline">\mathcal X_{\mathrm{reach}}</span> that can be reached from <span class="math inline">X_0</span> over the time interval <span class="math inline">(0,t)</span> using some control.</p></li>
+</ul>
+<p>Robust versions exist for cases with uncertain parameters, or disturbances.</p>
+<section id="reachability-computations-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="reachability-computations-for-hybrid-systems">Reachability computations for hybrid systems</h2>
+<p>There are two major approaches to reachibility analysis for hybrid systems</p>
+<ul>
+<li>Checking a feasibility of an optimal control problem for a MLD system. This is used in Hybrid Toolbox (and Hysdel): <a href="http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/</a></li>
+<li>Computing the reachable sets by <em>set propagation techniques</em>.</li>
+</ul>
+<section id="reachability-analysis-based-on-optimal-control" class="level3">
+<h3 class="anchored" data-anchor-id="reachability-analysis-based-on-optimal-control">Reachability analysis based on optimal control</h3>
+<p>The former does not need much discussion here. We have already discussed all the crucial concepts and facts when introducing the MPC for hybrid systems. Infeasibility of the corresponding optimization problem indicates unreachability. Thefefore, we focus on the latter here.</p>
+</section>
+<section id="reachability-analysis-based-on-set-propagation" class="level3">
+<h3 class="anchored" data-anchor-id="reachability-analysis-based-on-set-propagation">Reachability analysis based on set propagation</h3>
+<section id="basic-computational-steps-for-reachability-analysis-based-on-set-propagation" class="level4">
+<h4 class="anchored" data-anchor-id="basic-computational-steps-for-reachability-analysis-based-on-set-propagation">Basic computational steps for reachability analysis based on set propagation</h4>
+<p>Given a set <span class="math inline">\mathcal X_k</span> of current states , compute the set <span class="math inline">\mathcal X_{k+1}</span> of next states of a discrete-time (or discretized) system such that<br>
+<span class="math display">
+\bm x(k+1) = \mathbf f(\bm x(k)).
+</span></p>
+<p>In the case of a linear discrete-time system, and the set of initial states characterized by a box, the problem is to characterize the set <span class="math inline">\mathcal X_{k+1}</span> of all possible (reachable) <span class="math inline">\bm x(k+1)</span> satisfying <span class="math display">
+\begin{aligned}
+\bm x(k+1) &amp;= \mathbf A \bm x(k),\\
+\bm x(k) &amp;\in \mathcal X_k = \{\bm x \in \mathbb R^n \mid \bm x_\mathrm{min} \leq \bm x \leq \bm x_\mathrm{max}\}.
+\end{aligned}
+</span></p>
+<p>Typically, inner or outer approximations of the set of all possible next states are used, depending on the context (alowed vs forbidden regions of the state space).</p>
+</section>
+<section id="sets-to-be-propagated" class="level4">
+<h4 class="anchored" data-anchor-id="sets-to-be-propagated">Sets to be propagated</h4>
+<p>Certain sets are (computationally) easier to propagate than others:</p>
+<ul>
+<li>Intervals</li>
+<li>Polyhedra (both in V and H representations)</li>
+<li>Ellipsoids</li>
+<li>Zonotopes
+<ul>
+<li>Subclass of polytopes.</li>
+<li>Often more efficient than general polytopes.</li>
+<li>Affine transformation of a unit box.</li>
+<li>Commonly represented using generator representation (a center and a finite number of generator vectors).</li>
+</ul></li>
+</ul>
+</section>
+<section id="software-for-reachability-analysis-based-on-set-propagation" class="level4">
+<h4 class="anchored" data-anchor-id="software-for-reachability-analysis-based-on-set-propagation">Software for reachability analysis based on set propagation</h4>
+<section id="in-matlab" class="level5">
+<h5 class="anchored" data-anchor-id="in-matlab">In Matlab:</h5>
+<ul>
+<li>Multiparametric Toolbox (MPT): <a href="https://www.mpt3.org">https://www.mpt3.org</a>
+<ul>
+<li>Some functionality (invariant set computation) purely for discrete-time systems</li>
+</ul></li>
+<li>CORA: <a href="https://tumcps.github.io/CORA/">https://tumcps.github.io/CORA/</a>
+<ul>
+<li>Continuous-time and hybrid systems.</li>
+</ul></li>
+</ul>
+<p>Quite a few other tools can be found on the web but mostly unmaintained.</p>
+</section>
+<section id="in-julia" class="level5">
+<h5 class="anchored" data-anchor-id="in-julia">In Julia:</h5>
+<ul>
+<li>ReachabilityAnalysis.jl: <a href="https://juliareach.github.io/ReachabilityAnalysis.jl/dev/">https://juliareach.github.io/ReachabilityAnalysis.jl/</a></li>
+</ul>
+</section>
+<section id="in-python" class="level5">
+<h5 class="anchored" data-anchor-id="in-python">In Python:</h5>
+<ul>
+<li>Sorry, I am not aware of anything, but I will gladly add whatever you suggest. Just keep in mind that the tool should be actively maintained to be useful at least for study purposes.</li>
+</ul>
 
 
+</section>
+</section>
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1046,7 +1177,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2024, Zdeněk Hurák</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
