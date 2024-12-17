@@ -629,8 +629,11 @@ window.Quarto = {
   <ul>
   <li><a href="#temporal-operators" id="toc-temporal-operators" class="nav-link active" data-scroll-target="#temporal-operators">Temporal operators</a></li>
   <li><a href="#linear-temporal-logic-ltl" id="toc-linear-temporal-logic-ltl" class="nav-link" data-scroll-target="#linear-temporal-logic-ltl">Linear temporal logic (LTL)</a></li>
-  <li><a href="#examples-of-ltl-formulas" id="toc-examples-of-ltl-formulas" class="nav-link" data-scroll-target="#examples-of-ltl-formulas">Examples of LTL formulas</a></li>
-  <li><a href="#ctl-ctl-mixed-with-ltl-supports-branching" id="toc-ctl-ctl-mixed-with-ltl-supports-branching" class="nav-link" data-scroll-target="#ctl-ctl-mixed-with-ltl-supports-branching">CTL* (CTL mixed with LTL) supports branching</a></li>
+  <li><a href="#computation-tree-logic-ctl" id="toc-computation-tree-logic-ctl" class="nav-link" data-scroll-target="#computation-tree-logic-ctl">Computation tree logic (CTL)</a></li>
+  <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
+  <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
+  <li><a href="#metric-temporal-logic-mtl" id="toc-metric-temporal-logic-mtl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl">Metric temporal logic (MTL)</a></li>
+  <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -657,13 +660,13 @@ window.Quarto = {
 
 
 <p>It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that “if this and that conditions are satisfied, then yet another condition must not hold”, and so on.</p>
-<p>It turns out, however, that the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. Temporal logics add some more expressiveness.</p>
+<p>However, the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. <em>Temporal logics</em> add some more expressiveness.</p>
 <p>Indeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.</p>
 <section id="temporal-operators" class="level2">
 <h2 class="anchored" data-anchor-id="temporal-operators">Temporal operators</h2>
 <p>The name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express <strong>when</strong> certain properties must (or must not) be satisfied along the state trajectories.</p>
 <div id="exm-line" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1</strong></span> Consider the state automaton for a controller for two traffic lights. The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee fairness). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
+<p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirement on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
 </div>
 <p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
 <table class="caption-top table">
@@ -698,44 +701,170 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>We are explaining their use while we introduce our first temporal logic.</p>
+<p>We are going to explain their use while introducing our first temporal logic.</p>
 </section>
 <section id="linear-temporal-logic-ltl" class="level2">
 <h2 class="anchored" data-anchor-id="linear-temporal-logic-ltl">Linear temporal logic (LTL)</h2>
-<p>“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is iniated at some state <span class="math inline">x</span>.</p>
-<p>We now consider some property <span class="math inline">\phi(x)</span> of a sequence of states emanating from the state <span class="math inline">x</span>. <span class="math inline">\phi(x)</span> evaluates to <code>true</code> or <code>false</code>. And indeed, while the argument of <span class="math inline">\phi</span> is a particular state, when evaluating <span class="math inline">\phi</span>, the full sequence is taken into consideration when evaluating <span class="math inline">\phi(x)</span>.</p>
-<p>In order to be able to express requirements on future states, <span class="math inline">\phi()</span> cannot be just a logical formula, it must by a LTL formula. Here comes a formal definition <span class="math display">
-\begin{aligned}
-\phi &amp;= \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \\
-&amp;\quad | \, \mathbf{X} \phi_1 \, | \, \mathbf{F} \phi_1 \, | \, \mathbf{G} \phi_1 | \, \phi_1 \mathbf{U} \phi_2
-\end{aligned}
+<p>“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is initiated at some state <span class="math inline">x</span>.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-path" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 429.00 31.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.8)">
+<title>path</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-27.8 425,-27.8 425,4 -4,4"></polygon>
+<!-- x0 -->
+<g id="node1" class="node">
+<title>x0</title>
+<ellipse fill="none" stroke="black" cx="17.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="7" y="-4.2" font-family="Times,serif" font-size="14.00">x0</text>
+</g>
+<!-- x1 -->
+<g id="node2" class="node">
+<title>x1</title>
+<ellipse fill="black" stroke="black" cx="97.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="87" y="-4.2" font-family="Times,serif" font-size="14.00">x1</text>
+</g>
+<!-- x0&#45;&gt;x1 -->
+<g id="edge1" class="edge">
+<title>x0-&gt;x1</title>
+<path fill="none" stroke="black" d="M21.1,-20.3C31.64,-20.3 71.54,-20.3 88.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="88.82,-22.05 93.82,-20.3 88.82,-18.55 88.82,-22.05"></polygon>
+</g>
+<!-- x2 -->
+<g id="node3" class="node">
+<title>x2</title>
+<ellipse fill="none" stroke="black" cx="177.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="167" y="-4.2" font-family="Times,serif" font-size="14.00">x2</text>
+</g>
+<!-- x1&#45;&gt;x2 -->
+<g id="edge2" class="edge">
+<title>x1-&gt;x2</title>
+<path fill="none" stroke="black" d="M101.1,-20.3C111.64,-20.3 151.54,-20.3 168.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="168.82,-22.05 173.82,-20.3 168.82,-18.55 168.82,-22.05"></polygon>
+</g>
+<!-- x3 -->
+<g id="node4" class="node">
+<title>x3</title>
+<ellipse fill="none" stroke="black" cx="257.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="247" y="-4.2" font-family="Times,serif" font-size="14.00">x3</text>
+</g>
+<!-- x2&#45;&gt;x3 -->
+<g id="edge3" class="edge">
+<title>x2-&gt;x3</title>
+<path fill="none" stroke="black" d="M181.1,-20.3C191.64,-20.3 231.54,-20.3 248.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="248.82,-22.05 253.82,-20.3 248.82,-18.55 248.82,-22.05"></polygon>
+</g>
+<!-- x4 -->
+<g id="node5" class="node">
+<title>x4</title>
+<ellipse fill="none" stroke="black" cx="337.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="327" y="-4.2" font-family="Times,serif" font-size="14.00">x4</text>
+</g>
+<!-- x3&#45;&gt;x4 -->
+<g id="edge4" class="edge">
+<title>x3-&gt;x4</title>
+<path fill="none" stroke="black" d="M261.1,-20.3C271.64,-20.3 311.54,-20.3 328.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="328.82,-22.05 333.82,-20.3 328.82,-18.55 328.82,-22.05"></polygon>
+</g>
+<!-- x5 -->
+<!-- x4&#45;&gt;x5 -->
+<g id="edge5" class="edge">
+<title>x4-&gt;x5</title>
+<path fill="none" stroke="black" d="M341.1,-20.3C351.64,-20.3 391.54,-20.3 408.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="408.82,-22.05 413.82,-20.3 408.82,-18.55 408.82,-22.05"></polygon>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Discrete state trajectory (path) of a traffic light controller
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We now consider some property <span class="math inline">\phi(x)</span> of a sequence of states emanating from the state <span class="math inline">x</span>, <span class="math inline">\phi(x)</span> evaluates to <code>true</code> or <code>false</code>. And indeed, while the argument of <span class="math inline">\phi</span> is a particular state, when evaluating <span class="math inline">\phi</span>, the full sequence is taken into consideration when evaluating <span class="math inline">\phi(x)</span>.</p>
+<p>In order to be able to express requirements on future states, <span class="math inline">\phi()</span> cannot be just a logical formula, it must by an LTL formula. Here comes a formal definition <span class="math display">
+\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2,
+</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL sub-formulas.</p>
+<p>Having an LTL formula, we write that a state sequence iniciated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">x \models \phi</span> if <span class="math inline">\phi</span> is true for all possible state trajectories starting at this state.</p>
+<div id="exm-some-LTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Some LTL formulas)</strong></span> <span class="math display">
+\Box \neg \phi
 </span></p>
-<p>Having an LTL formula, we write that a state sequence emanating from a given discrete state <span class="math inline">x</span> satisfies the formula as <span class="math display">x \models \phi</span> if <span class="math inline">\phi</span> is true for all possible state trajectories starting at this state.</p>
+<p><span class="math display">
+\Box\Diamond \phi
+</span></p>
+<p><span class="math display">
+\Diamond\Box \phi
+</span></p>
+<p><span class="math display">
+\Diamond(\phi_1 \land \bigcirc\Diamond\phi_2)
+</span></p>
+</div>
 </section>
-<section id="examples-of-ltl-formulas" class="level2">
-<h2 class="anchored" data-anchor-id="examples-of-ltl-formulas">Examples of LTL formulas</h2>
-<p><span class="math display">
-\mathbf{G}\neg \phi
-</span></p>
-<p><span class="math display">
-\mathbf{G}\mathbf{F} \phi
-</span></p>
-<p><span class="math display">
-\mathbf{F}\mathbf{G} \phi
-</span></p>
-<p><span class="math display">
-\mathbf{F}(\phi_1 \land \mathbf{X}\mathbf{F}\phi_2)
-</span></p>
+<section id="computation-tree-logic-ctl" class="level2">
+<h2 class="anchored" data-anchor-id="computation-tree-logic-ctl">Computation tree logic (CTL)</h2>
+<p>Supports branching. Path quantifiers needed</p>
+<table class="caption-top table">
+<caption>Path quantifiers</caption>
+<colgroup>
+<col style="width: 22%">
+<col style="width: 31%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Alternative symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\mathbf{A}</span></td>
+<td><span class="math inline">\forall</span></td>
+<td>Universal quantifier (for <strong>A</strong>ll)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{E}</span></td>
+<td><span class="math inline">\exists</span></td>
+<td>Existential quantifier (there <strong>E</strong>xists)</td>
+</tr>
+</tbody>
+</table>
+<p>Temporal operators and path quantifiers always come in pairs when forming CTL formulas.</p>
 </section>
-<section id="ctl-ctl-mixed-with-ltl-supports-branching" class="level2">
-<h2 class="anchored" data-anchor-id="ctl-ctl-mixed-with-ltl-supports-branching">CTL* (CTL mixed with LTL) supports branching</h2>
-<ul>
-<li>Existential quantifiers needed
-<ul>
-<li><span class="math inline">\mathbf{A}</span>: For all</li>
-<li><span class="math inline">\mathbf{E}</span>: There exists</li>
-</ul></li>
-</ul>
+<section id="ctl" class="level2">
+<h2 class="anchored" data-anchor-id="ctl">CTL*</h2>
+<p>CTL mixed with LTL. It turns out that there is no advantage in restricting to either instead of considering the full CTL*.</p>
+</section>
+<section id="timed-computation-tree-logic-tctl" class="level2">
+<h2 class="anchored" data-anchor-id="timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</h2>
+<p>Timing added to CTL. Used by UPPAAL.</p>
+</section>
+<section id="metric-temporal-logic-mtl" class="level2">
+<h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl">Metric temporal logic (MTL)</h2>
+<p>Timing added to LTL.</p>
+<div id="exm-mtl" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3</strong></span> <span class="math display">
+\square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+</span></p>
+</div>
+</section>
+<section id="signal-temporal-logic-stl" class="level2">
+<h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
+<p>STL je then an extension of MTL with real-valued constraints.</p>
+<div id="exm-stl" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4</strong></span> <span class="math display">
+\square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight}))
+</span></p>
+</div>
 
 
 </section>
