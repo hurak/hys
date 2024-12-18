@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./verification_references.html" rel="next">
+<link href="./verification_software.html" rel="next">
 <link href="./verification_barrier.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -611,6 +611,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./verification_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./verification_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -633,6 +639,7 @@ window.Quarto = {
   <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
   <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
   <li><a href="#metric-temporal-logic-mtl" id="toc-metric-temporal-logic-mtl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl">Metric temporal logic (MTL)</a></li>
+  <li><a href="#metric-interval-temporal-logic-mitl" id="toc-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-interval-temporal-logic-mitl">Metric interval temporal logic (MITL)</a></li>
   <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -810,7 +817,7 @@ Figure&nbsp;1: Discrete state trajectory (path) of a traffic light controller
 </section>
 <section id="computation-tree-logic-ctl" class="level2">
 <h2 class="anchored" data-anchor-id="computation-tree-logic-ctl">Computation tree logic (CTL)</h2>
-<p>Supports branching. Path quantifiers needed</p>
+<p>Also <em>branching termporal logic</em> as it supports branching. Path quantifiers needed</p>
 <table class="caption-top table">
 <caption>Path quantifiers</caption>
 <colgroup>
@@ -857,12 +864,23 @@ Figure&nbsp;1: Discrete state trajectory (path) of a traffic light controller
 </span></p>
 </div>
 </section>
+<section id="metric-interval-temporal-logic-mitl" class="level2">
+<h2 class="anchored" data-anchor-id="metric-interval-temporal-logic-mitl">Metric interval temporal logic (MITL)</h2>
+<p>An extension of MTL, which does not allow singleton time intervals allowed by MTL. The motivation for this extension is that the verification of MTL requirements has been shown to be undecidable.</p>
+</section>
 <section id="signal-temporal-logic-stl" class="level2">
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
-<p>STL je then an extension of MTL with real-valued constraints.</p>
+<p>STL is then an extension of MTL with real-valued constraints. Available for both continuous- and discrete-time systems.</p>
+<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others. I</p>
 <div id="exm-stl" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 4 (Examples of STL formulas)</strong></span> <span class="math display">
 \square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+</span></p>
+<p><span class="math display">
+\Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
+</span></p>
+<p><span class="math display">
+\square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)
 </span></p>
 </div>
 
@@ -1294,8 +1312,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./verification_references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./verification_software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

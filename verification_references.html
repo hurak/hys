@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./verification_temporal_logics.html" rel="prev">
+<link href="./verification_software.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -587,6 +587,12 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./verification_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./verification_references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
@@ -631,20 +637,21 @@ div.csl-indent {
 </header>
 
 
-<p>The topic of verification of hybrid systems is vast. While we only reserved a single week/chapter/block for it, it would easily fill a dedicated course, supported by a couple of books. Having a smaller time budget, we can still find some encouragement for a modest introduction in the Chapter 3 of <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>. Although we do not follow the book closely, we do cover some of their topics.</p>
+<p>The topic of verification of hybrid systems is vast. While we only reserved a single week/chapter/block for it, it would easily fill a dedicated course, supported by a couple of books. Having a smaller time budget, we can still find some confirmation of usefulness even of a modest introduction in the Chapter 3 of <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>. Although we do not follow the book closely, we do cover some of their topics.</p>
 <p>Among general references for hybrid system verification, we can recommend <span class="citation" data-cites="mitraVerifyingCyberPhysicalSystems2021"><a href="#ref-mitraVerifyingCyberPhysicalSystems2021" role="doc-biblioref">[2]</a></span>. Although the book is not freely available for download, its web page contains quite some additional material such as slides and codes.</p>
 <section id="reachability-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="reachability-analysis">Reachability analysis</h2>
-<p>The overview paper <span class="citation" data-cites="althoffSetPropagationTechniques2021"><a href="#ref-althoffSetPropagationTechniques2021" role="doc-biblioref">[3]</a></span>, the manual for the CORA toolbox for Matlab <span class="citation" data-cites="althoffCORA2024Manual2023"><a href="#ref-althoffCORA2024Manual2023" role="doc-biblioref">[4]</a></span>.</p>
+<p>The overview paper <span class="citation" data-cites="althoffSetPropagationTechniques2021"><a href="#ref-althoffSetPropagationTechniques2021" role="doc-biblioref">[3]</a></span> is recommendable. In addition, the manual for the CORA toolbox for Matlab <span class="citation" data-cites="althoffCORA2024Manual2023"><a href="#ref-althoffCORA2024Manual2023" role="doc-biblioref">[4]</a></span> (by the same author and his team) can do a good tutorial job.</p>
 </section>
 <section id="barier-certificates" class="level2">
 <h2 class="anchored" data-anchor-id="barier-certificates">Barier certificates</h2>
-<p><span class="citation" data-cites="prajnaSafetyVerificationHybrid2004"><a href="#ref-prajnaSafetyVerificationHybrid2004" role="doc-biblioref">[5]</a></span></p>
+<p>We based our introduction on <span class="citation" data-cites="prajnaSafetyVerificationHybrid2004"><a href="#ref-prajnaSafetyVerificationHybrid2004" role="doc-biblioref">[5]</a></span>, including the example.</p>
 </section>
 <section id="temporal-logics" class="level2">
 <h2 class="anchored" data-anchor-id="temporal-logics">Temporal logics</h2>
-<p>Two popular monographs <span class="citation" data-cites="baierPrinciplesModelChecking2008"><a href="#ref-baierPrinciplesModelChecking2008" role="doc-biblioref">[6]</a></span>, and <span class="citation" data-cites="clarkeModelChecking2018"><a href="#ref-clarkeModelChecking2018" role="doc-biblioref">[7]</a></span>.</p>
-<p>Lectures <span class="citation" data-cites="murrayLectureLinearTemporal2020"><a href="#ref-murrayLectureLinearTemporal2020" role="doc-biblioref">[8]</a></span>, and <span class="citation" data-cites="wongpiromsarnLectureModelChecking2020"><a href="#ref-wongpiromsarnLectureModelChecking2020" role="doc-biblioref">[9]</a></span>.</p>
+<p>Two popular monographs on model checking (based on temporal logics such as LTL, CTL and CTL*) are <span class="citation" data-cites="baierPrinciplesModelChecking2008"><a href="#ref-baierPrinciplesModelChecking2008" role="doc-biblioref">[6]</a></span>, and <span class="citation" data-cites="clarkeModelChecking2018"><a href="#ref-clarkeModelChecking2018" role="doc-biblioref">[7]</a></span>. These do not cover hybrid systems, though. Still they are recommendable (at least their first chapters) for understanding the basics.</p>
+<p>Some learning material and sketches of applications of temporal logics in control systems for robotics and autonomous driving are in the lectures <span class="citation" data-cites="murrayLectureLinearTemporal2020"><a href="#ref-murrayLectureLinearTemporal2020" role="doc-biblioref">[8]</a></span>, and <span class="citation" data-cites="wongpiromsarnLectureModelChecking2020"><a href="#ref-wongpiromsarnLectureModelChecking2020" role="doc-biblioref">[9]</a></span>.</p>
+<p>A temporal logic particularly useful for specifying more complex requirements on (hybrid) control systems is STL. Its treatment of this framework in textbooks is still rather sketchy. Research papers are then the only source. STL has been introduced in <span class="citation" data-cites="malerMonitoringTemporalProperties2004"><a href="#ref-malerMonitoringTemporalProperties2004" role="doc-biblioref">[10]</a></span>. Some more recent papers that also contain other relevant references are <span class="citation" data-cites="yuOnlineControlSynthesis2024"><a href="#ref-yuOnlineControlSynthesis2024" role="doc-biblioref">[11]</a></span> and <span class="citation" data-cites="ramanModelPredictiveControl2014"><a href="#ref-ramanModelPredictiveControl2014" role="doc-biblioref">[12]</a></span>.</p>
 
 
 
@@ -677,6 +684,15 @@ div.csl-indent {
 </div>
 <div id="ref-wongpiromsarnLectureModelChecking2020" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[9] </div><div class="csl-right-inline">N. Wongpiromsarn, R. M. Murray, and U. Topcu, <span>“Lecture 4 <span>Model Checking</span> and <span>Logic Synthesis</span>.”</span> Belgrade (Serbia), Mar. 2020. Available: <a href="http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf">http://www.cds.caltech.edu/~murray/courses/eeci-sp2020//L4_model_checking-09Mar2020.pdf</a></div>
+</div>
+<div id="ref-malerMonitoringTemporalProperties2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">O. Maler and D. Nickovic, <span>“Monitoring <span>Temporal Properties</span> of <span>Continuous Signals</span>,”</span> in <em>Formal <span>Techniques</span>, <span>Modelling</span> and <span>Analysis</span> of <span>Timed</span> and <span>Fault-Tolerant Systems</span></em>, Y. Lakhnech and S. Yovine, Eds., Berlin, Heidelberg: Springer, 2004, pp. 152–166. doi: <a href="https://doi.org/10.1007/978-3-540-30206-3_12">10.1007/978-3-540-30206-3_12</a>.</div>
+</div>
+<div id="ref-yuOnlineControlSynthesis2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">P. Yu, Y. Gao, F. J. Jiang, K. H. Johansson, and D. V. Dimarogonas, <span>“Online control synthesis for uncertain systems under signal temporal logic specifications,”</span> <em>The International Journal of Robotics Research</em>, vol. 43, no. 6, pp. 765–790, May 2024, doi: <a href="https://doi.org/10.1177/02783649231212572">10.1177/02783649231212572</a>.</div>
+</div>
+<div id="ref-ramanModelPredictiveControl2014" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">V. Raman, M. Maasoumy, and A. Donzé, <span>“Model predictive control from signal temporal logic specifications: A case study,”</span> in <em>Proceedings of the 4th <span>ACM SIGBED International Workshop</span> on <span>Design</span>, <span>Modeling</span>, and <span>Evaluation</span> of <span>Cyber-Physical Systems</span></em>, in <span>CyPhy</span> ’14. New York, NY, USA: Association for Computing Machinery, Apr. 2014, pp. 52–55. doi: <a href="https://doi.org/10.1145/2593458.2593472">10.1145/2593458.2593472</a>.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1098,8 +1114,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./verification_temporal_logics.html" class="pagination-link" aria-label="Temporal logics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Temporal logics</span>
+      <a href="./verification_software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
