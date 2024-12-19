@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Stability via common Lyapunov function – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./stability_via_multiple_lyapunov_function.html" rel="next">
+<link href="./stability_concepts.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_why.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Why another framework?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Formal verification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hybrid-system-stability-analysis-via-lyapunov-function" id="toc-hybrid-system-stability-analysis-via-lyapunov-function" class="nav-link active" data-scroll-target="#hybrid-system-stability-analysis-via-lyapunov-function">Hybrid system stability analysis via Lyapunov function</a>
+  <ul class="collapse">
+  <li><a href="#stricter-condition-on-lyapunov-function" id="toc-stricter-condition-on-lyapunov-function" class="nav-link" data-scroll-target="#stricter-condition-on-lyapunov-function">Stricter condition on Lyapunov function</a></li>
+  </ul></li>
+  <li><a href="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" id="toc-further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="nav-link" data-scroll-target="#further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</a></li>
+  <li><a href="#global-uniform-asymptotic-stability" id="toc-global-uniform-asymptotic-stability" class="nav-link" data-scroll-target="#global-uniform-asymptotic-stability">(Global) uniform asymptotic stability</a></li>
+  <li><a href="#common-quadratic-lyapunov-function-cqlf" id="toc-common-quadratic-lyapunov-function-cqlf" class="nav-link" data-scroll-target="#common-quadratic-lyapunov-function-cqlf">Common quadratic Lyapunov function (CQLF)</a></li>
+  <li><a href="#linear-matrix-inequality-lmi" id="toc-linear-matrix-inequality-lmi" class="nav-link" data-scroll-target="#linear-matrix-inequality-lmi">Linear matrix inequality (LMI)</a></li>
+  <li><a href="#cqlf-as-an-lmi" id="toc-cqlf-as-an-lmi" class="nav-link" data-scroll-target="#cqlf-as-an-lmi">CQLF as an LMI</a></li>
+  <li><a href="#solving-in-matlab-using-yalmip-or-cvx" id="toc-solving-in-matlab-using-yalmip-or-cvx" class="nav-link" data-scroll-target="#solving-in-matlab-using-yalmip-or-cvx">Solving in Matlab using YALMIP or CVX</a></li>
+  <li><a href="#solution-set-of-an-lmi-is-convex" id="toc-solution-set-of-an-lmi-is-convex" class="nav-link" data-scroll-target="#solution-set-of-an-lmi-is-convex">Solution set of an LMI is convex</a></li>
+  <li><a href="#what-if-quadratic-lf-is-not-enough" id="toc-what-if-quadratic-lf-is-not-enough" class="nav-link" data-scroll-target="#what-if-quadratic-lf-is-not-enough">What if quadratic LF is not enough?</a></li>
+  <li><a href="#positivenonnegative-polynomials" id="toc-positivenonnegative-polynomials" class="nav-link" data-scroll-target="#positivenonnegative-polynomials">Positive/nonnegative polynomials</a>
+  <ul class="collapse">
+  <li><a href="#how-can-we-check-positivitynonnegativity-of-polynomials" id="toc-how-can-we-check-positivitynonnegativity-of-polynomials" class="nav-link" data-scroll-target="#how-can-we-check-positivitynonnegativity-of-polynomials">How can we check positivity/nonnegativity of polynomials?</a></li>
+  </ul></li>
+  <li><a href="#sum-of-squares-sos-polynomials" id="toc-sum-of-squares-sos-polynomials" class="nav-link" data-scroll-target="#sum-of-squares-sos-polynomials">Sum of squares (SOS) polynomials</a></li>
+  <li><a href="#how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist" id="toc-how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist" class="nav-link" data-scroll-target="#how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist">How to get an SOS representation of a polynomial (or prove that none exist)?</a>
+  <ul class="collapse">
+  <li><a href="#univariate-case" id="toc-univariate-case" class="nav-link" data-scroll-target="#univariate-case">Univariate case</a></li>
+  <li><a href="#multivariate-case" id="toc-multivariate-case" class="nav-link" data-scroll-target="#multivariate-case">Multivariate case</a></li>
+  </ul></li>
+  <li><a href="#searching-for-a-sos-polynomial-lyapunov-function" id="toc-searching-for-a-sos-polynomial-lyapunov-function" class="nav-link" data-scroll-target="#searching-for-a-sos-polynomial-lyapunov-function">Searching for a SOS polynomial Lyapunov function</a></li>
+  <li><a href="#searching-for-a-sos-polynomial-common-lyapunov-function" id="toc-searching-for-a-sos-polynomial-common-lyapunov-function" class="nav-link" data-scroll-target="#searching-for-a-sos-polynomial-common-lyapunov-function">Searching for a SOS polynomial common Lyapunov function</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./stability_recap.html">8. Stability</a></li><li class="breadcrumb-item"><a href="./stability_via_common_lyapunov_function.html">Stability via common Lyapunov function</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Stability via common Lyapunov function</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Having just recalled the stability analysis based on searching for a Lyapunov function, we now extend the analysis to hybrid systems, in particular, hybrid automata.</p>
+<section id="hybrid-system-stability-analysis-via-lyapunov-function" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-system-stability-analysis-via-lyapunov-function">Hybrid system stability analysis via Lyapunov function</h2>
+<p>In contrast to continuous systems where Lyapunov functin should decrease along the state trajectory to certify asymptotic stability (or at least should not increase to certify Lyapunov stability), in hybrid systems the requirement can be relaxed a bit.</p>
+<p>A Lyapunov function should still decrease along the continuous state trajectory while the system resides in a given discrete state (mode), but during the transition between the modes the function can be discontinuous, and can even increase. But then upon return to the same discrete state, the function should have lower value than it had last time it entered the state to certify asymptotic stability (or at least not larger for Lyapunov stability), see <a href="#fig-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-lyapunov-like-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_figures/lyapunov_like_function.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of an evolution of a Lyapunov function of a hybrid automaton in time
+</figcaption>
+</figure>
+</div>
+<p>Formally, the function <span class="math inline">V(q,\bm x)</span> has two variables <span class="math inline">q</span> and <span class="math inline">\bm x</span>, it is smooth in <span class="math inline">\bm x</span>, and<br>
+<span class="math display">
+V(q,\bm 0) = 0, \quad V(q,\bm x) &gt; 0 \; \text{for all nonzero} \; \bm x \; \text{and for all nonzero} \; q,
+</span></p>
+<p><span class="math display">
+\left(\nabla_x V(q,\bm x)\right)^\top \mathbf f(q,\bm x) &lt; 0  \; \text{for all nonzero} \; \bm x \; \text{and for all nonzero} \; q,
+</span></p>
+<p>and the discontinuities at transitions must satisfy the conditions sketched in <a href="#fig-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;1</a>. If Lyapunov stability is enough, the strict inequality can be relaxed to nonstrict.</p>
+<section id="stricter-condition-on-lyapunov-function" class="level3">
+<h3 class="anchored" data-anchor-id="stricter-condition-on-lyapunov-function">Stricter condition on Lyapunov function</h3>
+<p>Verifying the properties just described is not easy. Perhaps the only way is to simulate the system, evaluate the function along the trajectory and check if the conditions are satisfied, which is hardly useful. A stricter condition is in <a href="#fig-stricter-lyapunov-like-function" class="quarto-xref">Fig.&nbsp;2</a>. Here we require that during transitions to another mode, the fuction should not increase. Discontinuous reductions in value are allowed, but enforcing continuity introduced yet another simplification that can be plausible for analysis.</p>
+<div id="fig-stricter-lyapunov-like-function" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stricter-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="stability_figures/stricter_lyapunov_like_function.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stricter-lyapunov-like-function-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of an evolution of a restricted Lyapunov function of a hybrid automaton in time
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf" class="level2">
+<h2 class="anchored" data-anchor-id="further-restricted-set-of-candidate-functions-common-lyapunov-function-clf">Further restricted set of candidate functions: common Lyapunov function (CLF)</h2>
+<p>In the above, we have considered a Lyapunov function <span class="math inline">V(q,\bm x)</span> that is mode-dependent. But what if we could find a single Lyapunov function <span class="math inline">V(\bm x)</span> that is common for all modes <span class="math inline">q</span>? This would be a great simplification.</p>
+<p>This, however, implies that at a given state <span class="math inline">\bm x</span>, arbitrary transition to another mode <span class="math inline">q</span> is possible. We add and adjective <em>uniform</em> the stabilty (either Lyapunov or asymptotic) to emphasize that the function is common for all modes.</p>
+<p>In terminology of switched systems, we say that arbitrary switching is allowed. And staying in the domain of switched systems, the analysis can be interpreted within the framework of differential inclusions <span class="math display">
+\dot{\bm x} \in \{f_1(\bm x), f_2(\bm x),\ldots,f_m(\bm x)\}.
+</span></p>
+</section>
+<section id="global-uniform-asymptotic-stability" class="level2">
+<h2 class="anchored" data-anchor-id="global-uniform-asymptotic-stability">(Global) uniform asymptotic stability</h2>
+<p>Having agreed that we are now searching for a single function <span class="math inline">V(\bm x)</span>, the function must satisfy <span class="math display">\boxed{\kappa_1(\|\bm x\|) \leq V(\bm x) \leq \kappa_2(\|\bm x\|),}</span> where <span class="math inline">\kappa_1(\cdot), \kappa_2(\cdot)</span> are class <span class="math inline">\mathcal{K}</span> comparison functions, and <span class="math inline">\kappa_1(\cdot)\in\mathcal{K}_\infty</span> if global asymptotic stability is needed, and <span class="math display">
+\boxed{\left(\nabla V(\bm x)\right)^\top \mathbf f_q(\bm x) \leq -\rho(\|\bm x\|),\quad q\in\mathcal{Q},}
+</span> where <span class="math inline">\rho(\cdot)</span> is a positive definite continuous function, zero at the origin. If all these are satisfied, the system is (globally) uniformly asymptotically stable (GUAS).</p>
+<p>Similarly as we did in continuous systems, we must ask if stability implies existence of a common Lyapunov function. An affirmative answer comes in the form of a <em>converse theorem</em> for global uniform asymptotic stability (GUAS).</p>
+<p>This is great, a CLF exists for a GUAS system, but how do we find it? We must restrict the set of candidate functions and then search within the set. Obviously, if we fail to find a function in the set, we must extend the set and search again…</p>
+</section>
+<section id="common-quadratic-lyapunov-function-cqlf" class="level2">
+<h2 class="anchored" data-anchor-id="common-quadratic-lyapunov-function-cqlf">Common quadratic Lyapunov function (CQLF)</h2>
+<p>An immediate restriction of a set of Lyapunov functions is to quadratic functions <span class="math display">
+V(\bm x) = \bm x^\top \mathbf P \bm x,
+</span> where <span class="math inline">\mathbf P=\mathbf P^\top \succ 0</span>.</p>
+<p>This restriction is also quite natural because for linear systems, it is known that we do not have to consider anything more complicated than quadratic functions. This does not hold in general for nonlinear and hybrid systems. But it is a good start. If we succeed in finding a quadratic Lyapunov function, we can be sure that the system is stable.</p>
+<p>Here we start by considering a hybrid automaton for which at each mode the dynamics is linear. We consider <span class="math inline">r</span> continuous-time LTI systems parameterized by the system matrices <span class="math inline">\mathbf A_i</span> for <span class="math inline">i=1,\ldots, r</span> as <span class="math display">
+\dot{\bm x} = \mathbf A_i \bm x(t).
+</span></p>
+<p>Time derivatives of <span class="math inline">V(\bm x)</span> along the trajectory of the <span class="math inline">i</span>-th system <span class="math display">
+  \nabla V(\bm x)^\top \left.\frac{\mathrm d \bm x}{\mathrm d t}\right|_{\dot{\bm x} = \mathbf A_i \bm x} = \bm x^\top(\mathbf A_i^\top \mathbf P + \mathbf P\mathbf A_i)\bm x,
+</span></p>
+<p>which, upon introduction of new matrix variables <span class="math inline">\mathbf Q_i=\mathbf Q_i^\top</span> given by<br>
+<span class="math display">
+  \mathbf A_i^\top \mathbf P + \mathbf P\mathbf A_i = \mathbf Q_i,\qquad i=1,\ldots, r
+</span> yields<br>
+<span class="math display">
+  \dot V(\bm x) = \bm x^\top \mathbf Q_i\bm x,
+</span> from which it follows that <span class="math inline">\mathbf Q_i</span> (for all <span class="math inline">i=1,\ldots,r</span>) must satisfy<br>
+<span class="math display">
+  \bm x^\top \mathbf Q_i \bm x \leq 0,\qquad i=1,\ldots, r
+</span><br>
+for (Lyapunov) stability and<br>
+<span class="math display">
+  \bm x^\top \mathbf Q_i \bm x &lt; 0,\qquad i=1,\ldots, r
+</span><br>
+for asymptotic stability.</p>
+<p>As a matter of fact, we could proceeded without introducing new variables <span class="math inline">\mathbf Q_i</span> and just write the conditions directly in terms of <span class="math inline">\mathbf A_i</span> and <span class="math inline">\mathbf P</span> <span class="math display">
+  \bm x^\top (\mathbf A_i^\top \mathbf P + \mathbf P\mathbf A_i) \bm x \leq 0,\qquad i=1,\ldots, r
+</span><br>
+for (Lyapunov) stability and<br>
+<span class="math display">
+  \bm x^\top (\mathbf A_i^\top \mathbf P + \mathbf P\mathbf A_i) \bm x &lt; 0,\qquad i=1,\ldots, r
+</span><br>
+for asymptotic stability.</p>
+</section>
+<section id="linear-matrix-inequality-lmi" class="level2">
+<h2 class="anchored" data-anchor-id="linear-matrix-inequality-lmi">Linear matrix inequality (LMI)</h2>
+<p>The conditions of quadratic stability that we have just derived are conditions on functions. However, in this case of a quadratic Lyapunov function and linear systems, the condition can also be written directly in terms of matrices. For that we use the concept of a <em>linear matrix inequality</em> (LMI).</p>
+<p>Recall that a linear inequality is an inequality of the form <span class="math inline">\underbrace{a_0 a_1x_1 + a_2x_2 + \ldots + a_rx_r}_{a(\bm x)} &gt; 0</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Linear vs.&nbsp;affine
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>We could perhaps argue that as the function <span class="math inline">a(x)</span> is an affine and not linear, the inequality should be called an <em>affine inequality</em>. However, the term <em>linear inequality</em> is well established in the literature. It can be perhaps justified by moving the constant term to the right-hand side, in which case we have a linear function on the left and a constant term on the right, which is the same situation as in the <span class="math inline">\mathbf A\bm x=\mathbf b</span> equation, which we call linear without hesitation.</p>
+</div>
+</div>
+<p>A linear matrix inequality is a generalization of this concept where the coefficients are matrices.</p>
+<p><span class="math display">
+\underbrace{\mathbf A_0 + \mathbf A_1\bm x_1 + \mathbf A_2\bm x_2 + \ldots + \mathbf A_r\bm x_r}_{\mathbf A(\bm x)} \succ 0.
+</span></p>
+<p>Besides having matrix coefficients, another crucial difference is the meaning of the inequality. In this case it should not be interpreted component-wise but rather <span class="math inline">\mathbf A(\bm x)\succ 0</span> means that the matrix <span class="math inline">\mathbf A(\bm x)</span> is positive definite.</p>
+<p>Alternatively, the individual scalar variables can be assembled into matrices, in which case the LMI can have the form with matrix variables <span class="math display">
+\mathbf F(\bm X) = \mathbf F_0 + \mathbf F_1\bm X\mathbf G_1 + \mathbf F_2\bm X\mathbf G_2 + \ldots + \mathbf F_k\bm X\mathbf G_k \succ 0,
+</span> but the meaning of the inequality remains the same.</p>
+<p>The use of LMIs is widespread in control theory. Here we formulate the <em>LMI feasibility problem</em>: does <span class="math inline">\bm X=\bm X^\top</span> exist such that the LMI <span class="math inline">\mathbf F(\bm X)\succ 0</span> is satisfied?</p>
+</section>
+<section id="cqlf-as-an-lmi" class="level2">
+<h2 class="anchored" data-anchor-id="cqlf-as-an-lmi">CQLF as an LMI</h2>
+<p>Having formulated the problem of asymptotic stability using functions, we now rewrite it using matrices as an LMI: <span class="math display">
+\begin{aligned}
+\mathbf P &amp;\succ 0,\\
+\mathbf A_1^\top \mathbf P + \mathbf P\mathbf A_1 &amp;\prec 0,\\
+\mathbf A_2^\top \mathbf P + \mathbf P\mathbf A_2 &amp;\prec 0,\\
+&amp; \vdots \\
+\mathbf A_r^\top \mathbf P + \mathbf P\mathbf A_r &amp;\prec 0.
+\end{aligned}
+</span></p>
+</section>
+<section id="solving-in-matlab-using-yalmip-or-cvx" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="solving-in-matlab-using-yalmip-or-cvx">Solving in Matlab using YALMIP or CVX</h2>
+<p>Most numerical solvers for semidefinite programs (SDP) can only handle nonstrict inequalities. We can enforce strict inequality by introducing some small <span class="math inline">\epsilon&gt;0</span>: <span class="math display">
+\begin{aligned}
+\mathbf P &amp;\succeq \epsilon I,\\
+\mathbf A_1^\top \mathbf P + \mathbf P\mathbf A_1 &amp;\preceq \epsilon I,\\
+\mathbf A_2^\top \mathbf P + \mathbf P\mathbf A_2 &amp;\preceq \epsilon \mathbf I,\\
+&amp; \vdots \\
+\mathbf A_r^\top \mathbf P + \mathbf P\mathbf A_r &amp;\preceq \epsilon \mathbf I.
+\end{aligned}
+</span></p>
+<p>For LMIs with no affine term, we can multiply them (by <span class="math inline">1/\epsilon</span>) to get the identity matrix on the right-hand side: <span class="math display">
+\begin{aligned}
+\mathbf P &amp;\succeq \mathbf I,\\
+\mathbf A_1^\top \mathbf P + \mathbf P\mathbf A_1 &amp;\preceq \mathbf I,\\
+\mathbf A_2^\top \mathbf P + \mathbf P\mathbf A_2 &amp;\preceq \mathbf I,\\
+&amp; \vdots \\
+\mathbf A_r^\top \mathbf P + \mathbf P\mathbf A_r &amp;\preceq \mathbf I.
+\end{aligned}
+</span></p>
+</section>
+<section id="solution-set-of-an-lmi-is-convex" class="level2">
+<h2 class="anchored" data-anchor-id="solution-set-of-an-lmi-is-convex">Solution set of an LMI is convex</h2>
+<p>An important property of a solution set of an LMI is that it is convex. Indeed, it is a crucial property. An implication is that if a solution <span class="math inline">\mathbf P</span> exists for the <span class="math inline">r</span> inequalities, then it is also a solution for an inequality given by and convex combination of the matrices <span class="math inline">\mathbf A_i</span>. That is, if a solution <span class="math inline">\mathbf P=\mathbf P^\top \succ 0</span> exists such that <span class="math display">
+\begin{aligned}
+\mathbf A_1^\top \mathbf P + \mathbf P\mathbf A_1 &amp;\prec 0,\\
+\mathbf A_2^\top \mathbf P + \mathbf P\mathbf A_2 &amp;\prec 0,\\
+&amp; \vdots \\
+\mathbf A_r^\top \mathbf P + \mathbf P\mathbf A_r &amp;\prec 0,
+\end{aligned}
+</span> then <span class="math inline">\mathbf P</span> also solves the convex combination <span class="math display">
+\left(\sum_{i=1}^r\alpha_i \mathbf A_i\right)^\top \mathbf P + \mathbf P\left(\sum_{i=1}^r\alpha_i \mathbf A_i\right) \prec 0,
+</span> where <span class="math inline">\alpha_1, \alpha_2, \ldots, \alpha_r \geq 0</span> and <span class="math inline">\sum_i \alpha_i = 1</span>.</p>
+<p>This leads to an interesting interpretation of the requirement of (asymptotic) stability in presence of arbitrary switching – every convex combination of the systems is stable. While we do not exploit it in our course, note that it can be used in robust control design – an uncertain system is modelled by a convex combination of some vertex models. When designing a single (robust) controller, it is sufficient to guarantee stability of the vertex models using a single Lyapunov function, and the convexity property ensures that the controller is also robust with respect to the uncertain system. A powerful property! On the other hand, rather too strong because it allows arbitrarily fast changes of parameters.</p>
+<p>Note that we can use the convexity property when formulating this problem equivalently as the problem of stability analysis of the linear differential inclusion <span class="math display">
+\dot{\bm x} \in \mathcal{F}(\bm x),
+</span> where <span class="math inline">\mathcal{F}(\bm x) = \overline{\operatorname{co}}\{\mathbf A_1\bm x, \mathbf A_2\bm x, \ldots, \mathbf A_r\bm x\}</span>.</p>
+</section>
+<section id="what-if-quadratic-lf-is-not-enough" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-quadratic-lf-is-not-enough">What if quadratic LF is not enough?</h2>
+<p>So far we considered quadratic Lyapunov functions – and tt may be useful to display their prescription explicitly in the scalar form <span class="math display">
+\begin{aligned}
+V(\bm x) &amp;= \bm x^\top \mathbf P \bm x\\
+&amp;= \begin{bmatrix}x_1 &amp; x_2\end{bmatrix} \begin{bmatrix} p_{11} &amp; p_{12}\\ p_{12} &amp; p_{22}\end{bmatrix} \begin{bmatrix}x_1\\ x_2\end{bmatrix}\\
+&amp;= p_{11}x_1^2 + 2p_{12}x_1x_2 + p_{22}x_2
+\end{aligned}
+</span> to show that, indeed, a quadratic Lyapunov function is a (multivariate) quadratic polynomial.</p>
+<p>Now, if quadratic polynomials are not enough, it is natural to consider polynomials of a higher degree. The crucial question is, however: how do we enforce positive definiteness?</p>
+</section>
+<section id="positivenonnegative-polynomials" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="positivenonnegative-polynomials">Positive/nonnegative polynomials</h2>
+<p>The question that we ask is this: is the polynomial <span class="math inline">p(\bm x), \; \bm x\in \mathbb R^n</span>, positive (or at least nonnegative) on the whole <span class="math inline">\mathbb R^n</span>? That is, we ask if <span class="math display">
+p(\bm x) &gt; 0,\quad (\text{or}\quad p(\bm x) \geq 0)\; \forall \bm x\in\mathbb R^n.
+</span></p>
+<div id="exm-polynomial-nonnegativity" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1</strong></span> Consider the polynomial <span class="math inline">p(\bm x)= 2x_1^4 + 2x_1^3x_2 - x_1^2x_2^2 + 5x_2^4</span>. Is it nonnegative for all <span class="math inline">x_1\in\mathbb R, x_2\in\mathbb R</span>?</p>
+</div>
+<p>Additionally, <span class="math inline">\bm x</span> can be restricted to some <span class="math inline">\mathcal X\sub \mathbb R^n</span> and we ask if<br>
+<span class="math display">
+  p(\bm x) \geq 0 \;\forall\; \bm x\in \mathcal X.
+</span></p>
+<p>Once we started working with polynomials, <em>semialgebraic sets</em> <span class="math inline">\mathcal X</span> are often considered, asthese are defined by polynomial inequalities such as <span class="math display">
+g_j(\bm x) \geq 0, \; j=1,\ldots, m.
+</span></p>
+<p>But this we are only going to need in the next chapter, when we consider <em>Multiple Lyapunov Functions</em> (MLF) approach to stability analysis.</p>
+<section id="how-can-we-check-positivitynonnegativity-of-polynomials" class="level3">
+<h3 class="anchored" data-anchor-id="how-can-we-check-positivitynonnegativity-of-polynomials">How can we check positivity/nonnegativity of polynomials?</h3>
+<p>Gridding is certainly not the way to go – we need conditions on the coefficients of the polynomial so that we can do some optimization later.</p>
+<div id="exm-polynomial-nonnegativity-1D" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2</strong></span> Consider a univariate polynomial <span class="math display">
+p(x) = x^4 - 4x^3 + 13x^2 - 18x + 17.
+</span> Does it hold that <span class="math inline">p(x)\geq 0 \; \forall x\in \mathbb R</span>? Without plotting (hence gridding) we can hardly say. But what if we learn that the polynomial can be written as <span class="math display">
+p = (x-1)^2 + (x^2 - 2x + 4)^2
+</span></p>
+<p>Obviously, whatever the two squared polynomials are, after squaring they become nonnegative. And summing nonnegative numbers yields a nonnegative result. Let’s generalize this.</p>
+</div>
+</section>
+</section>
+<section id="sum-of-squares-sos-polynomials" class="level2">
+<h2 class="anchored" data-anchor-id="sum-of-squares-sos-polynomials">Sum of squares (SOS) polynomials</h2>
+<p>If we can express the polynomial as a <em>sum of squares</em> (SOS) of some other polynomials, the original polynomial is nonnegative, that is, <span class="math display">
+\boxed{p(\bm x) = \sum_{i=1}^k p_i(\bm x)^2\; \Rightarrow \; p(\bm x) \geq 0,\; \forall \bm x\in \mathbb R^n.}
+</span></p>
+<p>The converse does not hold in general – not every nonnegative polynomial is SOS! There are only three cases, for which SOS is a necessary and sufficient condition of nonnegativeness:</p>
+<ul>
+<li><span class="math inline">n=1</span>: univariate polynomials. The degree (the highest power) <span class="math inline">d</span> can be arbitrarily high (but even, obviously),</li>
+<li><span class="math inline">d = 2</span> and <span class="math inline">n</span> is arbitrary: multivariate polynomials of degree two (note that for <span class="math inline">p(\bm x) = x_1^2 + x_1x_2^2</span> the degree <span class="math inline">d=3</span>).</li>
+<li><span class="math inline">n=2</span> and <span class="math inline">d = 4</span>: bivariate polynomials of degree 4 (at maximum).</li>
+</ul>
+<p>For all other cases all we can say is that <span class="math display">p(\bm x)\, \text{is}\, \mathrm{SOS} \Rightarrow p(\bm x)\geq 0\, \forall \bm x\in \mathbb R^n.</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hilbert conjectured in 1900 in the 17th problem that every nonnegative polynomial can be written as a sum of squares of rational functions. This was later proved correct. It turns out, that this fact is not as useful as the SOS using polynomials because of impossibility to state apriori the bounds on the degrees of the polynomials defining those rational functions.</p>
+</div>
+</div>
+</section>
+<section id="how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist">How to get an SOS representation of a polynomial (or prove that none exist)?</h2>
+<section id="univariate-case" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-case">Univariate case</h3>
+<p>Back to the univariate example first. And we do it through an example.</p>
+<div id="exm-polynomial-nonnegativity-1D-SOS" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3</strong></span> We consider the polynomial in the <a href="#exm-polynomial-nonnegativity-1D" class="quarto-xref">Example&nbsp;2</a>. One of the two squared polynomials is <span class="math inline">x^2 - 2x + 4</span>. We can write it as <span class="math display">x^2 - 2x + 4 = \underbrace{\begin{bmatrix}4 &amp; -2 &amp; 1\end{bmatrix}}_{\bm v^\top} \underbrace{\begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}}_{\bm z}.
+</span></p>
+<p>Then the squared polynomial can be written as <span class="math display">
+(x^2 - 2x + 4)^2 = \bm z^\top \bm v \bm v^\top \bm z.
+</span></p>
+<p>Note that the the product <span class="math inline">\bm v \bm v^\top</span> is a positive semidefinite matrix of rank one.</p>
+<p>We can similarly express the second squared polynomial <span class="math display">
+x-1 = \underbrace{\begin{bmatrix} -1 &amp; 1 &amp; 0\end{bmatrix}}_{\bm v^\top} \underbrace{\begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}}_{\bm z}
+</span> and then <span class="math display">
+(x - 1)^2 = \bm z^\top \begin{bmatrix} -1 \\ 1 \\ 0\end{bmatrix} \begin{bmatrix} -1 &amp; 1 &amp; 0\end{bmatrix} \bm z.
+</span></p>
+<p>Summing the two squares we get the original polynomial. But while doing this, we can sum the two rank-one matrices. <span class="math display">
+\begin{aligned}
+p(x) &amp;= x^4 - 4x^3 + 13x^2 - 18x + 17\\
+&amp;= \begin{bmatrix} 1 &amp; x &amp; x^2\end{bmatrix} \bm P \begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}
+\end{aligned},
+</span> where <span class="math inline">\bm P\succeq 0</span> is <span class="math display">
+\bm P = \underbrace{\begin{bmatrix} 4 \\ -2 \\ 1\end{bmatrix} \begin{bmatrix} 4 &amp; -2 &amp; 1\end{bmatrix}}_{\mathbf P_1} + \underbrace{\begin{bmatrix} -1 \\ 1 \\ 0\end{bmatrix} \begin{bmatrix} -1 &amp; 1 &amp; 0\end{bmatrix}}_{\mathbf P_2}
+</span></p>
+<p>The matrix that defines the quadratic form is positive semidefinite and of rank 2. Indeed, the rank of the matrix is given by the number of squared terms in the SOS decomposition.</p>
+</div>
+</section>
+<section id="multivariate-case" class="level3">
+<h3 class="anchored" data-anchor-id="multivariate-case">Multivariate case</h3>
+<p>In a general multivariate case we can proceed similarly. Just form the vector <span class="math inline">\bm z</span> from all possible monomials: <span class="math display">
+  \bm z = \begin{bmatrix}1 \\ x_1 \\ x_2 \\  \\ \vdots \\ x_n\\ x_1^2 \\ x_1 x_2 \\ \vdots \\ x_n^2\\\vdots \\x_1x_2\ldots x_n^{2}\\ \vdots \\ x_n^d \end{bmatrix}
+</span></p>
+<p>But how to determine the coefficients of the matrix? We again show it by means of an example.</p>
+<div class="{exm-polynomial-nonnegativity-2D}">
+<p>We consider the polynomial <span class="math inline">p(x_1,x_2)=2x_1^4 +2x_1^3x_2 − x_1^2x_2^2 +5x_2^4</span>. We define the vector <span class="math inline">\bm z</span> as <span class="math display">
+\bm z = \begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}.
+</span></p>
+<p>Note that we could also write it fully as <span class="math display">
+\bm z = \begin{bmatrix} 1 \\ x_1\\ x_2\\ x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix},
+</span> but we can see that the first three terms are not going to be needed. If you still cannot see it, feel free to continue with the full version of <span class="math inline">\bm z</span>, no problem.</p>
+<p>Then the polynomial can be written as <span class="math display">
+p(x_1,x_2)=\begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}^\top \begin{bmatrix} p_{11} &amp; p_{12} &amp; p_{13}\\ p_{12} &amp; p_{22} &amp; p_{23}\\p_{13} &amp; p_{23} &amp; p_{33}\end{bmatrix} \begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}.
+</span></p>
+<p>After multiplying the producs out, we get <span class="math display">
+\begin{aligned}
+p(x_1,x_2)&amp;={\color{blue}p_{11}}x_1^4 + {\color{blue}p_{33}}x_2^4 \\
+&amp;\quad + {\color{blue}2p_{12}}x_1^3x_2 + {\color{blue}2p_{23}}x_1x_2^3\\
+&amp;\quad + {\color{blue}(2p_{13} + p_{22})}x_1^2x_2^2
+\end{aligned}
+</span></p>
+<p>There are now 5 coefficients in the above polynomial (they are highlighted in blue). Equating them to some particular values gives 5 equations.</p>
+<p>But the matrix <span class="math inline">\mathbf P</span> is parameterized by 6 coefficients. Hence we need one more equation. The sixth is the LMI condition <span class="math inline">\mathbf P\succeq 0</span>.</p>
+</div>
+</section>
+</section>
+<section id="searching-for-a-sos-polynomial-lyapunov-function" class="level2">
+<h2 class="anchored" data-anchor-id="searching-for-a-sos-polynomial-lyapunov-function">Searching for a SOS polynomial Lyapunov function</h2>
+<p>We can now formulate the search for a nonnegative polynomial function <span class="math inline">V(\bm x)</span> as a search within the set of SOS polynomials of a prescribed degree <span class="math inline">d</span>.</p>
+<p>However, for a Lyapunov function, we need positiveness (actually positive definiteness), not just nonnegativeness.Therefore, instead of <span class="math inline">V(\bm x) \; \text{is SOS}</span>, we are going to impose the condition <span class="math display">
+\boxed{
+V(\bm x) - \phi(\bm x) \; \text{is SOS},}
+</span> where <span class="math inline">\phi(\bm x) = \gamma \sum_{i=1}^n\sum_{j=1}^{d} x_i^{2j}</span> for some (typically very small) <span class="math inline">\gamma &gt; 0</span>. This is pretty much the same trick that we used in the LMI formulation when we needed enforce strict inequalities.</p>
+<p>What remains to complete the conditions for Lyapunov stability, is to express the requirement that the time derivative of <span class="math inline">V(\bm x)</span> is nonpositive. This can also be done by requiring that <em>minus</em> the time derivative of the polynomial Lyapunov function, which is a polynomial too, is SOS too.</p>
+<p><span class="math display">
+\boxed
+{-\nabla V(\bm x)^\top \mathbf f(\bm x)\; \text{is SOS}.}
+</span></p>
+<p>If asymptotic stability is required instead of just Lyapunov one, the condition is that the time derivative is strictly negative, that is, we can require that <span class="math display">
+\boxed
+{-\nabla V(\bm x)^\top \mathbf f(\bm x) - \phi(\bm x)\; \text{is SOS}.}
+</span></p>
+</section>
+<section id="searching-for-a-sos-polynomial-common-lyapunov-function" class="level2">
+<h2 class="anchored" data-anchor-id="searching-for-a-sos-polynomial-common-lyapunov-function">Searching for a SOS polynomial common Lyapunov function</h2>
+<p>Back to hybrid systems. For Lyapunov stability, the problem is to find <span class="math inline">V(\bm x)</span> such that</p>
+<p><span class="math display">
+\boxed{
+\begin{aligned}  
+V(\bm x) - \phi(\bm x) \; &amp;\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_1(\bm x)\; &amp;\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_2(\bm x)\; &amp;\text{is SOS},\\
+\vdots\\
+-\nabla V(\bm x)^\top \mathbf f_r(\bm x)\; &amp;\text{is SOS},
+\end{aligned}
+}
+</span> while for asymptotic stability, the conditions are <span class="math display">
+\boxed{
+\begin{aligned}  
+V(\bm x) - \phi(\bm x) \; &amp;\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_1(\bm x) - \phi(\bm x)\; &amp;\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_2(\bm x) - \phi(\bm x)\; &amp;\text{is SOS},\\
+\vdots\\
+-\nabla V(\bm x)^\top \mathbf f_r(\bm x) - \phi(\bm x)\; &amp;\text{is SOS}.
+\end{aligned}
+}
+</span></p>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./stability_concepts.html" class="pagination-link" aria-label="Stability of hybrid systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Stability of hybrid systems</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./stability_via_multiple_lyapunov_function.html" class="pagination-link" aria-label="Stability via multiple Lyapunov functions">
+        <span class="nav-page-text">Stability via multiple Lyapunov functions</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -995,43 +995,43 @@ E_\delta \delta &amp;+ E_z z(k) \leq E_u u(k) + E_x x(k) + E_0.
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
 <div id="exm-mld-switched" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Switched linear system)</strong></span> We consider a discrete-time switched system that switches between two linear systems <span class="math display">
-x_{k+1} = a_i x(t) + b_i u(t), \quad i\in\{0,1\},
-</span> where <span class="math inline">i=0</span> if <span class="math inline">x(t)&lt; 0</span> and <span class="math inline">i=1</span> otherwise.</p>
-<p>The auxilliary binary variable <span class="math inline">\delta</span> is introduced to encode the switching condition: <span class="math display">
-[\delta = 1] \iff [-x\leq 0].
+x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{0,1\},
+</span> where <span class="math inline">i=0</span> if <span class="math inline">x(k)&lt; 0</span> and <span class="math inline">i=1</span> otherwise.</p>
+<p>The auxilliary binary variable <span class="math inline">\delta</span> (actually <span class="math inline">\delta(k)</span>, one for each discrete time <span class="math inline">k</span>) is introduced to encode the switching condition: <span class="math display">
+[\delta(k) = 1] \iff [-x(k)\leq 0].
 </span></p>
 <p>This equivalence can be rewritten as <span class="math display">
 \begin{aligned}
--x &amp;\leq (1-\delta)M,\\
--x &amp;\geq \epsilon + (m-\epsilon)\delta,
+-x(k) &amp;\leq (1-\delta(k))M,\\
+-x(k) &amp;\geq \epsilon + (m-\epsilon)\delta(k),
 \end{aligned}
-</span> where <span class="math inline">m</span> and <span class="math inline">M</span> are lower and upper bounds on <span class="math inline">x</span>, respectively, and <span class="math inline">\epsilon</span> is a small positive number. Say, if it is known that <span class="math inline">x\in [-10,10]</span>, then <span class="math inline">m=-10</span>, <span class="math inline">M=10</span>. We can set <span class="math inline">\epsilon = 10^{-8}</span>.</p>
+</span> where <span class="math inline">m</span> and <span class="math inline">M</span> are lower and upper bounds on <span class="math inline">x(k)</span>, respectively, and <span class="math inline">\epsilon</span> is a small positive number. Say, if it is known that <span class="math inline">x\in [-10,10]</span>, then <span class="math inline">m=-10</span>, <span class="math inline">M=10</span>. We can set <span class="math inline">\epsilon = 10^{-8}</span>.</p>
 <p>Furthermore, just a single continuous (real) variable <span class="math inline">z</span> is introduced to encode one of two modes of the system: <span class="math display">
 \begin{aligned}\\
-[\delta = 1] \iff z &amp;= a_2 x_k + b_2 u_k,\\
-[\delta = 0] \iff z &amp;= a_1 x_k + b_1 u_k.
+[\delta(k) = 1] \iff z(k) &amp;= a_2 x(k) + b_2 u(k),\\
+[\delta(k) = 0] \iff z(k) &amp;= a_1 x(k) + b_1 u(k).
 \end{aligned}
 </span></p>
 <p>This can be rewritten as <span class="math display">
 \begin{aligned}
-(m_1-M_2)\delta + z &amp;\leq a_1 x_k + b_1 u_k,\\
-(m_2-M_1)\delta - z &amp;\leq -a_1 x_k - b_1 u_k,\\
-(m_2-M_1)(1-\delta) + z &amp;\leq a_2 x_k + b_2 u_k,\\
-(m_1-M_2)(1-\delta) - z &amp;\leq -a_2 x_k - b_2 u_k,
+(m_1-M_2)\delta(k) + z(k) &amp;\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &amp;\leq -a_1 x(k) - b_1 u(k),\\
+(m_2-M_1)(1-\delta(k)) + z(k) &amp;\leq a_2 x(k) + b_2 u(k),\\
+(m_1-M_2)(1-\delta(k)) - z(k) &amp;\leq -a_2 x(k) - b_2 u(k),
 \end{aligned}
-</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">a_1 x_k + b_1 u_k</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">a_2 x_k + b_2 u_k</span>.</p>
+</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">a_1 x(k) + b_1 u(k)</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">a_2 x(k) + b_2 u(k)</span>.</p>
 <p>Collecting all the six inequalities (and reformatting them) we get <span class="math display">
 \begin{aligned}
-M\delta &amp;\leq x + M,\\
-(m-\epsilon)\delta &amp;\leq -x - \epsilon,\\
-(m_1-M_2)\delta + z &amp;\leq a_1 x_k + b_1 u_k,\\
-(m_2-M_1)\delta - z &amp;\leq -a_1 x_k - b_1 u_k,\\
-(M_1-m_2)\delta + z &amp;\leq a_2 x_k + b_2 u_k + (M_1-m_2),\\
-(M_2-m_1)\delta - z &amp;\leq - a_2 x_k - b_2 u_k + (M_2-m_1).
+M\delta(k) &amp;\leq x(k) + M,\\
+(m-\epsilon)\delta(k) &amp;\leq -x(k) - \epsilon,\\
+(m_1-M_2)\delta(k) + z(k) &amp;\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &amp;\leq -a_1 x(k) - b_1 u(k),\\
+(M_1-m_2)\delta(k) + z(k) &amp;\leq a_2 x(k) + b_2 u(k) + (M_1-m_2),\\
+(M_2-m_1)\delta(k) - z(k) &amp;\leq - a_2 x(k) - b_2 u(k) + (M_2-m_1).
 \end{aligned}
 </span></p>
 <p>We can rewrite these in a compact way as <span class="math display">
-E_\delta \delta + E_z z \leq E_x x_k + E_u u_k + E_0,
+E_\delta \delta(k) + E_z z(k) \leq E_x x(k) + E_u u(k) + E_0,
 </span> where <span class="math display">
 \begin{aligned}
 E_\delta &amp;= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
@@ -1039,7 +1039,7 @@ E_x &amp;= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad 
 \end{aligned}
 </span></p>
 <p>On top of these inequalities, we need to add the state update equation. It is, however, particularly simple in this case: <span class="math display">
-x_{k+1} = z,
+x(k+1) = z(k),
 </span> from which we can extract the remaining matrices parameterizing the MLD model in <a href="#eq-mld" class="quarto-xref">Equation&nbsp;1</a>: <span class="math display">
 A = 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0.
 </span></p>
@@ -1048,6 +1048,44 @@ A = 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0.
 </section>
 <section id="hysdel-language" class="level2">
 <h2 class="anchored" data-anchor-id="hysdel-language">HYSDEL language</h2>
+<p>The previous example demonstrated that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone. Automating this procedure is the goal of the HYSDEL language (and parser). Here we do not explain it, we only show the code for our example to get the idea.</p>
+<pre><code>SYSTEM switched_LTI_1 {
+    INTERFACE {
+        INPUT {
+            REAL u [-1.0,1.0];
+        }
+        STATE {
+            REAL x [-10, 10];
+        }
+        OUTPUT {
+            REAL y;
+        }
+        PARAMETER {
+            REAL A1 = -3/4;
+            REAL A2 = 1/5;
+            REAL B1 = 1;
+            REAL B2 = 1;
+        }
+    }
+    IMPLEMENTATION {
+        AUX {
+            REAL z;
+            BOOL delta;
+        }
+        AD {
+            delta = x &gt;= 0;
+        }
+        DA {
+            z = {IF delta THEN A2*x + B2*u ELSE A1*x + B1*u};
+        }
+        CONTINUOUS {
+            x = z;
+        }
+        OUTPUT {
+            y = x;
+        }
+    }
+}</code></pre>
 </section>
 <section id="piecewise-affine-systems" class="level2">
 <h2 class="anchored" data-anchor-id="piecewise-affine-systems">Piecewise affine systems</h2>
