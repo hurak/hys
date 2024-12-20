@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Logic vs inequalities – B(E)3M35HYS – Hybrid systems</title>
+<title>Logic vs mixed integer-linear inequalities – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs inequalities</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_DHA.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs mixed integer-linear inequalities</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -511,12 +511,6 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mld_why.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Why another framework?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Discrete hybrid automata</span></a>
   </div>
@@ -524,7 +518,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Logic vs inequalities</span></a>
+ <span class="menu-text">Logic vs mixed integer-linear inequalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -672,9 +666,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_why.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs inequalities</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_DHA.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_intro.html">Logic vs mixed integer-linear inequalities</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Logic vs inequalities</h1>
+<h1 class="title">Logic vs mixed integer-linear inequalities</h1>
 </div>
 
 
@@ -691,7 +685,7 @@ window.Quarto = {
 </header>
 
 
-<p>Our goal now is to turn the IF-THEN conditions in the model into linear inequalities. This will allow us to formulate the model as a mathematical program, actually a <em>mixed-integer program</em> (MIP).</p>
+<p>Our goal is to turn the IF-THEN-ELSE conditions in the discrete hybrid model (DHA) into linear inequalities, which will allow us to formulate the model as a mathematical program, actually a <em>mixed-integer program</em> (MIP). In order to get there, we are going to recap some fundamentals of logic and then we are going to show how various logical conditions can be turned into linear inequalities.</p>
 <section id="propositional-logic-and-connectives" class="level2">
 <h2 class="anchored" data-anchor-id="propositional-logic-and-connectives">Propositional logic and connectives</h2>
 <p>Propositions that are either true or false are composed of elementary <em>propositions</em> (Boolean variables) and <em>connectives</em>.</p>
@@ -1194,7 +1188,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
