@@ -728,7 +728,20 @@ X_1 \implies X_2 \qquad  &amp;\equiv \qquad \neg X_1 \lor X_2.
 1 &amp; \text{if} \; X.
 \end{cases}
 </span></p>
-<p>In other words, have the the following equivalence <span class="math display">X \qquad \equiv \qquad [\delta = 1].</span></p>
+<p>In other words, have the the following equivalence <span class="math display">X \qquad \iff \qquad [\delta = 1].</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Redudant (but convenient) use of brackets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The use of the brackets here is redundant. As long as the symbol <code>=</code> is interpreted as equation and not assignment, we can equally well write <span class="math inline">X \equiv \delta = 1</span>, assuming precedence of <span class="math inline">=</span> over <span class="math inline">\iff</span>. In this regard, the role of the brackets is really just grouping. We could also use <span class="math inline">X \equiv (\delta = 1)</span> for that matter.</p>
+</div>
+</div>
 </section>
 <section id="integer-inequalities-related-to-the-logical-formulas" class="level2">
 <h2 class="anchored" data-anchor-id="integer-inequalities-related-to-the-logical-formulas">Integer (in)equalities related to the logical formulas</h2>
@@ -893,7 +906,7 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 </span></p>
 <p>It can be equivalently expressed as the product <span class="math display">
 z = \delta\,f(x,u),
-</span> where <span class="math inline">\delta</span> is a binary indicator. This, turn, can be written as <span class="math display">
+</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written as <span class="math display">
 \begin{aligned}
 z &amp;\leq M\delta,\\
 - z &amp;\leq -m\delta,\\
@@ -957,13 +970,13 @@ x_c(k+1) = \sum_{i=1}^s z_i(k),
 </span> where <span class="math display">
 z_1(k) =
 \begin{cases}
-A_1 x_c(k) + B_1 u_c(k) + a_1 &amp; \text{if}\;i(k)=1,\\
+a_1 x_c(k) + b_1 u_c(k) + f_1 &amp; \text{if}\;i(k)=1,\\
 0 &amp; \text{otherwise},
 \end{cases}
 </span> <span class="math display">\quad \vdots</span> <span class="math display">
 z_s(k) =
 \begin{cases}
-A_s x_c(k) + B_s u_c(k) + f_s &amp; \text{if}\;i(k)=s,\\
+a_s x_c(k) + b_s u_c(k) + f_s &amp; \text{if}\;i(k)=s,\\
 0 &amp; \text{otherwise},
 \end{cases}
 </span> and we rewrite it for each <span class="math inline">i\in \{1, 2, \ldots, s\}</span> as <span id="eq-switched-affine"><span class="math display">\boxed{
@@ -984,7 +997,7 @@ All these results were derived just for scalar <span class="math inline">z</span
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>With the formalism presented here, vector variables <span class="math inline">\bm z</span> and correspondingly vector right-hand-side functions <span class="math inline">\mathbf f()</span> must be handled but condidering their individual scalar components <span class="math inline">z_1, \ldots, z_n</span> and <span class="math inline">f_1(), \ldots, f_n()</span>. Notational care must be exercised, note that the lower index in this remark has different meaning than that in <a href="#eq-switched-affine" class="quarto-xref">Equation&nbsp;5</a>.</p>
+<p>With the formalism presented here, vector variables <span class="math inline">\bm z</span> and correspondingly vector right-hand-side functions <span class="math inline">\mathbf f()</span> must be handled but considering their individual scalar components <span class="math inline">z_1, \ldots, z_n</span> and <span class="math inline">f_1(), \ldots, f_n()</span>. Notational care must be exercised, note that the lower index in this remark has different meaning than that in <a href="#eq-switched-affine" class="quarto-xref">Equation&nbsp;5</a>.</p>
 </div>
 </div>
 
