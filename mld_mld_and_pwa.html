@@ -20,10 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +122,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -633,9 +690,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#examples" id="toc-examples" class="nav-link active" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" id="toc-uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" class="nav-link active" data-scroll-target="#uniqueness-of-the-state-and-output-responses-predicted-by-mld-models">Uniqueness of the state and output responses predicted by MLD models</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
   <li><a href="#hysdel-language" id="toc-hysdel-language" class="nav-link" data-scroll-target="#hysdel-language">HYSDEL language</a></li>
   <li><a href="#piecewise-affine-systems" id="toc-piecewise-affine-systems" class="nav-link" data-scroll-target="#piecewise-affine-systems">Piecewise affine systems</a></li>
+  <li><a href="#equivalence-of-mld-dha-and-pwa-and-some-more" id="toc-equivalence-of-mld-dha-and-pwa-and-some-more" class="nav-link" data-scroll-target="#equivalence-of-mld-dha-and-pwa-and-some-more">Equivalence of MLD, DHA, and PWA (and some more)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -664,14 +723,20 @@ window.Quarto = {
 <p>We have just learnt how the logical conditions that encode the individual components of discrete hybrid automata can be turned into linear inequalities. Here we summarize them all into a single mathematical model called <em>mixed logical dynamical (MLD)</em>.</p>
 <p><span id="eq-mld"><span class="math display">\boxed{
 \begin{aligned}
-x(k+1) &amp;= Ax(k) + B_u u(k) + B_\delta\delta + B_zz(k) + B_0,\\
-y(k) &amp;= Cx(k) + D_u u(k) + D_\delta \delta + D_z z + D_0,\\
-E_\delta \delta &amp;+ E_z z(k) \leq E_u u(k) + E_x x(k) + E_0.  
+\bm x(k+1) &amp;= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta \bm \delta(k) + \mathbf B_z\bm z(k) + \mathbf B_0,\\
+\bm y(k) &amp;= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta \bm \delta(k) + \mathbf D_z(k) \bm z + \mathbf D_0,\\
+\mathbf E_\delta \bm \delta &amp;+ \mathbf E_z \bm z(k) \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
 \end{aligned}}
-\tag{1}</span></span></p>
+\tag{1}</span></span> where <span class="math display">
+\bm x(k) = \begin{bmatrix}\bm x_c(k) \\ \bm x_b(k) \end{bmatrix},\qquad \bm u(k) = \begin{bmatrix}\bm u_c(k) \\ \bm u_b(k) \end{bmatrix},\qquad \bm y(k) = \begin{bmatrix}\bm y_c(k) \\ \bm y_b(k) \end{bmatrix},
+</span> which reads that the state and control input vectors are composed of the continuous (real) and binary variables.</p>
 <p>The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxilliary variebles (plus an offset). The auxilliary variables are not completely arbitrary – they must comply with the third (set of) equation(s).</p>
-<section id="examples" class="level3">
-<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" class="level2">
+<h2 class="anchored" data-anchor-id="uniqueness-of-the-state-and-output-responses-predicted-by-mld-models">Uniqueness of the state and output responses predicted by MLD models</h2>
+<p>An immediate question that must pop up in our minds is that of the uniqueness of the state and output responses predicted by the MLD model. For given <span class="math inline">\bm x(k)</span> and <span class="math inline">\bm u(k)</span>, uniqueness of the values of the auxuliary variables <span class="math inline">\bm \lambda(k)</span> and <span class="math inline">\bm z(k)</span> compliant with the inequalities, hence the next state <span class="math inline">\bm x(k+1)</span> and the output <span class="math inline">\bm y(k)</span>, is not immediately obvious. As claimed in the seminal paper <span class="citation" data-cites="bemporadControlSystemsIntegrating1999"><a href="#ref-bemporadControlSystemsIntegrating1999" role="doc-biblioref">[1]</a></span>, MLD models corresponding to real systems do have unique solutions.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
 <div id="exm-mld-switched" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Switched linear system)</strong></span> We consider a discrete-time switched system that switches between two linear systems <span class="math display">
 x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{0,1\},
@@ -710,24 +775,154 @@ M\delta(k) &amp;\leq x(k) + M,\\
 \end{aligned}
 </span></p>
 <p>We can rewrite these in a compact way as <span class="math display">
-E_\delta \delta(k) + E_z z(k) \leq E_x x(k) + E_u u(k) + E_0,
+\mathbf E_\delta \delta(k) + \mathbf E_z z(k) \leq \mathbf E_x x(k) + \mathbf E_u u(k) + \mathbf E_0,
 </span> where <span class="math display">
 \begin{aligned}
-E_\delta &amp;= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
-E_x &amp;= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad E_u = \begin{bmatrix} 0\\ 0\\ b_1\\ -b_1\\ b_2\\ -b_2\end{bmatrix},\qquad E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
+\mathbf E_\delta &amp;= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad \mathbf E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
+\mathbf E_x &amp;= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad \mathbf E_u = \begin{bmatrix} 0\\ 0\\ b_1\\ -b_1\\ b_2\\ -b_2\end{bmatrix},\qquad \mathbf E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
 \end{aligned}
 </span></p>
 <p>On top of these inequalities, we need to add the state update equation. It is, however, particularly simple in this case: <span class="math display">
 x(k+1) = z(k),
 </span> from which we can extract the remaining matrices parameterizing the MLD model in <a href="#eq-mld" class="quarto-xref">Equation&nbsp;1</a>: <span class="math display">
-A = 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0.
+\begin{aligned}
+A &amp;= 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0,\\
+C &amp;= 1, \quad D_u = 0, \quad D_\delta = 0, \quad D_z = 0, \quad D_0 = 0.
+\end{aligned}
 </span></p>
-<p>Note, in particular, that the matrix <span class="math inline">A=0</span>, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation.</p>
+<p>Note, in particular, that <span class="math inline">A=0</span>, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation, it is a different type of a model.</p>
+<p>The inequality paramaterized by <span class="math inline">\mathbf E_{\lambda}, \mathbf E_z, \mathbf E_x, \mathbf E_x</span> and <span class="math inline">\mathbf E_o</span>, for given <span class="math inline">\bm x(k)</span> and <span class="math inline">\bm u(k)</span>, defines a set in the <span class="math inline">\delta-z</span> plane. When the integrality of <span class="math inline">\delta</span> is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see <a href="#fig-mld-switched" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<div id="cell-fig-mld-switched" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="op">-</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="op">-</span><span class="fl">10.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> m2 <span class="op">=</span> m</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> M2 <span class="op">=</span> M</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ϵ <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>A  <span class="op">=</span> [<span class="fl">0.0</span>;;]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Bu <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Bδ <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Bz <span class="op">=</span> [<span class="fl">1.0</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Bo <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>C  <span class="op">=</span> [<span class="fl">0.0</span>;;]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Du <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Dδ <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Dz <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Do <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Eδ <span class="op">=</span> [M, m<span class="op">-</span>ϵ, m1<span class="op">-</span>M2, m2<span class="op">-</span>M1, M1<span class="op">-</span>m2, M2<span class="op">-</span>m1]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Ez <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Ex <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, a1, <span class="op">-</span>a1, a2, <span class="op">-</span>a2]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Eu <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, b1, <span class="op">-</span>b1, b2, <span class="op">-</span>b2]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Eo <span class="op">=</span> [M, <span class="op">-</span>ϵ, <span class="fl">0.0</span>, <span class="fl">0.0</span>, M1<span class="op">-</span>m2, M2<span class="op">-</span>m1]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HiGHS</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>opt_problem <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer) </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">set_silent</span>(opt_problem)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, m <span class="op">&lt;=</span> x⁺ <span class="op">&lt;=</span> M)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, δ, Bin)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, z)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(opt_problem, x⁺ <span class="op">.==</span> A<span class="op">*</span>x <span class="op">+</span> Bu<span class="op">*</span>u <span class="op">+</span> Bδ<span class="op">*</span>δ <span class="op">+</span> Bz<span class="op">*</span>z <span class="op">+</span> Bo)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(opt_problem, Eδ<span class="op">*</span>δ <span class="op">+</span> Ez<span class="op">*</span>z <span class="op">.&lt;=</span> Ex<span class="op">*</span>x <span class="op">+</span> Eu<span class="op">*</span>u <span class="op">+</span> Eo)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(opt_problem, Min, <span class="fl">0.0</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(opt_problem)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Ex<span class="op">*</span>x <span class="op">+</span> Eu<span class="op">*</span>u <span class="op">+</span> Eo</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LazySets</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>H1 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">1</span>], Ez[<span class="fl">1</span>]], b[<span class="fl">1</span>])</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>H2 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">2</span>], Ez[<span class="fl">2</span>]], b[<span class="fl">2</span>])</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>H3 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">3</span>], Ez[<span class="fl">3</span>]], b[<span class="fl">3</span>])</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>H4 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">4</span>], Ez[<span class="fl">4</span>]], b[<span class="fl">4</span>])</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>H5 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">5</span>], Ez[<span class="fl">5</span>]], b[<span class="fl">5</span>])</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>H6 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">6</span>], Ez[<span class="fl">6</span>]], b[<span class="fl">6</span>])</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> H1 <span class="op">∩</span> H2 <span class="op">∩</span> H3 <span class="op">∩</span> H4 <span class="op">∩</span> H5 <span class="op">∩</span> H6</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(H, aspect_ratio<span class="op">=:</span>auto,xlabel<span class="op">=</span><span class="st">"δ"</span>,ylabel<span class="op">=</span><span class="st">"z"</span>,label<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>S1 <span class="op">=</span> <span class="fu">Singleton</span>([<span class="fu">value</span>(δ), <span class="fu">value</span>(z)])</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(S1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-mld-switched" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mld-switched-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!--?xml version="1.0" encoding="utf-8"?-->
+<svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" width="672" height="480" viewbox="0 0 2688 1920">
+<defs>
+  <clippath id="clip890">
+    <rect x="0" y="0" width="2688" height="1920"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip890)" d="M0 1920 L2688 1920 L2688 -4.26326e-14 L0 -4.26326e-14  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip891">
+    <rect x="537" y="0" width="1883" height="1883"></rect>
+  </clippath>
+</defs>
+<path clip-path="url(#clip890)" d="M248.409 1734.12 L2640.76 1734.12 L2640.76 47.2441 L248.409 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"></path>
+<defs>
+  <clippath id="clip892">
+    <rect x="248" y="47" width="2393" height="1688"></rect>
+  </clippath>
+</defs>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="315.891,1734.12 315.891,47.2441 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="880.18,1734.12 880.18,47.2441 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1444.47,1734.12 1444.47,47.2441 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2008.76,1734.12 2008.76,47.2441 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2573.05,1734.12 2573.05,47.2441 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="248.409,1722.18 2640.76,1722.18 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="248.409,1324.33 2640.76,1324.33 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="248.409,926.487 2640.76,926.487 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="248.409,528.639 2640.76,528.639 "></polyline>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="248.409,130.792 2640.76,130.792 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,1734.12 2640.76,1734.12 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="315.891,1734.12 315.891,1715.22 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="880.18,1734.12 880.18,1715.22 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1444.47,1734.12 1444.47,1715.22 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2008.76,1734.12 2008.76,1715.22 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2573.05,1734.12 2573.05,1715.22 "></polyline>
+<path clip-path="url(#clip890)" d="M294.074 1767.34 Q290.463 1767.34 288.634 1770.9 Q286.829 1774.45 286.829 1781.58 Q286.829 1788.68 288.634 1792.25 Q290.463 1795.79 294.074 1795.79 Q297.708 1795.79 299.514 1792.25 Q301.343 1788.68 301.343 1781.58 Q301.343 1774.45 299.514 1770.9 Q297.708 1767.34 294.074 1767.34 M294.074 1763.64 Q299.884 1763.64 302.94 1768.24 Q306.019 1772.83 306.019 1781.58 Q306.019 1790.3 302.94 1794.91 Q299.884 1799.49 294.074 1799.49 Q288.264 1799.49 285.185 1794.91 Q282.13 1790.3 282.13 1781.58 Q282.13 1772.83 285.185 1768.24 Q288.264 1763.64 294.074 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M314.236 1792.94 L319.12 1792.94 L319.12 1798.82 L314.236 1798.82 L314.236 1792.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M333.333 1794.89 L349.653 1794.89 L349.653 1798.82 L327.708 1798.82 L327.708 1794.89 Q330.37 1792.13 334.954 1787.5 Q339.56 1782.85 340.741 1781.51 Q342.986 1778.98 343.866 1777.25 Q344.768 1775.49 344.768 1773.8 Q344.768 1771.04 342.824 1769.31 Q340.903 1767.57 337.801 1767.57 Q335.602 1767.57 333.148 1768.34 Q330.717 1769.1 327.94 1770.65 L327.94 1765.93 Q330.764 1764.79 333.217 1764.21 Q335.671 1763.64 337.708 1763.64 Q343.079 1763.64 346.273 1766.32 Q349.467 1769.01 349.467 1773.5 Q349.467 1775.63 348.657 1777.55 Q347.87 1779.45 345.764 1782.04 Q345.185 1782.71 342.083 1785.93 Q338.981 1789.12 333.333 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M857.322 1767.34 Q853.711 1767.34 851.882 1770.9 Q850.076 1774.45 850.076 1781.58 Q850.076 1788.68 851.882 1792.25 Q853.711 1795.79 857.322 1795.79 Q860.956 1795.79 862.761 1792.25 Q864.59 1788.68 864.59 1781.58 Q864.59 1774.45 862.761 1770.9 Q860.956 1767.34 857.322 1767.34 M857.322 1763.64 Q863.132 1763.64 866.187 1768.24 Q869.266 1772.83 869.266 1781.58 Q869.266 1790.3 866.187 1794.91 Q863.132 1799.49 857.322 1799.49 Q851.512 1799.49 848.433 1794.91 Q845.377 1790.3 845.377 1781.58 Q845.377 1772.83 848.433 1768.24 Q851.512 1763.64 857.322 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M877.484 1792.94 L882.368 1792.94 L882.368 1798.82 L877.484 1798.82 L877.484 1792.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M905.4 1768.34 L893.595 1786.78 L905.4 1786.78 L905.4 1768.34 M904.173 1764.26 L910.053 1764.26 L910.053 1786.78 L914.983 1786.78 L914.983 1790.67 L910.053 1790.67 L910.053 1798.82 L905.4 1798.82 L905.4 1790.67 L889.798 1790.67 L889.798 1786.16 L904.173 1764.26 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M1421.77 1767.34 Q1418.16 1767.34 1416.33 1770.9 Q1414.53 1774.45 1414.53 1781.58 Q1414.53 1788.68 1416.33 1792.25 Q1418.16 1795.79 1421.77 1795.79 Q1425.41 1795.79 1427.21 1792.25 Q1429.04 1788.68 1429.04 1781.58 Q1429.04 1774.45 1427.21 1770.9 Q1425.41 1767.34 1421.77 1767.34 M1421.77 1763.64 Q1427.58 1763.64 1430.64 1768.24 Q1433.72 1772.83 1433.72 1781.58 Q1433.72 1790.3 1430.64 1794.91 Q1427.58 1799.49 1421.77 1799.49 Q1415.96 1799.49 1412.88 1794.91 Q1409.83 1790.3 1409.83 1781.58 Q1409.83 1772.83 1412.88 1768.24 Q1415.96 1763.64 1421.77 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M1441.93 1792.94 L1446.82 1792.94 L1446.82 1798.82 L1441.93 1798.82 L1441.93 1792.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M1467.58 1779.68 Q1464.43 1779.68 1462.58 1781.83 Q1460.75 1783.98 1460.75 1787.73 Q1460.75 1791.46 1462.58 1793.64 Q1464.43 1795.79 1467.58 1795.79 Q1470.73 1795.79 1472.56 1793.64 Q1474.41 1791.46 1474.41 1787.73 Q1474.41 1783.98 1472.56 1781.83 Q1470.73 1779.68 1467.58 1779.68 M1476.87 1765.02 L1476.87 1769.28 Q1475.11 1768.45 1473.3 1768.01 Q1471.52 1767.57 1469.76 1767.57 Q1465.13 1767.57 1462.68 1770.7 Q1460.24 1773.82 1459.9 1780.14 Q1461.26 1778.13 1463.32 1777.06 Q1465.38 1775.97 1467.86 1775.97 Q1473.07 1775.97 1476.08 1779.15 Q1479.11 1782.29 1479.11 1787.73 Q1479.11 1793.06 1475.96 1796.27 Q1472.81 1799.49 1467.58 1799.49 Q1461.59 1799.49 1458.42 1794.91 Q1455.24 1790.3 1455.24 1781.58 Q1455.24 1773.38 1459.13 1768.52 Q1463.02 1763.64 1469.57 1763.64 Q1471.33 1763.64 1473.12 1763.98 Q1474.92 1764.33 1476.87 1765.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M1986.19 1767.34 Q1982.58 1767.34 1980.75 1770.9 Q1978.94 1774.45 1978.94 1781.58 Q1978.94 1788.68 1980.75 1792.25 Q1982.58 1795.79 1986.19 1795.79 Q1989.82 1795.79 1991.63 1792.25 Q1993.46 1788.68 1993.46 1781.58 Q1993.46 1774.45 1991.63 1770.9 Q1989.82 1767.34 1986.19 1767.34 M1986.19 1763.64 Q1992 1763.64 1995.06 1768.24 Q1998.13 1772.83 1998.13 1781.58 Q1998.13 1790.3 1995.06 1794.91 Q1992 1799.49 1986.19 1799.49 Q1980.38 1799.49 1977.3 1794.91 Q1974.25 1790.3 1974.25 1781.58 Q1974.25 1772.83 1977.3 1768.24 Q1980.38 1763.64 1986.19 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M2006.35 1792.94 L2011.24 1792.94 L2011.24 1798.82 L2006.35 1798.82 L2006.35 1792.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M2031.42 1782.41 Q2028.09 1782.41 2026.17 1784.19 Q2024.27 1785.97 2024.27 1789.1 Q2024.27 1792.22 2026.17 1794.01 Q2028.09 1795.79 2031.42 1795.79 Q2034.75 1795.79 2036.68 1794.01 Q2038.6 1792.2 2038.6 1789.1 Q2038.6 1785.97 2036.68 1784.19 Q2034.78 1782.41 2031.42 1782.41 M2026.74 1780.42 Q2023.74 1779.68 2022.05 1777.62 Q2020.38 1775.56 2020.38 1772.59 Q2020.38 1768.45 2023.32 1766.04 Q2026.28 1763.64 2031.42 1763.64 Q2036.58 1763.64 2039.52 1766.04 Q2042.46 1768.45 2042.46 1772.59 Q2042.46 1775.56 2040.77 1777.62 Q2039.11 1779.68 2036.12 1780.42 Q2039.5 1781.21 2041.37 1783.5 Q2043.27 1785.79 2043.27 1789.1 Q2043.27 1794.12 2040.19 1796.81 Q2037.14 1799.49 2031.42 1799.49 Q2025.7 1799.49 2022.62 1796.81 Q2019.57 1794.12 2019.57 1789.1 Q2019.57 1785.79 2021.47 1783.5 Q2023.37 1781.21 2026.74 1780.42 M2025.03 1773.03 Q2025.03 1775.72 2026.7 1777.22 Q2028.39 1778.73 2031.42 1778.73 Q2034.43 1778.73 2036.12 1777.22 Q2037.83 1775.72 2037.83 1773.03 Q2037.83 1770.35 2036.12 1768.84 Q2034.43 1767.34 2031.42 1767.34 Q2028.39 1767.34 2026.7 1768.84 Q2025.03 1770.35 2025.03 1773.03 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M2540.2 1794.89 L2547.84 1794.89 L2547.84 1768.52 L2539.53 1770.19 L2539.53 1765.93 L2547.79 1764.26 L2552.47 1764.26 L2552.47 1794.89 L2560.11 1794.89 L2560.11 1798.82 L2540.2 1798.82 L2540.2 1794.89 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M2569.55 1792.94 L2574.44 1792.94 L2574.44 1798.82 L2569.55 1798.82 L2569.55 1792.94 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M2594.62 1767.34 Q2591.01 1767.34 2589.18 1770.9 Q2587.38 1774.45 2587.38 1781.58 Q2587.38 1788.68 2589.18 1792.25 Q2591.01 1795.79 2594.62 1795.79 Q2598.26 1795.79 2600.06 1792.25 Q2601.89 1788.68 2601.89 1781.58 Q2601.89 1774.45 2600.06 1770.9 Q2598.26 1767.34 2594.62 1767.34 M2594.62 1763.64 Q2600.43 1763.64 2603.49 1768.24 Q2606.57 1772.83 2606.57 1781.58 Q2606.57 1790.3 2603.49 1794.91 Q2600.43 1799.49 2594.62 1799.49 Q2588.81 1799.49 2585.73 1794.91 Q2582.68 1790.3 2582.68 1781.58 Q2582.68 1772.83 2585.73 1768.24 Q2588.81 1763.64 2594.62 1763.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M1456.58 1842.02 Q1453.34 1839.79 1445.73 1839.79 Q1437.68 1839.79 1437.68 1843.52 Q1437.68 1846.44 1446.08 1847.97 Q1452.7 1849.15 1456.42 1852.71 Q1460.94 1857.01 1460.94 1865.83 Q1460.94 1874.26 1456.58 1879.23 Q1452.22 1884.22 1444.58 1884.22 Q1436.98 1884.22 1432.58 1879.23 Q1428.22 1874.26 1428.22 1865.51 Q1428.22 1859.02 1432.58 1853.76 Q1434.27 1851.73 1436.66 1850.58 Q1431.69 1848.07 1431.69 1843.58 Q1431.69 1834.92 1445.73 1834.92 Q1452.76 1834.92 1456.58 1837.15 L1456.58 1842.02 M1441.05 1852.17 Q1438.89 1853.1 1437.13 1855.42 Q1434.4 1859.02 1434.4 1865.51 Q1434.4 1871.97 1437.1 1875.6 Q1439.84 1879.26 1444.58 1879.26 Q1449.26 1879.26 1452 1875.57 Q1454.74 1871.87 1454.74 1865.83 Q1454.74 1859.49 1451.84 1856.44 Q1448.75 1853.16 1444.74 1852.81 Q1442.7 1852.62 1441.05 1852.17 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,1734.12 248.409,47.2441 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,1722.18 267.307,1722.18 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,1324.33 267.307,1324.33 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,926.487 267.307,926.487 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,528.639 267.307,528.639 "></polyline>
+<polyline clip-path="url(#clip890)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="248.409,130.792 267.307,130.792 "></polyline>
+<path clip-path="url(#clip890)" d="M116.214 1722.63 L145.89 1722.63 L145.89 1726.57 L116.214 1726.57 L116.214 1722.63 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M156.793 1735.53 L164.432 1735.53 L164.432 1709.16 L156.122 1710.83 L156.122 1706.57 L164.385 1704.9 L169.061 1704.9 L169.061 1735.53 L176.7 1735.53 L176.7 1739.46 L156.793 1739.46 L156.793 1735.53 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M196.145 1707.98 Q192.533 1707.98 190.705 1711.55 Q188.899 1715.09 188.899 1722.22 Q188.899 1729.32 190.705 1732.89 Q192.533 1736.43 196.145 1736.43 Q199.779 1736.43 201.584 1732.89 Q203.413 1729.32 203.413 1722.22 Q203.413 1715.09 201.584 1711.55 Q199.779 1707.98 196.145 1707.98 M196.145 1704.28 Q201.955 1704.28 205.01 1708.88 Q208.089 1713.47 208.089 1722.22 Q208.089 1730.94 205.01 1735.55 Q201.955 1740.13 196.145 1740.13 Q190.334 1740.13 187.256 1735.55 Q184.2 1730.94 184.2 1722.22 Q184.2 1713.47 187.256 1708.88 Q190.334 1704.28 196.145 1704.28 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M147.372 1324.79 L177.047 1324.79 L177.047 1328.72 L147.372 1328.72 L147.372 1324.79 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M187.186 1307.05 L205.543 1307.05 L205.543 1310.99 L191.469 1310.99 L191.469 1319.46 Q192.487 1319.11 193.506 1318.95 Q194.524 1318.77 195.543 1318.77 Q201.33 1318.77 204.709 1321.94 Q208.089 1325.11 208.089 1330.53 Q208.089 1336.1 204.617 1339.21 Q201.145 1342.29 194.825 1342.29 Q192.649 1342.29 190.381 1341.92 Q188.135 1341.54 185.728 1340.8 L185.728 1336.1 Q187.811 1337.24 190.033 1337.79 Q192.256 1338.35 194.733 1338.35 Q198.737 1338.35 201.075 1336.24 Q203.413 1334.14 203.413 1330.53 Q203.413 1326.92 201.075 1324.81 Q198.737 1322.7 194.733 1322.7 Q192.858 1322.7 190.983 1323.12 Q189.131 1323.54 187.186 1324.42 L187.186 1307.05 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M196.145 912.285 Q192.533 912.285 190.705 915.85 Q188.899 919.392 188.899 926.522 Q188.899 933.628 190.705 937.193 Q192.533 940.734 196.145 940.734 Q199.779 940.734 201.584 937.193 Q203.413 933.628 203.413 926.522 Q203.413 919.392 201.584 915.85 Q199.779 912.285 196.145 912.285 M196.145 908.582 Q201.955 908.582 205.01 913.188 Q208.089 917.772 208.089 926.522 Q208.089 935.248 205.01 939.855 Q201.955 944.438 196.145 944.438 Q190.334 944.438 187.256 939.855 Q184.2 935.248 184.2 926.522 Q184.2 917.772 187.256 913.188 Q190.334 908.582 196.145 908.582 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M187.186 511.359 L205.543 511.359 L205.543 515.295 L191.469 515.295 L191.469 523.767 Q192.487 523.42 193.506 523.258 Q194.524 523.072 195.543 523.072 Q201.33 523.072 204.709 526.244 Q208.089 529.415 208.089 534.832 Q208.089 540.41 204.617 543.512 Q201.145 546.591 194.825 546.591 Q192.649 546.591 190.381 546.22 Q188.135 545.85 185.728 545.109 L185.728 540.41 Q187.811 541.544 190.033 542.1 Q192.256 542.656 194.733 542.656 Q198.737 542.656 201.075 540.549 Q203.413 538.443 203.413 534.832 Q203.413 531.22 201.075 529.114 Q198.737 527.007 194.733 527.007 Q192.858 527.007 190.983 527.424 Q189.131 527.841 187.186 528.72 L187.186 511.359 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M156.793 144.137 L164.432 144.137 L164.432 117.771 L156.122 119.438 L156.122 115.179 L164.385 113.512 L169.061 113.512 L169.061 144.137 L176.7 144.137 L176.7 148.072 L156.793 148.072 L156.793 144.137 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M196.145 116.591 Q192.533 116.591 190.705 120.156 Q188.899 123.697 188.899 130.827 Q188.899 137.933 190.705 141.498 Q192.533 145.04 196.145 145.04 Q199.779 145.04 201.584 141.498 Q203.413 137.933 203.413 130.827 Q203.413 123.697 201.584 120.156 Q199.779 116.591 196.145 116.591 M196.145 112.887 Q201.955 112.887 205.01 117.494 Q208.089 122.077 208.089 130.827 Q208.089 139.554 205.01 144.16 Q201.955 148.743 196.145 148.743 Q190.334 148.743 187.256 144.16 Q184.2 139.554 184.2 130.827 Q184.2 122.077 187.256 117.494 Q190.334 112.887 196.145 112.887 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip890)" d="M25.9905 904.192 L25.9905 876.374 L31.3377 876.374 L56.9596 898.399 L56.9596 876.374 L61.6384 876.374 L61.6384 904.987 L56.2912 904.987 L30.6693 882.962 L30.6693 904.192 L25.9905 904.192 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1"></path><path clip-path="url(#clip892)" d="M316.117 1284.68 L1028.31 1686.38 L2573.05 815.09 L1296.34 94.9858 L316.117 647.866 L316.117 1284.68 L316.117 1284.68  Z" fill="#009af9" fill-rule="evenodd" fill-opacity="0.5"></path>
+<polyline clip-path="url(#clip892)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:0.5; fill:none" points="316.117,1284.68 1028.31,1686.38 2573.05,815.09 1296.34,94.9858 316.117,647.866 316.117,1284.68 "></polyline>
+<circle clip-path="url(#clip892)" cx="2573.05" cy="815.09" r="14.4" fill="#e26f46" fill-rule="evenodd" fill-opacity="0.5" stroke="#000000" stroke-opacity="0.5" stroke-width="3.84"></circle>
+</svg>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mld-switched-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The set of feasible values of the auxilliary variables <span class="math inline">\delta</span> and <span class="math inline">z</span>. The blue polyhedron relaxes the integrality condition on <span class="math inline">\delta</span>, but if the condition is taken into consideration, the set is a single (orange) point.
+</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="hysdel-language" class="level2">
 <h2 class="anchored" data-anchor-id="hysdel-language">HYSDEL language</h2>
-<p>The previous example demonstrated that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone. Automating this procedure is the goal of the HYSDEL language (and parser). Here we do not explain it, we only show the code for our example to get the idea.</p>
+<p>The previous example demonstrated that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone. Automating this procedure is the goal of the HYSDEL language (and parser). Here we do not explain it – we refer the student to the section 16.7 in <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[2]</a></span>, which is freely downloadable –, but the code is perhaps self-explaining.</p>
 <pre><code>SYSTEM switched_LTI_1 {
     INTERFACE {
         INPUT {
@@ -765,22 +960,49 @@ A = 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0.
         }
     }
 }</code></pre>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Availability of HYSDEL
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). Implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors. A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but shipped with another software package produced by him – <a href="https://www.mpt3.org">Multiparametric Toolbox (MPT3)</a> – is still the old(er) version 2 of HYSDEL.</p>
+</div>
+</div>
 </section>
 <section id="piecewise-affine-systems" class="level2">
 <h2 class="anchored" data-anchor-id="piecewise-affine-systems">Piecewise affine systems</h2>
-<p><span class="math display">
+<p>Tightly related to the MLD model is another representation of a hybrid system – a PWA (piecewise affine) system (actually a model) <span class="math display">
 \begin{aligned}
-x(k+1) &amp;= A_{i(k)}x(k) + B_{i(k)} u(k) + f_{i(k)}\\
-y(k) &amp;= C_{i(k)}x(k) + D_{i(k)} u(k) + g_{i(k)}\\
-&amp; \; H_{i(k)} x(k) + J_{i(k)} u(k) \leq K_{i(k)}
+\bm x(k+1) &amp;= \mathbf A_{i(k)}\bm x(k) + \mathbf B_{i(k)} \bm u(k) + \mathbf f_{i(k)},\\
+\bm y(k) &amp;= \mathbf C_{i(k)}\bm x(k) + \mathbf D_{i(k)} \bm u(k) + \mathbf g_{i(k)},\\
+&amp; \; \mathbf H_{i(k)} \bm x(k) + \mathbf J_{i(k)} \bm u(k) \leq \mathbf K_{i(k)}.
 \end{aligned}
 </span></p>
-<p>DHA, MLD, PWA are equivalent. # TODO: explain</p>
+</section>
+<section id="equivalence-of-mld-dha-and-pwa-and-some-more" class="level2">
+<h2 class="anchored" data-anchor-id="equivalence-of-mld-dha-and-pwa-and-some-more">Equivalence of MLD, DHA, and PWA (and some more)</h2>
+<p>As stated in the section 16.8 in the freely downloadable <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[2]</a></span>, the three models – MLD, DHA, and PWA – are equivalent. In fact two more kinds of models that we also covered in the course – linear complementarity systems and max-(min-)plus(-scaling) systems are also included in this equivalence statement, the key reference is <span class="citation" data-cites="heemelsEquivalenceHybridDynamical2001"><a href="#ref-heemelsEquivalenceHybridDynamical2001" role="doc-biblioref">[3]</a></span>.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-bemporadControlSystemsIntegrating1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Bemporad and M. Morari, <span>“Control of systems integrating logic, dynamics, and constraints,”</span> <em>Automatica</em>, vol. 35, no. 3, pp. 407–427, Mar. 1999, doi: <a href="https://doi.org/10.1016/S0005-1098(98)00178-2">10.1016/S0005-1098(98)00178-2</a>.</div>
+</div>
+<div id="ref-borrelliPredictiveControlLinear2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">F. Borrelli, A. Bemporad, and M. Morari, <em>Predictive <span>Control</span> for <span>Linear</span> and <span>Hybrid Systems</span></em>. Cambridge, New York: Cambridge University Press, 2017. Available: <a href="http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf">http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf</a></div>
+</div>
+<div id="ref-heemelsEquivalenceHybridDynamical2001" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">W. P. M. H. Heemels, B. De Schutter, and A. Bemporad, <span>“Equivalence of hybrid dynamical models,”</span> <em>Automatica</em>, vol. 37, no. 7, pp. 1085–1091, Jul. 2001, doi: <a href="https://doi.org/10.1016/S0005-1098(01)00059-0">10.1016/S0005-1098(01)00059-0</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
