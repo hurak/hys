@@ -638,8 +638,7 @@ window.Quarto = {
   <li><a href="#computation-tree-logic-ctl" id="toc-computation-tree-logic-ctl" class="nav-link" data-scroll-target="#computation-tree-logic-ctl">Computation tree logic (CTL)</a></li>
   <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
   <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
-  <li><a href="#metric-temporal-logic-mtl" id="toc-metric-temporal-logic-mtl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl">Metric temporal logic (MTL)</a></li>
-  <li><a href="#metric-interval-temporal-logic-mitl" id="toc-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-interval-temporal-logic-mitl">Metric interval temporal logic (MITL)</a></li>
+  <li><a href="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" id="toc-metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</a></li>
   <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -671,9 +670,22 @@ window.Quarto = {
 <p>Indeed, the plural is correct – there are several temporal logics. Before listing the most common ones, we introduce the key temporal operators that are going to be used together with logical operators.</p>
 <section id="temporal-operators" class="level2">
 <h2 class="anchored" data-anchor-id="temporal-operators">Temporal operators</h2>
-<p>The name might be misleading here – the adjective temporal has nothing to do with time as measured by the wall clock. Instead, as (discrete) state trajectories form sequencies, temporal operators help express <strong>when</strong> certain properties must (or must not) be satisfied along the state trajectories.</p>
+<p>The name might be misleading here – the adjective <em>temporal</em> has nothing to do with time as measured by the wall clock. Their basic versions have been developed for discrete-event systems, and as state trajectories of these form sequencies, temporal operators refer to sequences.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Basic temporal operators can be extended to include the wall clock
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But here we postpone the introduction of these a bit more advanced concepts.</p>
+</div>
+</div>
 <div id="exm-line" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirement on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
+<p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirements on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
 </div>
 <p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
 <table class="caption-top table">
@@ -712,21 +724,21 @@ window.Quarto = {
 </section>
 <section id="linear-temporal-logic-ltl" class="level2">
 <h2 class="anchored" data-anchor-id="linear-temporal-logic-ltl">Linear temporal logic (LTL)</h2>
-<p>“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) of a given discrete-event or hybrid system that is initiated at some state <span class="math inline">x</span>.</p>
-<div class="cell" data-layout-align="default">
+<p>“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) <span class="math inline">x_0, x_1, x_2, \ldots</span> of a given discrete-event or hybrid system that is initiated at some state <span class="math inline">x_0</span>. Now, referring to the concept of a Labelled Transition System (LTS), each state is labelled by a some atomic proposition(s) that is (are) true in this state. For simplicity, say, there is just one such boolean label <span class="math inline">p(x)</span>. Instead of a sequence of states, of sequence of the values of the label function can be considered. Say, <code>false</code>, <code>false</code>, <code>true</code>, <code>false</code>, <code>false</code> … Graphically, we can represent this sequence as in <a href="#fig-path" class="quarto-xref">Fig&nbsp;1</a>, where the filled circle corresponds to <code>true</code>.</p>
+<div class="cell" data-fig-height="100px" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-path" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<svg width="672" height="480" viewbox="0.00 0.00 429.00 31.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="672" height="100" viewbox="0.00 0.00 429.00 31.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.8)">
 <title>path</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-27.8 425,-27.8 425,4 -4,4"></polygon>
 <!-- x0 -->
 <g id="node1" class="node">
 <title>x0</title>
-<ellipse fill="black" stroke="black" cx="17.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<ellipse fill="none" stroke="black" cx="17.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
 <text text-anchor="middle" x="7" y="-4.2" font-family="Times,serif" font-size="14.00">x0</text>
 </g>
 <!-- x1 -->
@@ -744,7 +756,7 @@ window.Quarto = {
 <!-- x2 -->
 <g id="node3" class="node">
 <title>x2</title>
-<ellipse fill="none" stroke="black" cx="177.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<ellipse fill="black" stroke="black" cx="177.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
 <text text-anchor="middle" x="167" y="-4.2" font-family="Times,serif" font-size="14.00">x2</text>
 </g>
 <!-- x1&#45;&gt;x2 -->
@@ -789,35 +801,74 @@ window.Quarto = {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Discrete state trajectory (path) of a traffic light controller
+Figure&nbsp;1: Graphical representation of a sequence of Boolean labels attached to the discrete states
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>We now consider some property <span class="math inline">\phi(x)</span> of a sequence of states emanating from the state <span class="math inline">x</span>, <span class="math inline">\phi(x)</span> evaluates to <code>true</code> or <code>false</code>. And indeed, while the argument of <span class="math inline">\phi</span> is a particular state, when evaluating <span class="math inline">\phi</span>, the full sequence is taken into consideration when evaluating <span class="math inline">\phi(x)</span>.</p>
-<p>In order to be able to express requirements on future states, <span class="math inline">\phi()</span> cannot be just a logical formula, it must by an LTL formula. Here comes a formal definition <span class="math display">
-\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2,
+<p>We now consider some property of the whole discrete state trajectory expressed by a Boolean formula <span class="math inline">\phi</span> (as such it evaluates to <code>true</code> or <code>false</code>).</p>
+<p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by an <em>LTL formula</em>. Here comes a formal definition (using recursion): <span class="math display">\boxed{
+\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2,}
 </span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL sub-formulas.</p>
-<p>Having an LTL formula, we write that a state sequence iniciated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">x \models \phi</span> if <span class="math inline">\phi</span> is true for all possible state trajectories starting at this state.</p>
-<div id="exm-some-LTL-formulas" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Some LTL formulas)</strong></span> <span class="math display">
-\Box \neg \phi
+<p>The trajectory will be identified by its initial <span class="math inline">x</span>, we write that a state sequence initiated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">\boxed{
+x \models \phi.}
 </span></p>
-<p><span class="math display">
-\Box\Diamond \phi
-</span></p>
-<p><span class="math display">
-\Diamond\Box \phi
-</span></p>
-<p><span class="math display">
-\Diamond(\phi_1 \land \bigcirc\Diamond\phi_2)
-</span></p>
+<div id="exm-basic-LTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Visualisation of some basic LTL formulas)</strong></span> &nbsp;</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><span class="math inline">x \models \Box p</span></td>
+<td>●──→●──→●──→●──→●──→●──→●┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Diamond p</span></td>
+<td>○──→○──→○──→○──→○──→●──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models \bigcirc p</span></td>
+<td>○──→●──→○──→○──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models p_1 \sqcup p_2</span></td>
+<td>◍──→◍──→◍──→●──→○──→○──→○┄┄→</td>
+</tr>
+</tbody>
+</table>
+<p>The last example (line) uses actually two atomic formulas <span class="math inline">p_1</span> and <span class="math inline">p_2</span>, satisfaction of the former visualized by the hatched circle and the latter by a black circle.</p>
+</div>
+<div id="exm-some-more-LTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 45%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">x\models \Box \neg p</span></td>
+<td>○──→○──→○──→○──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Box\Diamond p</span></td>
+<td>○──→○──→●──→○──→○──→●──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models \Diamond\Box p</span></td>
+<td>○──→○──→○──→○──→●──→●──→●┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Diamond(p_1 \land \bigcirc\Diamond p_2)</span></td>
+<td>○──→○──→○──→○──→◍──→○──→●┄┄→</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 <section id="computation-tree-logic-ctl" class="level2">
 <h2 class="anchored" data-anchor-id="computation-tree-logic-ctl">Computation tree logic (CTL)</h2>
-<p>Also <em>branching termporal logic</em> as it supports branching. Path quantifiers needed</p>
+<p>Another termporal logic is known as <em>computation tree logic</em> (CTL), it is sometimes known as <em>branching termporal logic</em> as it supports <em>branching</em> of state trajectories. For that purpose, <em>path quantifiers</em> are needed</p>
 <table class="caption-top table">
 <caption>Path quantifiers</caption>
 <colgroup>
@@ -846,34 +897,34 @@ Figure&nbsp;1: Discrete state trajectory (path) of a traffic light controller
 </tbody>
 </table>
 <p>Temporal operators and path quantifiers always come in pairs when forming CTL formulas.</p>
+<div id="exm-CTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (CTL formulas)</strong></span> <span class="math display">\forall \Box \phi</span> <span class="math display">\exists \Box \phi</span> <span class="math display">\forall \Diamond \phi</span> <span class="math display">\exists \Diamond \phi</span></p>
+</div>
 </section>
 <section id="ctl" class="level2">
 <h2 class="anchored" data-anchor-id="ctl">CTL*</h2>
-<p>CTL mixed with LTL. It turns out that there is no advantage in restricting to either instead of considering the full CTL*.</p>
+<p>A combination of CTL and LTL is known as CTL*. In particular, the restriction that temporal operators and path quantifiers must come in pairs is relaxed. The expressive power is best. But it comes at cost – verification of the formulas is more difficult.</p>
 </section>
 <section id="timed-computation-tree-logic-tctl" class="level2">
 <h2 class="anchored" data-anchor-id="timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</h2>
 <p>Timing added to CTL. Used by UPPAAL.</p>
 </section>
-<section id="metric-temporal-logic-mtl" class="level2">
-<h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl">Metric temporal logic (MTL)</h2>
+<section id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="level2">
+<h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
 <p>Timing added to LTL.</p>
 <div id="exm-mtl" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 5</strong></span> <span class="math display">
 \square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 </span></p>
 </div>
-</section>
-<section id="metric-interval-temporal-logic-mitl" class="level2">
-<h2 class="anchored" data-anchor-id="metric-interval-temporal-logic-mitl">Metric interval temporal logic (MITL)</h2>
-<p>An extension of MTL, which does not allow singleton time intervals allowed by MTL. The motivation for this extension is that the verification of MTL requirements has been shown to be undecidable.</p>
+<p>MITL does not allow singleton time intervals allowed by MTL. The motivation for this extension is that the verification of MTL requirements has been shown to be undecidable.</p>
 </section>
 <section id="signal-temporal-logic-stl" class="level2">
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
 <p>STL is then an extension of MTL with real-valued constraints. Available for both continuous- and discrete-time systems.</p>
 <p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others. I</p>
 <div id="exm-stl" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Examples of STL formulas)</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 6 (Examples of STL formulas)</strong></span> <span class="math display">
 \square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 </span></p>
 <p><span class="math display">
