@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -2137,16 +2137,16 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [2, 2, 4, 1]
-output(dtr) = [0, 0, 1, 1]
-(update!(dtr), output(dtr)) = ([2, 2, 2, 4], [0, 0, 0, 1])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])
-(update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])
-(update!(dtr), output(dtr)) = ([3, 3, 2, 2], [0, 0, 1, 0])
-(update!(dtr), output(dtr)) = ([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [1, 3, 3, 2]
+output(dtr) = [0, 1, 0, 1]
+(update!(dtr), output(dtr)) = ([1, 1, 3, 3], [0, 0, 1, 0])
+(update!(dtr), output(dtr)) = ([1, 1, 1, 3], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([1, 1, 1, 1], [1, 0, 0, 0])
+(update!(dtr), output(dtr)) = ([2, 1, 1, 1], [0, 1, 0, 0])
+(update!(dtr), output(dtr)) = ([2, 2, 1, 1], [0, 0, 1, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([3, 3, 3, 2], [0, 0, 0, 1])</code></pre>
+<pre><code>([2, 2, 1, 1], [0, 0, 1, 0])</code></pre>
 </div>
 </div>
 <p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>

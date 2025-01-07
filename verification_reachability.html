@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -683,14 +683,14 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="reachability-analysis-based-on-set-propagation">Reachability analysis based on set propagation</h3>
 <section id="basic-computational-steps-for-reachability-analysis-based-on-set-propagation" class="level4">
 <h4 class="anchored" data-anchor-id="basic-computational-steps-for-reachability-analysis-based-on-set-propagation">Basic computational steps for reachability analysis based on set propagation</h4>
-<p>Given a set <span class="math inline">\mathcal X_k</span> of current states , compute the set <span class="math inline">\mathcal X_{k+1}</span> of next states of a discrete-time (or discretized) system such that<br>
+<p>Given a set <span class="math inline">\mathcal X_k</span> of current states <span class="math inline">\bm x(k)</span>, compute the set <span class="math inline">\mathcal X_{k+1}</span> of next states <span class="math inline">\bm x(k+1)</span> of a discrete-time (or discretized) system such that<br>
 <span class="math display">
 \bm x(k+1) = \mathbf f(\bm x(k)).
 </span></p>
-<p>In the case of a linear discrete-time system, and the set of initial states characterized by a box, the problem is to characterize the set <span class="math inline">\mathcal X_{k+1}</span> of all possible (reachable) <span class="math inline">\bm x(k+1)</span> satisfying <span class="math display">
+<p>In the case of a linear discrete-time system, and the set of initial states characterized by a (multidimensional) interval, the problem is to characterize the set <span class="math inline">\mathcal X_{k+1}</span> of all possible (reachable) <span class="math inline">\bm x(k+1)</span> satisfying <span class="math display">
 \begin{aligned}
 \bm x(k+1) &amp;= \mathbf A \bm x(k),\\
-\bm x(k) &amp;\in \mathcal X_k = \{\bm x \in \mathbb R^n \mid \bm x_\mathrm{min} \leq \bm x \leq \bm x_\mathrm{max}\}.
+\bm x(k) &amp;\in \mathcal X_k = \{\bm x(k) \in \mathbb R^n \mid \bm x_\mathrm{min} \leq \bm x(k) \leq \bm x_\mathrm{max}\}.
 \end{aligned}
 </span></p>
 <p>Typically, inner or outer approximations of the set of all possible next states are used, depending on the context (alowed vs forbidden regions of the state space).</p>
@@ -702,16 +702,19 @@ window.Quarto = {
 <li>Intervals</li>
 <li>Polyhedra (both in V and H representations)</li>
 <li>Ellipsoids</li>
-<li>Zonotopes
-<ul>
-<li>Subclass of polytopes.</li>
-<li>Often more efficient than general polytopes.</li>
-<li>Affine transformation of a unit box.</li>
-<li>Commonly represented using generator representation (a center and a finite number of generator vectors).</li>
-</ul></li>
+<li>Zonotopes</li>
 </ul>
+<section id="zonotopes" class="level5">
+<h5 class="anchored" data-anchor-id="zonotopes">Zonotopes</h5>
+<p>While the first three types of sets are well-known, we will discuss the forth in the list – zonotopes. Zonotopes are a class of polytopes. They are commonly used in reachability analysis because computationally they are often more efficient than general polytopes.</p>
+<p>The can be obtained by an affine transformation of a unit box, that is, <span class="math display">
+\mathcal Z = \{\bm x\in\mathbb R^n \mid \bm x = \mathbf A \bm y+\mathbf b, \; \bm y\in\mathbb R^m, \; |y_i|\leq 1\},
+</span> but most commonly they are represented using <em>generator representation</em> <span class="math display">
+\mathcal Z = \{\bm x\in\mathbb R^n \mid \bm x = \mathbf c + \sum_{i=1}^p \alpha_i \mathbf g_i, \; \mathbf g_i\in\mathbb R^n, \; \alpha_i\in\mathbb R, \;|\alpha_i|\leq 1\},
+</span> where <span class="math inline">\mathbf c\in\mathbb R^n</span> is the center and <span class="math inline">\mathbf g_i\in\mathbb R^n</span> are the generators.</p>
 
 
+</section>
 </section>
 </section>
 </section>

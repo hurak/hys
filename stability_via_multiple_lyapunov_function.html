@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-8c89492777ddc1c6ab649c9c2f2ee7ae.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -762,6 +762,14 @@ Figure&nbsp;1: State portrait for the switched system with no common quadratic L
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> [constraint₁, constraint₂]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">satisfy</span>(constraints)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precompiling Convex...
+   2610.0 ms  ✓ Convex
+  1 dependency successfully precompiled in 3 seconds. 65 already precompiled.
+Precompiling SCS...
+   1323.0 ms  ✓ SCS
+  1 dependency successfully precompiled in 1 seconds. 66 already precompiled.</code></pre>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Problem statistics
   problem is DCP         : true
@@ -790,7 +798,7 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 622…434)
+   │  └─ 2×2 real variable (id: 180…329)
    ⋮</code></pre>
 </div>
 </div>
@@ -812,11 +820,11 @@ Dual LMI problem confirms the infeasibility of the primal one
 </div>
 <p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute Lyapunov functions for the two subsystems.</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>problem₁ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₁)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₁,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X₁.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>problem₁ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₁)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₁,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>X₁.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×2 Matrix{Float64}:
  423.71     12.5739
@@ -824,11 +832,11 @@ Dual LMI problem confirms the infeasibility of the primal one
 </div>
 </div>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X₂ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X₂ + X₂*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>problem₂ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₂)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₂,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>X₂.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X₂ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X₂ + X₂*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>problem₂ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₂)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₂,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>X₂.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×2 Matrix{Float64}:
  212.123   -12.5739
@@ -839,15 +847,15 @@ Dual LMI problem confirms the infeasibility of the primal one
 <div id="cell-fig-no-cqlf-with-lyapunov-invariant-sets" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x1s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x2s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V₁</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₁.value<span class="op">*</span>x</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V₂</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₂.value<span class="op">*</span>x</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>V1s <span class="op">=</span> [<span class="fu">V₁</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>V2s <span class="op">=</span> [<span class="fu">V₂</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V1s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>blue)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V2s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>green)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>x1s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x2s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V₁</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₁.value<span class="op">*</span>x</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V₂</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₂.value<span class="op">*</span>x</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>V1s <span class="op">=</span> [<span class="fu">V₁</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>V2s <span class="op">=</span> [<span class="fu">V₂</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V1s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>blue)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V2s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>green)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div id="fig-no-cqlf-with-lyapunov-invariant-sets" class="quarto-float quarto-figure quarto-figure-center anchored">

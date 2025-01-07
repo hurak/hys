@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -645,7 +645,11 @@ window.Quarto = {
   <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
   <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
   <li><a href="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" id="toc-metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</a></li>
-  <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a></li>
+  <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a>
+  <ul class="collapse">
+  <li><a href="#robustness-degree-in-stl" id="toc-robustness-degree-in-stl" class="nav-link" data-scroll-target="#robustness-degree-in-stl">Robustness degree in STL</a></li>
+  </ul></li>
+  <li><a href="#some-more-temporal-logics" id="toc-some-more-temporal-logics" class="nav-link" data-scroll-target="#some-more-temporal-logics">Some more temporal logics</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -690,19 +694,7 @@ There are several temporal logics
 <section id="temporal-operators" class="level2">
 <h2 class="anchored" data-anchor-id="temporal-operators">Temporal operators</h2>
 <p>The name might be misleading here – the adjective <em>temporal</em> has nothing to do with time as measured by the wall clock. Their basic versions have been developed for discrete-event systems, and as state trajectories of these form sequencies, temporal operators refer to sequences.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Basic temporal operators can be extended to include the wall clock
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But here we postpone the introduction of these a bit more advanced concepts.</p>
-</div>
-</div>
+<p>Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But we will only mention these extensions after introducing the basics.</p>
 <div id="exm-line" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirements on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
 </div>
@@ -736,6 +728,16 @@ Basic temporal operators can be extended to include the wall clock
 <td><span class="math inline">\mathbf{U}</span></td>
 <td><span class="math inline">\sqcup</span></td>
 <td><strong>U</strong>ntill</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\mathbf{R}</span></td>
+<td><span class="math inline">\sqcap</span></td>
+<td><strong>R</strong>elease</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{W}</span></td>
+<td></td>
+<td><strong>W</strong>eak Untill</td>
 </tr>
 </tbody>
 </table>
@@ -852,11 +854,17 @@ x \models \phi.}
 </tr>
 <tr class="even">
 <td><span class="math inline">x \models p_1 \sqcup p_2</span></td>
-<td>◍──→◍──→◍──→●──→○──→○──→○┄┄→</td>
+<td>●──→●──→●──→■──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models p_1 \sqcap p_2</span></td>
+<td>■──→■──→■──→●■──→○──→○──→○┄┄→</td>
 </tr>
 </tbody>
 </table>
-<p>The last example (line) uses actually two atomic formulas <span class="math inline">p_1</span> and <span class="math inline">p_2</span>, satisfaction of the former visualized by the hatched circle and the latter by a black circle.</p>
+<p>The last two examples (lines) use actually two atomic formulas <span class="math inline">p_1</span> and <span class="math inline">p_2</span>, satisfaction of the former is visualized by a filled circle and the latter by a square, satisfaction of both by displaying both next to each other.</p>
+<p>The difference between the <code>Untill</code> and <code>Weak Untill</code> is that for the former, it is guaranteed that <span class="math inline">p_2</span> will eventually hold, while for the latter, it is not.</p>
+<p>Note also that the roles of the two arguments are reverted between the <code>Untill</code> and the <code>Release</code> operators.</p>
 <div id="exm-some-more-LTL-formulas" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
 <table class="caption-top table">
@@ -879,7 +887,7 @@ x \models \phi.}
 </tr>
 <tr class="even">
 <td><span class="math inline">x \models \Diamond(p_1 \land \bigcirc\Diamond p_2)</span></td>
-<td>○──→○──→○──→○──→◍──→○──→●┄┄→</td>
+<td>○──→○──→○──→○──→●──→○──→■┄┄→</td>
 </tr>
 </tbody>
 </table>
@@ -890,6 +898,19 @@ x \models \phi.}
 </span></p>
 <p>We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?</p>
 <p>Finally, another type of a commond requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Property Specification Language (PSL)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Extension of the basic LTL tailored to hardware specification has been standardized as <a href="https://doi.org/10.1109/IEEESTD.2010.5446004">IEEE Standard for Property Specification Language (PSL)</a>. It adds some syntactic sugar and supports regular expressions.</p>
+</div>
+</div>
 </section>
 </section>
 <section id="computation-tree-logic-ctl" class="level2">
@@ -1039,7 +1060,7 @@ Table&nbsp;1: Path quantifiers
 </section>
 <section id="timed-computation-tree-logic-tctl" class="level2">
 <h2 class="anchored" data-anchor-id="timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</h2>
-<p>Timing added to CTL. Used by UPPAAL.</p>
+<p>Timing added to CTL. Used by <a href="">UPPAAL</a>.</p>
 </section>
 <section id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="level2">
 <h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
@@ -1053,9 +1074,9 @@ Table&nbsp;1: Path quantifiers
 </section>
 <section id="signal-temporal-logic-stl" class="level2">
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
-<p>STL is then an extension of MTL with real-valued constraints. Available for both continuous- and discrete-time systems.</p>
-<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others. I</p>
-<div id="exm-stl" class="theorem example">
+<p>STL is then an extension of MITL with real-valued constraints. Available for both continuous- and discrete-time systems.</p>
+<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
+<div id="exm-stl-formulas" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6 (Examples of STL formulas)</strong></span> <span class="math display">
 \square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 </span></p>
@@ -1066,6 +1087,17 @@ Table&nbsp;1: Path quantifiers
 \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)
 </span></p>
 </div>
+<div id="exr-stl-requirements" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> dd</p>
+</div>
+<section id="robustness-degree-in-stl" class="level3">
+<h3 class="anchored" data-anchor-id="robustness-degree-in-stl">Robustness degree in STL</h3>
+<p>It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>.</p>
+</section>
+</section>
+<section id="some-more-temporal-logics" class="level2">
+<h2 class="anchored" data-anchor-id="some-more-temporal-logics">Some more temporal logics</h2>
+<p>No doubt, our list of temporal logics is not complete. For example, there are variants for probabilistic requirements such as Probabilistic CTL (PCTL), Continuous stochastic logic (CSL), …</p>
 
 
 </section>

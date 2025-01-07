@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.6.40">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,7 +37,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -830,14 +830,20 @@ T_{ij} = \left[\mathbf c_{ij}\bm x + \mathbf d_{ij} \in \mathcal D_{ij}\right].
 <section id="variational-inequality-vi" class="level3">
 <h3 class="anchored" data-anchor-id="variational-inequality-vi">Variational inequality (VI)</h3>
 <p>Given a set <span class="math inline">\mathcal K</span> and a function <span class="math inline">F: \mathcal K \rightarrow \mathbb R^n</span>, find a vector <span class="math inline">\bm x\in\mathcal K</span> such that <span class="math display">
-\langle \mathbf F(\bm x), \bm y-\bm x \rangle \geq 0, \quad \forall \bm y\in\mathcal K.
+\langle \mathbf F(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\in\mathcal K.
 </span></p>
-<p>If <span class="math inline">\mathbf F(\bm x) = \nabla f(\bm x)</span> , VI is a convex optimization problem, that is, find a vector <span class="math inline">\bm x\in\mathcal K</span> such that</p>
+<p>If <span class="math inline">\mathbf F(\bm x) = \nabla f(\bm x)</span> , VI is a convex optimization problem, that is, the problem of finding a vector <span class="math inline">\bm x\in\mathcal K</span> such that</p>
 <p><span class="math display">
-\langle \nabla f(\bm x), \bm y-\bm x \rangle \geq 0, \quad \forall \bm y\in\mathcal K.
+\langle \nabla f(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\in\mathcal K.
 </span></p>
 <p>But there may also be <span class="math inline">\mathbf F(\bm x)</span> that is not the gradient of any function <span class="math inline">f(\bm x)</span>. In this regards, VI is a broader class of problems than convex optimization.</p>
-<p>The reason why we include this problem class here is that if <span class="math inline">\mathcal K</span> is a box in <span class="math inline">\mathbb R^n</span>, that is, <span class="math inline">l_i \leq x_i \leq u_i, \; i=1, \ldots, n</span> , where <span class="math inline">u_i</span> can also be <span class="math inline">\infty</span> , then VI is equivalent to the MCP.</p>
+<p>The reason why we include this problem class here is that if <span class="math inline">\mathcal K</span> is a nonnegative orthant <span class="math inline">\mathbb R_{++}^n</span>, that is, <span class="math inline">x_i \geq 0, \; i=1, \ldots, n</span> , then the VI specializes to finding <span class="math inline">\bm x\geq \mathbf 0</span> such that <span class="math display">
+\langle \mathbf F(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\geq \mathbf 0,
+</span> and it can be shown that it is equivalent to the NCP or LCP, depending on <span class="math inline">\mathbf F()</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>For <span class="math inline">\bm y=\bm 0</span>, we get <span class="math inline">\langle \mathbf F(\bm x), -\bm x \rangle \geq 0</span>, which is equivalent to <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle \leq 0</span>. For <span class="math inline">\bm y = 2\bm x</span>, we get <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle \geq 0</span>. Reconciling the two inequalities, we get <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle = 0</span>. Invoking the linearity of the inner product, we get <span class="math inline">\langle \mathbf F(\bm x), \bm y-\bm x \rangle = \langle \mathbf F(\bm x), \bm y\rangle \geq 0 \; \forall \bm y\geq \mathbf 0</span>, from which it follows that <span class="math inline">\mathbf F(\bm x)\geq 0</span>.</p>
+</div>
+<p>Similarly, if <span class="math inline">\mathcal K</span> is a “box” in <span class="math inline">\mathbb R^n</span>, that is, <span class="math inline">-\infty\leq l_i \leq x_i \leq u_i\leq \infty, \; i=1, \ldots, n</span>, then VI is equivalent to the MCP. #TODO: sketch the explanation, if not a full proof.</p>
 
 
 </section>
