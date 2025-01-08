@@ -643,13 +643,14 @@ window.Quarto = {
   <li><a href="#basic-ctl-formulas" id="toc-basic-ctl-formulas" class="nav-link" data-scroll-target="#basic-ctl-formulas">Basic CTL formulas</a></li>
   </ul></li>
   <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
+  <li><a href="#probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" id="toc-probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" class="nav-link" data-scroll-target="#probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl">Probabilistic CTL (PCTL) and Continuous stochastic logic (CSL)</a></li>
   <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
   <li><a href="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" id="toc-metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</a></li>
   <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a>
   <ul class="collapse">
   <li><a href="#robustness-degree-in-stl" id="toc-robustness-degree-in-stl" class="nav-link" data-scroll-target="#robustness-degree-in-stl">Robustness degree in STL</a></li>
+  <li><a href="#monitoring-run-time-verification" id="toc-monitoring-run-time-verification" class="nav-link" data-scroll-target="#monitoring-run-time-verification">Monitoring, run-time verification</a></li>
   </ul></li>
-  <li><a href="#some-more-temporal-logics" id="toc-some-more-temporal-logics" class="nav-link" data-scroll-target="#some-more-temporal-logics">Some more temporal logics</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -701,6 +702,11 @@ There are several temporal logics
 <p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
 <table class="caption-top table">
 <caption>Temporal operators</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 39%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Symbol</th>
@@ -726,18 +732,23 @@ There are several temporal logics
 </tr>
 <tr class="even">
 <td><span class="math inline">\mathbf{U}</span></td>
-<td><span class="math inline">\sqcup</span></td>
+<td><span class="math inline">\sqcup</span> (also <span class="math inline">\mathcal{U}</span>)</td>
 <td><strong>U</strong>ntill</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\mathbf{R}</span></td>
-<td><span class="math inline">\sqcap</span></td>
+<td><span class="math inline">\sqcap</span> (also <span class="math inline">\mathcal{R}</span>)</td>
 <td><strong>R</strong>elease</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\mathbf{W}</span></td>
-<td></td>
+<td><span class="math inline">\mathcal{W}</span></td>
 <td><strong>W</strong>eak Untill</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\mathbf{M}</span></td>
+<td><span class="math inline">\mathcal{M}</span></td>
+<td><strong>M</strong>ighty (strong) Release</td>
 </tr>
 </tbody>
 </table>
@@ -830,7 +841,7 @@ Figure&nbsp;1: Graphical representation of a sequence of Boolean labels attached
 </div>
 <p>We now consider some property of the whole discrete state trajectory expressed by a Boolean formula <span class="math inline">\phi</span> (as such it evaluates to <code>true</code> or <code>false</code>).</p>
 <p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by a <em>Linear Temporal Logic</em> (LTL) formula. Here comes a formal definition (using recursion): <span class="math display">\boxed{
-\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2,}
+\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2}
 </span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL sub-formulas.</p>
 <p>The trajectory will be identified by its initial <span class="math inline">x</span>, we write that a state sequence initiated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">\boxed{
 x \models \phi.}
@@ -858,13 +869,25 @@ x \models \phi.}
 </tr>
 <tr class="odd">
 <td><span class="math inline">x \models p_1 \sqcap p_2</span></td>
-<td>■──→■──→■──→●■──→○──→○──→○┄┄→</td>
+<td>■──→■──→■──→■●──→○──→○──→○┄┄→</td>
 </tr>
 </tbody>
 </table>
 <p>The last two examples (lines) use actually two atomic formulas <span class="math inline">p_1</span> and <span class="math inline">p_2</span>, satisfaction of the former is visualized by a filled circle and the latter by a square, satisfaction of both by displaying both next to each other.</p>
-<p>The difference between the <code>Untill</code> and <code>Weak Untill</code> is that for the former, it is guaranteed that <span class="math inline">p_2</span> will eventually hold, while for the latter, it is not.</p>
-<p>Note also that the roles of the two arguments are reverted between the <code>Untill</code> and the <code>Release</code> operators.</p>
+<p>The difference between the <code>Untill</code> and <code>Weak Untill</code> is that for the former it is guaranteed that <span class="math inline">p_2</span> will eventually hold, while for the latter it is not. Similarly, the difference between <code>Release</code> and <code>Mighty Release</code> is that for the latter it is guaranteed that <span class="math inline">p_1</span> will eventually hold. In this regard, <code>Mighty Release</code> is dual to the (strong) <code>Untill</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Redundancy in the enumerated temporal operators
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is some redundancy in the set of the temporal operators. For example, <span class="math inline">\Diamond \phi \equiv \text{true} \sqcup \phi</span>. But there is no advantage in going with just the minimal set of temporal operators.</p>
+</div>
+</div>
 <div id="exm-some-more-LTL-formulas" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
 <table class="caption-top table">
@@ -897,7 +920,7 @@ x \models \phi.}
 \Box \neg \text{collision}
 </span></p>
 <p>We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?</p>
-<p>Finally, another type of a commond requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?</p>
+<p>Finally, another type of a common requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1058,13 +1081,17 @@ Table&nbsp;1: Path quantifiers
 <p><span class="theorem-title"><strong>Example 4 (Some examples of CTL*)</strong></span> Having state above, that <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula, it is a valid CTL* formula. But <span class="math inline">\forall \Diamond \forall \Box \phi</span> is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.</p>
 </div>
 </section>
+<section id="probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" class="level2">
+<h2 class="anchored" data-anchor-id="probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl">Probabilistic CTL (PCTL) and Continuous stochastic logic (CSL)</h2>
+<p>Probability added.</p>
+</section>
 <section id="timed-computation-tree-logic-tctl" class="level2">
 <h2 class="anchored" data-anchor-id="timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</h2>
-<p>Timing added to CTL. Used by <a href="">UPPAAL</a>.</p>
+<p>“Dense” time added to CTL. Used by <a href="">UPPAAL</a>.</p>
 </section>
 <section id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="level2">
 <h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
-<p>Timing added to LTL.</p>
+<p>Dense time added to LTL.</p>
 <div id="exm-mtl" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5</strong></span> <span class="math display">
 \square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
@@ -1074,32 +1101,30 @@ Table&nbsp;1: Path quantifiers
 </section>
 <section id="signal-temporal-logic-stl" class="level2">
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
-<p>STL is then an extension of MITL with real-valued constraints. Available for both continuous- and discrete-time systems.</p>
-<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
+<p>Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It also supports the continuous (aka dense) time, and furthermore it replaces the <em>proposional logic</em> with the <em>predicate logic</em> as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems.</p>
 <div id="exm-stl-formulas" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6 (Examples of STL formulas)</strong></span> <span class="math display">
+\square \neg(x(t) &gt; 10.0)
+</span></p>
+<p><span class="math display">
 \square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
-</span></p>
-<p><span class="math display">
+</span> <span class="math display">
 \Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
-</span></p>
-<p><span class="math display">
+</span> <span class="math display">
 \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)
 </span></p>
 </div>
-<div id="exr-stl-requirements" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 1</strong></span> dd</p>
-</div>
+<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
 <section id="robustness-degree-in-stl" class="level3">
 <h3 class="anchored" data-anchor-id="robustness-degree-in-stl">Robustness degree in STL</h3>
-<p>It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>.</p>
+<p>It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>. See the literature for more.</p>
 </section>
-</section>
-<section id="some-more-temporal-logics" class="level2">
-<h2 class="anchored" data-anchor-id="some-more-temporal-logics">Some more temporal logics</h2>
-<p>No doubt, our list of temporal logics is not complete. For example, there are variants for probabilistic requirements such as Probabilistic CTL (PCTL), Continuous stochastic logic (CSL), …</p>
+<section id="monitoring-run-time-verification" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-run-time-verification">Monitoring, run-time verification</h3>
+<p>LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such general techniques for STL. Instead, verification of STL formulas for the whole system must then be approached by evaluating them on individual trajectories (called <em>monitoring</em>) obtained either by simulation, running tests or obtaining operational data. The outcomes from several trajectories are then processesed statistically in Monte-Carlo style. This is known as <em>simulation-based</em> or <em>run-time verification</em>.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
