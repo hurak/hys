@@ -89,8 +89,22 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -680,12 +694,12 @@ window.Quarto = {
 <div id="exm-production-system" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Production system)</strong></span> &nbsp;</p>
 <ul>
-<li>There are 3 production units: <span class="math inline">\(P_1, P_2, P_3\)</span>.</li>
-<li>The unit <span class="math inline">\(P_3\)</span> waits for the outputs from the units <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>.</li>
-<li>Each unit introduces a processing delay: <span class="math inline">\(v_1 = 12, v_2 = 11, v_3 = 7\)</span>, respectively.</li>
-<li>There are also transportation delays: <span class="math inline">\(d_2 = 2\)</span> from the entry to <span class="math inline">\(P_2\)</span>, and <span class="math inline">\(d_4 = 1\)</span> from <span class="math inline">\(P_2\)</span> to <span class="math inline">\(P_3\)</span>. All the other transportation delays are negligible.</li>
+<li>There are 3 production units: <span class="math inline">P_1, P_2, P_3</span>.</li>
+<li>The unit <span class="math inline">P_3</span> waits for the outputs from the units <span class="math inline">P_1</span> and <span class="math inline">P_2</span>.</li>
+<li>Each unit introduces a processing delay: <span class="math inline">v_1 = 12, v_2 = 11, v_3 = 7</span>, respectively.</li>
+<li>There are also transportation delays: <span class="math inline">d_2 = 2</span> from the entry to <span class="math inline">P_2</span>, and <span class="math inline">d_4 = 1</span> from <span class="math inline">P_2</span> to <span class="math inline">P_3</span>. All the other transportation delays are negligible.</li>
 </ul>
-<p>Timed Petri net (event graph) for the example is in <a href="#fig-production_system_petri_net_long" class="quarto-xref">Figure&nbsp;1</a> below.</p>
+<p>Timed Petri net (event graph) for the example is in <a href="#fig-production_system_petri_net_long" class="quarto-xref">Fig.&nbsp;1</a> below.</p>
 <div id="fig-production_system_petri_net_long" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -696,7 +710,7 @@ Figure&nbsp;1: Example of a production system modelled by a timed Petri net (onl
 </figcaption>
 </figure>
 </div>
-<p>The Petri net can be made more compact by associating the delays also with the places, as in <a href="#fig-production_system_petri_net" class="quarto-xref">Figure&nbsp;2</a> below.</p>
+<p>The Petri net can be made more compact by associating the delays also with the places, as in <a href="#fig-production_system_petri_net" class="quarto-xref">Fig.&nbsp;2</a> below.</p>
 <div id="fig-production_system_petri_net" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -707,7 +721,7 @@ Figure&nbsp;2: Example of a production system modelled by a timed Petri net (bot
 </figcaption>
 </figure>
 </div>
-<p>With the outputs from the three transitions (the rectangles) after the kth event labelled by <span class="math inline">\(x_{1,k}\)</span>, <span class="math inline">\(x_{2,k}\)</span>, and <span class="math inline">\(x_{3,k}\)</span>, the state equations are <span class="math display">\[
+<p>With the outputs from the three transitions (the rectangles) after the kth event labelled by <span class="math inline">x_{1,k}</span>, <span class="math inline">x_{2,k}</span>, and <span class="math inline">x_{3,k}</span>, the state equations are <span class="math display">
 \begin{aligned}
 x_{1,k} &amp;= \max\{x_{1,k-1} + 12, u_k + 0\}\\
 x_{2,k} &amp;= \max\{x_{2,k-1} + 11, u_k + 2\}\\
@@ -718,8 +732,8 @@ x_{3,k} &amp;= \max\{x_{3,k-1} + 7, x_{1,k} +12 + 0, x_{2,k} + 11 + 1\}\\
 &amp;\qquad\qquad u_k+14\}\\
 y_k &amp;= x_{3,k} + 7
 \end{aligned}
-\]</span></p>
-<p>The state equations can be rewritten in the (max,+) algebra <span class="math display">\[
+</span></p>
+<p>The state equations can be rewritten in the (max,+) algebra <span class="math display">
 \begin{aligned}
 \begin{bmatrix}
 x_{1,k} \\ x_{2,k} \\ x_{3,k}
@@ -747,40 +761,40 @@ y_k &amp;=
 \otimes
 x_k
 \end{aligned}
-\]</span></p>
+</span></p>
 </div>
 <section id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="level2">
 <h2 class="anchored" data-anchor-id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</h2>
-<p>Generalizing what we have seen in the previous example, we can write the MPL state-space system (actually a model) as <span id="eq-MPL-system"><span class="math display">\[\boxed{
+<p>Generalizing what we have seen in the previous example, we can write the MPL state-space system (actually a model) as <span id="eq-MPL-system"><span class="math display">\boxed{
   \begin{aligned}
   x(k) &amp;= A\otimes x(k-1) \oplus B\otimes u(k),\\
   y(k) &amp;= C\otimes x(k),
   \end{aligned}}
-\tag{1}\]</span></span></p>
-<p>where <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are matrices of appropriate dimensions. or, equivalently (after relabelling) <span class="math display">\[
+\tag{1}</span></span></p>
+<p>where <span class="math inline">A</span>, <span class="math inline">B</span>, and <span class="math inline">C</span> are matrices of appropriate dimensions. or, equivalently (after relabelling) <span class="math display">
   \begin{aligned}
   x(k+1) &amp;= A\otimes x(k) \oplus B\otimes u(k),\\
   y(k) &amp;= C\otimes x(k),
   \end{aligned}
-\]</span><br>
-which mimics the conventional state-space system <span class="math display">\[
+</span><br>
+which mimics the conventional state-space system <span class="math display">
   \begin{aligned}
   x(k+1) &amp;= A x(k) + Bu(k),\\
   y(k) &amp;= Cx(k).
   \end{aligned}
-\]</span></p>
-<p>We already know this from the example, but we need to emphasize it here again: the role of the variables <span class="math inline">\(u(k), x(k), y(k)\)</span> is that they are event times. Namely the times of</p>
+</span></p>
+<p>We already know this from the example, but we need to emphasize it here again: the role of the variables <span class="math inline">u(k), x(k), y(k)</span> is that they are event times. Namely the times of</p>
 <ul>
 <li>arrivals of inputs,</li>
 <li>beginning of processing</li>
 <li>finishing of processing,</li>
 </ul>
 <p>respectively.</p>
-<p>The independent variable <span class="math inline">\(k\)</span> is now a counter of the events.</p>
+<p>The independent variable <span class="math inline">k</span> is now a counter of the events.</p>
 </section>
 <section id="state-response-of-an-mpl-system" class="level2">
 <h2 class="anchored" data-anchor-id="state-response-of-an-mpl-system">State response of an MPL system</h2>
-<p>In order to simulate an MPL system, we can now find use of the definitions of the basic operations in (max,+) algebra that we studied previously. Note that <span class="math display">\[
+<p>In order to simulate an MPL system, we can now find use of the definitions of the basic operations in (max,+) algebra that we studied previously. Note that <span class="math display">
 \begin{aligned}
 x_1 &amp;= A\otimes x_0 \oplus B\otimes u_1\\
 x_2 &amp;= A\otimes x_1 \oplus B\otimes u_2\\
@@ -788,9 +802,9 @@ x_2 &amp;= A\otimes x_1 \oplus B\otimes u_2\\
     &amp;= A^{\otimes^2}\otimes x_0 \oplus A\otimes B\otimes u_1 \oplus B\otimes u_2\\
     &amp;\vdots    
 \end{aligned}
-\]</span> which can be generalized to <span id="eq-MPL-system-simulation"><span class="math display">\[\boxed{
+</span> which can be generalized to <span id="eq-MPL-system-simulation"><span class="math display">\boxed{
 x_k = A^{\otimes^k}\otimes x_0 \oplus \bigoplus_{i=1}^k A^{\otimes^{k-i}} \otimes B\otimes u_i.}
-\tag{2}\]</span></span></p>
+\tag{2}</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -801,9 +815,9 @@ Response of an LTI state-space system
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The response of a linear time-invariant (LTI) system described by a (vector) state equation <span class="math inline">\(x(k+1) = Ax(k) + Bu(k)\)</span> is <span class="math display">\[
+<p>The response of a linear time-invariant (LTI) system described by a (vector) state equation <span class="math inline">x(k+1) = Ax(k) + Bu(k)</span> is <span class="math display">
 x_{k} = A^k x_0 + \sum_{i=0}^{k-1} A^{k-1-i}Bu_i.
-\]</span></p>
+</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -822,16 +836,16 @@ Lower and upper bounds for the summation shifted by 1
 </section>
 <section id="max-linearity" class="level2">
 <h2 class="anchored" data-anchor-id="max-linearity">(max,+) linearity</h2>
-<p>We should emphasize that the linearity exhibited by the state equation <a href="#eq-MPL-system" class="quarto-xref">Equation&nbsp;1</a> and the convolution <a href="#eq-MPL-system-simulation" class="quarto-xref">Equation&nbsp;2</a> must only be understood in the (max,+) sense.</p>
-<p>Indeed, if we consider two input sequences <span class="math inline">\(u_1= \{u_{1,1},u_{1,2},\ldots\}\)</span> and <span class="math inline">\(u_2= \{u_{2,1},u_{2,2},\ldots\}\)</span>, a (max,+)-linear combination <span class="math inline">\(\alpha \otimes u_1 \oplus \beta \otimes u_2\)</span> of the two inputs yields the same (max,+)-linear combination of the outputs <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+<p>We should emphasize that the linearity exhibited by the state equation <a href="#eq-MPL-system" class="quarto-xref">Eq.&nbsp;1</a> and the convolution <a href="#eq-MPL-system-simulation" class="quarto-xref">Eq.&nbsp;2</a> must only be understood in the (max,+) sense.</p>
+<p>Indeed, if we consider two input sequences <span class="math inline">u_1= \{u_{1,1},u_{1,2},\ldots\}</span> and <span class="math inline">u_2= \{u_{2,1},u_{2,2},\ldots\}</span>, a (max,+)-linear combination <span class="math inline">\alpha \otimes u_1 \oplus \beta \otimes u_2</span> of the two inputs yields the same (max,+)-linear combination of the outputs <span class="math inline">y_1</span> and <span class="math inline">y_2</span>.</p>
 </section>
 <section id="input-output-response-of-an-mpl-system" class="level2">
 <h2 class="anchored" data-anchor-id="input-output-response-of-an-mpl-system">Input-output response of an MPL system</h2>
-<p>We can also eliminate the state variables from the model and aim at finding the relation between the input and output sequences <span class="math display">\[
+<p>We can also eliminate the state variables from the model and aim at finding the relation between the input and output sequences <span class="math display">
 U = \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_p\end{bmatrix}, \qquad Y = \begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_p\end{bmatrix}
-\]</span> in the form of <span class="math display">\[\boxed
+</span> in the form of <span class="math display">\boxed
 {Y = G\otimes x_0 \oplus H\otimes U,}
-\]</span> where <span class="math display">\[
+</span> where <span class="math display">
 H =
 \begin{bmatrix}
 C\otimes B &amp; \varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
@@ -840,20 +854,20 @@ C\otimes A^{\otimes^2}\otimes B &amp; C\otimes A\otimes B &amp; C\otimes B &amp;
 \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
 C\otimes A^{\otimes^{p-1}}\otimes B &amp; C\otimes A^{\otimes^{p-2}}\otimes B &amp; C\otimes A^{\otimes^{p-3}}\otimes B &amp; \ldots &amp; C\otimes B
 \end{bmatrix}
-\]</span> and <span class="math display">\[
+</span> and <span class="math display">
 G =
 \begin{bmatrix}
 C \\ C\otimes A \\ C\otimes A^{\otimes^2} \\ \vdots \\ C\otimes A^{\otimes^{p-1}}
 \end{bmatrix}.
-\]</span></p>
+</span></p>
 <div id="exm-production-system-input-output-description" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Production system)</strong></span> We consider again the production system in <a href="#exm-production-system" class="quarto-xref">Example&nbsp;1</a>. On the time horizon of 4, and assuming zero initial state, the input-output model is paramaterized by <span class="math display">\[
+<p><span class="theorem-title"><strong>Example 2 (Production system)</strong></span> We consider again the production system in <a href="#exm-production-system" class="quarto-xref">Example&nbsp;1</a>. On the time horizon of 4, and assuming zero initial state, the input-output model is paramaterized by <span class="math display">
 Y = \begin{bmatrix}y_1 &amp; y_2 &amp; y_3 &amp; y_4\end{bmatrix}^\top, \quad U = \begin{bmatrix}u_1 &amp; u_2 &amp; u_3 &amp; u_4\end{bmatrix}^\top,
-\]</span></p>
-<p><span class="math display">\[
+</span></p>
+<p><span class="math display">
 x_0 = \begin{bmatrix}\varepsilon &amp; \varepsilon &amp; \varepsilon\end{bmatrix}^\top,
-\]</span></p>
-<p><span class="math display">\[
+</span></p>
+<p><span class="math display">
 H =
 \begin{bmatrix}
 21 &amp; \varepsilon &amp; \varepsilon &amp; \varepsilon\\
@@ -861,35 +875,35 @@ H =
 43 &amp; 32 &amp; 21 &amp; \varepsilon\\
 55 &amp; 43 &amp; 32 &amp; 21
 \end{bmatrix}.
-\]</span></p>
+</span></p>
 </div>
 </section>
 <section id="analysis-of-an-irreducible-mpl-system" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</h2>
-<p>We now consider an autonomous MPL system <span class="math display">\[
+<p>We now consider an autonomous MPL system <span class="math display">
 x_{k+c} = A^{\otimes^{k+c}}\otimes x_0,
-\]</span> for which we assume irreducibility of the matrix <span class="math inline">\(A\)</span>.</p>
-<p>We have learnt previously, that for large enough <span class="math inline">\(k\)</span> and <span class="math inline">\(c\)</span>, <span class="math display">\[
+</span> for which we assume irreducibility of the matrix <span class="math inline">A</span>.</p>
+<p>We have learnt previously, that for large enough <span class="math inline">k</span> and <span class="math inline">c</span>, <span class="math display">
 x_{k+c} = \lambda^{\otimes^c}\otimes A^{\otimes^{k}}\otimes x_0 = \lambda^{\otimes^c}\otimes x_k.
-\]</span></p>
-<p>This can be interpreted in the standard algabra as <span class="math display">\[
+</span></p>
+<p>This can be interpreted in the standard algabra as <span class="math display">
 x_{k+c} = c\lambda + x_k,
-\]</span> from which it follows that <span class="math display">\[
+</span> from which it follows that <span class="math display">
 x_{k+c}-x_k = c\lambda.
-\]</span></p>
-<p>This is an insightful result. When the system under consideration is a production system, then once it reaches a cyclic behaviour, the average cycle is <span class="math inline">\(\lambda\)</span>. The average production rate is then <span class="math inline">\(1/\lambda\)</span>.</p>
+</span></p>
+<p>This is an insightful result. When the system under consideration is a production system, then once it reaches a cyclic behaviour, the average cycle is <span class="math inline">\lambda</span>. The average production rate is then <span class="math inline">1/\lambda</span>.</p>
 </section>
 <section id="model-predictive-control-mpc-for-mpl-systems" class="level2">
 <h2 class="anchored" data-anchor-id="model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</h2>
 <p>Now we are finally ready to consider control problems form MPL systems. We will consider the MPC approach.</p>
 <section id="cosf-function-for-mpc" class="level3">
 <h3 class="anchored" data-anchor-id="cosf-function-for-mpc">Cosf function for MPC</h3>
-<p>We consider the const function composed of two parts <span class="math display">\[
+<p>We consider the const function composed of two parts <span class="math display">
 J = J_\mathrm{output} + \lambda J_\mathrm{input}.
-\]</span></p>
-<p>At “time” <span class="math inline">\(k\)</span>, with the prediction horizon <span class="math inline">\(N_\mathrm{p}\)</span>, and with the number of outputs <span class="math inline">\(n_\mathrm{y}\)</span>: <span class="math display">\[
+</span></p>
+<p>At “time” <span class="math inline">k</span>, with the prediction horizon <span class="math inline">N_\mathrm{p}</span>, and with the number of outputs <span class="math inline">n_\mathrm{y}</span>: <span class="math display">
 J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{y_{i,k+j} - r_{i,k+j},0\}
-\]</span></p>
+</span></p>
 <p>This cost function penalizes <em>tardiness</em> (late delivery).</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -904,37 +918,37 @@ Caution
 <p>Is the lower value for j correct?</p>
 </div>
 </div>
-<p>Alternative choice of the cost function is <span class="math display">\[
+<p>Alternative choice of the cost function is <span class="math display">
 J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left|y_{i,k+j} - r_{i,k+j} \right |,
-\]</span> which penalizes difference between the due and actual dates, or <span class="math display">\[
+</span> which penalizes difference between the due and actual dates, or <span class="math display">
 J_\mathrm{output} = \sum_{j=1}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left |\Delta^2 y_{i,k+j}\right |,
-\]</span> which balances the output rates.</p>
-<p>The input cost can be set to <span class="math display">\[
+</span> which balances the output rates.</p>
+<p>The input cost can be set to <span class="math display">
 J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
-\]</span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
+</span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
 </section>
 <section id="control-horizon-vs.-prediction-horizon" class="level3">
 <h3 class="anchored" data-anchor-id="control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</h3>
-<p>Assume constant feeding rate after the control horizon <span class="math inline">\(N_\mathrm{c}\)</span> <span class="math display">\[
+<p>Assume constant feeding rate after the control horizon <span class="math inline">N_\mathrm{c}</span> <span class="math display">
 \Delta u_{k+j} = \Delta u_{k+N_\mathrm{c}-1},\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
-\]</span> where <span class="math inline">\(\Delta u_k = u_k - u_{k-1}\)</span>.</p>
-<p>Alternatively, <span class="math display">\[
+</span> where <span class="math inline">\Delta u_k = u_k - u_{k-1}</span>.</p>
+<p>Alternatively, <span class="math display">
 \Delta^2 u_{k+j} = 0,\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
-\]</span> where <span class="math inline">\(\Delta^2 u_k = \Delta u_k - \Delta u_{k-1} = u_k - 2u_{k-1} + u_{k-2}\)</span>.</p>
+</span> where <span class="math inline">\Delta^2 u_k = \Delta u_k - \Delta u_{k-1} = u_k - 2u_{k-1} + u_{k-2}</span>.</p>
 </section>
 <section id="inequality-constraints-for-mpc" class="level3">
 <h3 class="anchored" data-anchor-id="inequality-constraints-for-mpc">Inequality constraints for MPC</h3>
-<p>There are several possibilities for the constraints in the MPC for MPL systems. For example, we can constrain the minimum and maximum separation of input and output events <span class="math display">\[
+<p>There are several possibilities for the constraints in the MPC for MPL systems. For example, we can constrain the minimum and maximum separation of input and output events <span class="math display">
 a_{k+j} \leq \Delta u_{k+j} \leq b_{k+j},\qquad j=0,1,\ldots,N_\mathrm{c}-1,
-\]</span> <span class="math display">\[
+</span> <span class="math display">
 c_{k+j} \leq \Delta y_{k+j} \leq d_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
-\]</span></p>
-<p>We can also impose constraint on the maximum due dates for the output events <span class="math display">\[
+</span></p>
+<p>We can also impose constraint on the maximum due dates for the output events <span class="math display">
 y_{k+j} \leq r_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
-\]</span></p>
-<p>We can also enforce the condition that the input and output events are consecutive <span class="math display">\[
+</span></p>
+<p>We can also enforce the condition that the input and output events are consecutive <span class="math display">
 \Delta u_{k+j} \geq 0, \qquad j=0,1,\ldots,N_\mathrm{c}-1.
-\]</span></p>
+</span></p>
 </section>
 <section id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="level3">
 <h3 class="anchored" data-anchor-id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</h3>

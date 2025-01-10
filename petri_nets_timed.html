@@ -740,9 +740,9 @@ Delays associated with transitions and places
 <p>Finally, we extend this result to the case of a timed transition with multiple input places <span id="eq-tau-pi"><span class="math display">\boxed{
 \tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.}
 \tag{2}</span></span></p>
-<p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Equation&nbsp;2</a> handy, they will be needed in what is coming.</p>
+<p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> handy, they will be needed in what is coming.</p>
 <div id="exm-timed-Petri-net-dynamics" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div id="fig-timed-petri-net-dynamics" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -753,13 +753,13 @@ Figure&nbsp;1: Example of a Petri net for which the dynamics is analyzed
 </figcaption>
 </figure>
 </div>
-<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Equation&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
+<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
 \begin{aligned}
 \tau_{1,k} &amp;= \max\{\pi_{1,k},\pi_{3,k}\}\\
 \tau_{2,k} &amp;= \pi_{2,k}+v_{2,k}.
 \end{aligned}
 </span></p>
-<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Equation&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
+<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
 \begin{aligned}
 \pi_{1,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
 \pi_{2,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{2,0} = 0\\
@@ -791,7 +791,7 @@ Update equations for times and not states
 </section>
 <section id="queueing-system-using-tpn" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-system-using-tpn">Queueing system using TPN</h2>
-<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig&nbsp;2</a>.</p>
+<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig.&nbsp;2</a>.</p>
 <div id="fig-timed-petri-net-simple-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -803,7 +803,7 @@ Figure&nbsp;2: Timed Petri net modelling a queueing system
 </figure>
 </div>
 <p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
-<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Equation&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Equation&nbsp;1</a> gives <span class="math display">
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">
 \begin{aligned}
 a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
 s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
@@ -823,7 +823,7 @@ c_k &amp;= s_{k} + v_{c,k}\\
 </span></p>
 <p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
 <div id="exm-timed-petri-nets-train" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig&nbsp;3</a>.</p>
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig.&nbsp;3</a>.</p>
 <div id="fig-trains" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -834,7 +834,7 @@ Figure&nbsp;3: Example with three train lines
 </figcaption>
 </figure>
 </div>
-<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig&nbsp;4</a>.</p>
+<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig.&nbsp;4</a>.</p>
 <div id="fig-fig-trains-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -845,7 +845,7 @@ Figure&nbsp;4: Timed Petri net for the example of synchronization of three train
 </figcaption>
 </figure>
 </div>
-<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig&nbsp;5</a>.</p>
+<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig.&nbsp;5</a>.</p>
 <div id="fig-trains-petri-net-delayed-places" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Max-plus linear (MPL) systems – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./max_plus_software.html" rel="next">
+<link href="./max_plus_algebra.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./max_plus_algebra.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="./max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_systems.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs mixed integer-linear inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_mld_and_pwa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed logical dynamical (MLD) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Formal verification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" id="toc-model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="nav-link active" data-scroll-target="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</a></li>
+  <li><a href="#state-response-of-an-mpl-system" id="toc-state-response-of-an-mpl-system" class="nav-link" data-scroll-target="#state-response-of-an-mpl-system">State response of an MPL system</a></li>
+  <li><a href="#max-linearity" id="toc-max-linearity" class="nav-link" data-scroll-target="#max-linearity">(max,+) linearity</a></li>
+  <li><a href="#input-output-response-of-an-mpl-system" id="toc-input-output-response-of-an-mpl-system" class="nav-link" data-scroll-target="#input-output-response-of-an-mpl-system">Input-output response of an MPL system</a></li>
+  <li><a href="#analysis-of-an-irreducible-mpl-system" id="toc-analysis-of-an-irreducible-mpl-system" class="nav-link" data-scroll-target="#analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</a></li>
+  <li><a href="#model-predictive-control-mpc-for-mpl-systems" id="toc-model-predictive-control-mpc-for-mpl-systems" class="nav-link" data-scroll-target="#model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</a>
+  <ul class="collapse">
+  <li><a href="#cosf-function-for-mpc" id="toc-cosf-function-for-mpc" class="nav-link" data-scroll-target="#cosf-function-for-mpc">Cosf function for MPC</a></li>
+  <li><a href="#control-horizon-vs.-prediction-horizon" id="toc-control-horizon-vs.-prediction-horizon" class="nav-link" data-scroll-target="#control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</a></li>
+  <li><a href="#inequality-constraints-for-mpc" id="toc-inequality-constraints-for-mpc" class="nav-link" data-scroll-target="#inequality-constraints-for-mpc">Inequality constraints for MPC</a></li>
+  <li><a href="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" id="toc-mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="nav-link" data-scroll-target="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./max_plus_algebra.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="./max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Max-plus linear (MPL) systems</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We start with an example of a discrete-event systems modelled using (max,+) algebra.</p>
+<div id="exm-production-system" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Production system)</strong></span> &nbsp;</p>
+<ul>
+<li>There are 3 production units: <span class="math inline">\(P_1, P_2, P_3\)</span>.</li>
+<li>The unit <span class="math inline">\(P_3\)</span> waits for the outputs from the units <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>.</li>
+<li>Each unit introduces a processing delay: <span class="math inline">\(v_1 = 12, v_2 = 11, v_3 = 7\)</span>, respectively.</li>
+<li>There are also transportation delays: <span class="math inline">\(d_2 = 2\)</span> from the entry to <span class="math inline">\(P_2\)</span>, and <span class="math inline">\(d_4 = 1\)</span> from <span class="math inline">\(P_2\)</span> to <span class="math inline">\(P_3\)</span>. All the other transportation delays are negligible.</li>
+</ul>
+<p>Timed Petri net (event graph) for the example is in <a href="#fig-production_system_petri_net_long" class="quarto-xref">Figure&nbsp;1</a> below.</p>
+<div id="fig-production_system_petri_net_long" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="max_plus_figures/production_system_petri_net_long.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a production system modelled by a timed Petri net (only the transitions are timed)
+</figcaption>
+</figure>
+</div>
+<p>The Petri net can be made more compact by associating the delays also with the places, as in <a href="#fig-production_system_petri_net" class="quarto-xref">Figure&nbsp;2</a> below.</p>
+<div id="fig-production_system_petri_net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="max_plus_figures/production_system_petri_net.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a production system modelled by a timed Petri net (both places and transitions are timed)
+</figcaption>
+</figure>
+</div>
+<p>With the outputs from the three transitions (the rectangles) after the kth event labelled by <span class="math inline">\(x_{1,k}\)</span>, <span class="math inline">\(x_{2,k}\)</span>, and <span class="math inline">\(x_{3,k}\)</span>, the state equations are <span class="math display">\[
+\begin{aligned}
+x_{1,k} &amp;= \max\{x_{1,k-1} + 12, u_k + 0\}\\
+x_{2,k} &amp;= \max\{x_{2,k-1} + 11, u_k + 2\}\\
+x_{3,k} &amp;= \max\{x_{3,k-1} + 7, x_{1,k} +12 + 0, x_{2,k} + 11 + 1\}\\
+&amp;= \max\{x_{3,k-1} + 7, \max\{x_{1,k-1} + 12, u_k\} +12, \\
+&amp;\qquad \max\{x_{2,k-1} + 11, u_k+2\} + 12\}\\
+&amp;= \max\{x_{3,k-1} + 7, x_{1,k-1} + 24, x_{2,k-1} + 23, \\
+&amp;\qquad\qquad u_k+14\}\\
+y_k &amp;= x_{3,k} + 7
+\end{aligned}
+\]</span></p>
+<p>The state equations can be rewritten in the (max,+) algebra <span class="math display">\[
+\begin{aligned}
+\begin{bmatrix}
+x_{1,k} \\ x_{2,k} \\ x_{3,k}
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+12 &amp; \varepsilon &amp; \varepsilon\\
+\varepsilon &amp; 11 &amp; \varepsilon\\
+24 &amp; 23 &amp; 7
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+x_{1,k-1} \\ x_{2,k-1} \\ x_{3,k-1}
+\end{bmatrix}
+\oplus
+\begin{bmatrix}
+0 \\ 2 \\ 14
+\end{bmatrix}
+\otimes
+u_k\\
+y_k &amp;=
+\begin{bmatrix}
+\varepsilon &amp; \varepsilon &amp; 7
+\end{bmatrix}
+\otimes
+x_k
+\end{aligned}
+\]</span></p>
+</div>
+<section id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="level2">
+<h2 class="anchored" data-anchor-id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</h2>
+<p>Generalizing what we have seen in the previous example, we can write the MPL state-space system (actually a model) as <span id="eq-MPL-system"><span class="math display">\[\boxed{
+  \begin{aligned}
+  x(k) &amp;= A\otimes x(k-1) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}}
+\tag{1}\]</span></span></p>
+<p>where <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are matrices of appropriate dimensions. or, equivalently (after relabelling) <span class="math display">\[
+  \begin{aligned}
+  x(k+1) &amp;= A\otimes x(k) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}
+\]</span><br>
+which mimics the conventional state-space system <span class="math display">\[
+  \begin{aligned}
+  x(k+1) &amp;= A x(k) + Bu(k),\\
+  y(k) &amp;= Cx(k).
+  \end{aligned}
+\]</span></p>
+<p>We already know this from the example, but we need to emphasize it here again: the role of the variables <span class="math inline">\(u(k), x(k), y(k)\)</span> is that they are event times. Namely the times of</p>
+<ul>
+<li>arrivals of inputs,</li>
+<li>beginning of processing</li>
+<li>finishing of processing,</li>
+</ul>
+<p>respectively.</p>
+<p>The independent variable <span class="math inline">\(k\)</span> is now a counter of the events.</p>
+</section>
+<section id="state-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="state-response-of-an-mpl-system">State response of an MPL system</h2>
+<p>In order to simulate an MPL system, we can now find use of the definitions of the basic operations in (max,+) algebra that we studied previously. Note that <span class="math display">\[
+\begin{aligned}
+x_1 &amp;= A\otimes x_0 \oplus B\otimes u_1\\
+x_2 &amp;= A\otimes x_1 \oplus B\otimes u_2\\
+    &amp;= A\otimes (A\otimes x_0 \oplus B\otimes u_1) \oplus B\otimes u_2\\
+    &amp;= A^{\otimes^2}\otimes x_0 \oplus A\otimes B\otimes u_1 \oplus B\otimes u_2\\
+    &amp;\vdots    
+\end{aligned}
+\]</span> which can be generalized to <span id="eq-MPL-system-simulation"><span class="math display">\[\boxed{
+x_k = A^{\otimes^k}\otimes x_0 \oplus \bigoplus_{i=1}^k A^{\otimes^{k-i}} \otimes B\otimes u_i.}
+\tag{2}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Response of an LTI state-space system
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The response of a linear time-invariant (LTI) system described by a (vector) state equation <span class="math inline">\(x(k+1) = Ax(k) + Bu(k)\)</span> is <span class="math display">\[
+x_{k} = A^k x_0 + \sum_{i=0}^{k-1} A^{k-1-i}Bu_i.
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lower and upper bounds for the summation shifted by 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note how the lower and upper bounds for the summation are shifted by 1 compared to the traditional convolution.</p>
+</div>
+</div>
+</section>
+<section id="max-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="max-linearity">(max,+) linearity</h2>
+<p>We should emphasize that the linearity exhibited by the state equation <a href="#eq-MPL-system" class="quarto-xref">Equation&nbsp;1</a> and the convolution <a href="#eq-MPL-system-simulation" class="quarto-xref">Equation&nbsp;2</a> must only be understood in the (max,+) sense.</p>
+<p>Indeed, if we consider two input sequences <span class="math inline">\(u_1= \{u_{1,1},u_{1,2},\ldots\}\)</span> and <span class="math inline">\(u_2= \{u_{2,1},u_{2,2},\ldots\}\)</span>, a (max,+)-linear combination <span class="math inline">\(\alpha \otimes u_1 \oplus \beta \otimes u_2\)</span> of the two inputs yields the same (max,+)-linear combination of the outputs <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span>.</p>
+</section>
+<section id="input-output-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="input-output-response-of-an-mpl-system">Input-output response of an MPL system</h2>
+<p>We can also eliminate the state variables from the model and aim at finding the relation between the input and output sequences <span class="math display">\[
+U = \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_p\end{bmatrix}, \qquad Y = \begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_p\end{bmatrix}
+\]</span> in the form of <span class="math display">\[\boxed
+{Y = G\otimes x_0 \oplus H\otimes U,}
+\]</span> where <span class="math display">\[
+H =
+\begin{bmatrix}
+C\otimes B &amp; \varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A\otimes B &amp; C\otimes B &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A^{\otimes^2}\otimes B &amp; C\otimes A\otimes B &amp; C\otimes B &amp; \ldots &amp; \varepsilon\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+C\otimes A^{\otimes^{p-1}}\otimes B &amp; C\otimes A^{\otimes^{p-2}}\otimes B &amp; C\otimes A^{\otimes^{p-3}}\otimes B &amp; \ldots &amp; C\otimes B
+\end{bmatrix}
+\]</span> and <span class="math display">\[
+G =
+\begin{bmatrix}
+C \\ C\otimes A \\ C\otimes A^{\otimes^2} \\ \vdots \\ C\otimes A^{\otimes^{p-1}}
+\end{bmatrix}.
+\]</span></p>
+<div id="exm-production-system-input-output-description" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Production system)</strong></span> We consider again the production system in <a href="#exm-production-system" class="quarto-xref">Example&nbsp;1</a>. On the time horizon of 4, and assuming zero initial state, the input-output model is paramaterized by <span class="math display">\[
+Y = \begin{bmatrix}y_1 &amp; y_2 &amp; y_3 &amp; y_4\end{bmatrix}^\top, \quad U = \begin{bmatrix}u_1 &amp; u_2 &amp; u_3 &amp; u_4\end{bmatrix}^\top,
+\]</span></p>
+<p><span class="math display">\[
+x_0 = \begin{bmatrix}\varepsilon &amp; \varepsilon &amp; \varepsilon\end{bmatrix}^\top,
+\]</span></p>
+<p><span class="math display">\[
+H =
+\begin{bmatrix}
+21 &amp; \varepsilon &amp; \varepsilon &amp; \varepsilon\\
+32 &amp; 21 &amp; \varepsilon &amp; \varepsilon\\
+43 &amp; 32 &amp; 21 &amp; \varepsilon\\
+55 &amp; 43 &amp; 32 &amp; 21
+\end{bmatrix}.
+\]</span></p>
+</div>
+</section>
+<section id="analysis-of-an-irreducible-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</h2>
+<p>We now consider an autonomous MPL system <span class="math display">\[
+x_{k+c} = A^{\otimes^{k+c}}\otimes x_0,
+\]</span> for which we assume irreducibility of the matrix <span class="math inline">\(A\)</span>.</p>
+<p>We have learnt previously, that for large enough <span class="math inline">\(k\)</span> and <span class="math inline">\(c\)</span>, <span class="math display">\[
+x_{k+c} = \lambda^{\otimes^c}\otimes A^{\otimes^{k}}\otimes x_0 = \lambda^{\otimes^c}\otimes x_k.
+\]</span></p>
+<p>This can be interpreted in the standard algabra as <span class="math display">\[
+x_{k+c} = c\lambda + x_k,
+\]</span> from which it follows that <span class="math display">\[
+x_{k+c}-x_k = c\lambda.
+\]</span></p>
+<p>This is an insightful result. When the system under consideration is a production system, then once it reaches a cyclic behaviour, the average cycle is <span class="math inline">\(\lambda\)</span>. The average production rate is then <span class="math inline">\(1/\lambda\)</span>.</p>
+</section>
+<section id="model-predictive-control-mpc-for-mpl-systems" class="level2">
+<h2 class="anchored" data-anchor-id="model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</h2>
+<p>Now we are finally ready to consider control problems form MPL systems. We will consider the MPC approach.</p>
+<section id="cosf-function-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="cosf-function-for-mpc">Cosf function for MPC</h3>
+<p>We consider the const function composed of two parts <span class="math display">\[
+J = J_\mathrm{output} + \lambda J_\mathrm{input}.
+\]</span></p>
+<p>At “time” <span class="math inline">\(k\)</span>, with the prediction horizon <span class="math inline">\(N_\mathrm{p}\)</span>, and with the number of outputs <span class="math inline">\(n_\mathrm{y}\)</span>: <span class="math display">\[
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{y_{i,k+j} - r_{i,k+j},0\}
+\]</span></p>
+<p>This cost function penalizes <em>tardiness</em> (late delivery).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is the lower value for j correct?</p>
+</div>
+</div>
+<p>Alternative choice of the cost function is <span class="math display">\[
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left|y_{i,k+j} - r_{i,k+j} \right |,
+\]</span> which penalizes difference between the due and actual dates, or <span class="math display">\[
+J_\mathrm{output} = \sum_{j=1}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left |\Delta^2 y_{i,k+j}\right |,
+\]</span> which balances the output rates.</p>
+<p>The input cost can be set to <span class="math display">\[
+J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
+\]</span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
+</section>
+<section id="control-horizon-vs.-prediction-horizon" class="level3">
+<h3 class="anchored" data-anchor-id="control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</h3>
+<p>Assume constant feeding rate after the control horizon <span class="math inline">\(N_\mathrm{c}\)</span> <span class="math display">\[
+\Delta u_{k+j} = \Delta u_{k+N_\mathrm{c}-1},\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+\]</span> where <span class="math inline">\(\Delta u_k = u_k - u_{k-1}\)</span>.</p>
+<p>Alternatively, <span class="math display">\[
+\Delta^2 u_{k+j} = 0,\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+\]</span> where <span class="math inline">\(\Delta^2 u_k = \Delta u_k - \Delta u_{k-1} = u_k - 2u_{k-1} + u_{k-2}\)</span>.</p>
+</section>
+<section id="inequality-constraints-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="inequality-constraints-for-mpc">Inequality constraints for MPC</h3>
+<p>There are several possibilities for the constraints in the MPC for MPL systems. For example, we can constrain the minimum and maximum separation of input and output events <span class="math display">\[
+a_{k+j} \leq \Delta u_{k+j} \leq b_{k+j},\qquad j=0,1,\ldots,N_\mathrm{c}-1,
+\]</span> <span class="math display">\[
+c_{k+j} \leq \Delta y_{k+j} \leq d_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+\]</span></p>
+<p>We can also impose constraint on the maximum due dates for the output events <span class="math display">\[
+y_{k+j} \leq r_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+\]</span></p>
+<p>We can also enforce the condition that the input and output events are consecutive <span class="math display">\[
+\Delta u_{k+j} \geq 0, \qquad j=0,1,\ldots,N_\mathrm{c}-1.
+\]</span></p>
+</section>
+<section id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="level3">
+<h3 class="anchored" data-anchor-id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</h3>
+<p>Our motivation for formulating the problems within the (max,+) algebra was to fake the reality a bit and pretend that the problem is linear. This allowed us to invoke many concepts that we are familiar with from linear systems theory. However, at the end of the day, when it comes to actually solving the problem, we must reveal the nonlinear nature of the problem.</p>
+<p>When we consider the MPC for MPL systems, we are faced with a nonlinear optimization problem. We can use some general nonlinear solvers (<code>fmincon</code>, <code>ipopt</code>, …).</p>
+<p>Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by <span class="citation" data-cites="deschutterExtendedLinearComplementarity1995"><a href="#ref-deschutterExtendedLinearComplementarity1995" role="doc-biblioref">[1]</a></span>. We will introduce the complementarity problem(s) later in a <a href="./complementarity_constraints.html">chapter dedicated to complementarity</a>.</p>
+<p>Yet another approach is through Mixed Integer (Linear) Programming (MILP).</p>
+
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-deschutterExtendedLinearComplementarity1995" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B. De Schutter and B. De Moor, <span>“The extended linear complementarity problem,”</span> <em>Mathematical Programming</em>, vol. 71, no. 3, pp. 289–325, Dec. 1995, doi: <a href="https://doi.org/10.1007/BF01590958">10.1007/BF01590958</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./max_plus_algebra.html" class="pagination-link" aria-label="Max-plus algebra">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Max-plus algebra</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./max_plus_software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -728,7 +728,7 @@ window.Quarto = {
 </ul>
 <p>The nodes of different kinds are connected by <em>arcs</em> (arrowed curves). A integer <em>weights</em> are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.</p>
 <div id="exm-simple-petri-net" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Simple Petri net)</strong></span> We consider just two places, that is, <span class="math inline">\mathcal{P} = \{p_1, p_2\}</span>, and one transition, that is, <span class="math inline">\mathcal{T} = \{t\}</span>. The set of arcs is <span class="math inline">\mathcal{A} = \{\underbrace{(p_1, t)}_{a_1}, \underbrace{(t, p_2)}_{a_2}\}</span>, and the associated weights are <span class="math inline">w(a_1) = w((p_1, t)) = 2</span> and <span class="math inline">w(a_2) = w((t, p_2)) = 1</span>. The Petri net is depicted in <a href="#fig-simple-petri-net" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<p><span class="theorem-title"><strong>Example 1 (Simple Petri net)</strong></span> We consider just two places, that is, <span class="math inline">\mathcal{P} = \{p_1, p_2\}</span>, and one transition, that is, <span class="math inline">\mathcal{T} = \{t\}</span>. The set of arcs is <span class="math inline">\mathcal{A} = \{\underbrace{(p_1, t)}_{a_1}, \underbrace{(t, p_2)}_{a_2}\}</span>, and the associated weights are <span class="math inline">w(a_1) = w((p_1, t)) = 2</span> and <span class="math inline">w(a_2) = w((t, p_2)) = 1</span>. The Petri net is depicted in <a href="#fig-simple-petri-net" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div id="fig-simple-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simple-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -776,7 +776,7 @@ Figure&nbsp;2: Example of a more complex Petri net
 <h4 class="anchored" data-anchor-id="visualization-of-marked-petri-net-using-tokens">Visualization of marked Petri net using tokens</h4>
 <p>Marked Petri net can also be visualized by placing tokens (dots) into the places. The number of tokens in a place corresponds to the value of the marking function for that place.</p>
 <div id="exm-marked-petri-net" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Marked Petri net)</strong></span> Consider the Petri net from <a href="#exm-simple-petri-net" class="quarto-xref">Example&nbsp;1</a>. The marking function is <span class="math inline">x(p_1) = 2</span> and <span class="math inline">x(p_2) = 1</span>, which assembled into a vector gives <span class="math inline">\bm x = \begin{bmatrix}1\\ 0 \end{bmatrix}</span>. The marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-1" class="quarto-xref">Fig&nbsp;3</a>.</p>
+<p><span class="theorem-title"><strong>Example 3 (Marked Petri net)</strong></span> Consider the Petri net from <a href="#exm-simple-petri-net" class="quarto-xref">Example&nbsp;1</a>. The marking function is <span class="math inline">x(p_1) = 2</span> and <span class="math inline">x(p_2) = 1</span>, which assembled into a vector gives <span class="math inline">\bm x = \begin{bmatrix}1\\ 0 \end{bmatrix}</span>. The marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-1" class="quarto-xref">Fig.&nbsp;3</a>.</p>
 <div id="fig-simplest-petri-net-marked-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simplest-petri-net-marked-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -787,7 +787,7 @@ Figure&nbsp;3: Example of a marked Petri net
 </figcaption>
 </figure>
 </div>
-<p>For another marking, namely <span class="math inline">\bm x = \begin{bmatrix}2\\ 1 \end{bmatrix}</span>, the marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-2" class="quarto-xref">Fig&nbsp;4</a>.</p>
+<p>For another marking, namely <span class="math inline">\bm x = \begin{bmatrix}2\\ 1 \end{bmatrix}</span>, the marked Petri net is depicted in <a href="#fig-simplest-petri-net-marked-2" class="quarto-xref">Fig.&nbsp;4</a>.</p>
 <div id="fig-simplest-petri-net-marked-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-simplest-petri-net-marked-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -891,7 +891,7 @@ Number of tokens need not be preserved
 </figure>
 </div>
 <p>The state vector changes to <span class="math inline">\bm x_2 = [1, 1, 0, 2]^\top</span>, the discrete time is 2 now.</p>
-<p>Good, we can see the idea. But now we go back to time 1 (as in <a href="#fig-example-PN-time-1" class="quarto-xref">Fig&nbsp;5</a>) to explore the alternative evolution. With the state vector <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span> and the transitions <span class="math inline">t_1, t_2, t_3</span> enabled, we fire <span class="math inline">t_3</span> this time.</p>
+<p>Good, we can see the idea. But now we go back to time 1 (as in <a href="#fig-example-PN-time-1" class="quarto-xref">Fig.&nbsp;5</a>) to explore the alternative evolution. With the state vector <span class="math inline">\bm x_1 = [1, 1, 1, 1]^\top</span> and the transitions <span class="math inline">t_1, t_2, t_3</span> enabled, we fire <span class="math inline">t_3</span> this time.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="petri_nets_figures/transition_as_moving_tokens_4.png" class="img-fluid figure-img" style="width:50.0%"></p>
@@ -939,7 +939,7 @@ The order in which the enabled transitions are fired does matter
 <figcaption>Example of a Petri net for reachability analysis</figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-reachability-tree" class="quarto-xref">Fig&nbsp;6</a> we draw a <em>reachability tree</em> for this Petri net.</p>
+<p>In <a href="#fig-reachability-tree" class="quarto-xref">Fig.&nbsp;6</a> we draw a <em>reachability tree</em> for this Petri net.</p>
 <div id="fig-reachability-tree" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reachability-tree-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -950,7 +950,7 @@ Figure&nbsp;6: Reachability tree for an example Petri net
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-reachability-graph" class="quarto-xref">Fig&nbsp;7</a> we draw a reachability graph for this Petri net.</p>
+<p>In <a href="#fig-reachability-graph" class="quarto-xref">Fig.&nbsp;7</a> we draw a reachability graph for this Petri net.</p>
 <div id="fig-reachability-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reachability-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1096,7 +1096,7 @@ State vector as a column rather then a row
 </div>
 </div>
 <div id="exm-state-equation-Petri-net" class="theorem example">
-<p><span class="theorem-title"><strong>Example 11 (State equation for a Petri net)</strong></span> Consider the Petri net from <a href="#exm-moving-tokens-around" class="quarto-xref">Example&nbsp;5</a>, which we show again below in <a href="#fig-state-equation-PN" class="quarto-xref">Fig&nbsp;8</a>.</p>
+<p><span class="theorem-title"><strong>Example 11 (State equation for a Petri net)</strong></span> Consider the Petri net from <a href="#exm-moving-tokens-around" class="quarto-xref">Example&nbsp;5</a>, which we show again below in <a href="#fig-state-equation-PN" class="quarto-xref">Fig.&nbsp;8</a>.</p>
 <div id="fig-state-equation-PN" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-state-equation-PN-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1147,7 +1147,7 @@ Caution
 </section>
 <section id="queueing-systems-modelled-by-pn" class="level2">
 <h2 class="anchored" data-anchor-id="queueing-systems-modelled-by-pn">Queueing systems modelled by PN</h2>
-<p>Although Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in <a href="#fig-queueing-system-with-events" class="quarto-xref">Fig&nbsp;9</a>.</p>
+<p>Although Petri nets can be used to model a vast variety of systems, below we single out one particular class of systems that can be modelled by Petri nets – queueing systems. The general symbol is shown in <a href="#fig-queueing-system-with-events" class="quarto-xref">Fig.&nbsp;9</a>.</p>
 <div id="fig-queueing-system-with-events" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-queueing-system-with-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1195,7 +1195,7 @@ The input transition adds tokens to the system
 <li>the server can break down, and then be repaired,</li>
 <li>completing the service <span class="math inline">\neq</span> customer departure.</li>
 </ul>
-<p>These are incorporated into the Petri net in <a href="#fig-petri-net-modified-queue" class="quarto-xref">Fig&nbsp;10</a>.</p>
+<p>These are incorporated into the Petri net in <a href="#fig-petri-net-modified-queue" class="quarto-xref">Fig.&nbsp;10</a>.</p>
 <div id="fig-petri-net-modified-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-petri-net-modified-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

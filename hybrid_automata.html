@@ -770,7 +770,7 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 \mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
 </span></p>
 <p>Finally, <span class="math inline">\mathcal R</span> (or <span class="math inline">r</span>) is not specified as the <span class="math inline">x</span> variable (the temperature) doesn’t jump. Well, it is specified implicitly as an identity mapping <span class="math inline">r(x)=x</span>.</p>
-<p>The graphical representation of the thermostat hybrid automaton is shown in <a href="#fig-thermostat-automaton" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<p>The graphical representation of the thermostat hybrid automaton is shown in <a href="#fig-thermostat-automaton" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div id="fig-thermostat-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-thermostat-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -926,7 +926,7 @@ Figure&nbsp;5: Bouncing ball example
 \dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \bm x = \begin{bmatrix}10\\0\end{bmatrix}.
 </span></p>
 <p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
-<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig&nbsp;6</a>.</p>
+<p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig.&nbsp;6</a>.</p>
 <div id="fig-bouncing-ball-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -998,7 +998,7 @@ m\dot v = 0, \qquad v=0, \; |F_\mathrm{a}| &lt; F_\mathrm{c}
 </span> <span class="math display">
 F_\mathrm{f} = \begin{cases}\operatorname*{sat}(F_\mathrm{a},F_\mathrm{c}), &amp; v=0\\F_\mathrm{c}\operatorname*{sgn}(v), &amp; \mathrm{else}\end{cases}
 </span></p>
-<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Fig&nbsp;7</a>.</p>
+<p>The model can be formulated as a hybrid automaton with two discrete states (modes, locations) as in <a href="#fig-karnopp-automaton" class="quarto-xref">Fig.&nbsp;7</a>.</p>
 <div id="fig-karnopp-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-karnopp-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1011,7 +1011,7 @@ Figure&nbsp;7: Hybrid automaton for the Karnopp model of friction
 </div>
 </div>
 <div id="exm-rimless-wheel" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Fig&nbsp;8</a>.</p>
+<p><span class="theorem-title"><strong>Example 6 (Rimless wheel)</strong></span> A simple mechanical model that is occasionally used in the walking robot community is the rimless wheel rolling down a declined plane as depicted in <a href="#fig-rimless-wheel" class="quarto-xref">Fig.&nbsp;8</a>.</p>
 <div id="fig-rimless-wheel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rimless-wheel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1046,7 +1046,7 @@ Figure&nbsp;10: Alternative hybrid automaton for a rimless wheel
 </div>
 </div>
 <div id="exm-DC-DC-boost-converter" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> The enabling mechanism for a DC-DC converter is switching. Although the switching is realized with a semiconductor switch, for simplicity of the exposition we consider a manual switch in <a href="#fig-dc-dc-boost-converter" class="quarto-xref">Fig&nbsp;11</a> below.</p>
+<p><span class="theorem-title"><strong>Example 7 (DC-DC boost converter)</strong></span> The enabling mechanism for a DC-DC converter is switching. Although the switching is realized with a semiconductor switch, for simplicity of the exposition we consider a manual switch in <a href="#fig-dc-dc-boost-converter" class="quarto-xref">Fig.&nbsp;11</a> below.</p>
 <div id="fig-dc-dc-boost-converter" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dc-dc-boost-converter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

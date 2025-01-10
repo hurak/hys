@@ -790,7 +790,7 @@ G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\}.}
 </ul>
 <div id="exm-automaton-as-digraph" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Automaton as a digraph)</strong></span> Consider an automaton defined by these sets: <span class="math inline">\mathcal X = \{x_1,x_2,x_3\}</span>, <span class="math inline">\mathcal X_0 = \{x_1\}</span>, <span class="math inline">\mathcal E = \{e_1,e_2,e_3\}</span>, <span class="math inline">\mathcal F = \{(x_1,e_1,x_2),(x_2,e_2,x_1),(x_1,e_3,x_3),(x_2,e_2,x_3)\}</span>.</p>
-<p>The corresponding digraph is in <a href="#fig-automaton-as-digraph" class="quarto-xref">Fig&nbsp;1</a>.</p>
+<p>The corresponding digraph is in <a href="#fig-automaton-as-digraph" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div class="cell" data-fig-width="5.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-automaton-as-digraph" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1365,7 +1365,7 @@ Figure&nbsp;5: Example of a digraph representation of the automaton for a corrid
 <p>Two events associated with one transitions can be seen as two transitions, each with a single event, both sharing the starting and ending states.</p>
 </div>
 <div id="exm-JK-flip-flop" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5 (JK flip-flop)</strong></span> We now consider the classical JK flip-flop logical circuit. It symbol is in <a href="#fig-JK-flip-flop" class="quarto-xref">Fig&nbsp;7</a> and the truth table follows. Our goal is to represent its functionality using a state automaton.</p>
+<p><span class="theorem-title"><strong>Example 5 (JK flip-flop)</strong></span> We now consider the classical JK flip-flop logical circuit. It symbol is in <a href="#fig-JK-flip-flop" class="quarto-xref">Fig.&nbsp;7</a> and the truth table follows. Our goal is to represent its functionality using a state automaton.</p>
 <div id="fig-JK-flip-flop" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-JK-flip-flop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2014,7 +2014,7 @@ Note
 </div>
 <div id="exm-dijkstra-token-passing" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11 (Dijkstra’s token passing)</strong></span> The motivation for this example is to show that it is perhaps not always productive to insist on visual description of the automaton using a graph. The four components of our formal definition of an automaton are just enough, and they translate directly to a code.</p>
-<p>The example comes from the field of distributed computing systems. It considers several computers that are connected in <em>ring</em> topology, and the communication is just one-directional as <a href="#fig-dijkstra-token-passing" class="quarto-xref">Fig&nbsp;12</a> shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.</p>
+<p>The example comes from the field of distributed computing systems. It considers several computers that are connected in <em>ring</em> topology, and the communication is just one-directional as <a href="#fig-dijkstra-token-passing" class="quarto-xref">Fig.&nbsp;12</a> shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.</p>
 <div class="cell" data-fig-width="3.5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-dijkstra-token-passing" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2137,16 +2137,16 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [0, 4, 0, 2]
-output(dtr) = [0, 1, 1, 1]
-(update!(dtr), output(dtr)) = ([0, 0, 4, 0], [1, 0, 1, 1])
-(update!(dtr), output(dtr)) = ([1, 0, 0, 4], [0, 1, 0, 1])
-(update!(dtr), output(dtr)) = ([1, 1, 0, 0], [0, 0, 1, 0])
-(update!(dtr), output(dtr)) = ([1, 1, 1, 0], [0, 0, 0, 1])
-(update!(dtr), output(dtr)) = ([1, 1, 1, 1], [1, 0, 0, 0])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [1, 0, 1, 1]
+output(dtr) = [1, 1, 1, 0]
+(update!(dtr), output(dtr)) = ([2, 1, 0, 1], [0, 1, 1, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 1, 0], [0, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 1], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])
+(update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([1, 1, 1, 1], [1, 0, 0, 0])</code></pre>
+<pre><code>([3, 2, 2, 2], [0, 1, 0, 0])</code></pre>
 </div>
 </div>
 <p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>
@@ -2408,7 +2408,7 @@ Figure&nbsp;15: Example of an automaton generating the language <span class="mat
 <h2 class="anchored" data-anchor-id="blocking">Blocking</h2>
 <p>An important concept in automata is <em>blocking</em>. A state is <em>blocking</em> if there is no transition out of it. An example follows.</p>
 <div id="exm-blocking" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15 (Blocking states)</strong></span> In the automaton in <a href="#fig-blocking" class="quarto-xref">Fig&nbsp;16</a>, state 2 is blocking. It is a <em>deadlock</em> state. States 3 and 4 are <em>livelock</em> states.</p>
+<p><span class="theorem-title"><strong>Example 15 (Blocking states)</strong></span> In the automaton in <a href="#fig-blocking" class="quarto-xref">Fig.&nbsp;16</a>, state 2 is blocking. It is a <em>deadlock</em> state. States 3 and 4 are <em>livelock</em> states.</p>
 <div class="cell" data-fig-width="6" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-blocking" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2544,7 +2544,7 @@ Figure&nbsp;16: Example of an automaton with blocking states
 <li>resources (also servers, processors, etc.): customers are waiting for them</li>
 <li>queues (also buffers): where waiting is done</li>
 </ul>
-<p>A common graphical representation that contains all these three compoments is in <a href="#fig-queueing-system" class="quarto-xref">Fig&nbsp;17</a>.</p>
+<p>A common graphical representation that contains all these three compoments is in <a href="#fig-queueing-system" class="quarto-xref">Fig.&nbsp;17</a>.</p>
 <div id="fig-queueing-system" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-queueing-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
