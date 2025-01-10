@@ -815,7 +815,14 @@ Note
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="fu">phase_plot</span>(f, <span class="fu">value</span>(B), g₁, h₁, <span class="fl">10</span>, <span class="fl">30.0</span>, [[x1, x2] for x1 <span class="kw">in</span> <span class="fl">1.2</span><span class="op">:</span><span class="fl">0.2</span><span class="op">:</span><span class="fl">1.7</span>, x2 <span class="kw">in</span> <span class="op">-</span><span class="fl">0.35</span><span class="op">:</span><span class="fl">0.1</span><span class="op">:</span><span class="fl">0.35</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>┌ Warning: At t=4.423118290940107, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139033855908175. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
+<pre><code>Precompiling SumOfSquares...
+   2370.9 ms  ✓ PolyJuMP
+   2805.4 ms  ✓ SumOfSquares
+  2 dependencies successfully precompiled in 6 seconds. 93 already precompiled.
+Precompiling CSDP...
+   1292.8 ms  ✓ CSDP
+  1 dependency successfully precompiled in 1 seconds. 64 already precompiled.
+┌ Warning: At t=4.423118290940107, dt was forced below floating point epsilon 8.881784197001252e-16, and step error estimate = 1.139033855908175. Aborting. There is either an error in your model specification or the true solution is unstable (or the true solution can not be represented in the precision of Float64).
 └ @ SciMLBase ~/.julia/packages/SciMLBase/XzPx0/src/integrator_interface.jl:623</code></pre>
 </div>
 <div id="fig-barrier" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
