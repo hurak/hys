@@ -11,6 +11,21 @@
   langid = {english}
 }
 
+@inproceedings{abateARCHCOMPFriendlyVerification2025,
+  title = {The {{ARCH-COMP Friendly Verification Competition}} for~{{Continuous}} and~{{Hybrid Systems}}},
+  booktitle = {{{TOOLympics Challenge}} 2023},
+  author = {Abate, Alessandro and Althoff, Matthias and Bu, Lei and Ernst, Gidon and Frehse, Goran and Geretti, Luca and Johnson, Taylor T. and Menghi, Claudio and Mitsch, Stefan and Schupp, Stefan and Soudjani, Sadegh},
+  editor = {Beyer, Dirk and Hartmanns, Arnd and Kordon, Fabrice},
+  year = {2025},
+  pages = {1--37},
+  publisher = {Springer Nature Switzerland},
+  address = {Cham},
+  doi = {10.1007/978-3-031-67695-6_1},
+  abstract = {The workshop on Applied Verification for Continuous and Hybrid Systems (ARCH) is an annual venue for researchers and practitioners working on automated analysis and verification of hybrid systems. ARCH-COMP is a friendly competition held with the ARCH event. The competition was established in 2017 and aims to explore, document, and push forward the state of the art in the field. It evaluates and compares methods and tools for automated hybrid systems analysis and verification on predefined benchmark problems. It is supported by an active community around several categories of problems, including linear and nonlinear systems, simulation-based and analytic methods, and models from many application domains, such as automotive systems or neural networks. This paper describes the format of the competition and its organization. It documents the experiences and decisions from the current and past editions of the competition and presents reflections and lessons learned.},
+  isbn = {978-3-031-67695-6},
+  langid = {english}
+}
+
 @phdthesis{ahmadiNonmonotonicLyapunovFunctions2008,
   type = {Thesis},
   title = {Non-Monotonic {{Lyapunov}} Functions for Stability of Nonlinear and Switched Systems : Theory and Computation},
@@ -56,12 +71,43 @@
   abstract = {This study proposes an energy-critical control scheme for road vehicles. The framework is designed to ensure an energy-critical goal that is defined in the form of an upper bound on the energy consumption. In order to respond to the changing traffic environment, this bound is changed based on the preceding vehicle's energy consumption. Control barrier functions are used to obtain a condition on the control input such that the energy-critical goal is formally guaranteed. This condition is used in a quadratic program scheme as a constraint, and the resulting controller intervenes the driver input in a minimally-invasive fashion. The effect of the energy-critical controller is demonstrated in data-based simulations, where up to 25\% improvement in energy consumption is observed compared to an energy-inefficient driver, without drastically changing the car-following performance.}
 }
 
-@misc{althoffCORA2024Manual2023,
-  title = {{{CORA}} 2024 {{Manual}}},
+@misc{allamaaRealtimeMPCControl2024,
+  title = {Real-Time {{MPC}} with {{Control Barrier Functions}} for {{Autonomous Driving}} Using {{Safety Enhanced Collocation}}},
+  author = {Allamaa, Jean Pierre and Patrinos, Panagiotis and Ohtsuka, Toshiyuki and Son, Tong Duy},
+  year = {2024},
+  month = jul,
+  number = {arXiv:2401.06648},
+  eprint = {2401.06648},
+  primaryclass = {cs, eess, math},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2401.06648},
+  url = {http://arxiv.org/abs/2401.06648},
+  urldate = {2024-08-29},
+  abstract = {The autonomous driving industry is continuously dealing with safety-critical scenarios, and nonlinear model predictive control (NMPC) is a powerful control strategy for handling such situations. However, standard safety constraints are not scalable and require a long NMPC horizon. Moreover, the adoption of NMPC in the automotive industry is limited by the heavy computation of numerical optimization routines. To address those issues, this paper presents a real-time capable NMPC for automated driving in urban environments, using control barrier functions (CBFs). Furthermore, the designed NMPC is based on a novel collocation transcription approach, named RESAFE/COL, that allows to reduce the number of optimization variables while still guaranteeing the continuous time (nonlinear) inequality constraints satisfaction, through regional convex hull approximation. RESAFE/COL is proven to be 5 times faster than multiple shooting and more tractable for embedded hardware without a decrease in the performance, nor accuracy and safety of the numerical solution. We validate our NMPC-CBF with RESAFE/COL on digital twins of the vehicle and the urban environment and show the safe controller's ability to improve crash avoidance by 91{\textbackslash}\%. Supplementary visual material can be found at https://youtu.be/\_EnbfYwljp4.},
+  archiveprefix = {arXiv}
+}
+
+@inproceedings{althoffAvoidingGeometricIntersection2012,
+  title = {Avoiding Geometric Intersection Operations in Reachability Analysis of Hybrid Systems},
+  booktitle = {Proceedings of the 15th {{ACM}} International Conference on {{Hybrid Systems}}: {{Computation}} and {{Control}}},
+  author = {Althoff, Matthias and Krogh, Bruce H.},
+  year = {2012},
+  month = apr,
+  pages = {45--54},
+  publisher = {ACM},
+  address = {Beijing China},
+  doi = {10.1145/2185632.2185643},
+  url = {https://dl.acm.org/doi/10.1145/2185632.2185643},
+  urldate = {2025-01-04},
+  isbn = {978-1-4503-1220-2},
+  langid = {english}
+}
+
+@misc{althoffCORA2025Manual2025,
+  title = {{{CORA}} 2025 {{Manual}}},
   author = {Althoff, Matthias and Kochdumper, Niklas and Wetzlinger, Mark and Ladner, Tobias},
-  year = {2023},
-  url = {https://tumcps.github.io/CORA/data/archive/manual/Cora2024Manual.pdf},
-  urldate = {2023-01-10}
+  year = {2025},
+  url = {https://tumcps.github.io/CORA/data/archive/manual/Cora2025Manual.pdf}
 }
 
 @article{althoffSetPropagationTechniques2021,
@@ -225,6 +271,22 @@
   abstract = {This article presents a new set representation named the hybrid zonotope that is equivalent to the union of 2N constrained zonotopes -- convex polytopes -- through the addition of N binary zonotope factors. The major contribution of this manuscript is a closed-form solution for exact forward reachable sets of discrete-time, linear hybrid systems modeled as mixed logical dynamical systems. The proposed approach captures the worst-case exponential growth in the number of convex sets required to represent the nonconvex reachable set while exhibiting only linear growth in the complexity of the hybrid zonotope set representation. Redundancy removal techniques are provided that leverage binary trees to store the combinations of binary factors of the hybrid zonotope that map to nonempty convex subsets. Numerical examples show the hybrid zonotope's ability to compactly represent nonconvex reachable sets with an exponential number of features. Furthermore, the hybrid zonotope is shown to be closed under linear mappings, Minkowski sums, generalized intersections, and halfspace intersections.}
 }
 
+@misc{blackCBFKITControlBarrier2024,
+  title = {{{CBFKIT}}: {{A Control Barrier Function Toolbox}} for {{Robotics Applications}}},
+  shorttitle = {{{CBFKIT}}},
+  author = {Black, Mitchell and Fainekos, Georgios and Hoxha, Bardh and Okamoto, Hideki and Prokhorov, Danil},
+  year = {2024},
+  month = apr,
+  number = {arXiv:2404.07158},
+  eprint = {2404.07158},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2404.07158},
+  url = {http://arxiv.org/abs/2404.07158},
+  urldate = {2024-10-20},
+  abstract = {This paper introduces CBFKit, a Python/ROS toolbox for safe robotics planning and control under uncertainty. The toolbox provides a general framework for designing control barrier functions for mobility systems within both deterministic and stochastic environments. It can be connected to the ROS open-source robotics middleware, allowing for the setup of multi-robot applications, encoding of environments and maps, and integrations with predictive motion planning algorithms. Additionally, it offers multiple CBF variations and algorithms for robot control. The CBFKit is demonstrated on the Toyota Human Support Robot (HSR) in both simulation and in physical experiments.},
+  archiveprefix = {arXiv}
+}
+
 @article{blanchiniSetInvarianceControl1999,
   title = {Set Invariance in Control},
   author = {Blanchini, F.},
@@ -371,6 +433,22 @@
   langid = {english}
 }
 
+@misc{chanVerifyingSafetyAutonomous2017,
+  title = {Verifying Safety of an Autonomous Spacecraft Rendezvous Mission},
+  author = {Chan, Nicole and Mitra, Sayan},
+  year = {2017},
+  month = mar,
+  number = {arXiv:1703.06930},
+  eprint = {1703.06930},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1703.06930},
+  url = {http://arxiv.org/abs/1703.06930},
+  urldate = {2025-01-04},
+  abstract = {A fundamental maneuver in autonomous space operations is known as rendezvous, where a spacecraft navigates to and approaches another spacecraft. In this case study, we present linear and nonlinear benchmark models of an active chaser spacecraft performing rendezvous toward a passive, orbiting target. The system is modeled as a hybrid automaton, where the chaser must adhere to different sets of constraints in each discrete mode. A switched LQR controller is designed accordingly to meet this collection of physical and geometric safety constraints, while maintaining liveness in navigating toward the target spacecraft. We extend this benchmark problem to check for passive safety, which is collision avoidance along a passive, propulsion-free trajectory that may be followed in the event of system failures. We show that existing hybrid verification tools like SpaceEx, C2E2, and our own implementation of a simulation-driven verification tool can robustly verify this system with respect to the requirements, and a variety of relevant initial conditions.},
+  archiveprefix = {arXiv}
+}
+
 @techreport{iecFunctionalSafetyElectrical2010,
   type = {International {{Standard}}},
   title = {Functional Safety of Electrical/Electronic/Programmable Electronic Safety-Related Systems - {{Parts}} 1 to 7},
@@ -478,6 +556,17 @@
   url = {https://www.sciencedirect.com/science/article/pii/S2405896315015931},
   urldate = {2023-12-19},
   abstract = {Software tools play an important dissemination role by bringing cutting-edge theoretical algorithms into the hands of researchers and practitioners. This paper introduces a new robust analysis and control module of the Multi-Parametric toolbox, which is one of the most successful open-source tools in the field. We discuss how robust reachable and invariant sets can be computed using a convenient user interface. Such sets play an important role in many control-oriented tasks, such as in design of recursively feasible optimization-based control laws. Moreover, the new module also allows to synthesize robustly stabilizing linear controller and, more importantly, offers robust Model Predictive Control (MPC) synthesis features. The main aim of the paper is illustrate how complex tasks can be implemented using simple operators such that more sophisticated algorithms could be developed easily by the research community.}
+}
+
+@techreport{lagerbergBenchmarkHybridControl2007,
+  title = {A {{Benchmark}} on {{Hybrid Control}} of an {{Automotive Powertrain}} with {{Backlash}}},
+  author = {Lagerberg, Adam},
+  year = {2007},
+  number = {R005},
+  address = {Goteborg, Sweden},
+  institution = {Chalmers University of Technology},
+  url = {https://www.researchgate.net/profile/Adam-Lagerberg/publication/251989348_A_Benchmark_on_Hybrid_Control_of_an_Automotive_Powertrain_with_Backlash/links/555ef93708ae86c06b5f685c/A-Benchmark-on-Hybrid-Control-of-an-Automotive-Powertrain-with-Backlash.pdf},
+  abstract = {In automotive powertrains, the existence of backlash causes driveability problems, which to some extent are remedied by the engine control system. The control problem has a con- strained, minimum-time character, and a powertrain model including the backlash nonlinear- ity will be of a hybrid character. This motivates an investig ation of the usability of a hybrid control synthesis method for this problem. This document outlines a benchmark problem for this system, and a few simulation results are included to indicate how a solution may look. These simulations were produced with an explicit MPC controller.}
 }
 
 @article{legatGeometricControlAlgebraic2021,
@@ -616,23 +705,6 @@
   urldate = {2022-08-12},
   abstract = {Methods for model validation of continuous-time nonlinear systems with uncertain parameters are presented in this paper. The methods employ functions of state-parameter-time, termed barrier certificates, whose existence proves that a model and a feasible parameter set are inconsistent with some time-domain experimental data. A very large class of models can be treated within this framework; this includes differential-algebraic models, models with memoryless/dynamic uncertainties, and hybrid models. Construction of barrier certificates can be performed by convex optimization, utilizing recent results on the sum of squares decomposition of multivariate polynomials.},
   langid = {english}
-}
-
-@article{prajnaConvexProgramsTemporal2007a,
-  title = {Convex {{Programs}} for {{Temporal Verification}} of {{Nonlinear Dynamical Systems}}},
-  author = {Prajna, Stephen and Rantzer, Anders},
-  year = {2007},
-  month = jan,
-  journal = {SIAM Journal on Control and Optimization},
-  volume = {46},
-  number = {3},
-  pages = {999--1021},
-  publisher = {{Society for Industrial and Applied Mathematics}},
-  issn = {0363-0129},
-  doi = {10.1137/050645178},
-  url = {https://epubs.siam.org/doi/abs/10.1137/050645178},
-  urldate = {2022-08-12},
-  abstract = {A methodology for safety verification of continuous and hybrid systems using barrier certificates has been proposed recently. Conditions that must be satisfied by a barrier certificate can be formulated as a convex program, and the feasibility of the program implies system safety in the sense that there is no trajectory starting from a given set of initial states that reaches a given unsafe region. The dual of this problem, i.e., the reachability problem, concerns proving the existence of a trajectory starting from the initial set that reaches another given set. Using insights from the linear programming duality appearing in the discrete shortest path problem, we show in this paper that reachability of continuous systems can also be verified through convex programming. Several convex programs for verifying safety and reachability, as well as other temporal properties such as eventuality, avoidance, and their combinations, are formulated. Some examples are provided to illustrate the application of the proposed methods. Finally, we exploit the convexity of our methods to derive a converse theorem for safety verification using barrier certificates.}
 }
 
 @article{prajnaFrameworkWorstCaseStochastic2007,
@@ -855,22 +927,34 @@
   langid = {english}
 }
 
-@article{wielandConstructiveSafetyUsing2007,
+@inproceedings{wielandConstructiveSafetyUsing2007,
   title = {Constructive Safety Using Control Barrier Functions},
+  booktitle = {{{IFAC Proceedings Volumes}}},
   author = {Wieland, Peter and Allg{\"o}wer, Frank},
   year = {2007},
   month = jan,
-  journal = {IFAC Proceedings Volumes},
   series = {7th {{IFAC Symposium}} on {{Nonlinear Control Systems}}},
   volume = {40},
-  number = {12},
   pages = {462--467},
-  issn = {1474-6670},
   doi = {10.3182/20070822-3-ZA-2920.00076},
   url = {https://www.sciencedirect.com/science/article/pii/S1474667016355690},
   urldate = {2022-08-12},
   abstract = {This paper presents a new safety feedback design for nonlinear systems based on barrier certificates and the idea of control Lyapunov functions. In contrast to existing methods, this approach ensures safety independently of abstract high-level tasks that might be unknown or change over time. Leaving as much freedom as possible to the safe system, the authors believe that the flexibility of this approach is very promising. The design is validated using an illustrative example.},
   langid = {english}
+}
+
+@inproceedings{wiltzConstructionControlBarrier2023,
+  title = {Construction of {{Control Barrier Functions Using Predictions}} with {{Finite Horizon}}},
+  booktitle = {2023 62nd {{IEEE Conference}} on {{Decision}} and {{Control}} ({{CDC}})},
+  author = {Wiltz, Adrian and Tan, Xiao and Dimarogonas, Dimos V.},
+  year = {2023},
+  month = dec,
+  pages = {2743--2749},
+  issn = {2576-2370},
+  doi = {10.1109/CDC49753.2023.10383564},
+  url = {https://ieeexplore.ieee.org/abstract/document/10383564/citations#citations},
+  urldate = {2025-01-03},
+  abstract = {In this paper, we show that under mild controllability assumptions a time-invariant Control Barrier Function (CBF) can be constructed based on predictions with a finite horizon. As a starting point, we require only a known subset of a control-invariant set where the latter set does not need to be explicitly known. We show that, based on ideas similar to the Hamilton-Jacobi reachability analysis, the knowledge on the subset of a control-invariant set allows us to obtain a time-invariant CBF for the time-invariant dynamics under consideration. We also provide a thorough analysis of the properties of the constructed CBF, we characterize the impact of the prediction horizon, and comment on the practical implementation. In the end, we relate our construction approach to Model Predictive Control (MPC). With a relevant application example, we demonstrate how our method is applied.}
 }
 
 @misc{wongpiromsarnLectureModelChecking2020,
@@ -908,4 +992,19 @@
   year = {11 kv{\v e}tna 2023},
   abstract = {This book presents the concept of Control Barrier Function (CBF), which captures the evolution of safety requirements during the execution of a system and can be used to enforce safety. Safety is formalized using an emerging state-of-the-art approach based on CBFs, and many illustrative examples from autonomous driving, traffic control, and robot control are provided. Safety is central to autonomous systems since they are intended to operate with minimal or no human supervision, and a single failure could result in catastrophic results. The authors discuss how safety can be guaranteed via both theoretical and application perspectives. This presented method is computationally efficient and can be easily implemented in real-time systems that require high-frequency reactive control. In addition, the CBF approach can easily deal with nonlinear models and complex constraints used in a wide spectrum of applications, including autonomous driving, robotics, and traffic control. With the proliferation of autonomous systems, such as self-driving cars, mobile robots, and unmanned air vehicles, safety plays a crucial role in ensuring their widespread adoption. This book considers the integration of safety guarantees into the operation of such systems including typical safety requirements that involve collision avoidance, technological system limitations, and bounds on real-time executions. Adaptive approaches for safety are also proposed for time-varying execution bounds and noisy dynamics.},
   isbn = {978-3-031-27575-3}
+}
+
+@article{xuConstrainedControlInput2018,
+  title = {Constrained Control of Input--Output Linearizable Systems Using Control Sharing Barrier Functions},
+  author = {Xu, Xiangru},
+  year = {2018},
+  month = jan,
+  journal = {Automatica},
+  volume = {87},
+  pages = {195--201},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2017.10.005},
+  url = {https://www.sciencedirect.com/science/article/pii/S0005109817305046},
+  urldate = {2024-12-18},
+  abstract = {Control barrier functions (CBFs) have been used as an effective tool for designing a family of controls that ensures the forward invariance of a set. When multiple CBFs are present, it is important that the set of controls satisfying all the barrier conditions is non-empty. In this paper, we investigate such a control-sharing property for multiple CBFs and provide sufficient and necessary conditions for the property to hold. Based on that, we study the tracking control design problem of an input--output linearizable system with multiple time-varying output constraints, where the output constraints are encoded as CBFs and the barrier conditions are expressed as hard constraints in a quadratic program (QP) whose feasibility is guaranteed by the control-sharing property of the CBFs. With the controller generated from the QP, the output constraints are always satisfied and the tracking objective is achieved when it is not conflicting with the constraints. The effectiveness of our control design method is illustrated by two examples.}
 }

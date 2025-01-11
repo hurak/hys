@@ -1,12 +1,14 @@
 ---
 title: "Discrete-event systems"
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 ---
 
 We have already mentioned that hybrid systems are composed of *time-driven subsystems* and *event-driven subsystems*. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).

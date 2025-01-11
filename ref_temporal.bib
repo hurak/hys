@@ -1,3 +1,22 @@
+@article{beltaFormalMethodsControl2019a,
+  title = {Formal {{Methods}} for {{Control Synthesis}}: {{An Optimization Perspective}}},
+  shorttitle = {Formal {{Methods}} for {{Control Synthesis}}},
+  author = {Belta, Calin and Sadraddini, Sadra},
+  year = {2019},
+  month = may,
+  journal = {Annual Review of Control, Robotics, and Autonomous Systems},
+  volume = {2},
+  number = {Volume 2, 2019},
+  pages = {115--140},
+  publisher = {Annual Reviews},
+  issn = {2573-5144},
+  doi = {10.1146/annurev-control-053018-023717},
+  url = {https://www.annualreviews.org/content/journals/10.1146/annurev-control-053018-023717},
+  urldate = {2024-10-18},
+  abstract = {In control theory, complicated dynamics such as systems of (nonlinear) differential equations are controlled mostly to achieve stability. This fundamental property, which can be with respect to a desired operating point or a prescribed trajectory, is often linked with optimality, which requires minimizing a certain cost along the trajectories of a stable system. In formal verification (model checking), simple systems, such as finite-state transition graphs that model computer programs or digital circuits, are checked against rich specifications given as formulas of temporal logics. The formal synthesis problem, in which the goal is to synthesize or control a finite system from a temporal logic specification, has recently received increased interest. In this article, we review some recent results on the connection between optimal control and formal synthesis. Specifically, we focus on the following problem: Given a cost and a correctness temporal logic specification for a dynamical system, generate an optimal control strategy that satisfies the specification. We first provide a short overview of automata-based methods, in which the dynamics of the system are mapped to a finite abstraction that is then controlled using an automaton corresponding to the specification. We then provide a detailed overview of a class of methods that rely on mapping the specification and the dynamics to constraints of an optimization problem. We discuss advantages and limitations of these two types of approaches and suggest directions for future research.},
+  langid = {english}
+}
+
 @inproceedings{cimattiNUSMVNewSymbolic1999,
   title = {{{NUSMV}}: {{A New Symbolic Model Verifier}}},
   shorttitle = {{{NUSMV}}},
@@ -14,6 +33,35 @@
   isbn = {978-3-540-66202-0}
 }
 
+@inproceedings{donzeBluSTLControllerSynthesis2015,
+  title = {{{BluSTL}}: {{Controller Synthesis}} from {{Signal Temporal Logic Specifications}}},
+  shorttitle = {{{BluSTL}}},
+  booktitle = {{{ARCH14-15}}. 1st and 2nd {{International Workshop}} on {{Applied veRification}} for {{Continuous}} and {{Hybrid Systems}}},
+  author = {Donz{\'e}, Alexandre and Raman, Vasumathi},
+  year = {2015},
+  month = dec,
+  pages = {160--150},
+  doi = {10.29007/g39q},
+  url = {https://doi.org/10.29007/g39q},
+  urldate = {2025-01-07},
+  abstract = {We present BluSTL, a MATLAB toolbox for generating controllers from             specifications written in Signal Temporal Logic (STL). The toolbox takes as input a system and a             set of constraints expressed in STL and constructs an open-loop or a closed-loop (in a receding             horizon or Model Predictive fashion) controller that enforces these constraints on the system             while minimizing some cost function. The controller can also be made reactive or robust to some             external input or disturbances.}
+}
+
+@inproceedings{donzeRobustSatisfactionTemporal2010,
+  title = {Robust {{Satisfaction}} of {{Temporal Logic}} over {{Real-Valued Signals}}},
+  booktitle = {Formal {{Modeling}} and {{Analysis}} of {{Timed Systems}}},
+  author = {Donz{\'e}, Alexandre and Maler, Oded},
+  editor = {Chatterjee, Krishnendu and Henzinger, Thomas A.},
+  year = {2010},
+  pages = {92--106},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-642-15297-9_9},
+  abstract = {We consider temporal logic formulae specifying constraints in continuous time and space on the behaviors of continuous and hybrid dynamical system admitting uncertain parameters. We present several variants of robustness measures that indicate how far a given trajectory stands, in space and time, from satisfying or violating a property. We present a method to compute these robustness measures as well as their sensitivity to the parameters of the system or parameters appearing in the formula. Combined with an appropriate strategy for exploring the parameter space, this technique can be used to guide simulation-based verification of complex nonlinear and hybrid systems against temporal properties. Our methodology can be used for other non-traditional applications of temporal logic such as characterizing subsets of the parameter space for which a system is guaranteed to satisfy a formula with a desired robustness degree.},
+  isbn = {978-3-642-15297-9},
+  langid = {english}
+}
+
 @misc{donzeSignalTemporalLogic2013,
   type = {Lecture},
   title = {On {{Signal Temporal Logic}}},
@@ -23,6 +71,55 @@
   address = {University of California, Berkeley},
   url = {https://people.eecs.berkeley.edu/~sseshia/fmee/lectures/EECS294-98_Spring2014_STL_Lecture.pdf},
   langid = {english}
+}
+
+@article{fainekosTemporalLogicMotion2009,
+  title = {Temporal Logic Motion Planning for Dynamic Robots},
+  author = {Fainekos, Georgios E. and Girard, Antoine and {Kress-Gazit}, Hadas and Pappas, George J.},
+  year = {2009},
+  month = feb,
+  journal = {Automatica},
+  volume = {45},
+  number = {2},
+  pages = {343--352},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2008.08.008},
+  url = {https://www.sciencedirect.com/science/article/pii/S000510980800455X},
+  urldate = {2024-10-18},
+  abstract = {In this paper, we address the temporal logic motion planning problem for mobile robots that are modeled by second order dynamics. Temporal logic specifications can capture the usual control specifications such as reachability and invariance as well as more complex specifications like sequencing and obstacle avoidance. Our approach consists of three basic steps. First, we design a control law that enables the dynamic model to track a simpler kinematic model with a globally bounded error. Second, we built a robust temporal logic specification that takes into account the tracking errors of the first step. Finally, we solve the new robust temporal logic path planning problem for the kinematic model using automata theory and simple local vector fields. The resulting continuous time trajectory is provably guaranteed to satisfy the initial user specification.}
+}
+
+@article{farahaniRobustModelPredictive2015,
+  title = {Robust {{Model Predictive Control}} for {{Signal Temporal Logic Synthesis}}},
+  author = {Farahani, Samira S. and Raman, Vasumathi and Murray, Richard M.},
+  year = {2015},
+  month = jan,
+  journal = {IFAC-PapersOnLine},
+  series = {Analysis and {{Design}} of {{Hybrid Systems ADHS}}},
+  volume = {48},
+  number = {27},
+  pages = {323--328},
+  issn = {2405-8963},
+  doi = {10.1016/j.ifacol.2015.11.195},
+  url = {https://www.sciencedirect.com/science/article/pii/S2405896315024532},
+  urldate = {2024-10-18},
+  abstract = {Most automated systems operate in uncertain or adversarial conditions, and have to be capable of reliably reacting to changes in the environment. The focus of this paper is on automatically synthesizing reactive controllers for cyber-physical systems subject to signal temporal logic (STL) specifications. We build on recent work that encodes STL specifications as mixed integer linear constraints on the variables of a discrete-time model of the system and environment dynamics. To obtain a reactive controller, we present solutions to the worst-case model predictive control (MPC) problem using a suite of mixed integer linear programming techniques. We demonstrate the comparative effectiveness of several existing worst-case MPC techniques, when applied to the problem of control subject to temporal logic specifications; our empirical results emphasize the need to develop specialized solutions for this domain.}
+}
+
+@article{farahaniShrinkingHorizonModel2019,
+  title = {Shrinking {{Horizon Model Predictive Control With Signal Temporal Logic Constraints Under Stochastic Disturbances}}},
+  author = {Farahani, Samira S. and Majumdar, Rupak and Prabhu, Vinayak S. and Soudjani, Sadegh},
+  year = {2019},
+  month = aug,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {64},
+  number = {8},
+  pages = {3324--3331},
+  issn = {1558-2523},
+  doi = {10.1109/TAC.2018.2880651},
+  url = {https://ieeexplore.ieee.org/abstract/document/8528869},
+  urldate = {2025-01-07},
+  abstract = {We present shrinking horizon model predictive control for discrete-time linear systems under stochastic disturbances with constraints encoded as signal temporal logic (STL) specification. The control objective is to satisfy a given STL specification with high probability against stochastic uncertainties while maximizing the robust satisfaction of an STL specification with minimum control effort. We formulate a general solution, which does not require precise knowledge of probability distributions of (possibly dependent) stochastic disturbances; only the bounded support of the density functions and moment intervals are used. For the specific case of disturbances that are normally distributed, we optimize the controllers by utilizing knowledge of the probability distribution of the disturbance. We show that in both cases, the control law can be obtained by solving optimization problems with linear constraints at each step. We experimentally demonstrate effectiveness of this approach by synthesizing a controller for a heating, ventilation, and air conditioning system.}
 }
 
 @inproceedings{finucaneLTLMoPExperimentingLanguage2010,
@@ -80,6 +177,19 @@
   issn = {1558-2523},
   doi = {10.1109/TAC.2020.3010490},
   abstract = {Discrete-time stochastic systems are an essential modeling tool for many engineering systems. We consider stochastic control systems that are evolving over continuous spaces. For this class of models, methods for the formal verification and synthesis of control strategies are computationally hard and generally rely on the use of approximate abstractions. Building on approximate abstractions, we compute control strategies with lower- and upper-bounds for satisfying unbounded temporal logic specifications. First, robust dynamic programming mappings over the abstract system are introduced to solve the control synthesis and verification problem. These mappings yield a control strategy and a unique lower bound on the satisfaction probability for temporal logic specifications that is robust to the incurred approximation errors. Second, upper-bounds on the satisfaction probability are quantified, and properties of the mappings are analyzed and discussed. Finally, we show the implications of these results to continuous state space of linear stochastic dynamic systems. This abstraction-based synthesis framework is shown to be able to handle infinite-horizon properties. Approximation errors expressed as deviations in the outputs of the models and as deviations in the probabilistic transitions are allowed and are quantified using approximate stochastic simulation relations.}
+}
+
+@misc{IEEEStandardProperty2010,
+  type = {Standard},
+  title = {{{IEEE Standard}} for {{Property Specification Language}} ({{PSL}})},
+  year = {2010},
+  month = apr,
+  number = {1850},
+  publisher = {IEEE},
+  doi = {10.1109/IEEESTD.2010.5446004},
+  url = {https://ieeexplore.ieee.org/document/5446004},
+  urldate = {2025-01-02},
+  abstract = {The IEEE Property Specification Language (PSL) is defined. PSL is a formal notation for specification of electronic system behavior, compatible with multiple electronic system design languages, including IEEE Std 1076{\textquestiondown} (VHDL{\textregistered}), IEEE Std 1354 (Verilog{\textregistered}), IEEE Std 1666{\textquestiondown} (SystemC{\textregistered}), and IEEE Std 1800{\textquestiondown} (SystemVerilog{\textregistered}), thereby enabling a common specification and verification flow for multi-language and mixed-language designs. PSL captures design intent in a form suitable for simulation, formal verification, formal analysis, and hybrid verification tools. PSL enhances communication among architects, designers, and verification engineers to increase productivity throughout the design and verification process. The primary audiences for this standard are the implementors of tools supporting the language and advanced users of the language.}
 }
 
 @misc{jiangGuaranteedCompletionComplex2024,
@@ -152,6 +262,53 @@
   langid = {english}
 }
 
+@article{lindemannControlBarrierFunctions2019,
+  title = {Control {{Barrier Functions}} for {{Signal Temporal Logic Tasks}}},
+  author = {Lindemann, Lars and Dimarogonas, Dimos V.},
+  year = {2019},
+  month = jan,
+  journal = {IEEE Control Systems Letters},
+  volume = {3},
+  number = {1},
+  pages = {96--101},
+  issn = {2475-1456},
+  doi = {10.1109/LCSYS.2018.2853182},
+  url = {https://ieeexplore.ieee.org/abstract/document/8404080/?casa_token=vwXPjpyc0N0AAAAA:ooAsVpdTBi6zoxwz7VfKDD9ax0r4o08A5GpgxumGze35zMMaVlGOOAeCKoIm1Dn_QPiVAsBmGa0},
+  urldate = {2024-12-18},
+  abstract = {The need for computationally-efficient control methods of dynamical systems under temporal logic tasks has recently become more apparent. Existing methods are computationally demanding and hence often not applicable in practice. Especially with respect to multi-robot systems, these methods do not scale computationally. In this letter, we propose a framework that is based on control barrier functions and signal temporal logic. In particular, timevarying control barrier functions are considered where the temporal properties are used to satisfy signal temporal logic tasks. The resulting controller is given by a switching strategy between a computationally-efficient convex quadratic program and a local feedback control law.}
+}
+
+@article{lindemannReactiveRiskAwareControl2022,
+  title = {Reactive and {{Risk-Aware Control}} for {{Signal Temporal Logic}}},
+  author = {Lindemann, Lars and Pappas, George J. and Dimarogonas, Dimos V.},
+  year = {2022},
+  month = oct,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {67},
+  number = {10},
+  pages = {5262--5277},
+  issn = {1558-2523},
+  doi = {10.1109/TAC.2021.3120681},
+  url = {https://ieeexplore.ieee.org/document/9576605},
+  urldate = {2024-12-18},
+  abstract = {The deployment of autonomous systems in uncertain and dynamic environments has raised fundamental questions. Addressing these is pivotal to build fully autonomous systems and requires a systematic integration of planning and control. We first propose reactive risk signal interval temporal logic (ReRiSITL) as an extension of signal temporal logic (STL) to formulate complex spatiotemporal specifications. Unlike STL, ReRiSITL allows to consider uncontrollable propositions that may model humans as well as random environmental events such as sensor failures. Additionally, ReRiSITL allows to incorporate risk measures, such as (but not limited to) the conditional value-at-risk, to measure the risk of violating certain spatial specifications. Second, we propose an algorithm to check if an ReRiSITL specification is satisfiable. For this purpose, we abstract the ReRiSITL specification into a timed signal transducer and devise a game-based approach. Third, we propose a reactive planning and control framework for dynamical control systems under ReRiSITL specifications.}
+}
+
+@article{lindemannRobustControlSignal2019,
+  title = {Robust Control for Signal Temporal Logic Specifications Using Discrete Average Space Robustness},
+  author = {Lindemann, Lars and Dimarogonas, Dimos V.},
+  year = {2019},
+  month = mar,
+  journal = {Automatica},
+  volume = {101},
+  pages = {377--387},
+  issn = {0005-1098},
+  doi = {10.1016/j.automatica.2018.12.022},
+  url = {https://www.sciencedirect.com/science/article/pii/S0005109818306289},
+  urldate = {2024-10-18},
+  abstract = {Control systems that satisfy temporal logic specifications have become increasingly popular due to their applicability to robotic systems. Existing control methods, however, are computationally demanding, especially when the problem size becomes too large. In this paper, a robust and computationally efficient model predictive control framework for signal temporal logic specifications is proposed. We introduce discrete average space robustness, a novel quantitative semantic for signal temporal logic, that is directly incorporated into the cost function of the model predictive controller. The optimization problem entailed in this framework can be written as a convex quadratic program when no disjunctions are considered and results in a robust satisfaction of the specification. Furthermore, we define the predicate robustness degree as a new robustness notion. Simulations of a multi-agent system subject to complex specifications demonstrate the efficacy of the proposed method.}
+}
+
 @inproceedings{liuAbstractionDiscretizationRobustness2014,
   title = {Abstraction, Discretization, and Robustness in Temporal Logic Control of Dynamical Systems},
   booktitle = {Proceedings of the 17th International Conference on {{Hybrid}} Systems: Computation and Control},
@@ -195,6 +352,21 @@
   issn = {1050-4729},
   doi = {10.1109/ICRA.2014.6907643},
   abstract = {Motivated by designing high-level planners for dynamical systems (such as mobile robots) to achieve complex tasks, we consider the synthesis of switching controllers of nonlinear dynamical systems from metric temporal logic (MTL) specifications. MTL is a popular logic that allows to specify timed properties of real-time reactive systems and hence is appropriate for describing the safe and autonomous operations of robotic systems in an uncertain and possibly adversarial environment. We provide constructive means for computing finite-state abstractions that preserve MTL properties for nonlinear systems, under a weak assumption that these nonlinear systems evolve continuously with respect to their initial conditions. We then provide conditions to ensure that the existence of a discrete strategy (obtained by solving a discrete synthesis problem) guarantees the existence of a switching strategy for controlling the continuous-time dynamical systems to satisfy a given MTL specification. We illustrate the results on a motion planning problem.}
+}
+
+@inproceedings{malerMonitoringTemporalProperties2004,
+  title = {Monitoring {{Temporal Properties}} of {{Continuous Signals}}},
+  booktitle = {Formal {{Techniques}}, {{Modelling}} and {{Analysis}} of {{Timed}} and {{Fault-Tolerant Systems}}},
+  author = {Maler, Oded and Nickovic, Dejan},
+  editor = {Lakhnech, Yassine and Yovine, Sergio},
+  year = {2004},
+  pages = {152--166},
+  publisher = {Springer},
+  address = {Berlin, Heidelberg},
+  doi = {10.1007/978-3-540-30206-3_12},
+  abstract = {In this paper we introduce a variant of temporal logic tailored for specifying desired properties of continuous signals. The logic is based on a bounded subset of the real-time logic mitl, augmented with a static mapping from continuous domains into propositions. From formulae in this logic we create automatically property monitors that can check whether a given signal of bounded length and finite variability satisfies the property. A prototype implementation of this procedure was used to check properties of simulation traces generated by Matlab/Simulink.},
+  isbn = {978-3-540-30206-3},
+  langid = {english}
 }
 
 @book{mannaTemporalLogicReactive2012,
@@ -243,6 +415,41 @@
   pages = {656--657},
   doi = {10.1109/CDC.1985.268574},
   abstract = {Discrete event systems in such areas as process control, flexible manufacturing systems and computer networks require real time distributed computer control to ensure an orderly flow of events. A temporal logic framework for the specification, analysis and verification of such control systems is discussed. Controllers are implemented in the Pascal based distributed language CONIC.}
+}
+
+@inproceedings{ramanModelPredictiveControl2014,
+  title = {Model Predictive Control from Signal Temporal Logic Specifications: A Case Study},
+  shorttitle = {Model Predictive Control from Signal Temporal Logic Specifications},
+  booktitle = {Proceedings of the 4th {{ACM SIGBED International Workshop}} on {{Design}}, {{Modeling}}, and {{Evaluation}} of {{Cyber-Physical Systems}}},
+  author = {Raman, Vasumathi and Maasoumy, Mehdi and Donz{\'e}, Alexandre},
+  year = {2014},
+  month = apr,
+  series = {{{CyPhy}} '14},
+  pages = {52--55},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  doi = {10.1145/2593458.2593472},
+  url = {https://dl.acm.org/doi/10.1145/2593458.2593472},
+  urldate = {2024-10-18},
+  abstract = {This paper describes current work on framing the model predictive control (MPC) of cyber-physical systems as synthesis from signal temporal logic (STL) specifications. We provide a case study using a simplified power grid model with uncertain demand and generation; the model-predictive control problem here is that of the ancillary service power flow from the buildings. We show how various relevant constraints can be captured using STL formulas, and incorporated into an MPC framework. We also provide preliminary simulation results to illustrate the promise of the proposed approach.},
+  isbn = {978-1-4503-2871-5}
+}
+
+@inproceedings{ramanReactiveSynthesisSignal2015,
+  title = {Reactive Synthesis from Signal Temporal Logic Specifications},
+  booktitle = {Proceedings of the 18th {{International Conference}} on {{Hybrid Systems}}: {{Computation}} and {{Control}}},
+  author = {Raman, Vasumathi and Donz{\'e}, Alexandre and Sadigh, Dorsa and Murray, Richard M. and Seshia, Sanjit A.},
+  year = {2015},
+  month = apr,
+  series = {{{HSCC}} '15},
+  pages = {239--248},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  doi = {10.1145/2728606.2728628},
+  url = {https://dl.acm.org/doi/10.1145/2728606.2728628},
+  urldate = {2024-12-17},
+  abstract = {We present a counterexample-guided inductive synthesis approach to controller synthesis for cyber-physical systems subject to signal temporal logic (STL) specifications, operating in potentially adversarial nondeterministic environments. We encode STL specifications as mixed integer-linear constraints on the variables of a discrete-time model of the system and environment dynamics, and solve a series of optimization problems to yield a satisfying control sequence. We demonstrate how the scheme can be used in a receding horizon fashion to fulfill properties over unbounded horizons, and present experimental results for reactive controller synthesis for case studies in building climate control and autonomous driving.},
+  isbn = {978-1-4503-3433-4}
 }
 
 @inproceedings{renZonotopebasedControllerSynthesis2021,
@@ -365,6 +572,22 @@
   isbn = {978-1-4503-0629-4}
 }
 
+@article{yangSignalTemporalLogic2024,
+  title = {Signal Temporal Logic Synthesis under {{Model Predictive Control}}: {{A}} Low Complexity Approach},
+  shorttitle = {Signal Temporal Logic Synthesis under {{Model Predictive Control}}},
+  author = {Yang, Tiange and Zou, Yuanyuan and Li, Shaoyuan and Yin, Xiang and Jia, Tianyu},
+  year = {2024},
+  month = feb,
+  journal = {Control Engineering Practice},
+  volume = {143},
+  pages = {105782},
+  issn = {0967-0661},
+  doi = {10.1016/j.conengprac.2023.105782},
+  url = {https://www.sciencedirect.com/science/article/pii/S0967066123003519},
+  urldate = {2025-01-02},
+  abstract = {In this paper, we focus on the challenging problem of model predictive control (MPC) for dynamics systems with high-level tasks formulated as signal temporal logic (STL). The state-of-art for STL synthesis mainly suffers from limited scalability with respect to the complexity of the task and the planning horizon, hindering the real-time implementation of MPC. This work tackles this issue by STL formula reformulation and input blocking. Specifically, simplifications are applied on disjunctive STL (sub)formulae recursively in the framework of MPC to limit formula size. We show that the simplified STL can be reformulated into mixed integer linear programming (MILP) constraints with a modifiable number of binary variables being required. The move blocking scheme is then employed to further reduce problem complexity by fixing input variables to be constant over several time intervals. In order to trade off the control performance and computational load, a blocking structure design with on-line correction is proposed. The extension of the proposed STL-MPC algorithm to uncertain systems is achieved through STL constraint tightening. Simulations and experiments show the effectiveness of the proposed algorithm.}
+}
+
 @article{yordanovTemporalLogicControl2012,
   title = {Temporal {{Logic Control}} of {{Discrete-Time Piecewise Affine Systems}}},
   author = {Yordanov, Boyan and Tumova, Jana and Cerna, Ivana and Barnat, Ji{\v r}{\'i} and Belta, Calin},
@@ -377,4 +600,36 @@
   issn = {1558-2523},
   doi = {10.1109/TAC.2011.2178328},
   abstract = {We present a computational framework for automatic synthesis of a feedback control strategy for a discrete-time piecewise affine (PWA) system from a specification given as a linear temporal logic (LTL) formula over an arbitrary set of linear predicates in the system's state variables. Our approach consists of two main steps. First, by defining appropriate partitions for its state and input spaces, we construct a finite abstraction of the PWA system in the form of a control transition system. Second, by leveraging ideas and techniques from LTL model checking and Rabin games, we develop an algorithm to generate a control strategy for the finite abstraction. While provably correct and robust to state measurements and small perturbations in the applied inputs, the overall procedure is conservative and expensive. The proposed algorithms have been implemented as a software package and made available for download. Illustrative examples are included.}
+}
+
+@article{yuContinuousTimeControlSynthesis2024,
+  title = {Continuous-{{Time Control Synthesis Under Nested Signal Temporal Logic Specifications}}},
+  author = {Yu, Pian and Tan, Xiao and Dimarogonas, Dimos V.},
+  year = {2024},
+  journal = {IEEE Transactions on Robotics},
+  volume = {40},
+  pages = {2272--2286},
+  issn = {1941-0468},
+  doi = {10.1109/TRO.2024.3353081},
+  url = {https://ieeexplore.ieee.org/document/10388467},
+  urldate = {2025-01-03},
+  abstract = {In this work, we propose a novel approach for the continuous-time control synthesis of nonlinear systems under nested signal temporal logic (STL) specifications. While the majority of existing literature focuses on control synthesis for STL specifications without nested temporal operators, addressing nested temporal operators poses a notably more challenging scenario and requires new theoretical advancements. Our approach hinges on the concepts of STL tree (sTLT) and control barrier function (CBF). Specifically, we detail the construction of an sTLT from a given STL formula and a continuous-time dynamical system, the sTLT semantics (i.e., satisfaction condition), and the equivalence or underapproximation relation between sTLT and STL. Leveraging the fact that the satisfaction condition of an sTLT is essentially keeping the state within certain sets during certain time intervals, it provides explicit guidelines for the CBF design. The resulting controller is obtained through the utilization of an online CBF-based program coupled with an event-triggered scheme for online updating the activation time interval of each CBF, with which the correctness of the system behavior can be established by construction. We demonstrate the efficacy of the proposed method for single-integrator and unicycle models under nested STL formulas.}
+}
+
+@article{yuOnlineControlSynthesis2024,
+  title = {Online Control Synthesis for Uncertain Systems under Signal Temporal Logic Specifications},
+  author = {Yu, Pian and Gao, Yulong and Jiang, Frank J. and Johansson, Karl H. and Dimarogonas, Dimos V.},
+  year = {2024},
+  month = may,
+  journal = {The International Journal of Robotics Research},
+  volume = {43},
+  number = {6},
+  pages = {765--790},
+  publisher = {SAGE Publications Ltd STM},
+  issn = {0278-3649},
+  doi = {10.1177/02783649231212572},
+  url = {https://doi.org/10.1177/02783649231212572},
+  urldate = {2024-12-18},
+  abstract = {Signal temporal logic (STL) formulas have been widely used as a formal language to express complex robotic specifications, thanks to their rich expressiveness and explicit time semantics. Existing approaches for STL control synthesis suffer from limited scalability with respect to the task complexity and lack of robustness against the uncertainty, for example, external disturbances. In this paper, we study the online control synthesis problem for uncertain discrete-time systems subject to STL specifications. Different from existing techniques, we propose an approach based on STL, reachability analysis, and temporal logic trees. First, based on a real-time version of STL semantics, we develop the notion of tube-based temporal logic tree (tTLT) and its recursive (offline) construction algorithm. We show that the tTLT is an under-approximation of the STL formula, in the sense that a trajectory satisfying a tTLT also satisfies the corresponding STL formula. Then, an online control synthesis algorithm is designed using the constructed tTLT. It is shown that when the STL formula is robustly satisfiable and the initial state of the system belongs to the initial root node of the tTLT, it is guaranteed that the trajectory generated by the control synthesis algorithm satisfies the STL formula. We validate the effectiveness of the proposed approach by several simulation examples and further demonstrate its practical usability on a hardware experiment. These results show that our approach is able to handle complex STL formulas with long horizons and ensure the robustness against the disturbances, which is beyond the scope of the state-of-the-art STL control synthesis approaches.},
+  langid = {english}
 }

@@ -10,8 +10,8 @@ format:
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
-#jupyter: julia-1.11
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 engine: julia        
 ---
 
@@ -25,7 +25,7 @@ We consider a continuous-time dynamical system modelled by
 $$
 \dot{\bm x}(t) = \mathbf f(\bm x, \bm d), 
 $$
-where $\bm d$ represents an uncertainy in the system description – it can be an uncertain parameter or an external disturbance acting on the system.
+where $\bm d$ represents an uncertainty in the system description – it can be an uncertain parameter or an external disturbance acting on the system.
 
 We now define two regions of the state space: 
 
@@ -83,11 +83,14 @@ $$
 The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
 
 ```{julia}
+#| fig-cap: The vector field, the initial and unsafe sets, and the boundary function level set for the barrier certificate example. Simulated are also a few trajectories. From [Tutorials for SumOfSquares.jl](https://jump.dev/SumOfSquares.jl/stable/generated/Systems%20and%20Control/barrier_certificate/).
+#| label: fig-barrier
 using SumOfSquares
 using DynamicPolynomials
-using MosekTools    
+# using MosekTools     
+using CSDP
 
-optimizer = optimizer_with_attributes(Mosek.Optimizer, MOI.Silent() => true)
+optimizer = optimizer_with_attributes(CSDP.Optimizer, MOI.Silent() => true)
 model = SOSModel(optimizer)
 @polyvar x[1:2] 
 
@@ -135,9 +138,9 @@ function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = Differen
     Y = X'
     Plots.quiver!(X, Y, quiver = (x, y) -> ∇(x, y) / quiver_scaling, linewidth=0.5)
     for x0 in X0
-        Plots.plot!(traj(x0), vars=(1, 2), label = nothing)
+        Plots.plot!(traj(x0), idxs=(1, 2), label = nothing)
     end
-    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5))
+    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5), xlabel = "x₁", ylabel = "x₂")
 end
 
 phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])

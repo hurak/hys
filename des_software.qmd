@@ -4,8 +4,10 @@ bibliography:
     - ref_modelica.bib
     - ref_des.bib
 csl: ieee-control-systems.csl
+format: html
 crossref:
-  fig-prefix: Fig
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 ---
 
 The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)

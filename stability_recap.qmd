@@ -3,7 +3,7 @@ title: "Recap of stability analysis for continuous dynamical systems"
 bibliography: 
     - ref_hybrid.bib
     - ref_stability.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
@@ -21,13 +21,15 @@ $$\dot{\bm{x}} = \mathbf f(\bm x).$$
 
 ## Equilibrium 
 
-Although every now and then we may hear the term *stability* attributed to a *system*, strictly speaking it is an *equilibrium* that is stable or unstable. 
+Loosely speaking, equilibrium is a state at which the system can rest indefinitely when undisturbed by external disturbances. More technically speaking, equilibrium is a point in the state space, that is, a vector $\bm x_\mathrm{eq}\in \mathbb R^n$, at which the vector field $\mathbf f$ vanishes, that is,  
+$$\mathbf f(\bm x_\mathrm{eq}) = \mathbf 0.$$
 
-Equilibrium is a point in the state space, that is, a vector $x_\mathrm{eq}\in \mathbb R^n$, such that 
+Without loss of generality we often assume that $\bm x_\mathrm{eq} = \mathbf 0$, because if the equilibrium is considered anywhere else than at the origin, we can alway introduce a new *shifted* state vector $\bm x_\mathrm{new}(t) = \bm x(t) - \bm x_\mathrm{eq}$.
 
-$$\dot{\bm x} = \mathbf f(\bm x_\mathrm{eq}) = \mathbf 0.$$
-
-Without loss of generality $\bm x_\mathrm{eq} = \mathbf 0$. If it is nonzero, we can introduce a new *shifted* state vector.
+:::{.callout-caution}
+## An equilibrium and not a system is what we analyze for stability
+Although every now and then we may hear the term *stability* attributed to a *system*, strictly speaking it is an *equilibrium* that is stable or unstable. For linear systems, there is not need to distinguish between the two, for nonlinear systems it can easily happen that some equilibrium is stable while some other is unstable.
+:::
 
 
 ## Lyapunov stability 
@@ -40,6 +42,8 @@ This is another property of an equilibrium. If it is (locally) attractive, it me
 
 Perhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.
 
+::: {#exm-attractive-unstable}
+## Example of an attractive but unstable equilibrium
 ``` {julia}
 f(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); 
         (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]
@@ -50,6 +54,7 @@ ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
 streamplot!(ax,x->Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)
 fig
 ```
+:::
 
 ## Asymptotic stability
 
@@ -72,15 +77,15 @@ Now that we recapitulated the key stability concepts, it is time to recapitulate
 *Lyapunov function* is a scalar function $V(\cdot)\in\mathcal{C}_1$ defined on open $\mathcal{D}\subset \mathbb{R}^n$ containing the origin (the equilibrium) that satisfies the following conditions
 $$V(0) = 0, \; V(x) > 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}, $$
 
-$$ \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x)} \leq 0.$$
+$$ \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x(t))} \leq 0.$$
 
-In words, Lyapunov function for a given system and the equilibrium is a function that is positive everywhere except at the origin, where it is zero, we call such function *positive definite*, and its derivative along the trajectories of the system is nonpositive (aka positive semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.
+In words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function *positive definite*), and its derivative along the trajectories of the system is nonpositive (aka positive semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.
 
 If the latter condition is made strict, that is, if 
 $$\left(\nabla V(x)\right)^\top f(x) < 0,$$
 which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.
 
-The interpretation is quite intuitive: 
+The interpretation is quite intuitive: ...
 
 ## LaSalle's invariance principle
 

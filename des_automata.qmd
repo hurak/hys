@@ -8,7 +8,8 @@ format:
         code-fold: show
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 execute:
     enabled: true
 #jupyter: julia-1.11

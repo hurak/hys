@@ -1,19 +1,19 @@
 ---
 title: "Reset systems"
 bibliography: ref_hybrid.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
-#jupyter: julia-1.11
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 engine: julia
 ---
 
-We have introduced two major modeling frameworks for hybrid systems – hybrid automata and hybrid (state) equations. Now we are ready to model any hybrid system. It turns out useful, however, to pick a few special classes of hybrid systems. Their special features are reflected in a special structure of their models (automata or equations). The special classes of hybrid systems that we are going to discuss are
+We have introduced two major modeling frameworks for hybrid systems – [hybrid automata](hybrid_automata.qmd) and [hybrid equations](hybrid_equations.qmd). Now we are ready to model any hybrid system. It turns out useful, however, to define a few special classes of hybrid systems. Their special features are reflected in the structure of their models (hybrid automata or hybrid equations). The special classes of hybrid systems that we are going to discuss are
 
 - reset systems, 
 - switched systems, 
@@ -21,16 +21,13 @@ We have introduced two major modeling frameworks for hybrid systems – hybrid a
 
 ## Reset systems
 
-They are also called *impulsive systems* (the reason is going to be clear soon). In a hybrid system, some variables reset (jump) and flow, others only flow, 
-but there are no variables that only reset. In other words, in reset systems we can identify no discrete states. In the digraph representation of the reset system, we can only observe a single node.
+They are also called *impulsive systems* (the reason is going to be clear soon). They are conveniently defined within the hybrid automata framework. In a hybrid automaton modelling a reset system we can only identify a single discrete state (mode), not more. In the digraph representation, we can only observe a single node.
 
 ![Reset system](classes_figures/reset_system.png){width=40% #fig-reset-system}
 
-We can recognize the bouncing ball as a prominent example of a reset system. Another example follows.
+Within the hybrid equations framework, in a reset system some variables reset (jump) and flow, others only flow, but there are no variables that only reset... Well, this definition is not perfect, because as we have discussed earlier, even when staying constant between two jumps, the state variable is, technically speaking, also flowing. What we want to express is that there are not discrete variables in such model, but the hybrid equations framework intentionally does not distinguish between continuous and discrete variables.
 
-::: {.callout-warning}
-Our wording of the definition of a reset system is not perfect, because as we have discussed earlier, even when staying constant between two jumps, the state variable is, technically speaking, also flowing – it is just a special type of flow. 
-:::
+We can recognize the bouncing ball as a prominent example of a reset system. Another example follows.
 
 ::: {#exm-reset-oscillator}
 ## Reset oscillator

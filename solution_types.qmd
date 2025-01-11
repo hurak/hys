@@ -1,7 +1,7 @@
 ---
 title: "Types of solutions"
 bibliography: ref_hybrid.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
@@ -134,12 +134,12 @@ $$
 ![Hybrid automaton for switching between two water tanks](solution_figures/water_tank_automaton.png){width=60%}
 :::
 
-## (Non)blocking and (non)determinism
-
-
+::: {#exm-nonblocking-nondeterministic}
+## (Non)blocking and (non)determinism in hybrid systemtems
 ![Example of an automaton exhibitting (non)blocking and (non)determinism](solution_figures/blocking_and_nondeterminism.png){width=60%}
 
 - $x(0) = -3$
 - $x(0) = -2$
 - $x(0) = -1$
 - $x(0) = 0$
+:::

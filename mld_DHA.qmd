@@ -1,9 +1,46 @@
 ---
 title: "Discrete hybrid automata"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_mpc.bib
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia  
 ---
+
+## Why yet another framework for hybrid systems?
+
+We are going to introduce yet another framework for modeling hybrid systems – *mixed logical dynamical (MLD)* description. A question must inevitably pop up: "why yet another framework?"
+
+The answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it. 
+
+In particular, with the state variable and control input vectors composed of continuous and discrete variables
+$$
+\bm x = \begin{bmatrix}\bm x_c\\\bm x_d\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_c\\\bm u_d\end{bmatrix},
+$$
+where $\bm x_c\in\mathbb R^{n_c},\;\bm x_d\in\mathbb N^{n_d},\; \bm u_c\in\mathbb R^{m_c}$ and $\bm u_d\in\mathbb N^{m_d}$, we would like to formulate the model in the form of state equations, say
+$$
+\begin{aligned}
+\begin{bmatrix}\bm x_c(k+1) \\ \bm x_d(k+1)\end{bmatrix}
+ &= 
+\begin{bmatrix} \mathbf f_c(\bm x(k), \bm u(k)) \\ \mathbf f_d(\bm x(k), \bm u(k)) \end{bmatrix}.
+\end{aligned}
+$$
+
+Is it possible? 
+
+Unfortunately no. At least not exactly in this form. But something close to it is achievable instead. 
+
+But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.
+
+## Discrete hybrid automaton
 
 Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.
 
@@ -11,8 +48,6 @@ In particular, we are going to model a hybrid system as a discrete(-time) hybrid
 
 - the continuous-value dynamics (often corresponding to the physical part of the system) evolves in discrete time,
 - the events and their processing by the logical part of the system are synchronized to the same periodic clock. 
-
-## Four components of a discrete(-time) hybrid automaton
 
 We are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, ...). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:
 
@@ -23,9 +58,7 @@ We are already well familiar with the concept of a hybrid automaton, and the res
 
 Their interconnection is shown in the following figure.
 
-:::{.notes}
-Draw the block diagram from Bemporad's materials (book, toolbox documentation).
-:::
+[TBD] #TODO: Add a figure
 
 Let's discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, ...).
 
@@ -34,8 +67,8 @@ Let's discuss the individual components (and while doing that, you can think abo
 This is a model of the continuous-value dynamics parameterized by the index $i$ that evolves in (discrete) time 
 $$
 \begin{aligned}
-x_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\
-y_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}
+x_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)},\\
+y_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}.
 \end{aligned}
 $$
 
@@ -45,36 +78,36 @@ In principle there is no need to restrict the right hand sides to affine functio
 
 We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the $i$th region of the state-input space, if the continuous-value state $x_c(k)$ and the continuous-value control input $u_c$ satisfy
 $$
-H_i x_c(k) + J_i u_c(k) + K_i \leq 0
+H_i x_c(k) + J_i u_c(k) + K_i \leq 0.
 $$
 
 The event indicated by the (vector) binary variable
 $$
 \delta_e(k) = h(x_c(k), u_c(k)) \in \{0,1\}^m, 
 $$
-
 where
 $$
-h_i(x_c(k), u_c(k)) = \begin{cases}1 & H_i x_c(k) + J_i u_c(k) + K_i \leq 0\\ 0 & \text{otherwise}. \end{cases}
+h_i(x_c(k), u_c(k)) = \begin{cases}1 & H_i x_c(k) + J_i u_c(k) + K_i \leq 0,\\ 0 & \text{otherwise}. \end{cases}
 $$
 
 ### Finite state machine (FSM)
 
 $$
-x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k))
+x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k)).
 $$
 
 ### Mode selector (MS)
 
-$$i(k) \in \{1, 2, \ldots, s\}$$
+$$
+i(k) \in \{1, 2, \ldots, s\}
+$$
 
 $$
-i(k) = \mu(x_d(k), u_d(k), \delta_e(k))
+i(k) = \mu(x_d(k), u_d(k), \delta_e(k)).
 $$
 
 
 ## Trajectory of a DHA
-
 $$
 \begin{aligned}
 \delta_e(k) &= h(x_c(k), u_c(k))\\
@@ -86,4 +119,4 @@ x_d(k+1) &= f_d(x_d(k),u_d(k),\delta_e(k))
 \end{aligned}
 $$
 
-## How to get rid of the IF-THEN conditions in the model?
+Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?

@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="mindmap" class="markmap mindmap"><style>.markmap {
+  --markmap-max-width: 9999px;
+  --markmap-a-color: #0097e6;
+  --markmap-a-hover-color: #00a8ff;
+  --markmap-code-bg: #f0f0f0;
+  --markmap-code-color: #555;
+  --markmap-highlight-bg: #ffeaa7;
+  --markmap-table-border: 1px solid currentColor;
+  --markmap-font: 300 16px/20px sans-serif;
+  --markmap-circle-open-bg: #fff;
+  --markmap-text-color: #333;
+
+  font: var(--markmap-font);
+  color: var(--markmap-text-color);
+}
+
+  .markmap-link {
+    fill: none;
+  }
+
+  .markmap-node &gt; circle {
+      cursor: pointer;
+    }
+
+  .markmap-foreign {
+    display: inline-block;
+  }
+
+  .markmap-foreign p {
+      margin: 0;
+    }
+
+  .markmap-foreign a {
+      color: var(--markmap-a-color);
+    }
+
+  .markmap-foreign a:hover {
+        color: var(--markmap-a-hover-color);
+      }
+
+  .markmap-foreign code {
+      padding: 0.25em;
+      font-size: calc(1em - 2px);
+      color: var(--markmap-code-color);
+      background-color: var(--markmap-code-bg);
+      border-radius: 2px;
+    }
+
+  .markmap-foreign pre {
+      margin: 0;
+    }
+
+  .markmap-foreign pre &gt; code {
+        display: block;
+      }
+
+  .markmap-foreign del {
+      text-decoration: line-through;
+    }
+
+  .markmap-foreign em {
+      font-style: italic;
+    }
+
+  .markmap-foreign strong {
+      font-weight: bold;
+    }
+
+  .markmap-foreign mark {
+      background: var(--markmap-highlight-bg);
+    }
+
+  .markmap-foreign table,
+    .markmap-foreign th,
+    .markmap-foreign td {
+      border-collapse: collapse;
+      border: var(--markmap-table-border);
+    }
+
+  .markmap-foreign img {
+      display: inline-block;
+    }
+
+  .markmap-foreign svg {
+      fill: currentColor;
+    }
+
+  .markmap-foreign &gt; div {
+      width: var(--markmap-max-width);
+      text-align: left;
+    }
+
+  .markmap-foreign &gt; div &gt; div {
+        display: inline-block;
+      }
+
+.markmap-dark .markmap {
+  --markmap-code-bg: #1a1b26;
+  --markmap-code-color: #ddd;
+  --markmap-circle-open-bg: #444;
+  --markmap-text-color: #eee;
+}
+</style><g transform="translate(21.150000000000034,403.21705963938973) scale(0.47829403606102633)"><path class="markmap-link" data-depth="2" data-path="1.2" d="M116,10C156,10,156,-218.125,196,-218.125" stroke="rgb(255, 127, 14)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.2.4" d="M379,-218.125C419,-218.125,419,-218.125,459,-218.125" stroke="rgb(214, 39, 40)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.2.5" d="M379,-218.125C419,-218.125,419,-193.125,459,-193.125" stroke="rgb(23, 190, 207)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.6.7" d="M395,-150.625C435,-150.625,435,-163.125,475,-163.125" stroke="rgb(140, 86, 75)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.6.8" d="M395,-150.625C435,-150.625,435,-138.125,475,-138.125" stroke="rgb(227, 119, 194)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.6" d="M116,10C156,10,156,-150.625,196,-150.625" stroke="rgb(148, 103, 189)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.2.3" d="M379,-218.125C419,-218.125,419,-243.125,459,-243.125" stroke="rgb(44, 160, 44)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.9" d="M116,10C156,10,156,-83.125,196,-83.125" stroke="rgb(44, 160, 44)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.9.10" d="M472,-83.125C512,-83.125,512,-108.125,552,-108.125" stroke="rgb(214, 39, 40)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.9.11" d="M472,-83.125C512,-83.125,512,-83.125,552,-83.125" stroke="rgb(148, 103, 189)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.9.12" d="M472,-83.125C512,-83.125,512,-58.125,552,-58.125" stroke="rgb(140, 86, 75)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.13.14" d="M509,-28.125C549,-28.125,549,-28.125,589,-28.125" stroke="rgb(255, 127, 14)" stroke-width="1.5"/><path class="markmap-link" data-depth="5" data-path="1.15.17.18.19" d="M981,51.875C1021,51.875,1021,29.375,1061,29.375" stroke="rgb(140, 86, 75)" stroke-width="1.5"/><path class="markmap-link" data-depth="5" data-path="1.15.17.18.20" d="M981,51.875C1021,51.875,1021,54.375,1061,54.375" stroke="rgb(227, 119, 194)" stroke-width="1.5"/><path class="markmap-link" data-depth="4" data-path="1.15.17.18" d="M684,68.125C724,68.125,724,51.875,764,51.875" stroke="rgb(148, 103, 189)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.15.16" d="M402,35C442,35,442,1.875,482,1.875" stroke="rgb(188, 189, 34)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.15.17" d="M402,35C442,35,442,68.125,482,68.125" stroke="rgb(31, 119, 180)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.22.23" d="M316,146.875C356,146.875,356,134.375,396,134.375" stroke="rgb(255, 127, 14)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.22.24" d="M316,146.875C356,146.875,356,159.375,396,159.375" stroke="rgb(255, 127, 14)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.15" d="M116,10C156,10,156,35,196,35" stroke="rgb(127, 127, 127)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.22" d="M116,10C156,10,156,146.875,196,146.875" stroke="rgb(31, 119, 180)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.25" d="M116,10C156,10,156,238.125,196,238.125" stroke="rgb(188, 189, 34)" stroke-width="1.5"/><path class="markmap-link" data-depth="2" data-path="1.13" d="M116,10C156,10,156,-28.125,196,-28.125" stroke="rgb(31, 119, 180)" stroke-width="1.5"/><path class="markmap-link" data-depth="4" data-path="1.15.17.21" d="M684,68.125C724,68.125,724,104.375,764,104.375" stroke="rgb(127, 127, 127)" stroke-width="1.5"/><path class="markmap-link" data-depth="4" data-path="1.25.26.27" d="M692,201.875C732,201.875,732,189.375,772,189.375" stroke="rgb(44, 160, 44)" stroke-width="1.5"/><path class="markmap-link" data-depth="4" data-path="1.25.30.31" d="M656,274.375C696,274.375,696,274.375,736,274.375" stroke="rgb(140, 86, 75)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.25.26" d="M447,238.125C487,238.125,487,201.875,527,201.875" stroke="rgb(23, 190, 207)" stroke-width="1.5"/><path class="markmap-link" data-depth="4" data-path="1.25.26.28" d="M692,201.875C732,201.875,732,214.375,772,214.375" stroke="rgb(214, 39, 40)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.25.30" d="M447,238.125C487,238.125,487,274.375,527,274.375" stroke="rgb(148, 103, 189)" stroke-width="1.5"/><path class="markmap-link" data-depth="3" data-path="1.25.29" d="M447,238.125C487,238.125,487,244.375,527,244.375" stroke="rgb(31, 119, 180)" stroke-width="1.5"/><g data-depth="3" data-path="1.2.3" class="markmap-node" transform="translate(459, -263.125)"><line x1="-1" x2="435" y1="20" y2="20" stroke="#2ca02c" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="417" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">1. (State) automata (state machines) (and timed automata)</div></div></foreignObject></g><g data-depth="3" data-path="1.2.4" class="markmap-node" transform="translate(459, -238.125)"><line x1="-1" x2="264" y1="20" y2="20" stroke="#d62728" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="246" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">2. Petri nets (and timed Petri nets),</div></div></foreignObject></g><g data-depth="3" data-path="1.2.5" class="markmap-node" transform="translate(459, -213.125)"><line x1="-1" x2="423" y1="20" y2="20" stroke="#17becf" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="405" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">3. Max-Plus algebra and Max-Plus Linear (MPL) systems</div></div></foreignObject></g><g data-depth="2" data-path="1.2" class="markmap-node" transform="translate(196, -238.125)"><line x1="-1" x2="185" y1="20" y2="20" stroke="#ff7f0e" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="183" cy="20" stroke="#ff7f0e" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="167" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Discrete-event systems</div></div></foreignObject></g><g data-depth="3" data-path="1.6.7" class="markmap-node" transform="translate(475, -183.125)"><line x1="-1" x2="155" y1="20" y2="20" stroke="#8c564b" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="137" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">4. Hybrid automata</div></div></foreignObject></g><g data-depth="3" data-path="1.6.8" class="markmap-node" transform="translate(475, -158.125)"><line x1="-1" x2="158" y1="20" y2="20" stroke="#e377c2" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="140" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">5. Hybrid equations</div></div></foreignObject></g><g data-depth="2" data-path="1.6" class="markmap-node" transform="translate(196, -170.625)"><line x1="-1" x2="201" y1="20" y2="20" stroke="#9467bd" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="199" cy="20" stroke="#9467bd" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="183" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Modelling hybrid systems</div></div></foreignObject></g><g data-depth="3" data-path="1.9.10" class="markmap-node" transform="translate(552, -128.125)"><line x1="-1" x2="186" y1="20" y2="20" stroke="#d62728" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="168" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Reset (control) systems</div></div></foreignObject></g><g data-depth="3" data-path="1.9.11" class="markmap-node" transform="translate(552, -103.125)"><line x1="-1" x2="218" y1="20" y2="20" stroke="#9467bd" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="200" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Switched/switching systems</div></div></foreignObject></g><g data-depth="3" data-path="1.9.12" class="markmap-node" transform="translate(552, -78.125)"><line x1="-1" x2="245" y1="20" y2="20" stroke="#8c564b" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="227" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Piecewise affine systems (PWA)</div></div></foreignObject></g><g data-depth="2" data-path="1.9" class="markmap-node" transform="translate(196, -103.125)"><line x1="-1" x2="278" y1="20" y2="20" stroke="#2ca02c" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="260" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">6. Special classes of hybrid systems</div></div></foreignObject><circle stroke-width="1.5" r="6" cx="276" cy="20" stroke="#2ca02c" fill="var(--markmap-circle-open-bg)"/></g><g data-depth="3" data-path="1.13.14" class="markmap-node" transform="translate(589, -48.125)"><line x1="-1" x2="619" y1="20" y2="20" stroke="#ff7f0e" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="601" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Complementarity dynamical systems (and complementarity optimization constraints)</div></div></foreignObject></g><g data-depth="2" data-path="1.13" class="markmap-node" transform="translate(196, -48.125)"><line x1="-1" x2="315" y1="20" y2="20" stroke="#1f77b4" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="313" cy="20" stroke="#1f77b4" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="297" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">7. Numerical simulation of hybrid systems</div></div></foreignObject></g><g data-depth="3" data-path="1.15.16" class="markmap-node" transform="translate(482, -18.125)"><line x1="-1" x2="231" y1="20" y2="20" stroke="#bcbd22" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="213" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">8. Solutions of hybrid systems</div></div></foreignObject></g><g data-depth="5" data-path="1.15.17.18.19" class="markmap-node" transform="translate(1061, 9.375)"><line x1="-1" x2="723" y1="20" y2="20" stroke="#8c564b" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="705" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)</div></div></foreignObject></g><g data-depth="5" data-path="1.15.17.18.20" class="markmap-node" transform="translate(1061, 34.375)"><line x1="-1" x2="519" y1="20" y2="20" stroke="#e377c2" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="501" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Polynomial Lyapunov function via sum-of-squares (SOS) programming</div></div></foreignObject></g><g data-depth="4" data-path="1.15.17.18" class="markmap-node" transform="translate(764, 11.875)"><line x1="-1" x2="219" y1="40" y2="40" stroke="#9467bd" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="217" cy="40" stroke="#9467bd" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="201" height="40"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">9. 
+<p data-lines="29,30">Common Lyapunov function</p></div></div></foreignObject></g><g data-depth="4" data-path="1.15.17.21" class="markmap-node" transform="translate(764, 64.375)"><line x1="-1" x2="698" y1="40" y2="40" stroke="#7f7f7f" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="680" height="40"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">10. 
+<p data-lines="34,35">Piecewise quadratic/polynomial Lyapunov function via S-procedure / Putinar's Positivstellensatz</p></div></div></foreignObject></g><g data-depth="3" data-path="1.15.17" class="markmap-node" transform="translate(482, 48.125)"><line x1="-1" x2="204" y1="20" y2="20" stroke="#1f77b4" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="202" cy="20" stroke="#1f77b4" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="186" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">
+<p data-lines="27,28">Stability of hybrid systems</p></div></div></foreignObject></g><g data-depth="2" data-path="1.15" class="markmap-node" transform="translate(196, 15)"><line x1="-1" x2="208" y1="20" y2="20" stroke="#7f7f7f" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="206" cy="20" stroke="#7f7f7f" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="190" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Analysis of hybrid systems</div></div></foreignObject></g><g data-depth="3" data-path="1.22.23" class="markmap-node" transform="translate(396, 114.375)"><line x1="-1" x2="481" y1="20" y2="20" stroke="#ff7f0e" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="463" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">11. Mixed-logical dynamical (MLD) description of hybrid systems</div></div></foreignObject></g><g data-depth="3" data-path="1.22.24" class="markmap-node" transform="translate(396, 139.375)"><line x1="-1" x2="391" y1="20" y2="20" stroke="#ff7f0e" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="373" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">12. Model predictive control (MPC) for MLD systems</div></div></foreignObject></g><g data-depth="2" data-path="1.22" class="markmap-node" transform="translate(196, 126.875)"><line x1="-1" x2="122" y1="20" y2="20" stroke="#1f77b4" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="120" cy="20" stroke="#1f77b4" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="104" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Control design</div></div></foreignObject></g><g data-depth="4" data-path="1.25.26.27" class="markmap-node" transform="translate(772, 169.375)"><line x1="-1" x2="321" y1="20" y2="20" stroke="#2ca02c" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="303" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">(In)feasibility of an optimal control problem</div></div></foreignObject></g><g data-depth="4" data-path="1.25.26.28" class="markmap-node" transform="translate(772, 194.375)"><line x1="-1" x2="215" y1="20" y2="20" stroke="#d62728" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="197" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Set propagation techniques</div></div></foreignObject></g><g data-depth="3" data-path="1.25.26" class="markmap-node" transform="translate(527, 181.875)"><line x1="-1" x2="167" y1="20" y2="20" stroke="#17becf" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="165" cy="20" stroke="#17becf" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="149" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Reachability analysis</div></div></foreignObject></g><g data-depth="3" data-path="1.25.29" class="markmap-node" transform="translate(527, 224.375)"><line x1="-1" x2="200" y1="20" y2="20" stroke="#1f77b4" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="182" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">(Control) barrier functions</div></div></foreignObject></g><g data-depth="4" data-path="1.25.30.31" class="markmap-node" transform="translate(736, 254.375)"><line x1="-1" x2="322" y1="20" y2="20" stroke="#8c564b" stroke-width="1.5"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="304" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">LTL, CTL, CTL*, MTL, MITL, TCTL*, STL, ...</div></div></foreignObject></g><g data-depth="3" data-path="1.25.30" class="markmap-node" transform="translate(527, 254.375)"><line x1="-1" x2="131" y1="20" y2="20" stroke="#9467bd" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="129" cy="20" stroke="#9467bd" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="113" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">Temporal logics</div></div></foreignObject></g><g data-depth="2" data-path="1.25" class="markmap-node" transform="translate(196, 218.125)"><line x1="-1" x2="253" y1="20" y2="20" stroke="#bcbd22" stroke-width="1.5"/><circle stroke-width="1.5" r="6" cx="251" cy="20" stroke="#bcbd22" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="235" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">13. Verification of hybrid systems</div></div></foreignObject></g><g data-depth="1" data-path="1" class="markmap-node" transform="translate(0, -10)"><line x1="-1" x2="118" y1="20" y2="20" stroke="#1f77b4" stroke-width="2"/><circle stroke-width="1.5" r="6" cx="116" cy="20" stroke="#1f77b4" fill="var(--markmap-circle-open-bg)"/><foreignObject class="markmap-foreign" x="8" y="0" style="opacity: 1;" width="100" height="20"><div xmlns="http://www.w3.org/1999/xhtml"><div xmlns="http://www.w3.org/1999/xhtml">B(E)3M35HyS</div></div></foreignObject></g></g></svg>

@@ -1,7 +1,7 @@
 ---
 title: "Complementarity systems"
 bibliography: ref_hybrid.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
@@ -20,9 +20,9 @@ Having introduced the *complementarity constraints* and optimization problems wi
 Linear complementarity system is modelled by 
 $$\boxed{
 \begin{aligned}
-\dot x(t) &= A x(t) + Bu(t)\\
-y(t) &= C x(t) + Du(t)\\
-0&\leq u(t) \perp y(t) \geq 0.
+\dot{\bm x}(t) &= \mathbf A \bm x(t) + \mathbf B\bm u(t)\\
+\bm y(t) &= \mathbf C \bm x(t) + \mathbf D\bm u(t)\\
+\mathbf 0&\leq \bm u(t) \perp \bm y(t) \geq \mathbf 0.
 \end{aligned}}
 $${#eq-linear-complementarity-system}
 
@@ -35,14 +35,14 @@ Note the upside-down orientation of the voltage and the current for the capacito
 
 Following the charge formalism within Lagrangian modelling, we can choose the generalized coordinates as
 $$
-	  q = \begin{bmatrix}
+	  \bm q = \begin{bmatrix}
 	  q_L \\ q_C
 	  \end{bmatrix}.
 $$	
 
 That this is indeed a sufficient number is obvious, but we can also check the classical formula $B-N+1 = 4-3+1 = 2$. But we can also choose the state variables as
 $$
-	  x = \begin{bmatrix}
+	  \bm x = \begin{bmatrix}
 	  i_L\\ q_c
 	  \end{bmatrix}.
 $$	
@@ -89,7 +89,7 @@ q_C' &= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
 0&\leq i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D \perp \bar u_D \geq 0,
 \end{aligned}
 $$ 	  
-and voila, we finally got the LCS description. We can also reformat it into the vector format
+and voila, we finally got the LCS description. We can also reformat it into the matrix-vector form
 $$
 \begin{aligned}
 \begin{bmatrix}
@@ -125,48 +125,80 @@ $$
 ::: {#exm-mass-spring-damper-as-LCS}
 ## Mass-spring system with a hard stop as a linear complementarity system
 
-Two carts moving horitontally (left or right) are interconnected through a spring. The left cart is also interconnected with the wall through a another spring. Furthemore, the motion of the left cart is constrained in that there is a *hard stop* that prevents the cart from moving further to the left. The setup is shown in @fig-mass-spring-hard-stop. 
+Two carts moving horitontally (left or right) are interconnected through a spring. The left cart is also interconnected with the wall through a another spring. Furthemore, the motion of the left cart is constrained in that there is a *hard stop* that prevents the cart from moving further to the left. Another natural constraint is that the right cart cannot get to the left of the other vehicle. The setup is shown in @fig-mass-spring-hard-stop. 
 
 ![Mass-spring system with a hard stop to be modelled as a LCS](complementarity_figures/mass_spring-hard_stop.png){width=70% #fig-mass-spring-hard-stop}
 
-The variables $x_1$ and $x_2$ give deviations of the two carts from their equilibrium positions. 
+The variables $x_1$ and $x_2$ give deviations of the two carts from their equilibrium positions. As we are considering negligible sizes of the two carts, the equilibrium position for both is 0. The derivatives of the two positions are also introduced as state variables $x_3$ and $x_4$, respectively.
 
 The hard stop is located at the equilibrium position of the left cart. 
 
-Besides the two positions, their derivatives are also introduced as state vectors. The input $u$ corresponds to the reaction force of the hard stop. 
+The input $u_1$ corresponds to the reaction force of the hard stop applied to the left cart. Another input is $u_2$ that corresponds to the force exerted by the left cart onto the right cart. 
 
-As the output, only the position of the left cart is (arbitrarily) chosen.
-
-The state equations and the output equation are
+The state equations are
 $$
-	  \begin{aligned}
-	  \dot x_1(t) &= x_3\\
-	  \dot x_2(t) &= x_4\\
-	  \dot x_3(t) &= -\frac{k_1+k_2}{m_1}x_1(t) + \frac{k_2}{m_1}x_2(t) + \frac{1}{m_1}u(t)\\
-	  \dot x_4(t) &= \frac{k_2}{m_2}x_1(t) - \frac{k_2}{m_2} x_2(t)\\
-	  y(t) &= x_1(t).
-	  \end{aligned}
+\begin{aligned}
+\dot x_1(t) &= x_3,\\
+\dot x_2(t) &= x_4,\\
+\dot x_3(t) &= -\frac{k_1+k_2}{m_1}x_1(t) + \frac{k_2}{m_1}x_2(t) + \frac{1}{m_1}u_1(t) - \frac{1}{m_1}u_2(t),\\
+\dot x_4(t) &= \frac{k_2}{m_2}x_1(t) - \frac{k_2}{m_2} x_2(t) + \frac{1}{m_2}u_2(t).
+\end{aligned}
 $$	
 
-The presence of the hard stop can be modelled as an inequality constraint on the state (or the output in this case)
-$$x_1(t) = y(t) \geq  0.$$		
+The presence of the hard stop can be modelled as an inequality constraint on the state
+$$x_1(t) \geq  0.$$		
 
-Strictly speaking, similar constraint should also be imposed on the right cart. That one can not overcome the hard stop either. Furthermore, the left cart would stand in the way too. But we ignore it here for the sake of simplicity of our explanation.
-
-The reaction force $u$ can only be nonnegative
+Similarly, the fact that the right cart cannot get to the left of the left cart can be expressed as
 $$
-	u(t) \geq 0.
+x_2(t) - x_1(t) \geq 0.
+$$
+
+This motivates us to define two output variables as 
+$$
+\begin{aligned}
+y_1(t) &= x_1(t),\\
+y_2(t) &= x_2(t)-x_1(t).
+\end{aligned}
 $$	
 
-Furthermore, the reaction force is acting if and only if the left cart hits the hard stop, that is,  
+Now, the reaction force $u_1$ exerted by the hard stop onto the left cart can only be nonnegative
+$$
+u_1(t) \geq 0,
+$$	
+and it is positive if and only if the left cart hits the hard stop  
 $$
 	  y(t) u(t) = 0.
 $$	
 
-All the above three constraints can be written compactly as a complementarity constraing
+The condition can be written compactly as
 $$
-	0\leq y(t) \perp u(t) \geq 0.
+0\leq y_1(t) \perp u_1(t) \geq 0.
 $$ 
+
+Similarly for the force $u_2$ exerted by the left cart onto the right cart
+$$
+0\leq y_2(t) \perp u_2(t) \geq 0.
+$$ 
+
+For convenience, we now give a full model in the matrix-vector form.
+$$
+\begin{aligned}
+\begin{bmatrix} \dot x_1\\ \dot x_2\\ \dot x_3\\ \dot x_4 \end{bmatrix} 
+&=
+\begin{bmatrix}
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+{\color{blue}-\frac{k_1+k_2}{m_1}} & {\color{blue}\frac{k_2}{m_1}} & 0 & 0\\
+{\color{blue}\frac{k_2}{m_2}} & {\color{blue}-\frac{k_2}{m_2}} & 0 & 0
+\end{bmatrix}
+\begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix} +
+\begin{bmatrix} 0 & 0\\ 0 & 0\\ {\color{blue}\frac{1}{m_1}} & {\color{blue}-\frac{1}{m_1}}\\ {\color{blue}0} & {\color{blue}\frac{1}{m_2}}\end{bmatrix} \begin{bmatrix} u_1\\u_2\end{bmatrix},\\
+\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} &= \begin{bmatrix} {\color{blue}1} & {\color{blue}0} & 0 & 0\\ {\color{blue}-1} & {\color{blue}1} & 0 & 0\end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
+\mathbf 0 &\leq \bm y \perp \bm u \geq \mathbf 0.
+\end{aligned}
+$${#eq-mass-spring-hard-stop}
+
+Note that we highlighted in blue three submatrices that will come in handy in the next section.
 :::
 
 ## Complementarity system as a feedback interconnection

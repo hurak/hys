@@ -1,5 +1,18 @@
 ---
 title: "Online MPC for hybrid systems"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_mpc.bib
+csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia  
 ---
 
 ## Optimal control on a finite horizon

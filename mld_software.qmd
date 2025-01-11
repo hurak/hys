@@ -6,14 +6,42 @@ bibliography:
     - ref_integer_and_mixed_integer.bib
 csl: ieee-control-systems.csl
 format:
-    html     
+    html:
+        html-math-method: katex
+engine: julia
 ---
 
-The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language for encoding a discrete hybrid automaton and subsequently generating the MLD description:
+## HYSDEL
 
-- [HYSDEL](http://people.ee.ethz.ch/~cohysys/hysdel/). It is essentially both a modelling language and its compiler (or parser). It can be used on its own or it can be used from within some other toolboxes. In particular, developed by the same authors is
-- [Hybrid Toolbox](http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/). While installing the toolbox, HYSDEL is also installed automatically. 
+The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page [https://control.ee.ethz.ch/~hybrid/hysdel](https://control.ee.ethz.ch/~hybrid/hysdel), which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with [Hybrid Toolbox](https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/) created by the Alberto Bemporad, one of original HYSDEL authors. 
 
-Alternatively, there is a more general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies
+Alternatively, [Multiparametric Toolbox 3](https://www.mpt3.org/) is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.
 
-- [Multiparametric Toolbox 3](https://www.mpt3.org/). 
+A [new(er) version 3 of HYSDEL](https://www.uiam.sk/~kvasnica/hysdel3/) has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.
+
+## Support for indicator constraints in optimization modelling languages and optimization solvers
+
+The key component for modelling hybrid systems is that of the *indicator constraint*. We recap here: there is an binary (integer) variable $\delta\in\{0,1\}$ and a linear (or, in principle, also nonlinear) function $f()$ of a real (possibly vector) variable $\bm x\in\mathbb R^n$ defining an inequality $f(\bm x) \leq 0$ that are related as
+$$
+[\delta = 1] \iff [f(\bm x) \leq 0].
+$$ 
+
+We have learnt how to reformulate this logical constraint as two inequalities using a sufficiently large constant $M$ and a sufficiently small constant $m$. But some solvers for mixed integer programming/optimization support the indicator constraints directly. At least one of the two implications, namely
+
+$$
+[\delta = 1] \implies [f(\bm x) \leq 0].
+$$ 
+
+For example, [in Julia' JuMP package, indicators constraint](https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints) can be written as follows
+
+``` {julia}
+#| code-fold: show
+using JuMP
+model = Model();
+@variable(model, x)
+@variable(model, y)
+@variable(model, a, Bin)
+@constraint(model, a --> {x + y <= 1})
+```
+
+Among the optimization solvers that we commonly use, [Gurobi has a support for indicator constraints](https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints) for the single implication.

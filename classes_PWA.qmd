@@ -3,20 +3,21 @@ title: "Piecewise affine (PWA) systems"
 bibliography: 
     - ref_PWA.bib
     - ref_PWA_approx.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 #engine: julia
 ---
 
 This is a subclass of switched systems where the functions on the right-hand side of the differential equations are affine functions of the state. For some (historical) reason these systems are also called *piecewise linear* (PWL).
 
-We are going to restrict ourselves to state-driven switching.
+We are going to reformulate such systems as switched systems with state-driven switching.
 
 First, we consider the autonomous case, that is, systems without inputs: 
 $$
@@ -81,12 +82,12 @@ $$
 $$
 :::
 
-## Approximation of smooth systems
+## Approximation of nonlinear systems
 
 While the example with the saturated linear state feedback can be modelled as a PWA system exactly, there are many practical cases, in which the system is not exactly PWA affine but we want to approximate it as such.
 
-::: {#exm-smooth-approximation}
-## Smooth system approximated by a PWA system
+::: {#exm-nonlinear-approximation}
+## Nonlinear system approximated by a PWA system
 Consider the following nonlinear system
 $$
 \begin{bmatrix}

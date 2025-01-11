@@ -1,0 +1,428 @@
+---
+title: "Mixed logical dynamical (MLD) systems"
+bibliography: 
+    - ref_hybrid.bib
+    - ref_mpc.bib
+csl: ieee-control-systems.csl
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia  
+---
+
+We have just learnt how the logical conditions that encode the individual components of discrete hybrid automata can be turned into linear inequalities. Here we summarize them all into a single mathematical model called *mixed logical dynamical (MLD)*.
+
+$$\boxed{
+\begin{aligned}
+\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta \bm \delta(k) + \mathbf B_z\bm z(k) + \mathbf B_0,\\
+\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta \bm \delta(k) + \mathbf D_z(k) \bm z + \mathbf D_0,\\
+\mathbf E_\delta \bm \delta &+ \mathbf E_z \bm z(k) \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+\end{aligned}}
+$${#eq-mld}
+where
+$$
+\bm x(k) = \begin{bmatrix}\bm x_c(k) \\ \bm x_b(k) \end{bmatrix},\qquad \bm u(k) = \begin{bmatrix}\bm u_c(k) \\ \bm u_b(k) \end{bmatrix},\qquad \bm y(k) = \begin{bmatrix}\bm y_c(k) \\ \bm y_b(k) \end{bmatrix},
+$$
+which reads that the state and control input vectors are composed of the continuous (real) and binary variables.
+
+The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxilliary variebles (plus an offset). The auxilliary variables are not completely arbitrary – they must comply with the third (set of) equation(s).
+
+## Uniqueness of the state and output responses predicted by MLD models
+
+An immediate question that must pop up in our minds is that of the uniqueness of the state and output responses predicted by the MLD model. For given $\bm x(k)$ and $\bm u(k)$, uniqueness of the values of the auxuliary variables $\bm \lambda(k)$ and $\bm z(k)$ compliant with the inequalities, hence the next state $\bm x(k+1)$ and the output $\bm y(k)$, is not immediately obvious. As claimed in the seminal paper @bemporadControlSystemsIntegrating1999, MLD models corresponding to real systems do have unique solutions.
+
+## Examples
+
+::: {#exm-mld-switched}
+## Switched linear system
+We consider a discrete-time switched system that switches between two linear systems 
+$$
+x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{0,1\}, 
+$$
+where $i=0$ if $x(k)< 0$ and $i=1$ otherwise. 
+
+The auxilliary binary variable $\delta$ (actually $\delta(k)$, one for each discrete time $k$) is introduced to encode the switching condition:
+$$
+[\delta(k) = 1] \iff [-x(k)\leq 0].
+$$
+
+This equivalence can be rewritten as
+$$
+\begin{aligned}
+-x(k) &\leq (1-\delta(k))M,\\
+-x(k) &\geq \epsilon + (m-\epsilon)\delta(k),
+\end{aligned}
+$$
+where $m$ and $M$ are lower and upper bounds on $x(k)$, respectively, and $\epsilon$ is a small positive number. Say, if it is known that $x\in [-10,10]$, then $m=-10$, $M=10$. We can set $\epsilon = 10^{-8}$.
+
+Furthermore, just a single continuous (real) variable $z$ is introduced to encode one of two modes of the system:
+$$
+\begin{aligned}\\
+[\delta(k) = 1] \iff z(k) &= a_2 x(k) + b_2 u(k),\\
+[\delta(k) = 0] \iff z(k) &= a_1 x(k) + b_1 u(k). 
+\end{aligned}
+$$
+
+This can be rewritten as
+$$
+\begin{aligned}
+(m_1-M_2)\delta(k) + z(k) &\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &\leq -a_1 x(k) - b_1 u(k),\\
+(m_2-M_1)(1-\delta(k)) + z(k) &\leq a_2 x(k) + b_2 u(k),\\
+(m_1-M_2)(1-\delta(k)) - z(k) &\leq -a_2 x(k) - b_2 u(k),
+\end{aligned}
+$$
+where $m_1$ and $M_1$ are lower and upper bounds on $a_1 x(k) + b_1 u(k)$, and $m_2$ and $M_2$ are lower and upper bounds on $a_2 x(k) + b_2 u(k)$.
+
+Collecting all the six inequalities (and reformatting them) we get
+$$
+\begin{aligned}
+M\delta(k) &\leq x(k) + M,\\
+(m-\epsilon)\delta(k) &\leq -x(k) - \epsilon,\\
+(m_1-M_2)\delta(k) + z(k) &\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &\leq -a_1 x(k) - b_1 u(k),\\
+(M_1-m_2)\delta(k) + z(k) &\leq a_2 x(k) + b_2 u(k) + (M_1-m_2),\\
+(M_2-m_1)\delta(k) - z(k) &\leq - a_2 x(k) - b_2 u(k) + (M_2-m_1).
+\end{aligned}
+$$
+
+We can rewrite these in a compact way as
+$$
+\mathbf E_\delta \delta(k) + \mathbf E_z z(k) \leq \mathbf E_x x(k) + \mathbf E_u u(k) + \mathbf E_0,
+$$
+where
+$$
+\begin{aligned}
+\mathbf E_\delta &= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad \mathbf E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
+\mathbf E_x &= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad \mathbf E_u = \begin{bmatrix} 0\\ 0\\ b_1\\ -b_1\\ b_2\\ -b_2\end{bmatrix},\qquad \mathbf E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
+\end{aligned}
+$$
+
+On top of these inequalities, we need to add the state update equation. It is, however, particularly simple in this case:
+$$
+x(k+1) = z(k),
+$$
+from which we can extract the remaining matrices parameterizing the MLD model in @eq-mld: 
+$$
+\begin{aligned}
+A &= 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0,\\
+C &= 1, \quad D_u = 0, \quad D_\delta = 0, \quad D_z = 0, \quad D_0 = 0.
+\end{aligned}
+$$
+
+Note, in particular, that $A=0$, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation, it is a different type of a model.
+
+The inequality paramaterized by $\mathbf E_{\lambda}, \mathbf E_z, \mathbf E_x, \mathbf E_x$ and $\mathbf E_o$, for given $\bm x(k)$ and $\bm u(k)$, defines a set in the $\delta-z$ plane. When the integrality of $\delta$ is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see @fig-mld-switched. 
+```{julia}
+#| fig-cap: The set of feasible values of the auxilliary variables $\delta$ and $z$. The blue polyhedron relaxes the integrality condition on $\delta$, but if the condition is taken into consideration, the set is a single (orange) point.
+#| label: fig-mld-switched
+a1 = -3/4
+a2 = 1/5
+b1 = 1.0
+b2 = 1.0
+
+m = -10.0
+M = 10.0
+m1 = m2 = m
+M1 = M2 = M
+
+ϵ = 0.001
+
+A  = [0.0;;]
+Bu = [0.0]
+Bδ = [0.0]
+Bz = [1.0]
+Bo = [0.0]
+
+C  = [0.0;;]
+Du = [0.0]
+Dδ = [0.0]
+Dz = [0.0]
+Do = [0.0]
+
+Eδ = [M, m-ϵ, m1-M2, m2-M1, M1-m2, M2-m1]
+Ez = [0.0, 0.0, 1.0, -1.0, 1.0, -1.0]
+Ex = [1.0, -1.0, a1, -a1, a2, -a2]
+Eu = [0.0, 0.0, b1, -b1, b2, -b2]
+Eo = [M, -ϵ, 0.0, 0.0, M1-m2, M2-m1]
+
+using JuMP
+using HiGHS
+
+opt_problem = Model(HiGHS.Optimizer) 
+set_silent(opt_problem)
+
+@variable(opt_problem, m <= x⁺ <= M)
+@variable(opt_problem, δ, Bin)
+@variable(opt_problem, z)
+
+x = 2.0
+u = 1.0
+
+@constraint(opt_problem, x⁺ .== A*x + Bu*u + Bδ*δ + Bz*z + Bo)
+@constraint(opt_problem, Eδ*δ + Ez*z .<= Ex*x + Eu*u + Eo)
+@objective(opt_problem, Min, 0.0)
+optimize!(opt_problem)
+
+b = Ex*x + Eu*u + Eo
+
+using LazySets
+
+H1 = HalfSpace([Eδ[1], Ez[1]], b[1])
+H2 = HalfSpace([Eδ[2], Ez[2]], b[2])
+H3 = HalfSpace([Eδ[3], Ez[3]], b[3])
+H4 = HalfSpace([Eδ[4], Ez[4]], b[4])
+H5 = HalfSpace([Eδ[5], Ez[5]], b[5])
+H6 = HalfSpace([Eδ[6], Ez[6]], b[6])
+
+H = H1 ∩ H2 ∩ H3 ∩ H4 ∩ H5 ∩ H6
+
+using Plots
+
+plot(H, aspect_ratio=:auto,xlabel="δ",ylabel="z",label=false)
+
+S1 = Singleton([value(δ), value(z)])
+plot!(S1)
+```
+:::
+
+::: {#exm-mld-switched-with-memory}
+## Switched linear system with memory
+Consider the first-order linear system 
+$$
+x(k+1) = a x(k) + b_{q(k)} u(k), \quad q(k)\in\{0,1\},
+$$
+where the variable $q(k)$ is a discrete state variable that that evolves – with some (perhaps transparent) abuse of notation – according to
+$$
+q(k+1) = q(k) \lor [x(k) \leq x_{\text{lb}}],
+$$
+and $x_\text{lb}=-1, \; a=0.5, \; b_1=0.1, \; b_2=0.3$. The initial continuous state is $x(0) = 1$, consequently the initial discrete state is $q(k)=1$. The control input $u(k)$ is constrained to the interval $[-10,10]$.
+
+Obviously, once the real state $x(k)$ falls below $x_{\text{lb}}$, the system switches to the other mode and stays there forever.
+
+::: {.callout-note}
+## Note on the common abuse of notation
+If we wanted to avoid the aformentioned abuse of notation, we could introduce a Boolean variable $Q(k)$ and write
+$$
+Q(k+1) \iff Q(k) \lor [x(k) \leq x_{\text{lb}}],
+$$
+where $Q(k) \iff [q(k)=1]$. Or we could write even without explicitly introducing the variable $Q(k)$:
+$$
+[q(k+1)=1] \iff [q(k)=1] \lor [x(k) \leq x_{\text{lb}}], 
+$$
+but this makes the model somewhat clumsy and heavy. The somewhat abusive view of $q$ as both a logical (Boolean) and binary (integer) variable is a common practice.
+:::
+
+To comply with the notation of this framework, we composed the state vector of the the real and binary components as
+$$
+\bm x(k) = \begin{bmatrix} x(k)\\ q(k)\end{bmatrix}, 
+$$
+and in what follows we are going to refer to the real and binary state vaiables as $x_\mathrm{c}(k)$ and $x_\mathrm{b}(k)$, respectively.
+
+The auxilliary binary variable (actually variables, one for each time) $\delta_1(k)$, is introduced to encode the switching condition (the EG component of the discrete hybrid automaton):
+$$
+[\delta_1(k) = 1] \iff [x_\mathrm{c}(k) - x_\text{lb} \leq 0].
+$$
+
+We can rewrite this as 
+$$
+\begin{aligned}
+x_\mathrm{c}(k) - x_\text{lb} &\leq (1-\delta_1(k))M,\\
+x_\mathrm{c}(k) - x_\text{lb} &\geq \epsilon + (m-\epsilon)\delta_1(k),
+\end{aligned}
+$$
+where $m$ and $M$ are lower and upper bounds on $x_\mathrm{c}(k)$, respectively, and $\epsilon$ is a small positive number. Say, it is assumed that $x_\mathrm{c}\in [-10,10]$, then $m=-10$, and $M=10$. We can set $\epsilon$ to something like $\epsilon = 10^{-8}$.
+
+We can also write the mode selection (MS) component of the discrete hybrid automaton as
+$$
+\text{if}\; [\delta_1(k) = 1],\; \text{then}\; z(k) = a x_\mathrm{c}(k) + b_1 u(k), \; \text{else} \; z(k) = a x_\mathrm{c}(k) + b_2 u(k).
+$$ 
+
+This we can rewrite as a set of linear inequalities
+$$
+\begin{aligned}
+(m_2-M_1)\delta_1(k) + z(k) &\leq a x_\mathrm{c}(k) + b_2 u(k),\\
+(m_1-M_2)\delta_1(k) - z(k) &\leq -a x_\mathrm{c}(k) - b_2 u(k),\\
+(m_1-M_2)(1-\delta_1(k)) + z(k) &\leq a x_\mathrm{c}(k) + b_1 u(k),\\
+(m_2-M_1)(1-\delta_1(k)) - z(k) &\leq -a x_\mathrm{c}(k) - b_1 u(k),
+\end{aligned}
+$$
+where $m_1$ and $M_1$ are lower and upper bounds on $a x_\mathrm{c}(k) + b_1 u(k)$, and $m_2$ and $M_2$ are lower and upper bounds on $a x_\mathrm{c}(k) + b_2 u(k)$. 
+
+We also need to encode the finite state automaton/machine (FSM) component of the discrete hybrid automaton. We write down the state update equation once again here:
+$$
+[x_\mathrm{b}(k+1)=1] \iff [x_\mathrm{b}(k)=1] \lor [\delta_1(k) = 1]
+$$
+and for convenience, we rewrite it using (temporarily introduced) Boolean variables:
+$$
+C \iff A \lor B.
+$$
+The equivalence can be rewritten as 
+$$
+C \implies (A \lor B), \qquad  (A\lor B) \implies C.
+$$
+
+The former can be rewritten as
+$$
+\neg C \lor (A \lor B),
+$$
+which (when mapping to the original binary variables) is equivalent to
+$$
+(1-x_\mathrm{b}(k+1)) + x_\mathrm{b}(k) + \delta_1(k) \geq 1,
+$$
+which can be finally writen as
+$$
+x_\mathrm{b}(k+1) \leq x_\mathrm{b}(k) + \delta_1(k).
+$$
+
+Note that this inequality contains the state at the next time, which is not supported by the MLD formalism. But the fix is easy. We introduce another auxilliary binary variable $\delta_2(k) \coloneqq x_\mathrm{b}(k+1)$ and rewrite the inequality as
+
+$$
+\delta_2(k) \leq x_\mathrm{b}(k) + \delta_1(k).
+$$
+
+The latter implication can be rewritten as
+$$
+\neg (A\lor B) \lor C,
+$$
+which can be rewritten as
+$$
+(\neg A\land \neg B) \lor C,
+$$
+in which the distributive law gives
+$$
+(\neg A \lor C) \land (\neg B \lor C),
+$$
+which can finally be rewritten using the original binary variables as two inequalities
+$$
+\begin{aligned}
+(1-x_\mathrm{b}(k)) + x_\mathrm{b}(k+1) &\geq 1,\\
+(1-\delta_1(k)) + x_\mathrm{b}(k+1) &\geq 1.
+\end{aligned}
+$$
+
+Once again, replacing the state at the next time by the auxilliary binary variable $\delta_2(k) \coloneqq x_\mathrm{b}(k+1)$ (and subtracting the 1 from both sides), we get
+$$
+\begin{aligned}
+-x_\mathrm{b}(k) + \delta_2(k) &\geq 0,\\
+-\delta_1(k) + \delta_2(k) &\geq 0.
+\end{aligned}
+$$
+
+We are now ready to start collecting the equations and inequalities into the MLD model. The state update equation is
+$$
+\begin{bmatrix}
+x_\mathrm{c}(k+1)\\
+x_\mathrm{b}(k+1)
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+0 & 0\\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+\delta_1(k)\\
+\delta_2(k)
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix}
+z(k).
+$$
+
+The inequalities are
+$$
+\begin{aligned}
+M\delta_1(k) &\leq -x_\mathrm{c}(k) + M + x_\text{lb},\\
+(m-\epsilon)\delta_1(k) &\leq -x_\mathrm{c}(k) - \epsilon - x_\text{lb},\\
+(m_2-M_1)\delta_1(k) + z(k) &\leq a x_\mathrm{c}(k) + b_2 u(k),\\
+(m_1-M_2)\delta_1(k) - z(k) &\leq -a x_\mathrm{c}(k) - b_2 u(k),\\
+(m_1-M_2)(1-\delta_1(k)) + z(k) &\leq a x_\mathrm{c}(k) + b_1 u(k),\\
+(m_2-M_1)(1-\delta_1(k)) - z(k) &\leq -a x_\mathrm{c}(k) - b_1 u(k),\\
+-\delta_1(k) + \delta_2(k) &\leq x_\mathrm{b}(k),\\
+-\delta_2(k) &\leq -x_\mathrm{b}(k),\\
+\delta_1(k) - \delta_2(k) &\leq 0.
+\end{aligned}
+$$
+
+Writing down the matrices is straightforward:
+
+$$
+\mathbf A = \begin{bmatrix}0 & 0\\0 & 0\end{bmatrix}, \quad \mathbf B_u = \begin{bmatrix}0\\0\end{bmatrix}, \quad \mathbf B_\delta = \begin{bmatrix}0 & 0\\0 & 1\end{bmatrix}, \quad \mathbf B_z = \begin{bmatrix}1\\0\end{bmatrix}, \quad \mathbf B_0 = \begin{bmatrix}0\\0\end{bmatrix},
+$$
+and
+$$
+\begin{aligned}
+\mathbf E_\delta &= \begin{bmatrix} M & 0\\ m-\epsilon & 0\\ m_2-M_1 & 0\\ m_1-M_2 & 0\\M_2-m_1 & 0\\M_1-m_2 & 0\\ -1 & 1\\0 & -1\\ 1 & -1\end{bmatrix}, \qquad \mathbf E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\\ 0 \\ 0 \\ 0\end{bmatrix},\\
+\mathbf E_x &= \begin{bmatrix} -1 & 0\\ -1 & 0\\ a & 0\\ -a_1 & 0\\ a_2 & 0\\ -a_2 & 0 \\ 0 & 1\\ 0 & -1 \\ 0 & 0\end{bmatrix},\qquad \mathbf E_u = \begin{bmatrix} 0\\ 0\\ b_2\\ -b_2\\ b_1\\ -b_1\\ 0 \\ 0 \\ 0\end{bmatrix},\qquad \mathbf E_0 = \begin{bmatrix} M+x_\text{lb}\\ -\epsilon-x_\text{lb}\\ 0\\ 0\\ M_2-m_1\\ M_1-m_2\\ 0 \\ 0 \\ 0\end{bmatrix}.
+\end{aligned}
+$$
+:::
+
+Two general lessons can be learnt from the previous example. First, the procedure of finding the matrices defining the MLD model is rather tedious and error-prone. Second, the MLD model is, indeed, not a state-space model, but a different kind of a model. In particular, in the latter example we can see that the control input $u$ does not affect the next state through the state update equation, it only appears in the inequalities.
+
+## HYSDEL language
+
+To address the first lesson learnt from the examples – that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone –, some automation of the procedure is desirable. The only tool for this that we are aware of is the HYSDEL language and parser (see the [section on software for details on availability](mld_software.qmd)). Here we do not explain it – we refer the student to the section 16.7 in @borrelliPredictiveControlLinear2017, which is freely downloadable –, but we show the code for @exm-mld-switched, which is perhaps self-explaining.
+
+```
+SYSTEM switched_LTI_1 {
+    INTERFACE {
+        INPUT {
+            REAL u [-1.0,1.0];
+        }
+        STATE {
+            REAL x [-10, 10];
+        }
+        OUTPUT {
+            REAL y;
+        }
+        PARAMETER {
+            REAL A1 = -3/4;
+            REAL A2 = 1/5;
+            REAL B1 = 1;
+            REAL B2 = 1;
+        }
+    }
+    IMPLEMENTATION {
+        AUX {
+            REAL z;
+            BOOL delta;
+        }
+        AD {
+            delta = x >= 0;
+        }
+        DA {
+            z = {IF delta THEN A2*x + B2*u ELSE A1*x + B1*u};
+        }
+        CONTINUOUS {
+            x = z;
+        }
+        OUTPUT {
+            y = x;
+        }
+    }
+}
+```
+
+## Piecewise affine systems
+
+Tightly related to the MLD model is another representation of a hybrid system – a PWA (piecewise affine) system (actually a model)
+$$
+\begin{aligned}
+\bm x(k+1) &= \mathbf A_{i(k)}\bm x(k) + \mathbf B_{i(k)} \bm u(k) + \mathbf f_{i(k)},\\
+\bm y(k) &= \mathbf C_{i(k)}\bm x(k) + \mathbf D_{i(k)} \bm u(k) + \mathbf g_{i(k)},\\
+& \; \mathbf H_{i(k)} \bm x(k) + \mathbf J_{i(k)} \bm u(k) \leq \mathbf K_{i(k)}.
+\end{aligned}
+$$
+
+## Equivalence of MLD, DHA, and PWA (and some more)
+
+As stated in the section 16.8 in the freely downloadable @borrelliPredictiveControlLinear2017, the three models – MLD, DHA, and PWA – are equivalent. In fact two more kinds of models that we also covered in the course – linear complementarity systems and max-(min-)plus(-scaling) systems are also included in this equivalence statement, the key reference is @heemelsEquivalenceHybridDynamical2001.

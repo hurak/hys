@@ -1,30 +1,48 @@
 ---
 title: "Switched systems"
 bibliography: ref_hybrid.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 engine: julia
 ---
 
-In *switched systems*, some variables reset (jump) and stay constant between resets (they model discrete states), and some variables only flow and do not reset (jump).
+Switched systems are modelled by first-order differential (state) equations with multiple right-hand sides, that is, 
 
-![An automaton for a switched system](classes_figures/switched_system.png){width=50% #fig-switched-system}
-
-It is a common notational convention to type the discrete state as a lower index as in
 $$
-\dot{\bm x} = \bm f_q(\bm x), \qquad q \in \{1,2, \ldots, m\}.
-$$
+\dot{\bm x} = \bm f_q(\bm x), \qquad q \in \{1,2, \ldots, m\},
+$${#eq-switched-system}
+where $m$ right-hand sides are possible and the lower index $q$ determines which right-hand side function is "active" at a given moment. 
 
-The variable $q$ determines, which right-hand side function is "active" at a given moment. The question now is, what dictates the evolution of the variable $q$? In other words, drives the switching, the transition between the modes? It turns out that the switching can be time-driven or state-driven:
+The question is, what dictates the evolution of the integer variable $q$? In other words, what drives the switching? It turns out that the switching can be *time-driven* or *state-driven*.
 
-- Time-driven: $\dot{\bm x} = \bm f_{q(t)}(\bm x)$, where $q(t)$ is some function of time.
-- State-driven: 
+In both cases, the right-hand sides can also depend the control input $\bm u$.
+
+Major results for switched systems have been achieved without the need to refer to the framework of hybrid systems. But now that we have built such general framework, it turns out useful to view switched systems as a special class of hybrid systems. The aspects in which they are special will be discussed in the following, but here let us state that in contrast to full hybrid systems, switched systems are a bit less rich on the discrete side.
+
+## Time-driven 
+
+The evolution of the state variable complies with the following model
+$$\dot{\bm x} = \bm f_{q(t)}(\bm x),$$
+where $q(t)$ is some function of time. The values of $q(t)$ can be under our control or beyond our control, deterministic or stochastic.
+
+A hybrid automaton for a time-driven switched system is shown in @fig-switched-system-time-driven.
+
+![An automaton for a switched system with time-driven switching](classes_figures/switched_system_time_driven.png){width=50% #fig-switched-system-time-driven}
+
+The transition from one mode to another is triggered by the integer variable $q(t)$ attaining the appropriate value.
+
+Since the switching signal is unrelated to the (continuous) state of the system, the invariant of the two modes are usually covering the whole state space $\mathcal X$.
+
+## State-dependent switching
+
+The model is
 $$
 \dot{\bm x} 
 = 
@@ -35,11 +53,11 @@ $$
 \end{cases}
 $$
 
-While there is not much to add to the former case, the latter might need some more explanation.
+Let's consider just two domains $\mathcal X_1$ and $\mathcal X_2$. A hybrid automaton for a state-driven switched system is shown in @fig-switched-system-state-driven.
 
-## State-dependent switching
+![An automaton for a switched system with state-driven switching](classes_figures/switched_system_state_driven.png){width=50% #fig-switched-system-state-driven}
 
-Let's consider just two domains $\mathcal X_1$ and $\mathcal X_2$. The transition to the other mode is triggered by the continuous state of the system crossing the boundary between the two domains. The boundary is defined by the function $s(\bm x)$ (called *switching function*), which is zero on the boundary, see the @fig-switching-function. 
+The transition to the other mode is triggered by the continuous state of the system crossing the boundary between the two domains. The boundary is defined by the function $s(\bm x)$ (called *switching function*), which is zero on the boundary, see the @fig-switching-function. 
 
 ![State-dependent switching](classes_figures/switched_portrait.png){width=50% #fig-switching-function}
 
@@ -174,9 +192,9 @@ $$
 \left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \geq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \leq 0. 
 $$
 
-But this is interesting! Once the trajectory hits the switching curve and tries to penetrate it futher, it is pushed back to the switching curve. It it tries to penetrate it further, it is pushed back to the switching curve again. And so on. But then, how does the state evolve from $\bm x_0$? 
+But this is interesting! Once the trajectory hits the switching curve and tries to penetrate it futher, it is pushed back to the switching curve. As it tries to penetrate it further, it is pushed back to the switching curve again. And so on. But then, how does the state evolve from $\bm x_0$? 
 
-Hint: solve the ODE numerically with some finite step size. The solution will exhibit zig-zagging or chattering along the switching curve, away from the blue point. Now, keep shrinking the step size. The solution will ultimately "slide" smoothly along the switching curve. Perhaps this was your guess. One thing should worry you, hoever: such "sliding" solution satisfies neither of the two state equations!
+Hint: solve the ODE numerically with some finite step size. The solution will exhibit zig-zagging or chattering along the switching curve, away from the blue point. Now, keep shrinking the step size. The solution will ultimately "slide" smoothly along the switching curve. Perhaps this was your guess. One thing should worry you, however: such "sliding" solution satisfies neither of the two state equations!
 
 We will make this more rigorous in a moment, but right now we just wanted to tease the intuition.
 :::
@@ -192,72 +210,89 @@ $$\dot x(t) = f(x(t),t).$$
 We ask the following two questions: 
 
 - Under which conditions does a solution exists?
-- Under which conditions the solution is unique?
+- Under which conditions is the solution unique?
 
 To answer both, the function $f()$ must be analyzed.
 
-But before we answer the two questions, we must ask even more fundamental question: 
+But before we answer the two questions, we must ask another one that is even more fundamental: 
 
 - What does it mean that a function $x(t)$ is a solution of the the ODE? 
 
-However trivial this question may seem, it is not. There are actually several concepts of a solution of an orrdinary differential equation.
+However trivial this question may seem, an answer can escalate rather quickly – there are actually several concepts of a solution of an ordinary differential equation.
 
 ### Classical solution (Peano, also Cauchy-Peano)
 
-- $f(x(t),t)$ is continuous with respect to both $x$ and $t$ .
-- Existence of a solution is guaranteed locally (on some finite interval), but uniqueness is not.
-	- But it does not exclude uniqueness in all cases, it is just that it is not guaranteed.
-- A solution is guaranteed to be continuously differentiable ( $x\in\mathrm C^1$ ). Such function $x(t)$ satisfies the ODE $\dot x(t) = f(x(t),t) \; \forall t$ , that is why such solution is called classical.
-- Example of a solution that exists only on a finite interval is 
+We assume that  $f(x(t),t)$ is continuous with respect to both $x$ and $t$. Then existence of a solution is guaranteed locally (on some finite interval), but uniqueness is not.
+
+:::{.callout-important}
+## Not guaranteed does not mean impossible
+Uniqueness is not not excluded in all cases, it is just that it is not guaranteed.
+:::
+
+A solution is guaranteed to be continuously differentiable ( $x\in\mathrm C^1$ ). Such function $x(t)$ satisfies the ODE $\dot x(t) = f(x(t),t) \; \forall t$, that is why such solution is called *classical*.
+
+:::{#exm-localness-of-solution}
+An example of a solution that exists only on a finite interval is 
 $$
   \dot x(t) = x^2(t),\; x(0) = 1,
 $$  
 for which the solution is $x(t) = \frac{1}{1-t}$ . The solution blows up at $t=1$ .  
-- Example of nonuniqueness is provided by
+:::
+
+:::{#exm-nonuniqueness-of-solution}
+An example of nonuniqueness is provided by
 $$\dot x(t) = \sqrt{x(t)}, \; x(0) = 0.$$	
-- One possible solution is $x(t) = \frac{1}{4}t^2$ . Another is $x(t) = 0$ . Yet another example is $x(t) = \frac{1}{4}(t-t_0)^2$ . It is related to the *Leaky bucket* example.
+
+One possible solution is $x(t) = \frac{1}{4}t^2$. Another is $x(t) = 0$. Yet another example is $x(t) = \frac{1}{4}(t-t_0)^2$. It is related to the *Leaky bucket* example.
+:::
 
 ### Strenghtening the requirement of continuity (Pickard-Lindelöf)
-- $f(x(t),t)$ is continuous with respect to $t$ but a stricter condition is imposed with respect to $x$ – Lipschitz continuity.
-- Not only existence but also uniqueness of a solution is guaranteed.
-	- But similarly as with Peano conditions, here too the condition is not necessary, it is just sufficient – even if the function $f$ is not Lipschitz continuous, there may exist a unique solution.
-	- Since the condition is stricter than mere continuity, whatever goodies hold here too. In particular, the solution is guaranteed to be continuously differentiable.
-	- If the function is only *locally Lipschitz*, the solution is guaranteed on some finite interval. If the function is (globally) Lipschitz, the solution is guaranteed on an unbounded interval.
+
+Since continuity of $f(x(t),t)$ was not enough to guarantee uniqueness, we need to impose a stricter condition on $f()$. Namely, we impose a stricter condition on $f()$ with respect to $x$ – Lipschitz continuity, while we still require that the function be continuous with respect to $t$.
+
+Now it is not only existence but also uniqueness of a solution that is guaranteed.
+
+:::{.callout-important}
+## Uniqueness not guaranteed does not mean it is impossible
+Similarly as with Peano conditions, here too the condition is not necessary, it is just sufficient – even if the function $f$ is not Lipschitz continuous, there may exist a unique solution.
+:::
+
+Since the condition is stricter than mere continuity, whatever goodies hold here too. In particular, the solution is guaranteed to be continuously differentiable.
+
+If the function is only *locally Lipschitz*, the solution is guaranteed on some finite interval. If the function is (globally) Lipschitz, the solution is guaranteed on an unbounded interval.
 
 ### Extending the set of solutions (Carathéodory)
 
-- In contrast with the classical solution, here the $x(t)$ can fail to satisfy the ODE at some isolated points in time.
+In contrast with the classical solution, we can allow the solution $x(t)$ to fail to satisfy the ODE at some isolated points in time. This is called Carathéodory (or extended) solution.
 
-- This Carathéodory (or extended) solution $x(t)$ is more than just *continuous* (even more than *uniformly continuos*) but less than *contiuously differentiable* (aka $\mathcal C^1$) – it is *absolutely continuous*.
-
-- It is a solution of the integral equation (indeed, an equation)
+Carathéodory solution $x(t)$ is more than just *continuous* (even more than *uniformly continuous*) but less than *contiuously differentiable* (aka $\mathcal C^1$) – it is *absolutely continuous*. Absolutely continuous function is a solution of the integral equation (indeed, an equation)
 $$x(t) = x(t_0) + \int_{t_0}^t f(x(\tau),\tau)\mathrm{d}\tau,$$   
-where we use Lebesque integral (instead of Riemann).
+where we use Lebesgue integral (instead of Riemann).
 
-- For a continuous $f$, solutions $x$ are just classical (smooth). 
+Having referred to absolute continuity and Lebesgue integral, the discussion could quickly become rather technical. But all we want to say is that $f$ can be "some kind of discontinuous" with respect to $t$. In particular, it must be *measurable* wrt $t$, which again seems to start escalating... But it suffices to say that it includes the case when $f(x,t)$ is piecewise continuous with respect to $t$ (sampled data control with ZOH).
 
-- $f$ can be, however, "some kind of discontinuous" with respect to $t$. In particular, it must be *measurable* wrt $t$. It includes the case when $f(x,t)$ is piecewise continuous with respect to $t$ (sampled data control with ZOH).
+Needles to say that for a continuous $f$, solutions $x$ are just classical (smooth). 
 
-- If the function $f$ is discontinuous with respect to $x$, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.
+If the function $f$ is discontinuous with respect to $x$, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.
 
 ::: {#exm-caratheodory}
-### Nonexistence and nonuniqueness of solutions
+## Some more examples of nonexistence and nonuniqueness of solutions
 
-The system with discontinuous RHS
+The system with a discontinuous RHS
 $$
 \begin{aligned}
 \dot x_1 &= -2x_1 - 2x_2\operatorname*{sgn(x_1)},\\
 \dot x_2 &= x_2 + 4x_1\operatorname*{sgn(x_1)}
 \end{aligned}
 $$
-
 can be reformulated as a switched system
 $$
 \begin{aligned}
-\dot{\bm x} &= \begin{bmatrix}-2 & 2\\-4 & 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \; \bm x\leq 0\\
-\dot{\bm x} &= \begin{bmatrix}-2 & -2\\4 & 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \; \bm x> 0
+\dot{\bm x} &= \begin{bmatrix}-2 & 2\\-4 & 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \quad  s(\bm x)\leq 0\\
+\dot{\bm x} &= \begin{bmatrix}-2 & -2\\4 & 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \quad s(\bm x)> 0,
 \end{aligned}
 $$
+where the switching function is $s(\bm x) = x_1$.
 ```{julia}
 s(x) = x[1]
 
@@ -277,38 +312,49 @@ fig
 
 ### Sliding mode dynamics (on simple boundaries)
 
-- Attractive sliding mode at $\bm x_\mathrm{s}$, if there is a trajectory that ends at $\bm x_\mathrm{s}$, but no trajectory that starts at $\bm x_\mathrm{s}$.
+The previous example provided yet another illustration of a phenomenon of sliding, or a sliding mode. We say that there is an attractive sliding mode at $\bm x_\mathrm{s}$, if there is a trajectory that ends at $\bm x_\mathrm{s}$, but no trajectory that starts at $\bm x_\mathrm{s}$.
 
 ### Generalized solutions (Filippov)
 
-- $x()$ is a Filippov solution on $[t_0,t_1]$ if for almost all $t$
-$$
-\dot x(t) \in \overline{\operatorname*{co}}\{f(x(t),t)\},
-$$
+It is now high time to introduce yet another concept of a solution. A concept that will make it possible to model the sliding mode dynamics in a more rigorous way. Remember that when the state $\bm x(t)$ slides along the boundary, it qualifies as a solution to neither of the two state equations in any sense we have discussed so far. But now comes the concept of *Fillipov solution*.
 
-- (Previous) example:
-$\mathcal{S}^+ = \{\bm x \mid x_1=0 \land x_2\geq 0\}$
+$\bm x()$ is a Filippov solution on $[t_0,t_1]$ if for almost all $t$
+$$
+\dot{\bm{x}}(t) \in \overline{\operatorname*{co}}\{\mathbf f(\bm x(t),t)\},
+$$
+where $\overline{\operatorname*{co}}$ denotes the (closed) convex hull.
+
+:::{#exm-filippov}
+Consider the model in the previous example. The switching surface, along which the solution slides, is given by
+$\mathcal{S}^+ = \{\bm x \mid x_1=0 \land x_2\geq 0\}$.
+
+Now, Filippov solution must satisfy the following differential inclusion
 $$
 \begin{aligned}
-\dot{\bm x} &\in \overline{\operatorname*{co}}\{\bm A_1\bm x_1, \bm A_2\bm x_2\}\\
-&= \alpha_1(t) \bm A_1\bm x_1 + \alpha_2(t) \bm A_2\bm x_2, 
+\dot{\bm x}(t) &\in \overline{\operatorname*{co}}\{\bm A_1\bm x_1(t), \bm A_2\bm x_2(t)\}\\
+&= \alpha_1(t) \bm A_1\bm x_1(t) + \alpha_2(t) \bm A_2\bm x_2(t), 
 \end{aligned}
 $$
 where $\alpha_1(t), \alpha_2(t) \geq 0, \alpha_1(t) + \alpha_2(t) = 1$.
 
-- Not all weights keep the solution on $\mathcal S^+$.  
-    - We must have $\dot x_1 = 0$ for $\bm x(t) \in \mathcal S^+$:
-    $$
-    \alpha_1(t) [-2x_1 + 2x_2] + \alpha_2(t) [-2x_1 - 2x_2] = 0
-    $$
-- Combining with $\alpha_1(t) + \alpha_2(t) = 1$:
+Note, however, that not all the weights keep the solution on $\mathcal S^+$. We must impose some restriction, namely that $\dot x_1 = 0$ for $\bm x(t) \in \mathcal S^+$. This leads to
 $$
-\alpha_1(t) = \alpha_2(t) = 1/2.
+\alpha_1(t) [-2x_1 + 2x_2] + \alpha_2(t) [-2x_1 - 2x_2] = 0
 $$
-- The dynamics on the sliding mode is
+
+Combining this with $\alpha_1(t) + \alpha_2(t) = 1$ gives
+$$
+\alpha_1(t) = \alpha_2(t) = 1/2,
+$$
+which in this simple case perhaps agrees with our intuition (the average of the two vector fields).
+
+The dynamics on the sliding mode is modelled by
 $$
 \dot x_1 = 0, \quad \dot x_2 = x_2, \quad \bm x \in \mathcal{S}^+.
 $$
+:::
 
-### Possible nonuniqueness on intersection of boundaries
-
+:::{.callout-warning}
+# Possible nonuniqueness on intersection of boundaries
+...
+:::

@@ -71,9 +71,9 @@ website:
           - complementarity_references.qmd
       - section: "10. Mixed logical dynamical (MLD) systems"
         contents:
-          - mld_why.qmd
           - mld_DHA.qmd
-          - mld_intro.qmd
+          - mld_logic_vs_inequalities.qmd
+          - mld_mld_and_pwa.qmd
           - mld_software.qmd
           - mld_references.qmd
       - section: "11. Model predictive control (MPC) for MLD systems"
@@ -88,6 +88,7 @@ website:
           - verification_reachability.qmd
           - verification_barrier.qmd
           - verification_temporal_logics.qmd
+          - verification_software.qmd
           - verification_references.qmd
   repo-url: https://github.com/hurak/hys
   repo-actions: [issue]       

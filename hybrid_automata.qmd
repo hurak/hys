@@ -1,14 +1,15 @@
 ---
 title: "Hybrid automata"
 bibliography: ref_hybrid.bib
-#csl: ieee-control-systems.csl
+csl: ieee-control-systems.csl
 format:
     html:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
 crossref:
-  fig-prefix: Fig 
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
 engine: julia
 ---
 
@@ -111,7 +112,7 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 $$
 which gives another component for the hybrid automaton.
 
-The control logic of the thermostat is captured by the $\mathcal I$ and $\mathcal G$ components of the hybrid automaton. Let's determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval $(18 \pm 2)^\circ$ is acceptable. 
+The control logic of the thermostat is captured by the $\mathcal I$ and $\mathcal G$ components of the hybrid automaton. Let's determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval $(18 \pm 2)^\circ$ C is acceptable. 
 $$
 \mathcal I(\text{off}) = \{x\mid x> 16\},\quad \mathcal I(\text{on}) = \{x\mid x< 20\},
 $$  
