@@ -99,7 +99,7 @@ We start with the simplest of all methods, the forward Euler method with a fixed
 $$
 \begin{aligned}
 {\color{blue}x_{1,k+1}} &= x_{1,k} + h (-\operatorname{sign} x_{1,k} + 2 \operatorname{sign} x_{2,k})\\
-{\color{blue}x_{2,k+1}} &= x_{1,k} + h (-2\operatorname{sign} x_{1,k} - \operatorname{sign} x_{2,k}).
+{\color{blue}x_{2,k+1}} &= x_{2,k} + h (-2\operatorname{sign} x_{1,k} - \operatorname{sign} x_{2,k}).
 \end{aligned}
 $$
 
@@ -147,7 +147,7 @@ As an alternative to the forward Euler method, we can use the backward Euler met
 $$
 \begin{aligned}
 {\color{blue} x_{1,k+1}} &= x_{1,k} + h (-\operatorname{sign} {\color{blue}x_{1,k+1}} + 2 \operatorname{sign} {\color{blue}x_{2,k+1}})\\
-{\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2\operatorname{sign} {\color{blue}x_{1,k+1}} - \operatorname{sign} {\color{blue}x_{2,k+1}}).
+{\color{blue} x_{2,k+1}} &= x_{2,k} + h (-2\operatorname{sign} {\color{blue}x_{1,k+1}} - \operatorname{sign} {\color{blue}x_{2,k+1}}).
 \end{aligned}
 $$
 
@@ -159,7 +159,7 @@ Instead solving the above nonlinear equations with discontinuities, we introduce
 $$
 \begin{aligned}
 {\color{blue} x_{1,k+1}} &= x_{1,k} + h (-{\color{blue}u_{1}} + 2 {\color{blue}u_{2}})\\
-{\color{blue} x_{2,k+1}} &= x_{1,k} + h (-2{\color{blue}u_{1}} - {\color{blue}u_{2}}).
+{\color{blue} x_{2,k+1}} &= x_{2,k} + h (-2{\color{blue}u_{1}} - {\color{blue}u_{2}}).
 \end{aligned}
 $$
 
@@ -204,7 +204,7 @@ $$
 \begin{aligned}
 \begin{bmatrix}
 {\color{blue} x_{1,k+1}}\\
-{\color{blue} x_{1,k+1}}
+{\color{blue} x_{2,k+1}}
 \end{bmatrix}
  &= 
 \begin{bmatrix} 
@@ -320,7 +320,7 @@ $$
 \begin{aligned}
 \begin{bmatrix}
 {\color{blue} x_{1,k+1}}\\
-{\color{blue} x_{1,k+1}}
+{\color{blue} x_{2,k+1}}
 \end{bmatrix}
  &= 
 \begin{bmatrix} 
