@@ -97,7 +97,7 @@ For another marking, namely $\bm x = \begin{bmatrix}2\\ 1 \end{bmatrix}$, the ma
 
 ### Enabling and firing of a transition
 
-Finally, here comes the enabling (pun intended) component of the definition of a Petri net – *enabled transition*. A transition $t_j$ does not just happen – we say *fire* – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition $t_j$ is enabled if
+Finally, here comes the enabling (pun intended) component of the definition of a Petri net – *enabled transition*. A transition $t_j$ does not just happen – we say *fire* – whenever it wants, it can only fire if it is enabled, and the marking is used to determine if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition $t_j$ is enabled if
 $$
 x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
 $$

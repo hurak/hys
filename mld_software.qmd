@@ -21,18 +21,27 @@ A [new(er) version 3 of HYSDEL](https://www.uiam.sk/~kvasnica/hysdel3/) has been
 
 ## Support for indicator constraints in optimization modelling languages and optimization solvers
 
-The key component for modelling hybrid systems is that of the *indicator constraint*. We recap here: there is an binary (integer) variable $\delta\in\{0,1\}$ and a linear (or, in principle, also nonlinear) function $f()$ of a real (possibly vector) variable $\bm x\in\mathbb R^n$ defining an inequality $f(\bm x) \leq 0$ that are related as
+The key trick for the MLD framework was that of reformulating the *indicator constraint*
 $$
-[\delta = 1] \iff [f(\bm x) \leq 0].
+[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
+$$ 
+using the *Big-M method* as two inequalities
+$$
+\begin{aligned}
+f(\bm x) &\leq (1-\delta) M,\\
+f(\bm x) &\geq \epsilon + (m-\epsilon)\delta
+\end{aligned}
+$$
+using a sufficiently large constant $M$ and a sufficiently small constant $m$. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with $M$ and $m$. As a matter of fact, only one of the two implications, namely
+$$
+[\delta = 1] \rightarrow [f(\bm x) \leq 0].
 $$ 
 
-We have learnt how to reformulate this logical constraint as two inequalities using a sufficiently large constant $M$ and a sufficiently small constant $m$. But some solvers for mixed integer programming/optimization support the indicator constraints directly. At least one of the two implications, namely
+Gurobi does provide such [support for indicator constraints](https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints), the increasingly popular free&open-source [HiGHS](https://highs.dev) does not, ... 
 
-$$
-[\delta = 1] \implies [f(\bm x) \leq 0].
-$$ 
+The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.
 
-For example, [in Julia' JuMP package, indicators constraint](https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints) can be written as follows
+When it comes to "modelling" the optimization problems, in Julia's [JuMP package, indicators constraint](https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints) can be written as follows
 
 ``` {julia}
 #| code-fold: show
@@ -40,8 +49,17 @@ using JuMP
 model = Model();
 @variable(model, x)
 @variable(model, y)
-@variable(model, a, Bin)
-@constraint(model, a --> {x + y <= 1})
+@variable(model, δ, Bin)
+@constraint(model, δ --> {x + y <= 1})
 ```
 
-Among the optimization solvers that we commonly use, [Gurobi has a support for indicator constraints](https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints) for the single implication.
+With Python API of Gurobi, the indicator constraints can be added using [addGenContstrIndicator](https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator) function. One possible syntax is 
+```
+model.addConstr((delta == 1) >> (x + y - 1.0 <= 0.0))
+```
+
+The other direction of implication is not supported by optimization solvers (at least not that we know of). Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation
+$$
+[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon], 
+$$
+where some small $\epsilon \geq 0$ had to be added to turn the strict inequality into a non-strict one.

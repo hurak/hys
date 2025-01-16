@@ -26,7 +26,7 @@ $$\boxed{
 $${#eq-mld}
 where
 $$
-\bm x(k) = \begin{bmatrix}\bm x_c(k) \\ \bm x_b(k) \end{bmatrix},\qquad \bm u(k) = \begin{bmatrix}\bm u_c(k) \\ \bm u_b(k) \end{bmatrix},\qquad \bm y(k) = \begin{bmatrix}\bm y_c(k) \\ \bm y_b(k) \end{bmatrix},
+\bm x(k) = \begin{bmatrix}\bm x_\mathrm{c}(k) \\ \bm x_\mathrm{b}(k) \end{bmatrix},\qquad \bm u(k) = \begin{bmatrix}\bm u_\mathrm{c}(k) \\ \bm u_\mathrm{b}(k) \end{bmatrix},\qquad \bm y(k) = \begin{bmatrix}\bm y_\mathrm{c}(k) \\ \bm y_\mathrm{b}(k) \end{bmatrix},
 $$
 which reads that the state and control input vectors are composed of the continuous (real) and binary variables.
 
@@ -48,7 +48,7 @@ where $i=0$ if $x(k)< 0$ and $i=1$ otherwise.
 
 The auxilliary binary variable $\delta$ (actually $\delta(k)$, one for each discrete time $k$) is introduced to encode the switching condition:
 $$
-[\delta(k) = 1] \iff [-x(k)\leq 0].
+[\delta(k) = 1] \leftrightarrow [-x(k)\leq 0].
 $$
 
 This equivalence can be rewritten as
@@ -63,8 +63,8 @@ where $m$ and $M$ are lower and upper bounds on $x(k)$, respectively, and $\epsi
 Furthermore, just a single continuous (real) variable $z$ is introduced to encode one of two modes of the system:
 $$
 \begin{aligned}\\
-[\delta(k) = 1] \iff z(k) &= a_2 x(k) + b_2 u(k),\\
-[\delta(k) = 0] \iff z(k) &= a_1 x(k) + b_1 u(k). 
+[\delta(k) = 1] \rightarrow [z(k) &= a_2 x(k) + b_2 u(k)],\\
+[\delta(k) = 0] \rightarrow [z(k) &= a_1 x(k) + b_1 u(k)]. 
 \end{aligned}
 $$
 
@@ -209,11 +209,11 @@ Obviously, once the real state $x(k)$ falls below $x_{\text{lb}}$, the system sw
 ## Note on the common abuse of notation
 If we wanted to avoid the aformentioned abuse of notation, we could introduce a Boolean variable $Q(k)$ and write
 $$
-Q(k+1) \iff Q(k) \lor [x(k) \leq x_{\text{lb}}],
+Q(k+1) \leftrightarrow (Q(k) \lor [x(k) \leq x_{\text{lb}}]),
 $$
-where $Q(k) \iff [q(k)=1]$. Or we could write even without explicitly introducing the variable $Q(k)$:
+where $Q(k) \leftrightarrow [q(k)=1]$. Or we could write even without explicitly introducing the variable $Q(k)$:
 $$
-[q(k+1)=1] \iff [q(k)=1] \lor [x(k) \leq x_{\text{lb}}], 
+[q(k+1)=1] \leftrightarrow ([q(k)=1] \lor [x(k) \leq x_{\text{lb}}]), 
 $$
 but this makes the model somewhat clumsy and heavy. The somewhat abusive view of $q$ as both a logical (Boolean) and binary (integer) variable is a common practice.
 :::
@@ -226,7 +226,7 @@ and in what follows we are going to refer to the real and binary state vaiables 
 
 The auxilliary binary variable (actually variables, one for each time) $\delta_1(k)$, is introduced to encode the switching condition (the EG component of the discrete hybrid automaton):
 $$
-[\delta_1(k) = 1] \iff [x_\mathrm{c}(k) - x_\text{lb} \leq 0].
+[\delta_1(k) = 1] \leftrightarrow [x_\mathrm{c}(k) - x_\text{lb} \leq 0].
 $$
 
 We can rewrite this as 
@@ -256,15 +256,15 @@ where $m_1$ and $M_1$ are lower and upper bounds on $a x_\mathrm{c}(k) + b_1 u(k
 
 We also need to encode the finite state automaton/machine (FSM) component of the discrete hybrid automaton. We write down the state update equation once again here:
 $$
-[x_\mathrm{b}(k+1)=1] \iff [x_\mathrm{b}(k)=1] \lor [\delta_1(k) = 1]
+[x_\mathrm{b}(k+1)=1] \leftrightarrow [x_\mathrm{b}(k)=1] \lor [\delta_1(k) = 1]
 $$
 and for convenience, we rewrite it using (temporarily introduced) Boolean variables:
 $$
-C \iff A \lor B.
+C \leftrightarrow A \lor B.
 $$
 The equivalence can be rewritten as 
 $$
-C \implies (A \lor B), \qquad  (A\lor B) \implies C.
+C \rightarrow (A \lor B), \qquad  (A\lor B) \rightarrow C.
 $$
 
 The former can be rewritten as

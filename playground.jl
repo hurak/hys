@@ -54,3 +54,14 @@ function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = Differen
 end
 
 phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])
+
+
+x = [1, 3, 4, 5]
+y = [2, 18, 32, 50]
+
+k = -2
+p(x) = 2x^2+k*(x-1)*(x-3)*(x-4)*(x-5)
+
+
+yp = p.(x)
+y6 = p(6)

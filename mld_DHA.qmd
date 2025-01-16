@@ -23,14 +23,14 @@ The answer is, that we would like to have a model of a hybrid system that is sui
 
 In particular, with the state variable and control input vectors composed of continuous and discrete variables
 $$
-\bm x = \begin{bmatrix}\bm x_c\\\bm x_d\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_c\\\bm u_d\end{bmatrix},
+\bm x = \begin{bmatrix}\bm x_\mathrm{c}\\\bm x_\mathrm{d}\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_\mathrm{c}\\\bm u_\mathrm{d}\end{bmatrix},
 $$
-where $\bm x_c\in\mathbb R^{n_c},\;\bm x_d\in\mathbb N^{n_d},\; \bm u_c\in\mathbb R^{m_c}$ and $\bm u_d\in\mathbb N^{m_d}$, we would like to formulate the model in the form of state equations, say
+where $\bm x_\mathrm{c}\in\mathbb R^{n_\mathrm{c}},\;\bm x_\mathrm{d}\in\mathbb N^{n_\mathrm{d}},\; \bm u_\mathrm{c}\in\mathbb R^{m_\mathrm{c}}$ and $\bm u_\mathrm{d}\in\mathbb N^{m_\mathrm{d}}$, we would like to formulate the model in the form of state equations, say
 $$
 \begin{aligned}
-\begin{bmatrix}\bm x_c(k+1) \\ \bm x_d(k+1)\end{bmatrix}
+\begin{bmatrix}\bm x_\mathrm{c}(k+1) \\ \bm x_\mathrm{d}(k+1)\end{bmatrix}
  &= 
-\begin{bmatrix} \mathbf f_c(\bm x(k), \bm u(k)) \\ \mathbf f_d(\bm x(k), \bm u(k)) \end{bmatrix}.
+\begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
 \end{aligned}
 $$
 
@@ -67,8 +67,8 @@ Let's discuss the individual components (and while doing that, you can think abo
 This is a model of the continuous-value dynamics parameterized by the index $i$ that evolves in (discrete) time 
 $$
 \begin{aligned}
-x_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)},\\
-y_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}.
+x_\mathrm{c}(k+1) &= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)},\\
+y_\mathrm{c}(k) &= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}.
 \end{aligned}
 $$
 
@@ -76,24 +76,24 @@ In principle there is no need to restrict the right hand sides to affine functio
 
 ### Event generator (EG)
 
-We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the $i$th region of the state-input space, if the continuous-value state $x_c(k)$ and the continuous-value control input $u_c$ satisfy
+We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the $i$th region of the state-input space, if the continuous-value state $x_\mathrm{c}(k)$ and the continuous-value control input $u_\mathrm{c}$ satisfy
 $$
-H_i x_c(k) + J_i u_c(k) + K_i \leq 0.
+H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0.
 $$
 
 The event indicated by the (vector) binary variable
 $$
-\delta_e(k) = h(x_c(k), u_c(k)) \in \{0,1\}^m, 
+\delta_e(k) = h(x_\mathrm{c}(k), u_\mathrm{c}(k)) \in \{0,1\}^m, 
 $$
 where
 $$
-h_i(x_c(k), u_c(k)) = \begin{cases}1 & H_i x_c(k) + J_i u_c(k) + K_i \leq 0,\\ 0 & \text{otherwise}. \end{cases}
+h_i(x_\mathrm{c}(k), u_\mathrm{c}(k)) = \begin{cases}1 & H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0,\\ 0 & \text{otherwise}. \end{cases}
 $$
 
 ### Finite state machine (FSM)
 
 $$
-x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k)).
+x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
 $$
 
 ### Mode selector (MS)
@@ -103,19 +103,19 @@ i(k) \in \{1, 2, \ldots, s\}
 $$
 
 $$
-i(k) = \mu(x_d(k), u_d(k), \delta_e(k)).
+i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
 $$
 
 
 ## Trajectory of a DHA
 $$
 \begin{aligned}
-\delta_e(k) &= h(x_c(k), u_c(k))\\
-i(k) &= \mu(x_d(k), u_d(k), \delta_e(k))\\
-y_c(k) &= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}\\
-y_d(k) &= g_d(x_d(k), u_d(k), \delta_e(k))\\
-x_c(k+1) &= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\
-x_d(k+1) &= f_d(x_d(k),u_d(k),\delta_e(k))
+\delta_e(k) &= h(x_\mathrm{c}(k), u_\mathrm{c}(k))\\
+i(k) &= \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+y_\mathrm{c}(k) &= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}\\
+y_\mathrm{d}(k) &= g_\mathrm{d}(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+x_\mathrm{c}(k+1) &= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)}\\
+x_\mathrm{d}(k+1) &= f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k))
 \end{aligned}
 $$
 

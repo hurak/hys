@@ -1,5 +1,5 @@
 ---
-title: "Logic vs mixed integer-linear inequalities"
+title: "Logic vs inequalities"
 bibliography: 
     - ref_hybrid.bib
     - ref_mpc.bib
@@ -15,38 +15,43 @@ crossref:
 engine: julia  
 ---
 
-Our goal is to turn the IF-THEN-ELSE conditions in the discrete hybrid model (DHA) into linear inequalities, which will allow us to formulate the model as a mathematical program, actually a *mixed-integer program* (MIP). In order to get there, we are going to recap some fundamentals of logic and then we are going to show how various logical conditions can be turned into linear inequalities.   
+Our goal is to reformulate the logical conditions (such as IF-THEN-ELSE) encountered in the discrete hybrid model (DHA) as inequalities (and possibly equations), which will allow us to formulate the model as a mathematical program, actually a *mixed-integer program* (MIP). In order to get there, we are going to recap some fundamentals of logic and then we are going to show how various logical conditions can be reformulated as linear inequalities.   
 
 ## Propositional logic and connectives
 
-Propositions that are either true or false are composed of elementary *propositions* (Boolean variables) and *connectives*.
+Propositions (also logical formulas) are either true or false. They are composed of elementary or atomic propositions (also Boolean variables) and connectives.
 
 ### Boolean variable (or elementary proposition) 
 
-$X$ evaluates to `true` or `false`. Oftentimes values `0` and `1` are used, but it should be clear that these are not numbers but logical values.
+$X$ evaluates to `true` or `false`. Oftentimes values `0` and `1` are used, but it should be clear that these are not numbers but symbols that represent logical values.
 
 ### Connectives
 
 - Conjunction (logical and): $X_1 \land X_2$
 - Disjunction (logical or): $X_1 \lor X_2$
-- Negation: $\neg X_2$   (or $\overline{X_2}$ or $\sim X_2$)
-- Implication: $X_1 \implies X_2$
-- Equivalence: $X_1 \iff X_2$
+- Negation: $\neg X_2$
+- Implication: $X_1 \rightarrow X_2$
+- Equivalence: $X_1 \leftrightarrow X_2$
 - Logical XOR: $X_1 \oplus X_2$
 
-## Equivalences of logic propositions
+## Equivalences of logical propositions
 
-We will heavily used the following equivalences:
+We will heavily used the following equivalences between logical propositions:
 $$
 \begin{aligned}
-X_1 \implies X_2 \qquad  &\equiv \qquad \neg X_2 \implies \neg X_1,\\
-X_1 \iff X_2 \qquad  &\equiv \qquad (X_1 \implies X_2) \land (X_2 \implies X_1),\\
+X_1 \rightarrow X_2 \qquad  &\equiv \qquad \neg X_2 \rightarrow \neg X_1,\\
+X_1 \leftrightarrow X_2 \qquad  &\equiv \qquad (X_1 \rightarrow X_2) \land (X_2 \rightarrow X_1),\\
 X_1 \land X_2 \qquad  &\equiv \qquad \neg (\neg X_1 \lor \neg X_2),\\
-X_1 \implies X_2 \qquad  &\equiv \qquad \neg X_1 \lor X_2.
+X_1 \rightarrow X_2 \qquad  &\equiv \qquad \neg X_1 \lor X_2.
 \end{aligned}
 $$
 
-The last one can be seen as follows: it cannot happen that $X1 \land \neg X2$, that is, it holds that $\neg(X1 \land \neg X2)$. De Morgan gives $\neg X1 \lor X2$.
+The first three are certainly well known. If the last one does not look familiar, it can be seen as follows: for no $X_1$ and $X_2$ does $X1 \land \neg X2$ evaluate to true. In other words, $\neg(X1 \land \neg X2)$ is true. De Morgan then gives $\neg X1 \lor X2$.
+
+:::{.callout-caution}
+## Two kinds of equivalence
+It may be confusing that we use the term *equivalence* in two different meanings here and with two different symbols. Indeed, the symbol $\leftrightarrow$ (sometimes also called material equivalence or biconditional) is a part of the logical proposition, while the symbol $\equiv$ is used to relate two logical propositions. While this is well established and described in the literature, the notation varies wildly. In particular, beware that the symbol $\iff$ can frequently be encountered in both contexts (that is why we avoid it here). On the other hand, we take the liberty to refer to both cases just as the *equivalence*, hoping that the context will make it clear which one is meant.
+:::
 
 ## Binary variables related to the Boolean ones 
 
@@ -60,30 +65,41 @@ $$
 $$
 
 In other words, have the the following equivalence 
-$$X \qquad \iff \qquad [\delta = 1].$$
+$$X \quad \leftrightarrow \quad [\delta = 1].$$
 
 :::{.callout-important}
 ## Redudant (but convenient) use of brackets
-The use of the brackets here is redundant. As long as the symbol `=` is interpreted as equation and not assignment, we can equally well write $X \iff \delta = 1$, assuming precedence of $=$ over $\iff$. In this regard, the role of the brackets is really just grouping. We could also use $X \iff (\delta = 1)$ for that matter.
+Strictly speaking, the brackets are redundant here. We can equally well write $X \leftrightarrow \delta = 1$, assuming precedence of $=$ over $\leftrightarrow$. In this regard, the role of the brackets is really just to emphasize the precedence visually. There is also nothing special about the square brackets, we could equally well write $X \leftrightarrow (\delta = 1)$.
 :::
 
-## Integer (in)equalities related to the logical formulas
+## Integer equations and (in)equalities related to the logical formulas
 
-Having introduced binary variables, we now aim at reformulating logical formulas into equivalent integer equalities or inequalities.
+Having introduced binary variables, we now aim at reformulating logical formulas into equivalent integer equalities or inequalities. Let's investigage one logical connective after another.
 
 ### And (conjunction)
 
 We first consider the conjunction of two logical variables $X_1$ and $X_2$:
 $$X_1 \land X_2.$$
 
-Invoking the binary variables, we can rewrite this as
+Invoking binary variables, we can rewrite this as
 $$[\delta_1=1] \land [\delta_2=1],$$ 
-which ultimately translates to
-$$\delta_1=1, \; \delta_2=1.$$
+which ultimately translates to the system of two (trivial) equations
+$$
+\begin{aligned}
+\delta_1&=1,\\
+\delta_2&=1.
+\end{aligned}
+$$
 
 Another possibility is 
+$$
+\delta_1 + \delta_2 = 2.
+$$
+From the perspective of subsequent optimization for which this constitutes a constraint, hardly anything can be gained by this formulation compared to the previous one.
+
+Yet another possibility is 
 $$\delta_1 \delta_2 = 1,$$
-but we discard it because it is nonlinear and we prefer the linear version for obvious reasons. 
+but we discard it immediately, because it is nonlinear and it provides not advantage over the previous linear formulation. 
 
 ### Or (disjunction)
 
@@ -117,15 +133,15 @@ $$\delta_1 + \delta_2 = 1.$$
 ### Implication
 
 We now consider the implication
-$$X_1 \implies X_2,$$
+$$X_1 \rightarrow X_2,$$
 
-$$[\delta_1=1] \implies [\delta_2=1].$$ 
+$$[\delta_1=1] \rightarrow [\delta_2=1].$$ 
 
 We can take advantage of the equivalent formula 
 $$\neg X_1 \lor X_2,$$
 which in terms of binary variables is
 $$\neg [\delta_1=1] \lor [\delta_2=1],$$
-which can be equivalently express as an inequelity 
+which can be equivalently expressed as an inequality 
 $$(1-\delta_1) + \delta_2\geq 1,$$ 
 which further simplifies to 
 $$\delta_1 - \delta_2 \leq 0.$$
@@ -133,24 +149,24 @@ $$\delta_1 - \delta_2 \leq 0.$$
 ### Equivalence
 
 The equivalence
-$$X_1 \iff X_2,$$
-$$[\delta_1=1] \iff [\delta_2=1]$$
+$$X_1 \leftrightarrow X_2,$$
+$$[\delta_1=1] \leftrightarrow [\delta_2=1]$$
 can be viewed as a conjunction of two implications, which then gives
 $$\delta_1 - \delta_2 = 0.$$
 
-### Assignment (product)
+### Assignment (product) 
 
-We now investigate the following logic formula
-$$X_3 \iff (X_1 \land X_2),$$
+We now investigate the following logical formula
+$$X_3 \leftrightarrow (X_1 \land X_2),$$
 which after introducing binary variables becomes
-$$[\delta_3=1] \iff ([\delta_1=1] \land [\delta_2=1]).$$
+$$[\delta_3=1] \leftrightarrow ([\delta_1=1] \land [\delta_2=1]).$$
 
 The motivation as well as the justification of the name(s) will become clear later in this section when we discuss the interplay between logic and continuous variables (the `IF-THEN-ELSE` case).
 
 Expressing the equivalence using implications 
-$$X_3 \implies X_1,\; X_3\implies X_2, \; (X_1 \land X_2) \implies X_3$$
+$$(X_3 \rightarrow X_1) \land (X_3\rightarrow X_2) \land ((X_1 \land X_2) \rightarrow X_3).$$
 
-The the last one is equivalent to
+The last of the tree terms connected by the $\land$ connective is equivalent to
 $$\neg (X_1 \land X_2) \lor X_3,$$
 which can be simplified to
 $$\neg X_1 \lor \neg X_2 \lor X_3,$$
@@ -159,7 +175,7 @@ $$\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],$$
 which finally leads to the linear inequality
 $$(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1.$$
 
-After simplification, and not forgetting the other two conditions, we get
+After simplification, and brinding in also the inequality formulations for the other two terms, we get
 $$
 \begin{aligned}
 \delta_1 + \delta_2 - \delta_3 &\leq 1,\\
@@ -170,11 +186,12 @@ $${#eq-product-assignment}
 
 ### General transformation of Boolean expressions to integer inequalities
 
-From Conjunctive Normal Form (CNF)
+While logical formulas can be fairly diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the *Conjunctive Normal Form (CNF)*
 $$
-\bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right]
+\bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right].
 $$
-to 0-1 integer inequalities defining a polyhedron
+
+The reason for our preference has already been displayed in @eq-product-assignment above. Namely, the logical conjunction $\land$ translates to the requirement of a simultaneous satisfaction of inequalities or equations as in
 $$
 \begin{aligned}
 \sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &\geq 1,\\
@@ -182,226 +199,3 @@ $$
 \sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &\geq 1.
 \end{aligned}
 $$
-
-## Finite state machine (FSM) using binary variables
-
-For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable $x_d$  in binary. As a matter of fact, vector  variables are needed here 
-$$
-x_b \in \{0,1\}^{n_b}.
-$$
-
-Similarly the discrete inputs
-$$
-u_b \in \{0,1\}^{m_b}.
-$$
-
-The logic state equation then
-$$
-x_b(k+1) = f_b(x_b(k),u_b(k),\delta_e(k)).
-$$
-
-::: {#exm-fsm-example}
-## Example
-
-![Example of a FSM](mld_figures/fsm_example.png){width=70% #fig-fsm-example} 
-
-The state update/transition equation is
-$$
-\begin{aligned}
-x_d(k+1) = 
-\begin{cases}
-\text{Red} & \text{if}\; ([x_d = \text{green}] \land \neg [\delta_3=1]) \lor ([x_d = \text{red}] \land \neg [\delta_3=1])\\
-\text{Green} & \text{if} \; \ldots\\
-\text{Blue} & \text{if} \; \ldots 
-\end{cases}
-\end{aligned}
-$$
-
-Binary encoding of the discrete states
-$$
-\text{Red}: x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: x_b = \begin{bmatrix}1\\0 \end{bmatrix}
-$$
-
-Reformulating the state update equations for binary variables
-$$
-\begin{aligned}
-x_{b1} &= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
-&\quad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
-&\quad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
-x_{b2} &= \ldots
-\end{aligned}
-$$
-
-Finally, simplify, convert to CNF.
-:::
-
-## Mixing logical and continuous through indicator variables
-
-Now that we have learnt to encode purely logical expressions into inequalities, we consider the cases where logical and continuous variables are mixed. We aim at the same kind of encoding as before, that is, we want to formulate inequalities.
-
-### Logical implies continuous
-
-We start by considering the implication
-$$X \implies [f(x)\leq 0],$$
-where $X$ is a Boolean variable and $f(x)$ is a real-valued function of a real variable $x$. Upon represented the Boolean variable $X$ with the binary variable $\delta$ (called an *indicator variable*) we can write the implication as
-$$[\delta = 1] \implies [f(x)\leq 0].$$
-
-In order to construct an equivalent inequality, we introduce a real parameter $M$ large enough such that when $\delta=0$ in
-$$
-f(x) \leq (1-\delta) M,
-$$
-there is no practical restriction on $f$. If $\delta=1$, the original inequality is trivially enforced.  
-
-:::{.callout-warning}
-## Big-M technique
-This is a popular trick and is known as the *Big-M technique*. It is not a trouble-free trick, though. It is important to avoid setting $M$ unnecessarily too high. See the section [Dealing with Big-M Constraints](https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide/tolerances_scaling.html#dealing-with-big-m-constraints) in Gurobi Reference Manual for some discussion of numerical issues.
-:::
-
-### Continuous implies logical
-
-The other implication
-$$[f(x)\leq 0] \implies X,$$
-with the Boolean variable $X$ represented with a binary $\delta$ as 
-$$[f(x)\leq 0] \implies [\delta = 1],$$
-can be written equivalently as
-$$\neg [\delta = 1] \implies \neg [f(x)\leq 0],$$
-which can be further simplified to 
-$$[\delta = 0] \implies [f(x) > 0].$$
-
-We now introduce $m$ small enough such that that $f(x)$ is practically unrestricted when $\delta=1$ in
-$$
-f(x) > m\delta, 
-$$
-while $f(x)>0$ is trivially enforced when $\delta=0$.
-
-For numerical reasons, we modify the strict equality to nonstrict inequality
-$$
-f(x) \geq \epsilon + (m-\epsilon)\delta,
-$$
-where $\epsilon\approx 0$ (for example, machine epsilon).
-
-### Equivalence between logical and continuous
-
-Now we combine the previous two implications so that we can write the equivalence
-$$X \iff [f(x)\leq 0],$$
-
-represented through the indicator variable $\delta$ as
-$$\boxed{
-[\delta = 1] \iff [f(x)\leq 0],
-}
-$$
-
-as the two inequalities 
-$$\boxed{
-\begin{aligned}
-f(x) &\leq (1-\delta) M,\\
-f(x) &\geq \epsilon + (m-\epsilon)\delta.
-\end{aligned}}
-$${#eq-logic-continuous}
-
-### IF-THEN-ELSE rule as an inequality
-
-We now consider the following `IF-THEN-ELSE` rule: 
-
-$$
-\mathrm{if} \; X, \; \mathrm{then} \; z = f(x,u), \; \text{else} \; z = 0.
-$$
-
-It can be equivalently expressed as the product
-$$
-z = \delta\,f(x,u),
-$$
-where $\delta$ is a binary indicator. This, in turn, can be written (finally using @eq-product-assignment) as
-$$
-\begin{aligned}
-z &\leq M\delta,\\
-- z &\leq -m\delta,\\
-z &\leq f(x,u) - m(1-\delta),\\
--z &\leq -f(x,u) + M(1-\delta).
-\end{aligned}
-$$
-
-:::{.callout-warning}
-## Scalar functions only
-Beware that the above results are valid only for scalar functions $f()$, even if their arguments are possibly vectors. 
-:::
-
-Particularly useful from a computational viewpoint will be an affine function $f(x,y) = ax + bu + e$. We specialize the above inequalities to this case for later convenience.
-$$\boxed{
-\begin{aligned}
-z &\leq M\delta,\\
-- z &\leq -m\delta,\\
-z &\leq ax + bu + e - m(1-\delta),\\
--z &\leq -(ax + bu + e) + M(1-\delta).
-\end{aligned}}
-$${#eq-if-then-else-1}
-
-### Another IF-THEN-ELSE rule
-
-Another IF-THEN-ELSE rule (and here we already specialized it to affine functions) can also be useful:
-
-$$
-\mathrm{if} \; X, \; \mathrm{then} \; z = a_1x + b_1u + e_1, \; \mathrm{else} \; z = a_2x + b_2u + e_2.
-$$
-
-Using a binary indicator $\delta$, it can be expressed as
-$$
-z = {\color{blue}\delta}\,(a_1 x + b_1 u + e_1) + {\color{blue}(1-\delta)}(a_2 x + b_2 u + e_2),
-$$
-which can be rewritten as
-$$
-\boxed{
-\begin{aligned}
-(m_2-M_1)\delta  + z &\leq a_2 x + b_2 u + e_2,\\
-(m_1-M_2)\delta  - z &\leq -a_2 x - b_2 u - e_2,\\
-(m_1-M_2)(1-\delta)  + z &\leq a_1 x + b_1 u + e_1,\\
-(m_2-M_1)(1-\delta)  - z &\leq -a_1 x - b_1 u - e_1.
-\end{aligned}}
-$${#eq-if-then-else-2}
-
-### Generation of events by mixing logical and continuous variables in inequalities
-
-Application of @eq-logic-continuous to the $i$th event generator function $h_i(x,u)$ leads to the following inequalities
-$$\boxed{
-\begin{aligned}
-h_i(x_c(k), u_c(k)) &\leq M_i (1-\delta_{e,i}),\\
-h_i(x_c(k), u_c(k)) &\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
-\end{aligned}}
-$${#eq-event-generator}
-
-### Switched affine system
-
-We are now ready to get rid of the `IF-THEN(-ELSE)` conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables $z_i$:
-$$
-x_c(k+1) = \sum_{i=1}^s z_i(k),  
-$$
-where
-$$
-z_1(k) = 
-\begin{cases}
-a_1 x_c(k) + b_1 u_c(k) + f_1 & \text{if}\;i(k)=1,\\
-0 & \text{otherwise},
-\end{cases}
-$$
-$$\quad \vdots$$
-$$
-z_s(k) = 
-\begin{cases}
-a_s x_c(k) + b_s u_c(k) + f_s & \text{if}\;i(k)=s,\\
-0 & \text{otherwise},
-\end{cases}
-$$
-and we rewrite it for each $i\in \{1, 2, \ldots, s\}$ as
-$$\boxed{
-\begin{aligned}
-z_i &\leq M_i\delta_i,\\
-- z_i &\leq -m_i\delta_i,\\
-z_i &\leq a_i x + b_i u + f_i - m_i(1-\delta_i),\\
--z_i &\leq -(a_i x + b_i u + f_i) + M_i(1-\delta_i).
-\end{aligned}}
-$${#eq-switched-affine}
-
-:::{.callout-warning}
-## All these results were derived just for scalar $z$ and $f()$ 
-With the formalism presented here, vector variables $\bm z$ and correspondingly vector right-hand-side functions $\mathbf f()$ must be handled but considering their individual scalar components $z_1, \ldots, z_n$ and $f_1(), \ldots, f_n()$. Notational care must be exercised, note that the lower index in this remark has different meaning than that in @eq-switched-affine.
-:::
