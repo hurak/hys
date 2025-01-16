@@ -538,7 +538,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logic vs mixed integer-linear inequalities</span></a>
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -803,7 +809,7 @@ Figure&nbsp;4: Example of a marked Petri net with different marking
 </section>
 <section id="enabling-and-firing-of-a-transition" class="level3">
 <h3 class="anchored" data-anchor-id="enabling-and-firing-of-a-transition">Enabling and firing of a transition</h3>
-<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only happen (fire) if it is enabled, and the marking is used to determined if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">
+<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only fire if it is enabled, and the marking is used to determine if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">
 x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
 </span></p>
 <div class="callout callout-style-default callout-important callout-titled">

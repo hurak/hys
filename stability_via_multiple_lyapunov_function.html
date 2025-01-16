@@ -552,7 +552,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logic vs mixed integer-linear inequalities</span></a>
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -711,7 +717,7 @@ window.Quarto = {
 
 <p>We start with an example in which we show it can happen that even if the hybrid (switched) system is stable, there is no common quadratic Lyapunov function.</p>
 <div id="exm-no-cqlf" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (No common quadratic Lyapunov function can be found)</strong></span> We consider a switched system with two modes, linear models of which are parameterized by the matrices <span class="math inline">\mathbf A_1</span> and <span class="math inline">\mathbf A_2</span>:</p>
+<p><span class="theorem-title"><strong>Example 1 (No common quadratic Lyapunov function can be found)</strong></span> We consider a switched system with two modes, linear models that are parameterized by the matrices <span class="math inline">\mathbf A_1</span> and <span class="math inline">\mathbf A_2</span>:</p>
 <div id="2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A₁ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">0.1</span>]</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A₂ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">2</span>; <span class="fl">1</span> <span class="op">-</span><span class="fl">0.1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -790,11 +796,11 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 135…741)
+   │  └─ 2×2 real variable (id: 113…782)
    ⋮</code></pre>
 </div>
 </div>
-<p>The solver does not find a solution. Well, perhaps trying another solver or two would make our conclusion more robust (<code>MosekTools</code> is another recommendable alternative to <code>SCS</code>). But we are now be tempted to conclude that there is no common quadratic Lyapunov function for both subsystems.</p>
+<p>The solver does not find a solution. Well, perhaps trying another solver or two would make our conclusion more robust (<code>MosekTools</code> is another recommendable alternative to <code>SCS</code>). But we are now inclined to conclude that there is no common quadratic Lyapunov function for both subsystems.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -805,12 +811,12 @@ Dual LMI problem confirms the infeasibility of the primal one
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is possible to formulate a dual LMI problem. Its feasibility certifies infeasibility of the primal one. Namely, the problem is, if there are matrices <span class="math inline">\mathbf R_1\succ 0</span> and <span class="math inline">\mathbf R_2\succ 0</span> such that the following LMI holds: <span class="math display">
-\mathbf R_1\mathbf A_1^\top+\mathbf A_1\mathbf R_1 + \mathbf R_2\mathbf A_2^\top+\mathbf A_2\mathbf R_2 \prec 0.
-</span></p>
+<p>It is possible to certify infeasibility of the primal optimization problem by certifying feasibility of the dual one. Namely, if there are matrices <span class="math inline">\mathbf R_1\succ 0</span> and <span class="math inline">\mathbf R_2\succ 0</span> such that the following LMI holds: <span class="math display">
+\mathbf R_1\mathbf A_1^\top+\mathbf A_1\mathbf R_1 + \mathbf R_2\mathbf A_2^\top+\mathbf A_2\mathbf R_2 \prec 0,
+</span> the primal problem is infeasible.</p>
 </div>
 </div>
-<p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute Lyapunov functions for the two subsystems.</p>
+<p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute respective Lyapunov functions for the two subsystems.</p>
 <div id="10" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
@@ -864,7 +870,7 @@ Figure&nbsp;2: Invariant ellipses for the two subsystems superposed on the state
 </div>
 <p>We can see in <a href="#fig-no-cqlf-with-lyapunov-invariant-sets" class="quarto-xref">Fig.&nbsp;2</a> that none of the two ellipses works as an invariant set for the switched system – a state trajectory entering the set leaves it afterwards. No way to to come up with a single ellipse (hence a single quadratic Lyapunov function) that would work here.</p>
 </div>
-<p>Good, we have seen in the example that it is not always possible to find a common quadratic Lyapunov function for a switched system, even it it is stable. We need to expand the set of functions in which we search for a Lyapunov function. We have proposed one way to do it in the previouse chapter wherein we considered higher degree polynomials on which we imposed the nonnegativity constraint through in the form of SOS constraint. Here we are going to consider another approach. We are goint to stitch together several <em>Lyapunov-like</em> functions, each of which is a Lyapunov function only on some subset of the state space (that is why we call them just Lyapunov-like and not Lyapunov). This approach is sometimes called the <em>Multiple Lyapunov Function</em> (MLF) approach, or <em>Piecewise Lyapunov Function</em> approach.</p>
+<p>Good, we have seen in the example that it is not always possible to find a common quadratic Lyapunov function for a switched system, even it it is stable. We need to expand the set of functions in which we search for a Lyapunov function. We have proposed one way to do it in the previouse chapter wherein we considered higher degree polynomials for which we imposed the nonnegativity constraint through in the form of SOS constraint. Here we are going to consider another approach. We are goint to “stitch” together several <em>Lyapunov-like</em> functions, each of which is a Lyapunov function only on some subset of the state space (that is why we call them just Lyapunov-like and not Lyapunov). This approach is sometimes called the <em>Multiple Lyapunov Function</em> (MLF) approach, or <em>Piecewise Lyapunov Function</em> approach.</p>
 <section id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability" class="level2">
 <h2 class="anchored" data-anchor-id="multiple-lyapunov-function-mlf-approach-to-analysis-of-stability">Multiple Lyapunov Function (MLF) approach to analysis of stability</h2>
 <p>Instead of just a single <em>common Lyapunov function</em> <span class="math inline">V(\bm x)</span>, we are now going to consider several Lyapunov-like functions <span class="math inline">V_i(\bm x),\; i=1,\ldots,r,</span> that qualify as Lyapunov function only on some subsets of the state space <span class="math inline">\Omega_i</span>. And we “stitch” them together to form a piecewise Lyapunov function <span class="math inline">V(\bm x)</span>: <span class="math display">

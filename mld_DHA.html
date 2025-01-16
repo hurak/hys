@@ -518,7 +518,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mld_logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Logic vs mixed integer-linear inequalities</span></a>
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -672,12 +678,12 @@ window.Quarto = {
 <p>We are going to introduce yet another framework for modeling hybrid systems – <em>mixed logical dynamical (MLD)</em> description. A question must inevitably pop up: “why yet another framework?”</p>
 <p>The answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it.</p>
 <p>In particular, with the state variable and control input vectors composed of continuous and discrete variables <span class="math display">
-\bm x = \begin{bmatrix}\bm x_c\\\bm x_d\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_c\\\bm u_d\end{bmatrix},
-</span> where <span class="math inline">\bm x_c\in\mathbb R^{n_c},\;\bm x_d\in\mathbb N^{n_d},\; \bm u_c\in\mathbb R^{m_c}</span> and <span class="math inline">\bm u_d\in\mathbb N^{m_d}</span>, we would like to formulate the model in the form of state equations, say <span class="math display">
+\bm x = \begin{bmatrix}\bm x_\mathrm{c}\\\bm x_\mathrm{d}\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_\mathrm{c}\\\bm u_\mathrm{d}\end{bmatrix},
+</span> where <span class="math inline">\bm x_\mathrm{c}\in\mathbb R^{n_\mathrm{c}},\;\bm x_\mathrm{d}\in\mathbb N^{n_\mathrm{d}},\; \bm u_\mathrm{c}\in\mathbb R^{m_\mathrm{c}}</span> and <span class="math inline">\bm u_\mathrm{d}\in\mathbb N^{m_\mathrm{d}}</span>, we would like to formulate the model in the form of state equations, say <span class="math display">
 \begin{aligned}
-\begin{bmatrix}\bm x_c(k+1) \\ \bm x_d(k+1)\end{bmatrix}
+\begin{bmatrix}\bm x_\mathrm{c}(k+1) \\ \bm x_\mathrm{d}(k+1)\end{bmatrix}
 &amp;=
-\begin{bmatrix} \mathbf f_c(\bm x(k), \bm u(k)) \\ \mathbf f_d(\bm x(k), \bm u(k)) \end{bmatrix}.
+\begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
 \end{aligned}
 </span></p>
 <p>Is it possible?</p>
@@ -706,27 +712,27 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
 <p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
 \begin{aligned}
-x_c(k+1) &amp;= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)},\\
-y_c(k) &amp;= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}.
+x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)},\\
+y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}.
 \end{aligned}
 </span></p>
 <p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
 </section>
 <section id="event-generator-eg" class="level3">
 <h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
-<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_c(k)</span> and the continuous-value control input <span class="math inline">u_c</span> satisfy <span class="math display">
-H_i x_c(k) + J_i u_c(k) + K_i \leq 0.
+<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_\mathrm{c}(k)</span> and the continuous-value control input <span class="math inline">u_\mathrm{c}</span> satisfy <span class="math display">
+H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0.
 </span></p>
 <p>The event indicated by the (vector) binary variable <span class="math display">
-\delta_e(k) = h(x_c(k), u_c(k)) \in \{0,1\}^m,
+\delta_e(k) = h(x_\mathrm{c}(k), u_\mathrm{c}(k)) \in \{0,1\}^m,
 </span> where <span class="math display">
-h_i(x_c(k), u_c(k)) = \begin{cases}1 &amp; H_i x_c(k) + J_i u_c(k) + K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
+h_i(x_\mathrm{c}(k), u_\mathrm{c}(k)) = \begin{cases}1 &amp; H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
 </span></p>
 </section>
 <section id="finite-state-machine-fsm" class="level3">
 <h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
 <p><span class="math display">
-x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k)).
+x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
 </span></p>
 </section>
 <section id="mode-selector-ms" class="level3">
@@ -735,7 +741,7 @@ x_d(k+1) = f_d(x_d(k),u_d(k),\delta_e(k)).
 i(k) \in \{1, 2, \ldots, s\}
 </span></p>
 <p><span class="math display">
-i(k) = \mu(x_d(k), u_d(k), \delta_e(k)).
+i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
 </span></p>
 </section>
 </section>
@@ -743,12 +749,12 @@ i(k) = \mu(x_d(k), u_d(k), \delta_e(k)).
 <h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
 <p><span class="math display">
 \begin{aligned}
-\delta_e(k) &amp;= h(x_c(k), u_c(k))\\
-i(k) &amp;= \mu(x_d(k), u_d(k), \delta_e(k))\\
-y_c(k) &amp;= C_{i(k)} x_c(k) + D_{i(k)} u_c(k) + g_{i(k)}\\
-y_d(k) &amp;= g_d(x_d(k), u_d(k), \delta_e(k))\\
-x_c(k+1) &amp;= A_{i(k)} x_c(k) + B_{i(k)} u_c(k) + f_{i(k)}\\
-x_d(k+1) &amp;= f_d(x_d(k),u_d(k),\delta_e(k))
+\delta_e(k) &amp;= h(x_\mathrm{c}(k), u_\mathrm{c}(k))\\
+i(k) &amp;= \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}\\
+y_\mathrm{d}(k) &amp;= g_\mathrm{d}(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)}\\
+x_\mathrm{d}(k+1) &amp;= f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k))
 \end{aligned}
 </span></p>
 <p>Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?</p>
@@ -1181,8 +1187,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./mld_logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs mixed integer-linear inequalities">
-        <span class="nav-page-text">Logic vs mixed integer-linear inequalities</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./mld_logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <span class="nav-page-text">Logic vs inequalities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
