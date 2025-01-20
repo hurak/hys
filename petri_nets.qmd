@@ -59,7 +59,7 @@ We consider just two places, that is, $\mathcal{P} = \{p_1, p_2\}$, and one tran
 
 - $\mathcal{P} = \{p_1, p_2, p_3, p_4\}$, 
 - $\mathcal{T} = \{t_1, t_2, t_3, t_4, t_5\}$,
-- $\mathcal{A} = \{(p_1, t_1), (t_1, p_1), (p_1, t_2),\ldots\}$,
+- $\mathcal{A} = \{(p_1, t_1), (t_1, p_2), (p_1, t_2),\ldots\}$,
 - $w((p_1, t_1)) = 2, \; w((t_1, p_1)) = 1, \; \ldots$
 
 ![Example of a more complex Petri net](petri_nets_figures/complicated_petri_net.png){#fig-more-complex-petri-net width=70%}
