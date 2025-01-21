@@ -79,7 +79,7 @@ $$V(0) = 0, \; V(x) > 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}, $$
 
 $$ \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x(t))} \leq 0.$$
 
-In words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function *positive definite*), and its derivative along the trajectories of the system is nonpositive (aka positive semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.
+In words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function *positive definite*), and its derivative along the trajectories of the system is nonpositive (aka negative semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.
 
 If the latter condition is made strict, that is, if 
 $$\left(\nabla V(x)\right)^\top f(x) < 0,$$
