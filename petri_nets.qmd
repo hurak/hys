@@ -154,8 +154,8 @@ The state vector changes to $\bm x_1 = [1, 1, 1, 1]^\top$, the discrete time is 
 As a result of this transition, note that $t_1, t_2, t_3$ are now enabled.
 
 ::: {.callout-important}
-## The number of tokens does not need to be preserved
-In the example we can see for the first time, that the number of tokens does not need to be preserved.
+## Number of tokens need not be preserved
+In the example we can see for the first time, that the number of tokens need not be preserved.
 :::
 
 Now fire the $t_2$ transition
