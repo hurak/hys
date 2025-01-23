@@ -34,7 +34,7 @@ The first two (sets of) equations resemble the state and output equations of a l
 
 ## Uniqueness of the state and output responses predicted by MLD models
 
-An immediate question that must pop up in our minds is that of the uniqueness of the state and output responses predicted by the MLD model. For given $\bm x(k)$ and $\bm u(k)$, uniqueness of the values of the auxuliary variables $\bm \lambda(k)$ and $\bm z(k)$ compliant with the inequalities, hence the next state $\bm x(k+1)$ and the output $\bm y(k)$, is not immediately obvious. As claimed in the seminal paper @bemporadControlSystemsIntegrating1999, MLD models corresponding to real systems do have unique solutions.
+An immediate question that must pop up in our minds is that of the uniqueness of the state and output responses predicted by the MLD model. For given $\bm x(k)$ and $\bm u(k)$, uniqueness of the values of the auxuliary variables $\bm \delta(k)$ and $\bm z(k)$ compliant with the inequalities, hence the next state $\bm x(k+1)$ and the output $\bm y(k)$, is not immediately obvious. As claimed in the seminal paper @bemporadControlSystemsIntegrating1999, MLD models corresponding to real systems do have unique solutions.
 
 ## Examples
 
@@ -117,7 +117,7 @@ $$
 
 Note, in particular, that $A=0$, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation, it is a different type of a model.
 
-The inequality paramaterized by $\mathbf E_{\lambda}, \mathbf E_z, \mathbf E_x, \mathbf E_x$ and $\mathbf E_o$, for given $\bm x(k)$ and $\bm u(k)$, defines a set in the $\delta-z$ plane. When the integrality of $\delta$ is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see @fig-mld-switched. 
+The inequality paramaterized by $\mathbf E_{\delta}, \mathbf E_z, \mathbf E_x, \mathbf E_x$ and $\mathbf E_o$, for given $\bm x(k)$ and $\bm u(k)$, defines a set in the $\delta-z$ plane. When the integrality of $\delta$ is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see @fig-mld-switched. 
 ```{julia}
 #| fig-cap: The set of feasible values of the auxilliary variables $\delta$ and $z$. The blue polyhedron relaxes the integrality condition on $\delta$, but if the condition is taken into consideration, the set is a single (orange) point.
 #| label: fig-mld-switched
