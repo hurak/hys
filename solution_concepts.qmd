@@ -22,7 +22,7 @@ Even before we start discussing the concepts of a solution, we need to discuss t
 Recall that in continuous-time systems, the continuous time $t\in\mathbb R_{\geq 0}$, and in discrete-time systems, the discrete "time" $k\in\mathbb N$. We put the latter in quotation marks since $k$ is not really the time but rather it should be read as the $k$th transition of the system. Now, the idea is to combine these two concepts of time into one, and we call it the *hybrid time* 
 $$(t,j), \; t\in \mathbb R_{\geq 0},\, j\in \mathbb N.$$
 
-If you think that it is redundant, note that since hybrid systems can exhibit discrete-event system behaviour, a transition from one discrete state to another can happen instantaneously. In fact, several such transitions can take no time at all. It sounds weird, but that is what the mathematical model allows. That is why determining $t$ need not be enought and we also need to specify $j$.
+If you think that it is redundant, note that since hybrid systems can exhibit discrete-event system behaviour, a transition from one discrete state to another can happen instantaneously. In fact, several such transitions can take no time at all. It sounds weird, but that is what the mathematical model allows. That is why determining $t$ need not be enough and we also need to specify $j$.
 
 The set of all hybrid times for a given hybrid system is called *hybrid time domain*
 $$
@@ -53,7 +53,7 @@ $$
 For each $j$ the function $t \mapsto x(t,j)$ is absolutely continuous on the interval $I^j = \{t \mid (t,j) \in E\}$.
 
 ::: {.callout-warning}
-## Inconsitent notation
+## Inconsistent notation
 We admit here that we are not going to be 100% consistent in the usage of the notation $x(t,j)$ in the rest of our course. Oftentimes use $x(t)$ even within hybrid systems when we do not need to index the jumps.
 :::
 
@@ -75,7 +75,7 @@ Make the modifications for the $\{\mathcal{C},\mathcal{D},\mathcal{F},\mathcal{G
 
 ::: {#exm-solution}
 ## Solution
-En example of a solution is in @fig-solution-and-sets. Follow the solution with your finger and make sure you understand what and why is happing. In particular, in the overlapping region, the solution is not unique. While it can continue flowing, it can also jump.
+En example of a solution is in @fig-solution-and-sets. Follow the solution with your finger and make sure you understand what and why is happening. In particular, in the overlapping region, the solution is not unique. While it can continue flowing, it can also jump.
 
 ![Example of a solution](solution_figures/evolution_of_solution.png){width=60% #fig-solution-and-sets} 
 :::

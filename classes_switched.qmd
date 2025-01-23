@@ -246,7 +246,7 @@ $$\dot x(t) = \sqrt{x(t)}, \; x(0) = 0.$$
 One possible solution is $x(t) = \frac{1}{4}t^2$. Another is $x(t) = 0$. Yet another example is $x(t) = \frac{1}{4}(t-t_0)^2$. It is related to the *Leaky bucket* example.
 :::
 
-### Strenghtening the requirement of continuity (Pickard-Lindelöf)
+### Strengthening the requirement of continuity (Pickard-Lindelöf)
 
 Since continuity of $f(x(t),t)$ was not enough to guarantee uniqueness, we need to impose a stricter condition on $f()$. Namely, we impose a stricter condition on $f()$ with respect to $x$ – Lipschitz continuity, while we still require that the function be continuous with respect to $t$.
 
