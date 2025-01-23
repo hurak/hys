@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Logic vs inequalities – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./mld_DHA_parts_as_inequalities.html" rel="next">
+<link href="./mld_DHA.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2be10d9e998f81ff6e49e26833438aa5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_DHA.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_logic_vs_inequalities.html">Logic vs inequalities</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./des_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./petri_nets_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./max_plus_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_automata_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hybrid_equations_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./classes_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./solution_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_via_multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./stability_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./complementarity_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_logic_vs_inequalities.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_mld_and_pwa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed logical dynamical (MLD) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mpc_mld_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Formal verification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./verification_references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#propositional-logic-and-connectives" id="toc-propositional-logic-and-connectives" class="nav-link active" data-scroll-target="#propositional-logic-and-connectives">Propositional logic and connectives</a>
+  <ul class="collapse">
+  <li><a href="#boolean-variable-or-elementary-proposition" id="toc-boolean-variable-or-elementary-proposition" class="nav-link" data-scroll-target="#boolean-variable-or-elementary-proposition">Boolean variable (or elementary proposition)</a></li>
+  <li><a href="#connectives" id="toc-connectives" class="nav-link" data-scroll-target="#connectives">Connectives</a></li>
+  </ul></li>
+  <li><a href="#equivalences-of-logical-propositions" id="toc-equivalences-of-logical-propositions" class="nav-link" data-scroll-target="#equivalences-of-logical-propositions">Equivalences of logical propositions</a></li>
+  <li><a href="#binary-variables-related-to-the-boolean-ones" id="toc-binary-variables-related-to-the-boolean-ones" class="nav-link" data-scroll-target="#binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</a></li>
+  <li><a href="#integer-equations-and-inequalities-related-to-the-logical-formulas" id="toc-integer-equations-and-inequalities-related-to-the-logical-formulas" class="nav-link" data-scroll-target="#integer-equations-and-inequalities-related-to-the-logical-formulas">Integer equations and (in)equalities related to the logical formulas</a>
+  <ul class="collapse">
+  <li><a href="#and-conjunction" id="toc-and-conjunction" class="nav-link" data-scroll-target="#and-conjunction">And (conjunction)</a></li>
+  <li><a href="#or-disjunction" id="toc-or-disjunction" class="nav-link" data-scroll-target="#or-disjunction">Or (disjunction)</a></li>
+  <li><a href="#negation" id="toc-negation" class="nav-link" data-scroll-target="#negation">Negation</a></li>
+  <li><a href="#xor" id="toc-xor" class="nav-link" data-scroll-target="#xor">Xor</a></li>
+  <li><a href="#implication" id="toc-implication" class="nav-link" data-scroll-target="#implication">Implication</a></li>
+  <li><a href="#equivalence" id="toc-equivalence" class="nav-link" data-scroll-target="#equivalence">Equivalence</a></li>
+  <li><a href="#assignment-product" id="toc-assignment-product" class="nav-link" data-scroll-target="#assignment-product">Assignment (product)</a></li>
+  <li><a href="#general-transformation-of-boolean-expressions-to-integer-inequalities" id="toc-general-transformation-of-boolean-expressions-to-integer-inequalities" class="nav-link" data-scroll-target="#general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./mld_DHA.html">10. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="./mld_logic_vs_inequalities.html">Logic vs inequalities</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Logic vs inequalities</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Our goal is to reformulate the logical conditions (such as IF-THEN-ELSE) encountered in the discrete hybrid model (DHA) as inequalities (and possibly equations), which will allow us to formulate the model as a mathematical program, actually a <em>mixed-integer program</em> (MIP). In order to get there, we are going to recap some fundamentals of logic and then we are going to show how various logical conditions can be reformulated as linear inequalities.</p>
+<section id="propositional-logic-and-connectives" class="level2">
+<h2 class="anchored" data-anchor-id="propositional-logic-and-connectives">Propositional logic and connectives</h2>
+<p>Propositions (also logical formulas) are either true or false. They are composed of elementary or atomic propositions (also Boolean variables) and connectives.</p>
+<section id="boolean-variable-or-elementary-proposition" class="level3">
+<h3 class="anchored" data-anchor-id="boolean-variable-or-elementary-proposition">Boolean variable (or elementary proposition)</h3>
+<p><span class="math inline">X</span> evaluates to <code>true</code> or <code>false</code>. Oftentimes values <code>0</code> and <code>1</code> are used, but it should be clear that these are not numbers but symbols that represent logical values.</p>
+</section>
+<section id="connectives" class="level3">
+<h3 class="anchored" data-anchor-id="connectives">Connectives</h3>
+<ul>
+<li>Conjunction (logical and): <span class="math inline">X_1 \land X_2</span></li>
+<li>Disjunction (logical or): <span class="math inline">X_1 \lor X_2</span></li>
+<li>Negation: <span class="math inline">\neg X_2</span></li>
+<li>Implication: <span class="math inline">X_1 \rightarrow X_2</span></li>
+<li>Equivalence: <span class="math inline">X_1 \leftrightarrow X_2</span></li>
+<li>Logical XOR: <span class="math inline">X_1 \oplus X_2</span></li>
+</ul>
+</section>
+</section>
+<section id="equivalences-of-logical-propositions" class="level2">
+<h2 class="anchored" data-anchor-id="equivalences-of-logical-propositions">Equivalences of logical propositions</h2>
+<p>We will heavily used the following equivalences between logical propositions: <span class="math display">
+\begin{aligned}
+X_1 \rightarrow X_2 \qquad  &amp;\equiv \qquad \neg X_2 \rightarrow \neg X_1,\\
+X_1 \leftrightarrow X_2 \qquad  &amp;\equiv \qquad (X_1 \rightarrow X_2) \land (X_2 \rightarrow X_1),\\
+X_1 \land X_2 \qquad  &amp;\equiv \qquad \neg (\neg X_1 \lor \neg X_2),\\
+X_1 \rightarrow X_2 \qquad  &amp;\equiv \qquad \neg X_1 \lor X_2.
+\end{aligned}
+</span></p>
+<p>The first three are certainly well known. If the last one does not look familiar, it can be seen as follows: for no <span class="math inline">X_1</span> and <span class="math inline">X_2</span> does <span class="math inline">X1 \land \neg X2</span> evaluate to true. In other words, <span class="math inline">\neg(X1 \land \neg X2)</span> is true. De Morgan then gives <span class="math inline">\neg X1 \lor X2</span>.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Two kinds of equivalence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It may be confusing that we use the term <em>equivalence</em> in two different meanings here and with two different symbols. Indeed, the symbol <span class="math inline">\leftrightarrow</span> (sometimes also called material equivalence or biconditional) is a part of the logical proposition, while the symbol <span class="math inline">\equiv</span> is used to relate two logical propositions. While this is well established and described in the literature, the notation varies wildly. In particular, beware that the symbol <span class="math inline">\iff</span> can frequently be encountered in both contexts (that is why we avoid it here). On the other hand, we take the liberty to refer to both cases just as the <em>equivalence</em>, hoping that the context will make it clear which one is meant.</p>
+</div>
+</div>
+</section>
+<section id="binary-variables-related-to-the-boolean-ones" class="level2">
+<h2 class="anchored" data-anchor-id="binary-variables-related-to-the-boolean-ones">Binary variables related to the Boolean ones</h2>
+<p>Ultimately we want to use numerical solvers to solve optimization problems. In order to do that, we need to associate with the Boolean variable <span class="math inline">X</span> a binary (integer) variable <span class="math inline">\delta\in\{0,1\}</span> such that <span class="math display">
+\delta =
+\begin{cases}
+0 &amp; \text{if} \; \neg X,\\
+1 &amp; \text{if} \; X.
+\end{cases}
+</span></p>
+<p>In other words, have the the following equivalence <span class="math display">X \quad \leftrightarrow \quad [\delta = 1].</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Redudant (but convenient) use of brackets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Strictly speaking, the brackets are redundant here. We can equally well write <span class="math inline">X \leftrightarrow \delta = 1</span>, assuming precedence of <span class="math inline">=</span> over <span class="math inline">\leftrightarrow</span>. In this regard, the role of the brackets is really just to emphasize the precedence visually. There is also nothing special about the square brackets, we could equally well write <span class="math inline">X \leftrightarrow (\delta = 1)</span>.</p>
+</div>
+</div>
+</section>
+<section id="integer-equations-and-inequalities-related-to-the-logical-formulas" class="level2">
+<h2 class="anchored" data-anchor-id="integer-equations-and-inequalities-related-to-the-logical-formulas">Integer equations and (in)equalities related to the logical formulas</h2>
+<p>Having introduced binary variables, we now aim at reformulating logical formulas into equivalent integer equalities or inequalities. Let’s investigage one logical connective after another.</p>
+<section id="and-conjunction" class="level3">
+<h3 class="anchored" data-anchor-id="and-conjunction">And (conjunction)</h3>
+<p>We first consider the conjunction of two logical variables <span class="math inline">X_1</span> and <span class="math inline">X_2</span>: <span class="math display">X_1 \land X_2.</span></p>
+<p>Invoking binary variables, we can rewrite this as <span class="math display">[\delta_1=1] \land [\delta_2=1],</span> which ultimately translates to the system of two (trivial) equations <span class="math display">
+\begin{aligned}
+\delta_1&amp;=1,\\
+\delta_2&amp;=1.
+\end{aligned}
+</span></p>
+<p>Another possibility is <span class="math display">
+\delta_1 + \delta_2 = 2.
+</span> From the perspective of subsequent optimization for which this constitutes a constraint, hardly anything can be gained by this formulation compared to the previous one.</p>
+<p>Yet another possibility is <span class="math display">\delta_1 \delta_2 = 1,</span> but we discard it immediately, because it is nonlinear and it provides not advantage over the previous linear formulation.</p>
+</section>
+<section id="or-disjunction" class="level3">
+<h3 class="anchored" data-anchor-id="or-disjunction">Or (disjunction)</h3>
+<p>Another logical formula is <span class="math display">X_1 \lor X_2, </span> which with binary variables becomes <span class="math display">[\delta_1=1] \lor [\delta_2=1].</span></p>
+<p>It can be equivalently expressed as <span class="math display">\delta_1 + \delta_2\geq 1.</span></p>
+</section>
+<section id="negation" class="level3">
+<h3 class="anchored" data-anchor-id="negation">Negation</h3>
+<p>The negation <span class="math display">\neg X_1</span> expressed using a binary variable as in <span class="math display">\neg [\delta_1=1]</span> leads to the equation <span class="math display">\delta_1 = 0.</span></p>
+</section>
+<section id="xor" class="level3">
+<h3 class="anchored" data-anchor-id="xor">Xor</h3>
+<p>The exclusive OR <span class="math display">X_1 \oplus X_2,</span></p>
+<p><span class="math display">[\delta_1=1] \oplus [\delta_2=1],</span></p>
+<p>leads to the equation <span class="math display">\delta_1 + \delta_2 = 1.</span></p>
+</section>
+<section id="implication" class="level3">
+<h3 class="anchored" data-anchor-id="implication">Implication</h3>
+<p>We now consider the implication <span class="math display">X_1 \rightarrow X_2,</span></p>
+<p><span class="math display">[\delta_1=1] \rightarrow [\delta_2=1].</span></p>
+<p>We can take advantage of the equivalent formula <span class="math display">\neg X_1 \lor X_2,</span> which in terms of binary variables is <span class="math display">\neg [\delta_1=1] \lor [\delta_2=1],</span> which can be equivalently expressed as an inequality <span class="math display">(1-\delta_1) + \delta_2\geq 1,</span> which further simplifies to <span class="math display">\delta_1 - \delta_2 \leq 0.</span></p>
+</section>
+<section id="equivalence" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence">Equivalence</h3>
+<p>The equivalence <span class="math display">X_1 \leftrightarrow X_2,</span> <span class="math display">[\delta_1=1] \leftrightarrow [\delta_2=1]</span> can be viewed as a conjunction of two implications, which then gives <span class="math display">\delta_1 - \delta_2 = 0.</span></p>
+</section>
+<section id="assignment-product" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-product">Assignment (product)</h3>
+<p>We now investigate the following logical formula <span class="math display">X_3 \leftrightarrow (X_1 \land X_2),</span> which after introducing binary variables becomes <span class="math display">[\delta_3=1] \leftrightarrow ([\delta_1=1] \land [\delta_2=1]).</span></p>
+<p>The motivation as well as the justification of the name(s) will become clear later in this section when we discuss the interplay between logic and continuous variables (the <code>IF-THEN-ELSE</code> case).</p>
+<p>Expressing the equivalence using implications <span class="math display">(X_3 \rightarrow X_1) \land (X_3\rightarrow X_2) \land ((X_1 \land X_2) \rightarrow X_3).</span></p>
+<p>The last of the tree terms connected by the <span class="math inline">\land</span> connective is equivalent to <span class="math display">\neg (X_1 \land X_2) \lor X_3,</span> which can be simplified to <span class="math display">\neg X_1 \lor \neg X_2 \lor X_3,</span> which is represented with binary variables as <span class="math display">\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],</span> which finally leads to the linear inequality <span class="math display">(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1.</span></p>
+<p>After simplification, and brinding in also the inequality formulations for the other two terms, we get <span id="eq-product-assignment"><span class="math display">
+\begin{aligned}
+\delta_1 + \delta_2 - \delta_3 &amp;\leq 1,\\
+-\delta_1 + \delta_3 &amp;\leq 0,\\
+-\delta_2 + \delta_3 &amp;\leq 0.
+\end{aligned}
+\tag{1}</span></span></p>
+</section>
+<section id="general-transformation-of-boolean-expressions-to-integer-inequalities" class="level3">
+<h3 class="anchored" data-anchor-id="general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</h3>
+<p>While logical formulas can be fairly diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the <em>Conjunctive Normal Form (CNF)</em> <span class="math display">
+\bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right].
+</span></p>
+<p>The reason for our preference has already been displayed in <a href="#eq-product-assignment" class="quarto-xref">Eq.&nbsp;1</a> above. Namely, the logical conjunction <span class="math inline">\land</span> translates to the requirement of a simultaneous satisfaction of inequalities or equations as in <span class="math display">
+\begin{aligned}
+\sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &amp;\geq 1,\\
+&amp;\vdots\\
+\sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &amp;\geq 1.
+\end{aligned}
+</span></p>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./mld_DHA.html" class="pagination-link" aria-label="Discrete hybrid automata">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Discrete hybrid automata</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./mld_DHA_parts_as_inequalities.html" class="pagination-link" aria-label="Components of DHA as inequalities">
+        <span class="nav-page-text">Components of DHA as inequalities</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2024, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
