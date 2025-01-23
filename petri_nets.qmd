@@ -39,7 +39,7 @@ Similarly as in the case of automata, Petri nets can be visualized using graphs.
 - *places* = circles,
 - *transitions* = bars.
 
-The nodes of different kinds are connected by *arcs* (arrowed curves). A integer *weights* are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs. 
+The nodes of different kinds are connected by *arcs* (arrowed curves). A integer *weights* are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weight can be graphically encoded by drawing multiple arcs. 
 
 ::: {#exm-simple-petri-net}
 ## Simple Petri net
@@ -59,8 +59,8 @@ We consider just two places, that is, $\mathcal{P} = \{p_1, p_2\}$, and one tran
 
 - $\mathcal{P} = \{p_1, p_2, p_3, p_4\}$, 
 - $\mathcal{T} = \{t_1, t_2, t_3, t_4, t_5\}$,
-- $\mathcal{A} = \{(p_1, t_1), (t_1, p_1), (p_1, t_2),\ldots\}$,
-- $w((p_1, t_1)) = 2, \; w((t_1, p_1)) = 1, \; \ldots$
+- $\mathcal{A} = \{(p_1, t_1), (t_1, p_2), (p_1, t_2),\ldots\}$,
+- $w((p_1, t_1)) = 2, \; w((t_1, p_2)) = 1, \; \ldots$
 
 ![Example of a more complex Petri net](petri_nets_figures/complicated_petri_net.png){#fig-more-complex-petri-net width=70%}
 :::
