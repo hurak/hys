@@ -732,7 +732,7 @@ window.Quarto = {
 <li><em>places</em> = circles,</li>
 <li><em>transitions</em> = bars.</li>
 </ul>
-<p>The nodes of different kinds are connected by <em>arcs</em> (arrowed curves). A integer <em>weights</em> are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weithg can be graphically encoded by drawing multiple arcs.</p>
+<p>The nodes of different kinds are connected by <em>arcs</em> (arrowed curves). A integer <em>weights</em> are associated with arcs. Alternatively, for a smaller weight (2, 3, 4), the weight can be graphically encoded by drawing multiple arcs.</p>
 <div id="exm-simple-petri-net" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Simple Petri net)</strong></span> We consider just two places, that is, <span class="math inline">\mathcal{P} = \{p_1, p_2\}</span>, and one transition, that is, <span class="math inline">\mathcal{T} = \{t\}</span>. The set of arcs is <span class="math inline">\mathcal{A} = \{\underbrace{(p_1, t)}_{a_1}, \underbrace{(t, p_2)}_{a_2}\}</span>, and the associated weights are <span class="math inline">w(a_1) = w((p_1, t)) = 2</span> and <span class="math inline">w(a_2) = w((t, p_2)) = 1</span>. The Petri net is depicted in <a href="#fig-simple-petri-net" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div id="fig-simple-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -757,8 +757,8 @@ Figure&nbsp;1: Example of a simple Petri net
 <ul>
 <li><span class="math inline">\mathcal{P} = \{p_1, p_2, p_3, p_4\}</span>,</li>
 <li><span class="math inline">\mathcal{T} = \{t_1, t_2, t_3, t_4, t_5\}</span>,</li>
-<li><span class="math inline">\mathcal{A} = \{(p_1, t_1), (t_1, p_1), (p_1, t_2),\ldots\}</span>,</li>
-<li><span class="math inline">w((p_1, t_1)) = 2, \; w((t_1, p_1)) = 1, \; \ldots</span></li>
+<li><span class="math inline">\mathcal{A} = \{(p_1, t_1), (t_1, p_2), (p_1, t_2),\ldots\}</span>,</li>
+<li><span class="math inline">w((p_1, t_1)) = 2, \; w((t_1, p_2)) = 1, \; \ldots</span></li>
 </ul>
 <div id="fig-more-complex-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
