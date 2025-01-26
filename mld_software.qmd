@@ -32,7 +32,7 @@ f(\bm x) &\leq (1-\delta) M,\\
 f(\bm x) &\geq \epsilon + (m-\epsilon)\delta
 \end{aligned}
 $$
-using a sufficiently large constant $M$ and a sufficiently small constant $m$. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with $M$ and $m$. As a matter of fact, only one of the two implications, namely
+using a sufficiently large constant $M$ and a sufficiently small constant $m$. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with $M$ and $m$. As a matter of fact, the support is only provided for one of the two implications, namely
 $$
 [\delta = 1] \rightarrow [f(\bm x) \leq 0].
 $$ 
@@ -58,8 +58,10 @@ With Python API of Gurobi, the indicator constraints can be added using [addGenC
 model.addConstr((delta == 1) >> (x + y - 1.0 <= 0.0))
 ```
 
-The other direction of implication is not supported by optimization solvers (at least not that we know of). Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation
+The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation
 $$
 [\delta = 0] \rightarrow [f(\bm x) \geq \epsilon], 
 $$
 where some small $\epsilon \geq 0$ had to be added to turn the strict inequality into a non-strict one.
+
+Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of $M$.  
