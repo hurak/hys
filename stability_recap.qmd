@@ -24,7 +24,7 @@ $$\dot{\bm{x}} = \mathbf f(\bm x).$$
 Loosely speaking, equilibrium is a state at which the system can rest indefinitely when undisturbed by external disturbances. More technically speaking, equilibrium is a point in the state space, that is, a vector $\bm x_\mathrm{eq}\in \mathbb R^n$, at which the vector field $\mathbf f$ vanishes, that is,  
 $$\mathbf f(\bm x_\mathrm{eq}) = \mathbf 0.$$
 
-Without loss of generality we often assume that $\bm x_\mathrm{eq} = \mathbf 0$, because if the equilibrium is considered anywhere else than at the origin, we can alway introduce a new *shifted* state vector $\bm x_\mathrm{new}(t) = \bm x(t) - \bm x_\mathrm{eq}$.
+Without loss of generality we often assume that $\bm x_\mathrm{eq} = \mathbf 0$, because if the equilibrium is considered anywhere else than at the origin, we can always introduce a new *shifted* state vector $\bm x_\mathrm{new}(t) = \bm x(t) - \bm x_\mathrm{eq}$.
 
 :::{.callout-caution}
 ## An equilibrium and not a system is what we analyze for stability
@@ -58,9 +58,9 @@ fig
 
 ## Asymptotic stability
 
-Combination of Lyapunov stability and attractivity is called assymptotic stability.
+Combination of Lyapunov stability and attractivity is called asymptotic stability.
 
-If the attractivity is global, the assymptotic stability is called global too.
+If the attractivity is global, the asymptotic stability is called global too.
 
 ## Exponential stability 
 

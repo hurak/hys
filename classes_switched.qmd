@@ -271,7 +271,7 @@ where we use Lebesgue integral (instead of Riemann).
 
 Having referred to absolute continuity and Lebesgue integral, the discussion could quickly become rather technical. But all we want to say is that $f$ can be "some kind of discontinuous" with respect to $t$. In particular, it must be *measurable* wrt $t$, which again seems to start escalating... But it suffices to say that it includes the case when $f(x,t)$ is piecewise continuous with respect to $t$ (sampled data control with ZOH).
 
-Needles to say that for a continuous $f$, solutions $x$ are just classical (smooth). 
+Needless to say, for a continuous $f$, solutions $x$ are just classical (smooth). 
 
 If the function $f$ is discontinuous with respect to $x$, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.
 

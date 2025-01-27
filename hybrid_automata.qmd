@@ -103,7 +103,7 @@ The thermostat is a device that turns some heater `on` or `off` (or sets some va
 Naturally, the discrete states (modes, locations) are `on` and `off`. Initially, the heater is `off`. We can identify the first two components of the hybrid automaton:
 $$\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}$$
 
-The only continuous state variable is the temperature. The initial temperature not not quite certain, say it is known to be in the interval $[5,10]$. Two more components of the hybrid automaton follow: 
+The only continuous state variable is the temperature. The initial temperature is not quite certain, say, it is known to be in the interval $[5,10]$. Two more components of the hybrid automaton follow: 
 $$\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}$$
 
 In the two modes `on` and `off`, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say:

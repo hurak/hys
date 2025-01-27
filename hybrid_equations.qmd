@@ -378,7 +378,7 @@ $$
 Now consider a neighborhood of the origin such that $|\theta|<\frac{\pi}{2}$. It is impossible to get $\bm f(\bm x, \bm u) = \begin{bmatrix}
 0\\ f_2 \\ 0\end{bmatrix}, \; f_2\neq 0$. Hence, stabilization by a continuous feedback $\bm u = \kappa (\bm x)$ is impossible. 
 
-But it is possible to stabilize the vehicle using a discontinuous feedback. And discontinuous feedback controllr can be viewed as switching control, which in turn can be seen as instance of a hybrid controller.
+But it is possible to stabilize the vehicle using a discontinuous feedback. And discontinuous feedback controller can be viewed as switching control, which in turn can be seen as instance of a hybrid controller.
 :::
 
 ::: {#exm-stabilization-on-a-circle}

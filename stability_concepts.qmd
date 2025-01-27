@@ -27,7 +27,7 @@ Although we often assume the equilibrium at the origin, that is, $\bm x_\mathrm{
 
 We now consider a hybrid automaton for which the dynamics of each individual *mode* $q$ is given by $\dot{\bm x} = \mathbf f_q(\bm x)$. The *invariants* (or *domains*) of each mode are $\mathcal X_q, \, q=1, \ldots, m$.
 
-The definition of the equilibrium $\bm x_\mathrm{eq}$ that is ofter found in the literature imposes these two conditions:
+The definition of the equilibrium $\bm x_\mathrm{eq}$ that is often found in the literature imposes these two conditions:
 
 - $\mathbf 0 = \mathbf f_q(\bm x_\mathrm{eq})$ for all $q\in \mathcal Q$,
 - the reset map $r(q,q',\bm x_\mathrm{eq}) = \bm x_\mathrm{eq}$.
@@ -43,6 +43,7 @@ The state vector within this modelling framework is composed by both the discret
 :::{#exm-equilibrium-hybrid-equations}
 ## Equilibrium of a hybrid system modelled by hybrid equations
 Consider a hybrid system modelled by hybrid equations, for which the state space is given by $\mathcal X = \{0,1\} \times \mathbb R$. The dynamics of the system is given by
+[TBD]
 :::
 
 This makes the analysis significantly more challenging. Therefore, in our lecture we will only consider stability of hybrid automata. 
