@@ -35,9 +35,9 @@ $$
 \dot{\bm x} 
 = 
 \begin{cases}
-\bm A_1 \bm x + \bm B_1 u + \bm c_1, & \mathrm{if}\, \bm H_1 \bm x + \bm g_1 \leq 0,\\
+\bm A_1 \bm x + \bm B_1 \bm u + \bm c_1, & \mathrm{if}\, \bm H_1 \bm x + \bm g_1 \leq 0,\\
 \vdots\\
-\bm A_m \bm x + \bm B_m + \bm c_m, & \mathrm{if}\, \bm H_m \bm x + \bm g_m \leq 0.
+\bm A_m \bm x + \bm B_m \bm u + \bm c_m, & \mathrm{if}\, \bm H_m \bm x + \bm g_m \leq 0.
 \end{cases}
 $$
 

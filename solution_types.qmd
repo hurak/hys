@@ -127,7 +127,7 @@ Infinite number of jumps in a finite time!
 ![Switching between two water tanks](solution_figures/water_tank.png){width=45%}
 
 $$
-\max \{Q_\mathrm{out,2}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,2} + Q_\mathrm{out,2}
+\max \{Q_\mathrm{out,1}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,1} + Q_\mathrm{out,2}
 $$
 
 
