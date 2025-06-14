@@ -1,0 +1,55 @@
+---
+title: "Online MPC for hybrid systems"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_mpc.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia  
+---
+
+## Optimal control on a finite horizon
+
+### Cost function
+First, we need to set the cost function for the optimal control problem. As usual in optimal control, we want to impose different weights on invididual state and control variables. The most popular is the quadratic cost function well known from the LQ-optimal control
+
+$$
+J_0(x(0),U_0) = x_N^T S_N x_N + \sum_{k=0}^{N-1} \left( x_k^T Q x_k + u_k^T R u_k \right)
+$$
+
+But other (weighted) norms can also be used, in particular 1-norm and infinity-norm
+
+$$
+J_0(x(0),U_0) = \|S_N x_N\|_1 + \sum_{k=0}^{N-1} \left( \|Q x_k\|_1 + \|R u_k\|_1 \right),
+$$
+
+$$
+J_0(x(0),U_0) = \|S_N x_N\|_{\infty} + \sum_{k=0}^{N-1} \left( \|Q x_k\|_{\infty} + \|R u_k\|_{\infty} \right).
+$$
+
+## Optimization problem 
+Combining the cost function with the MLD model, and perhaps we some extra constraints imposed on the control inputs as well as state variables, we get
+$$
+\operatorname*{minimize}_{u_0, u_1, \ldots, u_{N-1}} J_0(x(0),(u_0, u_1, \ldots, u_{N-1}))
+$$
+
+subject to
+$$
+\begin{aligned}
+x_{k+1} &= Ax_k + B_u u_k + B_\delta\delta_k + B_z z_k + B_0\\
+y_k &= Cx_k + D_u u_k + D_\delta \delta_k + D_z z_k + D_0\\
+E_\delta \delta_k &+ E_z z_k \leq E_u u_k + E_x x_k + E_0 \\
+u_{\min} &\leq u_k \leq u_{\max} \\
+x_{\min} &\leq x_k \leq x_{\max} \\
+P x_N &\leq r \\
+x_0 &= x(0)
+\end{aligned}
+$$
+
+

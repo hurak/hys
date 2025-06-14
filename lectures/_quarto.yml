@@ -1,0 +1,118 @@
+project:
+  type: website
+
+csl: ieee-control-systems.csl
+
+website:
+  title: "B(E)3M35HYS – Hybrid systems"
+  page-footer: "Copyright 2025, Zdeněk Hurák"
+  page-navigation: true
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "0. Introduction"
+        contents:
+          - intro/intro.qmd
+          - intro/outline.qmd
+          - intro/rules.qmd
+          - intro/similar.qmd
+          - intro/references.qmd
+      - section: "1. Discrete-event systems: Automata"
+        contents:
+          - des/goals.qmd
+          - des/des.qmd
+          - des/automata.qmd  
+          - des/software.qmd
+          - des/references.qmd
+      - section: "2. Discrete-event systems: Petri nets"  
+        contents:
+          - petri_nets/goals.qmd  
+          - petri_nets/petri_nets.qmd  
+          - petri_nets/petri_nets_timed.qmd 
+          - petri_nets/software.qmd 
+          - petri_nets/references.qmd
+      - section: "3. Discrete-event systems: Max-plus systems"  
+        contents:
+          - max_plus/goals.qmd
+          - max_plus/max_plus_algebra.qmd
+          - max_plus/max_plus_systems.qmd  
+          - max_plus/software.qmd
+          - max_plus/references.qmd
+      - section: "4. Hybrid systems: Hybrid automata"
+        contents:
+          - hybrid_automata/goals.qmd
+          - hybrid_automata/hybrid_automata.qmd
+          - hybrid_automata/software.qmd
+          - hybrid_automata/references.qmd
+      - section: "5. Hybrid systems: Hybrid equations"
+        contents:
+          - hybrid_equations/goals.qmd
+          - hybrid_equations/hybrid_equations.qmd
+          - hybrid_equations/software.qmd
+          - hybrid_equations/references.qmd
+      - section: "6. Some classes of hybrid systems"
+        contents:
+          - classes/goals.qmd
+          - classes/reset.qmd
+          - classes/switched.qmd
+          - classes/PWA.qmd
+          - classes/software.qmd
+          - classes/references.qmd
+      - section: "7. Solution"
+        contents:
+          - solution/goals.qmd
+          - solution/concepts.qmd
+          - solution/types.qmd
+          - solution/references.qmd
+      - section: "8. Stability"
+        contents:
+          - stability/goals.qmd
+          - stability/recap.qmd
+          - stability/concepts.qmd
+          - stability/common_lyapunov_function.qmd
+          - stability/multiple_lyapunov_function.qmd
+          - stability/software.qmd
+          - stability/references.qmd
+      - section: "9. Complementarity systems"
+        contents:
+          - complementarity/goals.qmd
+          - complementarity/constraints.qmd
+          - complementarity/systems.qmd
+          - complementarity/simulations.qmd
+          - complementarity/software.qmd
+          - complementarity/references.qmd
+      - section: "10. Mixed logical dynamical (MLD) systems"
+        contents:
+          - mld/goals.qmd
+          - mld/DHA.qmd
+          - mld/logic_vs_inequalities.qmd
+          - mld/DHA_parts_as_inequalities.qmd
+          - mld/mld_and_pwa.qmd
+          - mld/software.qmd
+          - mld/references.qmd
+      - section: "11. Model predictive control (MPC) for MLD systems"
+        contents:
+          - mpc/goals.qmd
+          - mpc/online.qmd
+          - mpc/explicit.qmd
+          - mpc/software.qmd
+          - mpc/references.qmd
+      - section: "12. Formal verification"
+        contents:
+          - verification/goals.qmd
+          - verification/intro.qmd
+          - verification/reachability.qmd
+          - verification/barrier.qmd
+          - verification/temporal_logics.qmd
+          - verification/software.qmd
+          - verification/references.qmd
+  repo-url: https://github.com/hurak/hys
+  repo-actions: [issue]       
+  back-to-top-navigation: true
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true

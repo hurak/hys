@@ -1,0 +1,38 @@
+---
+title: "Literature"
+bibliography: ../references/ref_hybrid.bib
+format:
+    html     
+---
+
+The discipline of *hybrid system* is huge and spans several areas of science and engineering. As a result, finding a *single* comprehensive reference is difficult if not impossible. The more so that our selection of topics is inevitably biased. Admittedly, our selections of both topics and references will mostly be biased towards control engineering, and yet even within that discipline we have our own preferences. Therefore, we will always provide a list of references when studying particular topics. 
+
+## Introductory/overview texts freely available online
+Among the texts that provide motivation for studying hybrid systems as well as some introduction into theoretical and computational frameworks, we recommend @heemelsIntroductionHybridSystems2009, which is also [available on the author's webpage](https://heemels.tue.nl/content/papers/HeeLeh_BOOK_CONTRIB09a.pdf). Yet another overview, which is also available online, is @johanssonHybridControlSystems2004. And yet another is @deschutterSurveyModelingAnalysis2009, which is [available on the author's web page](https://pub.deschutter.info/abs/09_007.html). The quartet of recommended introductory resources available online is concluded by the lecture notes @lygerosLectureNotesHybrid2004. 
+
+When it comes to the resources specialized to the MPC methodology, we can recommend the book @borrelliPredictiveControlLinear2017, not only because the authors are the leaders in that particular research direction, but also because they have made the electronic version of the book freely available on their webpage.
+
+![](figures/borrelli_hybrid_FRONT_PAGE.jpg){ width=20% }
+
+## Books not freely available online (at least not that we know of)
+Among the high-quality printed books, for which we are not aware of legally available online versions, the slim book @vanderschaftIntroductionHybridDynamical2000 can be regarded as the classic. 
+
+![](figures/van_der_schaft_hybrid_FRONT_PAGE.jpeg){ width=20% }
+
+The handbook @lunzeHandbookHybridSystems2009 contains a wealth of contributions from several authors (in fact two of the online resources linked above are chapters from this book). 
+
+![](figures/lunze_hybrid_FRONT_PAGE.jpg){ width=20% }
+
+The latest textbook on the topic of hybrid systems is @linHybridDynamicalSystems2022. The book was the prime candidate for *the* book for this course, but we wanted a slightly different emphasis on each topic.
+
+![](figures/lin_antsaklis_hybrid_FRONT_PAGE.jpg){ width=20% }
+
+Another relatively recent book is @sanfeliceHybridFeedbackControl2021. Although it is very well written and is certainly recommendable, it follows a particular framework that is not the most common one in the literature on hybrid systems – the framework of *hybrid equations*. But we are certainly going to introduce their approach in our course. The more so that it is supported by a freely available [Matlab toolbox](https://www.mathworks.com/matlabcentral/fileexchange/102239-hybrid-equations-toolbox-beta).
+
+![](figures/sanfelice_hybrid_FRONT_PAGE.jpg){ width=20% }
+
+The book @goebelHybridDynamicalSystems2012 can be regarded as a predecessor and/or complement of the just mentioned @sanfeliceHybridFeedbackControl2021. Although the book is not available online, a short version appears as an article @goebelHybridDynamicalSystems2009 in the popular [IEEE Control Systems magazine](https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=37) (the one with color figures :-).
+
+![](figures/goebel_hybrid_FRONT_PAGE.jpg){ width=20% }
+
+This list of study resources on hybrid systems is by no means exhaustive. We will provide more references in the respective chapters.

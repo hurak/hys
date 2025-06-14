@@ -1,0 +1,31 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_reset.bib
+    - ../references/ref_ODE.bib
+    - ../references/ref_PWA.bib
+    - ../references/ref_PWA_approx.bib
+format:
+    html     
+---
+
+There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.
+
+## Reset control systems
+
+The origing of the reset control can be traced to the paper @cleggNonlinearIntegratorServomechanisms1958. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph @banosResetControlSystems2012. Alternatively, papers such as  @bekerPlantIntegratorExample2001, @bekerFundamentalPropertiesReset2004, @guoStabilityAnalysisDesign2009, or @zaccarianFirstOrderReset2005a can provide another concise introduction to the topic.
+
+## Switched systems
+
+Readable introduction to switched systems is in the slim book @liberzonSwitchingSystemsControl2003. The book is not freely available online, but a useful excerpt can be found in the lecture notes @liberzonSwitchedSystemsStability2007. 
+
+Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book @filippovDifferentialEquationsDiscontinuous1988. The main concepts and results can also be found in the tutorial @cortesDiscontinuousDynamicalSystems2008, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook @trefethenExploringODEs2017, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic [Chebfun](https://www.chebfun.org) toolbox. 
+
+## Piecewise affine (PWA) systems
+
+In our course we based our treatment of PWA systems on the monograph @johanssonPiecewiseLinearControl2003. It is not freely available online, but it is based on the author's PhD thesis @johanssonPiecewiseLinearControl1999, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper @hassibiQuadraticStabilizationControl1998 reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is @rodriguesPiecewiseAffineControl2019, but again, no free online version. The book refers to the Matlab toolbox documented in @fekriPWATOOLSMATLABToolbox2012. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.
+
+## Piecewise affine (linear) approximation 
+
+There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): @magnaniConvexPiecewiselinearFitting2008 (although it is only restricted to convex functions), @huchetteNonconvexPiecewiseLinear2022, @torielloFittingPiecewiseLinear2012, ...

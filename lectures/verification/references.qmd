@@ -1,0 +1,28 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_verification.bib
+    - ../references/ref_temporal.bib
+format: html
+---
+
+The topic of verification is vast. While we only reserved a single week/chapter/block for it, it would easily fill a dedicated course, supported by a couple of books. Having a smaller time budget, we can still find some confirmation of usefulness even of a modest introduction in the Chapter 3 of @linHybridDynamicalSystems2022. Although we do not follow the book closely, we do cover some of their topics. 
+
+Among general references for hybrid system verification, we can recommend @mitraVerifyingCyberPhysicalSystems2021 for an overview. Although the book is not freely available for download, its web page contains quite some additional material such as slides and codes.
+
+## Reachability analysis (by set propagation techniques)
+
+The overview paper @althoffSetPropagationTechniques2021 is recommendable. In addition, the manual for the CORA toolbox for Matlab @althoffCORA2025Manual2025 (by the same author and his team) can do a good tutorial job.
+
+## Barier certificates
+
+We based our introduction on @prajnaSafetyVerificationHybrid2004, including the example. But a wealth of papers have been published on the topic, including the extension from analysis to control design in the form of *control barrier functions*, which has been introduced in @wielandConstructiveSafetyUsing2007. A recent overview is in the book @xiaoSafeAutonomyControl2023.
+
+## Temporal logics 
+
+Two popular monographs on verification (model checking) based on temporal logics such as LTL, CTL and CTL* are @baierPrinciplesModelChecking2008, and @clarkeModelChecking2018. These do not cover hybrid systems, though. Still they are recommendable (at least their first chapters) for understanding the basics.
+
+Some learning material and sketches of applications of temporal logics in control systems for robotics and autonomous driving are in the lectures @murrayLectureLinearTemporal2020, and @wongpiromsarnLectureModelChecking2020.
+
+A temporal logic particularly useful for specifying more complex requirements on (hybrid) control systems is Signal Temporal Logic (STL). Its treatment of this framework in textbooks is still rather sketchy. Research papers are then the only source. STL has been introduced in the readable @malerMonitoringTemporalProperties2004. Robustness degree has been described in @donzeRobustSatisfactionTemporal2010 and the self-contained slides @donzeSignalTemporalLogic2013. Some more recent papers that also contain other relevant references are @yuOnlineControlSynthesis2024, @ramanModelPredictiveControl2014, @farahaniRobustModelPredictive2015, @farahaniShrinkingHorizonModel2019.

@@ -1,0 +1,17 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_des.bib
+    - ../references/ref_hybrid.bib
+    - ../references/ref_verification.bib
+format:
+    html     
+---
+
+Literature for discrete-event systems is vast, but within the control systems community the classical (and award-winning) reference is @cassandrasIntroductionDiscreteEvent2021. Note that an electronic version of the previous edition (perfectly acceptable for us) is accessible through the NTK library (possibly upon CTU login). This book is rather thick too and covering its content can easily need a full semestr. However, in our course we will only need the very basics of the theory of (finite state) automata and such basics are presented in Chapters 1 and 2. The extension to timed automata is then presented in Chapter 5.2, but the particular formalism for timed automata that we use follows @alurTheoryTimedAutomata1994, or perhaps even better @alurTimedAutomata1999.
+
+![](des_figures/cassandras_discrete_event_FRONT_PAGE.jpg){ width=20% }
+
+The basics are also presented in the tutorial paper by the same author(s) @lafortuneDiscreteEventSystems2019. A very short (but sufficient for us) intro to discrete-event systems that adheres to Cassandras's style is given in the first chapter of the recent hybrid systems textbook @linHybridDynamicalSystems2022.
+
+Alternatively, there are some other recent textbooks that contain decent introductions to the theory of (finite state) automata. These are often surfing on the wave of popularity of the recently fashionable buzzword of cyberphysical or embedded systems, but in essence these deal with the same hybrid systems as we do in our course. The fact is, however, that the modeling formalism can be a bit different from the one in Cassandras (certainly when it comes to notation but also some concepts). One such textbook is @alurPrinciplesCyberPhysicalSystems2015, for which an electronic version accessible through the NTK library (upon CTU login). Another one is @mitraVerificationFrameworkHybrid2007. In particular, Chapter 2 serves as an intro to the automata theory. Last but not least, we mention @leeIntroductionEmbeddedSystems2017, for which an electronic version is freely downloadable.

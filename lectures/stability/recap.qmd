@@ -1,0 +1,128 @@
+---
+title: "Recap of stability analysis for continuous dynamical systems"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_stability.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia
+---
+
+Before we start discussing stability of hybrid dynamical systems, it will not hurt to recapitulate the stability analysis for continuous (both in value and in time) dynamical systems modelled by the standard state equation 
+
+$$\dot{\bm{x}} = \mathbf f(\bm x).$$
+
+## Equilibrium 
+
+Loosely speaking, equilibrium is a state at which the system can rest indefinitely when undisturbed by external disturbances. More technically speaking, equilibrium is a point in the state space, that is, a vector $\bm x_\mathrm{eq}\in \mathbb R^n$, at which the vector field $\mathbf f$ vanishes, that is,  
+$$\mathbf f(\bm x_\mathrm{eq}) = \mathbf 0.$$
+
+Without loss of generality we often assume that $\bm x_\mathrm{eq} = \mathbf 0$, because if the equilibrium is considered anywhere else than at the origin, we can always introduce a new *shifted* state vector $\bm x_\mathrm{new}(t) = \bm x(t) - \bm x_\mathrm{eq}$.
+
+:::{.callout-caution}
+## An equilibrium and not a system is what we analyze for stability
+Although every now and then we may hear the term *stability* attributed to a *system*, strictly speaking it is an *equilibrium* that is stable or unstable. For linear systems, there is not need to distinguish between the two, for nonlinear systems it can easily happen that some equilibrium is stable while some other is unstable.
+:::
+
+
+## Lyapunov stability 
+
+One of the most common types of stability is *Lyapunov stability*. Loosely speaking, it means that if the system starts close to the equilibrium, it stays close to it. More formally,  for a given $\varepsilon>0$, there is a $\delta>0$ such that ...
+
+## Attractivity
+
+This is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere. 
+
+Perhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.
+
+::: {#exm-attractive-unstable}
+## Example of an attractive but unstable equilibrium
+``` {julia}
+f(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); 
+        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]
+
+using CairoMakie
+fig = Figure(; size = (800, 800),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+streamplot!(ax,x->Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)
+fig
+```
+:::
+
+## Asymptotic stability
+
+Combination of Lyapunov stability and attractivity is called asymptotic stability.
+
+If the attractivity is global, the asymptotic stability is called global too.
+
+## Exponential stability 
+
+Exponential convergence.
+
+## Stability of time-varying systems
+
+Stability (Lyapunov, asymptotic, ...) is called *uniform*, if it is independent of the inititial time.
+
+## Stability analysis via Lyapunov function
+
+Now that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the searching for a *Lyapunov function*.
+
+*Lyapunov function* is a scalar function $V(\cdot)\in\mathcal{C}_1$ defined on open $\mathcal{D}\subset \mathbb{R}^n$ containing the origin (the equilibrium) that satisfies the following conditions
+$$V(0) = 0, \; V(x) > 0\, \text{for all}\, x\in \mathcal{D}\setminus \{0\}, $$
+
+$$ \underbrace{\left(\nabla V(x)\right)^\top f(x)}_{\frac{\mathrm d}{\mathrm d t}V(x(t))} \leq 0.$$
+
+In words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function *positive definite*), and its derivative along the trajectories of the system is nonpositive (aka negative semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.
+
+If the latter condition is made strict, that is, if 
+$$\left(\nabla V(x)\right)^\top f(x) < 0,$$
+which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.
+
+The interpretation is quite intuitive: ...
+
+## LaSalle's invariance principle
+
+A delicate question is if the derivative of the Lyapunov function ocassionally vanishes, it it automatically means that the equilibrium is not assymptotically stable. The aswer is: not necessarily. LaSalle's invariance principle states that even if the derivative of the Lyapunov function occasionally vanishes, the equilibrium can still be asymptotically stable, provided some condition is satisfied. We will not elaborate on it here. Look it up in your favourite nonlinear (control) system textbook. 
+
+## Formulated using comparison functions
+
+The above properties of the Lyapunov function be also be formulated using *comparison functions*. For Lyapunov stability, the following holds
+$$\kappa_1(\|x\|) \leq V(x) {\color{gray}\leq \kappa_2(\|x\|)},$$
+where 
+
+- $\kappa_1(\cdot), \kappa_2(\cdot)$ are class $\mathcal{K}$ comparison functions, that is, they are continuous, zero at zero and (strictly) increasing. 
+- If $\kappa_1$ increases to infinity ($\kappa_1(\cdot)\in\mathcal{K}_\infty$), the stability is global.
+
+For asymptotic stability 
+
+$$\left(\nabla V(x)\right)^\top f(x) \leq -\rho(\|x\|),$$
+where $\rho(\cdot)$ is a positive definite continuous function, zero at the origin.
+
+::: {.notes}
+The upper bound $\kappa_2(\cdot)$ does not have to be there, it is automatically satisfied for time-invariant systems. It does have to be imposed for time-varying systems though.
+:::
+
+## Exponential stability
+
+$$k_1 \|x\|^p \leq V(x) \leq k_2 \|x\|^p,$$
+
+$$\left(\nabla V(x)\right)^\top f(x) \leq -k_3 \|x\|^p.$$
+
+## Exponential stability with quadratic Lyapunov function
+
+$$
+V(x) = x^\top P x
+$$
+
+$$\lambda_{\min} (P) \|x\|^2 \leq V(x) \leq \lambda_{\max} (P) \|x\|^2$$
+
+## Converse theorems
+
+- for (G)UAS,
+- for Lyapunov stability only time-varying Lyapunov function guaranteed.

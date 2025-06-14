@@ -1,0 +1,18 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_complementarity.bib
+    - ../references/ref_hybrid.bib
+format:
+    html     
+---
+
+Concise (short and yet sufficient for our purposes) introduction to *(linear) complementarity problems and systems* is in @heemelsEquivalenceHybridDynamical2001. Besides describing the idea of complementarity in dynamical systems, it also shows how it is related to other modeling frameworks for hybrid dynamical systems. More detailed and yet very accessible introduction is in the thesis @heemelsLinearComplementaritySystems1999. Condensed treatment is in the papers @heemelsLinearComplementaritySystems2000 and @vanderschaftComplementarityModelingHybrid1998. 
+
+A readable introduction to the *Extended Linear Complementarity Problem* is in @deschutterExtendedLinearComplementarity1999 (it is also freely available as a [technical report](https://pub.deschutter.info/abs/98_40.html)).
+
+The topics of complementarity constraints in dynamical systems and optimization is still being actively researched. A recent publication on QP optimization with complementarity constraints (LCQP) is @hallLCQPowSolverLinear2022.
+ 
+Numerical methods for nonsmooth dynamical systems that are based on complementary constraints (and implemented in SICONOS software) are comprehensively presented in
+@acaryNumericalMethodsNonsmooth2008.
+

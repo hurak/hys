@@ -1,0 +1,19 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_des.bib
+    - ../references/ref_petri_nets.bib
+    - ../references/ref_max_plus.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+---
+
+One last time in this course we refer to @cassandrasIntroductionDiscreteEvent2021, a comprehensive and popular introduction do discrete event systems. A short introduction to the framework (max,+) algebra can be found (under the somewhat less known name "Dioid algebras") in Chapter 5.4.
+
+But as a recommendable alternative, (any one of) the a series of papers by [Bart de Schutter](https://www.deschutter.info) (TU Delft) and his colleagues can be read instead. For example @deschutterAnalysisControlMaxplus2020 and @deschutterModelPredictiveControl2000.
+
+For anyone interested in learning yet more, a beautiful (and freely online) book is @baccelliSynchronizationLinearityAlgebra2001, which we have also mentioned in the context of Petri nets.
+
+Max-plus algebra is relevant outside the domain of discrete-event systems – it is also investigated in optimization for its connection with piecewise linear/affine functions. Note that the community prefers using the name *tropical geometry* (to emphasise that they view it as a branch of algebraic geometry). A lovely tutorial is @rauFirstExpeditionTropical2017.

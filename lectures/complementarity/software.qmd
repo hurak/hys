@@ -1,0 +1,45 @@
+---
+title: "Software"
+bibliography: ../references/ref_hybrid.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+#engine: julia
+---
+
+## Solving optimization problems with complementarity constraints
+
+Surprisingly, there are not many software packages that can handle complementarity constraints directly. 
+
+- Within the realm of free software, I am only aware of [PATH](https://pages.cs.wisc.edu/~ferris/path.html) solver. Well, it is not open source and it is not issued under any classical free and open source license. It can be interfaced from Matlab and Julia (and AMPL and GAMS, which are not relevant for our course). For Matlab, compiled mexfiles can be downloaded. For Julia, the solver can be interfaced directly from the popular [JuMP](https://jump.dev/JuMP.jl/stable/) package (choosing the [PATHSolver.jl](https://jump.dev/JuMP.jl/stable/packages/PATHSolver/#PATHSolver.jl) solver), see the section on [Complementarity constraints](https://jump.dev/JuMP.jl/stable/manual/constraints/#Complementarity-constraints) and [Mixed complementarity problems](https://jump.dev/JuMP.jl/stable/tutorials/nonlinear/complementarity/) in JuMP manual.
+
+When restricted to Matlab, there are several options, all of them commercial:
+
+- [Optimization Toolbox for Matlab](https://www.mathworks.com/help/optim/index.html) does not offer a specialized solver for complementarity problems. The `fmincon` function can only handle it as a general nonlinear constraint $g_1(x)g_2(x)=0, \, g_1(x) \geq 0, \, g_2(x) \geq 0$.
+- [Tomlab](https://tomopt.com/tomlab/) toolbox has some [support for complementarity constraints](https://tomopt.com/docs/quickguide/quickguide029.php).
+- [Knitro](https://www.artelys.com/solvers/knitro/) solver (by Artelys) has some [support for complementarity constraints](https://www.artelys.com/docs/knitro/2_userGuide/complementarity.html).
+- [YALMIP](https://yalmip.github.io) toolbox supports definining the complementarity constraints through the command [complements](https://yalmip.github.io/command/complements/): `F = complements(w >= 0, z >= 0)`. By default, it converts the problem into the format suitable for a mixed-integer solver. If Knitro is available, it can be interfaced.
+
+[Gurobi](https://www.gurobi.com/solutions/gurobi-optimizer/) does not seem to support complementarity constraints. 
+
+[Mosek](https://www.mosek.com) supports [disjunctive constraints](https://docs.mosek.com/latest/capi/tutorial-djc-optimizer.html), within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.
+
+## Modeling and simulation of dynamical systems with complementarity constraints
+
+Within the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:
+
+- [SICONOS](https://nonsmooth.gricad-pages.univ-grenoble-alpes.fr/siconos/)
+  - C++, Python
+  - physical domain independent 
+
+- [PINOCCHIO](https://stack-of-tasks.github.io/pinocchio/)
+  - C++, Python
+  - specialized for robotics
+
+  
+
