@@ -369,7 +369,7 @@ Two general lessons can be learnt from the previous example. First, the procedur
 
 ## HYSDEL language
 
-To address the first lesson learnt from the examples – that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone –, some automation of the procedure is desirable. The only tool for this that we are aware of is the HYSDEL language and parser (see the [section on software for details on availability](mld_software.qmd)). Here we do not explain it – we refer the student to the section 16.7 in @borrelliPredictiveControlLinear2017, which is freely downloadable –, but we show the code for @exm-mld-switched, which is perhaps self-explaining.
+To address the first lesson learnt from the examples – that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone –, some automation of the procedure is desirable. The only tool for this that we are aware of is the HYSDEL language and parser (see the [section on software for details on availability](software.qmd)). Here we do not explain it – we refer the student to the section 16.7 in @borrelliPredictiveControlLinear2017, which is freely downloadable –, but we show the code for @exm-mld-switched, which is perhaps self-explaining.
 
 ```
 SYSTEM switched_LTI_1 {

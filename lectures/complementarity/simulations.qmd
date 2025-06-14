@@ -224,7 +224,7 @@ $$
 }
 $${#eq-backward-euler-mcp-for-spiralling-example}
 
-We now have enough to start implementing a solver for this system, provided we have an access to a solver the MCP (see the [page dedicated to software for complementarity problems](complementarity_software.qmd)). But before we do it, we analyze the problem a bit deeper. In this particular small and simple case, it is still doable with just a pencil and paper.
+We now have enough to start implementing a solver for this system, provided we have an access to a solver the MCP (see the [page dedicated to software for complementarity problems](software.qmd)). But before we do it, we analyze the problem a bit deeper. In this particular small and simple case, it is still doable with just a pencil and paper.
 
 #### 9 possible combinations
 
@@ -514,7 +514,7 @@ length(t)
 
 :::{#exm-time-stepping-for-mechanical-with-hard-stop}
 ## Time-stepping for a mechanical system with a hard stop
-Let's now apply the time-stepping method for a mechanical system with a hard stop as described in the Example 2 in the [section on complementarity systems](complementarity_systems.qmd). We start by formulating the *semi-explicit* Euler scheme
+Let's now apply the time-stepping method for a mechanical system with a hard stop as described in the Example 2 in the [section on complementarity systems](systems.qmd). We start by formulating the *semi-explicit* Euler scheme
 
 $$
 \begin{aligned}

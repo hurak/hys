@@ -16,7 +16,7 @@ crossref:
 
 In this chapter we introduce another formalism for modelling discrete event systems (DES) – Petri nets. Petri nets offer an alternative perspective on discrete even systems compared to automata. And it is good to have alternatives, isn't it? For some purposes, one framework can be more appropriate than the other. 
 
-Furthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived *GRAFCET* language, which in turn served as the basis for the *Sequential Function Chart* (SFC) language for PLC programming. See the [references](petri_nets_references.qmd).
+Furthermore, the ideas behind Petri nets even made it into international standards. Either directly or through the derived *GRAFCET* language, which in turn served as the basis for the *Sequential Function Chart* (SFC) language for PLC programming. See the [references](references.qmd).
 
 Last but not least, an elegant algebraic framework based on the so-called (max,+) algebra has been developed for a subset of Petri nets (so-called event graphs) and it would be a shame not to mention it in our course (in the next chapter).
 

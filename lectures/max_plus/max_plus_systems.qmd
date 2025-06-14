@@ -301,6 +301,6 @@ Our motivation for formulating the problems within the (max,+) algebra was to fa
 
 When we consider the MPC for MPL systems, we are faced with a nonlinear optimization problem. We can use some general nonlinear solvers (`fmincon`, `ipopt`, ...). 
 
-Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by @deschutterExtendedLinearComplementarity1995. We will introduce the complementarity problem(s) later in a [chapter dedicated to complementarity](complementarity_constraints.qmd).
+Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by @deschutterExtendedLinearComplementarity1995. We will introduce the complementarity problem(s) later in a [chapter dedicated to complementarity](../complementarity/constraints.qmd).
 
 Yet another approach is through Mixed Integer (Linear) Programming (MILP).
