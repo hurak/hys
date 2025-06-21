@@ -63,6 +63,7 @@ The corresponding digraph is in @fig-automaton-as-digraph.
 ```{dot}
 //| label: fig-automaton-as-digraph
 //| fig-cap: An example automaton as a digraph
+//| fig-height: 200px
 //| fig-width: 5.5
 digraph G {
     bgcolor = "transparent";
@@ -136,6 +137,7 @@ In continuous-valued dynamical systems, we have a *state trajectory*, but then t
 //| label: fig-beverage-vending-machine
 //| fig-cap: Example of a digraph representation of the automaton for a beverage vending machine
 //| fig-width: 8
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -162,6 +164,7 @@ digraph G {
 ```{dot}
 //| label: fig-beverage-vending-machine-marked
 //| fig-cap: Example of a digraph representation of the automaton for a beverage vending machine with a marked state
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -189,6 +192,7 @@ The `waiting` state can be *marked* (is *accepting*).
 //| label: fig-longitudinal-control
 //| fig-cap: Example of a digraph representation of the automaton for a longitudinal control of a ground vehicle
 //| fig-width: 9
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -222,6 +226,7 @@ digraph G {
 //| label: fig-corridor-switch
 //| fig-cap: Example of a digraph representation of the automaton for a corridor switch
 //| fig-width: 4.5
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -258,6 +263,7 @@ We now consider the classical JK flip-flop logical circuit. It symbol is in @fig
 //| label: fig-JK-flip-flop
 //| fig-cap: JK flip-flop as an automaton
 //| fig-width: 4.5
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -279,6 +285,7 @@ digraph G {
 //| label: fig-double-intensity-switching
 //| fig-cap: Example of a digraph representation of the automaton for double intensity switching
 //| fig-width: 5
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -349,6 +356,7 @@ The following automaton has just three states, but just two outputs (`FLOW` and 
 //| label: fig-moore-machine
 //| fig-cap: Example of a digraph representation of the Moore machine for a valve control
 //| fig-width: 7
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -386,6 +394,7 @@ Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no cha
 //| label: fig-mealy-machine
 //| fig-cap: Example of a digraph representation of the Mealy machine for a coffee machine
 //| fig-width: 8
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -412,6 +421,7 @@ Two more states wrt Mealy
 //| label: fig-mealy-machine-as-moore-machine
 //| fig-cap: Example of a digraph representation of the Moore machine for a coffee machine
 //| fig-width: 8
+//| fig-height: 300px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -454,6 +464,7 @@ The example comes from the field of distributed computing systems. It considers 
 //| label: fig-dijkstra-token-passing
 //| fig-cap: Example of a ring topology for Dijkstra's token passing in a distributed system
 //| fig-width: 3.5
+//| fig-height: 300px
 digraph G {
     layout=circo;
     bgcolor = "transparent";
@@ -537,6 +548,7 @@ In this example, there are two modes (`on` and `off`), which can be captured by 
 //| label: fig-counting-up-to-10
 //| fig-cap: Example of a digraph representation of the extended-state automaton for counting up to ten
 //| fig-width: 6.5
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -560,6 +572,7 @@ Any practically useful modelling framework should support decomposition of a lar
 //| label: fig-composing-automata
 //| fig-cap: Example illustrating how two automata can be synchronized by sending and receiving events
 //| fig-width: 4
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -603,7 +616,7 @@ $$
 ```{dot}
 //| label: fig-language-automaton
 //| fig-cap: Example of an automaton generating the language $\mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}$
-//| fig-width: 3.5
+//| fig-height: 150px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -642,7 +655,7 @@ States 3 and 4 are *livelock* states.
 ```{dot}
 //| label: fig-blocking
 //| fig-cap: Example of an automaton with blocking states
-//| fig-width: 6
+//| fig-height: 250px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -699,7 +712,7 @@ What are other examples?
 Queueing systems can be interconnected into networks. 
 
 
-![Example of a network of queueing systems](figures/queueing_system_network.png){#fig-queueing-system-network width=80%}
+![Example of a network of queueing systems](figures/queueing_system_network.png){#fig-queueing-system-network width=70%}
 
 ### Queueing systems as automata
 
@@ -727,7 +740,7 @@ $$
 
 ### Queueing system as an automaton
 
-![Queueing system as an automaton](figures/queueing_system_as_automaton.png){#fig-queueing-system-as-automaton width=80%}
+![Queueing system as an automaton](figures/queueing_system_as_automaton.png){#fig-queueing-system-as-automaton width=60%}
 
 :::{.callout-note}
 Note how the states correspond to the value of the state variable.
@@ -774,7 +787,7 @@ Both satisfaction of the guard and arrival of the event constitute enabling cond
 ```{dot}
 //| label: fig-timed-automaton-with-guards
 //| fig-cap: Example of a timed automaton with guards
-//| fig-width: 9
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
@@ -794,7 +807,7 @@ digraph G {
 ```{dot}
 //| label: fig-timed-automaton-with-guards-and-invariant
 //| fig-cap: Example of a timed automaton with guards and invariant
-//| fig-width: 9
+//| fig-height: 200px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
