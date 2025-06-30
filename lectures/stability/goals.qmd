@@ -5,8 +5,17 @@ format: html
 
 ## Knowledge (remember and understand)
 
-- ...
+- Give a definition of an equilibrium of a hybrid automaton.
+- Give definitions of (uniform) stability, (global uniform) asymptotic stability, and (global uniform) exponential stability of a hybrid automaton.
+- Does stability of the continuous dynamics at each individual discrete state (mode, location) guarantee stability of the full hybrid automaton?
+- Does instability of the continuous dynamics at some of the discrete state (mode, location) prevent the full hybrid automaton from being stable? 
+- Give conditions of (uniform) asymptotic stability of a hybrid automaton in terms of Lyapunov-like functions. 
+- Explain the essence and the pros and the cons of a common Lyapunov function (CLF) approach to stability analysis.
+- Explain the common quadratic Lyapunov function (CQLF) approach to stability analysis. 
+- Restricting to a hybrid automaton with linear dynamics in each mode, formulate the problem of finding a CQLF as a linear matrix inequality.
+- Explain the S-procedure and show how it can be used to formulate the problem of a piecewise quadratic Lyapunov function?
 
 ## Skills (use the knowledge to solve a problem)
 
-- ...
+- Analyze stability of a switched linear system under arbitrary switching by formulating and solving (using a computer) the relevant linear matrix inequalities (LMI).
+- Analyze stability of a switched linear system using a piecewise quadratic Lyapunov function.

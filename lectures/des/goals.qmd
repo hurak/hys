@@ -5,8 +5,17 @@ format: html
 
 ## Knowledge (remember and understand)
 
-- ...
+- Explain the concept of a discrete event.
+- Contrast the concept of a time-driven continuous-variable (dynamical) system with that of a discrete-event system.
+- Give a formal definition of a state automaton and show an example of its graphical representation by means of a state transition graph/diagram.
+- Explain the concept of a language and how it is related to a (state) automaton. 
+- Enumerate standard components of a queuing system. Give a few examples of a queueing system.
+- Give a few important extensions of the standard state automaton.
+- When introducing time into an automaton, which elements must be added into the (definition of the standard untimed) automaton?
 
 ## Skills (use the knowledge to solve a problem)
 
-- ...
+- Formulate some simple discrete-event system as a state automaton. If the number of states is small, draw a transition graph of the automaton.
+- Build a simple automaton using StateFlow.
+- Build a simple queueing system using SimEvents.
+- Build a simple timed automaton using UPPAAL.

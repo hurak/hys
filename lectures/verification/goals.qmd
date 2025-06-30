@@ -5,7 +5,14 @@ format: html
 
 ## Knowledge (remember and understand)
 
-- ...
+- Enumerate types of requirements.
+- Explain the concept of safety requirements and how they are related to the invariance of a set in state space.
+- Enumerate a few methods for verification of safety via reachability analysis.
+- Explain the essence of safety verifiacation by checking feasibility of optimal control for MLD.
+- Explain the essence of safety verification by set propagation techniques. In particular, what kind of sets are typically propagated? Which software is available for it?
+- Define the properties of a barrier certificate function. First, start with a general continuous system and then extend the definition to a hybrid system. Explain how can the barrier certificate function be found using the technique of sum-of-squares (SOS) programming.
+- Explain the concept of liveness (progress) requirements
+- Explain the possibility to formulate general specifications through temporal logics: such as Linear Temporal Logic (LTL) and Computation Tree Logic (CTL).
 
 ## Skills (use the knowledge to solve a problem)
 
