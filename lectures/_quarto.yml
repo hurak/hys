@@ -13,100 +13,110 @@ website:
     contents:
       - section: "0. Introduction"
         contents:
-          - intro/intro.qmd
-          - intro/outline.qmd
-          - intro/rules.qmd
-          - intro/similar.qmd
-          - intro/references.qmd
+          - 0_intro/intro.qmd
+          - 0_intro/outline.qmd
+          - 0_intro/rules.qmd
+          - 0_intro/similar.qmd
+          - 0_intro/references.qmd
       - section: "1. Discrete-event systems: Automata"
         contents:
-          - des/goals.qmd
-          - des/des.qmd
-          - des/automata.qmd  
-          - des/software.qmd
-          - des/references.qmd
+          - 1_des/goals.qmd
+          - 1_des/des.qmd
+          - 1_des/automata.qmd  
+          - 1_des/software.qmd
+          - 1_des/references.qmd
       - section: "2. Discrete-event systems: Petri nets"  
         contents:
-          - petri_nets/goals.qmd  
-          - petri_nets/petri_nets.qmd  
-          - petri_nets/petri_nets_timed.qmd 
-          - petri_nets/software.qmd 
-          - petri_nets/references.qmd
+          - 2_petri_nets/goals.qmd  
+          - 2_petri_nets/petri_nets.qmd  
+          - 2_petri_nets/petri_nets_timed.qmd 
+          - 2_petri_nets/software.qmd 
+          - 2_petri_nets/references.qmd
       - section: "3. Discrete-event systems: Max-plus systems"  
         contents:
-          - max_plus/goals.qmd
-          - max_plus/max_plus_algebra.qmd
-          - max_plus/max_plus_systems.qmd  
-          - max_plus/software.qmd
-          - max_plus/references.qmd
+          - 3_max_plus/goals.qmd
+          - 3_max_plus/max_plus_algebra.qmd
+          - 3_max_plus/max_plus_systems.qmd  
+          - 3_max_plus/software.qmd
+          - 3_max_plus/references.qmd
       - section: "4. Hybrid systems: Hybrid automata"
         contents:
-          - hybrid_automata/goals.qmd
-          - hybrid_automata/hybrid_automata.qmd
-          - hybrid_automata/software.qmd
-          - hybrid_automata/references.qmd
+          - 4_hybrid_automata/goals.qmd
+          - 4_hybrid_automata/hybrid_automata.qmd
+          - 4_hybrid_automata/software.qmd
+          - 4_hybrid_automata/references.qmd
       - section: "5. Hybrid systems: Hybrid equations"
         contents:
-          - hybrid_equations/goals.qmd
-          - hybrid_equations/hybrid_equations.qmd
-          - hybrid_equations/software.qmd
-          - hybrid_equations/references.qmd
+          - 5_hybrid_equations/goals.qmd
+          - 5_hybrid_equations/hybrid_equations.qmd
+          - 5_hybrid_equations/software.qmd
+          - 5_hybrid_equations/references.qmd
       - section: "6. Some classes of hybrid systems"
         contents:
-          - classes/goals.qmd
-          - classes/reset.qmd
-          - classes/switched.qmd
-          - classes/PWA.qmd
-          - classes/software.qmd
-          - classes/references.qmd
+          - 6_classes/goals.qmd
+          - 6_classes/reset.qmd
+          - 6_classes/switched.qmd
+          - 6_classes/PWA.qmd
+          - 6_classes/software.qmd
+          - 6_classes/references.qmd
       - section: "7. Solution"
         contents:
-          - solution/goals.qmd
-          - solution/concepts.qmd
-          - solution/types.qmd
-          - solution/references.qmd
-      - section: "8. Stability"
+          - 7_solution/goals.qmd
+          - 7_solution/concepts.qmd
+          - 7_solution/types.qmd
+          - 7_solution/references.qmd
+      - section: "8. Stability I."
         contents:
-          - stability/goals.qmd
-          - stability/recap.qmd
-          - stability/concepts.qmd
-          - stability/common_lyapunov_function.qmd
-          - stability/multiple_lyapunov_function.qmd
-          - stability/software.qmd
-          - stability/references.qmd
-      - section: "9. Complementarity systems"
+          - 8_stability_1/goals.qmd
+          - 8_stability_1/recap.qmd
+          - 8_stability_1/concepts.qmd
+          - 8_stability_1/common_lyapunov_function.qmd
+          - 8_stability_1/software.qmd
+          - 8_stability_1/references.qmd
+      - section: "9. Stability II."
         contents:
-          - complementarity/goals.qmd
-          - complementarity/constraints.qmd
-          - complementarity/systems.qmd
-          - complementarity/simulations.qmd
-          - complementarity/software.qmd
-          - complementarity/references.qmd
-      - section: "10. Mixed logical dynamical (MLD) systems"
+          - 9_stability_2/goals.qmd
+          - 9_stability_2/multiple_lyapunov_function.qmd
+          - 9_stability_2/software.qmd
+          - 9_stability_2/references.qmd    
+      - section: "10. Complementarity systems"
         contents:
-          - mld/goals.qmd
-          - mld/DHA.qmd
-          - mld/logic_vs_inequalities.qmd
-          - mld/DHA_parts_as_inequalities.qmd
-          - mld/mld_and_pwa.qmd
-          - mld/software.qmd
-          - mld/references.qmd
-      - section: "11. Model predictive control (MPC) for MLD systems"
+          - 10_complementarity/goals.qmd
+          - 10_complementarity/constraints.qmd
+          - 10_complementarity/systems.qmd
+          - 10_complementarity/simulations.qmd
+          - 10_complementarity/software.qmd
+          - 10_complementarity/references.qmd
+      - section: "11. Mixed logical dynamical (MLD) systems"
         contents:
-          - mpc/goals.qmd
-          - mpc/online.qmd
-          - mpc/explicit.qmd
-          - mpc/software.qmd
-          - mpc/references.qmd
-      - section: "12. Formal verification"
+          - 11_mld/goals.qmd
+          - 11_mld/DHA.qmd
+          - 11_mld/logic_vs_inequalities.qmd
+          - 11_mld/DHA_parts_as_inequalities.qmd
+          - 11_mld/mld_and_pwa.qmd
+          - 11_mld/software.qmd
+          - 11_mld/references.qmd
+      - section: "12. Model predictive control (MPC) for MLD systems"
         contents:
-          - verification/goals.qmd
-          - verification/intro.qmd
-          - verification/reachability.qmd
-          - verification/barrier.qmd
-          - verification/temporal_logics.qmd
-          - verification/software.qmd
-          - verification/references.qmd
+          - 12_mpc/goals.qmd
+          - 12_mpc/online.qmd
+          - 12_mpc/explicit.qmd
+          - 12_mpc/software.qmd
+          - 12_mpc/references.qmd
+      - section: "13. Formal verification I."
+        contents:
+          - 13_verification_1/goals.qmd
+          - 13_verification_1/intro.qmd
+          - 13_verification_1/reachability.qmd
+          - 13_verification_1/barrier.qmd
+          - 13_verification_1/software.qmd
+          - 13_verification_1/references.qmd
+      - section: "14. Formal verification II."
+        contents:
+          - 14_verification_2/goals.qmd
+          - 14_verification_2/temporal_logics.qmd
+          - 14_verification_2/software.qmd
+          - 14_verification_2/references.qmd    
   repo-url: https://github.com/hurak/hys
   repo-actions: [issue]       
   back-to-top-navigation: true

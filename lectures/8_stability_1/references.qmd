@@ -13,19 +13,13 @@ format:
 
 The lecture was partly built upon the chapter 4 of the textbook @linHybridDynamicalSystems2022, which in turn was (to a large extent) built upon chapter 2 of the research monograph @liberzonSwitchingSystemsControl2003. None of these two is available online, but fortunately, the latter has a free shorter online version @liberzonSwitchedSystemsStability2007. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.
 
-The lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text @lygerosHybridSystemsFoundations2020, which used to be available online, but has resently dissapeared – most probably it is about to be publised as a textbook. 
-
-Some more online resources, in particular for multiple (also piecewise) Lyapunov functions, are @decarloPerspectivesResultsStability2000, @johanssonComputationPiecewiseQuadratic1998, @petterssonHybridSystemStability2002, @hassibiQuadraticStabilizationControl1998. The are all quite readable.
+The lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text @lygerosHybridSystemsFoundations2020 (well, it used to be available online, but has recently disappeared). 
 
 ## Linear matrix inequalities
 
 The topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph @boydLinearMatrixInequalities1994 was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material @boydSolvingSemidefinitePrograms, tailored to their Matlab toolbox called CVX. Alternatively, the text @boydEE363ReviewSession2008 is even richer by two pages.
 Another recommendable lecture notes are also available for free: @schererLinearMatrixInequalities2015. 
 Finally, a section on [Semidefinite programming](https://yalmip.github.io/tutorial/semidefiniteprogramming/) in the documentation for Yalmip software can also serve as learning resource.
-
-### S-procedure
-
-Some treatment of S-procedure is in @boydLinearMatrixInequalities1994, pages 23 and 24, and @boydConvexOptimization2004, page 655.
 
 ## Sum-of-squares programming
 

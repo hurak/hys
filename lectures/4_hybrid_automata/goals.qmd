@@ -1,0 +1,15 @@
+---
+title: Learning goals
+format: html
+---
+
+## Knowledge (remember and understand)
+
+- Give a definition of a *hybrid automaton*. In particular, describe all the key components. 
+- Draws a graph of a hybrid automaton that displays all the key types of components.
+- Explain the differences in roles played in a hybrid automaton by the *invariant* (or *domain*) of a given *location* (or *mode*), and the *guard set* of a given transition. 
+
+## Skills (use the knowledge to solve a problem)
+
+- Find a model of a simple dynamical system in the form of a hybrid automaton.
+- Implement a simple hybrid automaton in Stateflow.

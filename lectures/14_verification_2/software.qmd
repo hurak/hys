@@ -1,0 +1,22 @@
+---
+title: "Software"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_verification.bib
+    - ../references/ref_temporal.bib
+format: html
+---
+
+Mainly some experimental code accompanying research papers.
+
+#### In Julia
+
+- [SignalTemporalLogic.jl](https://github.com/sisl/SignalTemporalLogic.jl)
+
+#### In Python
+
+#### In Matlab
+
+- [Breach](https://github.com/decyphir/breach) toolbox for Matlab
+
+- Beware that Matlab's toolboxes such as [Requirements Toolbox](https://www.mathworks.com/products/requirements-toolbox.html) and [Simulink Design Verifier](https://www.mathworks.com/products/simulink-design-verifier.html) mention some temporal logic and temporal operators, but they do not adhere to the syntax of STL.

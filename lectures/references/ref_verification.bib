@@ -363,6 +363,36 @@
   langid = {english}
 }
 
+@article{clarkSemialgebraicFrameworkVerification2025,
+  title = {A {{Semialgebraic Framework}} for {{Verification}} and {{Synthesis}} of {{Control Barrier Functions}}},
+  author = {Clark, Andrew},
+  year = {2025},
+  month = may,
+  journal = {IEEE Transactions on Automatic Control},
+  volume = {70},
+  number = {5},
+  pages = {3101--3116},
+  issn = {1558-2523},
+  doi = {10.1109/TAC.2024.3497001},
+  url = {https://ieeexplore.ieee.org/abstract/document/10752383},
+  urldate = {2025-06-27},
+  abstract = {Safety is a critical property for control systems in medicine, transportation, manufacturing, and other applications, and can be defined as ensuring positive invariance of a predefined safe set. This article investigates the problems of verifying positive invariance of a semialgebraic set as well as synthesizing sets that can be made positive invariant through control barrier function (CBF)-based control. The key to our approach consists of mapping conditions for positive invariance to sum-of-squares constraints via the Positivstellensatz from real algebraic geometry. Based on these conditions, we propose a framework for verifying safety of CBF-based control including single CBFs, high-order CBFs, multi-CBFs, and systems with trigonometric dynamics and actuation constraints. In the area of synthesis, we propose algorithms for constructing CBFs, namely, an alternating-descent approach and a local CBF approach. We evaluate our approach through case studies on quadrotor UAV and power converter test systems.}
+}
+
+@book{engelVerificationValidationTesting2010,
+  title = {Verification, {{Validation}}, and {{Testing}} of {{Engineered Systems}}},
+  author = {Engel, Avner},
+  year = {2010},
+  month = jun,
+  series = {Wiley {{Series}} in {{Systems Engineering}} and {{Management}}},
+  publisher = {Wiley},
+  address = {Hoboken, N.J},
+  url = {https://onlinelibrary.wiley.com/doi/book/10.1002/9780470618851},
+  abstract = {Systems' Verification Validation and Testing (VVT) are carried out throughout systems' lifetimes. Notably, quality-cost expended on performing VVT activities and correcting system defects consumes about half of the overall engineering cost. Verification, Validation and Testing of Engineered Systems provides a comprehensive compendium of VVT activities and corresponding VVT methods for implementation throughout the entire lifecycle of an engineered system. In addition, the book strives to alleviate the fundamental testing conundrum, namely: What should be tested? How should one test? When should one test? And, when should one stop testing? In other words, how should one select a VVT strategy and how it be optimized?The book is organized in three parts: The first part provides introductory material about systems and VVT concepts. This part presents a comprehensive explanation of the role of VVT in the process of engineered systems (Chapter-1). The second part describes 40 systems' development VVT activities (Chapter-2) and 27 systems' post-development activities (Chapter-3). Corresponding to these activities, this part also describes 17 non-testing systems' VVT methods (Chapter-4) and 33 testing systems' methods (Chapter-5). The third part of the book describes ways to model systems' quality cost, time and risk (Chapter-6), as well as ways to acquire quality data and optimize the VVT strategy in the face of funding, time and other resource limitations as well as different business objectives (Chapter-7). Finally, this part describes the methodology used to validate the quality model along with a case study describing a system's quality improvements (Chapter-8).Fundamentally, this book is written with two categories of audience in mind. The first category is composed of VVT practitioners, including Systems, Test, Production and Maintenance engineers as well as first and second line managers. The second category is composed of students and faculties of Systems, Electrical, Aerospace, Mechanical and Industrial Engineering schools. This book may be fully covered in two to three graduate level semesters; although parts of the book may be covered in one semester. University instructors will most likely use the book to provide engineering students with knowledge about VVT, as well as to give students an introduction to formal modeling and optimization of VVT strategy.},
+  isbn = {978-0-470-52751-1},
+  langid = {english}
+}
+
 @article{fanControllerSynthesisLinear2022,
   title = {Controller {{Synthesis}} for {{Linear System With Reach-Avoid Specifications}}},
   author = {Fan, Chuchu and Qin, Zengyi and Mathur, Umang and Ning, Qiang and Mitra, Sayan and Viswanathan, Mahesh},
@@ -473,6 +503,17 @@
   url = {https://ieeexplore.ieee.org/abstract/document/9304186?casa_token=oQJ0a128K6cAAAAA:NvYeDrlgwclQCnkicvFEqtvFEaR6BgayU_8KJihb7IjTNkH8Y7kQwHDBLSa9vVfnaEOp-sk8Uoo},
   urldate = {2024-06-26},
   abstract = {In this paper, we propose an approach for ensuring the safety of a vehicle throughout a parking task, even when the vehicle is being operated at varying levels of automation. We start by specifying a vehicle parking task using linear temporal logic formulae that can be model checked for feasibility. The model-checking is facilitated by the construction of a temporal logic tree via Hamilton-Jacobi reachability analysis. Once we know the parking task is feasible for our vehicle model, we utilize the constructed temporal logic tree to directly synthesize control sets. Our approach synthesizes control sets that are least-restrictive in the context of the specification, since they permit any control inputs that are guaranteed not to violate the specification. This least-restrictive characteristic allows for the application of our approach to vehicles under different modes of operation (e.g., human-in-the-loop shared autonomy or fully-automated schemes). Implementing in both simulation and on hardware, we demonstrate the approach's potential for ensuring the safety of vehicles throughout parking tasks, whether they are operated by humans or automated driving systems.}
+}
+
+@book{kochenderferAlgorithmsValidation2025,
+  title = {Algorithms for Validation},
+  author = {Kochenderfer, Mykel J. and Katz, Sydney M. and Corso, Antony L. and Moss, Robert J.},
+  year = {2025},
+  month = feb,
+  edition = {Preview},
+  address = {Stanford, CA},
+  url = {https://algorithmsbook.com/validation},
+  urldate = {2025-02-05}
 }
 
 @article{kordaComputingControlledInvariant2020,
@@ -622,6 +663,22 @@
   abstract = {This thesis is devoted to the problem of computing reachable sets of linear and hybrid systems. In the first part, after exposing existing approaches for reachability analysis of linear systems, we present the main contribution of the thesis: a new algorithmic scheme for linear time-invariant systems that definitely outperforms existing algorithms. As the exact implementation furnishes a representation of the reachable sets that is sometimes hard to manipulate, we propose an approximate version that is not subject to the wrapping effect, an uncontrolled growth of the approximation errors. We also discuss a variant of this algorithm specialized to support functions, a functional representation of convex sets. In the second part, we extend this work to hybrid systems. We first show how to deal with the constraints on the continuous dynamics imposed by the invariants. Then, we present algorithms for approximating the intersection of the continuous reachable sets with hyperplanar guards.},
   langid = {english},
   school = {Universit{\'e} Grenoble I -- Joseph-Fourier}
+}
+
+@misc{lindemannFormalVerificationControl2025,
+  title = {Formal {{Verification}} and {{Control}} with {{Conformal Prediction}}},
+  author = {Lindemann, Lars and Zhao, Yiqi and Yu, Xinyi and Pappas, George J. and Deshmukh, Jyotirmoy V.},
+  year = {2025},
+  month = apr,
+  number = {arXiv:2409.00536},
+  eprint = {2409.00536},
+  primaryclass = {eess},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2409.00536},
+  url = {http://arxiv.org/abs/2409.00536},
+  urldate = {2025-06-01},
+  abstract = {In this survey, we design formal verification and control algorithms for autonomous systems with practical safety guarantees using conformal prediction (CP), a statistical tool for uncertainty quantification. We focus on learning-enabled autonomous systems (LEASs) in which the complexity of learning-enabled components (LECs) is a major bottleneck that hampers the use of existing model-based verification and design techniques. Instead, we advocate for the use of CP, and we will demonstrate its use in formal verification, systems and control theory, and robotics. We argue that CP is specifically useful due to its simplicity (easy to understand, use, and modify), generality (requires no assumptions on learned models and data distributions, i.e., is distribution-free), and efficiency (real-time capable and accurate). We pursue the following goals with this survey. First, we provide an accessible introduction to CP for non-experts who are interested in using CP to solve problems in autonomy. Second, we show how to use CP for the verification of LECs, e.g., for verifying input-output properties of neural networks. Third and fourth, we review recent articles that use CP for safe control design as well as offline and online verification of LEASs. We summarize their ideas in a unifying framework that can deal with the complexity of LEASs in a computationally efficient manner. In our exposition, we consider simple system specifications, e.g., robot navigation tasks, as well as complex specifications formulated in temporal logic formalisms. Throughout our survey, we compare to other statistical techniques (e.g., scenario optimization, PAC-Bayes theory, etc.) and how these techniques have been used in verification and control. Lastly, we point the reader to open problems and future research directions.},
+  archiveprefix = {arXiv}
 }
 
 @article{maghenemSufficientConditionsForward2021,
@@ -989,7 +1046,7 @@
   title = {Safe {{Autonomy}} with {{Control Barrier Functions}}: {{Theory}} and {{Applications}}},
   shorttitle = {Safe {{Autonomy}} with {{Control Barrier Functions}}},
   author = {Xiao, Wei and Cassandras, Christos G. and Belta, Calin},
-  year = {11 kv{\v e}tna 2023},
+  year = {2023},
   abstract = {This book presents the concept of Control Barrier Function (CBF), which captures the evolution of safety requirements during the execution of a system and can be used to enforce safety. Safety is formalized using an emerging state-of-the-art approach based on CBFs, and many illustrative examples from autonomous driving, traffic control, and robot control are provided. Safety is central to autonomous systems since they are intended to operate with minimal or no human supervision, and a single failure could result in catastrophic results. The authors discuss how safety can be guaranteed via both theoretical and application perspectives. This presented method is computationally efficient and can be easily implemented in real-time systems that require high-frequency reactive control. In addition, the CBF approach can easily deal with nonlinear models and complex constraints used in a wide spectrum of applications, including autonomous driving, robotics, and traffic control. With the proliferation of autonomous systems, such as self-driving cars, mobile robots, and unmanned air vehicles, safety plays a crucial role in ensuring their widespread adoption. This book considers the integration of safety guarantees into the operation of such systems including typical safety requirements that involve collision avoidance, technological system limitations, and bounds on real-time executions. Adaptive approaches for safety are also proposed for time-varying execution bounds and noisy dynamics.},
   isbn = {978-3-031-27575-3}
 }

@@ -10,7 +10,7 @@ format:
         code-fold: true
 ---
 
-In our course we formulated the problem of checking stability that that of constructing a Lyapunov function, which in turn was formulated as a problem of solving an optimization problem of *semidefinite programming* (with *linear matrix inequalities, LMI*) or *positive (nonnegative) polynomial programming* (via *sum-of-squares (SOS) programming*). Hence, we need to be able to formulate and solve those optimization problems.
+In our course we formulated the problem of checking the stability as that of constructing a Lyapunov function, which in turn was formulated as a problem of solving the optimization problem of type *semidefinite programming* (with *linear matrix inequalities, LMI*) or type *positive (nonnegative) polynomial programming* (via *sum-of-squares (SOS) programming*). Hence, we need to be able to formulate and solve those optimization problems.
 
 ### Matlab
 

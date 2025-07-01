@@ -1,0 +1,42 @@
+---
+title: "Course annotation and outline"
+format: html
+---
+
+## Course annotation 
+
+Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.
+
+The behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.
+
+However, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).
+
+Hybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.
+
+The aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.
+
+## Course outline
+
+The course is structured into 14 topics, each corresponding to one lecture, one seminar/exercise session, and possibly an assignment of homework. The topics are as follows:
+
+- Discrete-event systems 
+    1. (State) automata (also state machines), including timed variants
+    2. Petri nets (and timed Petri nets), 
+    3. Max-Plus algebra and Max-Plus Linear (MPL) systems
+- Hybrid systems 
+    4. Hybrid automata
+    5. Hybrid equations
+- Special classes of hybrid systems
+    6. Reset (control) systems, Switched/switching systems, Piecewise affine systems (PWA) 
+    7. Complementarity dynamical systems (and complementarity optimization constraints)    
+8. Solutions of hybrid systems
+- Stability of hybrid systems
+    9. Common Lyapunov function 
+        - Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP) 
+        - Polynomial Lyapunov function via sum-of-squares (SOS) programming
+    10. Piecewise quadratic/polynomial Lyapunov function via S-procedure
+11. Mixed-logical dynamical (MLD) description of hybrid systems
+12. Model predictive control (MPC) for MLD systems 
+- Formal verification of hybrid systems
+    13. Reachability analysis and barrier certificates
+    14. Temporal logics and model checking

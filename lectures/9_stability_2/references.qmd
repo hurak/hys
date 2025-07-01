@@ -1,0 +1,18 @@
+---
+title: "Literature"
+bibliography: 
+    - ../references/ref_hybrid.bib
+    - ../references/ref_polynomial.bib
+    - ../references/ref_stability.bib
+    - ../references/ref_PWA.bib
+    - ../references/ref_LMI.bib
+    - ../references/ref_convex_optimization.bib
+format:
+    html     
+---
+
+The same resources as for the previous lecture on stability.   
+
+Some more online resources, in particular for multiple (also piecewise) Lyapunov functions, are @decarloPerspectivesResultsStability2000, @johanssonComputationPiecewiseQuadratic1998, @petterssonHybridSystemStability2002, @hassibiQuadraticStabilizationControl1998. The are all quite readable.
+
+Besides the LMI and SOS programming/optimization, we need one particular result known as the S-procedure. Some treatment of S-procedure is in @boydLinearMatrixInequalities1994, pages 23 and 24, and @boydConvexOptimization2004, page 655.
