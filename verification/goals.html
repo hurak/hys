@@ -715,7 +715,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Enumerate types of requirements.</li>
 <li>Explain the concept of safety requirements and how they are related to the invariance of a set in state space.</li>
 <li>Enumerate a few methods for verification of safety via reachability analysis.</li>
-<li>Explain the essence of safety verifiacation by checking feasibility of optimal control for MLD.</li>
+<li>Explain the essence of safety verification by checking feasibility of optimal control for MLD.</li>
 <li>Explain the essence of safety verification by set propagation techniques. In particular, what kind of sets are typically propagated? Which software is available for it?</li>
 <li>Define the properties of a barrier certificate function. First, start with a general continuous system and then extend the definition to a hybrid system. Explain how can the barrier certificate function be found using the technique of sum-of-squares (SOS) programming.</li>
 <li>Explain the concept of liveness (progress) requirements</li>
@@ -804,7 +804,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

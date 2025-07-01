@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro/outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course outline</span></a>
+ <span class="menu-text">Course annotation and outline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -712,9 +712,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="knowledge-remember-and-understand" class="level2">
 <h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
 <ul>
-<li>Define a reset system as a subset of hybrid systems.</li>
-<li>Define a switched/switching systems and discuss the mechanisms for switching.</li>
-<li>Define a piecewise affine (PWA) system.</li>
+<li>Define a <em>reset system</em> as a subset of hybrid systems.</li>
+<li>Define a <em>switched/switching systems</em> and discuss the various mechanisms for switching.</li>
+<li>Define a <em>piecewise affine</em> (PWA) system.</li>
 <li>Enumerate and briefly explain various concepts of a solution of an ordinary differential equation (classical, extended/Carathéodory, Filippov).</li>
 <li>Explain the concept of a sliding mode.</li>
 </ul>
@@ -801,7 +801,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

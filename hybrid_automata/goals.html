@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../intro/outline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course outline</span></a>
+ <span class="menu-text">Course annotation and outline</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -712,8 +712,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="knowledge-remember-and-understand" class="level2">
 <h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
 <ul>
-<li>Give a definition of a hybrid automaton. In particular, describe all the key components.</li>
-<li>Explain the differences in roles played in a hybrid automaton by the location (or mode) invariants and guard sets.</li>
+<li>Give a definition of a <em>hybrid automaton</em>. In particular, describe all the key components.</li>
+<li>Draws a graph of a hybrid automaton that displays all the key types of components.</li>
+<li>Explain the differences in roles played in a hybrid automaton by the <em>invariant</em> (or <em>domain</em>) of a given <em>location</em> (or <em>mode</em>), and the <em>guard set</em> of a given transition.</li>
 </ul>
 </section>
 <section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
@@ -799,7 +800,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
