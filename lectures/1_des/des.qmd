@@ -16,7 +16,7 @@ We have already mentioned that hybrid systems are composed of *time-driven subsy
 
 We need to start with the definition of an *event*. Sometimes an adjective *discrete* is added (to get *discrete event*), although it appears rather redundant. 
 
-The primary characteristic of an event is *instantaneous occurence*, that is, an event takes no time. 
+The primary characteristic of an event is *instantaneous occurrence*, that is, an event takes no time. 
 
 Within the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn't evolve.
 
