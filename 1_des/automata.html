@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.14">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,10 +94,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5020e01530f2fc3708660012cd22cb5f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5df0470c7062f2d8a92e30ff9dae2109.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -196,9 +196,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -2238,7 +2237,7 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <div id="2" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> DijkstraTokenRing</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    number_of_nodes<span class="op">::</span><span class="dt">Int64</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    max_value_of_state_variable<span class="op">::</span><span class="dt">Int64</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    state_vector<span class="op">::</span><span class="dt">Vector{Int64}</span></span>
@@ -2265,7 +2264,7 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    y[<span class="fl">1</span>] <span class="op">=</span> <span class="fu">iszero</span>(x[<span class="fl">1</span>]<span class="op">-</span>x[<span class="kw">end</span>])</span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    y[<span class="fl">2</span><span class="op">:</span><span class="kw">end</span>] <span class="op">.=</span> .!<span class="fu">iszero</span>.(<span class="fu">diff</span>(x))</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>output (generic function with 1 method)</code></pre>
@@ -2275,7 +2274,7 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <div id="4" class="cell" data-execution_count="1">
 <details open="" class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">4</span>                           <span class="co"># Concrete number of nodes.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">4</span>                           <span class="co"># Concrete number of nodes.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> n                           <span class="co"># Concrete max value of a state variable (&gt;= n).</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> x_initial <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">0</span><span class="op">:</span>k,n)   <span class="co"># Initial state vector, not necessarily acceptable (&gt;1 token in the ring).</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dtr <span class="op">=</span> <span class="fu">DijkstraTokenRing</span>(n,k,x_initial)</span>
@@ -2285,19 +2284,19 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr) <span class="co"># Repeat a few times to see the stabilization.    </span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [4, 3, 2, 0]
-output(dtr) = [0, 1, 1, 1]
-(update!(dtr), output(dtr)) = ([4, 4, 3, 2], [0, 0, 1, 1])
-(update!(dtr), output(dtr)) = ([4, 4, 4, 3], [0, 0, 0, 1])
-(update!(dtr), output(dtr)) = ([4, 4, 4, 4], [1, 0, 0, 0])
-(update!(dtr), output(dtr)) = ([1, 4, 4, 4], [0, 1, 0, 0])
-(update!(dtr), output(dtr)) = ([1, 1, 4, 4], [0, 0, 1, 0])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [3, 1, 4, 4]
+output(dtr) = [0, 1, 1, 0]
+(update!(dtr), output(dtr)) = ([3, 3, 1, 4], [0, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([3, 3, 3, 1], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([3, 3, 3, 3], [1, 0, 0, 0])
+(update!(dtr), output(dtr)) = ([0, 3, 3, 3], [0, 1, 0, 0])
+(update!(dtr), output(dtr)) = ([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([1, 1, 4, 4], [0, 0, 1, 0])</code></pre>
+<pre><code>([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
 </div>
 </div>
 <p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>
@@ -2779,7 +2778,7 @@ Note
 <li>state transition: <span class="math display">
 f(x,e) =
 \begin{cases}
-x+1, &amp; \text{if}\; x\leq 0 \land e = \mathrm{arrival}\\
+x+1, &amp; \text{if}\; x\geq 0 \land e = \mathrm{arrival}\\
 x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}.
 \end{cases}
 </span></li>
@@ -3094,13 +3093,14 @@ Figure&nbsp;21: Example of a timed automaton with guards and invariant
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

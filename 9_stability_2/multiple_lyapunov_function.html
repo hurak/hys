@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.14">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5020e01530f2fc3708660012cd22cb5f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f09b46c72399340fde9b6e979e0e5aed.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-4469d617958d98ac575a98bb526105ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
@@ -179,9 +179,8 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
-    </div>
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -867,14 +866,14 @@ window.Quarto = {
 <div id="exm-no-cqlf" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (No common quadratic Lyapunov function can be found)</strong></span> We consider a switched system with two modes, linear models that are parameterized by the matrices <span class="math inline">\mathbf A_1</span> and <span class="math inline">\mathbf A_2</span>:</p>
 <div id="2" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A₁ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">0.1</span>]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A₂ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">2</span>; <span class="fl">1</span> <span class="op">-</span><span class="fl">0.1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>A₁ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">1</span>; <span class="fl">2</span> <span class="op">-</span><span class="fl">0.1</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A₂ <span class="op">=</span> [<span class="op">-</span><span class="fl">0.1</span> <span class="op">-</span><span class="fl">2</span>; <span class="fl">1</span> <span class="op">-</span><span class="fl">0.1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Switching curve is given by <span class="math inline">x_1=0</span>, that is, the vertical axis. State portrait is in <a href="#fig-no-cqlf" class="quarto-xref">Fig.&nbsp;1</a>.</p>
 <div id="cell-fig-no-cqlf" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f₁</span>(x) <span class="op">=</span> A₁<span class="op">*</span>x</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f₁</span>(x) <span class="op">=</span> A₁<span class="op">*</span>x</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f₂</span>(x) <span class="op">=</span> A₂<span class="op">*</span>x</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x) <span class="op">=</span> x[<span class="fl">1</span>] <span class="op">&lt;=</span> <span class="fl">0.0</span> ? <span class="fu">f₁</span>(x) <span class="op">:</span> <span class="fu">f₂</span>(x)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -883,7 +882,7 @@ window.Quarto = {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> <span class="fu">Axis</span>(fig[<span class="fl">1</span>, <span class="fl">1</span>], xlabel <span class="op">=</span> <span class="st">"x₁"</span>, ylabel <span class="op">=</span> <span class="st">"x₂"</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">streamplot!</span>(ax,(x₁,x₂)<span class="fu">-&gt;Point2f</span>(<span class="fu">f</span>([x₁,x₂])), <span class="op">-</span><span class="fl">2.0</span><span class="op">..</span><span class="fl">2.0</span>, <span class="op">-</span><span class="fl">2.0</span><span class="op">..</span><span class="fl">2.0</span>, colormap <span class="op">=</span> <span class="op">:</span>magma)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">vlines!</span>(ax,<span class="fl">0.0</span>,ymin<span class="op">=-</span><span class="fl">2.0</span>,ymax<span class="op">=</span><span class="fl">2.0</span>, color <span class="op">=</span> <span class="op">:</span>red, linewidth<span class="op">=</span><span class="fl">3</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="fig-no-cqlf" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
@@ -899,21 +898,35 @@ Figure&nbsp;1: State portrait for the switched system with no common quadratic L
 <p>The equilibrium (the origin) of this switched system appears stable.</p>
 <p>The individual systems are stable, which we can immediately see by computing the eigenvalues of the matrices <span class="math inline">A_1</span> and <span class="math inline">A_2</span>:</p>
 <div id="6" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eigvals</span>(A₁), <span class="fu">eigvals</span>(A₂)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eigvals</span>(A₁), <span class="fu">eigvals</span>(A₂)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>(ComplexF64[-0.1 - 1.4142135623730951im, -0.1 + 1.4142135623730951im], ComplexF64[-0.1 - 1.4142135623730951im, -0.1 + 1.4142135623730951im])</code></pre>
 </div>
 </div>
 <p>We now try to find a common quadratic Lyapunov function for both subsystems. We will formulate the problem as an LMI feasibility problem.</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Convex</span>, <span class="bu">SCS</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Convex</span>, <span class="bu">SCS</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X + X*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X + X*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> [constraint₁, constraint₂]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">satisfy</span>(constraints)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> Convex...
+   2513.1 ms<span class="ansi-green-fg">  ✓ </span>Convex
+  1 dependency successfully precompiled in 3 seconds. 53 already precompiled.
+<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> ForwardDiffExt...
+    533.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Unitful → ForwardDiffExt</span>
+  1 dependency successfully precompiled in 1 seconds. 22 already precompiled.
+<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> SCS...
+  22576.9 ms<span class="ansi-green-fg">  ✓ </span>SCS
+  1 dependency successfully precompiled in 23 seconds. 53 already precompiled.
+</pre>
+</div>
+</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Problem statistics
   problem is DCP         : true
@@ -942,7 +955,7 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 177…068)
+   │  └─ 2×2 real variable (id: 133…033)
    ⋮</code></pre>
 </div>
 </div>
@@ -964,11 +977,11 @@ Expression graph
 </div>
 <p>The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute respective Lyapunov functions for the two subsystems.</p>
 <div id="10" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X₁ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>constraint₁ <span class="op">=</span> A₁<span class="ch">'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>problem₁ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₁)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₁,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X₁.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>X₁.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×2 Matrix{Float64}:
  423.71     12.5739
@@ -976,11 +989,11 @@ Expression graph
 </div>
 </div>
 <div id="12" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X₂ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X₂ <span class="op">=</span> <span class="fu">Semidefinite</span>(<span class="fl">2</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>constraint₂ <span class="op">=</span> A₂<span class="ch">'*X₂ + X₂*A₂ ⪯ -Matrix{Float64}(I, 2, 2)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>problem₂ <span class="op">=</span> <span class="fu">satisfy</span>(constraint₂)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem₂,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>X₂.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>X₂.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2×2 Matrix{Float64}:
  212.123   -12.5739
@@ -991,7 +1004,7 @@ Expression graph
 <div id="cell-fig-no-cqlf-with-lyapunov-invariant-sets" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x1s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x1s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>x2s <span class="op">=</span> <span class="fu">LinRange</span>(<span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">100</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">V₁</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₁.value<span class="op">*</span>x</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">V₂</span>(x) <span class="op">=</span> x<span class="op">'*</span>X₂.value<span class="op">*</span>x</span>
@@ -999,7 +1012,7 @@ Expression graph
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>V2s <span class="op">=</span> [<span class="fu">V₂</span>([x₁,x₂]) for x₁ <span class="kw">in</span> x1s, x₂ <span class="kw">in</span> x2s]</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V1s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>blue)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">contour!</span>(x1s, x2s, V2s, levels<span class="op">=</span>[<span class="fl">300.0</span>], linewidth<span class="op">=</span><span class="fl">3</span>, color<span class="op">=:</span>green)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>fig</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div id="fig-no-cqlf-with-lyapunov-invariant-sets" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1307,13 +1320,14 @@ V_i(\bm x) = V_j(\bm x) \quad \forall \bm x \in \Omega_{ij},
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
