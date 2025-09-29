@@ -733,7 +733,7 @@ Obviously this is not a finite state automation – unless the queue is bounded 
 $$
 f(x,e) = 
 \begin{cases}
-x+1, & \text{if}\; x\leq 0 \land e = \mathrm{arrival}\\
+x+1, & \text{if}\; x\geq 0 \land e = \mathrm{arrival}\\
 x-1, & \text{if}\; x > 0 \land e = \mathrm{departure}.
 \end{cases}
 $$
