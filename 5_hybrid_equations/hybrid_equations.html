@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,7 +94,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -1330,97 +1330,96 @@ g(\bm x, q) = 1-q \quad \forall [\bm x, q]^\top \in \mathcal D.
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> OrdinaryDiffEq...
-    371.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">GPUArraysCore</span>
-    435.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">EnzymeCore</span>
-    574.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">PreallocationTools</span>
-    593.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Static</span>
-    597.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ArrayInterface → ArrayInterfaceGPUArraysCoreExt</span>
-    672.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceGPUArraysCoreExt</span>
-    851.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">EnzymeCore → AdaptExt</span>
-    729.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ADTypes → ADTypesEnzymeCoreExt</span>
-   1121.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">PreallocationTools → PreallocationToolsForwardDiffExt</span>
-    828.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BitTwiddlingConvenienceFunctions</span>
-    877.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">CPUSummary</span>
-    979.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">StaticArrayInterface</span>
-   1098.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools</span>
-   1155.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">PolyesterWeave</span>
-   1105.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">CloseOpenIntervals</span>
-    661.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LayoutPointers</span>
-   1285.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">StaticArrayInterface → StaticArrayInterfaceStaticArraysExt</span>
-    760.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsForwardDiffExt</span>
-    519.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsSparseArraysExt</span>
-   1044.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">StrideArraysCore</span>
-    928.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Polyester</span>
-    799.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">FastBroadcast</span>
-    679.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsFastBroadcastExt</span>
-   4382.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase</span>
-   1274.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseChainRulesCoreExt</span>
-   1478.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseForwardDiffExt</span>
-   1813.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase</span>
-   2421.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLJacobianOperators</span>
-   1363.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseChainRulesCoreExt</span>
-    921.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseSparseArraysExt</span>
-   1546.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseForwardDiffExt</span>
-   2416.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqCore</span>
-   2622.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LineSearch</span>
-   1156.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqCore → OrdinaryDiffEqCoreEnzymeCoreExt</span>
-   1248.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LineSearch → LineSearchLineSearchesExt</span>
-   4409.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase</span>
-   1234.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFunctionMap</span>
-   1523.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqPRK</span>
-   1568.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExplicitRK</span>
-   8783.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve</span>
-   4046.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqTsit5</span>
-   2302.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqStabilizedRK</span>
-   2221.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSSPRK</span>
-   1924.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqRKN</span>
-   1364.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqQPRK</span>
-   1704.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqHighOrderRK</span>
-   1520.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSymplecticRK</span>
-   2553.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLowOrderRK</span>
-   1665.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFeagin</span>
-   2338.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLowStorageRK</span>
-   1236.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseSparseMatrixColoringsExt</span>
-    990.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseForwardDiffExt</span>
-    709.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseChainRulesCoreExt</span>
-    705.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseLineSearchExt</span>
-    943.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseSparseArraysExt</span>
-   2021.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveEnzymeExt</span>
-   2676.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve</span>
-   3779.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveSparseArraysExt</span>
-   1689.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseLinearSolveExt</span>
-   2471.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveForwardDiffExt</span>
-  28637.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ExponentialUtilities</span>
-   1729.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqNordsieck</span>
-   2243.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqAdamsBashforthMoulton</span>
-   1207.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve → BracketingNonlinearSolveForwardDiffExt</span>
-   4814.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveSpectralMethods</span>
-   1654.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ExponentialUtilities → ExponentialUtilitiesStaticArraysExt</span>
-   1883.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLinear</span>
-   6704.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDifferentiation</span>
-   1290.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve → BracketingNonlinearSolveChainRulesCoreExt</span>
-   1375.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveSpectralMethods → NonlinearSolveSpectralMethodsForwardDiffExt</span>
-  12565.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveQuasiNewton</span>
-   2880.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDifferentiation → OrdinaryDiffEqDifferentiationSparseArraysExt</span>
-   2351.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveQuasiNewton → NonlinearSolveQuasiNewtonForwardDiffExt</span>
-   7493.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SimpleNonlinearSolve</span>
-  26573.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqVerner</span>
-   3414.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExponentialRK</span>
-   1440.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SimpleNonlinearSolve → SimpleNonlinearSolveChainRulesCoreExt</span>
-   4008.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExtrapolation</span>
-  19622.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveFirstOrder</span>
-  13402.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqRosenbrock</span>
-   7916.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolve</span>
-   3513.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqNonlinearSolve</span>
-   4539.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqIMEXMultistep</span>
-   4788.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqStabilizedIRK</span>
-   4918.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqPDIRK</span>
-   5871.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSDIRK</span>
-  13617.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFIRK</span>
-   8574.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqBDF</span>
-  17977.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDefault</span>
-  10169.1 ms<span class="ansi-green-fg">  ✓ </span>OrdinaryDiffEq
-  90 dependencies successfully precompiled in 106 seconds. 145 already precompiled.
+    449.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ArrayInterface → ArrayInterfaceChainRulesCoreExt</span>
+    513.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ADTypes → ADTypesChainRulesCoreExt</span>
+    994.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface</span>
+   1044.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">GenericSchur</span>
+   1093.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SymbolicIndexingInterface</span>
+    725.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceGPUArraysCoreExt</span>
+    549.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceFiniteDiffExt</span>
+   1120.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceForwardDiffExt</span>
+    961.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceSparseMatrixColoringsExt</span>
+    434.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceChainRulesCoreExt</span>
+    645.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceStaticArraysExt</span>
+    525.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceSparseArraysExt</span>
+   2038.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools</span>
+   1984.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NLSolversBase</span>
+    680.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsSparseArraysExt</span>
+    876.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsForwardDiffExt</span>
+    986.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsFastBroadcastExt</span>
+   1262.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LineSearches</span>
+   8531.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ArrayLayouts</span>
+   4618.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase</span>
+   1100.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ArrayLayouts → ArrayLayoutsSparseArraysExt</span>
+    934.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseChainRulesCoreExt</span>
+   1116.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseForwardDiffExt</span>
+   2005.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLJacobianOperators</span>
+   1600.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase</span>
+   1978.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LazyArrays</span>
+   1145.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseChainRulesCoreExt</span>
+   1018.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseForwardDiffExt</span>
+    909.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseSparseArraysExt</span>
+   2399.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LineSearch</span>
+   1431.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LazyArrays → LazyArraysStaticArraysExt</span>
+   3684.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase</span>
+   1371.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LineSearch → LineSearchLineSearchesExt</span>
+   2162.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqCore</span>
+   1395.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseSparseMatrixColoringsExt</span>
+   1024.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseChainRulesCoreExt</span>
+   1434.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseForwardDiffExt</span>
+    645.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseLineSearchExt</span>
+    809.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseSparseArraysExt</span>
+   1422.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqCore → OrdinaryDiffEqCoreEnzymeCoreExt</span>
+   2688.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve</span>
+   1946.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFunctionMap</span>
+   1731.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqPRK</span>
+   6471.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveSpectralMethods</span>
+   1691.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExplicitRK</span>
+   5146.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqTsit5</span>
+  10551.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve</span>
+   2144.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqStabilizedRK</span>
+   2301.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSSPRK</span>
+   1984.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqRKN</span>
+   1417.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqQPRK</span>
+   1961.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqHighOrderRK</span>
+   1738.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSymplecticRK</span>
+   2946.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLowOrderRK</span>
+   1896.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFeagin</span>
+   1332.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve → BracketingNonlinearSolveForwardDiffExt</span>
+   2689.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLowStorageRK</span>
+   1374.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveSpectralMethods → NonlinearSolveSpectralMethodsForwardDiffExt</span>
+  30171.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ExponentialUtilities</span>
+   1733.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqNordsieck</span>
+   1948.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveEnzymeExt</span>
+   1583.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseLinearSolveExt</span>
+   2269.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveForwardDiffExt</span>
+   3337.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveSparseArraysExt</span>
+   2110.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqAdamsBashforthMoulton</span>
+   1120.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BracketingNonlinearSolve → BracketingNonlinearSolveChainRulesCoreExt</span>
+   1500.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ExponentialUtilities → ExponentialUtilitiesStaticArraysExt</span>
+   1983.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqLinear</span>
+   4337.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDifferentiation</span>
+   7810.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SimpleNonlinearSolve</span>
+   2575.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDifferentiation → OrdinaryDiffEqDifferentiationSparseArraysExt</span>
+   1578.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SimpleNonlinearSolve → SimpleNonlinearSolveChainRulesCoreExt</span>
+  12996.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveQuasiNewton</span>
+   4842.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExtrapolation</span>
+   2453.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveQuasiNewton → NonlinearSolveQuasiNewtonForwardDiffExt</span>
+  24651.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqVerner</span>
+   3854.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqExponentialRK</span>
+  18320.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveFirstOrder</span>
+  15050.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqRosenbrock</span>
+   7672.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolve</span>
+   3973.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqNonlinearSolve</span>
+   3232.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqIMEXMultistep</span>
+   3506.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqStabilizedIRK</span>
+   3550.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqPDIRK</span>
+   4315.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqSDIRK</span>
+  10243.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqFIRK</span>
+   6769.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqBDF</span>
+  16210.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">OrdinaryDiffEqDefault</span>
+   9390.9 ms<span class="ansi-green-fg">  ✓ </span>OrdinaryDiffEq
+  89 dependencies successfully precompiled in 105 seconds. 146 already precompiled.
 </pre>
 </div>
 </div>
