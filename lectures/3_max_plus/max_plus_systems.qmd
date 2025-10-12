@@ -224,11 +224,11 @@ This is an insightful result. When the system under consideration is a productio
 
 ## Model Predictive Control (MPC) for MPL systems
 
-Now we are finally ready to consider control problems form MPL systems. We will consider the MPC approach.
+Now we are finally ready to consider control problems for MPL systems. We will consider the MPC approach.
 
-### Cosf function for MPC
+### Cost function for MPC
 
-We consider the const function composed of two parts
+We consider the cost function composed of two parts
 $$
 J = J_\mathrm{output} + \lambda J_\mathrm{input}. 
 $$

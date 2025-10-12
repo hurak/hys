@@ -107,7 +107,7 @@ because $x+0=x$.
 
 ::: {.callout-note}
 ## Nonsymmetric notation, but who cares?
-The notation is rather nonsymmetric here. We now have a dedicated symbol $\varepsilon$ for the *zero* element in the new algebra, but no dedicated symbol for the *one* element in the new algebra. It may be a bit confusing as "the old 0 is the new 1". Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we should have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ①  = x. In fact, in some software packages they do define something like `mp-zero` and `mp-one` to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymetry... After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX...
+The notation is rather nonsymmetric here. We now have a dedicated symbol $\varepsilon$ for the *zero* element in the new algebra, but no dedicated symbol for the *one* element in the new algebra. It may be a bit confusing as "the old 0 is the new 1". Perhaps similarly as we introduced dedicated symbols for the new operations of addition of multiplication, we should have introduced dedicated symbols such as ⓪ and ①, which would lead to expressions such as x⊕⓪=x and x ⊗ ①  = x. In fact, in some software packages they do define something like `mp-zero` and `mp-one` to represent the two special elements. But this is not what we will mostly encounter in the literature. Perhaps the best attitude is to come to terms with this notational asymmetry... After all, I myself was apparently not even able to figure out how to encircle numbers in LaTeX...
 :::
 
 ### Inverse elements
@@ -127,7 +127,7 @@ Formally speaking, the (max,+) algebra is only a *semi-ring*.
 
 #### Inverse with respect to $\otimes$
 
-The inverse element with respect to $\otimes$ does not exist for all elements. The $\varepsilon$ element does not have an inverse element with respect to $\otimes$. But in this aspect the (max,+) algebra just follows the conventional algebra, beucase 0 has no inverse there either.
+The inverse element with respect to $\otimes$ can exist, but not for all elements. The $\varepsilon$ element does not have an inverse element with respect to $\otimes$. But in this aspect the (max,+) algebra just follows the conventional algebra, because 0 has no inverse there either.
 
 ## Powers and the inverse with respect to $\otimes$
 
@@ -313,7 +313,7 @@ $$
 ```{dot}
 //| label: fig-precedence-graph
 //| fig-cap: An example of a precedence graph
-//| fig-width: 4.0
+//| fig-height: 120px
 digraph G {
     bgcolor = "transparent";
     rankdir = "LR";
