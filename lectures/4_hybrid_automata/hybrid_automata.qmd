@@ -176,12 +176,10 @@ Upon introduction of these two types of external inputs we must modify the compo
 
 - $\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}$ is a (state) reset map that is now additionally parameterized by the control input. 
 
-### Semantics of transitions with external events
-There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. These are two common possibilities:
-
-1. The transition occurs when the external event arrives *and* the guard condition is satisfied (the invariant set is relevant as before).
-2. The transition occurs as soon as the corresponding external event occurs (the guard condition is assumed to be automatically satisfied).
-
+:::{.callout-important}
+### Alternative semantics of transitions with external events
+There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. What we presented above is the most common one, namely, the transition occurs when the external event arrives *and* the guard condition is satisfied (the invariant set is relevant as before). However, in alternative semantics, the transition occurs as soon as the corresponding external event occurs. But as a matter of fact, this alternative semantics can be formulated within the original one by assuming that the guard condition (posibly even an unspecified one) is automatically satisfied.
+:::
 
 ::: {#exm-button-controlled-LED}
 ## Button-controlled LED
