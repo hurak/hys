@@ -786,7 +786,6 @@ window.Quarto = {
   <li><a href="#hybrid-automaton-with-external-events-and-control-inputs" id="toc-hybrid-automaton-with-external-events-and-control-inputs" class="nav-link active" data-scroll-target="#hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</a>
   <ul class="collapse">
   <li><a href="#some-modifications-needed" id="toc-some-modifications-needed" class="nav-link" data-scroll-target="#some-modifications-needed">Some modifications needed</a></li>
-  <li><a href="#semantics-of-transitions-with-external-events" id="toc-semantics-of-transitions-with-external-events" class="nav-link" data-scroll-target="#semantics-of-transitions-with-external-events">Semantics of transitions with external events</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -988,14 +987,19 @@ Figure&nbsp;1: Hybrid automaton for a thermostat
 <li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set. The necessary condition for a given transition can be thus imposed not only on <span class="math inline">x</span> but also on <span class="math inline">u</span>.</p></li>
 <li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}</span> is a (state) reset map that is now additionally parameterized by the control input.</p></li>
 </ul>
-</section>
-<section id="semantics-of-transitions-with-external-events" class="level3">
-<h3 class="anchored" data-anchor-id="semantics-of-transitions-with-external-events">Semantics of transitions with external events</h3>
-<p>There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. These are two common possibilities:</p>
-<ol type="1">
-<li>The transition occurs when the external event arrives <em>and</em> the guard condition is satisfied (the invariant set is relevant as before).</li>
-<li>The transition occurs as soon as the corresponding external event occurs (the guard condition is assumed to be automatically satisfied).</li>
-</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Alternative semantics of transitions with external events
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. What we presented above is the most common one, namely, the transition occurs when the external event arrives <em>and</em> the guard condition is satisfied (the invariant set is relevant as before). However, in alternative semantics, the transition occurs as soon as the corresponding external event occurs. But as a matter of fact, this alternative semantics can be formulated within the original one by assuming that the guard condition (posibly even an unspecified one) is automatically satisfied.</p>
+</div>
+</div>
 <div id="exm-button-controlled-LED" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
 <div id="fig-button-controlled-LED" class="quarto-float quarto-figure quarto-figure-center anchored">
