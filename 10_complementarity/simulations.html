@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -179,8 +179,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -893,67 +894,6 @@ Figure&nbsp;1: State portrait of the discontinuous system
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>Plots.<span class="fu">plot</span>(sol,xlabel<span class="op">=</span><span class="st">"t"</span>,ylabel<span class="op">=</span><span class="st">"x"</span>,label<span class="op">=</span><span class="cn">false</span>,lw<span class="op">=</span><span class="fl">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> DifferentialEquations...
-    666.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">PoissonRandom</span>
-    562.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Distances → DistancesChainRulesCoreExt</span>
-    580.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Functors</span>
-    659.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DifferentiationInterface → DifferentiationInterfaceSparseConnectivityTracerExt</span>
-    603.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SparseConnectivityTracer → SparseConnectivityTracerChainRulesCoreExt</span>
-    876.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NLsolve</span>
-   1145.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseDistributionsExt</span>
-   1181.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">MatrixFactorizations</span>
-   2734.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Graphs</span>
-   1876.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Optim</span>
-   2453.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqCallbacks</span>
-   4198.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DelayDiffEq</span>
-   3653.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqCore</span>
-   2844.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolve → NonlinearSolveNLsolveExt</span>
-   2071.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SteadyStateDiffEq</span>
-   3523.1 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqNoiseProcess</span>
-   8436.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Sundials</span>
-   2586.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">JumpProcesses</span>
-  10769.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BandedMatrices</span>
-   1425.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">ArrayInterface → ArrayInterfaceBandedMatricesExt</span>
-   1598.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BandedMatrices → BandedMatricesSparseArraysExt</span>
-   3950.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqAscher</span>
-   2988.7 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolve → NonlinearSolveSundialsExt</span>
-   1005.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">FiniteDiff → FiniteDiffBandedMatricesExt</span>
-   1329.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">NonlinearSolveBase → NonlinearSolveBaseBandedMatricesExt</span>
-   1588.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LazyArrays → LazyArraysBandedMatricesExt</span>
-   1668.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveBandedMatricesExt</span>
-   1276.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">MatrixFactorizations → MatrixFactorizationsBandedMatricesExt</span>
-   6520.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">StochasticDiffEq</span>
-   4998.5 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">FastAlmostBandedMatrices</span>
-   2023.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">LinearSolve → LinearSolveFastAlmostBandedMatricesExt</span>
-   4663.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqMIRKN</span>
-   4701.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqShooting</span>
-  50447.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqMIRK</span>
-  77808.2 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEqFIRK</span>
-   8401.4 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">BoundaryValueDiffEq</span>
-   8151.1 ms<span class="ansi-green-fg">  ✓ </span>DifferentialEquations
-  37 dependencies successfully precompiled in 118 seconds. 274 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> RecursiveArrayToolsStructArraysExt...
-    382.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsTablesExt</span>
-    390.9 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">RecursiveArrayTools → RecursiveArrayToolsStructArraysExt</span>
-  2 dependencies successfully precompiled in 2 seconds. 41 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> SciMLBaseMakieExt...
-   5175.3 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">SciMLBase → SciMLBaseMakieExt</span>
-  1 dependency successfully precompiled in 6 seconds. 306 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> DiffEqBaseUnitfulExt...
-    666.0 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">DiffEqBase → DiffEqBaseUnitfulExt</span>
-  1 dependency successfully precompiled in 1 seconds. 87 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> FileIOExt...
-    840.8 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">FileIO → HTTPExt</span>
-   2111.1 ms<span class="ansi-green-fg">  ✓ </span>Plots → FileIOExt
-  2 dependencies successfully precompiled in 3 seconds. 185 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> GeometryBasicsExt...
-   2195.2 ms<span class="ansi-green-fg">  ✓ </span>Plots → GeometryBasicsExt
-  1 dependency successfully precompiled in 3 seconds. 188 already precompiled.
-</pre>
-</div>
-</div>
 <div id="fig-state-trajectory" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-state-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1113,7 +1053,7 @@ u_2 \in [-1,1] &amp; x_2=0\\
 u_2 = -1 &amp; x_2&lt;0.
 \end{cases}
 </span></p>
-<p>But these are <em>mixed complementarity contraints</em> we have defined previously! We can thus write the single step of the simulation algorithm as the MCP <span id="eq-backward-euler-mcp-for-spiralling-example"><span class="math display">
+<p>But these are <em>mixed complementarity constraints</em> we have defined previously! We can thus write the single step of the simulation algorithm as the MCP <span id="eq-backward-euler-mcp-for-spiralling-example"><span class="math display">
 \boxed{
 \begin{aligned}
 \begin{bmatrix}
@@ -1217,14 +1157,6 @@ h\\ h
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Plots.<span class="fu">plot</span>(Ha, aspect_ratio<span class="op">=:</span>equal,xlabel<span class="op">=</span><span class="st">"x₁"</span>,ylabel<span class="op">=</span><span class="st">"x₂"</span>,label<span class="op">=</span><span class="cn">false</span>,xlims<span class="op">=</span>(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>),ylims<span class="op">=</span>(<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> OptimMOIExt...
-   1468.6 ms<span class="ansi-green-fg">  ✓ </span><span class="ansi-bright-black-fg">Optim → OptimMOIExt</span>
-  1 dependency successfully precompiled in 2 seconds. 86 already precompiled.
-</pre>
-</div>
-</div>
 <div id="fig-rotated-square" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rotated-square-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1393,14 +1325,6 @@ Figure&nbsp;7: The nine regions of the state space for the spiralling system
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">push!</span>(x, x[<span class="kw">end</span>]<span class="fu">+h*M*value</span>.(u))</span>
 <span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> PATHSolver...
-   1578.7 ms<span class="ansi-green-fg">  ✓ </span>PATHSolver
-  1 dependency successfully precompiled in 2 seconds. 65 already precompiled.
-</pre>
-</div>
-</div>
 </div>
 <p>The code is admittedly unoptimized (for example, it is not wise to start building the optimization model from the scratch in every iteration), but it was our intention to keep it simple to be read conveniently.</p>
 <p>The code outcome can be plotted as in <a href="#fig-mcp-solution" class="quarto-xref">Fig.&nbsp;8</a>. A solution obtained by a classical (default) ODE solver with default setting is plotted for comparison.</p>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -39,7 +59,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -98,8 +118,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -759,10 +780,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The literature for hybrid systems is vast. I found choosing a single resource as the reference for our course a daunting task.</p>
+<p>Chapter 2 of the recently published book <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span> provides an up to date introduction to hybrid systems. But I am not happy about their lack of consistency in defining the roles of guards and (location/mode) invariants as the conditions for transitions. Furthermore, it is currently not available online (neither through our institutional subscription nor for free on the authors’ webpage). Among the popular references is a a thin book <span class="citation" data-cites="vanderschaftIntroductionHybridDynamical2000"><a href="#ref-vanderschaftIntroductionHybridDynamical2000" role="doc-biblioref">[2]</a></span>, but it is not freely available online either. Therefore, I am giving here a list of a few more recommendable references by leaders in the field.</p>
+<p>The often cited lecture notes <span class="citation" data-cites="lygerosLectureNotesHybrid2004"><a href="#ref-lygerosLectureNotesHybrid2004" role="doc-biblioref">[3]</a></span>. An updated version <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[4]</a></span> was available online for a while, but recently the link seems to be broken (perhaps the authors have been turning them into a book). The book chapter <span class="citation" data-cites="heemelsIntroductionHybridSystems2009"><a href="#ref-heemelsIntroductionHybridSystems2009" role="doc-biblioref">[5]</a></span> is a good and much shorter overview. It is freely available online on the authors web page. A similar overview role is played by the encyclopedia article <span class="citation" data-cites="johanssonHybridControlSystems2004"><a href="#ref-johanssonHybridControlSystems2004" role="doc-biblioref">[6]</a></span>, which is also freely available online.</p>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-vanderschaftIntroductionHybridDynamical2000" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. J. van der Schaft and H. Schumacher, <em>An <span>Introduction</span> to <span>Hybrid Dynamical Systems</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>, no. 251. London: Springer-Verlag, 2000. Accessed: Dec. 11, 2018. [Online]. Available: <a href="https://doi.org/10.1007/BFb0109998">https://doi.org/10.1007/BFb0109998</a></div>
+</div>
+<div id="ref-lygerosLectureNotesHybrid2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. Lygeros, <em>Lecture <span>Notes</span> on <span>Hybrid Systems</span></em>. 2004. Available: <a href="https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf">https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+<div id="ref-heemelsIntroductionHybridSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">W. P. M. H. Heemels, D. Lehmann, J. Lunze, and B. De Schutter, <span>“Introduction to hybrid systems,”</span> in <em>Handbook of <span>Hybrid Systems Control</span>: <span>Theory</span>, <span>Tools</span>, <span>Applications</span></em>, J. Lunze and F. Lamnabhi-Lagarrigue, Eds., Cambridge University Press, 2009, pp. 3–30. doi: <a href="https://doi.org/10.1017/CBO9780511807930.002">10.1017/CBO9780511807930.002</a>.</div>
+</div>
+<div id="ref-johanssonHybridControlSystems2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">K. H. Johansson, <span>“Hybrid control systems,”</span> in <em><span>UNESCO Encyclopedia</span> of <span>Life Support Systems</span> (<span>EOLSS</span>)</em>, UNESCO, 2004. Accessed: Jun. 02, 2022. [Online]. Available: <a href="http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-90411">http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-90411</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

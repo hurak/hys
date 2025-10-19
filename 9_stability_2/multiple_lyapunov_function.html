@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-4469d617958d98ac575a98bb526105ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -179,8 +179,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -913,17 +914,6 @@ Figure&nbsp;1: State portrait for the switched system with no common quadratic L
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>constraints <span class="op">=</span> [constraint₁, constraint₂]</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>problem <span class="op">=</span> <span class="fu">satisfy</span>(constraints)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem,SCS.Optimizer,silent<span class="op">=</span><span class="cn">true</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-bright-green-fg ansi-bold">Precompiling</span> Convex...
-   2395.5 ms<span class="ansi-green-fg">  ✓ </span>Convex
-  1 dependency successfully precompiled in 3 seconds. 53 already precompiled.
-<span class="ansi-bright-green-fg ansi-bold">Precompiling</span> SCS...
-  17489.3 ms<span class="ansi-green-fg">  ✓ </span>SCS
-  1 dependency successfully precompiled in 18 seconds. 53 already precompiled.
-</pre>
-</div>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>Problem statistics
   problem is DCP         : true
@@ -952,7 +942,7 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 125…985)
+   │  └─ 2×2 real variable (id: 245…277)
    ⋮</code></pre>
 </div>
 </div>

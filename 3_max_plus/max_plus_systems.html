@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -59,7 +59,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -161,8 +161,9 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -809,7 +810,7 @@ window.Quarto = {
   <li><a href="#analysis-of-an-irreducible-mpl-system" id="toc-analysis-of-an-irreducible-mpl-system" class="nav-link" data-scroll-target="#analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</a></li>
   <li><a href="#model-predictive-control-mpc-for-mpl-systems" id="toc-model-predictive-control-mpc-for-mpl-systems" class="nav-link" data-scroll-target="#model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</a>
   <ul class="collapse">
-  <li><a href="#cosf-function-for-mpc" id="toc-cosf-function-for-mpc" class="nav-link" data-scroll-target="#cosf-function-for-mpc">Cosf function for MPC</a></li>
+  <li><a href="#cost-function-for-mpc" id="toc-cost-function-for-mpc" class="nav-link" data-scroll-target="#cost-function-for-mpc">Cost function for MPC</a></li>
   <li><a href="#control-horizon-vs.-prediction-horizon" id="toc-control-horizon-vs.-prediction-horizon" class="nav-link" data-scroll-target="#control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</a></li>
   <li><a href="#inequality-constraints-for-mpc" id="toc-inequality-constraints-for-mpc" class="nav-link" data-scroll-target="#inequality-constraints-for-mpc">Inequality constraints for MPC</a></li>
   <li><a href="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" id="toc-mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="nav-link" data-scroll-target="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</a></li>
@@ -1044,10 +1045,10 @@ x_{k+c}-x_k = c\lambda.
 </section>
 <section id="model-predictive-control-mpc-for-mpl-systems" class="level2">
 <h2 class="anchored" data-anchor-id="model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</h2>
-<p>Now we are finally ready to consider control problems form MPL systems. We will consider the MPC approach.</p>
-<section id="cosf-function-for-mpc" class="level3">
-<h3 class="anchored" data-anchor-id="cosf-function-for-mpc">Cosf function for MPC</h3>
-<p>We consider the const function composed of two parts <span class="math display">
+<p>Now we are finally ready to consider control problems for MPL systems. We will consider the MPC approach.</p>
+<section id="cost-function-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="cost-function-for-mpc">Cost function for MPC</h3>
+<p>We consider the cost function composed of two parts <span class="math display">
 J = J_\mathrm{output} + \lambda J_\mathrm{input}.
 </span></p>
 <p>At “time” <span class="math inline">k</span>, with the prediction horizon <span class="math inline">N_\mathrm{p}</span>, and with the number of outputs <span class="math inline">n_\mathrm{y}</span>: <span class="math display">
