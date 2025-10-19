@@ -132,6 +132,14 @@ Is this model *deterministic*? There are actually two reasons why it is not:
 2. Since the invariant for a given mode and the guard set for the only transition to the other model overlap, the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode.
 :::
 
+:::{.callout-caution}
+## Alternative semantics for the invariant sets and guard sets
+The roles of the invariant sets (the system "can stay in the given mode as long as the continuous state is within the invariant set") and the guard sets (the transition "can be executed when the continuous state is within the guard set") as we defined them constitute the most common semantics, the canonical one, there are alternative semantics used by some authors. Mostly they are motivated by the need to remove the nondeterminism that may arise when the invariant set and the guard set overlap.
+
+- One common possibility is that as soon as the transition is enabled, it is executed, even if the state is still well inside the invariant set. In other words, a guard gives not only necessary but also sufficient conditions for the transition. Within timed automata theory, such transitions are called *urgent*. This approach is followed by Stateflow software, for example.
+- Another possibility is that even if the transition is enabled, it is only executed once the state leaves the invariant set.
+:::
+
 ## Hybrid automaton with external events and control inputs
 
 We now extend the hybrid automaton with two new components:
@@ -168,10 +176,12 @@ Upon introduction of these two types of external inputs we must modify the compo
 
 - $\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}$ is a (state) reset map that is now additionally parameterized by the control input. 
 
-If enabled, the transition can happen if one of the two things is satisfied: 
+### Semantics of transitions with external events
+There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. These are two common possibilities:
 
-- the continous state leaves the invariant set of the given location,   
-- an external event occurs. 
+1. The transition occurs when the external event arrives *and* the guard condition is satisfied (the invariant set is relevant as before).
+2. The transition occurs as soon as the corresponding external event occurs (the guard condition is assumed to be automatically satisfied).
+
 
 ::: {#exm-button-controlled-LED}
 ## Button-controlled LED
