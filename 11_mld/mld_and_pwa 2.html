@@ -1014,14 +1014,6 @@ C &amp;= 1, \quad D_u = 0, \quad D_\delta = 0, \quad D_z = 0, \quad D_0 = 0.
 <span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>S1 <span class="op">=</span> <span class="fu">Singleton</span>([<span class="fu">value</span>(δ), <span class="fu">value</span>(z)])</span>
 <span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(S1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-   1909.7 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerPlotsExt<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 2 seconds
-</pre>
-</div>
-</div>
 <div id="fig-mld-switched" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mld-switched-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1306,7 +1298,7 @@ M\delta_1(k) &amp;\leq -x_\mathrm{c}(k) + M + x_\text{lb},\\
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

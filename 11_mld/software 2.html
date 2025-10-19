@@ -876,14 +876,6 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
-</div>
-</div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
 </div>
@@ -972,7 +964,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

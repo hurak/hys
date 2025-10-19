@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Barrier certificates – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../13_verification_1/software.html" rel="next">
+<link href="../13_verification_1/reachability.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../13_verification_1/goals.html">13. Formal verification I.</a></li><li class="breadcrumb-item"><a href="../13_verification_1/barrier.html">Barrier certificates</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -755,7 +720,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../13_verification_1/barrier.html" class="sidebar-item-text sidebar-link">
+  <a href="../13_verification_1/barrier.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Barrier certificates</span></a>
   </div>
 </li>
@@ -818,17 +783,19 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#barrier-certificate-for-continuous-systems" id="toc-barrier-certificate-for-continuous-systems" class="nav-link active" data-scroll-target="#barrier-certificate-for-continuous-systems">Barrier certificate for continuous systems</a></li>
+  <li><a href="#convex-relaxation-of-the-barrier-certificate-problem" id="toc-convex-relaxation-of-the-barrier-certificate-problem" class="nav-link" data-scroll-target="#convex-relaxation-of-the-barrier-certificate-problem">Convex relaxation of the barrier certificate problem</a></li>
+  <li><a href="#barrier-certificate-for-hybrid-systems" id="toc-barrier-certificate-for-hybrid-systems" class="nav-link" data-scroll-target="#barrier-certificate-for-hybrid-systems">Barrier certificate for hybrid systems</a></li>
+  <li><a href="#convex-relaxation-of-barrier-certificates-for-hybrid-systems" id="toc-convex-relaxation-of-barrier-certificates-for-hybrid-systems" class="nav-link" data-scroll-target="#convex-relaxation-of-barrier-certificates-for-hybrid-systems">Convex relaxation of barrier certificates for hybrid systems</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../13_verification_1/goals.html">13. Formal verification I.</a></li><li class="breadcrumb-item"><a href="../13_verification_1/barrier.html">Barrier certificates</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Barrier certificates</h1>
 </div>
 
 
@@ -845,55 +812,146 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
+<p>This is another technique for verification of safety of hybrid system. Unlike the optimal-control based and set-propagation based techniques, it is not based on explicit computational characterization of the evolution of states in time. Instead, it is based on searching for a function of a state that satisfies certain properties. The function is called a barrier function and it serves as a certificate of safety.</p>
+<p>For notational and conceptual convenience we start with an explanation of the method for continuous systems, and only then we extend it to hybrid systems.</p>
+<section id="barrier-certificate-for-continuous-systems" class="level2">
+<h2 class="anchored" data-anchor-id="barrier-certificate-for-continuous-systems">Barrier certificate for continuous systems</h2>
+<p>We consider a continuous-time dynamical system modelled by <span class="math display">
+\dot{\bm x}(t) = \mathbf f(\bm x, \bm d),
+</span> where <span class="math inline">\bm d</span> represents an uncertainty in the system description – it can be an uncertain parameter or an external disturbance acting on the system.</p>
+<p>We now define two regions of the state space:</p>
+<ul>
+<li>the set of initial states <span class="math inline">\mathcal X_0</span>,</li>
+<li>and the set of unsafe states <span class="math inline">\mathcal X_\mathrm{u}</span>.</li>
+</ul>
+<p>Our goal is to prove (certify) that the system does not reach the unsafe states for an arbitrary initial state <span class="math inline">\bm x(0)\in \mathcal X_0</span> and for an arbitrary <span class="math inline">d\in \mathcal D</span>.</p>
+<p>We define a barrier function <span class="math inline">B(\bm x)</span> with the following three properties</p>
+<p><span class="math display">B(\bm x) &gt; 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},</span></p>
+<p><span class="math display">B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,</span></p>
+<p><span class="math display">\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x, \bm d \, \text{such that} \, B(\bm x) = 0.</span></p>
+<p>Now, upon finding a function <span class="math inline">B(\bm x)</span> with such properties, we will prove (certify) safety of the system – the function serves as a certificate of safety.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It cannot go unnoticed that the properties of a barrier function <span class="math inline">B(\bm x)</span> and the motivation for its finding resemble those of a Lyapunov function. Indeed, the two concepts are related. But they are not the same.</p>
+</div>
+</div>
+<p>How do we find such function? We will reuse the computational technique based on sum-of-squares (SOS) polynomials that we already used for Lyapunov functions. But first we need to handle one unpleasant aspect of the third condition above – nonconvexity of the set given by <span class="math inline">B(\bm x) = 0</span>.</p>
 </section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
+<section id="convex-relaxation-of-the-barrier-certificate-problem" class="level2">
+<h2 class="anchored" data-anchor-id="convex-relaxation-of-the-barrier-certificate-problem">Convex relaxation of the barrier certificate problem</h2>
+<p>We relax the third condition so that it holds not only at <span class="math inline">B(\bm x) = 0</span> but everywhere. The three conditions are then <span class="math display">B(\bm x) &gt; 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},</span></p>
+<p><span class="math display">B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,</span></p>
+<p><span class="math display">\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x\in \mathcal X, \bm d \in \mathcal D.</span></p>
+<p>Let’s now demonstrate this by means of an example.</p>
+<div id="exm-line" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1</strong></span> Consider the system modelled by <span class="math display">
 \begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
+\dot x_1 &amp;= x_2\\
+\dot x_2 &amp;= -x_1 + \frac{p}{3}x_1^3 - x_2,
 \end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
+</span> where the parameter <span class="math inline">p\in [0.9,1.1]</span>.</p>
+<p>The initial set is given by <span class="math display">
+\mathcal X_0 = \{ \bm x \in \mathbb R^2 \mid (x_1-1.5)^2 + x_2^2 \leq 0.25 \}
+</span> and the unsafe set is given by <span class="math display">
+\mathcal X_\mathrm{u} = \{ \bm x \in \mathbb R^2 \mid (x_1+1)^2 + (x_2+1)^2 \leq 0.16 \}.
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
+<!-- The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
+
+#| eval: false
+#| fig-cap: The vector field, the initial and unsafe sets, and the boundary function level set for the barrier certificate example. Simulated are also a few trajectories. From [Tutorials for SumOfSquares.jl](https://jump.dev/SumOfSquares.jl/stable/generated/Systems%20and%20Control/barrier_certificate/).
+#| label: fig-barrier
+using SumOfSquares
+using DynamicPolynomials
+# using MosekTools     
+using CSDP
+
+optimizer = optimizer_with_attributes(CSDP.Optimizer, MOI.Silent() => true)
+model = SOSModel(optimizer)
+@polyvar x[1:2] 
+
+p = 1;
+
+f = [ x[2],
+     -x[1] + (p/3)*x[1]^3 - x[2]]
+
+g₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}
+h₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}
+
+X = monomials(x, 0:4)
+@variable(model, B, Poly(X))
+
+ε = 0.001
+@constraint(model, B >= ε, domain = @set(g₁ >= 0))
+
+@constraint(model, B <= 0, domain = @set(h₁ >= 0))
+
+using LinearAlgebra # Needed for `dot`
+dBdt = dot(differentiate(B, x), f)
+@constraint(model, -dBdt >= 0)
+
+JuMP.optimize!(model)
+
+JuMP.primal_status(model)
+
+import DifferentialEquations, Plots, ImplicitPlots
+function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())
+    X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="X₀", linecolor=:blue)
+    Xᵤplot = ImplicitPlots.implicit_plot!(g₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="Xᵤ", linecolor=:teal)
+    Bplot  = ImplicitPlots.implicit_plot!(B; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="B = 0", linecolor=:red)
+    Plots.plot(X₀plot)
+    Plots.plot!(Xᵤplot)
+    Plots.plot!(Bplot)
+    ∇(vx, vy) = [fi(x[1] => vx, x[2] => vy) for fi in f]
+    ∇pt(v, p, t) = ∇(v[1], v[2])
+    function traj(v0)
+        tspan = (0.0, Δt)
+        prob = DifferentialEquations.ODEProblem(∇pt, v0, tspan)
+        return DifferentialEquations.solve(prob, solver, reltol=1e-8, abstol=1e-8)
+    end
+    ticks = -5:0.5:5
+    X = repeat(ticks, 1, length(ticks))
+    Y = X'
+    Plots.quiver!(X, Y, quiver = (x, y) -> ∇(x, y) / quiver_scaling, linewidth=0.5)
+    for x0 in X0
+        Plots.plot!(traj(x0), idxs=(1, 2), label = nothing)
+    end
+    Plots.plot!(xlims = (-2, 3), ylims = (-2.5, 2.5), xlabel = "x₁", ylabel = "x₂")
+end
+
+phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])
+``` -->
 </div>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
-</div>
-</div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+</section>
+<section id="barrier-certificate-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="barrier-certificate-for-hybrid-systems">Barrier certificate for hybrid systems</h2>
+<p>For a hybrid automaton with <span class="math inline">l</span> locations <span class="math inline">\{q_1,q_2,\ldots,q_l\}</span>, not just one but <span class="math inline">l</span> barrier functions/certificates are needed:</p>
+<p><span class="math display">B_i(\bm x) &gt; 0,\quad \forall \bm x \in \mathcal X_\mathrm{u}(q_i),</span></p>
+<p><span class="math display">B_i(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0(q_i),</span></p>
+<p><span class="math display">\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x, \bm u \, \text{such that} \, B_i(\bm x) = 0,</span></p>
+<p><span class="math display">
+\begin{aligned}
+B_i(\bm x) \leq 0,\quad &amp;\forall \bm x \in \mathcal R(q_j,q_i,\bm x^-)\,\text{for some}\, q_j\,\\
+&amp;\text{and}\, \bm x^-\in\mathcal G(q_j,q_i)\,\text{with}\, B_j(\bm x^-)\leq 0.
+\end{aligned}
+</span></p>
+</section>
+<section id="convex-relaxation-of-barrier-certificates-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="convex-relaxation-of-barrier-certificates-for-hybrid-systems">Convex relaxation of barrier certificates for hybrid systems</h2>
+<p><span class="math display">\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x\in X_0(q_i), \bm u\in\mathcal U(q_i),</span></p>
+<p><span class="math display">
+\begin{aligned}
+B_i(\bm x) \leq 0,\quad &amp;\forall (\bm x, \bm x^-)\,\text{such that}\, \bm x \in \mathcal R(q_j,q_i,\bm x^-), \\
+&amp;\text{and}\, \bm x^-\in\mathcal G(q_i,q_j).
+\end{aligned}
+</span></p>
 
 
 </section>
@@ -972,7 +1030,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1301,13 +1359,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../13_verification_1/reachability.html" class="pagination-link" aria-label="Reachability analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reachability analysis</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../13_verification_1/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

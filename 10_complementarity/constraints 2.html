@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Complementarity constraints – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../10_complementarity/systems.html" rel="next">
+<link href="../10_complementarity/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/constraints.html">Complementarity constraints</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -602,7 +567,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_complementarity/constraints.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_complementarity/constraints.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Complementarity constraints</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,32 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#why-complementarity-constraints" id="toc-why-complementarity-constraints" class="nav-link active" data-scroll-target="#why-complementarity-constraints">Why complementarity constraints?</a></li>
+  <li><a href="#definition-of-complementarity-constraints" id="toc-definition-of-complementarity-constraints" class="nav-link" data-scroll-target="#definition-of-complementarity-constraints">Definition of complementarity constraints</a></li>
+  <li><a href="#geometric-interpretation-of-complementarity-constraints" id="toc-geometric-interpretation-of-complementarity-constraints" class="nav-link" data-scroll-target="#geometric-interpretation-of-complementarity-constraints">Geometric interpretation of complementarity constraints</a></li>
+  <li><a href="#linear-complementarity-problem-lcp" id="toc-linear-complementarity-problem-lcp" class="nav-link" data-scroll-target="#linear-complementarity-problem-lcp">Linear complementarity problem (LCP)</a></li>
+  <li><a href="#existence-of-a-unique-solution" id="toc-existence-of-a-unique-solution" class="nav-link" data-scroll-target="#existence-of-a-unique-solution">Existence of a unique solution</a></li>
+  <li><a href="#lcp-related-to-lp-and-qp" id="toc-lcp-related-to-lp-and-qp" class="nav-link" data-scroll-target="#lcp-related-to-lp-and-qp">LCP related to LP and QP</a></li>
+  <li><a href="#nonlinear-complementarity-problem-nlcp" id="toc-nonlinear-complementarity-problem-nlcp" class="nav-link" data-scroll-target="#nonlinear-complementarity-problem-nlcp">Nonlinear complementarity problem (NLCP)</a></li>
+  <li><a href="#mixed-complementarity-problem-mcp" id="toc-mixed-complementarity-problem-mcp" class="nav-link" data-scroll-target="#mixed-complementarity-problem-mcp">Mixed complementarity problem (MCP)</a></li>
+  <li><a href="#extensions-and-related-problems" id="toc-extensions-and-related-problems" class="nav-link" data-scroll-target="#extensions-and-related-problems">Extensions and related problems</a>
+  <ul class="collapse">
+  <li><a href="#extended-linear-complementarity-problem-elcp" id="toc-extended-linear-complementarity-problem-elcp" class="nav-link" data-scroll-target="#extended-linear-complementarity-problem-elcp">Extended linear complementarity problem (ELCP)</a></li>
+  <li><a href="#mathematical-program-with-complementarity-constraints-mpcc" id="toc-mathematical-program-with-complementarity-constraints-mpcc" class="nav-link" data-scroll-target="#mathematical-program-with-complementarity-constraints-mpcc">Mathematical program with complementarity constraints (MPCC)</a></li>
+  <li><a href="#mathematical-program-with-equilibrium-constraints-mpec" id="toc-mathematical-program-with-equilibrium-constraints-mpec" class="nav-link" data-scroll-target="#mathematical-program-with-equilibrium-constraints-mpec">Mathematical program with equilibrium constraints (MPEC)</a></li>
+  <li><a href="#bilevel-optimization" id="toc-bilevel-optimization" class="nav-link" data-scroll-target="#bilevel-optimization">Bilevel optimization</a></li>
+  <li><a href="#disjunctive-constraints" id="toc-disjunctive-constraints" class="nav-link" data-scroll-target="#disjunctive-constraints">Disjunctive constraints</a></li>
+  <li><a href="#variational-inequality-vi" id="toc-variational-inequality-vi" class="nav-link" data-scroll-target="#variational-inequality-vi">Variational inequality (VI)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/constraints.html">Complementarity constraints</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Complementarity constraints</h1>
 </div>
 
 
@@ -845,57 +825,178 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
+<section id="why-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="why-complementarity-constraints">Why complementarity constraints?</h2>
+<p>In this chapter we are going to present yet another framework for modelling hybrid systems, which comes with a rich theory and efficient algorithms. It is based on <em>complementarity constraints</em>. Before we introduce the modelling framework in the next section, we first explain the very concept of complementarity constraints and the related optimization problems.</p>
 </section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
-\begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
-\end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
+<section id="definition-of-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-complementarity-constraints">Definition of complementarity constraints</h2>
+<p>Two variables <span class="math inline">x\in\mathbb R</span> and <span class="math inline">y\in\mathbb R</span> satisfy the c<em>omplementarity constraint</em> if <span class="math inline">x</span> or <span class="math inline">y</span> is equal to zero and both are nonnegative</p>
+<p><span class="math display">xy=0, \; x\geq 0,\; y\geq 0,</span></p>
+<p>or, using a dedicated compact notation<br>
+<span class="math display">\boxed{0\leq x \perp y \geq 0.}</span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Both variables can be zero simultaneously
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>or</em> in the above definition is not exclusive, therefore it is possible that both <span class="math inline">x</span> and <span class="math inline">y</span> are zero.</p>
+</div>
+</div>
+<p>The concept and notation extends to vectors <span class="math inline">x\in\mathbb R^n</span> and <span class="math inline">y\in\mathbb R^n</span>, in which case the constraint is interpreted componentwise <span class="math display">\boxed{\bm 0\leq \bm x \perp \bm y \geq \bm 0.}</span></p>
+</section>
+<section id="geometric-interpretation-of-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="geometric-interpretation-of-complementarity-constraints">Geometric interpretation of complementarity constraints</h2>
+<p>The set of admissible pairs <span class="math inline">(x,y)</span> in the <span class="math inline">\mathbb R^2</span> plane is constrained to the L-shaped subset given by the nonnegative <span class="math inline">x</span> and <span class="math inline">y</span> semi-axes (including the origin) as in <a href="#fig-L-shaped-complementarity-set" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-L-shaped-complementarity-set" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-L-shaped-complementarity-set-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/l_shaped_complementarity_set.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-L-shaped-complementarity-set-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The set of solutions satisfying a complementarity constraint
+</figcaption>
+</figure>
+</div>
+<p>Optimization over these constraints is difficult, and not only because the feasible set is nonconvex, but also because <em>constraint qualification</em> conditions are not satisfied. Still, some results and tools are available for some classes of optimization problems with these constraints.</p>
+</section>
+<section id="linear-complementarity-problem-lcp" class="level2">
+<h2 class="anchored" data-anchor-id="linear-complementarity-problem-lcp">Linear complementarity problem (LCP)</h2>
+<p>For a given square matrix <span class="math inline">\mathbf M</span> and a vector <span class="math inline">\mathbf q</span> , the <em>linear complementarity problem</em> (LCP) asks for finding two vectors <span class="math inline">\bm w</span> and <span class="math inline">\bm z</span> satisfying <span class="math display">
+  \begin{aligned}
+  \bm w-\mathbf M\bm z &amp;= \mathbf q, \\
+  \bm 0 \leq \bm w &amp;\perp \bm z \geq \bm 0.
+  \end{aligned}
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
+<p>Just by moving all the provided data to the right-hand side we get <span class="math inline">\bm w = \underbrace{\mathbf M\bm z + \mathbf q}_{\mathbf f(\bm z)}</span> and we can write the linear complementarity constraint compactly as <span id="eq-lcp"><span class="math display">\boxed{
+\mathbf 0 \leq \mathbf M\bm z + \mathbf q \perp \bm z \geq \mathbf 0.}
+\tag{1}</span></span></p>
+</section>
+<section id="existence-of-a-unique-solution" class="level2">
+<h2 class="anchored" data-anchor-id="existence-of-a-unique-solution">Existence of a unique solution</h2>
+<p>A unique solution exists for every vector <span class="math inline">\mathbf q</span> if and only if the matrix <span class="math inline">\mathbf M</span> is a P-matrix (something like positive definite, but not exactly, look it up yourself).</p>
+</section>
+<section id="lcp-related-to-lp-and-qp" class="level2">
+<h2 class="anchored" data-anchor-id="lcp-related-to-lp-and-qp">LCP related to LP and QP</h2>
+<p>Note that the KKT conditions for LP and QP come in the form of LCP.</p>
+<p>Consider the QP problem with inequality constraints <span class="math display">\text{minimize} \quad \frac{1}{2}\bm x^\top \mathbf Q \bm x + \mathbf c^\top \bm x</span> <span class="math display">\text{subject to} \quad \mathbf A\bm x \geq \mathbf b,\quad \bm x\geq \mathbf 0,</span></p>
+<p>The KKT conditions can be written (and compare these to the conditions for the equality-constrained QP) <span class="math display">
+\begin{aligned}
+\mathbf 0\leq \bm x &amp;\perp \mathbf Q\bm x - \mathbf A^\top \bm \lambda + \mathbf c \geq \mathbf 0\\
+\mathbf 0\leq \bm \lambda &amp;\perp \mathbf A\bm x -\mathbf b \geq \mathbf 0.
+\end{aligned}
+</span></p>
+<p>These can be reformatted as <span class="math display">
+\mathbf 0\leq \underbrace{\begin{bmatrix}\bm x\\ \bm \lambda\end{bmatrix}}_{\bm z}
+\perp
+\underbrace{\begin{bmatrix} \mathbf Q &amp; -\mathbf A^\top \\ \mathbf A &amp; \mathbf 0\end{bmatrix}\begin{bmatrix}\bm x\\ \bm \lambda\end{bmatrix} + \begin{bmatrix} \mathbf c \\ -\mathbf b \end{bmatrix}}_{\mathbf M\bm z+\mathbf q}\geq 0.</span></p>
+</section>
+<section id="nonlinear-complementarity-problem-nlcp" class="level2">
+<h2 class="anchored" data-anchor-id="nonlinear-complementarity-problem-nlcp">Nonlinear complementarity problem (NLCP)</h2>
+<p>Recall that when deriving <a href="#eq-lcp" class="quarto-xref">Eq.&nbsp;1</a>, we denoted the right-hand side by <span class="math inline">\mathbf f(\bm x)</span>. The motivation for this was to help define a general nonlinear complementarity problem (NLCP): given a vector function <span class="math inline">\mathbf f: \mathbb R^n\rightarrow \mathbb R^n</span>, find a vector <span class="math inline">\bm x\in\mathbb R^n</span> satisfying <span id="eq-nlcp"><span class="math display">\boxed{
+\bm 0\leq \bm x \perp \mathbf f(\bm x) \geq \bm 0.}
+\tag{2}</span></span></p>
+</section>
+<section id="mixed-complementarity-problem-mcp" class="level2">
+<h2 class="anchored" data-anchor-id="mixed-complementarity-problem-mcp">Mixed complementarity problem (MCP)</h2>
+<p>We now provide an extension of a complementarity constraint to the situation in which the variable <span class="math inline">x</span> is lower- and upper-bounded. In particular, it can be stated as <span id="eq-mcp"><span class="math display">\boxed{
+  l \leq x \leq u \perp f(x),}
+\tag{3}</span></span></p>
+<p>where <span class="math inline">l</span> and <span class="math inline">u</span> are vectors of lower and upper bounds, respectively, and <span class="math inline">f(x)</span> is a vector function which reads that</p>
+<ul>
+<li>if <span class="math inline">x</span> is strictly within the interval, that is, <span class="math inline">l &lt; x &lt; u</span> , then <span class="math inline">f(x)=0</span>,</li>
+<li>if <span class="math inline">x= l</span> , then <span class="math inline">f(x)\geq 0</span>,</li>
+<li>if <span class="math inline">x= u</span> , then <span class="math inline">f(x)\leq 0</span>,</li>
+</ul>
+<p>with elementwise interpretation in the vector case.</p>
+</section>
+<section id="extensions-and-related-problems" class="level2">
+<h2 class="anchored" data-anchor-id="extensions-and-related-problems">Extensions and related problems</h2>
+<p>LCP and MCP are all we need in our course, but let’s mentions some extensions and related problems.</p>
+<section id="extended-linear-complementarity-problem-elcp" class="level3">
+<h3 class="anchored" data-anchor-id="extended-linear-complementarity-problem-elcp">Extended linear complementarity problem (ELCP)</h3>
+<p>Given some matrices <span class="math inline">\mathbf A</span> and <span class="math inline">\mathbf B</span> , vectors <span class="math inline">\mathbf c</span> and <span class="math inline">\mathbf d</span> , and <span class="math inline">m</span> subsets <span class="math inline">\phi_j \sub \{1,2,\ldots,p\}</span> , find a vector <span class="math inline">\bm x</span> such that <span class="math display">
+  \begin{aligned}
+  \sum_{j=1}^m\prod_{i\in\phi_j}(\mathbf A\bm x - \mathbf c)_i &amp;= 0,\\
+  \mathbf A\bm x &amp;\geq \mathbf c,\\
+  \mathbf B\bm x &amp;= \mathbf d,
+  \end{aligned}
+</span><br>
+or show that no such <span class="math inline">\bm x</span> exists.</p>
+<p>The first equation is equivalent to <span class="math display">
+\forall j \in \{1, \ldots, m\} \; \exist i \in \phi_j \;\text{such that} \; (\mathbf A\bm x − \mathbf c)_i = 0.
+</span></p>
+<p>Geometric interpretation: union of some faces of a polyhedron.</p>
+</section>
+<section id="mathematical-program-with-complementarity-constraints-mpcc" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-program-with-complementarity-constraints-mpcc">Mathematical program with complementarity constraints (MPCC)</h3>
+<p>The mathematical program with complementarity constraints (MPCC) is <span class="math display">
+  \begin{aligned}
+  \operatorname*{minimize}_{\bm x\in\mathbb R^n} &amp; \;f(\bm x)\\
+  \text{subject to} &amp; \;\mathbf 0\leq \mathbf h(\bm x) \perp \mathbf g(\bm x) \geq \mathbf 0.
+  \end{aligned}
+</span></p>
+<p>It is a special case of <em>Mathematical program with equilibrium constraints (MPEC)</em>.</p>
+</section>
+<section id="mathematical-program-with-equilibrium-constraints-mpec" class="level3">
+<h3 class="anchored" data-anchor-id="mathematical-program-with-equilibrium-constraints-mpec">Mathematical program with equilibrium constraints (MPEC)</h3>
+<p>Optimization problem in which some variable should satisfy equilibrium constraints: <span class="math display">
+  \begin{aligned}
+  \operatorname*{minimize}_{x_1,x_2} &amp;\; f(x_1,x_2)\\
+  \text{subject to}&amp;\; \nabla_{x_2} \phi(x_1,x_2) = 0.
+  \end{aligned}
+</span></p>
+<p>For convex <span class="math inline">\phi()</span> it can be reformulated into a <em>Bilevel optimization</em> problem.</p>
+</section>
+<section id="bilevel-optimization" class="level3">
+<h3 class="anchored" data-anchor-id="bilevel-optimization">Bilevel optimization</h3>
+<p>Optimization problem in which some variables are constrained to be results of some inner optimization. In the simplest form <span class="math display">
+\begin{aligned}
+  \operatorname*{minimize}_{x_1,x_2} &amp;\; f(x_1,x_2)\\
+  \text{subject to}\ &amp;\; x_2 = \text{arg}\,\min_{x_2} \;\phi(x_1,x_2).
+\end{aligned}
+</span></p>
+</section>
+<section id="disjunctive-constraints" class="level3">
+<h3 class="anchored" data-anchor-id="disjunctive-constraints">Disjunctive constraints</h3>
+<p>Disjunctive constraints are given by a number of conditions induced by affine constraints and connected with <span class="math inline">\lor</span> and <span class="math inline">\land</span> logical operators</p>
+<p><span class="math display">
+T_1 \lor T_2 \lor \ldots \lor T_m,
+</span> where <span class="math display">
+T_i = T_{i1} \land T_{i1} \land \ldots \land T_{in_{i}},
+</span> where <span class="math display">
+T_{ij} = \left[\mathbf c_{ij}\bm x + \mathbf d_{ij} \in \mathcal D_{ij}\right].
+</span></p>
+<p>The connection of disjunctive constraints with complementarity constraints is straightforward:</p>
+<p><span class="math display">
+\underbrace{(x\geq 0)}_{T_{11}} \land \underbrace{(xy = 0)}_{T_{12}} \land \underbrace{(y\geq 0)}_{T_{13}}.
+</span></p>
+</section>
+<section id="variational-inequality-vi" class="level3">
+<h3 class="anchored" data-anchor-id="variational-inequality-vi">Variational inequality (VI)</h3>
+<p>Given a set <span class="math inline">\mathcal K</span> and a function <span class="math inline">F: \mathcal K \rightarrow \mathbb R^n</span>, find a vector <span class="math inline">\bm x\in\mathcal K</span> such that <span class="math display">
+\langle \mathbf F(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\in\mathcal K.
+</span></p>
+<p>If <span class="math inline">\mathbf F(\bm x) = \nabla f(\bm x)</span> , VI is a convex optimization problem, that is, the problem of finding a vector <span class="math inline">\bm x\in\mathcal K</span> such that</p>
+<p><span class="math display">
+\langle \nabla f(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\in\mathcal K.
+</span></p>
+<p>But there may also be <span class="math inline">\mathbf F(\bm x)</span> that is not the gradient of any function <span class="math inline">f(\bm x)</span>. In this regards, VI is a broader class of problems than convex optimization.</p>
+<p>The reason why we include this problem class here is that if <span class="math inline">\mathcal K</span> is a nonnegative orthant <span class="math inline">\mathbb R_{++}^n</span>, that is, <span class="math inline">x_i \geq 0, \; i=1, \ldots, n</span> , then the VI specializes to finding <span class="math inline">\bm x\geq \mathbf 0</span> such that <span class="math display">
+\langle \mathbf F(\bm x), \bm y-\bm x \rangle \geq 0 \quad \forall \bm y\geq \mathbf 0,
+</span> and it can be shown that it is equivalent to the NCP or LCP, depending on <span class="math inline">\mathbf F()</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Proof</em>. </span>For <span class="math inline">\bm y=\bm 0</span>, we get <span class="math inline">\langle \mathbf F(\bm x), -\bm x \rangle \geq 0</span>, which is equivalent to <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle \leq 0</span>. For <span class="math inline">\bm y = 2\bm x</span>, we get <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle \geq 0</span>. Reconciling the two inequalities, we get <span class="math inline">\langle \mathbf F(\bm x), \bm x \rangle = 0</span>. Invoking the linearity of the inner product, we get <span class="math inline">\langle \mathbf F(\bm x), \bm y-\bm x \rangle = \langle \mathbf F(\bm x), \bm y\rangle \geq 0 \; \forall \bm y\geq \mathbf 0</span>, from which it follows that <span class="math inline">\mathbf F(\bm x)\geq 0</span>.</p>
 </div>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
-</div>
-</div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+<p>Similarly, if <span class="math inline">\mathcal K</span> is a “box” in <span class="math inline">\mathbb R^n</span>, that is, <span class="math inline">-\infty\leq l_i \leq x_i \leq u_i\leq \infty, \; i=1, \ldots, n</span>, then VI is equivalent to the MCP. #TODO: sketch the explanation, if not a full proof.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -972,7 +1073,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1301,13 +1402,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../10_complementarity/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../10_complementarity/systems.html" class="pagination-link" aria-label="Complementarity systems">
+        <span class="nav-page-text">Complementarity systems</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

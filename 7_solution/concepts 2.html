@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Solution concepts – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../7_solution/types.html" rel="next">
+<link href="../7_solution/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/concepts.html">Solution concepts</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -485,7 +450,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../7_solution/concepts.html" class="sidebar-item-text sidebar-link">
+  <a href="../7_solution/concepts.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Solution concepts</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#hybrid-time-and-hybrid-time-domain" id="toc-hybrid-time-and-hybrid-time-domain" class="nav-link active" data-scroll-target="#hybrid-time-and-hybrid-time-domain">Hybrid time and hybrid time domain</a></li>
+  <li><a href="#hybrid-arc" id="toc-hybrid-arc" class="nav-link" data-scroll-target="#hybrid-arc">Hybrid arc</a></li>
+  <li><a href="#solutions-of-autonomous-no-input-systems" id="toc-solutions-of-autonomous-no-input-systems" class="nav-link" data-scroll-target="#solutions-of-autonomous-no-input-systems">Solutions of autonomous (no-input) systems</a></li>
+  <li><a href="#hybrid-input" id="toc-hybrid-input" class="nav-link" data-scroll-target="#hybrid-input">Hybrid input</a></li>
+  <li><a href="#solutions-of-systems-with-inputs" id="toc-solutions-of-systems-with-inputs" class="nav-link" data-scroll-target="#solutions-of-systems-with-inputs">Solutions of systems with inputs</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/concepts.html">Solution concepts</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Solution concepts</h1>
 </div>
 
 
@@ -845,55 +813,107 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
+<p>Now that we know how to model hybrid systems, we need to define what we mean by a <em>solution</em> to a hybrid system. The definitions are not as straightforward as in the continuous-time or discrete-time case and mastering them is not only of theoretical value.</p>
+<section id="hybrid-time-and-hybrid-time-domain" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-time-and-hybrid-time-domain">Hybrid time and hybrid time domain</h2>
+<p>Even before we start discussing the concepts of a solution, we need to discuss the concept of <em>time</em> in hybrid systems. Of course, hybrid systems live in the same world as we do, and therefore they evolve in the same physical time, but it turns out that we can come up with an artificial concept of <em>hybrid time</em> that makes modelling and analysis of hybrid systems convenient.</p>
+<p>Recall that in continuous-time systems, the continuous time <span class="math inline">t\in\mathbb R_{\geq 0}</span>, and in discrete-time systems, the discrete “time” <span class="math inline">k\in\mathbb N</span>. We put the latter in quotation marks since <span class="math inline">k</span> is not really the time but rather it should be read as the <span class="math inline">k</span>th transition of the system. Now, the idea is to combine these two concepts of time into one, and we call it the <em>hybrid time</em> <span class="math display">(t,j), \; t\in \mathbb R_{\geq 0},\, j\in \mathbb N.</span></p>
+<p>If you think that it is redundant, note that since hybrid systems can exhibit discrete-event system behaviour, a transition from one discrete state to another can happen instantaneously. In fact, several such transitions can take no time at all. It sounds weird, but that is what the mathematical model allows. That is why determining <span class="math inline">t</span> need not be enough and we also need to specify <span class="math inline">j</span>.</p>
+<p>The set of all hybrid times for a given hybrid system is called <em>hybrid time domain</em> <span class="math display">
+E \subset [0,T] \times \{0,1,2,\ldots, J\},
+</span> where <span class="math inline">T</span> and <span class="math inline">J</span> can be finite or <span class="math inline">\infty</span>.</p>
+<p>In particular, <span id="eq-hybrid-time-domain"><span class="math display">
+E = \bigcup_{j=0}^J \left([t_j,t_{j+1}] \times \{j\}\right)
+\tag{1}</span></span></p>
+<p>where <span class="math inline">0=t_0 &lt; t_1 &lt; \ldots &lt; t_J = T</span>.</p>
+<p>The meaning of <a href="#eq-hybrid-time-domain" class="quarto-xref">Eq.&nbsp;1</a> can be best explained using <a href="#fig-hybrid-time-domain" class="quarto-xref">Fig.&nbsp;1</a> below.</p>
+<div id="fig-hybrid-time-domain" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hybrid-time-domain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/hybrid_time_domain.png" class="img-fluid figure-img" style="width:45.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hybrid-time-domain-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a hybrid time domain
+</figcaption>
+</figure>
+</div>
+<p>Note that if two hybrid times are from the same hybrid domain, we can decide if <span class="math inline">(t,j) \leq (t',j')</span>. In other words, the set of hybrid times is totally ordered.</p>
 </section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
-\begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
-\end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
+<section id="hybrid-arc" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-arc">Hybrid arc</h2>
+<p><em>Hybrid arc</em> is just a terminology used in the literature for <em>hybrid state trajectory</em>. It is a function that assigns a state vector <span class="math inline">x</span> to a given hybrid time <span class="math inline">(t,j)</span> <span class="math display">
+x: E \rightarrow \mathbb R^n.
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
+<p>For each <span class="math inline">j</span> the function <span class="math inline">t \mapsto x(t,j)</span> is absolutely continuous on the interval <span class="math inline">I^j = \{t \mid (t,j) \in E\}</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Inconsistent notation
 </div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
+<div class="callout-body-container callout-body">
+<p>We admit here that we are not going to be 100% consistent in the usage of the notation <span class="math inline">x(t,j)</span> in the rest of our course. Oftentimes use <span class="math inline">x(t)</span> even within hybrid systems when we do not need to index the jumps.</p>
 </div>
 </div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+<p>It is perhaps clear now, that hybrid time domain can only be determined once the solution (the arc, the trajectory) is known. This is in sharp contrast with the continuous-time or discrete-time system – we can formulate the problem of finding solution to <span class="math inline">\dot x(t) = 3x(t), \, x(0) = 1</span> on the interval <span class="math inline">[0,2]</span>, where the interval was set even before we know how the solution looks like.</p>
+</section>
+<section id="solutions-of-autonomous-no-input-systems" class="level2">
+<h2 class="anchored" data-anchor-id="solutions-of-autonomous-no-input-systems">Solutions of autonomous (no-input) systems</h2>
+<p>Finally we can formalize the concept of a <em>solution</em>. A hybrid arc <span class="math inline">x(\cdot,\cdot)</span> is a <em>solution</em> to the hybrid equations given by the common quadruple <span class="math inline">\{\mathcal{C},\mathcal{D},f,g\}</span> (or <span class="math inline">\{\mathcal{C},\mathcal{D},\mathcal{F},\mathcal{G}\}</span> for inclusions), if</p>
+<ul>
+<li>the initial state <span class="math inline">x(0,0) \in \overline{\mathcal{C}} \cup \mathcal{D}</span>, and</li>
+<li>for all <span class="math inline">j</span> such that <span class="math inline">I^j = \{t\mid (t,j)\in E\}</span> has a nonempty interior <span class="math inline">\operatorname{int}I^j</span>
+<ul>
+<li><span class="math inline">x(t,j) \in \mathcal C \; \forall t\in \operatorname{int}I^j</span>,</li>
+<li><span class="math inline">\dot x(t,j) = f(x(t,j)) \; \text{for almost all}\; t\in I^j</span>, and</li>
+</ul></li>
+<li>for all <span class="math inline">(t,j)\in E</span> such a <span class="math inline">(t,j+1)\in E</span>
+<ul>
+<li><span class="math inline">x(t,j) \in \mathcal{D}</span>, and</li>
+<li><span class="math inline">x(t,j+1) = g(x(t,j))</span>.</li>
+</ul></li>
+</ul>
+<p>Make the modifications for the <span class="math inline">\{\mathcal{C},\mathcal{D},\mathcal{F},\mathcal{G}\}</span> version by yourself.</p>
+<div id="exm-solution" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Solution)</strong></span> An example of a solution is in <a href="#fig-solution-and-sets" class="quarto-xref">Fig.&nbsp;2</a>. Follow the solution with your finger and make sure you understand what and why is happening. In particular, in the overlapping region, the solution is not unique. While it can continue flowing, it can also jump.</p>
+<div id="fig-solution-and-sets" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-solution-and-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/evolution_of_solution.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-solution-and-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a solution
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="hybrid-input" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-input">Hybrid input</h2>
+<p>Similarly as we considered the state as a function of the hybrid time, we can consider the input as a function of the hybrid time. With its own hybrid domain <span class="math inline">E_\mathrm{u}</span>, the input is <span class="math display">
+u: E_\mathrm{u} \rightarrow \mathbb R^m.
+</span></p>
+<p>For each <span class="math inline">j</span> the function <span class="math inline">t \mapsto u(t,j)</span> must be… well-behaved… For example, piecewise continuous on the interval <span class="math inline">I^j = \{t \mid (t,j) \in E_\mathrm{u}\}</span>.</p>
+</section>
+<section id="solutions-of-systems-with-inputs" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="solutions-of-systems-with-inputs">Solutions of systems with inputs</h2>
+<p>We assume that hybrid time domains for the arcs and inputs are the same. A solution must satisfy the same conditions as in the case of autonomous systems, but with the input taken into account. For completeness we state the conditions here:</p>
+<ul>
+<li>The initial state-control pair <span class="math inline">(x(0,0),u(0,0)) \in \overline{\mathcal{C}} \cup \mathcal{D}</span>, and</li>
+<li>for all <span class="math inline">j</span> such that <span class="math inline">I^j = \{t\mid (t,j)\in E\}</span> has a nonempty interior <span class="math inline">\operatorname{int}I^j</span>
+<ul>
+<li><span class="math inline">(x(t,j),u(t,j)) \in \mathcal C \; \forall t\in \operatorname{int}I^j</span>,</li>
+<li><span class="math inline">\dot x(t,j) = f(x(t,j),u(t,j)) \; \text{for almost all}\; t\in I^j</span>, and</li>
+</ul></li>
+<li>for all <span class="math inline">(t,j)\in E</span> such a <span class="math inline">(t,j+1)\in E</span>
+<ul>
+<li><span class="math inline">(x(t,j),u(t,j)) \in \mathcal{D}</span>, and</li>
+<li><span class="math inline">x(t,j+1) = g(x(t,j),u(t,j))</span>.</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -972,7 +992,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1301,13 +1321,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../7_solution/types.html" class="pagination-link" aria-label="Types of solutions">
+        <span class="nav-page-text">Types of solutions</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

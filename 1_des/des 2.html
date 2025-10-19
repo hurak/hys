@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Discrete-event systems – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../1_des/automata.html" rel="next">
+<link href="../1_des/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/des.html">Discrete-event systems</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -245,7 +210,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_des/des.html" class="sidebar-item-text sidebar-link">
+  <a href="../1_des/des.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discrete-event systems</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#discrete-event" id="toc-discrete-event" class="nav-link active" data-scroll-target="#discrete-event">(Discrete) event</a></li>
+  <li><a href="#when-do-events-occur" id="toc-when-do-events-occur" class="nav-link" data-scroll-target="#when-do-events-occur">When do events occur?</a></li>
+  <li><a href="#sequence-of-time-stamped-events-aka-timed-trace" id="toc-sequence-of-time-stamped-events-aka-timed-trace" class="nav-link" data-scroll-target="#sequence-of-time-stamped-events-aka-timed-trace">Sequence of “time-stamped” events (aka timed <em>trace</em>)</a></li>
+  <li><a href="#des-can-be-stochastic-but-what-exactly-is-stochastic-then" id="toc-des-can-be-stochastic-but-what-exactly-is-stochastic-then" class="nav-link" data-scroll-target="#des-can-be-stochastic-but-what-exactly-is-stochastic-then">DES can be stochastic, but what exactly is stochastic then?</a></li>
+  <li><a href="#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" id="toc-sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" class="nav-link" data-scroll-target="#sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough">Sometimes time stamps not needed – the ordering of events is enough</a></li>
+  <li><a href="#discrete-event-systems-are-studied-through-their-languages" id="toc-discrete-event-systems-are-studied-through-their-languages" class="nav-link" data-scroll-target="#discrete-event-systems-are-studied-through-their-languages">Discrete-event systems are studied through their languages</a></li>
+  <li><a href="#modelling-frameworks-for-des-as-used-in-our-course" id="toc-modelling-frameworks-for-des-as-used-in-our-course" class="nav-link" data-scroll-target="#modelling-frameworks-for-des-as-used-in-our-course">Modelling frameworks for DES (as used in our course)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/des.html">Discrete-event systems</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Discrete-event systems</h1>
 </div>
 
 
@@ -845,55 +815,142 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
+<p>We have already mentioned that hybrid systems are composed of <em>time-driven subsystems</em> and <em>event-driven subsystems</em>. Assuming that the primary audience of this course are already familiar with the former (having been exposed to state equations and transfer function), here we are going to focus on the latter, also called discrete-event systems DES (or DEVS).</p>
+<section id="discrete-event" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-event">(Discrete) event</h2>
+<p>We need to start with the definition of an <em>event</em>. Sometimes an adjective <em>discrete</em> is added (to get <em>discrete event</em>), although it appears rather redundant.</p>
+<p>The primary characteristic of an event is <em>instantaneous occurrence</em>, that is, an event takes no time.</p>
+<p>Within the context of systems, an event is associated with a change of state – transition of the system from one state to another. Between two events, the systems remains in the same state, it doesn’t evolve.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>The concept of a state
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>True, here we are making a reference to the concept of a <em>state</em>, which we haven’t defined yet. But we can surely rely on understanding this concept developed by studying the time-driven systems (modelled by state equations).</p>
+</div>
+</div>
+<p>Although it is not instrumental in defining the event, the state space is frequently assumed discrete (even if infinite).</p>
+<div id="exm-trajectory_discrete-event" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (DES state trajectory)</strong></span> In the figure below we can see an example state trajectory of a discrete-event system corresponding to a particular sequence of events.</p>
+<div id="fig-state-trajectory" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/sample_path_discrete_event_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a state trajectory in response to a sequence of events
+</figcaption>
+</figure>
+</div>
+<p>It is perhaps worth emphasizing that the state space is not necessarily equidistantly discretized.</p>
+<p>Also note that for some events no transitions occur (<span class="math inline">e_3</span> at <span class="math inline">t_3</span>).</p>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Frequent notational confusion: does the lower index represent discrete time or an element of a set?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The previous example also displays one particular annoying (and frequently occuring in literature) notational conflict. How shall we interpret the lower index? Sometimes it is used to refer to (discrete) time, and on some other occasions it can just refer to a particular element of a set. In other words, this is a notational clash between <em>name of the variable</em> and <em>value of the variable</em>. In the example above we obviously adopted the latter interpretation. But in other cases, we ourselves are prone to inconsistency. Just make sure you understand what the author means.</p>
+</div>
+</div>
+<div id="exm-trajectory-continuous-time" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (State trajectory of a continuous-time dynamical systems)</strong></span> Compare now the above example of a state trajectory in a DES with the example of a continuous-time state space system below, whose model could be <span class="math inline">\dot x(t) = f(x)</span>. In the latter, any change, however small, takes time. In other words, the system evolves continuously in time.</p>
+<div id="fig-state-trajectory-continuous-time" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-continuous-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/sample_path_continuous_time_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-continuous-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a state trajectory of a continuous-time continuous-valued dynamical system
+</figcaption>
+</figure>
+</div>
+<p>The set of states (aka state space) is <span class="math inline">\mathbb{R}</span> (or a subset) in this case (in general <span class="math inline">\mathbb{R}^n</span> or a subset).</p>
+</div>
+<div id="exm-trajectory-discrete-time" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (State trajectory of a time-discretized (aka sampled-data) system)</strong></span> As a yet another example of a state trajectory, consider the response of a discrete-time (actually time-discretized or also sampled-data system) system model by <span class="math inline">x_k = f(x_k)</span> in the figure below. Although we could view the sampling instances as the events, these are given by time, hence the moments of transitions are predictable. Hence the system can still be viewed and analyzed as a time-driven and not event driven one.</p>
+<div id="fig-state-trajectory-discrete-time" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-state-trajectory-discrete-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/sample_path_discrete_time_system.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-state-trajectory-discrete-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example of a state trajectory of time-discretized (aka sampled data) system
+</figcaption>
+</figure>
+</div>
+</div>
 </section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
-\begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
-\end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
-</span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
+<section id="when-do-events-occur" class="level2">
+<h2 class="anchored" data-anchor-id="when-do-events-occur">When do events occur?</h2>
+<p>There are three major possibilities:</p>
+<ul>
+<li>when <em>action</em> is taken (button press, clutch released, …),</li>
+<li><em>spontaneously</em>: well, this is just an “excuse” when the reason is difficult to trace down (computer failure, …),</li>
+<li>when some <em>condition</em> is met (water level is reached, …). This needs an introduction of a concept of a hybrid systems, wait for it.</li>
+</ul>
+</section>
+<section id="sequence-of-time-stamped-events-aka-timed-trace" class="level2">
+<h2 class="anchored" data-anchor-id="sequence-of-time-stamped-events-aka-timed-trace">Sequence of “time-stamped” events (aka timed <em>trace</em>)</h2>
+<p>The sequence of pairs (event, time) <span class="math display">(e_1,t_1), (e_2,t_2), (e_3,t_3), \ldots</span></p>
+<p>is sufficient to characterize an execution of a <em>deterministic</em> system, that is, a system with a unique initial state and a unique transitions at a given state and an event.</p>
+</section>
+<section id="des-can-be-stochastic-but-what-exactly-is-stochastic-then" class="level2">
+<h2 class="anchored" data-anchor-id="des-can-be-stochastic-but-what-exactly-is-stochastic-then">DES can be stochastic, but what exactly is stochastic then?</h2>
+<p>Stochasticity can be introduced in</p>
+<ul>
+<li>the event times (e.g.&nbsp;Poisson process),</li>
+<li>but also in the transitions (e.g.&nbsp;probabilistic automata, more on this later).</li>
+</ul>
+</section>
+<section id="sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough" class="level2">
+<h2 class="anchored" data-anchor-id="sometimes-time-stamps-not-needed-the-ordering-of-events-is-enough">Sometimes time stamps not needed – the ordering of events is enough</h2>
+<p>The sequence of events (aka <em>trace</em>) <span class="math display">e_1,e_2,e_3, \ldots</span> can be enough for some analysis, in which only the order of the events is important.</p>
+<div id="exm-untimed-discrete-event-system" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4</strong></span> <code>credit_card_swiped</code>, <code>pin_entered</code>, <code>amount_entered</code>, <code>money_withdrawn</code></p>
 </div>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
-</div>
-</div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+</section>
+<section id="discrete-event-systems-are-studied-through-their-languages" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-event-systems-are-studied-through-their-languages">Discrete-event systems are studied through their languages</h2>
+<p>When studying discrete-event systems, soon we are exposed to terminology from the <em>formal language theory</em> such as <em>alphabet</em>, <em>word</em>, and <em>language</em>. This must be rather confusing for most students (at least those with no education in computer science). In our course we are not going to use these terms actively (after all our only motivation for introducing the discipline of discrete-event systems is to take away just a few concepts that are useful in hybrid systems), but we want to sketch the motivation for their introduction to the discipline, which may make it easier for a student to skim through some materials on discrete-event systems.</p>
+<p>We define at least those three terms that we have just mentioned. The definitions correspond to the everyday usage of these terms.</p>
+<dl>
+<dt>Alphabet</dt>
+<dd>
+a set of symbols.
+</dd>
+<dt>Word (or string)</dt>
+<dd>
+a sequence of symbols from a finite alphabet.
+</dd>
+<dt>Language</dt>
+<dd>
+a set of words from the given alphabet.
+</dd>
+</dl>
+<p>Now, a symbol is used to label an event. Alphabet is then a set of possible events. A particular sequence of events (we also call it trace) is then represented by a word. Since we agreed that events are associated with state transitions of a corresponding system, a word represents a possible execution or run of a system. A set of all possible executions of a given system can then be formally viewed as language.</p>
+<p>Indeed, all this is just a formalism, the agreement how to talk about things. We will see an example of this “jargon” in the next section when we introduce the concept of an automaton and some of its properties.</p>
+</section>
+<section id="modelling-frameworks-for-des-as-used-in-our-course" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-frameworks-for-des-as-used-in-our-course">Modelling frameworks for DES (as used in our course)</h2>
+<p>These are the three frameworks that we are going to cover in our course. There may be some more, but these three are the major ones, and from these there is always some lesson to be learnt that we will find useful later when finally studying hybrid systems</p>
+<ul>
+<li>State automaton (pl. automata)</li>
+<li>Petri net</li>
+<li>(max,plus) algebra, MPL systems</li>
+</ul>
+<p>While the first two frameworks are essentially equally powerful when it comes to modelling DES, the third one can be regarded as an algebraic framework for a subset of systems modelled by Petri nets.</p>
+<p>We are going to cover all the three frameworks in this course as a prequel to hybrid systems.</p>
 
 
 </section>
@@ -972,7 +1029,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1301,13 +1358,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../1_des/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1_des/automata.html" class="pagination-link" aria-label="State automata">
+        <span class="nav-page-text">State automata</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

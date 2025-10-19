@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Discrete hybrid automata – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../11_mld/logic_vs_inequalities.html" rel="next">
+<link href="../11_mld/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -649,7 +614,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discrete hybrid automata</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#why-yet-another-framework-for-hybrid-systems" id="toc-why-yet-another-framework-for-hybrid-systems" class="nav-link active" data-scroll-target="#why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</a></li>
+  <li><a href="#discrete-hybrid-automaton" id="toc-discrete-hybrid-automaton" class="nav-link" data-scroll-target="#discrete-hybrid-automaton">Discrete hybrid automaton</a>
+  <ul class="collapse">
+  <li><a href="#switched-affine-systems-sas" id="toc-switched-affine-systems-sas" class="nav-link" data-scroll-target="#switched-affine-systems-sas">Switched affine systems (SAS)</a></li>
+  <li><a href="#event-generator-eg" id="toc-event-generator-eg" class="nav-link" data-scroll-target="#event-generator-eg">Event generator (EG)</a></li>
+  <li><a href="#finite-state-machine-fsm" id="toc-finite-state-machine-fsm" class="nav-link" data-scroll-target="#finite-state-machine-fsm">Finite state machine (FSM)</a></li>
+  <li><a href="#mode-selector-ms" id="toc-mode-selector-ms" class="nav-link" data-scroll-target="#mode-selector-ms">Mode selector (MS)</a></li>
+  </ul></li>
+  <li><a href="#trajectory-of-a-dha" id="toc-trajectory-of-a-dha" class="nav-link" data-scroll-target="#trajectory-of-a-dha">Trajectory of a DHA</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Discrete hybrid automata</h1>
 </div>
 
 
@@ -845,55 +817,91 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2024). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
-</section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
+<section id="why-yet-another-framework-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</h2>
+<p>We are going to introduce yet another framework for modeling hybrid systems – <em>mixed logical dynamical (MLD)</em> description. A question must inevitably pop up: “why yet another framework?”</p>
+<p>The answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it.</p>
+<p>In particular, with the state variable and control input vectors composed of continuous and discrete variables <span class="math display">
+\bm x = \begin{bmatrix}\bm x_\mathrm{c}\\\bm x_\mathrm{d}\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_\mathrm{c}\\\bm u_\mathrm{d}\end{bmatrix},
+</span> where <span class="math inline">\bm x_\mathrm{c}\in\mathbb R^{n_\mathrm{c}},\;\bm x_\mathrm{d}\in\mathbb N^{n_\mathrm{d}},\; \bm u_\mathrm{c}\in\mathbb R^{m_\mathrm{c}}</span> and <span class="math inline">\bm u_\mathrm{d}\in\mathbb N^{m_\mathrm{d}}</span>, we would like to formulate the model in the form of state equations, say <span class="math display">
 \begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
+\begin{bmatrix}\bm x_\mathrm{c}(k+1) \\ \bm x_\mathrm{d}(k+1)\end{bmatrix}
+&amp;=
+\begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
 \end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-green-fg ansi-bold">Precompiling</span> packages...
-    747.4 ms<span class="ansi-green-fg">  ✓ </span>QuartoNotebookWorkerJSON3Ext<span class="ansi-bright-black-fg"> (serial)</span>
-  1 dependency successfully precompiled in 1 seconds
-</pre>
-</div>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
-</div>
-</div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+<p>Is it possible?</p>
+<p>Unfortunately no. At least not exactly in this form. But something close to it is achievable instead.</p>
+<p>But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.</p>
+</section>
+<section id="discrete-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-hybrid-automaton">Discrete hybrid automaton</h2>
+<p>Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.</p>
+<p>In particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that</p>
+<ul>
+<li>the continuous-value dynamics (often corresponding to the physical part of the system) evolves in discrete time,</li>
+<li>the events and their processing by the logical part of the system are synchronized to the same periodic clock.</li>
+</ul>
+<p>We are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, …). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:</p>
+<ul>
+<li>switched affine system (SAS),</li>
+<li>mode selector (MS),</li>
+<li>event generator (EG),</li>
+<li>finite state machine (FSM).</li>
+</ul>
+<p>Their interconnection is shown in the following figure.</p>
+<p>[TBD] #TODO: Add a figure</p>
+<p>Let’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).</p>
+<section id="switched-affine-systems-sas" class="level3">
+<h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
+<p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
+\begin{aligned}
+x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)},\\
+y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}.
+\end{aligned}
+</span></p>
+<p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
+</section>
+<section id="event-generator-eg" class="level3">
+<h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
+<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_\mathrm{c}(k)</span> and the continuous-value control input <span class="math inline">u_\mathrm{c}</span> satisfy <span class="math display">
+H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0.
+</span></p>
+<p>The event indicated by the (vector) binary variable <span class="math display">
+\delta_e(k) = h(x_\mathrm{c}(k), u_\mathrm{c}(k)) \in \{0,1\}^m,
+</span> where <span class="math display">
+h_i(x_\mathrm{c}(k), u_\mathrm{c}(k)) = \begin{cases}1 &amp; H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
+</span></p>
+</section>
+<section id="finite-state-machine-fsm" class="level3">
+<h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
+<p><span class="math display">
+x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
+</span></p>
+</section>
+<section id="mode-selector-ms" class="level3">
+<h3 class="anchored" data-anchor-id="mode-selector-ms">Mode selector (MS)</h3>
+<p><span class="math display">
+i(k) \in \{1, 2, \ldots, s\}
+</span></p>
+<p><span class="math display">
+i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
+</span></p>
+</section>
+</section>
+<section id="trajectory-of-a-dha" class="level2">
+<h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
+<p><span class="math display">
+\begin{aligned}
+\delta_e(k) &amp;= h(x_\mathrm{c}(k), u_\mathrm{c}(k))\\
+i(k) &amp;= \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}\\
+y_\mathrm{d}(k) &amp;= g_\mathrm{d}(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
+x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)}\\
+x_\mathrm{d}(k+1) &amp;= f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k))
+\end{aligned}
+</span></p>
+<p>Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?</p>
 
 
 </section>
@@ -972,7 +980,7 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1301,13 +1309,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../11_mld/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../11_mld/logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <span class="nav-page-text">Logic vs inequalities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
