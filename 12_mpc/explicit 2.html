@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Explicit MPC for hybrid systems – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../12_mpc/software.html" rel="next">
+<link href="../12_mpc/online.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../12_mpc/goals.html">12. Model predictive control (MPC) for MLD systems</a></li><li class="breadcrumb-item"><a href="../12_mpc/explicit.html">Explicit MPC for hybrid systems</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course annotation and outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rules of the course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similar courses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Stability II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/mld_and_pwa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed logical dynamical (MLD) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/explicit.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
+ <span class="menu-text">13. Formal verification I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
+ <span class="menu-text">14. Formal verification II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#multiparametric-programming" id="toc-multiparametric-programming" class="nav-link active" data-scroll-target="#multiparametric-programming">Multiparametric programming</a>
+  <ul class="collapse">
+  <li><a href="#example-scalar-variable-single-parameter" id="toc-example-scalar-variable-single-parameter" class="nav-link" data-scroll-target="#example-scalar-variable-single-parameter">Example: scalar variable, single parameter</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../12_mpc/goals.html">12. Model predictive control (MPC) for MLD systems</a></li><li class="breadcrumb-item"><a href="../12_mpc/explicit.html">Explicit MPC for hybrid systems</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Explicit MPC for hybrid systems</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Model predictive control (MPC) is not computationally cheap (compared to, say, PID or LQG control) as it requires solving optimization problem – typically a quadratic program (QP) - online. The optimization solver needs to be a part of the controller.</p>
+<p>There is an alternative, though, at least in same cases. It is called <em>explicit MPC</em>. The computationally heavy optimization is only perfomed only during the design process and the MPC controller is then implemented just as an affine state feedback</p>
+<p><span class="math display">
+\bm u_k(\bm x(k)) = \mathbf F_k^i \bm x(k) + \mathbf g_k^i,\; \text{if}\; \bm x(k) \in \mathcal R_k^i,
+</span></p>
+<p>with the coefficients picked from some kind of a lookup table in real time Although retreiving the coefficients of the feedback controller is not computationally trivial, still it is cheaper than full optimization.</p>
+<section id="multiparametric-programming" class="level2">
+<h2 class="anchored" data-anchor-id="multiparametric-programming">Multiparametric programming</h2>
+<p>The key technique for explicit MPC is multi-parametric programming. In order to explain it, consider the following problem</p>
+<p><span class="math display">
+J^\ast(x) = \inf_z J(z;x).
+</span></p>
+<p>The <span class="math inline">z</span> variable is an optimization variable, while <span class="math inline">x</span> is a parameter. For a given parameter <span class="math inline">x</span>, the cost function <span class="math inline">J</span> is minimized. We study how the optimal cost <span class="math inline">J^\ast</span>&nbsp;depends on the parameter, hence the name <em>parametric programming</em>. If <span class="math inline">x</span> is a vector, the name of the problem changes to <em>multiparametric programming</em>.</p>
+<section id="example-scalar-variable-single-parameter" class="level3">
+<h3 class="anchored" data-anchor-id="example-scalar-variable-single-parameter">Example: scalar variable, single parameter</h3>
+<p>Consider the following cost function <span class="math inline">J(z;x)</span> in <span class="math inline">z</span> parameterized by <span class="math inline">x</span>. The optimization variable <span class="math inline">z</span> is constrained and this constraint is also parameterized by <span class="math inline">x</span>. <span class="math display">
+\begin{aligned}
+J(z;x) &amp;= \frac{1}{2} z^2 + 2zx + 2x^2 \\
+\text{subject to} &amp;\quad  z \leq 1 + x.
+\end{aligned}
+</span></p>
+<p>In this simple case we can aim at analytical solution. We proceed in the standard way – we introduce a Lagrange multiplicator <span class="math inline">\lambda</span> and form the augmented cost function <span class="math display">
+L(z,\lambda; x) = \frac{1}{2} z^2 + 2zx + 2x^2 + \lambda (z-1-x).
+</span></p>
+<p>The necessary conditions of optimality for the inequality-constrained problem come in the form of KKT conditions <span class="math display">
+\begin{aligned}
+z + 2x + \lambda &amp;= 0,\\
+z - 1 - x &amp;\leq  0,\\
+\lambda &amp; \geq 0,\\
+\lambda (z - 1 - x) &amp;= 0.
+\end{aligned}
+</span></p>
+<p>The last condition – the complementarity condition – gives rise to two scenarios: one corresponding to <span class="math inline">\lambda = 0</span>, and the other corresponding to <span class="math inline">z - 1 - x = 0</span>. We consider them separately below.</p>
+<p>After substituting <span class="math inline">\lambda = 0</span> into the KKT conditions, we get <span class="math display">
+\begin{aligned}
+z + 2x &amp;= 0,\\
+z - 1 - x &amp; \leq  0.
+\end{aligned}
+</span></p>
+<p>From the first equation we get how <span class="math inline">z</span> depends on <span class="math inline">x</span>, and from the second we obtain a bound on <span class="math inline">x</span>. Finally, we can also substitute the expression for <span class="math inline">z</span> into the cost function <span class="math inline">J</span> to get the optimal cost <span class="math inline">J^\ast</span> as a function of <span class="math inline">x</span>. All these are summarized here <span class="math display">
+\begin{aligned}
+z &amp;= -2x,\\
+x &amp; \geq -\frac{1}{3},\\
+J^\ast(x) &amp;= 0.
+\end{aligned}
+</span></p>
+<p>Now, the other scenario. Upon substitutin <span class="math inline">z - 1 - x = 0</span> into the KKT conditions we get</p>
+<p><span class="math display">
+\begin{aligned}
+z + 2x + \lambda &amp;= 0,\\
+z - 1 - x &amp;=  0,\\
+\lambda &amp; \geq 0.
+\end{aligned}
+</span></p>
+<p>From the second equation we get the expression for <span class="math inline">z</span> in terms of <span class="math inline">x</span>, substituting into the first equation and invoking the condition on nonnegativity of <span class="math inline">\lambda</span> we get the bound on <span class="math inline">x</span> (not suprisingly it complements the one obtained in the previous scenario). Finally, substituting for <span class="math inline">z</span> in the cost function <span class="math inline">J</span> we get a formula for the cost <span class="math inline">J^\ast</span> as a function of <span class="math inline">x</span>.</p>
+<p><span class="math display">
+\begin{aligned}
+z &amp;= 1 + x,\\
+\lambda &amp;= -z - 2x \geq 0 \quad \implies \quad x \leq -\frac{1}{3},\\
+J^\ast(x) &amp;= \frac{9}{2}x^2 + 3x + \frac{1}{2}.
+\end{aligned}
+</span></p>
+<p>The two scenarios can now be combined into a single piecewise affine function <span class="math inline">z(x)</span> <span class="math display">
+z(x) = \begin{cases}
+1+x &amp; \text{if } x \leq -\frac{1}{3},\\
+-2x &amp; \text{if } x &gt; -\frac{1}{3}.
+\end{cases}
+</span></p>
+<div id="2" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">range</span>(<span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">100</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">z</span>(x) <span class="op">=</span> x <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span> ? <span class="fl">1</span> <span class="op">+</span> x <span class="op">:</span> <span class="op">-</span><span class="fl">2</span>x</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Jstar</span>(x) <span class="op">=</span> x <span class="op">&lt;=</span> <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span> ? <span class="fl">9</span><span class="op">/</span><span class="fl">2</span><span class="op">*</span>x<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span>x <span class="op">+</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span> <span class="op">:</span> <span class="fl">0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">z</span>.(x), label<span class="op">=</span><span class="st">"z(x)"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([<span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>],line<span class="op">=:</span>dash)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">"x"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">"z(x)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="data:image/png;base64,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">
+</div>
+</div>
+<p>and a piecewise quadratic cost function <span class="math inline">J^\ast(x)</span> <span class="math display">
+J^\ast(x) = \begin{cases}
+\frac{9}{2}x^2 + 3x + \frac{1}{2} &amp; \text{if } x \leq -\frac{1}{3},\\
+0 &amp; \text{if } x &gt; -\frac{1}{3}.
+\end{cases}
+</span></p>
+<div id="4" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, <span class="fu">Jstar</span>.(x), label<span class="op">=</span><span class="st">"J*(x)"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([<span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span>],line<span class="op">=:</span>dash)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xlabel!</span>(<span class="st">"x"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ylabel!</span>(<span class="st">"J*(x)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="data:image/png;base64,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93SuLxVbxYFChsgAgEpU0sdms3nChAl33XXX8OHDnacat2/f/osvvqjzbL7mT0lMWQMAKldJH48aNerTTz9dtGjR3Llzr7vuuh9//PHee+8dOXLk5MmT6z6fL7kjSV7AtSUAAJWppI+bNm2akZExfPhw592AgIAZM2YsXLhw27Zt1/iiGzZseOKJJwYOHDhv3rxKN8jLyxs1alTTpk379++/b9++mkX3Oh3rSyU2sb+AITIAoKJK+nj69OmJiYkVHhwxYsTChQuv8UWPHDnSpEkTu92elZVV6QYTJkwICgrKyMgYNmxYWlqaouilou5IkhYyZQ0AuEw1rn987StzjRkz5umnn27cuHGlzxYVFS1cuPCll14KCwsbP358SUnJ5s2brz2GV2PKGgBQqQt9fPbs2YEDB/7www9VbGq32xcsWJCWllbLtzx69GhQUFBsbKwQQpKk1q1bV7HSiKIoFosl/3eFhYW1fHd1tY+SLA6xjylrVQVed6MxOkHtFADg4o/rSXTs2LFfv34pKSl33nlnjx49WrZsGRUVZbPZcnNzd+7cuXHjxi+//NJut0+bNq2Wb1lYWHjpWtkhISEFBQVX2vjw4cPLli378ccfL8Q1GtevXx8eHl7F65eUlNQyoUfdFmeYn2l7rrVN7SAq0MpHk9qtTAhx/rzaObTCbDYbjUaj0Xj1TVG3tPKVwWWq+9EYjcaAgICrbHNx09dee+3xxx9/7733ZsyY8eKLL1bYLjU19dlnn33wwQdDQkKqFeJy9evXv3SYm5+fHx19xcX9k5OTR4wYMXv27Gq9RXBwcI3jedo9LZR71ttf6XaVD8ZXafmj0S3j79QOgkrwldEst380Lt/AhISE1157berUqXv27MnIyDh79qzRaIyJienWrduVdgbXQGJioizL+/btS01NtVqtGRkZb7/9trteXPvaRUp2RewtUFpx+UUAwO8q+RexJElt2rRp06ZNjV90586dW7ZsyczMPHfu3H//+9+bb745KSlp/vz5S5Ys+eqrrwICAh577LHHHnvshRde+Oyzzzp06FCb9/JGdyRJX2U5pnQ0qB1Ep4o3LApsc72xfqzaQQDgDy7HV+/cuXPp0qVCCKvVOn369Bq/aEFBQVZW1o033piampqVleWcZ09JSenXr59zg5dffjktLW3WrFkxMTHXfhqVz7gjWf4yi0O6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">
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../12_mpc/online.html" class="pagination-link" aria-label="Online MPC for hybrid systems">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Online MPC for hybrid systems</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../12_mpc/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
