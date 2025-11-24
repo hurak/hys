@@ -9,7 +9,7 @@ format:
 crossref:
   fig-prefix: Fig. 
   eq-prefix: Eq.
-#engine: julia
+engine: julia
 ---
 
 Having just recalled the stability analysis based on searching for a Lyapunov function, we now extend the analysis to hybrid systems, in particular, hybrid automata. 
@@ -353,9 +353,71 @@ p(x_1,x_2)&={\color{blue}p_{11}}x_1^4 + {\color{blue}p_{33}}x_2^4 \\
 $$
 
 There are now 5 coefficients in the above polynomial (they are highlighted in blue).
-Equating them to some particular values gives 5 equations. 
+Equating them to the particular values gives 5 equations. In our case, the five equations are
+$$
+\begin{aligned}
+p_{11} &= 2,\\
+2p_{12} &= 2,\\
+2p_{13} + p_{22} &= -1,\\
+2p_{23} &= 0,\\
+p_{33} &= 5.
+\end{aligned}
+$$
 
-But the matrix $\mathbf P$ is parameterized by 6 coefficients. Hence we need one more equation. The sixth is the LMI condition $\mathbf P\succeq 0$.
+But the matrix $\mathbf P$ is parameterized by 6 coefficients. Hence we need one more equation. The sixth condition is the linear matrix inequality (LMI) 
+
+$$\mathbf P\succeq 0$$.
+
+This can be solved as the feasibility problem with linear equality and semidefinite constraints using the code below.
+
+```{julia}
+#| code-fold: show
+using Convex, SCS
+
+p₁₁ = Variable()
+p₁₂ = Variable()
+p₁₃ = Variable()
+p₂₂ = Variable()
+p₂₃ = Variable()
+p₃₃ = Variable()
+
+P = [p₁₁ p₁₂ p₁₃; p₁₂ p₂₂ p₂₃; p₁₃ p₂₃ p₃₃]
+
+linear_constraints = [
+    p₁₁ == 2,
+    2p₁₂ == 2,
+    2p₁₃ + p₂₂ == -1,
+    2p₂₃ == 0,
+    p₃₃ == 5
+]
+
+semidefinite_constraint = [P ⪰ 0]
+
+constraint = vcat(linear_constraints, semidefinite_constraint)
+
+problem = satisfy(constraint)
+solve!(problem, SCS.Optimizer, silent=true)
+```
+
+Apparently, the problem is feasible, hence the polynomial is SOS, hence nonnegative. We can also visualize the polynomial to see that it is indeed nonnegative at least withing some region around the origin.
+
+```{julia}
+#| fig-cap: "Surface plot of the polynomial $p(x_1,x_2)$ from the example"
+#| label: fig-surface-polynomial
+p(x1, x2) = 2x1^4 + 2x1^3*x2 - x1^2*x2^2 + 5x2^4
+
+using Plots
+#gr(show=false)                    # Neinteraktivní backend (důležité v Quarto)
+
+X1 = range(-1.5, 1.5, length=20)
+X2 = range(-1.5, 1.5, length=20)
+
+Z = [p(x1,x2) for x1 in X1, x2 in X2]
+
+surface(X1, X2, Z; xlabel="x₁", ylabel="x₂", zlabel="p(x₁,x₂)", colorbar=true, c=:viridis)
+
+#contour(X1, X2, Z; xlabel="x₁", ylabel="x₂", fill=true, c=:thermal)
+```
 :::
 
 ## Searching for a SOS polynomial Lyapunov function
