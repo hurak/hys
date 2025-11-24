@@ -114,8 +114,7 @@ prob = ODEProblem(f, x0, tspan, u)
 sol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)
 
 using Plots
-t = sol.t
-plot(sol.t,u.(t),label="u",lw=2)
+plot(sol.t,u.(sol.t),label="u",lw=2)
 plot!(sol,lw=2,label="x", tickfontsize=12, xtickfontsize=12, ytickfontsize=12)
 xlabel!("t")
 ```
@@ -142,10 +141,13 @@ Consider a plant modelled by $G(s) = \frac{s+1}{s(s+0.2)}$ and a first-order con
 The response of the closed-loop system to a step reference input is shown using the following code. 
 
 ``` {julia}
-#| eval: false
-using ModelingToolkit, Plots, OrdinaryDiffEq
+#| eval: false         # For some unknown reason the code does not work in Quarto.
+using ModelingToolkit
 using ModelingToolkit: t_nounits as t
 using ModelingToolkit: D_nounits as D
+
+using Plots
+using OrdinaryDiffEq
 
 function plant(; name)
     @variables x₁(t)=0 x₂(t) = 0 u(t) y(t)
@@ -178,13 +180,14 @@ T = structural_simplify(T)
 equations(T)
 observed(T)
 
-using DifferentialEquations: solve
 prob = ODEProblem(complete(T), [], (0.0, 30.0), [])
-sol = solve(prob, Tsit5(), saveat = 0.1)
+#sol = solve(prob, Tsit5(), saveat = 0.1)
+sol = solve(prob)
 
-using Plots
-plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y", lw = 2)
+#plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y", lw = 2)
 ```
+
+![](figures/fore_a.png)
 
 Now we turn the first-order controller into a FORE controller by augumenting it with the above described resetting functionality. The feedback loop is in @fig-fore.
 
@@ -192,10 +195,13 @@ Now we turn the first-order controller into a FORE controller by augumenting it 
 
 The response of the closed-loop system to a step reference input is shown using the following code. 
 ``` {julia}
-#| eval: false
-using ModelingToolkit, Plots, OrdinaryDiffEq
+#| eval: false          # For some unknown reason the code does not work in Quarto.
+using ModelingToolkit
 using ModelingToolkit: t_nounits as t
 using ModelingToolkit: D_nounits as D
+
+using OrdinaryDiffEq
+using Plots
 
 function plant(; name)
     @variables x₁(t)=0 x₂(t) = 0 u(t) y(t)
@@ -231,13 +237,13 @@ T = structural_simplify(T)
 equations(T)
 observed(T)
 
-using DifferentialEquations: solve
 prob = ODEProblem(complete(T), [], (0.0, 30.0), [])
 sol = solve(prob, Tsit5(), saveat = 0.1)
 
-using Plots
 plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y", lw = 2)
 ```
+
+![](figures/fore_b.png)
 
 Obviously the introduction of the resetting functionality into the first order controller had a positive effect on the transient response of the closed-loop system.
 :::
