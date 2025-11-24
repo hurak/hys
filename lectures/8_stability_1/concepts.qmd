@@ -65,7 +65,7 @@ where $\tau_\infty<\infty$ if the execution is Zeno and $\tau_\infty=\infty$ oth
 
 ## Is stability of the individual dynamics enough?
 
-![Hybrid automaton that is unstable due to switching even though the two modes are stable](figures/switching_between_stable.png){width=45%}
+![Hybrid automaton that is unstable due to switching even though the two modes are stable](figures/switching_between_stable.png){width=45% #fig-switching-between-stable}
 
 $$
 A_1 = 
@@ -83,7 +83,7 @@ $$
 
 ## Can the individual dynamics be unstable?
 
-![Hybrid automaton that is stable thanks to switching even though the two modes are unstable](figures/switching_between_unstable.png){width=45%}
+![Hybrid automaton that is stable thanks to switching even though the two modes are unstable](figures/switching_between_unstable.png){width=45% #fig-switching-between-unstable}
 
 $$
 A_1 = 

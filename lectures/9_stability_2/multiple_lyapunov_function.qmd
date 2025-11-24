@@ -69,9 +69,9 @@ The solver does not find a solution. Well, perhaps trying another solver or two 
 
 :::{.callout-note}
 ## Dual LMI problem confirms the infeasibility of the primal one
-It is possible to certify infeasibility of the primal optimization problem by certifying feasibility of the dual one. Namely, if there are matrices $\mathbf R_1\succ 0$ and $\mathbf R_2\succ 0$ such that the following LMI holds:
+It is possible to certify infeasibility of the primal optimization problem by certifying feasibility of the dual one. Namely, if there are matrices $\bm R_1\succ 0$ and $\bm R_2\succ 0$ such that the following LMI holds:
 $$
-\mathbf R_1\mathbf A_1^\top+\mathbf A_1\mathbf R_1 + \mathbf R_2\mathbf A_2^\top+\mathbf A_2\mathbf R_2 \prec 0,
+\bm R_1\mathbf A_1^\top+\mathbf A_1\bm R_1 + \bm R_2\mathbf A_2^\top+\mathbf A_2\bm R_2 \prec 0,
 $$
 the primal problem is infeasible.
 :::
@@ -115,11 +115,11 @@ fig
 We can see in @fig-no-cqlf-with-lyapunov-invariant-sets that none of the two ellipses works as an invariant set for the switched system – a state trajectory entering the set leaves it afterwards. No way to to come up with a single ellipse (hence a single quadratic Lyapunov function) that would work here.
 :::
 
-Good, we have seen in the example that it is not always possible to find a common quadratic Lyapunov function for a switched system, even it it is stable. We need to expand the set of functions in which we search for a Lyapunov function. We have proposed one way to do it in the previouse chapter wherein we considered higher degree polynomials for which we imposed the nonnegativity constraint through in the form of SOS constraint. Here we are going to consider another approach. We are goint to "stitch" together several *Lyapunov-like* functions, each of which is a Lyapunov function only on some subset of the state space (that is why we call them just Lyapunov-like and not Lyapunov). This approach is sometimes called the *Multiple Lyapunov Function* (MLF) approach, or *Piecewise Lyapunov Function* approach.   
+Good, we have seen in the example that it is not always possible to find a common quadratic Lyapunov function for a switched system, even it it is stable. We need to expand the set of functions in which we search for a Lyapunov function. We have proposed one way to do it in the previous chapter, wherein we considered higher degree polynomials for which we imposed the nonnegativity constraint through the SOS constraint. Here we are going to consider another approach. We are going to "stitch" together several *Lyapunov-like* functions, each of which is a Lyapunov function only on some subset of the state space (that is why we call them just Lyapunov-like and not Lyapunov). This approach is sometimes called the *Multiple Lyapunov Function* (MLF) approach, or *Piecewise Lyapunov Function* approach.   
 
 ## Multiple Lyapunov Function (MLF) approach to analysis of stability
 
-Instead of just a single *common Lyapunov function* $V(\bm x)$, we are now going to consider several Lyapunov-like functions $V_i(\bm x),\; i=1,\ldots,r,$ that qualify as Lyapunov function only on some subsets of the state space $\Omega_i$. And we "stitch" them together to form a piecewise Lyapunov function $V(\bm x)$:
+Instead of just a single *common Lyapunov function* $V(\bm x)$, we are now going to consider several *Lyapunov-like functions* $V_i(\bm x),\; i=1,\ldots,r,$ that individually qualify as Lyapunov function only on some subsets of the state space $\Omega_i$. And we "stitch" them together to form a piecewise Lyapunov function $V(\bm x)$:
 $$
 V(x) =
 \begin{cases}
@@ -128,6 +128,8 @@ V_1(\bm x) & \text{if } \bm x\in \Omega_1, \\
 V_r(\bm x) & \text{if } \bm x\in \Omega_r.
 \end{cases}
 $$
+
+Before we proceed, we need the following technical results.
 
 ## S-procedure
 
@@ -218,25 +220,23 @@ There are several variants
 
 ## Piecewise quadratic Lyapunov function
 
-We now restrict ourselves to quadratic Lyapunov-like functions, that is, quadratic functions $V_i(\bm x) = \bm x^\top \mathbf P_i \bm x$ that qualify as Lyapunov functions only on respective subsets $\Omega_i\sub \mathbb R^n$:
+We now restrict ourselves to quadratic Lyapunov-like functions, that is, quadratic functions $V_i(\bm x) = \bm x^\top \bm P_i \bm x$ that qualify as Lyapunov functions only on respective subsets $\Omega_i\sub \mathbb R^n$:
 
 $$
-V_i(\bm x) = \bm x^\top \mathbf P_i \bm x > 0\quad \forall \;\bm x\in \Omega_i,
-$$	
-
-$$
-\dot V_i(\bm x) = \bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x < 0\quad \forall \;\bm x\in \Omega_i.
+\begin{aligned}
+V_i(\bm x) = \bm x^\top \bm P_i \bm x &> 0\quad \forall \;\bm x\in \Omega_i,\\
+\dot V_i(\bm x) = \bm x^\top \left( \mathbf A_i^\top \bm P_i + \bm P_i \mathbf A_i \right) \bm x &< 0\quad \forall \;\bm x\in \Omega_i.
+\end{aligned}
 $$
 
 ## Using comparison functions and nonstrict inequalities
 
 We can use our good old comparison functions to formulate the conditions of positive definiteness and negative definiteness.
 $$
-\alpha_1 \bm x^\top \mathbf I \bm x \leq \bm x^\top \mathbf P_i \bm x \leq \alpha_2 \bm x^\top \mathbf I \bm x \quad \forall \;\bm x\in \Omega_i,
-$$
-
-$$
-\bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x \leq  -\alpha_3 \bm x^\top \mathbf I \bm x\quad \forall \;\bm x\in \Omega_i.
+\begin{aligned}
+\alpha_i \bm x^\top \mathbf I \bm x &\leq \bm x^\top \bm P_i \bm x \;{\color{grey}(\leq \beta_i \bm x^\top \mathbf I \bm x)} \quad \forall \;\bm x\in \Omega_i,\\
+\bm x^\top \left( \mathbf A_i^\top \bm P_i + \bm P_i \mathbf A_i \right) \bm x &\leq  -\gamma_i \bm x^\top \mathbf I \bm x \quad \forall \;\bm x\in \Omega_i.
+\end{aligned}
 $$ 
 
 The difference now is that these conditions are only required to hold on some state regions, some subsets of the state space. It is now time to discuss how to characterize those regions.
@@ -252,10 +252,7 @@ In particular, centered ellipsoids and cones.
 
 For example,  
 $$
-\begin{aligned}
-\Omega_i &= \{\bm x \in \mathbb R^n \mid (\mathbf c^\top \bm x \geq 0 \land \mathbf d^\top \bm x \geq 0) \\
-& \qquad \qquad \qquad \lor (\mathbf c^\top \bm x \leq 0 \land \mathbf d^\top \bm x \leq 0)\}.
-\end{aligned}
+\Omega_i = \{\bm x \in \mathbb R^n \mid (\mathbf c^\top \bm x \geq 0 \land \mathbf d^\top \bm x \geq 0) \lor (\mathbf c^\top \bm x \leq 0 \land \mathbf d^\top \bm x \leq 0)\}.
 $$		
 
 This constraint can be reformulated as
@@ -275,32 +272,29 @@ More general sets (general polyhedra, noncentered ellipsoids) can also be modell
 
 ## Combining the subset characterization and Lyapunov-ness using the S-procedure
 
-We want to learn if the the following hold
+We want to test for asymptotic stability, that is, we want to learn if the the following hold
 $$
-\alpha_i \bm x^\top \mathbf I \bm x \leq \bm x^\top \mathbf P_i \bm x,
-$$
-
-$$
-\bm x^\top \left( \mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i \right) \bm x \leq  -\gamma_i \bm x^\top \mathbf I \bm x,
+\begin{aligned}
+\alpha_i \bm x^\top \mathbf I \bm x &\leq \bm x^\top \bm P_i \bm x,\\
+\bm x^\top \left( \mathbf A_i^\top \bm P_i + \bm P_i \mathbf A_i \right) \bm x &\leq  -\gamma_i \bm x^\top \mathbf I \bm x,
+\end{aligned}
 $$
 
 but not for all $\bm x$, but only for $\bm x\in \Omega_i$, that is, all $\bm x$ satisfying $\bm x^\top \mathbf Q_i \bm x \geq 0$. But this is now a perfect opportunity for application of the S-procedure:
 
 $$
-\mathbf P_i - \alpha_i \mathbf I - \mu_i \mathbf Q_i \succeq 0,\quad \mu_i \geq 0,\; \alpha_i > 0,
-$$ 
-
-$$
-\mathbf A_i^\top \mathbf P_i + \mathbf P_i \mathbf A_i + \gamma_i \mathbf I + \xi_i \mathbf Q \preceq 0,\quad \mu_i \geq 0,\; \gamma_i > 0.
+\boxed
+{\begin{aligned}
+\bm P_i - \alpha_i \mathbf I - \mu_i \mathbf Q_i &\succeq 0,\quad \alpha_i > 0, \; \mu_i \geq 0,\\
+\mathbf A_i^\top \bm P_i + \bm P_i \mathbf A_i + \gamma_i \mathbf I + \xi_i \mathbf Q_i &\preceq 0,\quad \gamma_i > 0, \; \xi_i \geq 0.
+\end{aligned}}
 $$
 
 ## More general sets using LMI
 
-How can we model more general sets using LMI?
-
-The inequality
+How can we model more general sets using LMI? The inequality
 $$
-\bm x^\top \mathbf Q \bm x + 2\mathbf r^\top \bm x + s \geq 0,
+\bm x^\top \mathbf Q \bm x + 2\mathbf c^\top \bm x + d \geq 0,
 $$
 
 can be reformulated as
@@ -310,7 +304,7 @@ $$
 \end{bmatrix}
 \underbrace{
 \begin{bmatrix}
-\mathbf Q & \mathbf r \\ \mathbf r^\top & s
+\mathbf Q & \mathbf c \\ \mathbf c^\top & d
 \end{bmatrix}}_{\bar{\mathbf{Q}}}
 \underbrace{
 \begin{bmatrix}
@@ -319,37 +313,37 @@ $$
 \geq 0,
 $$ 
 
-that is, as an LMI
+that is, as an LMI with the matrix variable $\bar{\mathbf{Q}}$, that is,
 $$
 \begin{bmatrix}
-\mathbf Q & \mathbf r \\ \mathbf r^\top & s
+\mathbf Q & \mathbf c \\ \mathbf c^\top & d
 \end{bmatrix}
 \succeq 0.
 $$
 
-
 ### Affine subspace
-$$
-\mathbf c^\top \bm x + d \geq 0,
-$$
 
+A special instance is that of an affine subspace characterized by
+$$
+\mathbf c^\top \bm x + \frac{d}{2} \geq 0,
+$$
+which we can reformulate as
 $$
 \begin{bmatrix}
 \bm x^\top & 1
 \end{bmatrix}
 \begin{bmatrix}
-\mathbf 0 & \mathbf c \\ \mathbf c^\top & 2d
+\mathbf 0 & \mathbf c \\ \mathbf c^\top & d
 \end{bmatrix}
 \begin{bmatrix}
 \bm x \\ 1
 \end{bmatrix}
 \geq 0,
 $$
-
-
+which can be expressed as an LMI
 $$
 \begin{bmatrix}
-\mathbf 0 & \mathbf c \\ \mathbf c^\top & 2d
+\mathbf 0 & \mathbf c \\ \mathbf c^\top & d
 \end{bmatrix}
 \succeq 0.
 $$
@@ -362,14 +356,13 @@ V(\bm x) =
 \end{bmatrix}
 \underbrace{
 \begin{bmatrix}
-\mathbf P & \mathbf P_{12} \\ \mathbf P_{12} & P_{22}
-\end{bmatrix}}_{\bar{\mathbf P}}
+\bm P & \bm q \\ \bm q^\top & r
+\end{bmatrix}}_{\bar{\bm P}}
 \begin{bmatrix}
 \bm x \\ 1
 \end{bmatrix},
 $$
-
-
+and the system matrix as well:
 $$
 \bar{\mathbf{A}} =
 \begin{bmatrix}
@@ -392,19 +385,196 @@ $$
 which can be reformulated as
 $$
 \begin{aligned}
-&\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \mathbf P_i \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) \\
-& \qquad + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_i + r_i \\
-&= \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \mathbf P_j \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) \\
-& \qquad + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_j + r_j
+&\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm P_i \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_i + r_i \\
+&\qquad \qquad = \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm P_j \left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right) + 2\left(\mathbf F_{ij} \bm z + \mathbf{l}_{ij}\right)^\top \bm q_j + r_j
 \end{aligned}.
 $$
 
-Collecting the terms with equal powers of $\bm z$.
+Collecting the terms with equal powers of $\bm z$,
 $$
-\begin{aligned}
-\mathbf F_{ij}^\top (\mathbf P_1 - \mathbf P_2) \mathbf F_{ij} &= 0, \\
-\mathbf F_{ij}^\top (\mathbf P_1 - \mathbf P_2) \mathbf l_{ij} + (\mathbf q_1-\mathbf q_2)  &= 0, \\
-\mathbf l_{ij}^\top (\mathbf P_1 - \mathbf P_2)\mathbf l_{ij} + 2\mathbf l_{ij}^\top (\mathbf q_1-\mathbf q_2) + r_1-r_2 &= 0.
-\end{aligned}
+\boxed
+{\begin{aligned}
+\mathbf F_{ij}^\top (\bm P_1 - \bm P_2) \mathbf F_{ij} &= 0, \\
+\mathbf F_{ij}^\top (\bm P_1 - \bm P_2) \mathbf l_{ij} + (\mathbf q_1-\mathbf q_2)  &= 0, \\
+\mathbf l_{ij}^\top (\bm P_1 - \bm P_2)\mathbf l_{ij} + 2\mathbf l_{ij}^\top (\mathbf q_1-\mathbf q_2) + r_1-r_2 &= 0.
+\end{aligned}}
 $$
 
+::: {#exm-flower-with-piecewise-quadratic-lf}
+### Piecewise quadratic Lyapunov function for the flower example
+
+We consider the switched system with two modes, linear models that are parameterized by the matrices $\mathbf A_1$ and $\mathbf A_2$, for which their domains are given by the sectors defined by the lines $x_2=x_1$ and $x_2=-x_1$. State portrait is in @fig-flower.
+
+```{julia}
+#| code-fold: true
+#| label: fig-flower
+#| fig-cap: State portrait for the switched system with piecewise-defined dynamics
+A₁ = [-0.1 1; -5 -0.1]
+A₂ = [-0.1 5; -1 -0.1]
+
+using Convex, SCS
+
+c = [1, 1]
+d = [-1, 1]
+Q₁ = (c*d' + d*c')/2
+f(x) = dot(x,Q₁,x) >= 0 ? A₁*x : A₂*x 
+
+using CairoMakie
+fig = Figure(size = (800, 800),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
+lines!(ax,[-2,2],[-2,2], color = :red, linewidth=3)
+lines!(ax,[-2,2],[2,-2], color = :red, linewidth=3)
+fig
+``` 
+
+The implementation of the stability analysis based on formulating linear matrix inequalities is as follows 
+```{julia}
+#| code-fold: show
+P₁ = Semidefinite(2)
+P₂ = Semidefinite(2)
+α₁ = 1e-2
+α₂ = 1e-2
+γ₁ = Variable(Positive())
+γ₂ = Variable(Positive())
+μ₁ = Variable(Positive())
+μ₂ = Variable(Positive())
+ξ₁ = Variable(Positive())
+ξ₂ = Variable(Positive())
+
+Q₂ = -Q₁
+
+using LinearAlgebra
+constraint₁ = P₁ - α₁*Matrix{Float64}(I, 2, 2) - μ₁*Q₁ ⪰ 0
+constraint₂ = A₁'*P₁ + P₁*A₁ + γ₁*Matrix{Float64}(I, 2, 2) + ξ₁*Q₁ ⪯ 0
+
+constraint₃ = P₂ - α₂*Matrix{Float64}(I, 2, 2) - μ₂*Q₂ ⪰ 0
+constraint₄ = A₂'*P₂ + P₂*A₂ + γ₂*Matrix{Float64}(I, 2, 2) + ξ₂*Q₂ ⪯ 0
+
+# Continuity condition at the switching surface
+constraint₅ = dot(c, P₁-P₂, c) == 0
+constraint₆ = dot(d, P₁-P₂, d) == 0
+constraints = [constraint₁, constraint₂, constraint₃, constraint₄, constraint₅, constraint₆]
+
+problem = satisfy(constraints)
+solve!(problem,SCS.Optimizer,silent=true)
+
+P₁, P₂ = P₁.value, P₂.value
+```
+
+Several sublevel sets for the computed piecewise quadratic Lyapunov function are superposed onto the state portrait in @fig-flower-with-piecewise-quadratic-lf.
+
+```{julia}
+#| code-fold: true
+#| label: fig-flower-with-piecewise-quadratic-lf
+#| fig-cap: State portrait with the piecewise quadratic Lyapunov function's sublevel sets superposed
+V(x) = dot(x,Q₁,x) >= 0 ? x'*P₁*x : x'*P₂*x
+
+x₁ = x₂ = range(-2.0, 2.0; length=100)
+X₁ = [i for i in x₁, j in x₂]
+X₂ = [j for i in x₁, j in x₂]
+Z1 = [V([X₁[i,j], X₂[i,j]]) for i in 1:length(x₁), j in 1:length(x₂)]
+levels = logrange(1e-3,1e1,10)
+contour!(ax, x₁, x₂, Z1; levels=levels, linewidth=2)
+fig
+```
+
+The exotic shape of this piecewise quadratic Lyapunov function is worth visualizing as a surface in the three-dimensional space as in @fig-flower-with-piecewise-quadratic-lf-3d.
+```{julia}
+#| code-fold: true
+#| label: fig-flower-with-piecewise-quadratic-lf-3d
+#| fig-cap: 3D surface plot of the piecewise quadratic Lyapunov function
+using CairoMakie
+fig = Figure(size = (800, 800),fontsize=20)
+ax = Axis3(fig[1, 1], xlabel = "x₁", ylabel = "x₂", zlabel = "V(x)")
+x₁ = x₂ = range(-2.0, 2.0; length=100)
+X₁ = [i for i in x₁, j in x₂]
+X₂ = [j for i in x₁, j in x₂]
+Z1 = [V([X₁[i,j], X₂[i,j]]) for i in 1:length(x₁), j in 1:length(x₂)]
+surface!(ax, x₁, x₂, Z1; colormap = :magma)
+fig
+```
+
+This piecewise quadratic Lyapunov function certifies asymptotic stability of the switched system. 
+:::
+
+
+::: {#exm-no-cqlf-but-piecewise-quadratic-lf}
+### Piecewise quadratic Lyapunov function for @exm-no-cqlf
+We have already found that a common Lyapunov function could not be found among quadratic functions. Here we attempt to find a piecewise quadratic Lyapunov function. Namely, we are going to search for two quadratic Lyapunov-like functions, each of which is valid on one side of the switching curve, which is the vertical axis in this case. And finally we stitch the two together via a continuity condition. The difference with respect to the previous example is that since the two domains are half-plances, we need to embed the system matrices and Lyapunov-like function matrices into matrices of size 3x3, as explained in the text above. 
+
+```{julia}
+#| code-fold: false
+A₁ = [-0.1 -1; 2 -0.1]
+A₂ = [-0.1 -2; 1 -0.1]
+
+f₁(x) = A₁*x
+f₂(x) = A₂*x
+f(x) = x[1] <= 0.0 ? f₁(x) : f₂(x)
+
+using Convex, SCS
+
+Ā₁ = zeros(Float64, 3, 3)
+Ā₁[1:2, 1:2] = A₁         # A₁ is embedded in the top-left corner of a 3x3 matrix
+
+Ā₂ = zeros(Float64, 3, 3)
+Ā₂[1:2, 1:2] = A₂         # A₂ is embedded in the top-left corner of a 3x3 matrix
+
+P̄₁ = Semidefinite(3)
+P̄₂ = Semidefinite(3)
+α₁ = 1e-2
+α₂ = 1e-2
+γ₁ = Variable(Positive())
+γ₂ = Variable(Positive())
+μ₁ = Variable(Positive())
+μ₂ = Variable(Positive())
+ξ₁ = Variable(Positive())
+ξ₂ = Variable(Positive())
+
+Q₁ = zeros(Float64, 3, 3) # Region x₁ ≤ 0  =>  -x₁ ≥ 0
+Q₁[1,3] = -1.0
+Q₁[3,1] = -1.0
+
+Q₂ = -Q₁  # Region x₁ ≥ 0
+
+using LinearAlgebra
+constraint₁ = P̄₁ - α₁*Matrix{Float64}(I, 3, 3) - μ₁*Q₁ ⪰ 0
+constraint₂ = Ā₁'*P̄₁ + P̄₁*Ā₁ + γ₁*Matrix{Float64}(I, 3, 3) + ξ₁*Q₁ ⪯ 0
+
+constraint₃ = P̄₂ - α₂*Matrix{Float64}(I, 3, 3) - μ₂*Q₂ ⪰ 0
+constraint₄ = Ā₂'*P̄₂ + P̄₂*Ā₂ + γ₂*Matrix{Float64}(I, 3, 3) + ξ₂*Q₂ ⪯ 0
+
+# Continuity condition at the switching surface x₁ = 0
+constraint₅ = P̄₁[2,2] == P̄₂[2,2]
+constraints = [constraint₁, constraint₂, constraint₃, constraint₄, constraint₅]
+
+problem = satisfy(constraints)
+solve!(problem,SCS.Optimizer,silent=true)
+
+P₁, P₂ = P̄₁.value[1:2, 1:2], P̄₂.value[1:2, 1:2]
+```
+
+Several sublevel sets for the computed piecewise quadratic Lyapunov function are superposed onto the state portrait in @fig-no-cqlf-but-piecewise-quadratic-lf. 
+
+```{julia}
+#| code-fold: true
+#| label: fig-no-cqlf-but-piecewise-quadratic-lf
+#| fig-cap: State portrait with the piecewise quadratic Lyapunov function's sublevel sets superposed
+
+V(x) = x[1] <= 0.0 ? x'*P₁*x : x'*P₂*x
+
+using CairoMakie
+fig = Figure(size = (800, 800),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
+vlines!(ax,0.0,ymin=-2.0,ymax=2.0, color = :red, linewidth=3)
+fig 
+x₁ = x₂ = range(-2.0, 2.0; length=100)
+X₁ = [i for i in x₁, j in x₂]
+X₂ = [j for i in x₁, j in x₂]
+Z1 = [V([X₁[i,j], X₂[i,j]]) for i in 1:length(x₁), j in 1:length(x₂)]
+levels = logrange(1e-2,1e2,10)
+contour!(ax, x₁, x₂, Z1; levels=levels, linewidth=2)
+fig
+```
+:::
