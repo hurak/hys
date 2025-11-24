@@ -79,10 +79,10 @@ $$
 \mathcal X_\mathrm{u} = \{ \bm x \in \mathbb R^2 \mid (x_1+1)^2 + (x_2+1)^2 \leq 0.16 \}.
 $$
 
-<!-- The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
+The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
 
 ```{julia}
-#| eval: false
+#| eval: true
 #| fig-cap: The vector field, the initial and unsafe sets, and the boundary function level set for the barrier certificate example. Simulated are also a few trajectories. From [Tutorials for SumOfSquares.jl](https://jump.dev/SumOfSquares.jl/stable/generated/Systems%20and%20Control/barrier_certificate/).
 #| label: fig-barrier
 using SumOfSquares
@@ -144,7 +144,7 @@ function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = Differen
 end
 
 phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x2 in -0.35:0.1:0.35])
-``` -->
+```
 :::
 
 ## Barrier certificate for hybrid systems
