@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.12">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Mixed logical dynamical (MLD) systems – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../11_mld/software.html" rel="next">
+<link href="../11_mld/DHA_parts_as_inequalities.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/mld_and_pwa.html">Mixed logical dynamical (MLD) systems</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course annotation and outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rules of the course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similar courses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/hybrid_equations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Stability II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/mld_and_pwa.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Mixed logical dynamical (MLD) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
+ <span class="menu-text">13. Formal verification I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
+ <span class="menu-text">14. Formal verification II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" id="toc-uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" class="nav-link active" data-scroll-target="#uniqueness-of-the-state-and-output-responses-predicted-by-mld-models">Uniqueness of the state and output responses predicted by MLD models</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#hysdel-language" id="toc-hysdel-language" class="nav-link" data-scroll-target="#hysdel-language">HYSDEL language</a></li>
+  <li><a href="#piecewise-affine-systems" id="toc-piecewise-affine-systems" class="nav-link" data-scroll-target="#piecewise-affine-systems">Piecewise affine systems</a></li>
+  <li><a href="#equivalence-of-mld-dha-and-pwa-and-some-more" id="toc-equivalence-of-mld-dha-and-pwa-and-some-more" class="nav-link" data-scroll-target="#equivalence-of-mld-dha-and-pwa-and-some-more">Equivalence of MLD, DHA, and PWA (and some more)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/mld_and_pwa.html">Mixed logical dynamical (MLD) systems</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Mixed logical dynamical (MLD) systems</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We have just learnt how the logical conditions that encode the individual components of discrete hybrid automata can be turned into linear inequalities. Here we summarize them all into a single mathematical model called <em>mixed logical dynamical (MLD)</em>.</p>
+<p><span id="eq-mld"><span class="math display">\boxed{
+\begin{aligned}
+\bm x(k+1) &amp;= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta \bm \delta(k) + \mathbf B_z\bm z(k) + \mathbf B_0,\\
+\bm y(k) &amp;= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta \bm \delta(k) + \mathbf D_z(k) \bm z + \mathbf D_0,\\
+\mathbf E_\delta \bm \delta &amp;+ \mathbf E_z \bm z(k) \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+\end{aligned}}
+\tag{1}</span></span> where <span class="math display">
+\bm x(k) = \begin{bmatrix}\bm x_\mathrm{c}(k) \\ \bm x_\mathrm{b}(k) \end{bmatrix},\qquad \bm u(k) = \begin{bmatrix}\bm u_\mathrm{c}(k) \\ \bm u_\mathrm{b}(k) \end{bmatrix},\qquad \bm y(k) = \begin{bmatrix}\bm y_\mathrm{c}(k) \\ \bm y_\mathrm{b}(k) \end{bmatrix},
+</span> which reads that the state and control input vectors are composed of the continuous (real) and binary variables.</p>
+<p>The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxilliary variebles (plus an offset). The auxilliary variables are not completely arbitrary – they must comply with the third (set of) equation(s).</p>
+<section id="uniqueness-of-the-state-and-output-responses-predicted-by-mld-models" class="level2">
+<h2 class="anchored" data-anchor-id="uniqueness-of-the-state-and-output-responses-predicted-by-mld-models">Uniqueness of the state and output responses predicted by MLD models</h2>
+<p>An immediate question that must pop up in our minds is that of the uniqueness of the state and output responses predicted by the MLD model. For given <span class="math inline">\bm x(k)</span> and <span class="math inline">\bm u(k)</span>, uniqueness of the values of the auxuliary variables <span class="math inline">\bm \delta(k)</span> and <span class="math inline">\bm z(k)</span> compliant with the inequalities, hence the next state <span class="math inline">\bm x(k+1)</span> and the output <span class="math inline">\bm y(k)</span>, is not immediately obvious. As claimed in the seminal paper <span class="citation" data-cites="bemporadControlSystemsIntegrating1999"><a href="#ref-bemporadControlSystemsIntegrating1999" role="doc-biblioref">[1]</a></span>, MLD models corresponding to real systems do have unique solutions.</p>
+</section>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<div id="exm-mld-switched" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Switched linear system)</strong></span> We consider a discrete-time switched system that switches between two linear systems <span class="math display">
+x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{0,1\},
+</span> where <span class="math inline">i=0</span> if <span class="math inline">x(k)&lt; 0</span> and <span class="math inline">i=1</span> otherwise.</p>
+<p>The auxilliary binary variable <span class="math inline">\delta</span> (actually <span class="math inline">\delta(k)</span>, one for each discrete time <span class="math inline">k</span>) is introduced to encode the switching condition: <span class="math display">
+[\delta(k) = 1] \leftrightarrow [-x(k)\leq 0].
+</span></p>
+<p>This equivalence can be rewritten as <span class="math display">
+\begin{aligned}
+-x(k) &amp;\leq (1-\delta(k))M,\\
+-x(k) &amp;\geq \epsilon + (m-\epsilon)\delta(k),
+\end{aligned}
+</span> where <span class="math inline">m</span> and <span class="math inline">M</span> are lower and upper bounds on <span class="math inline">x(k)</span>, respectively, and <span class="math inline">\epsilon</span> is a small positive number. Say, if it is known that <span class="math inline">x\in [-10,10]</span>, then <span class="math inline">m=-10</span>, <span class="math inline">M=10</span>. We can set <span class="math inline">\epsilon = 10^{-8}</span>.</p>
+<p>Furthermore, just a single continuous (real) variable <span class="math inline">z</span> is introduced to encode one of two modes of the system: <span class="math display">
+\begin{aligned}\\
+[\delta(k) = 1] \rightarrow [z(k) &amp;= a_2 x(k) + b_2 u(k)],\\
+[\delta(k) = 0] \rightarrow [z(k) &amp;= a_1 x(k) + b_1 u(k)].
+\end{aligned}
+</span></p>
+<p>This can be rewritten as <span class="math display">
+\begin{aligned}
+(m_1-M_2)\delta(k) + z(k) &amp;\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &amp;\leq -a_1 x(k) - b_1 u(k),\\
+(m_2-M_1)(1-\delta(k)) + z(k) &amp;\leq a_2 x(k) + b_2 u(k),\\
+(m_1-M_2)(1-\delta(k)) - z(k) &amp;\leq -a_2 x(k) - b_2 u(k),
+\end{aligned}
+</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">a_1 x(k) + b_1 u(k)</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">a_2 x(k) + b_2 u(k)</span>.</p>
+<p>Collecting all the six inequalities (and reformatting them) we get <span class="math display">
+\begin{aligned}
+M\delta(k) &amp;\leq x(k) + M,\\
+(m-\epsilon)\delta(k) &amp;\leq -x(k) - \epsilon,\\
+(m_1-M_2)\delta(k) + z(k) &amp;\leq a_1 x(k) + b_1 u(k),\\
+(m_2-M_1)\delta(k) - z(k) &amp;\leq -a_1 x(k) - b_1 u(k),\\
+(M_1-m_2)\delta(k) + z(k) &amp;\leq a_2 x(k) + b_2 u(k) + (M_1-m_2),\\
+(M_2-m_1)\delta(k) - z(k) &amp;\leq - a_2 x(k) - b_2 u(k) + (M_2-m_1).
+\end{aligned}
+</span></p>
+<p>We can rewrite these in a compact way as <span class="math display">
+\mathbf E_\delta \delta(k) + \mathbf E_z z(k) \leq \mathbf E_x x(k) + \mathbf E_u u(k) + \mathbf E_0,
+</span> where <span class="math display">
+\begin{aligned}
+\mathbf E_\delta &amp;= \begin{bmatrix} M\\ m-\epsilon\\ m_1-M_2\\ m_2-M_1\\ M_1-m_2\\ M_2-m_1\end{bmatrix}, \qquad \mathbf E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\end{bmatrix},\\
+\mathbf E_x &amp;= \begin{bmatrix} 1\\ -1\\ a_1\\ -a_1\\ a_2\\ -a_2\end{bmatrix},\qquad \mathbf E_u = \begin{bmatrix} 0\\ 0\\ b_1\\ -b_1\\ b_2\\ -b_2\end{bmatrix},\qquad \mathbf E_0 = \begin{bmatrix} M\\ -\epsilon\\ 0\\ 0\\ M_1-m_2\\ M_2-m_1\end{bmatrix}.
+\end{aligned}
+</span></p>
+<p>On top of these inequalities, we need to add the state update equation. It is, however, particularly simple in this case: <span class="math display">
+x(k+1) = z(k),
+</span> from which we can extract the remaining matrices parameterizing the MLD model in <a href="#eq-mld" class="quarto-xref">Eq.&nbsp;1</a>: <span class="math display">
+\begin{aligned}
+A &amp;= 0, \quad B_u = 0, \quad B_\delta = 0, \quad B_z = 1, \quad B_0 = 0,\\
+C &amp;= 1, \quad D_u = 0, \quad D_\delta = 0, \quad D_z = 0, \quad D_0 = 0.
+\end{aligned}
+</span></p>
+<p>Note, in particular, that <span class="math inline">A=0</span>, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation, it is a different type of a model.</p>
+<p>The inequality paramaterized by <span class="math inline">\mathbf E_{\delta}, \mathbf E_z, \mathbf E_x, \mathbf E_x</span> and <span class="math inline">\mathbf E_o</span>, for given <span class="math inline">\bm x(k)</span> and <span class="math inline">\bm u(k)</span>, defines a set in the <span class="math inline">\delta-z</span> plane. When the integrality of <span class="math inline">\delta</span> is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see <a href="#fig-mld-switched" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="cell-fig-mld-switched" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> <span class="op">-</span><span class="fl">3</span><span class="op">/</span><span class="fl">4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>a2 <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="op">-</span><span class="fl">10.0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> m2 <span class="op">=</span> m</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>M1 <span class="op">=</span> M2 <span class="op">=</span> M</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ϵ <span class="op">=</span> <span class="fl">0.001</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>A  <span class="op">=</span> [<span class="fl">0.0</span>;;]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Bu <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Bδ <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Bz <span class="op">=</span> [<span class="fl">1.0</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>Bo <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>C  <span class="op">=</span> [<span class="fl">0.0</span>;;]</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Du <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Dδ <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>Dz <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Do <span class="op">=</span> [<span class="fl">0.0</span>]</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Eδ <span class="op">=</span> [M, m<span class="op">-</span>ϵ, m1<span class="op">-</span>M2, m2<span class="op">-</span>M1, M1<span class="op">-</span>m2, M2<span class="op">-</span>m1]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>Ez <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Ex <span class="op">=</span> [<span class="fl">1.0</span>, <span class="op">-</span><span class="fl">1.0</span>, a1, <span class="op">-</span>a1, a2, <span class="op">-</span>a2]</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Eu <span class="op">=</span> [<span class="fl">0.0</span>, <span class="fl">0.0</span>, b1, <span class="op">-</span>b1, b2, <span class="op">-</span>b2]</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Eo <span class="op">=</span> [M, <span class="op">-</span>ϵ, <span class="fl">0.0</span>, <span class="fl">0.0</span>, M1<span class="op">-</span>m2, M2<span class="op">-</span>m1]</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">HiGHS</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>opt_problem <span class="op">=</span> <span class="fu">Model</span>(HiGHS.Optimizer) </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">set_silent</span>(opt_problem)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, m <span class="op">&lt;=</span> x⁺ <span class="op">&lt;=</span> M)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, δ, Bin)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(opt_problem, z)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">2.0</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(opt_problem, x⁺ <span class="op">.==</span> A<span class="op">*</span>x <span class="op">+</span> Bu<span class="op">*</span>u <span class="op">+</span> Bδ<span class="op">*</span>δ <span class="op">+</span> Bz<span class="op">*</span>z <span class="op">+</span> Bo)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(opt_problem, Eδ<span class="op">*</span>δ <span class="op">+</span> Ez<span class="op">*</span>z <span class="op">.&lt;=</span> Ex<span class="op">*</span>x <span class="op">+</span> Eu<span class="op">*</span>u <span class="op">+</span> Eo)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">@objective</span>(opt_problem, Min, <span class="fl">0.0</span>)</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize!</span>(opt_problem)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> Ex<span class="op">*</span>x <span class="op">+</span> Eu<span class="op">*</span>u <span class="op">+</span> Eo</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LazySets</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>H1 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">1</span>], Ez[<span class="fl">1</span>]], b[<span class="fl">1</span>])</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>H2 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">2</span>], Ez[<span class="fl">2</span>]], b[<span class="fl">2</span>])</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>H3 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">3</span>], Ez[<span class="fl">3</span>]], b[<span class="fl">3</span>])</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>H4 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">4</span>], Ez[<span class="fl">4</span>]], b[<span class="fl">4</span>])</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>H5 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">5</span>], Ez[<span class="fl">5</span>]], b[<span class="fl">5</span>])</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>H6 <span class="op">=</span> <span class="fu">HalfSpace</span>([Eδ[<span class="fl">6</span>], Ez[<span class="fl">6</span>]], b[<span class="fl">6</span>])</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> H1 <span class="op">∩</span> H2 <span class="op">∩</span> H3 <span class="op">∩</span> H4 <span class="op">∩</span> H5 <span class="op">∩</span> H6</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(H, aspect_ratio<span class="op">=:</span>auto,xlabel<span class="op">=</span><span class="st">"δ"</span>,ylabel<span class="op">=</span><span class="st">"z"</span>,label<span class="op">=</span><span class="cn">false</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>S1 <span class="op">=</span> <span class="fu">Singleton</span>([<span class="fu">value</span>(δ), <span class="fu">value</span>(z)])</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="fu">plot!</span>(S1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-mld-switched" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mld-switched-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data:image/png;base64,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" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mld-switched-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The set of feasible values of the auxilliary variables <span class="math inline">\delta</span> and <span class="math inline">z</span>. The blue polyhedron relaxes the integrality condition on <span class="math inline">\delta</span>, but if the condition is taken into consideration, the set is a single (orange) point.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="exm-mld-switched-with-memory" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Switched linear system with memory)</strong></span> Consider the first-order linear system <span class="math display">
+x(k+1) = a x(k) + b_{q(k)} u(k), \quad q(k)\in\{0,1\},
+</span> where the variable <span class="math inline">q(k)</span> is a discrete state variable that that evolves – with some (perhaps transparent) abuse of notation – according to <span class="math display">
+q(k+1) = q(k) \lor [x(k) \leq x_{\text{lb}}],
+</span> and <span class="math inline">x_\text{lb}=-1, \; a=0.5, \; b_1=0.1, \; b_2=0.3</span>. The initial continuous state is <span class="math inline">x(0) = 1</span>, consequently the initial discrete state is <span class="math inline">q(k)=1</span>. The control input <span class="math inline">u(k)</span> is constrained to the interval <span class="math inline">[-10,10]</span>.</p>
+<p>Obviously, once the real state <span class="math inline">x(k)</span> falls below <span class="math inline">x_{\text{lb}}</span>, the system switches to the other mode and stays there forever.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note on the common abuse of notation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we wanted to avoid the aformentioned abuse of notation, we could introduce a Boolean variable <span class="math inline">Q(k)</span> and write <span class="math display">
+Q(k+1) \leftrightarrow (Q(k) \lor [x(k) \leq x_{\text{lb}}]),
+</span> where <span class="math inline">Q(k) \leftrightarrow [q(k)=1]</span>. Or we could write even without explicitly introducing the variable <span class="math inline">Q(k)</span>: <span class="math display">
+[q(k+1)=1] \leftrightarrow ([q(k)=1] \lor [x(k) \leq x_{\text{lb}}]),
+</span> but this makes the model somewhat clumsy and heavy. The somewhat abusive view of <span class="math inline">q</span> as both a logical (Boolean) and binary (integer) variable is a common practice.</p>
+</div>
+</div>
+<p>To comply with the notation of this framework, we composed the state vector of the the real and binary components as <span class="math display">
+\bm x(k) = \begin{bmatrix} x(k)\\ q(k)\end{bmatrix},
+</span> and in what follows we are going to refer to the real and binary state vaiables as <span class="math inline">x_\mathrm{c}(k)</span> and <span class="math inline">x_\mathrm{b}(k)</span>, respectively.</p>
+<p>The auxilliary binary variable (actually variables, one for each time) <span class="math inline">\delta_1(k)</span>, is introduced to encode the switching condition (the EG component of the discrete hybrid automaton): <span class="math display">
+[\delta_1(k) = 1] \leftrightarrow [x_\mathrm{c}(k) - x_\text{lb} \leq 0].
+</span></p>
+<p>We can rewrite this as <span class="math display">
+\begin{aligned}
+x_\mathrm{c}(k) - x_\text{lb} &amp;\leq (1-\delta_1(k))M,\\
+x_\mathrm{c}(k) - x_\text{lb} &amp;\geq \epsilon + (m-\epsilon)\delta_1(k),
+\end{aligned}
+</span> where <span class="math inline">m</span> and <span class="math inline">M</span> are lower and upper bounds on <span class="math inline">x_\mathrm{c}(k)</span>, respectively, and <span class="math inline">\epsilon</span> is a small positive number. Say, it is assumed that <span class="math inline">x_\mathrm{c}\in [-10,10]</span>, then <span class="math inline">m=-10</span>, and <span class="math inline">M=10</span>. We can set <span class="math inline">\epsilon</span> to something like <span class="math inline">\epsilon = 10^{-8}</span>.</p>
+<p>We can also write the mode selection (MS) component of the discrete hybrid automaton as <span class="math display">
+\text{if}\; [\delta_1(k) = 1],\; \text{then}\; z(k) = a x_\mathrm{c}(k) + b_1 u(k), \; \text{else} \; z(k) = a x_\mathrm{c}(k) + b_2 u(k).
+</span></p>
+<p>This we can rewrite as a set of linear inequalities <span class="math display">
+\begin{aligned}
+(m_2-M_1)\delta_1(k) + z(k) &amp;\leq a x_\mathrm{c}(k) + b_2 u(k),\\
+(m_1-M_2)\delta_1(k) - z(k) &amp;\leq -a x_\mathrm{c}(k) - b_2 u(k),\\
+(m_1-M_2)(1-\delta_1(k)) + z(k) &amp;\leq a x_\mathrm{c}(k) + b_1 u(k),\\
+(m_2-M_1)(1-\delta_1(k)) - z(k) &amp;\leq -a x_\mathrm{c}(k) - b_1 u(k),
+\end{aligned}
+</span> where <span class="math inline">m_1</span> and <span class="math inline">M_1</span> are lower and upper bounds on <span class="math inline">a x_\mathrm{c}(k) + b_1 u(k)</span>, and <span class="math inline">m_2</span> and <span class="math inline">M_2</span> are lower and upper bounds on <span class="math inline">a x_\mathrm{c}(k) + b_2 u(k)</span>.</p>
+<p>We also need to encode the finite state automaton/machine (FSM) component of the discrete hybrid automaton. We write down the state update equation once again here: <span class="math display">
+[x_\mathrm{b}(k+1)=1] \leftrightarrow [x_\mathrm{b}(k)=1] \lor [\delta_1(k) = 1]
+</span> and for convenience, we rewrite it using (temporarily introduced) Boolean variables: <span class="math display">
+C \leftrightarrow A \lor B.
+</span> The equivalence can be rewritten as <span class="math display">
+C \rightarrow (A \lor B), \qquad  (A\lor B) \rightarrow C.
+</span></p>
+<p>The former can be rewritten as <span class="math display">
+\neg C \lor (A \lor B),
+</span> which (when mapping to the original binary variables) is equivalent to <span class="math display">
+(1-x_\mathrm{b}(k+1)) + x_\mathrm{b}(k) + \delta_1(k) \geq 1,
+</span> which can be finally writen as <span class="math display">
+x_\mathrm{b}(k+1) \leq x_\mathrm{b}(k) + \delta_1(k).
+</span></p>
+<p>Note that this inequality contains the state at the next time, which is not supported by the MLD formalism. But the fix is easy. We introduce another auxilliary binary variable <span class="math inline">\delta_2(k) \coloneqq x_\mathrm{b}(k+1)</span> and rewrite the inequality as</p>
+<p><span class="math display">
+\delta_2(k) \leq x_\mathrm{b}(k) + \delta_1(k).
+</span></p>
+<p>The latter implication can be rewritten as <span class="math display">
+\neg (A\lor B) \lor C,
+</span> which can be rewritten as <span class="math display">
+(\neg A\land \neg B) \lor C,
+</span> in which the distributive law gives <span class="math display">
+(\neg A \lor C) \land (\neg B \lor C),
+</span> which can finally be rewritten using the original binary variables as two inequalities <span class="math display">
+\begin{aligned}
+(1-x_\mathrm{b}(k)) + x_\mathrm{b}(k+1) &amp;\geq 1,\\
+(1-\delta_1(k)) + x_\mathrm{b}(k+1) &amp;\geq 1.
+\end{aligned}
+</span></p>
+<p>Once again, replacing the state at the next time by the auxilliary binary variable <span class="math inline">\delta_2(k) \coloneqq x_\mathrm{b}(k+1)</span> (and subtracting the 1 from both sides), we get <span class="math display">
+\begin{aligned}
+-x_\mathrm{b}(k) + \delta_2(k) &amp;\geq 0,\\
+-\delta_1(k) + \delta_2(k) &amp;\geq 0.
+\end{aligned}
+</span></p>
+<p>We are now ready to start collecting the equations and inequalities into the MLD model. The state update equation is <span class="math display">
+\begin{bmatrix}
+x_\mathrm{c}(k+1)\\
+x_\mathrm{b}(k+1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 &amp; 0\\
+0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+\delta_1(k)\\
+\delta_2(k)
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix}
+z(k).
+</span></p>
+<p>The inequalities are <span class="math display">
+\begin{aligned}
+M\delta_1(k) &amp;\leq -x_\mathrm{c}(k) + M + x_\text{lb},\\
+(m-\epsilon)\delta_1(k) &amp;\leq -x_\mathrm{c}(k) - \epsilon - x_\text{lb},\\
+(m_2-M_1)\delta_1(k) + z(k) &amp;\leq a x_\mathrm{c}(k) + b_2 u(k),\\
+(m_1-M_2)\delta_1(k) - z(k) &amp;\leq -a x_\mathrm{c}(k) - b_2 u(k),\\
+(m_1-M_2)(1-\delta_1(k)) + z(k) &amp;\leq a x_\mathrm{c}(k) + b_1 u(k),\\
+(m_2-M_1)(1-\delta_1(k)) - z(k) &amp;\leq -a x_\mathrm{c}(k) - b_1 u(k),\\
+-\delta_1(k) + \delta_2(k) &amp;\leq x_\mathrm{b}(k),\\
+-\delta_2(k) &amp;\leq -x_\mathrm{b}(k),\\
+\delta_1(k) - \delta_2(k) &amp;\leq 0.
+\end{aligned}
+</span></p>
+<p>Writing down the matrices is straightforward:</p>
+<p><span class="math display">
+\mathbf A = \begin{bmatrix}0 &amp; 0\\0 &amp; 0\end{bmatrix}, \quad \mathbf B_u = \begin{bmatrix}0\\0\end{bmatrix}, \quad \mathbf B_\delta = \begin{bmatrix}0 &amp; 0\\0 &amp; 1\end{bmatrix}, \quad \mathbf B_z = \begin{bmatrix}1\\0\end{bmatrix}, \quad \mathbf B_0 = \begin{bmatrix}0\\0\end{bmatrix},
+</span> and <span class="math display">
+\begin{aligned}
+\mathbf E_\delta &amp;= \begin{bmatrix} M &amp; 0\\ m-\epsilon &amp; 0\\ m_2-M_1 &amp; 0\\ m_1-M_2 &amp; 0\\M_2-m_1 &amp; 0\\M_1-m_2 &amp; 0\\ -1 &amp; 1\\0 &amp; -1\\ 1 &amp; -1\end{bmatrix}, \qquad \mathbf E_z = \begin{bmatrix} 0\\ 0\\ 1\\ -1\\ 1\\ -1\\ 0 \\ 0 \\ 0\end{bmatrix},\\
+\mathbf E_x &amp;= \begin{bmatrix} -1 &amp; 0\\ -1 &amp; 0\\ a &amp; 0\\ -a_1 &amp; 0\\ a_2 &amp; 0\\ -a_2 &amp; 0 \\ 0 &amp; 1\\ 0 &amp; -1 \\ 0 &amp; 0\end{bmatrix},\qquad \mathbf E_u = \begin{bmatrix} 0\\ 0\\ b_2\\ -b_2\\ b_1\\ -b_1\\ 0 \\ 0 \\ 0\end{bmatrix},\qquad \mathbf E_0 = \begin{bmatrix} M+x_\text{lb}\\ -\epsilon-x_\text{lb}\\ 0\\ 0\\ M_2-m_1\\ M_1-m_2\\ 0 \\ 0 \\ 0\end{bmatrix}.
+\end{aligned}
+</span></p>
+</div>
+<p>Two general lessons can be learnt from the previous example. First, the procedure of finding the matrices defining the MLD model is rather tedious and error-prone. Second, the MLD model is, indeed, not a state-space model, but a different kind of a model. In particular, in the latter example we can see that the control input <span class="math inline">u</span> does not affect the next state through the state update equation, it only appears in the inequalities.</p>
+</section>
+<section id="hysdel-language" class="level2">
+<h2 class="anchored" data-anchor-id="hysdel-language">HYSDEL language</h2>
+<p>To address the first lesson learnt from the examples – that the procedure for turning the discrete-time hybrid automaton into a MLD model is rather tedious and error-prone –, some automation of the procedure is desirable. The only tool for this that we are aware of is the HYSDEL language and parser (see the <a href="../11_mld/software.html">section on software for details on availability</a>). Here we do not explain it – we refer the student to the section 16.7 in <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[2]</a></span>, which is freely downloadable –, but we show the code for <a href="#exm-mld-switched" class="quarto-xref">Example&nbsp;1</a>, which is perhaps self-explaining.</p>
+<pre><code>SYSTEM switched_LTI_1 {
+    INTERFACE {
+        INPUT {
+            REAL u [-1.0,1.0];
+        }
+        STATE {
+            REAL x [-10, 10];
+        }
+        OUTPUT {
+            REAL y;
+        }
+        PARAMETER {
+            REAL A1 = -3/4;
+            REAL A2 = 1/5;
+            REAL B1 = 1;
+            REAL B2 = 1;
+        }
+    }
+    IMPLEMENTATION {
+        AUX {
+            REAL z;
+            BOOL delta;
+        }
+        AD {
+            delta = x &gt;= 0;
+        }
+        DA {
+            z = {IF delta THEN A2*x + B2*u ELSE A1*x + B1*u};
+        }
+        CONTINUOUS {
+            x = z;
+        }
+        OUTPUT {
+            y = x;
+        }
+    }
+}</code></pre>
+</section>
+<section id="piecewise-affine-systems" class="level2">
+<h2 class="anchored" data-anchor-id="piecewise-affine-systems">Piecewise affine systems</h2>
+<p>Tightly related to the MLD model is another representation of a hybrid system – a PWA (piecewise affine) system (actually a model) <span class="math display">
+\begin{aligned}
+\bm x(k+1) &amp;= \mathbf A_{i(k)}\bm x(k) + \mathbf B_{i(k)} \bm u(k) + \mathbf f_{i(k)},\\
+\bm y(k) &amp;= \mathbf C_{i(k)}\bm x(k) + \mathbf D_{i(k)} \bm u(k) + \mathbf g_{i(k)},\\
+&amp; \; \mathbf H_{i(k)} \bm x(k) + \mathbf J_{i(k)} \bm u(k) \leq \mathbf K_{i(k)}.
+\end{aligned}
+</span></p>
+</section>
+<section id="equivalence-of-mld-dha-and-pwa-and-some-more" class="level2">
+<h2 class="anchored" data-anchor-id="equivalence-of-mld-dha-and-pwa-and-some-more">Equivalence of MLD, DHA, and PWA (and some more)</h2>
+<p>As stated in the section 16.8 in the freely downloadable <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[2]</a></span>, the three models – MLD, DHA, and PWA – are equivalent. In fact two more kinds of models that we also covered in the course – linear complementarity systems and max-(min-)plus(-scaling) systems are also included in this equivalence statement, the key reference is <span class="citation" data-cites="heemelsEquivalenceHybridDynamical2001"><a href="#ref-heemelsEquivalenceHybridDynamical2001" role="doc-biblioref">[3]</a></span>.</p>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-bemporadControlSystemsIntegrating1999" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Bemporad and M. Morari, <span>“Control of systems integrating logic, dynamics, and constraints,”</span> <em>Automatica</em>, vol. 35, no. 3, pp. 407–427, Mar. 1999, doi: <a href="https://doi.org/10.1016/S0005-1098(98)00178-2">10.1016/S0005-1098(98)00178-2</a>.</div>
+</div>
+<div id="ref-borrelliPredictiveControlLinear2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">F. Borrelli, A. Bemporad, and M. Morari, <em>Predictive <span>Control</span> for <span>Linear</span> and <span>Hybrid Systems</span></em>. Cambridge, New York: Cambridge University Press, 2017. Available: <a href="http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf">http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf</a></div>
+</div>
+<div id="ref-heemelsEquivalenceHybridDynamical2001" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">W. P. M. H. Heemels, B. De Schutter, and A. Bemporad, <span>“Equivalence of hybrid dynamical models,”</span> <em>Automatica</em>, vol. 37, no. 7, pp. 1085–1091, Jul. 2001, doi: <a href="https://doi.org/10.1016/S0005-1098(01)00059-0">10.1016/S0005-1098(01)00059-0</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../11_mld/DHA_parts_as_inequalities.html" class="pagination-link" aria-label="Components of DHA as inequalities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Components of DHA as inequalities</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../11_mld/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

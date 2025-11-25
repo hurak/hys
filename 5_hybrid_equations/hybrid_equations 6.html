@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.12">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Hybrid equations – B(E)3M35HYS – Hybrid systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../5_hybrid_equations/software.html" rel="next">
+<link href="../5_hybrid_equations/goals.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../5_hybrid_equations/goals.html">5. Hybrid systems: Hybrid equations</a></li><li class="breadcrumb-item"><a href="../5_hybrid_equations/hybrid_equations.html">Hybrid equations</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">B(E)3M35HYS – Hybrid systems</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introduction</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a hybrid system?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/outline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course annotation and outline</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rules of the course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similar courses</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../0_intro/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Discrete-event systems: Automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/des.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete-event systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">State automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">2. Discrete-event systems: Petri nets</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timed Petri nets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">3. Discrete-event systems: Max-plus systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_algebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus algebra</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Max-plus linear (MPL) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">4. Hybrid systems: Hybrid automata</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/hybrid_automata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">5. Hybrid systems: Hybrid equations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/hybrid_equations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Hybrid equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">6. Some classes of hybrid systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/reset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reset systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/switched.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Switched systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/PWA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Piecewise affine (PWA) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">7. Solution</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Solution concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Types of solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../7_solution/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">8. Stability I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/recap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap of stability analysis for continuous dynamical systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability of hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">9. Stability II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/multiple_lyapunov_function.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stability via multiple Lyapunov functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../9_stability_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text">10. Complementarity systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/constraints.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Complementarity systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/simulations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulations of complementarity systems using time-stepping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10_complementarity/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">11. Mixed logical dynamical (MLD) systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Discrete hybrid automata</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/logic_vs_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logic vs inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Components of DHA as inequalities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/mld_and_pwa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixed logical dynamical (MLD) systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11_mld/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true">
+ <span class="menu-text">12. Model predictive control (MPC) for MLD systems</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/online.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Online MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/explicit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Explicit MPC for hybrid systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12_mpc/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true">
+ <span class="menu-text">13. Formal verification I.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is verification?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/reachability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reachability analysis</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/barrier.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barrier certificates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../13_verification_1/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true">
+ <span class="menu-text">14. Formal verification II.</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/temporal_logics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Temporal logics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Software</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../14_verification_2/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#hybrid-equations" id="toc-hybrid-equations" class="nav-link active" data-scroll-target="#hybrid-equations">Hybrid equations</a></li>
+  <li><a href="#hybrid-inclusions" id="toc-hybrid-inclusions" class="nav-link" data-scroll-target="#hybrid-inclusions">Hybrid inclusions</a></li>
+  <li><a href="#output-equations" id="toc-output-equations" class="nav-link" data-scroll-target="#output-equations">Output equations</a></li>
+  <li><a href="#hybridness-after-closing-the-loop" id="toc-hybridness-after-closing-the-loop" class="nav-link" data-scroll-target="#hybridness-after-closing-the-loop">Hybridness after closing the loop</a></li>
+  <li><a href="#impossibility-to-stabilize-without-a-hybrid-controller" id="toc-impossibility-to-stabilize-without-a-hybrid-controller" class="nav-link" data-scroll-target="#impossibility-to-stabilize-without-a-hybrid-controller">Impossibility to stabilize without a hybrid controller</a></li>
+  <li><a href="#supervisory-control" id="toc-supervisory-control" class="nav-link" data-scroll-target="#supervisory-control">Supervisory control</a></li>
+  <li><a href="#combining-local-and-global-controllers-subset-supervisory-control" id="toc-combining-local-and-global-controllers-subset-supervisory-control" class="nav-link" data-scroll-target="#combining-local-and-global-controllers-subset-supervisory-control">Combining local and global controllers <span class="math inline">\subset</span> supervisory control</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../5_hybrid_equations/goals.html">5. Hybrid systems: Hybrid equations</a></li><li class="breadcrumb-item"><a href="../5_hybrid_equations/hybrid_equations.html">Hybrid equations</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Hybrid equations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Here we introduce a major alternative framework to hybrid automata for modelling hybrid systems. It is called <em>hybrid equations</em>, sometimes also <em>hybrid state equations</em> to emphasize that what we are after is some kind of analogy with state equations <span class="math inline">\dot{x}(t) = f(x(t), u(t))</span> and <span class="math inline">x_{k+1} = g(x_k, u_k)</span> that we are familiar with from (continuous-valued) dynamical systems. Sometimes it is also called <em>event-flow equations</em> or <em>jump-flow</em> equations.</p>
+<p>These are the key ideas:</p>
+<ul>
+<li>The (state) variables can change values discontinuously upon occurence of events – they <em>jump</em>.</li>
+<li>Between the jumps they evolve continuously – they <em>flow</em>.</li>
+<li>Some variables may only flow, they never jump.</li>
+<li>The variables staying constant between the jumps can be viewed as flowing too.</li>
+</ul>
+<p>The major advantage of this modeling framework is that we do not have to distinguish between the two types of state variables. This is in contrast with hybrid automata, where we have to start by classifying the state variables as either continuous or discrete before moving on. In the current framework we treat all the variables identically – they mostly flow and occasionally (perhaps never, which is OK) jump.</p>
+<section id="hybrid-equations" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-equations">Hybrid equations</h2>
+<p>It is high time to introduce hybrid (state) equations – here they come <span class="math display">
+\begin{aligned}
+\dot{x} &amp;= f(x), \quad x \in \mathcal{C},\\
+x^+ &amp;= g(x), \quad x \in \mathcal{D},
+\end{aligned}
+</span> where</p>
+<ul>
+<li><span class="math inline">f: \mathcal{C} \rightarrow \mathbb R^n</span> is the <em>flow map</em>,</li>
+<li><span class="math inline">\mathcal{C}\subset \mathbb R^n</span> is the <em>flow set</em>,</li>
+<li><span class="math inline">g: \mathcal{D} \rightarrow \mathbb R^n</span> is the <em>jump map</em>,</li>
+<li><span class="math inline">\mathcal{D}\subset \mathbb R^n</span> is the <em>jump set</em>.</li>
+</ul>
+<p>This model of a hybrid system is thus parameterized by the quadruple <span class="math inline">\{f, \mathcal C, g, \mathcal D\}</span>.</p>
+</section>
+<section id="hybrid-inclusions" class="level2">
+<h2 class="anchored" data-anchor-id="hybrid-inclusions">Hybrid inclusions</h2>
+<p>We now extend the presented framework of hybrid equations a bit. Namely, the functions on the right-hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets! <span class="math display">
+\begin{aligned}
+\dot{x} &amp;\in \mathcal F(x), \quad x \in \mathcal{C},\\
+x^+ &amp;\in \mathcal G(x), \quad x \in \mathcal{D}.
+\end{aligned}
+</span> where</p>
+<ul>
+<li><span class="math inline">\mathcal{F}</span> is the set-valued <em>flow map</em>,</li>
+<li><span class="math inline">\mathcal{C}</span> is the <em>flow set</em>,</li>
+<li><span class="math inline">\mathcal{G}</span> is the set-valued <em>jump map</em>,</li>
+<li><span class="math inline">\mathcal{D}</span> is the <em>jump set</em>.</li>
+</ul>
+</section>
+<section id="output-equations" class="level2">
+<h2 class="anchored" data-anchor-id="output-equations">Output equations</h2>
+<p>Typically a full model is only formed upon defining some output variables (oftentimes just a subset of possibly scaled state variables or their linear combinations). These output variables then obey some output equation <span class="math display">
+y(t) = h(x(t)),
+</span></p>
+<p>or <span class="math display">
+y(t) = h(x(t),u(t)).
+</span></p>
+<div id="exm-bouncing-ball" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Bouncing ball)</strong></span> This is the “hello world example” for hybrid systems with state jumps (pun intended). The state variables are the height and the vertical speed of the ball. <span class="math display">
+\bm x \in \mathbb{R}^2, \qquad \bm x = \begin{bmatrix}x_1 \\ x_2\end{bmatrix}.
+</span></p>
+<p>The quadruple defining the hybrid equations is <span class="math display">
+\mathcal{C} = \{\bm x \in \mathbb{R}^2 \mid x_1&gt;0 \lor (x_1 = 0, x_2\geq 0)\},
+</span> <span class="math display">
+f(\bm x) = \begin{bmatrix}x_2 \\ -g\end{bmatrix}, \qquad g = 9.81,
+</span> <span class="math display">
+\mathcal{D} = \{\bm x \in \mathbb{R}^2 \mid x_1 = 0, x_2 &lt; 0\},
+</span> <span class="math display">
+g(\bm x) = \begin{bmatrix}x_1 \\ -\alpha x_2\end{bmatrix}, \qquad \alpha = 0.8.
+</span></p>
+<p>The two sets and two maps are illustrated below.</p>
+<div id="fig-bouncing-ball-maps-and-sets" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bouncing-ball-maps-and-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/bouncing_ball_maps_and_sets.png" class="img-fluid figure-img" style="width:55.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bouncing-ball-maps-and-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Maps and sets for the bouncing ball example
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="exm-bouncing-ball-on-piston" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Bouncing ball on a controlled piston)</strong></span> We now extend the simple bouncing ball example by adding a vertically moving piston. The piston is controlled by a force.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/bouncing_ball_on_a_piston.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Example of a ball bouncing on a vertically moving piston</figcaption>
+</figure>
+</div>
+<p>In our analysis we neglect the sizes (for simplicity).</p>
+<p>The collision happens when <span class="math inline">x_\mathrm{b} = x_\mathrm{p}</span>, and <span class="math inline">v_\mathrm{b} &lt; v_\mathrm{p}</span>.</p>
+<p>The conservation of momentum after a collision reads <span id="eq-momentum-conservation"><span class="math display">
+m_\mathrm{b}v_\mathrm{b}^+ + m_\mathrm{p}v_\mathrm{p}^+ = m_\mathrm{b}v_\mathrm{b} + m_\mathrm{p}v_\mathrm{p}.
+\tag{1}</span></span></p>
+<p>The collision is modelled using a restitution coefficient <span id="eq-restitution"><span class="math display">
+v_\mathrm{p}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}).
+\tag{2}</span></span></p>
+<p>From the momentum conservation <a href="#eq-momentum-conservation" class="quarto-xref">Eq.&nbsp;1</a> <span class="math display">
+v_\mathrm{p}^+ = \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+
+</span></p>
+<p>we substitute to <a href="#eq-restitution" class="quarto-xref">Eq.&nbsp;2</a> to get <span class="math display">
+\frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}),
+</span> from which we express <span class="math inline">v_\mathbb{b}^+</span> <span class="math display">
+\begin{aligned}
+v_\mathrm{b}^+ &amp;= \frac{1}{1+\frac{m_\mathrm{b}}{m_\mathrm{p}}}\left(\frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} + \gamma (v_\mathrm{p} - v_\mathrm{b})\right)\\
+&amp;= \frac{m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}\left(\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{p}}v_\mathrm{b} + (1+\gamma)v_\mathrm{p}\right)\\
+&amp;= \frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}v_\mathrm{b} + \frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}v_\mathrm{p}
+\end{aligned}.
+</span></p>
+<p>Substitute to the expression for <span class="math inline">v_\mathbb{p}^+</span> to get <span class="math display">
+\begin{aligned}
+v_\mathrm{p}^+ &amp;= \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}\left(\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}v_\mathrm{b} + \frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}v_\mathrm{p}\right)\\
+&amp;= \frac{m_\mathrm{b}}{m_\mathrm{p}}\left(1-\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}\right) v_\mathrm{b} \\
+&amp;\qquad\qquad + \left(1-\frac{m_\mathrm{b}}{m_\mathrm{p}}\frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}\right) v_\mathrm{p}\\
+&amp;= \frac{m_\mathrm{b}}{m_\mathrm{b}+m_\mathrm{p}}(1+\gamma) v_\mathrm{b} + \frac{m_\mathrm{p}-\gamma m_\mathrm{b}}{m_\mathrm{p}+m_\mathrm{b}} v_\mathrm{p}.
+\end{aligned}
+</span></p>
+<p>Finally we can simplify the expressions a bit by introducing <span class="math inline">m=\frac{m_\mathrm{b}}{m_\mathrm{b}+m_\mathrm{p}}</span>. The jump equation is then <span class="math display">
+\begin{bmatrix}
+v_\mathrm{b}^+\\
+v_\mathrm{p}^+
+\end{bmatrix}
+=
+\begin{bmatrix}
+m - \gamma (1-m) &amp; (1+\gamma)(1-m)\\
+m(1+\gamma) &amp; 1-m-\gamma m
+\end{bmatrix}
+\begin{bmatrix}
+v_\mathrm{b}\\
+v_\mathrm{p}
+\end{bmatrix}.
+</span></p>
+</div>
+<div id="exm-synchronization-of-fireflies" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Synchronization of fireflies)</strong></span> This is a famous example in synchronization. We consider <span class="math inline">n</span> fireflies, <span class="math inline">x_i</span> is the <span class="math inline">i</span>-th firefly’s&nbsp;clock, normalized to <span class="math inline">[0,1]</span>. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by <span class="math inline">\varepsilon \%</span>.</p>
+<p>Here is how we model the problem using the four-tuple <span class="math inline">\{f, \mathcal C, g, \mathcal D\}</span>: <span class="math display">
+\mathcal{C} = [0,1)^n = \{\bm x \in \mathbb R^n\mid x_i \in [0,1),\; i=1,\ldots,n \},
+</span> <span class="math display">
+\bm f = [f_1, f_2, \ldots, f_n]^\top,\quad f_i = 1, \quad i=1,\ldots,n,
+</span> <span class="math display">
+\mathcal{D} = \{\bm x \in [0,1]^n \mid \max_i x_i = 1 \},
+</span></p>
+<p><span class="math display">
+\begin{aligned}
+\bm g &amp;= [g_1, \ldots, g_n]^\top,\\
+&amp; \qquad g_i(x_i) =
+\begin{cases}
+(1 + \varepsilon)x_i, &amp; \text{if } (1+\varepsilon)x_i &lt; 1, \\
+0, &amp; \text{otherwise}.
+\end{cases}
+\end{aligned}
+</span></p>
+</div>
+<div id="exm-thyristor-control" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Thyristor control)</strong></span> Consider the circuit below.</p>
+<div id="fig-thyristor-control" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thyristor-control-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/thyristor_control.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thyristor-control-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a thyristor control
+</figcaption>
+</figure>
+</div>
+<p>We consider a harmonic input voltage, that is, <span class="math display">
+\begin{aligned}
+\dot v_0 &amp;= \omega v_1\\
+\dot v_1 &amp;= -\omega v_0.
+\end{aligned}
+</span></p>
+<p>The thyristor can be <em>on</em> (discrete state <span class="math inline">q=1</span>) or <em>off</em> (<span class="math inline">q=0</span>). The firing time <span class="math inline">\tau</span> is given by the firing angle <span class="math inline">\alpha \in (0,\pi)</span>.</p>
+<p>The state vector is <span class="math display">
+\bm x =
+\begin{bmatrix}
+v_0\\ v_1 \\ i_\mathrm{L} \\ v_\mathrm{C} \\ q \\ \tau
+\end{bmatrix}.
+</span></p>
+<p>The flow map is <span class="math display">
+\bm f(\bm x)
+=
+\begin{bmatrix}
+\omega v_1\\
+-\omega v_0\\
+q \frac{v_\mathrm{C}-Ri_\mathrm{L}}{L}\\
+-\frac{1}{CR}v_\mathrm{C} + \frac{1}{CR}v_\mathrm{0} - \frac{1}{C}i_\mathrm{L}\\
+0\\
+1
+\end{bmatrix}.
+</span></p>
+<p>The flow set is <span class="math display">
+\begin{aligned}
+\mathcal{C} &amp;= \{\bm x \mid q=0,\, \tau&lt;\frac{\alpha}{\omega},\, i_\mathrm{L}=0\}\\ &amp;\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}&gt;0\}
+\end{aligned}.
+</span></p>
+<p>The jump set is <span class="math display">
+\begin{aligned}
+\mathcal{D} &amp;= \{\bm x \mid q=0,\, \tau\geq \frac{\alpha}{\omega},\, i_\mathrm{L}=0,\, v_\mathrm{C}&gt;0\}\\ &amp;\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}=0,\, v_\mathrm{C}&lt;0\}
+\end{aligned}.
+</span></p>
+<p>The jump map is <span class="math display">
+\bm g(\bm x) =
+\begin{bmatrix}
+u_0\\ u_1 \\ i_\mathrm{L} \\ v_\mathrm{C} \\ {\color{red} 1-q} \\ {\color{red} 0}
+\end{bmatrix}.
+</span></p>
+<p>The last condition in the jump set comes from the requirement that not only must the current through the inductor be zero, but also it must be decreasing. And from the state equation it follows that the voltage on the capacitor must be negative.</p>
+</div>
+<div id="exm-sampled-data-feedback" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Sampled-data feedback control)</strong></span> Another example of a dynamical system that fits nicely into the hybrid equations framework is sampled-data feedback control system. Within the feedback loop in <a href="#fig-sampled-data-feedback" class="quarto-xref">Fig.&nbsp;3</a>, we recognize a continuous-time plant and a discrete-time controller.</p>
+<div id="fig-sampled-data-feedback" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sampled-data-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/sample_and_hold.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampled-data-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Sampled data feedback control
+</figcaption>
+</figure>
+</div>
+<p>The plant is modelled by <span class="math inline">\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},u), \; y = h(x_\mathrm{p})</span>. The controller samples the output <span class="math inline">T</span>-periodically and computes its own output as a nonlinear function <span class="math inline">u = \kappa(r-y)</span>.</p>
+<p>The closed-loop model is then <span class="math display">
+\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},\kappa(r-h(x_\mathrm{p}))), \; y = h(x_\mathrm{p}).
+</span></p>
+<p>The closed-loop state vector is <span class="math display">
+\bm x =
+\begin{bmatrix}
+x_\mathrm{p}\\ u \\ \tau
+\end{bmatrix}
+\in
+\mathbb R^n \times \mathbb R^m \times \mathbb R.
+</span></p>
+<p>The flow set is <span class="math display">
+\begin{aligned}
+\mathcal{C} &amp;= \{\bm x \mid \tau \in [0,T)\}
+\end{aligned}
+</span></p>
+<p>The flow map is <span class="math display">
+\bm f(\bm x)
+=
+\begin{bmatrix}
+f_\mathrm{p}(x_\mathrm{p},u)\\
+0\\
+1
+\end{bmatrix}
+</span></p>
+<p>The jump set is <span class="math display">
+\begin{aligned}
+\mathcal{D} &amp;= \{\bm x \mid \tau = T\}
+\end{aligned}
+</span> or rather <span class="math display">
+\begin{aligned}
+\mathcal{D} &amp;= \{\bm x \mid \tau \geq T\}
+\end{aligned}
+</span></p>
+<p>The jump map is <span class="math display">
+\bm g(\bm x) =
+\begin{bmatrix}
+x_\mathrm{p}\\
+\kappa(r-y)\\
+0
+\end{bmatrix}
+</span></p>
+<p>You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theoris. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time <span class="math inline">T</span> may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework.</p>
+</div>
+</section>
+<section id="hybridness-after-closing-the-loop" class="level2">
+<h2 class="anchored" data-anchor-id="hybridness-after-closing-the-loop">Hybridness after closing the loop</h2>
+<p>We have defined <em>hybrid systems</em>, but what exactly is hybrid when we close a feedback loop? There are three possibilities:</p>
+<ul>
+<li>Hybrid plant + continuous controller.</li>
+<li>Hybrid plant + hybrid controller.</li>
+<li>Continuous plant + hybrid controller.</li>
+</ul>
+<p>The first case is encountered when we use a standard controller such as a PID controller to control a system whose dynamics can be characterized/modelled as hybrid. The second scenario considers a controller that mimicks the behavior of a hybrid system. The third case is perhaps the least intuitive: although the plant to be controller is continuous(-valued), it may still make sense to design and implement a hybrid controller, see the next paragraph.</p>
+</section>
+<section id="impossibility-to-stabilize-without-a-hybrid-controller" class="level2">
+<h2 class="anchored" data-anchor-id="impossibility-to-stabilize-without-a-hybrid-controller">Impossibility to stabilize without a hybrid controller</h2>
+<div id="exm-unicycle-stabilization" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 (Unicycle stabilization)</strong></span> We consider a unicycle model of a vehicle in a plane, characterized by the position and orientation, with the controlled forward speed <span class="math inline">v</span> and the yaw (turning) angular rate <span class="math inline">\omega</span>.</p>
+<div id="fig-unicycle-stabilization" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unicycle-stabilization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/unicycle_stabilization.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unicycle-stabilization-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Unicycle vehicle
+</figcaption>
+</figure>
+</div>
+<p>The vehicle is modelled by <span class="math display">
+\begin{aligned}
+\dot x &amp;= v \cos \theta,\\
+\dot y &amp;= v \sin \theta,\\
+\dot \theta &amp;= \omega,
+\end{aligned}
+</span></p>
+<p><span class="math display">
+\bm x = \begin{bmatrix}
+x\\ y\\ \theta
+\end{bmatrix},
+\quad
+\bm u = \begin{bmatrix}
+v\\ \omega
+\end{bmatrix}.
+</span></p>
+<p>It is known that this system cannot be stabilized by a continuous feedback controller. The general result that applies here was published in <span class="citation" data-cites="brockettAsymptoticStabilityFeedback1983"><a href="#ref-brockettAsymptoticStabilityFeedback1983" role="doc-biblioref">[1]</a></span>. The condition of stabilizability by a time-invariant continuous state feedback is that the image of every neighborhood of the origin under <span class="math inline">(\bm x,\bm u) \mapsto \bm f(\bm x, \bm u)</span> contains some neighborhood of the origin. This is not the case here. The map from the state-control space to the velocity space is</p>
+<p><span class="math display">
+\begin{bmatrix}
+x\\ y\\ \theta\\ v\\ \omega
+\end{bmatrix}
+\mapsto
+\begin{bmatrix}
+v \cos \theta\\
+v \sin \theta \\
+\omega
+\end{bmatrix}.
+</span></p>
+<p>Now consider a neighborhood of the origin such that <span class="math inline">|\theta|&lt;\frac{\pi}{2}</span>. It is impossible to get <span class="math inline">\bm f(\bm x, \bm u) = \begin{bmatrix}
+0\\ f_2 \\ 0\end{bmatrix}, \; f_2\neq 0</span>. Hence, stabilization by a continuous feedback <span class="math inline">\bm u = \kappa (\bm x)</span> is impossible.</p>
+<p>But it is possible to stabilize the vehicle using a discontinuous feedback. And discontinuous feedback controller can be viewed as switching control, which in turn can be seen as instance of a hybrid controller.</p>
+</div>
+<div id="exm-stabilization-on-a-circle" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7 (Global asymptotic stabilization on a circle)</strong></span> We now give a demonstration of a general phenomenon of stabilization on a manifold. We will see that even if asymptotic stabilization by a continuous feedback is possible, it may not be possible to guarantee it globally.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why control on manifolds?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>First, recall that a manifold is a solution set for a system of nonlinear equations. A prominent example is a unit circle <span class="math inline">\mathbb S_1 = \{\bm x \in \mathbb R^2 \mid x_1^2 + x_2^2 - 1 = 0\}</span>. An extension to two variables is then <span class="math inline">\mathbb S_2 = \{\bm x \in \mathbb R^4  \mid x_1^2 + x_2^2 - 1 = 0, \, x_3^2 + x_4^2 - 1 = 0\}</span>. Now, why shall we bother to study control within this type of a state space? It turns out that such models of state space are most appropriate in mechatronic/robotic systems wherein angular variables range more than <span class="math inline">360^\circ</span>. We worked on this kind of a system some time ago when designing a control system for <a href="https://wiki.control.fel.cvut.cz/archiv/aa4cc/content/inertial-stabilization-and-visual-servoing-aerial-surveilance.html">inertially stabilized gimballed camera platforms</a>.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/H5z9sNyhgxg?si=v1DmBsI__rgpEZYs" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</div>
+</div>
+<p>In this example we restrict the motion of of a particle to sliding around a unit circle <span class="math inline">\mathbb S_1</span> is modelled by<br>
+<span class="math display">
+\dot{\bm x} = u\begin{bmatrix}0 &amp; -1\\ 1 &amp; 0\end{bmatrix}\bm x,
+</span> where <span class="math inline">\bm x \in \mathbb S^1,\quad u\in \mathbb R</span>.</p>
+<p>The point to be stabilized is <span class="math inline">\bm x^* = \begin{bmatrix}1\\ 0\end{bmatrix}</span>.</p>
+<div id="fig-stabilization-on-a-circle" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stabilization-on-a-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/stabilization_on_a_circle.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stabilization-on-a-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Asymptotic stabilization on a circle
+</figcaption>
+</figure>
+</div>
+<p>What is required from a globally asymptotically stabilizing controller?</p>
+<ul>
+<li>Solutions stay in <span class="math inline">\mathbb S^1</span>,</li>
+<li>Solutions converge to <span class="math inline">\bm x^*</span>,</li>
+<li>If a solution starts near <span class="math inline">\bm x^*</span>, it stays near.</li>
+</ul>
+<p>One candidate is <span class="math display">\kappa(\bm x) = -x_2.</span></p>
+<p>Define the (Lyapunov) function <span class="math display">V(\bm x) = 1-x_1.</span></p>
+<p>Indeed, it does qualify as a Lyapunov function because it is zero at <span class="math inline">\bm x^*</span> and positive elsewhere. Furthermore, its time derivative along the solution trajectory is <span class="math display">
+\begin{aligned}
+\dot V &amp;= \left(\nabla_{\bm{x}}V\right)^\top \dot{\bm x}\\
+&amp;= \begin{bmatrix}-1 &amp; 0\end{bmatrix}\left(-x_2\begin{bmatrix}0 &amp; -1\\ 1 &amp; 0\end{bmatrix}\begin{bmatrix} x_1 \\ x_2 \end{bmatrix}\right)\\
+&amp;= -x_2^2\\
+&amp;= -(1-x_1^2),
+\end{aligned}
+</span> from which it follows that <span class="math display">
+\dot V &lt; 0 \quad \forall \bm x \in \mathbb S^1 \setminus \{-1,1\}.
+</span></p>
+<p>With <span class="math inline">u=-x_2</span> the point <span class="math inline">\bm x^*</span> is stable but not globally atractive, hence it is not globally asymptotically stable.</p>
+<p>Can we do better?</p>
+<p>Yes, we can. But we need to incorporate some switching into the controller. Loosely speaking anywhere except for the state (-1,0), we can apply the previously designed controller, and at the troublesome state (-1,0), or actually in some region around it, we need to switch to another controller that would drive the system away from the problematic region.</p>
+<p>But we will take this example as an opportunity to go one step further and instead of just a switching controller we design a hybrid controller. The difference is that within a hybrid controller we can incorporate some hysteresis, which is a robustifying feature. In order to do that, we need to introduce a new state variable <span class="math inline">q\in\{0,1\}</span>. Determination of the flow and jump sets is sketched in <a href="#fig-stabilization-on-a-circle-hybrid" class="quarto-xref">Fig.&nbsp;6</a>.</p>
+<div id="fig-stabilization-on-a-circle-hybrid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-stabilization-on-a-circle-hybrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/stabilization_on_a_circle_hybrid.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-stabilization-on-a-circle-hybrid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Definition of the sets defining a hybrid controller
+</figcaption>
+</figure>
+</div>
+<p>Note that there is no hysteresis if <span class="math inline">c_0=c_1</span>, in which case the hybrid controller reduces to a switching controller (but more on switching controllers in the next chapter).</p>
+<p>The two feedback controllers are given by <span class="math display">
+\begin{aligned}
+\kappa(\bm x,0) &amp;= \kappa_0(\bm x) = -x_2,\\
+\kappa(\bm x,1) &amp;= \kappa_1(\bm x) = -x_1.
+\end{aligned}
+</span></p>
+<p>The flow map is (DIY) <span class="math display">
+f(\bm x, q) = \ldots
+</span></p>
+<p>The flow set is <span class="math display">
+\mathcal{C} = (\mathcal C_0 \times \{0\}) \cup (\mathcal C_1 \times \{1\}).
+</span></p>
+<p>The jump set is <span class="math display">
+\mathcal{D} = (\mathcal D_0 \times \{0\}) \cup (\mathcal D_1 \times \{1\}).
+</span></p>
+<p>The jump map is <span class="math display">
+g(\bm x, q) = 1-q \quad \forall [\bm x, q]^\top \in \mathcal D.
+</span></p>
+<p>Simulation using Julia is provided below.</p>
+<div id="cell-fig-simulation-stabilization-on-a-circle" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">OrdinaryDiffEq</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the sets and functions for the hybrid equations</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>c₀, c₁ <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">/</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">is_in_C</span>(x,q) <span class="op">=</span> (x[<span class="fl">1</span>] <span class="op">&gt;=</span> c₀ <span class="op">&amp;&amp;</span> q <span class="op">==</span> <span class="fl">0</span>) <span class="op">||</span> (x[<span class="fl">1</span>] <span class="op">&lt;=</span> c₁ <span class="op">&amp;&amp;</span> q <span class="op">==</span> <span class="fl">1</span>) <span class="co"># Actually not really needed, just a complement of D.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">is_in_D</span>(x,q) <span class="op">=</span> (x[<span class="fl">1</span>] <span class="op">&lt;</span> c₀ <span class="op">&amp;&amp;</span> q <span class="op">==</span> <span class="fl">0</span>) <span class="op">||</span> (x[<span class="fl">1</span>] <span class="op">&gt;</span> c₁ <span class="op">&amp;&amp;</span> q <span class="op">==</span> <span class="fl">1</span>) </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">g</span>(x,q) <span class="op">=</span> <span class="fl">1</span><span class="op">-</span>q</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">κ</span>(x,q) <span class="op">=</span> q<span class="op">==</span><span class="fl">0</span> ? <span class="op">-</span>x[<span class="fl">2</span>] <span class="op">:</span> <span class="op">-</span>x[<span class="fl">1</span>] </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">f!</span>(dx,x,q,t)               <span class="co"># Already in the format for the ODE solver.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> [<span class="fl">0.0</span> <span class="op">-</span><span class="fl">1.0</span>; <span class="fl">1.0</span> <span class="fl">0.0</span>] </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    dx <span class="op">.=</span> <span class="fu">A*x*κ</span>(x,q)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the initial conditions for the simulation</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>cᵢ <span class="op">=</span> (c₀<span class="op">+</span>c₁)<span class="op">/</span><span class="fl">2</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>x₀ <span class="op">=</span> [cᵢ,<span class="fu">sqrt</span>(<span class="fl">1</span><span class="op">-</span>cᵢ<span class="op">^</span><span class="fl">2</span>)]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>q₀ <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting up the simulation problem</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>tspan <span class="op">=</span> (<span class="fl">0.0</span>,<span class="fl">10.0</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fu">ODEProblem</span>(f!,x₀,tspan,q₀)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">condition</span>(x,t,integrator)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> integrator.p </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">is_in_D</span>(x,q)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">affect!</span>(integrator)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> integrator.p</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> integrator.u </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    integrator.p <span class="op">=</span> <span class="fu">g</span>(x,q)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>cb <span class="op">=</span> <span class="fu">DiscreteCallback</span>(condition,affect!)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Solving the simulation problem</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>sol <span class="op">=</span> <span class="fu">solve</span>(prob,<span class="fu">Tsit5</span>(),callback<span class="op">=</span>cb,dtmax<span class="op">=</span><span class="fl">0.1</span>) <span class="co"># ContinuousCallback more suitable here</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the results of the simulation</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="fu">gr</span>(tickfontsize<span class="op">=</span><span class="fl">12</span>,legend_font_pointsize<span class="op">=</span><span class="fl">12</span>,guidefontsize<span class="op">=</span><span class="fl">12</span>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol,label<span class="op">=</span>[<span class="st">"x₁"</span> <span class="st">"x₂"</span>],xaxis<span class="op">=</span><span class="st">"t"</span>,yaxis<span class="op">=</span><span class="st">"x"</span>,lw<span class="op">=</span><span class="fl">2</span>)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([c₀], label<span class="op">=</span><span class="st">"c₀"</span>)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">hline!</span>([c₁], label<span class="op">=</span><span class="st">"c₁"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-simulation-stabilization-on-a-circle" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simulation-stabilization-on-a-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data:image/png;base64,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" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simulation-stabilization-on-a-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Simulation of stabilization on a circle using a hybrid controller
+</figcaption>
+</figure>
+</div>
+</div>
+<p>The solution can also be visualized in the state space.</p>
+<div id="cell-fig-simulation-stabilization-on-a-circle-XY" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Show the code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sol,idxs<span class="op">=</span>(<span class="fl">1</span>,<span class="fl">2</span>),label<span class="op">=</span><span class="st">""</span>,xaxis<span class="op">=</span><span class="st">"x₁"</span>,yaxis<span class="op">=</span><span class="st">"x₂"</span>,lw<span class="op">=</span><span class="fl">2</span>,aspect_ratio<span class="op">=</span><span class="fl">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₀], label<span class="op">=</span><span class="st">"c₀"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vline!</span>([c₁], label<span class="op">=</span><span class="st">"c₁"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([x₀[<span class="fl">1</span>]],[x₀[<span class="fl">2</span>]],label<span class="op">=</span><span class="st">"x init"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>([<span class="fl">1</span>],[<span class="fl">0</span>],label<span class="op">=</span><span class="st">"x ref"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="fig-simulation-stabilization-on-a-circle-xy" class="cell-output cell-output-display quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-simulation-stabilization-on-a-circle-xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="data:image/png;base64,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" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-simulation-stabilization-on-a-circle-xy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Simulation of stabilization on a circle using a hybrid controller
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="supervisory-control" class="level2">
+<h2 class="anchored" data-anchor-id="supervisory-control">Supervisory control</h2>
+<p>Yet another problem that can benefit from being formulated as a hybrid system is <em>supervisory control</em>.</p>
+<div id="fig-supervisory-control" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-supervisory-control-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/supervisory_control.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-supervisory-control-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Supervisory control
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="combining-local-and-global-controllers-subset-supervisory-control" class="level2">
+<h2 class="anchored" data-anchor-id="combining-local-and-global-controllers-subset-supervisory-control">Combining local and global controllers <span class="math inline">\subset</span> supervisory control</h2>
+<p>As a subset of supervisory control we can view a controller that switches between a global and a local controller.</p>
+<div id="fig-local-global-controllers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-local-global-controllers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/local_global_controllers.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-local-global-controllers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Combining global and local controllers
+</figcaption>
+</figure>
+</div>
+<p>Local controllers have good transient response but only work well in a small region around the equilibrium state. Global controllers have poor transient response but work well in a larger region around the equilibrium state.</p>
+<p>A useful example is that of swinging up and stabilization of a pendulum: the local controller can be designer for a linear model obtained by linearization about the upright orientation of the pendulum. But such controller can only be expected to perform well in some small region around the upright orientation. The global controller is designed to bring the pendulum into that small region.</p>
+<p>The flow and jump sets for the local and global controllers are in <a href="#fig-local-global-sets" class="quarto-xref">Fig.&nbsp;11</a>. Can you tell, which is which? Remember that by introducing the discrete variable <span class="math inline">q</span>, some hysteresis is in the game here.</p>
+<div id="fig-local-global-sets" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-local-global-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/local_global_controllers_sets.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-local-global-sets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Flow and jump sets for a local and a global controller
+</figcaption>
+</figure>
+</div>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-brockettAsymptoticStabilityFeedback1983" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. Brockett, <span>“Asymptotic stability and feedback stabilization,”</span> in <em>Differential <span>Geometric Control Theory</span></em>, R. Brockett, R. Millman, and H. Sussmann, Eds., Boston: Birkh<span>ä</span>user, 1983.</div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../5_hybrid_equations/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../5_hybrid_equations/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Zdeněk Hurák</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
