@@ -400,6 +400,8 @@ $$
 \end{aligned}}
 $$
 
+## Examples
+
 ::: {#exm-flower-with-piecewise-quadratic-lf}
 ### Piecewise quadratic Lyapunov function for the flower example
 
@@ -573,7 +575,75 @@ x₁ = x₂ = range(-2.0, 2.0; length=100)
 X₁ = [i for i in x₁, j in x₂]
 X₂ = [j for i in x₁, j in x₂]
 Z1 = [V([X₁[i,j], X₂[i,j]]) for i in 1:length(x₁), j in 1:length(x₂)]
-levels = logrange(1e-2,1e2,10)
+levels = logrange(1e-2,1e1,10)
+contour!(ax, x₁, x₂, Z1; levels=levels, linewidth=2)
+fig
+```
+:::
+
+::: {#exm-higher-degree-polynomial-lf}
+### Higher-degree polynomial Lyapunov function for @exm-no-cqlf
+In this example we demonstrate that it is possible to combine the results from this chapter with those of the previous one. Namely, instead of searching for several quadratic Lyapunov-like functions that are then stitched together to form a piecewise quadratic Lyapunov function, we can also try to find a single higher-degree SOS polynomial function that qualifies as a Lyapunov function for both subsystems only on their respective domains.
+
+```{julia}
+#| code-fold: false
+A₁ = [-0.1 -1; 2 -0.1]
+A₂ = [-0.1 -2; 1 -0.1]
+
+f(x) = x[1] <= 0.0 ? A₁*x : A₂*x
+
+using CairoMakie
+
+fig = Figure(size = (800, 800),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
+vlines!(ax,0.0,ymin=-2.0,ymax=2.0, color = :red, linewidth=3)
+fig
+
+using DynamicPolynomials
+using SemialgebraicSets
+using SumOfSquares
+using CSDP   
+
+solver = optimizer_with_attributes(CSDP.Optimizer, MOI.Silent() => true)
+model = SOSModel(solver)
+@polyvar x[1:2]
+
+d = 8
+monos = monomials(x,2:d)
+@variable(model, V_sos, SumOfSquares.Poly(monos))
+
+using LinearAlgebra # Needed for `dot`
+
+dV1dt_sos = dot(differentiate(V_sos, x), A₁*x)
+dV2dt_sos = dot(differentiate(V_sos, x), A₂*x)
+
+ϵ = 1e-3
+φ = dot(monomials(x,0:(d÷2)),monomials(x,0:(d÷2)))
+
+Q₁ = @set x[1] <= 0.0 
+Q₂ = @set x[1] >= 0.0
+
+@constraint(model, V_sos >= ϵ*φ)
+@constraint(model, dV1dt_sos <= -ϵ*φ, domain = Q₁)
+@constraint(model, dV2dt_sos <= -ϵ*φ, domain = Q₂)
+
+JuMP.optimize!(model)
+JuMP.primal_status(model)
+L_sos = value(V_sos)
+```
+
+```{julia}
+#| code-fold: true
+#| label: fig-higher-degree-polynomial-lf
+#| fig-cap: State portrait with the higher-degree SOS polynomial Lyapunov function's sublevel sets superposed
+x₁ = x₂ = range(-2.0, 2.0; length=100)
+X₁ = [i for i in x₁, j in x₂]
+X₂ = [j for i in x₁, j in x₂]
+
+Z1 = [L_sos([X₁[i,j], X₂[i,j]]) for i in 1:length(x₁), j in 1:length(x₂)]
+
+levels = logrange(1e-2,1e1,10)
 contour!(ax, x₁, x₂, Z1; levels=levels, linewidth=2)
 fig
 ```
