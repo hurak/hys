@@ -5,9 +5,12 @@ format: html
 
 ## Knowledge (remember and understand)
 
-- Give a general prescription for a linear complementarity dynamical system (aka linear dynamical complementarity problem, LDCP).
-- Give a formulation of a linear complementarity problem (LCP) in numerical optimization.
+- Explain the concept of *complementarity constraints*, both for scalar and vector variables.
+- Formulate a *linear complementarity problem* (LCP).
+- Give a general prescription for a *linear complementarity system* (LCS, aka linear dynamical complementarity problem, LDCP).
+- Explain the essence of *time-stepping* numerical methods for simulating dynamical systems with complementarity constraints. In particular, show how the complementarity constraints are combined with an implicit or semi-explicit Euler scheme.
 
 ## Skills (use the knowledge to solve a problem)
 
-- ...
+- Formulate a (model of a) given mechanical system with unilateral constraints (hard stops) as a linear complementarity system.
+- Write a computer code (in Matlab, Julia, ...) that implements a simple time-stepping numerical scheme for a simulation of a simple mechanical system with complementarity constraints (hard stops, dry friction).

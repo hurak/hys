@@ -70,7 +70,7 @@ Plots.plot(sol[1,:],sol[2,:],xlabel="x₁",ylabel="x₂",label=false,aspect_rati
 Note that for the default setting of absolute and relative tolerances, the adaptive-step ODE solver actually needed a huge number of steps:
 
 ```{julia}
-#| code-fold: show
+#| code-fold: false
 length(sol.t)
 ```
 
@@ -134,7 +134,7 @@ Plots.plot(t,X,lw=3,label=false,xlabel="t",ylabel="x")
 Then number of steps is
 
 ```{julia}
-#| code-fold: show
+#| code-fold: false
 length(t)
 ```
 
@@ -507,7 +507,7 @@ Plots.plot!(sol[1,:],sol[2,:],lw=3,label="Default ODE solver with adaptive step"
 
 And yet the total number of steps is still much smaller:
 ```{julia}
-#| code-fold: show
+#| code-fold: false
 length(t)
 ``` 
 :::
@@ -562,6 +562,9 @@ $$\mathbf M = h^2 \mathbf C \mathbf B.$$
 An implementation of the time-stepping for this system is shown below.
 
 ```{julia}
+#| code-fold: true
+#| fig-cap: Simulation of a two-cart-spring mechanical system with a hard stop using a time-stepping numerical scheme. At first, both carts move towards each other unil their collision, after which they both accelerate towards the hard stop located at zero, the first cart a bit more, untill they collide again at the hard stop.
+#| label: fig-time-stepping-for-mechanical-with-hard-stop
 m1 = 1.0
 m2 = 1.0
 k1 = 1.0
@@ -599,16 +602,16 @@ end
 t = range(0.0, step=h, stop=tfinal)
 X = [getindex.(x, i) for i in 1:length(x[1])]
 
-Plots.plot(t,X[1],label="x₁",lw=3,xlabel="t",ylabel="Positions",markershape=:circle)
-Plots.plot!(t,X[2],label="x₂",lw=3,markershape=:circle)
+Plots.plot(t,X[1],label="x₁",lw=3,xlabel="t",ylabel="Positions",markershape=:circle,markersize=2)
+Plots.plot!(t,X[2],label="x₂",lw=3,markershape=:circle,markersize=2)
 ```
 
 Note, once again, the amazingly small number of steps
 ```{julia}
-#| code-fold: show
+#| code-fold: false
 length(t)
 ```
-while the shape of the trajectory is already quite accurate (you can try reducing the step lenght by yourself)and whatever chattering is absent in the solution.
+while the shape of the trajectory is already quite accurate (you can try reducing the step lenght by yourself) and whatever chattering is absent in the solution.
 :::
 
 ::: {#exm-time-stepping-for-coulomb-friction-as-complementarity-constraints}
@@ -639,7 +642,7 @@ $$
 
 And we also introduce another auxiliary variable $\nu(t)$ that is just the absolute value of the velocity
 $$
-\nu(t) = |v(t)|.
+\nu(t) \coloneqq |v(t)|.
 $$
 
 With the three new variables we formulate the Coulomb friction model as
@@ -657,7 +660,7 @@ We now proceed to implement the time-stepping method for this system. Once again
 $$
 \begin{aligned}
 x_{k+1} &= x_k + h v_{k+1},\\
-v_{k+1} &= v_k + \frac{h}{m} (F^+_{\mathrm{f},k} - F^-_{\mathrm{f},k}),
+v_{k+1} &= v_k + \frac{h}{m} (F^+_{\mathrm{f},k} - F^-_{\mathrm{f},k} + F_{\mathrm{a},k}),
 \end{aligned}
 $$
 where the velocity is subject to the complementarity constraints
@@ -671,14 +674,19 @@ $$
 into which we substitute for $v_{k+1}$
 $$\boxed{
 \begin{aligned}
-0 \leq v_k + \frac{h}{m} ({\color{blue}F^+_{\mathrm{f},k}} - {\color{blue}F^-_{\mathrm{f},k}}) + {\color{blue}\nu_{k+1}}\, &\perp\, {\color{blue}F^+_{\mathrm{f},k}} \geq 0,\\
-0 \leq -\left(v_k + \frac{h}{m} ({\color{blue}F^+_{\mathrm{f},k}} - {\color{blue}F^-_{\mathrm{f},k}})\right) + {\color{blue}\nu_{k+1}}\, &\perp\, {\color{blue}F^-_{\mathrm{f},k}} \geq 0, \\
+0 \leq v_k + \frac{h}{m} ({\color{blue}F^+_{\mathrm{f},k}} - {\color{blue}F^-_{\mathrm{f},k}} + F_{\mathrm{a},k}) + {\color{blue}\nu_{k+1}}\, &\perp\, {\color{blue}F^+_{\mathrm{f},k}} \geq 0,\\
+0 \leq -\left(v_k + \frac{h}{m} ({\color{blue}F^+_{\mathrm{f},k}} - {\color{blue}F^-_{\mathrm{f},k}} + F_{\mathrm{a},k})\right) + {\color{blue}\nu_{k+1}}\, &\perp\, {\color{blue}F^-_{\mathrm{f},k}} \geq 0, \\
 0 \leq \mu m g - {\color{blue}F^+_{\mathrm{f},k}} - {\color{blue}F^-_{\mathrm{f},k}} \,&\perp\, {\color{blue}\nu_{k+1}} \geq 0,
 \end{aligned}
 }
 $$
 in which we highlighted the unknowns by blue color for convenience.
+
+In the simulation below, we set the applied force to zero, $F_{\mathrm{a},k} = 0$, and we only simulate the response to some nonzero initial velocity. The simulation outcomes in @fig-time-stepping-for-coulomb-friction show that the object comes to a complete stop due to friction, as expected.
 ```{julia}
+#| code-fold: true
+#| fig-cap: Simulation of an object moving on a horizontal surface with Coulomb friction using a time-stepping numerical scheme in which the friction force is modelled using complementarity constraints. The object starts with an initial velocity and comes to a complete stop due to friction.
+#| label: fig-time-stepping-for-coulomb-friction
 using JuMP
 using PATHSolver
 using Plots
@@ -687,14 +695,13 @@ m = 100.0
 g = 9.81
 μ = 10.0
 
-h = 2e-1
-
 x0 = 0.0
 v0 = 100.0
 
 x = [x0]
 v = [v0]
 
+h = 1e-1
 tfinal = 5.0
 N = tfinal/h
 
@@ -702,22 +709,23 @@ for i = 1:N
     model = Model(PATHSolver.Optimizer)
     set_optimizer_attribute(model, "output", "no")
     set_silent(model)
-    @variable(model, vabs >= 0)
+    @variable(model, ν >= 0)
     @variable(model, F⁺ >= 0)
     @variable(model, F⁻ >= 0)
-    @constraint(model, (v[end] + h/m*(F⁺-F⁻) + vabs) ⟂ F⁺)
-    @constraint(model, (-(v[end] + h/m*(F⁺-F⁻)) + vabs) ⟂ F⁻)
-    @constraint(model, (μ*m*g - (F⁺+F⁻)) ⟂ vabs)
+    @constraint(model, (v[end] + h/m*(F⁺-F⁻) + ν) ⟂ F⁺)
+    @constraint(model, (-(v[end] + h/m*(F⁺-F⁻)) + ν) ⟂ F⁻)
+    @constraint(model, (μ*m*g - (F⁺+F⁻)) ⟂ ν)
     optimize!(model) 
     push!(v, v[end] + h/m*(value(F⁺)-value(F⁻)))
-    push!(x, x[end] + h*v[end])         # Here v[end] on the left already equals v_k+1
+    push!(x, x[end] + h*v[end])         # At this point, after the update on the prevous line, v[end] already equals v_k+1.
 end
 
 t = range(0.0, step=h, stop=tfinal)
-Plots.plot(t,v,label="v",lw=3,markershape=:circle)
-Plots.plot!(t,x,label="x",lw=3,markershape=:circle,xlabel="t")
+Plots.plot(t, v, label="v", lw=3, markershape=:circle, markersize=2)
+Plots.plot!(t, x, label="x", lw=3, markershape=:circle, markersize=2, xlabel="t")
 ```
-Once again, we can see that the method correctly simulates the system coming to a complete stop due to friction.
+
+Modification of this example to model the situation of an object sliding down on and inclided plane is left as an exercise to the reader. Hint: the normal force that parametrizes the friction force will depend on the angle too, and the applied force $F_\mathrm{a}$ that we did not use here can be used to model the component of the gravity force that is parallel to the inclined plane. Obviously, the angle of the inclination and the friction coefficient must be such that the object that starts at some nonzero initial velocity eventually comes to a complete stop. Writing down such condition is a part of the exercise.
 :::
 
 :::{.callout-important}
