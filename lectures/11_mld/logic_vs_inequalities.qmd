@@ -26,12 +26,14 @@ $X$ evaluates to `true` or `false`. Oftentimes values `0` and `1` are used, but 
 
 ### Connectives
 
-- Conjunction (logical and): $X_1 \land X_2$
-- Disjunction (logical or): $X_1 \lor X_2$
-- Negation: $\neg X_2$
-- Implication: $X_1 \rightarrow X_2$
-- Equivalence: $X_1 \leftrightarrow X_2$
-- Logical XOR: $X_1 \oplus X_2$
+| Connective | Notation |
+|------------|----------|
+| Conjunction (logical and) | $X_1 \land X_2$ |
+| Disjunction (logical or) | $X_1 \lor X_2$ |
+| Negation | $\neg X_2$ |
+| Implication | $X_1 \rightarrow X_2$ |
+| Equivalence | $X_1 \leftrightarrow X_2$ |
+| Logical XOR | $X_1 \oplus X_2$ |
 
 ## Equivalences of logical propositions
 
