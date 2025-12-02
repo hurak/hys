@@ -36,7 +36,7 @@ $$
 ::: {#exm-fsm-example}
 ## Example
 
-![Example of a FSM](figures/fsm_example.png){width=70% #fig-fsm-example} 
+![Example of a FSM](figures/fsm_example.png){width=60% #fig-fsm-example} 
 
 The state update/transition equation is
 $$
@@ -144,7 +144,7 @@ It can be equivalently expressed as the product
 $$
 z = \delta\,f(x,u),
 $$
-where $\delta$ is a binary indicator. This, in turn, can be written (finally using @eq-product-assignment) as
+where $\delta$ is a binary indicator. This, in turn, can be written (finally using the equivalence for the [assignment](logic_vs_inequalities.qmd#assignment-product)) as
 $$
 \begin{aligned}
 z &\leq M\delta,\\
