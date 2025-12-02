@@ -116,7 +116,7 @@ $$
 
 Note, in particular, that $A=0$, which might be confusing at first, because it does not correspond to any of the time-discretized LTI models, but it is just a demonstration of the fact that MLD is not a state equation, it is a different type of a model.
 
-The inequality paramaterized by $\mathbf E_{\delta}, \mathbf E_z, \mathbf E_x, \mathbf E_x$ and $\mathbf E_o$, for given $\bm x(k)$ and $\bm u(k)$, defines a set in the $\delta-z$ plane. When the integrality of $\delta$ is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see @fig-mld-switched. 
+The inequality paramaterized by $\mathbf E_{\delta}, \mathbf E_z, \mathbf E_x, \mathbf E_x$ and $\mathbr E_0$, for given $\bm x(k)$ and $\bm u(k)$, defines a set in the $\delta-z$ plane. When the integrality of $\delta$ is taken into consideration, the resulting set is just a singleton (a single point), which confirms the uniqueness of the state and output responses predicted by the MLD model, see @fig-mld-switched. 
 ```{julia}
 #| fig-cap: The set of feasible values of the auxilliary variables $\delta$ and $z$. The blue polyhedron relaxes the integrality condition on $\delta$, but if the condition is taken into consideration, the set is a single (orange) point.
 #| label: fig-mld-switched
@@ -136,19 +136,19 @@ A  = [0.0;;]
 Bu = [0.0]
 Bδ = [0.0]
 Bz = [1.0]
-Bo = [0.0]
+B0 = [0.0]
 
 C  = [0.0;;]
 Du = [0.0]
 Dδ = [0.0]
 Dz = [0.0]
-Do = [0.0]
+D0 = [0.0]
 
 Eδ = [M, m-ϵ, m1-M2, m2-M1, M1-m2, M2-m1]
 Ez = [0.0, 0.0, 1.0, -1.0, 1.0, -1.0]
 Ex = [1.0, -1.0, a1, -a1, a2, -a2]
 Eu = [0.0, 0.0, b1, -b1, b2, -b2]
-Eo = [M, -ϵ, 0.0, 0.0, M1-m2, M2-m1]
+E0 = [M, -ϵ, 0.0, 0.0, M1-m2, M2-m1]
 
 using JuMP
 using HiGHS
@@ -163,12 +163,12 @@ set_silent(opt_problem)
 x = 2.0
 u = 1.0
 
-@constraint(opt_problem, x⁺ .== A*x + Bu*u + Bδ*δ + Bz*z + Bo)
-@constraint(opt_problem, Eδ*δ + Ez*z .<= Ex*x + Eu*u + Eo)
+@constraint(opt_problem, x⁺ .== A*x + Bu*u + Bδ*δ + Bz*z + B0)
+@constraint(opt_problem, Eδ*δ + Ez*z .<= Ex*x + Eu*u + E0)
 @objective(opt_problem, Min, 0.0)
 optimize!(opt_problem)
 
-b = Ex*x + Eu*u + Eo
+b = Ex*x + Eu*u + E0
 
 using LazySets
 
