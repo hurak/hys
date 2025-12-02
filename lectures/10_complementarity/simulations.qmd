@@ -150,9 +150,9 @@ $$
 \end{aligned}
 $$
 
-The discontinuities on the right-hand sides constitute a challenge for solvers of nonlinear equations – recall that the Newton's method requires the first derivatives (assembled into the Jacobian) or their approximation. Instead of this struggle, we can use the *linear complementarity problem* (LCP) formulation.
+The discontinuities on the right-hand sides constitute a challenge for solvers of nonlinear equations – recall that the Newton's method requires the first derivatives (assembled into the Jacobian) or their approximation. Instead of this struggle, we can use the *mixed complementarity problem* (MCP) formulation.
 
-#### Formulation of the backward Euler using LCP
+#### Formulation of the backward Euler as Mixed Complementarity Problem (MCP)
 
 Instead solving the above nonlinear equations with discontinuities, we introduce new variables $u_1$ and $u_2$ as the outputs of the $\operatorname{sign}$ functions:
 $$
