@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>Timed Petri nets – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../2_petri_nets/software.html" rel="next">
+<link href="../2_petri_nets/petri_nets.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,6 +71,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +127,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,7 +257,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Timed Petri nets</span></a>
   </div>
 </li>
@@ -404,7 +427,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -760,19 +783,25 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#delays-associated-with-transitions" id="toc-delays-associated-with-transitions" class="nav-link active" data-scroll-target="#delays-associated-with-transitions">Delays associated with transitions</a>
+  <ul class="collapse">
+  <li><a href="#places-can-also-be-delayed" id="toc-places-can-also-be-delayed" class="nav-link" data-scroll-target="#places-can-also-be-delayed">Places can also be delayed</a></li>
+  </ul></li>
+  <li><a href="#timed-petri-net-dynamics" id="toc-timed-petri-net-dynamics" class="nav-link" data-scroll-target="#timed-petri-net-dynamics">Timed Petri net dynamics</a></li>
+  <li><a href="#queueing-system-using-tpn" id="toc-queueing-system-using-tpn" class="nav-link" data-scroll-target="#queueing-system-using-tpn">Queueing system using TPN</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+  <li><a href="#stochastic-petri-nets-spn" id="toc-stochastic-petri-nets-spn" class="nav-link" data-scroll-target="#stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">Timed Petri nets</h1>
 </div>
 
 
@@ -789,87 +818,210 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<p>Recall that when introducing <em>enabled transitions</em>, we emphasized that these can but do not have to fire immediately after having been enabled <span class="math display">\boxed{\mathrm{ENABLING} \neq \text{FIRING}.}</span></p>
+<section id="delays-associated-with-transitions" class="level2">
+<h2 class="anchored" data-anchor-id="delays-associated-with-transitions">Delays associated with transitions</h2>
+<p>Well then, the enabled transitions do not have to fire <em>immediately</em>, but they can possibly fire with some <em>delay</em> after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn’t it?</p>
+<p>For the <span class="math inline">j</span>th transition, the delay of the <span class="math inline">k</span>th firing is <span class="math inline">v_{j,k}</span>, and we collect the sequence of delayes into <span class="math display">v_j = \{v_{j,1}, v_{j,2}, \ldots \}.</span></p>
+<p>But not all transitions have to be timed. Denote the timed transitions <span class="math inline">\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}</span>. We define the <em>clock structure</em> for a PN as <span class="math display">\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.</span></p>
+<p>The definition of a <em>timed Petri net</em> (TPN) is then obtained by augmenting the definition of a Petri net with the clock structure</p>
+<p><span class="math display">\boxed{TPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w, x, \mathcal{V}\}}.</span></p>
+<div id="exm-timed-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Timed Petri net)</strong></span> Model of processing multiple tasks: task 1 and task 2 are processed sequentially, and task 3 is processed in parallel with them; task 4 can only be processed after both tasks 2 and 3 have been finished. Finishing individual tasks corresponds to the individual transitions. The transition 4 is untimed, it only expresses the logical requirement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/timed_petri_net_for_multiple_tasks.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example of a timed Petri net</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Rectangles instead of bars
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes instead of a bar, the untimed transitions are modelled using similarly thin rectangles as the timed transitions, but filled.</p>
+</div>
+</div>
+<section id="places-can-also-be-delayed" class="level3">
+<h3 class="anchored" data-anchor-id="places-can-also-be-delayed">Places can also be delayed</h3>
+<p>With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places. And yet in some other literature delays are <em>only</em> associated with places. Such delays associated with places are called <em>holding time</em> for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Delays associated with transitions and places
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tells the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.</p>
+</div>
+</div>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
 </section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
+<section id="timed-petri-net-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="timed-petri-net-dynamics">Timed Petri net dynamics</h2>
+<p>With the introduction of time into the Petri nets, we can now study the dynamics of the system. For general Petri nets, alhough perfectly doable, it may quicly become too complex, and therefore here we only consider <em>event graphs</em>.</p>
+<p>Some notation:</p>
+<ul>
+<li><span class="math inline">\{\tau_{j,1}, \tau_{j,2}, \ldots\}</span> are the firing times of the <span class="math inline">j</span>th transition,</li>
+<li><span class="math inline">\{\pi_{i,1},\pi_{i,2},\ldots\}</span> are the times when the <span class="math inline">i</span>th place receives a token,</li>
+<li><span class="math inline">x_i = x(p_i)</span> is the number of tokens at the <span class="math inline">i</span>th place,</li>
+<li><span class="math inline">x_{i,k} = \left.x(p_i)\right|_k</span>, is the number of tokens at the <span class="math inline">i</span>th place after the <span class="math inline">k</span>th firing.</li>
+</ul>
+<p>Now, assume first that <span class="math inline">x_{i,0} = 0</span>. We can then relate the time of the arrival of the token to the place with the firing of the transition from which the token arrives <span class="math display">\pi_{i,k} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j).</span></p>
+<p>But generally <span class="math inline">x_{i,0} \neq 0</span> and the above relation needs to be modified to <span class="math display">\pi_{i,k+x_{i,0}} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j),</span> or, equivalently <span id="eq-pi-tau"><span class="math display">\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).} \tag{1}</span></span></p>
+<p>This can be read in the following way. If there are initially, say, 3 tokens in the place, the time of the arrival of the 4th token is the time of the first firing of the transition from which the 4th token arrives.</p>
+<p>Good. Keep this result in mind. Now we go for another.</p>
+<p>For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place <span class="math display">
+\tau_{j,k} = \pi_{i,k}.
+</span></p>
+<p>Modifying this result for a timed transition with a single input place we get <span class="math display">
+\tau_{j,k} = \pi_{i,k} + v_{j,k}.
+</span></p>
+<p>In words, the firing time is given by the time of the arrival of the token to the place, which enables the transition, and the delay associated with the transition.</p>
+<p>Finally, we extend this result to the case of a timed transition with multiple input places <span id="eq-tau-pi"><span class="math display">\boxed{
+\tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.}
+\tag{2}</span></span></p>
+<p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> handy, they will be needed in what is coming.</p>
+<div id="exm-timed-Petri-net-dynamics" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-timed-petri-net-dynamics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_dynamics.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a Petri net for which the dynamics is analyzed
+</figcaption>
+</figure>
+</div>
+<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\pi_{1,k},\pi_{3,k}\}\\
+\tau_{2,k} &amp;= \pi_{2,k}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
+\begin{aligned}
+\pi_{1,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
+\pi_{2,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{2,0} = 0\\
+\pi_{3,k} &amp;= \tau_{2,k}, \qquad k=1,\ldots
+\end{aligned}
+</span></p>
+<p>Substituting from the latter into the former we get <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\tau_{1,k-1},\tau_{1,k-1}+v_{2,k}\}\\
+&amp;= \tau_{1,k-1}+v_{2,k}, \quad \tau_{1,k} = 0\\
+\tau_{2,k} &amp;= \tau_{1,k-1}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>This is the ultimate model for the dynamics of the Petri net. Should we need it, we can also get similar expressions for the times of the arrival of the tokens to the places.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Update equations for times and not states
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While with state equations we compute a sequences of values of the state vector <span class="math inline">(\bm x_0, \bm x_1, \bm x_2, \ldots)</span>, in other words, we compute the evolution of the state in time, here we compute the sequences of times when transitions fire (or token arrive to places). This update scheme for times resembles the state equations, but the interpretation is different.</p>
+</div>
+</div>
 </section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
+<section id="queueing-system-using-tpn" class="level2">
+<h2 class="anchored" data-anchor-id="queueing-system-using-tpn">Queueing system using TPN</h2>
+<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-timed-petri-net-simple-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_simple_queue.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Timed Petri net modelling a queueing system
+</figcaption>
+</figure>
+</div>
+<p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
+c_k &amp;= \pi_{B,k} + v_{c,k}\\
+\pi_{Q,k} &amp;= a_{k},\quad k=1,2,\ldots\\
+\pi_{I,k} &amp;= c_{k-1},\quad k= 2, \ldots, \quad \pi_{I,0}=1\\
+\pi_{B,k} &amp;= s_{k},\quad k=1,2,\ldots\\
+\end{aligned}
+</span></p>
+<p>Combining gives the desired update equations <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{a_{k},c_{k-1}\}\\
+c_k &amp;= s_{k} + v_{c,k}\\
+&amp;= \max\{a_{k},c_{k-1}\} + v_{c,k},\quad k=1,\ldots, \quad c_0=0
+\end{aligned}
+</span></p>
+<p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
+<div id="exm-timed-petri-nets-train" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-trains" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example with three train lines
+</figcaption>
+</figure>
+</div>
+<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig.&nbsp;4</a>.</p>
+<div id="fig-fig-trains-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig.&nbsp;5</a>.</p>
+<div id="fig-trains-petri-net-delayed-places" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net_delayed_places.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="exm-timed-petri-nets-manufacturing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Manufacturing)</strong></span> tbd</p>
+</div>
+</section>
+<section id="extensions" class="level2">
+<h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
+<section id="stochastic-petri-nets-spn" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</h3>
+<p>Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petri nets can be conceived, in which delays are random variables.</p>
 
 
-
+</section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1272,13 +1424,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../2_petri_nets/petri_nets.html" class="pagination-link" aria-label="Petri nets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Petri nets</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2_petri_nets/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

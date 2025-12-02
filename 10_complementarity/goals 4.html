@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>Learning goals – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../10_complementarity/constraints.html" rel="next">
+<link href="../9_stability_2/references.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -104,7 +84,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">Learning goals</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,7 +384,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -538,7 +518,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learning goals</span></a>
   </div>
 </li>
@@ -760,19 +740,17 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#knowledge-remember-and-understand" id="toc-knowledge-remember-and-understand" class="nav-link active" data-scroll-target="#knowledge-remember-and-understand">Knowledge (remember and understand)</a></li>
+  <li><a href="#skills-use-the-knowledge-to-solve-a-problem" id="toc-skills-use-the-knowledge-to-solve-a-problem" class="nav-link" data-scroll-target="#skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">Learning goals</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">Learning goals</h1>
 </div>
 
 
@@ -789,87 +767,23 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<section id="knowledge-remember-and-understand" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
+<ul>
+<li>Give a general prescription for a linear complementarity dynamical system (aka linear dynamical complementarity problem, LDCP).</li>
+<li>Give a formulation of a linear complementarity problem (LCP) in numerical optimization.</li>
+</ul>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
-</section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
-</section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
-
+<section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
+<h2 class="anchored" data-anchor-id="skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</h2>
+<ul>
+<li>…</li>
+</ul>
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1272,13 +1186,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../9_stability_2/references.html" class="pagination-link" aria-label="Literature">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../10_complementarity/constraints.html" class="pagination-link" aria-label="Complementarity constraints">
+        <span class="nav-page-text">Complementarity constraints</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

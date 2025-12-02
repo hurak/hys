@@ -837,8 +837,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#affine-subspace" id="toc-affine-subspace" class="nav-link" data-scroll-target="#affine-subspace">Affine subspace</a></li>
   </ul></li>
-  <li><a href="#continuity-conditions" id="toc-continuity-conditions" class="nav-link" data-scroll-target="#continuity-conditions">Continuity conditions</a></li>
+  <li><a href="#continuity-conditions" id="toc-continuity-conditions" class="nav-link" data-scroll-target="#continuity-conditions">Continuity conditions</a>
+  <ul class="collapse">
   <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -943,7 +945,7 @@ Expression graph
    │     └─ Convex.NegateAtom (affine; real)
    │        └─ …
    ├─ PSD constraint (convex)
-   │  └─ 2×2 real variable (id: 110…531)
+   │  └─ 2×2 real variable (id: 462…338)
    ⋮</code></pre>
 </div>
 </div>
@@ -1246,9 +1248,8 @@ V_i(\bm x) = V_j(\bm x) \quad \forall \bm x \in \Omega_{ij},
 \mathbf l_{ij}^\top (\bm P_1 - \bm P_2)\mathbf l_{ij} + 2\mathbf l_{ij}^\top (\mathbf q_1-\mathbf q_2) + r_1-r_2 &amp;= 0.
 \end{aligned}}
 </span></p>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
 <div id="exm-flower-with-piecewise-quadratic-lf" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Piecewise quadratic Lyapunov function for the flower example)</strong></span> We consider the switched system with two modes, linear models that are parameterized by the matrices <span class="math inline">\mathbf A_1</span> and <span class="math inline">\mathbf A_2</span>, for which their domains are given by the sectors defined by the lines <span class="math inline">x_2=x_1</span> and <span class="math inline">x_2=-x_1</span>. State portrait is in <a href="#fig-flower" class="quarto-xref">Fig.&nbsp;3</a>.</p>
 <div id="cell-fig-flower" class="cell" data-execution_count="1">
@@ -1538,6 +1539,7 @@ Figure&nbsp;7: State portrait with the higher-degree SOS polynomial Lyapunov fun
 
 
 </section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1613,7 +1615,7 @@ Figure&nbsp;7: State portrait with the higher-degree SOS polynomial Lyapunov fun
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

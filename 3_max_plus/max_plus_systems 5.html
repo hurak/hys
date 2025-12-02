@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>Max-plus linear (MPL) systems – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../3_max_plus/software.html" rel="next">
+<link href="../3_max_plus/max_plus_algebra.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,6 +91,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +147,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3_max_plus/goals.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="../3_max_plus/max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -275,7 +318,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link">
+  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Max-plus linear (MPL) systems</span></a>
   </div>
 </li>
@@ -404,7 +447,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -760,19 +803,27 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" id="toc-model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="nav-link active" data-scroll-target="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</a></li>
+  <li><a href="#state-response-of-an-mpl-system" id="toc-state-response-of-an-mpl-system" class="nav-link" data-scroll-target="#state-response-of-an-mpl-system">State response of an MPL system</a></li>
+  <li><a href="#max-linearity" id="toc-max-linearity" class="nav-link" data-scroll-target="#max-linearity">(max,+) linearity</a></li>
+  <li><a href="#input-output-response-of-an-mpl-system" id="toc-input-output-response-of-an-mpl-system" class="nav-link" data-scroll-target="#input-output-response-of-an-mpl-system">Input-output response of an MPL system</a></li>
+  <li><a href="#analysis-of-an-irreducible-mpl-system" id="toc-analysis-of-an-irreducible-mpl-system" class="nav-link" data-scroll-target="#analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</a></li>
+  <li><a href="#model-predictive-control-mpc-for-mpl-systems" id="toc-model-predictive-control-mpc-for-mpl-systems" class="nav-link" data-scroll-target="#model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</a>
+  <ul class="collapse">
+  <li><a href="#cost-function-for-mpc" id="toc-cost-function-for-mpc" class="nav-link" data-scroll-target="#cost-function-for-mpc">Cost function for MPC</a></li>
+  <li><a href="#control-horizon-vs.-prediction-horizon" id="toc-control-horizon-vs.-prediction-horizon" class="nav-link" data-scroll-target="#control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</a></li>
+  <li><a href="#inequality-constraints-for-mpc" id="toc-inequality-constraints-for-mpc" class="nav-link" data-scroll-target="#inequality-constraints-for-mpc">Inequality constraints for MPC</a></li>
+  <li><a href="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" id="toc-mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="nav-link" data-scroll-target="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3_max_plus/goals.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="../3_max_plus/max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">Max-plus linear (MPL) systems</h1>
 </div>
 
 
@@ -789,85 +840,281 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<p>We start with an example of a discrete-event systems modelled using (max,+) algebra.</p>
+<div id="exm-production-system" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Production system)</strong></span> &nbsp;</p>
+<ul>
+<li>There are 3 production units: <span class="math inline">P_1, P_2, P_3</span>.</li>
+<li>The unit <span class="math inline">P_3</span> waits for the outputs from the units <span class="math inline">P_1</span> and <span class="math inline">P_2</span>.</li>
+<li>Each unit introduces a processing delay: <span class="math inline">v_1 = 12, v_2 = 11, v_3 = 7</span>, respectively.</li>
+<li>There are also transportation delays: <span class="math inline">d_2 = 2</span> from the entry to <span class="math inline">P_2</span>, and <span class="math inline">d_4 = 1</span> from <span class="math inline">P_2</span> to <span class="math inline">P_3</span>. All the other transportation delays are negligible.</li>
+</ul>
+<p>Timed Petri net (event graph) for the example is in <a href="#fig-production_system_petri_net_long" class="quarto-xref">Fig.&nbsp;1</a> below.</p>
+<div id="fig-production_system_petri_net_long" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/production_system_petri_net_long.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a production system modelled by a timed Petri net (only the transitions are timed)
+</figcaption>
+</figure>
+</div>
+<p>The Petri net can be made more compact by associating the delays also with the places, as in <a href="#fig-production_system_petri_net" class="quarto-xref">Fig.&nbsp;2</a> below.</p>
+<div id="fig-production_system_petri_net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/production_system_petri_net.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a production system modelled by a timed Petri net (both places and transitions are timed)
+</figcaption>
+</figure>
+</div>
+<p>With the outputs from the three transitions (the rectangles) after the kth event labelled by <span class="math inline">x_{1,k}</span>, <span class="math inline">x_{2,k}</span>, and <span class="math inline">x_{3,k}</span>, the state equations are <span class="math display">
+\begin{aligned}
+x_{1,k} &amp;= \max\{x_{1,k-1} + 12, u_k + 0\}\\
+x_{2,k} &amp;= \max\{x_{2,k-1} + 11, u_k + 2\}\\
+x_{3,k} &amp;= \max\{x_{3,k-1} + 7, x_{1,k} +12 + 0, x_{2,k} + 11 + 1\}\\
+&amp;= \max\{x_{3,k-1} + 7, \max\{x_{1,k-1} + 12, u_k\} +12, \\
+&amp;\qquad \max\{x_{2,k-1} + 11, u_k+2\} + 12\}\\
+&amp;= \max\{x_{3,k-1} + 7, x_{1,k-1} + 24, x_{2,k-1} + 23, \\
+&amp;\qquad\qquad u_k+14\}\\
+y_k &amp;= x_{3,k} + 7
+\end{aligned}
+</span></p>
+<p>The state equations can be rewritten in the (max,+) algebra <span class="math display">
+\begin{aligned}
+\begin{bmatrix}
+x_{1,k} \\ x_{2,k} \\ x_{3,k}
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+12 &amp; \varepsilon &amp; \varepsilon\\
+\varepsilon &amp; 11 &amp; \varepsilon\\
+24 &amp; 23 &amp; 7
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+x_{1,k-1} \\ x_{2,k-1} \\ x_{3,k-1}
+\end{bmatrix}
+\oplus
+\begin{bmatrix}
+0 \\ 2 \\ 14
+\end{bmatrix}
+\otimes
+u_k\\
+y_k &amp;=
+\begin{bmatrix}
+\varepsilon &amp; \varepsilon &amp; 7
+\end{bmatrix}
+\otimes
+x_k
+\end{aligned}
+</span></p>
+</div>
+<section id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="level2">
+<h2 class="anchored" data-anchor-id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</h2>
+<p>Generalizing what we have seen in the previous example, we can write the MPL state-space system (actually a model) as <span id="eq-MPL-system"><span class="math display">\boxed{
+  \begin{aligned}
+  x(k) &amp;= A\otimes x(k-1) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}}
+\tag{1}</span></span></p>
+<p>where <span class="math inline">A</span>, <span class="math inline">B</span>, and <span class="math inline">C</span> are matrices of appropriate dimensions. or, equivalently (after relabelling) <span class="math display">
+  \begin{aligned}
+  x(k+1) &amp;= A\otimes x(k) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}
+</span><br>
+which mimics the conventional state-space system <span class="math display">
+  \begin{aligned}
+  x(k+1) &amp;= A x(k) + Bu(k),\\
+  y(k) &amp;= Cx(k).
+  \end{aligned}
+</span></p>
+<p>We already know this from the example, but we need to emphasize it here again: the role of the variables <span class="math inline">u(k), x(k), y(k)</span> is that they are event times. Namely the times of</p>
+<ul>
+<li>arrivals of inputs,</li>
+<li>beginning of processing</li>
+<li>finishing of processing,</li>
+</ul>
+<p>respectively.</p>
+<p>The independent variable <span class="math inline">k</span> is now a counter of the events.</p>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
+<section id="state-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="state-response-of-an-mpl-system">State response of an MPL system</h2>
+<p>In order to simulate an MPL system, we can now find use of the definitions of the basic operations in (max,+) algebra that we studied previously. Note that <span class="math display">
+\begin{aligned}
+x_1 &amp;= A\otimes x_0 \oplus B\otimes u_1\\
+x_2 &amp;= A\otimes x_1 \oplus B\otimes u_2\\
+    &amp;= A\otimes (A\otimes x_0 \oplus B\otimes u_1) \oplus B\otimes u_2\\
+    &amp;= A^{\otimes^2}\otimes x_0 \oplus A\otimes B\otimes u_1 \oplus B\otimes u_2\\
+    &amp;\vdots    
+\end{aligned}
+</span> which can be generalized to <span id="eq-MPL-system-simulation"><span class="math display">\boxed{
+x_k = A^{\otimes^k}\otimes x_0 \oplus \bigoplus_{i=1}^k A^{\otimes^{k-i}} \otimes B\otimes u_i.}
+\tag{2}</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Response of an LTI state-space system
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The response of a linear time-invariant (LTI) system described by a (vector) state equation <span class="math inline">x(k+1) = Ax(k) + Bu(k)</span> is <span class="math display">
+x_{k} = A^k x_0 + \sum_{i=0}^{k-1} A^{k-1-i}Bu_i.
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lower and upper bounds for the summation shifted by 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note how the lower and upper bounds for the summation are shifted by 1 compared to the traditional convolution.</p>
+</div>
+</div>
 </section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
+<section id="max-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="max-linearity">(max,+) linearity</h2>
+<p>We should emphasize that the linearity exhibited by the state equation <a href="#eq-MPL-system" class="quarto-xref">Eq.&nbsp;1</a> and the convolution <a href="#eq-MPL-system-simulation" class="quarto-xref">Eq.&nbsp;2</a> must only be understood in the (max,+) sense.</p>
+<p>Indeed, if we consider two input sequences <span class="math inline">u_1= \{u_{1,1},u_{1,2},\ldots\}</span> and <span class="math inline">u_2= \{u_{2,1},u_{2,2},\ldots\}</span>, a (max,+)-linear combination <span class="math inline">\alpha \otimes u_1 \oplus \beta \otimes u_2</span> of the two inputs yields the same (max,+)-linear combination of the outputs <span class="math inline">y_1</span> and <span class="math inline">y_2</span>.</p>
 </section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
+<section id="input-output-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="input-output-response-of-an-mpl-system">Input-output response of an MPL system</h2>
+<p>We can also eliminate the state variables from the model and aim at finding the relation between the input and output sequences <span class="math display">
+U = \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_p\end{bmatrix}, \qquad Y = \begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_p\end{bmatrix}
+</span> in the form of <span class="math display">\boxed
+{Y = G\otimes x_0 \oplus H\otimes U,}
+</span> where <span class="math display">
+H =
+\begin{bmatrix}
+C\otimes B &amp; \varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A\otimes B &amp; C\otimes B &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A^{\otimes^2}\otimes B &amp; C\otimes A\otimes B &amp; C\otimes B &amp; \ldots &amp; \varepsilon\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+C\otimes A^{\otimes^{p-1}}\otimes B &amp; C\otimes A^{\otimes^{p-2}}\otimes B &amp; C\otimes A^{\otimes^{p-3}}\otimes B &amp; \ldots &amp; C\otimes B
+\end{bmatrix}
+</span> and <span class="math display">
+G =
+\begin{bmatrix}
+C \\ C\otimes A \\ C\otimes A^{\otimes^2} \\ \vdots \\ C\otimes A^{\otimes^{p-1}}
+\end{bmatrix}.
+</span></p>
+<div id="exm-production-system-input-output-description" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Production system)</strong></span> We consider again the production system in <a href="#exm-production-system" class="quarto-xref">Example&nbsp;1</a>. On the time horizon of 4, and assuming zero initial state, the input-output model is paramaterized by <span class="math display">
+Y = \begin{bmatrix}y_1 &amp; y_2 &amp; y_3 &amp; y_4\end{bmatrix}^\top, \quad U = \begin{bmatrix}u_1 &amp; u_2 &amp; u_3 &amp; u_4\end{bmatrix}^\top,
+</span></p>
+<p><span class="math display">
+x_0 = \begin{bmatrix}\varepsilon &amp; \varepsilon &amp; \varepsilon\end{bmatrix}^\top,
+</span></p>
+<p><span class="math display">
+H =
+\begin{bmatrix}
+21 &amp; \varepsilon &amp; \varepsilon &amp; \varepsilon\\
+32 &amp; 21 &amp; \varepsilon &amp; \varepsilon\\
+43 &amp; 32 &amp; 21 &amp; \varepsilon\\
+55 &amp; 43 &amp; 32 &amp; 21
+\end{bmatrix}.
+</span></p>
+</div>
+</section>
+<section id="analysis-of-an-irreducible-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</h2>
+<p>We now consider an autonomous MPL system <span class="math display">
+x_{k+c} = A^{\otimes^{k+c}}\otimes x_0,
+</span> for which we assume irreducibility of the matrix <span class="math inline">A</span>.</p>
+<p>We have learnt previously, that for large enough <span class="math inline">k</span> and <span class="math inline">c</span>, <span class="math display">
+x_{k+c} = \lambda^{\otimes^c}\otimes A^{\otimes^{k}}\otimes x_0 = \lambda^{\otimes^c}\otimes x_k.
+</span></p>
+<p>This can be interpreted in the standard algabra as <span class="math display">
+x_{k+c} = c\lambda + x_k,
+</span> from which it follows that <span class="math display">
+x_{k+c}-x_k = c\lambda.
+</span></p>
+<p>This is an insightful result. When the system under consideration is a production system, then once it reaches a cyclic behaviour, the average cycle is <span class="math inline">\lambda</span>. The average production rate is then <span class="math inline">1/\lambda</span>.</p>
+</section>
+<section id="model-predictive-control-mpc-for-mpl-systems" class="level2">
+<h2 class="anchored" data-anchor-id="model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</h2>
+<p>Now we are finally ready to consider control problems for MPL systems. We will consider the MPC approach.</p>
+<section id="cost-function-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="cost-function-for-mpc">Cost function for MPC</h3>
+<p>We consider the cost function composed of two parts <span class="math display">
+J = J_\mathrm{output} + \lambda J_\mathrm{input}.
+</span></p>
+<p>At “time” <span class="math inline">k</span>, with the prediction horizon <span class="math inline">N_\mathrm{p}</span>, and with the number of outputs <span class="math inline">n_\mathrm{y}</span>: <span class="math display">
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{y_{i,k+j} - r_{i,k+j},0\}
+</span></p>
+<p>This cost function penalizes <em>tardiness</em> (late delivery).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is the lower value for j correct?</p>
+</div>
+</div>
+<p>Alternative choice of the cost function is <span class="math display">
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left|y_{i,k+j} - r_{i,k+j} \right |,
+</span> which penalizes difference between the due and actual dates, or <span class="math display">
+J_\mathrm{output} = \sum_{j=1}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left |\Delta^2 y_{i,k+j}\right |,
+</span> which balances the output rates.</p>
+<p>The input cost can be set to <span class="math display">
+J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
+</span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
+</section>
+<section id="control-horizon-vs.-prediction-horizon" class="level3">
+<h3 class="anchored" data-anchor-id="control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</h3>
+<p>Assume constant feeding rate after the control horizon <span class="math inline">N_\mathrm{c}</span> <span class="math display">
+\Delta u_{k+j} = \Delta u_{k+N_\mathrm{c}-1},\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+</span> where <span class="math inline">\Delta u_k = u_k - u_{k-1}</span>.</p>
+<p>Alternatively, <span class="math display">
+\Delta^2 u_{k+j} = 0,\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+</span> where <span class="math inline">\Delta^2 u_k = \Delta u_k - \Delta u_{k-1} = u_k - 2u_{k-1} + u_{k-2}</span>.</p>
+</section>
+<section id="inequality-constraints-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="inequality-constraints-for-mpc">Inequality constraints for MPC</h3>
+<p>There are several possibilities for the constraints in the MPC for MPL systems. For example, we can constrain the minimum and maximum separation of input and output events <span class="math display">
+a_{k+j} \leq \Delta u_{k+j} \leq b_{k+j},\qquad j=0,1,\ldots,N_\mathrm{c}-1,
+</span> <span class="math display">
+c_{k+j} \leq \Delta y_{k+j} \leq d_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+</span></p>
+<p>We can also impose constraint on the maximum due dates for the output events <span class="math display">
+y_{k+j} \leq r_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+</span></p>
+<p>We can also enforce the condition that the input and output events are consecutive <span class="math display">
+\Delta u_{k+j} \geq 0, \qquad j=0,1,\ldots,N_\mathrm{c}-1.
+</span></p>
+</section>
+<section id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="level3">
+<h3 class="anchored" data-anchor-id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</h3>
+<p>Our motivation for formulating the problems within the (max,+) algebra was to fake the reality a bit and pretend that the problem is linear. This allowed us to invoke many concepts that we are familiar with from linear systems theory. However, at the end of the day, when it comes to actually solving the problem, we must reveal the nonlinear nature of the problem.</p>
+<p>When we consider the MPC for MPL systems, we are faced with a nonlinear optimization problem. We can use some general nonlinear solvers (<code>fmincon</code>, <code>ipopt</code>, …).</p>
+<p>Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by <span class="citation" data-cites="deschutterExtendedLinearComplementarity1995"><a href="#ref-deschutterExtendedLinearComplementarity1995" role="doc-biblioref">[1]</a></span>. We will introduce the complementarity problem(s) later in a <a href="../10_complementarity/constraints.html">chapter dedicated to complementarity</a>.</p>
+<p>Yet another approach is through Mixed Integer (Linear) Programming (MILP).</p>
 
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
+<div id="ref-deschutterExtendedLinearComplementarity1995" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B. De Schutter and B. De Moor, <span>“The extended linear complementarity problem,”</span> <em>Mathematical Programming</em>, vol. 71, no. 3, pp. 289–325, Dec. 1995, doi: <a href="https://doi.org/10.1007/BF01590958">10.1007/BF01590958</a>.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1272,13 +1519,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../3_max_plus/max_plus_algebra.html" class="pagination-link" aria-label="Max-plus algebra">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Max-plus algebra</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../3_max_plus/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>Temporal logics – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../14_verification_2/software.html" rel="next">
+<link href="../14_verification_2/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,6 +71,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +127,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../14_verification_2/goals.html">14. Formal verification II.</a></li><li class="breadcrumb-item"><a href="../14_verification_2/temporal_logics.html">Temporal logics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,7 +427,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -732,7 +755,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../14_verification_2/temporal_logics.html" class="sidebar-item-text sidebar-link">
+  <a href="../14_verification_2/temporal_logics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Temporal logics</span></a>
   </div>
 </li>
@@ -760,19 +783,33 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#temporal-operators" id="toc-temporal-operators" class="nav-link active" data-scroll-target="#temporal-operators">Temporal operators</a></li>
+  <li><a href="#linear-temporal-logic-ltl" id="toc-linear-temporal-logic-ltl" class="nav-link" data-scroll-target="#linear-temporal-logic-ltl">Linear temporal logic (LTL)</a>
+  <ul class="collapse">
+  <li><a href="#visualisation-of-some-basic-ltl-formulas" id="toc-visualisation-of-some-basic-ltl-formulas" class="nav-link" data-scroll-target="#visualisation-of-some-basic-ltl-formulas">Visualisation of some basic LTL formulas</a></li>
+  </ul></li>
+  <li><a href="#computation-tree-logic-ctl" id="toc-computation-tree-logic-ctl" class="nav-link" data-scroll-target="#computation-tree-logic-ctl">Computation tree logic (CTL)</a>
+  <ul class="collapse">
+  <li><a href="#basic-ctl-formulas" id="toc-basic-ctl-formulas" class="nav-link" data-scroll-target="#basic-ctl-formulas">Basic CTL formulas</a></li>
+  </ul></li>
+  <li><a href="#ctl" id="toc-ctl" class="nav-link" data-scroll-target="#ctl">CTL*</a></li>
+  <li><a href="#probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" id="toc-probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" class="nav-link" data-scroll-target="#probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl">Probabilistic CTL (PCTL) and Continuous stochastic logic (CSL)</a></li>
+  <li><a href="#timed-computation-tree-logic-tctl" id="toc-timed-computation-tree-logic-tctl" class="nav-link" data-scroll-target="#timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</a></li>
+  <li><a href="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" id="toc-metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="nav-link" data-scroll-target="#metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</a></li>
+  <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a>
+  <ul class="collapse">
+  <li><a href="#robustness-degree-in-stl" id="toc-robustness-degree-in-stl" class="nav-link" data-scroll-target="#robustness-degree-in-stl">Robustness degree in STL</a></li>
+  <li><a href="#monitoring-run-time-verification" id="toc-monitoring-run-time-verification" class="nav-link" data-scroll-target="#monitoring-run-time-verification">Monitoring, run-time verification</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../14_verification_2/goals.html">14. Formal verification II.</a></li><li class="breadcrumb-item"><a href="../14_verification_2/temporal_logics.html">Temporal logics</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">Temporal logics</h1>
 </div>
 
 
@@ -789,87 +826,458 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<p>It is natural to invoke the standard (propositional) logic when defining whatever requirements – we require that “if this and that conditions are satisfied, then yet another condition must not hold”, and so on.</p>
+<p>However, the spectrum of requirements expressed with propositional logic is not rich enough when specifying requirements for discrete-event and hybrid systems whose states evolve causally in time. <em>Temporal logics</em> add some more expressiveness.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>There are several temporal logics
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Indeed, the plural is correct – there are several temporal logics.</p>
+</div>
+</div>
+<p>Before listing the most common temporal logics, we introduce the key temporal operators that are going to be used together with logical operators for form temporal formulas.</p>
+<section id="temporal-operators" class="level2">
+<h2 class="anchored" data-anchor-id="temporal-operators">Temporal operators</h2>
+<p>The name might be misleading here – the adjective <em>temporal</em> has nothing to do with time as measured by the wall clock. Their basic versions have been developed for discrete-event systems, and as state trajectories of these form sequencies, temporal operators refer to sequences.</p>
+<p>Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But we will only mention these extensions after introducing the basics.</p>
+<div id="exm-line" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirements on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
+</div>
+<p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
+<table class="caption-top table">
+<caption>Temporal operators</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 41%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Alternative symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\mathbf{F}</span></td>
+<td><span class="math inline">\Diamond</span></td>
+<td>Eventually (<strong>F</strong>inally)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{G}</span></td>
+<td><span class="math inline">\Box</span></td>
+<td><strong>G</strong>lobally (Always)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\mathbf{X}</span></td>
+<td><span class="math inline">\bigcirc</span></td>
+<td>Ne<strong>X</strong>t</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{U}</span></td>
+<td><span class="math inline">\sqcup</span> (also <span class="math inline">\mathcal{U}</span>)</td>
+<td><strong>U</strong>ntill</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\mathbf{R}</span></td>
+<td><span class="math inline">\sqcap</span> (also <span class="math inline">\mathcal{R}</span>)</td>
+<td><strong>R</strong>elease</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{W}</span></td>
+<td><span class="math inline">\mathcal{W}</span></td>
+<td><strong>W</strong>eak Untill</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\mathbf{M}</span></td>
+<td><span class="math inline">\mathcal{M}</span></td>
+<td><strong>M</strong>ighty (strong) Release</td>
+</tr>
+</tbody>
+</table>
+<p>We are going to explain their use while introducing our first temporal logic.</p>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
+<section id="linear-temporal-logic-ltl" class="level2">
+<h2 class="anchored" data-anchor-id="linear-temporal-logic-ltl">Linear temporal logic (LTL)</h2>
+<p>“Linear” refers to linearity in time (one after another, as opposed to branching). Consider a sequence of discrete states (aka state trajectory or path) <span class="math inline">x_0, x_1, x_2, \ldots</span> of a given discrete-event or hybrid system that is initiated at some state <span class="math inline">x_0</span>. Now, referring to the concept of a Labelled Transition System (LTS), each state is labelled by a some atomic proposition(s) that is (are) true in this state. For simplicity, say, there is just one such boolean label <span class="math inline">p(x)</span>. Instead of a sequence of states, of sequence of the values of the label function can be considered. Say, <code>false</code>, <code>false</code>, <code>true</code>, <code>false</code>, <code>false</code> … Graphically, we can represent this sequence as in <a href="#fig-path" class="quarto-xref">Fig.&nbsp;1</a>, where the filled circle corresponds to <code>true</code>.</p>
+<div class="cell" data-fig-height="100px" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-path" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="100" viewbox="0.00 0.00 429.00 31.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 27.8)">
+<title>path</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-27.8 425,-27.8 425,4 -4,4"></polygon>
+<!-- x0 -->
+<g id="node1" class="node">
+<title>x0</title>
+<ellipse fill="none" stroke="black" cx="17.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="7" y="-4.2" font-family="Times,serif" font-size="14.00">x0</text>
+</g>
+<!-- x1 -->
+<g id="node2" class="node">
+<title>x1</title>
+<ellipse fill="none" stroke="black" cx="97.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="87" y="-4.2" font-family="Times,serif" font-size="14.00">x1</text>
+</g>
+<!-- x0&#45;&gt;x1 -->
+<g id="edge1" class="edge">
+<title>x0-&gt;x1</title>
+<path fill="none" stroke="black" d="M21.1,-20.3C31.64,-20.3 71.54,-20.3 88.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="88.82,-22.05 93.82,-20.3 88.82,-18.55 88.82,-22.05"></polygon>
+</g>
+<!-- x2 -->
+<g id="node3" class="node">
+<title>x2</title>
+<ellipse fill="black" stroke="black" cx="177.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="167" y="-4.2" font-family="Times,serif" font-size="14.00">x2</text>
+</g>
+<!-- x1&#45;&gt;x2 -->
+<g id="edge2" class="edge">
+<title>x1-&gt;x2</title>
+<path fill="none" stroke="black" d="M101.1,-20.3C111.64,-20.3 151.54,-20.3 168.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="168.82,-22.05 173.82,-20.3 168.82,-18.55 168.82,-22.05"></polygon>
+</g>
+<!-- x3 -->
+<g id="node4" class="node">
+<title>x3</title>
+<ellipse fill="none" stroke="black" cx="257.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="247" y="-4.2" font-family="Times,serif" font-size="14.00">x3</text>
+</g>
+<!-- x2&#45;&gt;x3 -->
+<g id="edge3" class="edge">
+<title>x2-&gt;x3</title>
+<path fill="none" stroke="black" d="M181.1,-20.3C191.64,-20.3 231.54,-20.3 248.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="248.82,-22.05 253.82,-20.3 248.82,-18.55 248.82,-22.05"></polygon>
+</g>
+<!-- x4 -->
+<g id="node5" class="node">
+<title>x4</title>
+<ellipse fill="none" stroke="black" cx="337.5" cy="-20.3" rx="3.5" ry="3.5"></ellipse>
+<text text-anchor="middle" x="327" y="-4.2" font-family="Times,serif" font-size="14.00">x4</text>
+</g>
+<!-- x3&#45;&gt;x4 -->
+<g id="edge4" class="edge">
+<title>x3-&gt;x4</title>
+<path fill="none" stroke="black" d="M261.1,-20.3C271.64,-20.3 311.54,-20.3 328.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="328.82,-22.05 333.82,-20.3 328.82,-18.55 328.82,-22.05"></polygon>
+</g>
+<!-- x5 -->
+<!-- x4&#45;&gt;x5 -->
+<g id="edge5" class="edge">
+<title>x4-&gt;x5</title>
+<path fill="none" stroke="black" d="M341.1,-20.3C351.64,-20.3 391.54,-20.3 408.64,-20.3"></path>
+<polygon fill="black" stroke="black" points="408.82,-22.05 413.82,-20.3 408.82,-18.55 408.82,-22.05"></polygon>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-path-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Graphical representation of a sequence of Boolean labels attached to the discrete states
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>We now consider some property of the whole discrete state trajectory expressed by a Boolean formula <span class="math inline">\phi</span> (as such it evaluates to <code>true</code> or <code>false</code>).</p>
+<p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by a <em>Linear Temporal Logic</em> (LTL) formula. Here comes a formal definition (using recursion): <span class="math display">\boxed{
+\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2}
+</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL sub-formulas.</p>
+<p>The trajectory will be identified by its initial <span class="math inline">x</span>, we write that a state sequence initiated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">\boxed{
+x \models \phi.}
+</span></p>
+<p>It the initial state <span class="math inline">x</span> does not determine the trajectory uniquely, the above is then interpreted as “for all trajectories initiated at <span class="math inline">x</span>”.</p>
+<section id="visualisation-of-some-basic-ltl-formulas" class="level3">
+<h3 class="anchored" data-anchor-id="visualisation-of-some-basic-ltl-formulas">Visualisation of some basic LTL formulas</h3>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><span class="math inline">x \models \Box p</span></td>
+<td>●──→●──→●──→●──→●──→●──→●┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Diamond p</span></td>
+<td>○──→○──→○──→○──→○──→●──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models \bigcirc p</span></td>
+<td>○──→●──→○──→○──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models p_1 \sqcup p_2</span></td>
+<td>●──→●──→●──→■──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models p_1 \sqcap p_2</span></td>
+<td>■──→■──→■──→■●──→○──→○──→○┄┄→</td>
+</tr>
+</tbody>
+</table>
+<p>The last two examples (lines) use actually two atomic formulas <span class="math inline">p_1</span> and <span class="math inline">p_2</span>, satisfaction of the former is visualized by a filled circle and the latter by a square, satisfaction of both by displaying both next to each other.</p>
+<p>The difference between the <code>Untill</code> and <code>Weak Untill</code> is that for the former it is guaranteed that <span class="math inline">p_2</span> will eventually hold, while for the latter it is not. Similarly, the difference between <code>Release</code> and <code>Mighty Release</code> is that for the latter it is guaranteed that <span class="math inline">p_1</span> will eventually hold. In this regard, <code>Mighty Release</code> is dual to the (strong) <code>Untill</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Redundancy in the enumerated temporal operators
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is some redundancy in the set of the temporal operators. For example, <span class="math inline">\Diamond \phi \equiv \text{true} \sqcup \phi</span>. But there is no advantage in going with just the minimal set of temporal operators.</p>
+</div>
+</div>
+<div id="exm-some-more-LTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 54%">
+<col style="width: 45%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">x\models \Box \neg p</span></td>
+<td>○──→○──→○──→○──→○──→○──→○┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Box\Diamond p</span></td>
+<td>○──→○──→●──→○──→○──→●──→○┄┄→</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">x \models \Diamond\Box p</span></td>
+<td>○──→○──→○──→○──→●──→●──→●┄┄→</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">x \models \Diamond(p_1 \land \bigcirc\Diamond p_2)</span></td>
+<td>○──→○──→○──→○──→●──→○──→■┄┄→</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula?</p>
+<p><span class="math display">
+\Box \neg \text{collision}
+</span></p>
+<p>We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?</p>
+<p>Finally, another type of a common requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Property Specification Language (PSL)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Extension of the basic LTL tailored to hardware specification has been standardized as <a href="https://doi.org/10.1109/IEEESTD.2010.5446004">IEEE Standard for Property Specification Language (PSL)</a>. It adds some syntactic sugar and supports regular expressions.</p>
+</div>
+</div>
 </section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
 </section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
+<section id="computation-tree-logic-ctl" class="level2">
+<h2 class="anchored" data-anchor-id="computation-tree-logic-ctl">Computation tree logic (CTL)</h2>
+<p>Another temporal logic is known as <em>computation tree logic</em> (CTL), it is sometimes known as <em>branching temporal logic</em> as it supports <em>branching</em> of state trajectories.</p>
+<p>Obviously, instead of just a path graph, here we model the evolution of the system using a tree graph as in <a href="#fig-tree-graph" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-tree-graph" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tree-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/tree_graph.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tree-graph-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Tree graph
+</figcaption>
+</figure>
+</div>
+<p>In order to express requirements that must be satisfied by the tree, <em>path quantifiers</em> are needed. They are listed in <a href="#tbl-path-quantifiers" class="quarto-xref">Table&nbsp;1</a>.</p>
+<div id="tbl-path-quantifiers" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-path-quantifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Path quantifiers
+</figcaption>
+<div aria-describedby="tbl-path-quantifiers-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 31%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Alternative symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\mathbf{A}</span></td>
+<td><span class="math inline">\forall</span></td>
+<td>Universal quantifier (for <strong>A</strong>ll)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\mathbf{E}</span></td>
+<td><span class="math inline">\exists</span></td>
+<td>Existential quantifier (there <strong>E</strong>xists)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<section id="basic-ctl-formulas" class="level3">
+<h3 class="anchored" data-anchor-id="basic-ctl-formulas">Basic CTL formulas</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 40%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>CTL formula</th>
+<th>Graphical description</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\forall \Box \phi</span></td>
+<td><img src="figures/tree_forall_always.png" class="img-fluid" style="width:40.0%"></td>
+<td>For all paths, <span class="math inline">\phi</span> must hold always.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\exists \Box \phi</span></td>
+<td><img src="figures/tree_exists_always.png" class="img-fluid" style="width:40.0%"></td>
+<td>There exists a path such that <span class="math inline">\phi</span> always holds.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\forall \Diamond \phi</span></td>
+<td><img src="figures/tree_forall_eventually.png" class="img-fluid" style="width:40.0%"></td>
+<td>For all paths, <span class="math inline">\phi</span> must hold eventually.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\exists \Diamond \phi</span></td>
+<td><img src="figures/tree_exists_eventually.png" class="img-fluid" style="width:40.0%"></td>
+<td>There exists a path such that <span class="math inline">\phi</span> holds eventually.</td>
+</tr>
+</tbody>
+</table>
+<p>Temporal operators and path quantifiers always come in pairs when forming CTL formulas. For example, <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula.</p>
+<div id="exm-nontrivial-CTL-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Some nontrivial CTL formulas and their interpretations)</strong></span> &nbsp;</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 35%">
+<col style="width: 32%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\forall \Box \neg \text{collision}</span></td>
+<td>Safety Property</td>
+<td>For all possible paths and all times, a collision will never occur.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\exists \Diamond \text{goal}</span></td>
+<td>Liveness Property</td>
+<td>There exists some path along which the system will eventually reach the goal state.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\forall \Box (\text{request} \implies \forall \Diamond \text{grant})</span></td>
+<td>Response Property (Cause-Effect)</td>
+<td>For all possible paths and all times, if a request occurs, it is guaranteed that eventually a grant will follow.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\forall \Box (\neg (P_1 \land P_2))</span></td>
+<td>Mutual Exclusion Property</td>
+<td>For all paths and times, the two processes P1 and P2 are not in their critical sections simultaneously.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\forall \Box (\text{enabled}\implies \forall\Diamond \text{executed})</span></td>
+<td>Fairness Property</td>
+<td>If an action becomes enabled, it will be eventually executed, whichever path is taken.</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\forall \Box (\text{condition} \implies \exists \Diamond (\exists \Box \text{safe}))</span></td>
+<td>Nested Temporal Properties</td>
+<td>For all states globally, if a condition holds, then there exists a path where eventually the system will enter a state from which it can always stay in safe states.</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\forall \Box (\neg \text{error} \land (\exists \Diamond \text{goal}))</span></td>
+<td>Combined Safety and Liveness</td>
+<td>It is always true globally that the system avoids an error state and guarantees that a goal state can eventually be reached.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="ctl" class="level2">
+<h2 class="anchored" data-anchor-id="ctl">CTL*</h2>
+<p>A combination of CTL and LTL is known as CTL*. In particular, the restriction that temporal operators and path quantifiers must come in pairs, which is imposed in CTL, is relaxed. The expressive power is best. But it comes at cost – verification of the formulas is more difficult.</p>
+<div id="exm-CTL-star" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Some examples of CTL*)</strong></span> Having state above, that <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula, it is a valid CTL* formula. But <span class="math inline">\forall \Diamond \forall \Box \phi</span> is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.</p>
+</div>
+</section>
+<section id="probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" class="level2">
+<h2 class="anchored" data-anchor-id="probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl">Probabilistic CTL (PCTL) and Continuous stochastic logic (CSL)</h2>
+<p>Probability added.</p>
+</section>
+<section id="timed-computation-tree-logic-tctl" class="level2">
+<h2 class="anchored" data-anchor-id="timed-computation-tree-logic-tctl">Timed computation tree logic (TCTL)</h2>
+<p>“Dense” time added to CTL. Used by <a href="">UPPAAL</a>.</p>
+</section>
+<section id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl" class="level2">
+<h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
+<p>Dense time added to LTL.</p>
+<div id="exm-mtl" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5</strong></span> <span class="math display">
+\square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+</span></p>
+</div>
+<p>MITL does not allow singleton time intervals allowed by MTL. The motivation for this extension is that the verification of MTL requirements has been shown to be undecidable.</p>
+</section>
+<section id="signal-temporal-logic-stl" class="level2">
+<h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
+<p>Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It also supports the continuous (aka dense) time, and furthermore it replaces the <em>proposional logic</em> with the <em>predicate logic</em> as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems.</p>
+<div id="exm-stl-formulas" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 (Examples of STL formulas)</strong></span> <span class="math display">
+\square \neg(x(t) &gt; 10.0)
+</span></p>
+<p><span class="math display">
+\square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+</span> <span class="math display">
+\Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
+</span> <span class="math display">
+\square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)
+</span></p>
+</div>
+<p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
+<section id="robustness-degree-in-stl" class="level3">
+<h3 class="anchored" data-anchor-id="robustness-degree-in-stl">Robustness degree in STL</h3>
+<p>It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>. See the literature for more.</p>
+</section>
+<section id="monitoring-run-time-verification" class="level3">
+<h3 class="anchored" data-anchor-id="monitoring-run-time-verification">Monitoring, run-time verification</h3>
+<p>LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such general techniques for STL. Instead, verification of STL formulas for the whole system must then be approached by evaluating them on individual trajectories (called <em>monitoring</em>) obtained either by simulation, running tests or obtaining operational data. The outcomes from several trajectories are then processesed statistically in Monte-Carlo style. This is known as <em>simulation-based</em> or <em>run-time verification</em>.</p>
 
 
-
+</section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1272,13 +1680,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../14_verification_2/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../14_verification_2/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

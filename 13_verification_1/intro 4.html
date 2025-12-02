@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>What is verification? – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../13_verification_1/reachability.html" rel="next">
+<link href="../13_verification_1/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,6 +71,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +127,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../13_verification_1/goals.html">13. Formal verification I.</a></li><li class="breadcrumb-item"><a href="../13_verification_1/intro.html">What is verification?</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,7 +427,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -685,7 +708,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../13_verification_1/intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../13_verification_1/intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">What is verification?</span></a>
   </div>
 </li>
@@ -760,19 +783,24 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#verification-vs-validation" id="toc-verification-vs-validation" class="nav-link active" data-scroll-target="#verification-vs-validation">Verification vs validation</a></li>
+  <li><a href="#approches-to-verification" id="toc-approches-to-verification" class="nav-link" data-scroll-target="#approches-to-verification">Approches to verification</a></li>
+  <li><a href="#model-checking-as-one-of-formal-verification-approaches" id="toc-model-checking-as-one-of-formal-verification-approaches" class="nav-link" data-scroll-target="#model-checking-as-one-of-formal-verification-approaches">Model checking as one of formal verification approaches</a></li>
+  <li><a href="#labelled-transition-system-lts" id="toc-labelled-transition-system-lts" class="nav-link" data-scroll-target="#labelled-transition-system-lts">Labelled Transition system (LTS)</a></li>
+  <li><a href="#two-special-types-of-specifications" id="toc-two-special-types-of-specifications" class="nav-link" data-scroll-target="#two-special-types-of-specifications">Two special types of specifications</a>
+  <ul class="collapse">
+  <li><a href="#safety-also-invariance" id="toc-safety-also-invariance" class="nav-link" data-scroll-target="#safety-also-invariance">Safety (also invariance)</a></li>
+  <li><a href="#liveness-also-progress" id="toc-liveness-also-progress" class="nav-link" data-scroll-target="#liveness-also-progress">Liveness (also progress)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../13_verification_1/goals.html">13. Formal verification I.</a></li><li class="breadcrumb-item"><a href="../13_verification_1/intro.html">What is verification?</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">What is verification?</h1>
 </div>
 
 
@@ -789,87 +817,194 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<p>It has become nearly a tradition in our course that the terminology we use is often heavily overloaded. The term <em>verification</em> is no exception. Although we provide a definition below, to which which are going to adhere in this course, it is important to be aware that the term is also used in many different contexts and with different meanings.</p>
+<section id="verification-vs-validation" class="level2">
+<h2 class="anchored" data-anchor-id="verification-vs-validation">Verification vs validation</h2>
+<p>One particular opportunity for confusion is the related term <em>validation</em>. According to <a href="https://www.pmi.org/pmbok-guide-standards/foundational/pmbok">PMBOK Guide</a>:</p>
+<dl>
+<dt>Validation</dt>
+<dd>
+The assurance that a product, service, or system meets the needs of the customer and other identified stakeholders. It often involves acceptance and suitability with external customers.
+</dd>
+<dt>Verification</dt>
+<dd>
+The evaluation of whether or not a product, service, or system complies with a regulation, requirement, specification, or imposed condition. It is often an internal process.
+</dd>
+</dl>
+<p>Undoubtedly, other definitions can be found, but we are going to stick to viewing verification as the process of checking if a system satisfies the given specifications or requirements. Whether these correctly capture the needs of the customer is a different question.</p>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
+<section id="approches-to-verification" class="level2">
+<h2 class="anchored" data-anchor-id="approches-to-verification">Approches to verification</h2>
+<ul>
+<li>Testing – just run the system and see if it behaves as expected. Disadvantages are obvious: cost, time, coverage.</li>
+<li>Simulation – reduces these disadvantages, but not completely – the coverage issue remains.</li>
+<li>Analytical techniques, also known as <em>formal verification</em> – the aim is to <em>prove</em> satisfaction of specifications <em>for all</em> possible conditions/evolutions of the system. The specifications (or requirements) are given in a formal (mathematical) language. Formal (mathematical) methods are then used.</li>
+</ul>
 </section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
+<section id="model-checking-as-one-of-formal-verification-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="model-checking-as-one-of-formal-verification-approaches">Model checking as one of formal verification approaches</h2>
+<p>There are several classes of formal verification techniques. One of them is <em>model checking</em>. It is based on a model of the system. For discrete-event and hybrid system the model is in the form of <em>Labelled Transition System (LTS)</em>. The outcome of the model checking is a <em>proof</em> or a <em>counterexample</em>.</p>
 </section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
+<section id="labelled-transition-system-lts" class="level2">
+<h2 class="anchored" data-anchor-id="labelled-transition-system-lts">Labelled Transition system (LTS)</h2>
+<p><em>Labelled transition system (LTS)</em> is essentially a variant of a (hybrid) automaton. Labels are attached to the states rather than the transitions. The labels come from the set <span class="math inline">\mathcal{P}</span> of atomic propositions <span class="math inline">\mathcal{P} = \{p_1, p_2, \ldots, p_n\}</span>.</p>
+<p><em>Labelling function</em> <span class="math inline">l: \mathcal X \to 2^\mathcal{P}</span> assigns a set of atomic propositions to each state.</p>
+<div id="exm-lts-beverage" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (LTS for a beverage vending machine)</strong></span> We consider our good old friend – the beverage vending machine. We draw (again) its automaton, but also consider the set of atomic propositions <span class="math inline">\mathcal{P} = \{\text{pending},\text{paid},\text{delivered}\}</span> and we label the states with these.</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fig-lts-beverage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lts-beverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 851.60 247.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 243)">
+<title>G</title>
+<!-- init -->
+<g id="node1" class="node">
+<title>init</title>
+<text text-anchor="middle" x="27" y="-115.3" font-family="Times,serif" font-size="14.00">init</text>
+</g>
+<!-- waiting -->
+<g id="node2" class="node">
+<title>waiting</title>
+<ellipse fill="none" stroke="black" cx="141.5" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="141.5" y="-179.7" font-family="Times,serif" font-size="14.00">{}</text>
+<text text-anchor="middle" x="141.5" y="-114.9" font-family="Times,serif" font-size="14.00">waiting</text>
+</g>
+<!-- init&#45;&gt;waiting -->
+<g id="edge1" class="edge">
+<title>init-&gt;waiting</title>
+<path fill="none" stroke="black" d="M54.09,-119.5C62.1,-119.5 71.27,-119.5 80.57,-119.5"></path>
+<polygon fill="black" stroke="black" points="80.66,-123 90.66,-119.5 80.66,-116 80.66,-123"></polygon>
+</g>
+<!-- swiped -->
+<g id="node3" class="node">
+<title>swiped</title>
+<ellipse fill="none" stroke="black" cx="361.29" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="361.29" y="-179.7" font-family="Times,serif" font-size="14.00">{pending}</text>
+<text text-anchor="middle" x="361.29" y="-114.9" font-family="Times,serif" font-size="14.00">swiped</text>
+</g>
+<!-- waiting&#45;&gt;swiped -->
+<g id="edge2" class="edge">
+<title>waiting-&gt;swiped</title>
+<path fill="none" stroke="black" d="M190.1,-104.52C196.73,-102.94 203.49,-101.59 210,-100.7 246.46,-95.72 256.33,-95.72 292.79,-100.7 296.04,-101.14 299.36,-101.7 302.7,-102.35"></path>
+<polygon fill="black" stroke="black" points="302.18,-105.82 312.69,-104.52 303.66,-98.98 302.18,-105.82"></polygon>
+<text text-anchor="middle" x="251.4" y="-104.7" font-family="Times,serif" font-size="14.00">swipe card</text>
+</g>
+<!-- swiped&#45;&gt;waiting -->
+<g id="edge3" class="edge">
+<title>swiped-&gt;waiting</title>
+<path fill="none" stroke="black" d="M310.43,-119.5C278.32,-119.5 236.38,-119.5 202.45,-119.5"></path>
+<polygon fill="black" stroke="black" points="202.19,-116 192.19,-119.5 202.19,-123 202.19,-116"></polygon>
+<text text-anchor="middle" x="251.4" y="-123.7" font-family="Times,serif" font-size="14.00">reject payment</text>
+</g>
+<!-- paid -->
+<g id="node4" class="node">
+<title>paid</title>
+<ellipse fill="none" stroke="black" cx="585.74" cy="-119.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="585.74" y="-179.7" font-family="Times,serif" font-size="14.00">{paid}</text>
+<text text-anchor="middle" x="585.74" y="-114.9" font-family="Times,serif" font-size="14.00">paid</text>
+</g>
+<!-- swiped&#45;&gt;paid -->
+<g id="edge4" class="edge">
+<title>swiped-&gt;paid</title>
+<path fill="none" stroke="black" d="M411.94,-119.5C445.27,-119.5 489.37,-119.5 524.68,-119.5"></path>
+<polygon fill="black" stroke="black" points="524.86,-123 534.86,-119.5 524.86,-116 524.86,-123"></polygon>
+<text text-anchor="middle" x="473.52" y="-123.7" font-family="Times,serif" font-size="14.00">accept payment</text>
+</g>
+<!-- coke_dispensed -->
+<g id="node5" class="node">
+<title>coke_dispensed</title>
+<ellipse fill="none" stroke="black" cx="793.1" cy="-188.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="793.1" y="-241.1" font-family="Times,serif" font-size="14.00">{paid, delivered}</text>
+<text text-anchor="middle" x="793.1" y="-192.3" font-family="Times,serif" font-size="14.00">coke</text>
+<text text-anchor="middle" x="793.1" y="-175.5" font-family="Times,serif" font-size="14.00">dispensed</text>
+</g>
+<!-- paid&#45;&gt;coke_dispensed -->
+<g id="edge5" class="edge">
+<title>paid-&gt;coke_dispensed</title>
+<path fill="none" stroke="black" d="M633.85,-135.33C664.01,-145.46 703.31,-158.67 735.21,-169.38"></path>
+<polygon fill="black" stroke="black" points="734.26,-172.76 744.85,-172.62 736.48,-166.12 734.26,-172.76"></polygon>
+<text text-anchor="middle" x="689.42" y="-167.7" font-family="Times,serif" font-size="14.00">choose coke</text>
+</g>
+<!-- fanta_dispensed -->
+<g id="node6" class="node">
+<title>fanta_dispensed</title>
+<ellipse fill="none" stroke="black" cx="793.1" cy="-50.5" rx="50.5" ry="50.5"></ellipse>
+<text text-anchor="middle" x="793.1" y="-103.1" font-family="Times,serif" font-size="14.00">{paid, delivered}</text>
+<text text-anchor="middle" x="793.1" y="-54.3" font-family="Times,serif" font-size="14.00">fanta</text>
+<text text-anchor="middle" x="793.1" y="-37.5" font-family="Times,serif" font-size="14.00">dispensed</text>
+</g>
+<!-- paid&#45;&gt;fanta_dispensed -->
+<g id="edge6" class="edge">
+<title>paid-&gt;fanta_dispensed</title>
+<path fill="none" stroke="black" d="M633.85,-103.67C664.01,-93.54 703.31,-80.33 735.21,-69.62"></path>
+<polygon fill="black" stroke="black" points="736.48,-72.88 744.85,-66.38 734.26,-66.24 736.48,-72.88"></polygon>
+<text text-anchor="middle" x="689.42" y="-98.7" font-family="Times,serif" font-size="14.00">choose fanta</text>
+</g>
+<!-- coke_dispensed&#45;&gt;waiting -->
+<g id="edge7" class="edge">
+<title>coke_dispensed-&gt;waiting</title>
+<path fill="none" stroke="black" d="M742.73,-192.78C654.97,-199.23 466.38,-207.91 310.79,-179.5 271.63,-172.35 229.44,-157.29 197.1,-144.05"></path>
+<polygon fill="black" stroke="black" points="198.4,-140.8 187.82,-140.19 195.71,-147.26 198.4,-140.8"></polygon>
+<text text-anchor="middle" x="473.52" y="-202.7" font-family="Times,serif" font-size="14.00">take coke</text>
+</g>
+<!-- fanta_dispensed&#45;&gt;waiting -->
+<g id="edge8" class="edge">
+<title>fanta_dispensed-&gt;waiting</title>
+<path fill="none" stroke="black" d="M742.47,-46.89C654.7,-41.54 466.63,-34.69 310.79,-60.5 271.59,-66.99 229.4,-81.8 197.07,-94.96"></path>
+<polygon fill="black" stroke="black" points="195.7,-91.74 187.8,-98.8 198.38,-98.21 195.7,-91.74"></polygon>
+<text text-anchor="middle" x="473.52" y="-50.7" font-family="Times,serif" font-size="14.00">take fanta</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lts-beverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: LTS for a beverage vending machine
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Having the states labelled with atomic propositions, we can now formulate specifications in terms of these propositions. For example, we can express the following two specifications:</p>
+<ul>
+<li><p>Specification #1: The machine never dispenses a beverage without being paid, that is, <span class="math display">
+\text{delivered} \Rightarrow \text{paid}.
+</span></p></li>
+<li><p>Specification #2: If the user pays, the machine will <em>eventually</em> dispenses a beverage.</p></li>
+</ul>
+<p>The trouble with the latter specification is: how do we formally express the “eventually” part? It turns out that the classical propositional logic is not enough. We will need to introduce temporal logic(s). This we will do in one of the next sections.</p>
+</div>
+<p>Before we move on, we can highlight two common types of specifications that can do without temporal logics.</p>
+</section>
+<section id="two-special-types-of-specifications" class="level2">
+<h2 class="anchored" data-anchor-id="two-special-types-of-specifications">Two special types of specifications</h2>
+<ul>
+<li>Safety (also invariance)</li>
+<li>Liveness (also progress)</li>
+</ul>
+<section id="safety-also-invariance" class="level3">
+<h3 class="anchored" data-anchor-id="safety-also-invariance">Safety (also invariance)</h3>
+<p><em>Safety</em> (yikes, another rather overloaded term) means that “something bad never happens”. Within state models (state automata and hybrid automata), this can be formulated as the system never entering the bad (unsafe) region of the state space.</p>
+<p>Equivalently, it can be phrased as “something good always holds”. With the state perspective, the system always stays in a good (safe) region of the state space.</p>
+<p>How do we check safety? There are several techniques. In our course we are going to introduce two that are very popular in the control systems community:</p>
+<ul>
+<li>Reachability analysis,</li>
+<li>Barrier certificates.</li>
+</ul>
+</section>
+<section id="liveness-also-progress" class="level3">
+<h3 class="anchored" data-anchor-id="liveness-also-progress">Liveness (also progress)</h3>
+<p>It can be phrased as “something good will eventually happen”. Liveness (or progress) specifications be formulated in the state spacee too. The system is required to eventually reach a certain state or a subset in the state space. Depending on the flavour of the liveness specification, the initial set may be specified or not.</p>
+<p>Control systems community must immediately recognize here one fundamental property that does clasify as a liveness property: stability. A stable system will eventually reach a certain state – the equlibrium.</p>
 
 
-
+</section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1272,13 +1407,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../13_verification_1/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../13_verification_1/reachability.html" class="pagination-link" aria-label="Reachability analysis">
+        <span class="nav-page-text">Reachability analysis</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Literature – B(E)3M35HYS – Hybrid systems</title>
+<title>Complementarity systems – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../7_solution/goals.html" rel="next">
-<link href="../6_classes/software.html" rel="prev">
+<link href="../10_complementarity/simulations.html" rel="next">
+<link href="../10_complementarity/constraints.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,6 +71,49 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -104,7 +127,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/systems.html">Complementarity systems</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -404,7 +427,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -550,7 +573,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_complementarity/systems.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_complementarity/systems.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Complementarity systems</span></a>
   </div>
 </li>
@@ -760,19 +783,19 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reset-control-systems" id="toc-reset-control-systems" class="nav-link active" data-scroll-target="#reset-control-systems">Reset control systems</a></li>
-  <li><a href="#switched-systems" id="toc-switched-systems" class="nav-link" data-scroll-target="#switched-systems">Switched systems</a></li>
-  <li><a href="#piecewise-affine-pwa-systems" id="toc-piecewise-affine-pwa-systems" class="nav-link" data-scroll-target="#piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</a></li>
-  <li><a href="#piecewise-affine-linear-approximation" id="toc-piecewise-affine-linear-approximation" class="nav-link" data-scroll-target="#piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</a></li>
+  <li><a href="#linear-complementarity-system-lcs" id="toc-linear-complementarity-system-lcs" class="nav-link active" data-scroll-target="#linear-complementarity-system-lcs">Linear complementarity system (LCS)</a></li>
+  <li><a href="#complementarity-system-as-a-feedback-interconnection" id="toc-complementarity-system-as-a-feedback-interconnection" class="nav-link" data-scroll-target="#complementarity-system-as-a-feedback-interconnection">Complementarity system as a feedback interconnection</a></li>
+  <li><a href="#complementarity-systems-vs-pwa-and-max-plus-linear-systems" id="toc-complementarity-systems-vs-pwa-and-max-plus-linear-systems" class="nav-link" data-scroll-target="#complementarity-systems-vs-pwa-and-max-plus-linear-systems">Complementarity systems vs PWA and max-plus linear systems</a></li>
+  <li><a href="#more-complicated-pwa-functions-in-feedback" id="toc-more-complicated-pwa-functions-in-feedback" class="nav-link" data-scroll-target="#more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../6_classes/goals.html">6. Some classes of hybrid systems</a></li><li class="breadcrumb-item"><a href="../6_classes/references.html">Literature</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/systems.html">Complementarity systems</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Literature</h1>
+<h1 class="title">Complementarity systems</h1>
 </div>
 
 
@@ -789,87 +812,278 @@ div.csl-indent {
 </header>
 
 
-<p>There is no single recommended literature for this lecture. Instead, a bunch of papers and monographs is listed here to get you started should need to delve deeper.</p>
-<section id="reset-control-systems" class="level2">
-<h2 class="anchored" data-anchor-id="reset-control-systems">Reset control systems</h2>
-<p>The origing of the reset control can be traced to the paper <span class="citation" data-cites="cleggNonlinearIntegratorServomechanisms1958"><a href="#ref-cleggNonlinearIntegratorServomechanisms1958" role="doc-biblioref">[1]</a></span>. While it may be of historical curiosity to have a look at that paper containing also some schematics with opamps, it is perhaps easier to learn the basics of reset control in some more recent texts such as the monograph <span class="citation" data-cites="banosResetControlSystems2012"><a href="#ref-banosResetControlSystems2012" role="doc-biblioref">[2]</a></span>. Alternatively, papers such as <span class="citation" data-cites="bekerPlantIntegratorExample2001"><a href="#ref-bekerPlantIntegratorExample2001" role="doc-biblioref">[3]</a></span>, <span class="citation" data-cites="bekerFundamentalPropertiesReset2004"><a href="#ref-bekerFundamentalPropertiesReset2004" role="doc-biblioref">[4]</a></span>, <span class="citation" data-cites="guoStabilityAnalysisDesign2009"><a href="#ref-guoStabilityAnalysisDesign2009" role="doc-biblioref">[5]</a></span>, or <span class="citation" data-cites="zaccarianFirstOrderReset2005a"><a href="#ref-zaccarianFirstOrderReset2005a" role="doc-biblioref">[6]</a></span> can provide another concise introduction to the topic.</p>
+<section id="linear-complementarity-system-lcs" class="level2">
+<h2 class="anchored" data-anchor-id="linear-complementarity-system-lcs">Linear complementarity system (LCS)</h2>
+<p>Having introduced the <em>complementarity constraints</em> and optimization problems with these constraints, we can now show how these constraints can be used to model a certain class of dynamical systems – <em>complementarity dynamical systems</em>. We start with linear ones, namely, linear complementarity systems (LCS). These are also called in the literature as Linear dynamical complementarity problems (LDCP).</p>
+<p>Linear complementarity system is modelled by <span id="eq-linear-complementarity-system"><span class="math display">\boxed{
+\begin{aligned}
+\dot{\bm x}(t) &amp;= \mathbf A \bm x(t) + \mathbf B\bm u(t)\\
+\bm y(t) &amp;= \mathbf C \bm x(t) + \mathbf D\bm u(t)\\
+\mathbf 0&amp;\leq \bm u(t) \perp \bm y(t) \geq \mathbf 0.
+\end{aligned}}
+\tag{1}</span></span></p>
+<div id="exm-electrical-circuit-as-LCS" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Electrical circuit with a diode as an LCS)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/electrical_circuit_RLCD.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Electrical circuit to be modelled as an LCS</figcaption>
+</figure>
+</div>
+<p>Note the upside-down orientation of the voltage and the current for the capacitor – we wanted the diode current identical to the capacitor current.</p>
+<p>Following the charge formalism within Lagrangian modelling, we can choose the generalized coordinates as <span class="math display">
+      \bm q = \begin{bmatrix}
+      q_L \\ q_C
+      \end{bmatrix}.
+</span></p>
+<p>That this is indeed a sufficient number is obvious, but we can also check the classical formula <span class="math inline">B-N+1 = 4-3+1 = 2</span>. But we can also choose the state variables as <span class="math display">
+      \bm x = \begin{bmatrix}
+      i_L\\ q_c
+      \end{bmatrix}.
+</span></p>
+<p>The resulting state equations are <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C - \frac{1}{L}u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C - \frac{1}{R} u_D.
+\end{aligned}
+</span></p>
+<p>The idealized volt-ampere characteristics of the diode is</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/va_characteristics_diode.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Ideal volt-ampere characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>Flipping the axes to get the current as the horizontal axis, we get</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/av_characteristics_diode.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Flipped volt-ampere characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>Finally, after introducing an auxiliary variable (the reverse voltage of the diode) <span class="math inline">\bar u_D = -u_D</span> , we get the desired dependence</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/av_characteristics_diode_reverted_voltage.png" class="img-fluid figure-img" style="width:40.0%"></p>
+<figcaption>Yet another reformatted VA characteristic of a diode</figcaption>
+</figure>
+</div>
+<p>which can be modelled as a complementarity constraint<br>
+<span class="math display">
+0\leq i_D \perp \bar u_D \geq 0.
+</span></p>
+<p>Now, upon replacing the diode voltage with its reverse <span class="math inline">\bar u_D</span> while using <span class="math inline">i_D=i_C</span>, we get <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
+0&amp;\leq q_C' \perp \bar u_D \geq 0.
+\end{aligned}
+</span></p>
+<p>We are not there yet – there is a derivative in the complementarity constraint. But just substitute for it: <span class="math display">
+\begin{aligned}
+i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
+q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
+0&amp;\leq i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D \perp \bar u_D \geq 0,
+\end{aligned}
+</span><br>
+and voila, we finally got the LCS description. We can also reformat it into the matrix-vector form <span class="math display">
+\begin{aligned}
+\begin{bmatrix}
+i_L' \\ q_C'
+\end{bmatrix} &amp;=
+\begin{bmatrix}
+0 &amp;-\frac{1}{LC}\\
+1  &amp; - \frac{1}{RC}
+\end{bmatrix}
+\begin{bmatrix}
+i_L \\ q_C
+\end{bmatrix} +
+\begin{bmatrix}
+\frac{1}{L}\\
+\frac{1}{R}
+\end{bmatrix}
+\bar u_D\\
+0 &amp;\leq \left(\begin{bmatrix}
+1  &amp; - \frac{1}{RC}
+\end{bmatrix}
+\begin{bmatrix}
+i_L \\ q_C
+\end{bmatrix} +
+\begin{bmatrix}
+\frac{1}{L}\\
+\frac{1}{R}
+\end{bmatrix}
+\bar u_D\right ) \bot \bar u_D \geq 0.
+\end{aligned}
+</span></p>
+</div>
+<div id="exm-mass-spring-damper-as-LCS" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Mass-spring system with a hard stop as a linear complementarity system)</strong></span> Two carts moving horitontally (left or right) are interconnected through a spring. The left cart is also interconnected with the wall through a another spring. Furthemore, the motion of the left cart is constrained in that there is a <em>hard stop</em> that prevents the cart from moving further to the left. Another natural constraint is that the right cart cannot get to the left of the other vehicle. The setup is shown in <a href="#fig-mass-spring-hard-stop" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-mass-spring-hard-stop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mass-spring-hard-stop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/mass_spring-hard_stop.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mass-spring-hard-stop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
+</figcaption>
+</figure>
+</div>
+<p>The variables <span class="math inline">x_1</span> and <span class="math inline">x_2</span> give deviations of the two carts from their equilibrium positions. As we are considering negligible sizes of the two carts, the equilibrium position for both is 0. The derivatives of the two positions are also introduced as state variables <span class="math inline">x_3</span> and <span class="math inline">x_4</span>, respectively.</p>
+<p>The hard stop is located at the equilibrium position of the left cart.</p>
+<p>The input <span class="math inline">u_1</span> corresponds to the reaction force of the hard stop applied to the left cart. Another input is <span class="math inline">u_2</span> that corresponds to the force exerted by the left cart onto the right cart.</p>
+<p>The state equations are <span class="math display">
+\begin{aligned}
+\dot x_1(t) &amp;= x_3,\\
+\dot x_2(t) &amp;= x_4,\\
+\dot x_3(t) &amp;= -\frac{k_1+k_2}{m_1}x_1(t) + \frac{k_2}{m_1}x_2(t) + \frac{1}{m_1}u_1(t) - \frac{1}{m_1}u_2(t),\\
+\dot x_4(t) &amp;= \frac{k_2}{m_2}x_1(t) - \frac{k_2}{m_2} x_2(t) + \frac{1}{m_2}u_2(t).
+\end{aligned}
+</span></p>
+<p>The presence of the hard stop can be modelled as an inequality constraint on the state <span class="math display">x_1(t) \geq  0.</span></p>
+<p>Similarly, the fact that the right cart cannot get to the left of the left cart can be expressed as <span class="math display">
+x_2(t) - x_1(t) \geq 0.
+</span></p>
+<p>This motivates us to define two output variables as <span class="math display">
+\begin{aligned}
+y_1(t) &amp;= x_1(t),\\
+y_2(t) &amp;= x_2(t)-x_1(t).
+\end{aligned}
+</span></p>
+<p>Now, the reaction force <span class="math inline">u_1</span> exerted by the hard stop onto the left cart can only be nonnegative <span class="math display">
+u_1(t) \geq 0,
+</span><br>
+and it is positive if and only if the left cart hits the hard stop<br>
+<span class="math display">
+      y_1(t) u_1(t) = 0.
+</span></p>
+<p>The condition can be written compactly as <span class="math display">
+0\leq y_1(t) \perp u_1(t) \geq 0.
+</span></p>
+<p>Similarly for the force <span class="math inline">u_2</span> exerted by the left cart onto the right cart <span class="math display">
+0\leq y_2(t) \perp u_2(t) \geq 0.
+</span></p>
+<p>For convenience, we now give a full model in the matrix-vector form. <span id="eq-mass-spring-hard-stop"><span class="math display">
+\begin{aligned}
+\begin{bmatrix} \dot x_1\\ \dot x_2\\ \dot x_3\\ \dot x_4 \end{bmatrix}
+&amp;=
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+{\color{blue}-\frac{k_1+k_2}{m_1}} &amp; {\color{blue}\frac{k_2}{m_1}} &amp; 0 &amp; 0\\
+{\color{blue}\frac{k_2}{m_2}} &amp; {\color{blue}-\frac{k_2}{m_2}} &amp; 0 &amp; 0
+\end{bmatrix}
+\begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix} +
+\begin{bmatrix} 0 &amp; 0\\ 0 &amp; 0\\ {\color{blue}\frac{1}{m_1}} &amp; {\color{blue}-\frac{1}{m_1}}\\ {\color{blue}0} &amp; {\color{blue}\frac{1}{m_2}}\end{bmatrix} \begin{bmatrix} u_1\\u_2\end{bmatrix},\\
+\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} &amp;= \begin{bmatrix} {\color{blue}1} &amp; {\color{blue}0} &amp; 0 &amp; 0\\ {\color{blue}-1} &amp; {\color{blue}1} &amp; 0 &amp; 0\end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
+\mathbf 0 &amp;\leq \bm y \perp \bm u \geq \mathbf 0.
+\end{aligned}
+\tag{2}</span></span></p>
+<p>Note that we highlighted in blue three submatrices that will come in handy in the next section.</p>
+</div>
 </section>
-<section id="switched-systems" class="level2">
-<h2 class="anchored" data-anchor-id="switched-systems">Switched systems</h2>
-<p>Readable introduction to switched systems is in the slim book <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[7]</a></span>. The book is not freely available online, but a useful excerpt can be found in the lecture notes <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[8]</a></span>.</p>
-<p>Switched systems can also be viewed as systems described by differential equations with discontinuous right-hand side. The theory of such systems is described in the classical book <span class="citation" data-cites="filippovDifferentialEquationsDiscontinuous1988"><a href="#ref-filippovDifferentialEquationsDiscontinuous1988" role="doc-biblioref">[9]</a></span>. The main concepts and results can also be found in the tutorial <span class="citation" data-cites="cortesDiscontinuousDynamicalSystems2008"><a href="#ref-cortesDiscontinuousDynamicalSystems2008" role="doc-biblioref">[10]</a></span>, perhaps even in a more accessible form. Additionally, accessible discussion in the online available beautiful (I really mean it) textbook <span class="citation" data-cites="trefethenExploringODEs2017"><a href="#ref-trefethenExploringODEs2017" role="doc-biblioref">[11]</a></span>, chapters 3 and 11. What is particularly nice about the latter book is that every concepts, even the most theoretical one, is illustrated by a simple Matlab code invoking the epic <a href="https://www.chebfun.org">Chebfun</a> toolbox.</p>
+<section id="complementarity-system-as-a-feedback-interconnection" class="level2">
+<h2 class="anchored" data-anchor-id="complementarity-system-as-a-feedback-interconnection">Complementarity system as a feedback interconnection</h2>
+<p>A complementarity system <a href="#eq-linear-complementarity-system" class="quarto-xref">Eq.&nbsp;1</a> can be seen as a feedback interconnection of a linear system and a complementarity constraint.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/complementarity_in_feedback.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Complementarity system as a feedback interconnection</figcaption>
+</figure>
+</div>
 </section>
-<section id="piecewise-affine-pwa-systems" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-pwa-systems">Piecewise affine (PWA) systems</h2>
-<p>In our course we based our treatment of PWA systems on the monograph <span class="citation" data-cites="johanssonPiecewiseLinearControl2003"><a href="#ref-johanssonPiecewiseLinearControl2003" role="doc-biblioref">[12]</a></span>. It is not freely available online, but it is based on the author’s PhD thesis <span class="citation" data-cites="johanssonPiecewiseLinearControl1999"><a href="#ref-johanssonPiecewiseLinearControl1999" role="doc-biblioref">[13]</a></span>, which is available online. While these resources are a bit outdated (in particular, when it comes to stability analysis, back then they were not aware of the possibility to extend the S-procedure to higher-degree polynomials), they still constitute a good starting point. Published at about the same time, the paper <span class="citation" data-cites="hassibiQuadraticStabilizationControl1998"><a href="#ref-hassibiQuadraticStabilizationControl1998" role="doc-biblioref">[14]</a></span> reads well (as usual in the case of the second author). A bit more up-to-date book dedicated purely to PWA control is <span class="citation" data-cites="rodriguesPiecewiseAffineControl2019"><a href="#ref-rodriguesPiecewiseAffineControl2019" role="doc-biblioref">[15]</a></span>, but again, no free online version. The book refers to the Matlab toolbox documented in <span class="citation" data-cites="fekriPWATOOLSMATLABToolbox2012"><a href="#ref-fekriPWATOOLSMATLABToolbox2012" role="doc-biblioref">[16]</a></span>. While the toolbox is rather dated and will hardly run on the current versions of Matlab (perhaps an opportunity for nice student project), the tutorial paper gives some insight into how the whole concept of a PWA approximation can be used in control design.</p>
+<section id="complementarity-systems-vs-pwa-and-max-plus-linear-systems" class="level2">
+<h2 class="anchored" data-anchor-id="complementarity-systems-vs-pwa-and-max-plus-linear-systems">Complementarity systems vs PWA and max-plus linear systems</h2>
+<p>Consider the feedback interconnection of a dynamical system and the max(y,u) function in the feedback loop as in <a href="#fig-max-in-feedback" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-max-in-feedback" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-max-in-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/max_in_feedback.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-max-in-feedback-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Feedback interconnection of a dynamical system and a nonlinearity
+</figcaption>
+</figure>
+</div>
+<p>We now express the original <span class="math inline">y</span> as a difference of two nonnegative variable satisfying the complementarity constraint <span class="math display">
+y = y^+ - y^-,\quad 0 \leq y^+ \bot y^- \geq 0.
+</span></p>
+<p>The motivation for this was that with the new variables <span class="math inline">y^+</span> and <span class="math inline">y^-</span>, the max function can be expressed as <span class="math display">
+\max(y,0) = \max(y^+ - y^-, 0) = y^+.
+</span></p>
+<p>Now, set <span class="math display">y^+ = u</span> and then <span class="math display">
+y = u - y^-,
+</span> from which <span class="math display">
+y^- = u - y
+</span> and therefore the original feedback interconnection can be rewritten as</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/max_as_complementarity_in_feedback.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Feedback interconnection equivalent to the one with max(y,0)</figcaption>
+</figure>
+</div>
 </section>
-<section id="piecewise-affine-linear-approximation" class="level2">
-<h2 class="anchored" data-anchor-id="piecewise-affine-linear-approximation">Piecewise affine (linear) approximation</h2>
-<p>There is quite a lot of relevant know-how available even outside the domain of (control) systems, in particular, search for piecewise affine (-linear) approximation or fitting (using optimization): <span class="citation" data-cites="magnaniConvexPiecewiselinearFitting2008"><a href="#ref-magnaniConvexPiecewiselinearFitting2008" role="doc-biblioref">[17]</a></span> (although it is only restricted to convex functions), <span class="citation" data-cites="huchetteNonconvexPiecewiseLinear2022"><a href="#ref-huchetteNonconvexPiecewiseLinear2022" role="doc-biblioref">[18]</a></span>, <span class="citation" data-cites="torielloFittingPiecewiseLinear2012"><a href="#ref-torielloFittingPiecewiseLinear2012" role="doc-biblioref">[19]</a></span>, …</p>
+<section id="more-complicated-pwa-functions-in-feedback" class="level2">
+<h2 class="anchored" data-anchor-id="more-complicated-pwa-functions-in-feedback">More complicated PWA functions in feedback</h2>
+<p>The function <span class="math inline">\max(y,0)</span> that we have just considered is a very simple piecewise affine (PWA) function. But we can consider more complicated PWA functions. Only a little bit complicated PWA function is in <a href="#fig-shifted-pwa" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-shifted-pwa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shifted-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/shifted_1_pwa.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shifted-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A simple piecewise affine function
+</figcaption>
+</figure>
+</div>
+<p>The function is defined by shifting and scaling the original <span class="math inline">\max(y,0)</span> function: <span class="math display">
+u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0).
+</span></p>
+<p>We can now enforce complementarity based on this function in the feedback loop, see <a href="#fig-shifted-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;4</a>.</p>
+<div id="fig-shifted-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-shifted-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/shifted_1_pwa_as_complementarity.png" class="img-fluid figure-img" style="width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-shifted-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Feedback system with a shifted PWA function modelled as complementarity constraint
+</figcaption>
+</figure>
+</div>
+<p>This procedure can be extended towards PWA functions composed of several segments, see <a href="#fig-several-pwa" class="quarto-xref">Fig.&nbsp;5</a>.</p>
+<div id="fig-several-pwa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-several-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/shifted_2_pwa.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-several-pwa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: PWA function with multiple segments
+</figcaption>
+</figure>
+</div>
+<p>The function is defined as <span class="math display">
+\begin{aligned}
+u(y) &amp;= k_0 y + u_0 + (k_1-k_0) \max(y-y_1,0) \\
+&amp;\qquad + (k_2-k_1) \max(y-y_2,0)\\
+&amp;= k_0 y + u_0 + \underbrace{\max((k_1-k_0)(y-y_1),0)}_{u_1}\\
+&amp;\qquad + \underbrace{\max((k_2-k_1)(y-y_2),0)}_{u_2}
+\end{aligned}
+</span> and the feedback interconnection now contain several parallel paths with complementarity constraints as in <a href="#fig-several-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;6</a></p>
+<div id="fig-several-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-several-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/shifted_2_pwa_as_complementarity.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-several-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Feedback system with multiple-segment PWA modelled as complementarity constraints
+</figcaption>
+</figure>
+</div>
 
 
-
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-cleggNonlinearIntegratorServomechanisms1958" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. C. Clegg, <span>“A nonlinear integrator for servomechanisms,”</span> <em>American Institute of Electrical Engineers, Part II: Applications and Industry, Transactions of the</em>, vol. 77, no. 1, pp. 41–42, 1958, doi: <a href="https://doi.org/10.1109/TAI.1958.6367399">10.1109/TAI.1958.6367399</a>.</div>
-</div>
-<div id="ref-banosResetControlSystems2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Baños and A. Barreiro, <em>Reset <span>Control Systems</span></em>. in Advances in <span>Industrial Control</span>. London; New York: Springer, 2012. Available: <a href="https://doi.org/10.1007/978-1-4471-2250-0">https://doi.org/10.1007/978-1-4471-2250-0</a></div>
-</div>
-<div id="ref-bekerPlantIntegratorExample2001" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, and Y. Chait, <span>“Plant with integrator: An example of reset control overcoming limitations of linear feedback,”</span> <em>IEEE Transactions on Automatic Control</em>, vol. 46, no. 11, pp. 1797–1799, 2001, doi: <a href="https://doi.org/10.1109/9.964694">10.1109/9.964694</a>.</div>
-</div>
-<div id="ref-bekerFundamentalPropertiesReset2004" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">O. Beker, C. V. Hollot, Y. Chait, and H. Han, <span>“Fundamental properties of reset control systems,”</span> <em>Automatica</em>, vol. 40, no. 6, pp. 905–915, Jun. 2004, doi: <a href="https://doi.org/10.1016/j.automatica.2004.01.004">10.1016/j.automatica.2004.01.004</a>.</div>
-</div>
-<div id="ref-guoStabilityAnalysisDesign2009" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Guo, Y. Wang, L. Xie, and J. Zheng, <span>“Stability analysis and design of reset systems: <span>Theory</span> and an application,”</span> <em>Automatica</em>, vol. 45, no. 2, pp. 492–497, Feb. 2009, doi: <a href="https://doi.org/10.1016/j.automatica.2008.08.016">10.1016/j.automatica.2008.08.016</a>.</div>
-</div>
-<div id="ref-zaccarianFirstOrderReset2005a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">L. Zaccarian, D. Nesic, and A. R. Teel, <span>“First order reset elements and the <span>Clegg</span> integrator revisited,”</span> in <em>Proceedings of the 2005, <span>American Control Conference</span>, 2005.</em>, Jun. 2005, pp. 563–568 vol. 1. doi: <a href="https://doi.org/10.1109/ACC.2005.1470016">10.1109/ACC.2005.1470016</a>.</div>
-</div>
-<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
-</div>
-<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
-</div>
-<div id="ref-filippovDifferentialEquationsDiscontinuous1988" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. F. Filippov, <em>Differential <span>Equations</span> with <span>Discontinuous Righthand Sides</span></em>. in Mathematics and its <span>Applications</span>. Dordrecht: Springer, 1988. Accessed: Jun. 08, 2022. [Online]. Available: <a href="https://link.springer.com/book/10.1007/978-94-015-7793-9">https://link.springer.com/book/10.1007/978-94-015-7793-9</a></div>
-</div>
-<div id="ref-cortesDiscontinuousDynamicalSystems2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">J. Cortes, <span>“Discontinuous dynamical systems: <span>A</span> tutorial on solutions, nonsmooth analysis, and stability,”</span> <em>IEEE Control Systems Magazine</em>, vol. 28, no. 3, pp. 36–73, Jun. 2008, doi: <a href="https://doi.org/10.1109/MCS.2008.919306">10.1109/MCS.2008.919306</a>.</div>
-</div>
-<div id="ref-trefethenExploringODEs2017" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">L. N. Trefethen, Á. Birkisson, and T. A. Driscoll, <em>Exploring <span>ODEs</span></em>. Philadelphia: <span>SIAM-Society for Industrial and Applied Mathematics</span>, 2017. Available: <a href="http://people.maths.ox.ac.uk/trefethen/ExplODE/">http://people.maths.ox.ac.uk/trefethen/ExplODE/</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl2003" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">M. K.-J. Johansson, <em>Piecewise <span>Linear Control Systems</span>: <span>A Computational Approach</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>. Berlin, Heidelberg: Springer, 2003. Available: <a href="https://doi.org/10.1007/3-540-36801-9">https://doi.org/10.1007/3-540-36801-9</a></div>
-</div>
-<div id="ref-johanssonPiecewiseLinearControl1999" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[13] </div><div class="csl-right-inline">M. Johansson, <span>“Piecewise <span>Linear Control Systems</span>,”</span> PhD thesis, Department of Automatic Control, Lund Institute of Technology, Lund, Sweden, 1999. Accessed: Aug. 01, 2011. [Online]. Available: <a href="http://lup.lub.lu.se/record/19355">http://lup.lub.lu.se/record/19355</a></div>
-</div>
-<div id="ref-hassibiQuadraticStabilizationControl1998" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Hassibi and S. Boyd, <span>“Quadratic stabilization and control of piecewise-linear systems,”</span> in <em>Proceedings of the 1998 <span>American Control Conference</span>. <span>ACC</span> (<span>IEEE Cat</span>. <span>No</span>.<span>98CH36207</span>)</em>, Jun. 1998, pp. 3659–3664 vol.6. doi: <a href="https://doi.org/10.1109/ACC.1998.703296">10.1109/ACC.1998.703296</a>.</div>
-</div>
-<div id="ref-rodriguesPiecewiseAffineControl2019" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[15] </div><div class="csl-right-inline">L. Rodrigues, B. Samadi, and M. Moarref, <em>Piecewise <span>Affine Control</span>: <span>Continuous-Time</span>, <span>Sampled-Data</span>, and <span>Networked Systems</span></em>. in Advances in <span>Design</span> and <span>Control</span>. Philadelphia: <span>Society for Industrial and Applied Mathematics</span>, 2019. Available: <a href="https://doi.org/10.1137/1.9781611975901">https://doi.org/10.1137/1.9781611975901</a></div>
-</div>
-<div id="ref-fekriPWATOOLSMATLABToolbox2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[16] </div><div class="csl-right-inline">M. Z. Fekri, B. Samadi, and L. Rodrigues, <span>“<span>PWATOOLS</span>: <span>A MATLAB</span> toolbox for piecewise-affine controller synthesis,”</span> in <em>2012 <span>American Control Conference</span> (<span>ACC</span>)</em>, Jun. 2012, pp. 4484–4489. doi: <a href="https://doi.org/10.1109/ACC.2012.6315609">10.1109/ACC.2012.6315609</a>.</div>
-</div>
-<div id="ref-magnaniConvexPiecewiselinearFitting2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[17] </div><div class="csl-right-inline">A. Magnani and S. P. Boyd, <span>“Convex piecewise-linear fitting,”</span> <em>Optimization and Engineering</em>, vol. 10, no. 1, pp. 1–17, Mar. 2008, doi: <a href="https://doi.org/10.1007/s11081-008-9045-3">10.1007/s11081-008-9045-3</a>.</div>
-</div>
-<div id="ref-huchetteNonconvexPiecewiseLinear2022" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[18] </div><div class="csl-right-inline">J. Huchette and J. P. Vielma, <span>“Nonconvex <span>Piecewise Linear Functions</span>: <span>Advanced Formulations</span> and <span>Simple Modeling Tools</span>,”</span> <em>Operations Research</em>, May 2022, doi: <a href="https://doi.org/10.1287/opre.2019.1973">10.1287/opre.2019.1973</a>.</div>
-</div>
-<div id="ref-torielloFittingPiecewiseLinear2012" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[19] </div><div class="csl-right-inline">A. Toriello and J. P. Vielma, <span>“Fitting piecewise linear continuous functions,”</span> <em>European Journal of Operational Research</em>, vol. 219, no. 1, pp. 86–95, May 2012, doi: <a href="https://doi.org/10.1016/j.ejor.2011.12.030">10.1016/j.ejor.2011.12.030</a>.</div>
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1272,13 +1486,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../6_classes/software.html" class="pagination-link" aria-label="Software">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
+      <a href="../10_complementarity/constraints.html" class="pagination-link" aria-label="Complementarity constraints">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Complementarity constraints</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../7_solution/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../10_complementarity/simulations.html" class="pagination-link" aria-label="Simulations of complementarity systems using time-stepping">
+        <span class="nav-page-text">Simulations of complementarity systems using time-stepping</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
