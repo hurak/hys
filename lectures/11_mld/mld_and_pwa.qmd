@@ -18,9 +18,9 @@ We have just learnt how the logical conditions that encode the individual compon
 
 $$\boxed{
 \begin{aligned}
-\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta \bm \delta(k) + \mathbf B_z\bm z(k) + \mathbf B_0,\\
-\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta \bm \delta(k) + \mathbf D_z(k) \bm z + \mathbf D_0,\\
-\mathbf E_\delta \bm \delta &+ \mathbf E_z \bm z(k) \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+{\color{blue}\bm x(k+1)} &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta {\color{blue}\bm \delta(k)} + \mathbf B_z{\color{blue}\bm z(k)} + \mathbf B_0,\\
+{\color{blue}\bm y(k)} &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta {\color{blue}\bm \delta(k)} + \mathbf D_z {\color{blue}\bm z(k) }+ \mathbf D_0,\\
+\mathbf E_\delta {\color{blue}\bm \delta(k)} &+ \mathbf E_z {\color{blue}\bm z(k)} \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
 \end{aligned}}
 $${#eq-mld}
 where
@@ -29,7 +29,22 @@ $$
 $$
 which reads that the state and control input vectors are composed of the continuous (real) and binary variables.
 
-The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxilliary variebles (plus an offset). The auxilliary variables are not completely arbitrary – they must comply with the third (set of) equation(s).
+The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxiliary variables (plus an offset). The auxiliary variables are not completely arbitrary – they must comply with the third (set of) equation(s). We highlight all the unknown variables at time step $k$ in blue color.
+
+::: {.callout-note}
+## Note on the "nonsymmetry" in the format
+Admittedly, our grouping of both the continuous-valued and binary-valued state variables into a single state vector, and similarly for the input and output vectors, while still keeping the auxiliary continuous-value and binary-valued variables separate, is somewhat "nonsymmetric". Indeed, we could perhaps group the continuous-value and binary auxiliary variables into a single vector as well:
+$$\bm w(k) = \begin{bmatrix}\bm z(k) \\ \bm \delta(k) \end{bmatrix},$$
+which will give us the alternative MLD format
+$$
+\begin{aligned}
+\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_w {\color{blue}\bm w(k)} + \mathbf B_0,\\
+\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_w {\color{blue}\bm w(k) }+ \mathbf D_0,\\
+\mathbf E_w {\color{blue}\bm w(k)} &\leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+\end{aligned}
+$$
+but we decided to stick to the format supported by the main references on MLD systems.
+:::
 
 ## Uniqueness of the state and output responses predicted by MLD models
 
@@ -221,7 +236,7 @@ To comply with the notation of this framework, we composed the state vector of t
 $$
 \bm x(k) = \begin{bmatrix} x(k)\\ q(k)\end{bmatrix}, 
 $$
-and in what follows we are going to refer to the real and binary state vaiables as $x_\mathrm{c}(k)$ and $x_\mathrm{b}(k)$, respectively.
+and in what follows we are going to refer to the real and binary state variables as $x_\mathrm{c}(k)$ and $x_\mathrm{b}(k)$, respectively.
 
 The auxilliary binary variable (actually variables, one for each time) $\delta_1(k)$, is introduced to encode the switching condition (the EG component of the discrete hybrid automaton):
 $$
