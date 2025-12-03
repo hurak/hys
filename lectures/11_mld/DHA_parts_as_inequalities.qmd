@@ -20,17 +20,17 @@ In this section, we use the general results from the previous section to show ho
 
 For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable $x_\mathrm{d}$ in binary. As a matter of fact, vector  variables are needed here 
 $$
-x_b \in \{0,1\}^{n_b}.
+\bm x_b \in \{0,1\}^{n_b}.
 $$
 
 Similarly the discrete inputs
 $$
-u_b \in \{0,1\}^{m_b}.
+\bm u_b \in \{0,1\}^{m_b}.
 $$
 
 The logic state equation then
 $$
-x_b(k+1) = f_b(x_b(k),u_b(k),\delta_e(k)).
+\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)).
 $$
 
 ::: {#exm-fsm-example}
@@ -52,7 +52,7 @@ $$
 
 Binary encoding of the discrete states
 $$
-\text{Red}: x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: x_b = \begin{bmatrix}1\\0 \end{bmatrix}
+\text{Red}: \bm x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: \bm x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: \bm x_b = \begin{bmatrix}1\\0 \end{bmatrix}
 $$
 
 Reformulating the state update equations for binary variables

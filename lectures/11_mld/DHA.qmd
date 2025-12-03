@@ -33,13 +33,11 @@ $$
 \end{aligned}
 $$
 
-Is it possible? 
-
-Unfortunately no. At least not exactly in this form. But something close to it is achievable instead. 
+Is it possible? Unfortunately no. At least not exactly in this form. But something close to it is achievable instead. 
 
 But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.
 
-## Discrete hybrid automaton
+## Discrete(-time) hybrid automaton
 
 Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.
 
@@ -55,9 +53,9 @@ We are already well familiar with the concept of a hybrid automaton, and the res
 - event generator (EG),
 - finite state machine (FSM).
 
-Their interconnection is shown in the following figure.
+Their interconnection is shown in @fig-dha.
 
-[TBD] #TODO: Add a figure
+![Discrete-time hybrid automaton](figures/dha.png){#fig-dha width=90%}
 
 Let's discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, ...).
 
@@ -66,8 +64,8 @@ Let's discuss the individual components (and while doing that, you can think abo
 This is a model of the continuous-value dynamics parameterized by the index $i$ that evolves in (discrete) time 
 $$
 \begin{aligned}
-x_\mathrm{c}(k+1) &= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)},\\
-y_\mathrm{c}(k) &= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}.
+\bm x_\mathrm{c}(k+1) &= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)},\\
+\bm y_\mathrm{c}(k) &= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}.
 \end{aligned}
 $$
 
@@ -77,22 +75,22 @@ In principle there is no need to restrict the right hand sides to affine functio
 
 We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the $i$th region of the state-input space, if the continuous-value state $x_\mathrm{c}(k)$ and the continuous-value control input $u_\mathrm{c}$ satisfy
 $$
-H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0.
+\mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0.
 $$
 
-The event indicated by the (vector) binary variable
+The event indicated by the vector binary variable (through so-called one-hot encoding)
 $$
-\delta_e(k) = h(x_\mathrm{c}(k), u_\mathrm{c}(k)) \in \{0,1\}^m, 
+\bm \delta_e(k) = \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) \in \{0,1\}^{n_e}, 
 $$
 where
 $$
-h_i(x_\mathrm{c}(k), u_\mathrm{c}(k)) = \begin{cases}1 & H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0,\\ 0 & \text{otherwise}. \end{cases}
+h_i(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) = \begin{cases}1 & \mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0,\\ 0 & \text{otherwise}. \end{cases}
 $$
 
 ### Finite state machine (FSM)
 
 $$
-x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
+\bm x_\mathrm{d}(k+1) = \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
 $$
 
 ### Mode selector (MS)
@@ -102,19 +100,19 @@ i(k) \in \{1, 2, \ldots, s\}
 $$
 
 $$
-i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
+i(k) = \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k)).
 $$
 
 
 ## Trajectory of a DHA
 $$
 \begin{aligned}
-\delta_e(k) &= h(x_\mathrm{c}(k), u_\mathrm{c}(k))\\
-i(k) &= \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
-y_\mathrm{c}(k) &= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}\\
-y_\mathrm{d}(k) &= g_\mathrm{d}(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
-x_\mathrm{c}(k+1) &= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)}\\
-x_\mathrm{d}(k+1) &= f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k))
+\bm \delta_e(k) &= \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k))\\
+i(k) &= \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm y_\mathrm{c}(k) &= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}\\
+\bm y_\mathrm{d}(k) &= \mathbf g_\mathrm{d}(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm x_\mathrm{c}(k+1) &= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)}\\
+\bm x_\mathrm{d}(k+1) &= \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
 \end{aligned}
 $$
 
