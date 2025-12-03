@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Types of solutions – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../7_solution/references.html" rel="next">
+<link href="../7_solution/concepts.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/types.html">Types of solutions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -491,7 +456,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link">
+  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#examples-of-types-of-solutions" id="toc-examples-of-types-of-solutions" class="nav-link active" data-scroll-target="#examples-of-types-of-solutions">Examples of types of solutions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/types.html">Types of solutions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Types of solutions</h1>
 </div>
 
 
@@ -845,47 +809,133 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2025). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
-</section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
-\begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
-\end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
+<p>Now that we know, what a hybrid arc (trajectory) needs to satisfy to be a solution of a hybrid system, we can classify the solutions into several types. And we base this classification on their hybrid time domain <span class="math inline">E</span>:</p>
+<dl>
+<dt>Trivial</dt>
+<dd>
+just one point.
+</dd>
+<dt>Nontrivial</dt>
+<dd>
+at least two points;
+</dd>
+<dt>Complete</dt>
+<dd>
+if the domain is unbounded;
+</dd>
+<dt>Bounded, compact</dt>
+<dd>
+if the domain is bounded, compact (well, it is perhaps a bit awkward to call a solution bounded just based on boundednes of its time domain as most people would interpret the boundedness of a solution with regard to the values of the solution);
+</dd>
+<dt>Discrete</dt>
+<dd>
+if nontrivial and <span class="math inline">E\subset \{0\} \times \mathbb N</span>;
+</dd>
+<dt>Continuous</dt>
+<dd>
+if nontrivial and <span class="math inline">E\subset \mathbb R_{\geq 0} \times \{0\}</span>;
+</dd>
+<dt>Eventually discrete</dt>
+<dd>
+if <span class="math inline">T = \sup_E t &lt; \infty</span> and <span class="math inline">E \cap (\{T\}\times \mathbb N)</span> contains at least two points;
+</dd>
+<dt>Eventually continuous</dt>
+<dd>
+if <span class="math inline">J = \sup_E j &lt; \infty</span> and <span class="math inline">E \cap (\mathbb R_{\geq 0} \times \{J\})</span> contains at least two points;
+</dd>
+<dt>Zeno</dt>
+<dd>
+if complete and <span class="math inline">\sup_E t &lt; \infty</span>;
+</dd>
+<dt>Maximal</dt>
+<dd>
+It cannot be extended. A solution <span class="math inline">x(t,j)</span> defined on the hybrid time domain <span class="math inline">E</span> is maximal, if on an extended hybrid time domain <span class="math inline">E^\mathrm{ext}</span> such that <span class="math inline">E\subset E^\mathrm{ext}</span>, there is no solution <span class="math inline">x^\mathrm{ext}(t,j)</span> that coincides with <span class="math inline">x</span> on <span class="math inline">E</span>. Some literature uses the “linguistic” terminology that a maximal solution is not a prefix to any other solution. Complete solutions are maximal. But not vice versa.
+</dd>
+</dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is certainly helpful to sketch the times domains for the individual classes of solutions.</p>
+</div>
+</div>
+<section id="examples-of-types-of-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-types-of-solutions">Examples of types of solutions</h2>
+<div id="exm-maximal-solution" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Example of a (non-)maximal solution)</strong></span> <span class="math display">
+\dot x = 1, \; x(0) = 1
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
+<p><span class="math display">
+(t,j) \in [0,1] \times \{0\}
+</span></p>
+<p>Now extend the time domain to <span class="math display">
+(t,j) \in [0,2] \times \{0\}.
+</span></p>
+<p>Can we extend the solution?</p>
+</div>
+<div id="exm-maximal-but-not-complete" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Maximal but not complete continuous solution)</strong></span> Finite escape time</p>
+<p><span class="math display">\dot x = x^2, \; x(0) = 1,</span></p>
+<p><span class="math display">x(t) = 1/(1-t)</span></p>
+</div>
+<div id="exm-maximal-but-not-complete-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Discontinuous right hand side)</strong></span> <span class="math display">\dot x = \begin{cases}-1 &amp; x&gt;0\\ 1 &amp; x\leq 0\end{cases}, \quad x(0) = -1</span> (unless the concept of Filippov solution is invoked).</p>
+</div>
+<div id="exm-zeno-solution-bouncing-ball" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Zeno solution of the bouncing ball)</strong></span> Starting on the ground with some initial upward velocity <span class="math display">
+h(t) = \underbrace{h(0)}_0 + v(0)t - \frac{1}{2}gt^2, \quad v(0)=1
+</span></p>
+<p>What time will it hit the ground again? <span class="math display">
+0 = t - \frac{1}{2}gt^2 = t(1-\frac{1}{2}gt)
+</span></p>
+<p><span class="math display">t_1=\frac{2}{g}</span></p>
+<p>Simplify (scale) the computations just to get the qualitative picture: set <span class="math inline">g=2</span>, which gives <span class="math inline">t_1 = 1</span>.</p>
+<p><span class="math inline">t_1=1</span>:</p>
+<p><span class="math display">v(t_1^+) = \gamma v(t_1) = \gamma v(0) = \gamma</span></p>
+<p>The next hit will be at <span class="math inline">t_1 + \tau_1</span> <span class="math display">h(t_1 + \tau_1) = 0 = \gamma \tau_1 - \tau_1^2 = \tau_1(\gamma - \tau_1)</span> <span class="math display">\tau_1 = \gamma</span></p>
+<p><span class="math inline">t_2 = t_1+\tau_1 = 1 + \gamma:\quad \ldots</span></p>
+<p><span class="math inline">t_k = 1 + \gamma + \gamma^2 + \ldots + \gamma^k:\quad \ldots</span> <span class="math display">\boxed{\lim_{k\rightarrow \infty} t_k = \frac{1}{1-\gamma} &lt; \infty}</span></p>
+<p>Infinite number of jumps in a finite time!</p>
+</div>
+<div id="exm-water-tank" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Water tank)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/water_tank.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Switching between two water tanks</figcaption>
+</figure>
+</div>
+<p><span class="math display">
+\max \{Q_\mathrm{out,1}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,1} + Q_\mathrm{out,2}
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Hybrid automaton for switching between two water tanks</figcaption>
+</figure>
 </div>
 </div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+<div id="exm-nonblocking-nondeterministic" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 ((Non)blocking and (non)determinism in hybrid systemtems)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/blocking_and_nondeterminism.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example of an automaton exhibitting (non)blocking and (non)determinism</figcaption>
+</figure>
+</div>
+<ul>
+<li><span class="math inline">x(0) = -3</span></li>
+<li><span class="math inline">x(0) = -2</span></li>
+<li><span class="math inline">x(0) = -1</span></li>
+<li><span class="math inline">x(0) = 0</span></li>
+</ul>
+</div>
 
 
 </section>
@@ -1293,12 +1343,12 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../7_solution/concepts.html" class="pagination-link" aria-label="Solution concepts">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Solution concepts</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
+      <a href="../7_solution/references.html" class="pagination-link" aria-label="Literature">
         <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

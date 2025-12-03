@@ -823,20 +823,20 @@ window.Quarto = {
 <section id="finite-state-machine-fsm-using-binary-variables" class="level2">
 <h2 class="anchored" data-anchor-id="finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</h2>
 <p>For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable <span class="math inline">x_\mathrm{d}</span> in binary. As a matter of fact, vector variables are needed here <span class="math display">
-x_b \in \{0,1\}^{n_b}.
+\bm x_b \in \{0,1\}^{n_b}.
 </span></p>
 <p>Similarly the discrete inputs <span class="math display">
-u_b \in \{0,1\}^{m_b}.
+\bm u_b \in \{0,1\}^{m_b}.
 </span></p>
 <p>The logic state equation then <span class="math display">
-x_b(k+1) = f_b(x_b(k),u_b(k),\delta_e(k)).
+\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)).
 </span></p>
 <div id="exm-fsm-example" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Example)</strong></span> &nbsp;</p>
 <div id="fig-fsm-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:70.0%">
+<img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Example of a FSM
@@ -854,7 +854,7 @@ x_d(k+1) =
 \end{aligned}
 </span></p>
 <p>Binary encoding of the discrete states <span class="math display">
-\text{Red}: x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: x_b = \begin{bmatrix}1\\0 \end{bmatrix}
+\text{Red}: \bm x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: \bm x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: \bm x_b = \begin{bmatrix}1\\0 \end{bmatrix}
 </span></p>
 <p>Reformulating the state update equations for binary variables <span class="math display">
 \begin{aligned}
@@ -922,7 +922,7 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 </span></p>
 <p>It can be equivalently expressed as the product <span class="math display">
 z = \delta\,f(x,u),
-</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written (finally using <strong>?@eq-product-assignment</strong>) as <span class="math display">
+</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written (finally using the equivalence for the <a href="../11_mld/logic_vs_inequalities.html#assignment-product">assignment</a>) as <span class="math display">
 \begin{aligned}
 z &amp;\leq M\delta,\\
 - z &amp;\leq -m\delta,\\

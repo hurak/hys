@@ -784,7 +784,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#why-yet-another-framework-for-hybrid-systems" id="toc-why-yet-another-framework-for-hybrid-systems" class="nav-link active" data-scroll-target="#why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</a></li>
-  <li><a href="#discrete-hybrid-automaton" id="toc-discrete-hybrid-automaton" class="nav-link" data-scroll-target="#discrete-hybrid-automaton">Discrete hybrid automaton</a>
+  <li><a href="#discrete-time-hybrid-automaton" id="toc-discrete-time-hybrid-automaton" class="nav-link" data-scroll-target="#discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</a>
   <ul class="collapse">
   <li><a href="#switched-affine-systems-sas" id="toc-switched-affine-systems-sas" class="nav-link" data-scroll-target="#switched-affine-systems-sas">Switched affine systems (SAS)</a></li>
   <li><a href="#event-generator-eg" id="toc-event-generator-eg" class="nav-link" data-scroll-target="#event-generator-eg">Event generator (EG)</a></li>
@@ -830,12 +830,11 @@ window.Quarto = {
 \begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
 \end{aligned}
 </span></p>
-<p>Is it possible?</p>
-<p>Unfortunately no. At least not exactly in this form. But something close to it is achievable instead.</p>
+<p>Is it possible? Unfortunately no. At least not exactly in this form. But something close to it is achievable instead.</p>
 <p>But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.</p>
 </section>
-<section id="discrete-hybrid-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="discrete-hybrid-automaton">Discrete hybrid automaton</h2>
+<section id="discrete-time-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</h2>
 <p>Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.</p>
 <p>In particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that</p>
 <ul>
@@ -849,15 +848,24 @@ window.Quarto = {
 <li>event generator (EG),</li>
 <li>finite state machine (FSM).</li>
 </ul>
-<p>Their interconnection is shown in the following figure.</p>
-<p>[TBD] #TODO: Add a figure</p>
+<p>Their interconnection is shown in <a href="#fig-dha" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-dha" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dha.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Discrete-time hybrid automaton
+</figcaption>
+</figure>
+</div>
 <p>Let’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).</p>
 <section id="switched-affine-systems-sas" class="level3">
 <h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
 <p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
 \begin{aligned}
-x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)},\\
-y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}.
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)},\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}.
 \end{aligned}
 </span></p>
 <p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
@@ -865,18 +873,18 @@ y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{
 <section id="event-generator-eg" class="level3">
 <h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
 <p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_\mathrm{c}(k)</span> and the continuous-value control input <span class="math inline">u_\mathrm{c}</span> satisfy <span class="math display">
-H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0.
+\mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0.
 </span></p>
-<p>The event indicated by the (vector) binary variable <span class="math display">
-\delta_e(k) = h(x_\mathrm{c}(k), u_\mathrm{c}(k)) \in \{0,1\}^m,
+<p>The event indicated by the vector binary variable (through so-called one-hot encoding) <span class="math display">
+\bm \delta_e(k) = \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) \in \{0,1\}^{n_e},
 </span> where <span class="math display">
-h_i(x_\mathrm{c}(k), u_\mathrm{c}(k)) = \begin{cases}1 &amp; H_i x_\mathrm{c}(k) + J_i u_\mathrm{c}(k) + K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
+h_i(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) = \begin{cases}1 &amp; \mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
 </span></p>
 </section>
 <section id="finite-state-machine-fsm" class="level3">
 <h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
 <p><span class="math display">
-x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
+\bm x_\mathrm{d}(k+1) = \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
 </span></p>
 </section>
 <section id="mode-selector-ms" class="level3">
@@ -885,7 +893,7 @@ x_\mathrm{d}(k+1) = f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k)).
 i(k) \in \{1, 2, \ldots, s\}
 </span></p>
 <p><span class="math display">
-i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
+i(k) = \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k)).
 </span></p>
 </section>
 </section>
@@ -893,12 +901,12 @@ i(k) = \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k)).
 <h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
 <p><span class="math display">
 \begin{aligned}
-\delta_e(k) &amp;= h(x_\mathrm{c}(k), u_\mathrm{c}(k))\\
-i(k) &amp;= \mu(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
-y_\mathrm{c}(k) &amp;= C_{i(k)} x_\mathrm{c}(k) + D_{i(k)} u_\mathrm{c}(k) + g_{i(k)}\\
-y_\mathrm{d}(k) &amp;= g_\mathrm{d}(x_\mathrm{d}(k), u_\mathrm{d}(k), \delta_e(k))\\
-x_\mathrm{c}(k+1) &amp;= A_{i(k)} x_\mathrm{c}(k) + B_{i(k)} u_\mathrm{c}(k) + f_{i(k)}\\
-x_\mathrm{d}(k+1) &amp;= f_\mathrm{d}(x_\mathrm{d}(k),u_\mathrm{d}(k),\delta_e(k))
+\bm \delta_e(k) &amp;= \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k))\\
+i(k) &amp;= \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}\\
+\bm y_\mathrm{d}(k) &amp;= \mathbf g_\mathrm{d}(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)}\\
+\bm x_\mathrm{d}(k+1) &amp;= \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
 \end{aligned}
 </span></p>
 <p>Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?</p>

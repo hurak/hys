@@ -2288,10 +2288,10 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [2, 4, 4, 4]
-output(dtr) = [0, 1, 0, 0]
-(update!(dtr), output(dtr)) = ([2, 2, 4, 4], [0, 0, 1, 0])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 4], [0, 0, 0, 1])
+<pre><code>x_initial = rand(0:k, n) = [2, 0, 4, 0]
+output(dtr) = [0, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([2, 2, 0, 4], [0, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([2, 2, 2, 0], [0, 0, 0, 1])
 (update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])
 (update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])
 (update!(dtr), output(dtr)) = ([3, 3, 2, 2], [0, 0, 1, 0])</code></pre>

@@ -1011,10 +1011,10 @@ Figure&nbsp;4: Solution trajectory for a discontinuous system obtained by the fo
 {\color{blue} x_{2,k+1}} &amp;= x_{2,k} + h (-2\operatorname{sign} {\color{blue}x_{1,k+1}} - \operatorname{sign} {\color{blue}x_{2,k+1}}).
 \end{aligned}
 </span></p>
-<p>The discontinuities on the right-hand sides constitute a challenge for solvers of nonlinear equations – recall that the Newton’s method requires the first derivatives (assembled into the Jacobian) or their approximation. Instead of this struggle, we can use the <em>mixed complementarity problem</em> (MCP) formulation.</p>
+<p>The discontinuities on the right-hand sides constitute a challenge for solvers of nonlinear equations – recall that the Newton’s method requires the first derivatives (assembled into the Jacobian) or their approximation. Instead of this struggle, we can use the <em>linear complementarity problem</em> (LCP) formulation.</p>
 </section>
-<section id="formulation-of-the-backward-euler-as-mixed-complementarity-problem-mcp" class="level4">
-<h4 class="anchored" data-anchor-id="formulation-of-the-backward-euler-as-mixed-complementarity-problem-mcp">Formulation of the backward Euler as Mixed Complementarity Problem (MCP)</h4>
+<section id="formulation-of-the-backward-euler-using-lcp" class="level4">
+<h4 class="anchored" data-anchor-id="formulation-of-the-backward-euler-using-lcp">Formulation of the backward Euler using LCP</h4>
 <p>Instead solving the above nonlinear equations with discontinuities, we introduce new variables <span class="math inline">u_1</span> and <span class="math inline">u_2</span> as the outputs of the <span class="math inline">\operatorname{sign}</span> functions: <span class="math display">
 \begin{aligned}
 {\color{blue} x_{1,k+1}} &amp;= x_{1,k} + h (-{\color{blue}u_{1}} + 2 {\color{blue}u_{2}})\\
@@ -1688,7 +1688,7 @@ Important
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

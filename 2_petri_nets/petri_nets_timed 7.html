@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Software – B(E)3M35HYS – Hybrid systems</title>
+<title>Timed Petri nets – B(E)3M35HYS – Hybrid systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -65,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/references.html" rel="next">
-<link href="../11_mld/mld_and_pwa.html" rel="prev">
+<link href="../2_petri_nets/software.html" rel="next">
+<link href="../2_petri_nets/petri_nets.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -162,7 +127,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -292,7 +257,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Timed Petri nets</span></a>
   </div>
 </li>
@@ -673,7 +638,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -818,17 +783,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#hysdel" id="toc-hysdel" class="nav-link active" data-scroll-target="#hysdel">HYSDEL</a></li>
-  <li><a href="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" id="toc-support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="nav-link" data-scroll-target="#support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</a></li>
+  <li><a href="#delays-associated-with-transitions" id="toc-delays-associated-with-transitions" class="nav-link active" data-scroll-target="#delays-associated-with-transitions">Delays associated with transitions</a>
+  <ul class="collapse">
+  <li><a href="#places-can-also-be-delayed" id="toc-places-can-also-be-delayed" class="nav-link" data-scroll-target="#places-can-also-be-delayed">Places can also be delayed</a></li>
+  </ul></li>
+  <li><a href="#timed-petri-net-dynamics" id="toc-timed-petri-net-dynamics" class="nav-link" data-scroll-target="#timed-petri-net-dynamics">Timed Petri net dynamics</a></li>
+  <li><a href="#queueing-system-using-tpn" id="toc-queueing-system-using-tpn" class="nav-link" data-scroll-target="#queueing-system-using-tpn">Queueing system using TPN</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+  <li><a href="#stochastic-petri-nets-spn" id="toc-stochastic-petri-nets-spn" class="nav-link" data-scroll-target="#stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Software</h1>
+<h1 class="title">Timed Petri nets</h1>
 </div>
 
 
@@ -845,49 +818,207 @@ window.Quarto = {
 </header>
 
 
-<section id="hysdel" class="level2">
-<h2 class="anchored" data-anchor-id="hysdel">HYSDEL</h2>
-<p>The concepts and procedures introduced in this lecture are straightforward but rather tedious to implement (just think of writing down all these transition rules for the finite state machine using binary variables). The authors of the MLD framework also developed a modelling language HYSDEL for entering a discrete hybrid automaton and subsequently converting it to the MLD description. Several links on the internet and in publications refer to the page <a href="https://control.ee.ethz.ch/~hybrid/hysdel">https://control.ee.ethz.ch/~hybrid/hysdel</a>, which is no longer available (as of December 2025). However, implementation of the HYSDEL parser/compiler is shipped together with <a href="https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/">Hybrid Toolbox</a> created by the Alberto Bemporad, one of original HYSDEL authors.</p>
-<p>Alternatively, <a href="https://www.mpt3.org/">Multiparametric Toolbox 3</a> is a general framework for control-oriented modeling, simulation and optimization, which also contains HYSDEL among the dependencies.</p>
-<p>A <a href="https://www.uiam.sk/~kvasnica/hysdel3/">new(er) version 3 of HYSDEL</a> has been developed by Michal Kvasnica, but both Hybrid Toolbox and Multiparametric Toolbox are still based on HYSDEL 2.</p>
+<p>Recall that when introducing <em>enabled transitions</em>, we emphasized that these can but do not have to fire immediately after having been enabled <span class="math display">\boxed{\mathrm{ENABLING} \neq \text{FIRING}.}</span></p>
+<section id="delays-associated-with-transitions" class="level2">
+<h2 class="anchored" data-anchor-id="delays-associated-with-transitions">Delays associated with transitions</h2>
+<p>Well then, the enabled transitions do not have to fire <em>immediately</em>, but they can possibly fire with some <em>delay</em> after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn’t it?</p>
+<p>For the <span class="math inline">j</span>th transition, the delay of the <span class="math inline">k</span>th firing is <span class="math inline">v_{j,k}</span>, and we collect the sequence of delayes into <span class="math display">v_j = \{v_{j,1}, v_{j,2}, \ldots \}.</span></p>
+<p>But not all transitions have to be timed. Denote the timed transitions <span class="math inline">\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}</span>. We define the <em>clock structure</em> for a PN as <span class="math display">\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.</span></p>
+<p>The definition of a <em>timed Petri net</em> (TPN) is then obtained by augmenting the definition of a Petri net with the clock structure</p>
+<p><span class="math display">\boxed{TPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w, x, \mathcal{V}\}}.</span></p>
+<div id="exm-timed-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Timed Petri net)</strong></span> Model of processing multiple tasks: task 1 and task 2 are processed sequentially, and task 3 is processed in parallel with them; task 4 can only be processed after both tasks 2 and 3 have been finished. Finishing individual tasks corresponds to the individual transitions. The transition 4 is untimed, it only expresses the logical requirement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/timed_petri_net_for_multiple_tasks.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example of a timed Petri net</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Rectangles instead of bars
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes instead of a bar, the untimed transitions are modelled using similarly thin rectangles as the timed transitions, but filled.</p>
+</div>
+</div>
+<section id="places-can-also-be-delayed" class="level3">
+<h3 class="anchored" data-anchor-id="places-can-also-be-delayed">Places can also be delayed</h3>
+<p>With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places. And yet in some other literature delays are <em>only</em> associated with places. Such delays associated with places are called <em>holding time</em> for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Delays associated with transitions and places
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tells the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.</p>
+</div>
+</div>
 </section>
-<section id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers" class="level2">
-<h2 class="anchored" data-anchor-id="support-for-indicator-constraints-in-optimization-modelling-languages-and-optimization-solvers">Support for indicator constraints in optimization modelling languages and optimization solvers</h2>
-<p>The key trick for the MLD framework was that of reformulating the <em>indicator constraint</em> <span class="math display">
-[\delta = 1] \leftrightarrow [f(\bm x) \leq 0]
-</span> using the <em>Big-M method</em> as two inequalities <span class="math display">
-\begin{aligned}
-f(\bm x) &amp;\leq (1-\delta) M,\\
-f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
-\end{aligned}
-</span> using a sufficiently large constant <span class="math inline">M</span> and a sufficiently small constant <span class="math inline">m</span>. But some solvers for mixed integer programming/optimization support the indicator constraints directly, without the need to come up with <span class="math inline">M</span> and <span class="math inline">m</span>. As a matter of fact, the support is only provided for one of the two implications, namely <span class="math display">
-[\delta = 1] \rightarrow [f(\bm x) \leq 0].
+</section>
+<section id="timed-petri-net-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="timed-petri-net-dynamics">Timed Petri net dynamics</h2>
+<p>With the introduction of time into the Petri nets, we can now study the dynamics of the system. For general Petri nets, alhough perfectly doable, it may quicly become too complex, and therefore here we only consider <em>event graphs</em>.</p>
+<p>Some notation:</p>
+<ul>
+<li><span class="math inline">\{\tau_{j,1}, \tau_{j,2}, \ldots\}</span> are the firing times of the <span class="math inline">j</span>th transition,</li>
+<li><span class="math inline">\{\pi_{i,1},\pi_{i,2},\ldots\}</span> are the times when the <span class="math inline">i</span>th place receives a token,</li>
+<li><span class="math inline">x_i = x(p_i)</span> is the number of tokens at the <span class="math inline">i</span>th place,</li>
+<li><span class="math inline">x_{i,k} = \left.x(p_i)\right|_k</span>, is the number of tokens at the <span class="math inline">i</span>th place after the <span class="math inline">k</span>th firing.</li>
+</ul>
+<p>Now, assume first that <span class="math inline">x_{i,0} = 0</span>. We can then relate the time of the arrival of the token to the place with the firing of the transition from which the token arrives <span class="math display">\pi_{i,k} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j).</span></p>
+<p>But generally <span class="math inline">x_{i,0} \neq 0</span> and the above relation needs to be modified to <span class="math display">\pi_{i,k+x_{i,0}} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j),</span> or, equivalently <span id="eq-pi-tau"><span class="math display">\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).} \tag{1}</span></span></p>
+<p>This can be read in the following way. If there are initially, say, 3 tokens in the place, the time of the arrival of the 4th token is the time of the first firing of the transition from which the 4th token arrives.</p>
+<p>Good. Keep this result in mind. Now we go for another.</p>
+<p>For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place <span class="math display">
+\tau_{j,k} = \pi_{i,k}.
 </span></p>
-<p>Gurobi does provide such <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/modeling/constraints.html#simple-constraints">support for indicator constraints</a>, the increasingly popular free&amp;open-source <a href="https://highs.dev">HiGHS</a> does not, …</p>
-<p>The key idea behind such support is that mixed integer programming solvers can allow inserting (activating) a linear constraint based on the value of a given binary variable.</p>
-<p>When it comes to “modelling” the optimization problems, in Julia’s <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Indicator-constraints">JuMP package, indicators constraint</a> can be written as follows</p>
-<div id="2" class="cell" data-execution_count="1">
-<details open="" class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">JuMP</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> <span class="fu">Model</span>();</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, x)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, y)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="pp">@variable</span>(model, δ, Bin)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="pp">@constraint</span>(model, δ <span class="op">--&gt;</span> {x <span class="op">+</span> y <span class="op">&lt;=</span> <span class="fl">1</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>δ --&gt; {x + y ≤ 1}</code></pre>
+<p>Modifying this result for a timed transition with a single input place we get <span class="math display">
+\tau_{j,k} = \pi_{i,k} + v_{j,k}.
+</span></p>
+<p>In words, the firing time is given by the time of the arrival of the token to the place, which enables the transition, and the delay associated with the transition.</p>
+<p>Finally, we extend this result to the case of a timed transition with multiple input places <span id="eq-tau-pi"><span class="math display">\boxed{
+\tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.}
+\tag{2}</span></span></p>
+<p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> handy, they will be needed in what is coming.</p>
+<div id="exm-timed-Petri-net-dynamics" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-timed-petri-net-dynamics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_dynamics.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a Petri net for which the dynamics is analyzed
+</figcaption>
+</figure>
+</div>
+<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\pi_{1,k},\pi_{3,k}\}\\
+\tau_{2,k} &amp;= \pi_{2,k}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
+\begin{aligned}
+\pi_{1,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
+\pi_{2,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{2,0} = 0\\
+\pi_{3,k} &amp;= \tau_{2,k}, \qquad k=1,\ldots
+\end{aligned}
+</span></p>
+<p>Substituting from the latter into the former we get <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\tau_{1,k-1},\tau_{1,k-1}+v_{2,k}\}\\
+&amp;= \tau_{1,k-1}+v_{2,k}, \quad \tau_{1,k} = 0\\
+\tau_{2,k} &amp;= \tau_{1,k-1}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>This is the ultimate model for the dynamics of the Petri net. Should we need it, we can also get similar expressions for the times of the arrival of the tokens to the places.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Update equations for times and not states
 </div>
 </div>
-<p>With Python API of Gurobi, the indicator constraints can be added using <a href="https://docs.gurobi.com/projects/optimizer/en/current/reference/python/model.html#Model.addGenConstrIndicator">addGenContstrIndicator</a> function. One possible syntax is</p>
-<pre><code>model.addConstr((delta == 1) &gt;&gt; (x + y - 1.0 &lt;= 0.0))</code></pre>
-<p>The other direction of implication is not supported by optimization solvers. Therefore it has no support in optimization modellers such as JuMP either. In order to handle it, besides resorting to the Big-M method, we can also use the equivalent formulation <span class="math display">
-[\delta = 0] \rightarrow [f(\bm x) \geq \epsilon],
-</span> where some small <span class="math inline">\epsilon \geq 0</span> had to be added to turn the strict inequality into a non-strict one.</p>
-<p>Note, however, that it is not universally recommendable to rely on the support of the mixed integer solver for the indicator constraints. The reason is that sometimes the solvers may decide to reformulate the indicator constraints using the Big-M method by themselves, in which case we have no direct control over the choice of <span class="math inline">M</span>.</p>
+<div class="callout-body-container callout-body">
+<p>While with state equations we compute a sequences of values of the state vector <span class="math inline">(\bm x_0, \bm x_1, \bm x_2, \ldots)</span>, in other words, we compute the evolution of the state in time, here we compute the sequences of times when transitions fire (or token arrive to places). This update scheme for times resembles the state equations, but the interpretation is different.</p>
+</div>
+</div>
+</section>
+<section id="queueing-system-using-tpn" class="level2">
+<h2 class="anchored" data-anchor-id="queueing-system-using-tpn">Queueing system using TPN</h2>
+<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-timed-petri-net-simple-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_simple_queue.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Timed Petri net modelling a queueing system
+</figcaption>
+</figure>
+</div>
+<p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
+c_k &amp;= \pi_{B,k} + v_{c,k}\\
+\pi_{Q,k} &amp;= a_{k},\quad k=1,2,\ldots\\
+\pi_{I,k} &amp;= c_{k-1},\quad k= 2, \ldots, \quad \pi_{I,0}=1\\
+\pi_{B,k} &amp;= s_{k},\quad k=1,2,\ldots\\
+\end{aligned}
+</span></p>
+<p>Combining gives the desired update equations <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{a_{k},c_{k-1}\}\\
+c_k &amp;= s_{k} + v_{c,k}\\
+&amp;= \max\{a_{k},c_{k-1}\} + v_{c,k},\quad k=1,\ldots, \quad c_0=0
+\end{aligned}
+</span></p>
+<p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
+<div id="exm-timed-petri-nets-train" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-trains" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example with three train lines
+</figcaption>
+</figure>
+</div>
+<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig.&nbsp;4</a>.</p>
+<div id="fig-fig-trains-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig.&nbsp;5</a>.</p>
+<div id="fig-trains-petri-net-delayed-places" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net_delayed_places.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="exm-timed-petri-nets-manufacturing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Manufacturing)</strong></span> tbd</p>
+</div>
+</section>
+<section id="extensions" class="level2">
+<h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
+<section id="stochastic-petri-nets-spn" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</h3>
+<p>Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petri nets can be conceived, in which delays are random variables.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1293,13 +1424,13 @@ f(\bm x) &amp;\geq \epsilon + (m-\epsilon)\delta
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span>
+      <a href="../2_petri_nets/petri_nets.html" class="pagination-link" aria-label="Petri nets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Petri nets</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../11_mld/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2_petri_nets/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
