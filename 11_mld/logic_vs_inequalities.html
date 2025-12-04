@@ -798,7 +798,8 @@ window.Quarto = {
   <li><a href="#xor" id="toc-xor" class="nav-link" data-scroll-target="#xor">Xor</a></li>
   <li><a href="#implication" id="toc-implication" class="nav-link" data-scroll-target="#implication">Implication</a></li>
   <li><a href="#equivalence" id="toc-equivalence" class="nav-link" data-scroll-target="#equivalence">Equivalence</a></li>
-  <li><a href="#assignment-product" id="toc-assignment-product" class="nav-link" data-scroll-target="#assignment-product">Assignment (product)</a></li>
+  <li><a href="#assignment-of-conjunction-reified-conjunction" id="toc-assignment-of-conjunction-reified-conjunction" class="nav-link" data-scroll-target="#assignment-of-conjunction-reified-conjunction">Assignment of conjunction (Reified conjunction)</a></li>
+  <li><a href="#assignment-of-disjunction-reified-disjunction" id="toc-assignment-of-disjunction-reified-disjunction" class="nav-link" data-scroll-target="#assignment-of-disjunction-reified-disjunction">Assignment of disjunction (Reified disjunction)</a></li>
   <li><a href="#general-transformation-of-boolean-expressions-to-integer-inequalities" id="toc-general-transformation-of-boolean-expressions-to-integer-inequalities" class="nav-link" data-scroll-target="#general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</a></li>
   </ul></li>
   </ul>
@@ -927,11 +928,11 @@ X_1 \rightarrow X_2 \qquad  &amp;\equiv \qquad \neg X_1 \lor X_2.
 <section id="and-conjunction" class="level3">
 <h3 class="anchored" data-anchor-id="and-conjunction">And (conjunction)</h3>
 <p>We first consider the conjunction of two logical variables <span class="math inline">X_1</span> and <span class="math inline">X_2</span>: <span class="math display">X_1 \land X_2.</span></p>
-<p>Invoking binary variables, we can rewrite this as <span class="math display">[\delta_1=1] \land [\delta_2=1],</span> which ultimately translates to the system of two (trivial) equations <span class="math display">
-\begin{aligned}
+<p>Invoking binary variables, we can rewrite this as <span class="math display">[\delta_1=1] \land [\delta_2=1],</span> which ultimately translates to the system of two (trivial) equations <span class="math display">\boxed
+{\begin{aligned}
 \delta_1&amp;=1,\\
 \delta_2&amp;=1.
-\end{aligned}
+\end{aligned}}
 </span></p>
 <p>Another possibility is <span class="math display">
 \delta_1 + \delta_2 = 2.
@@ -941,54 +942,82 @@ X_1 \rightarrow X_2 \qquad  &amp;\equiv \qquad \neg X_1 \lor X_2.
 <section id="or-disjunction" class="level3">
 <h3 class="anchored" data-anchor-id="or-disjunction">Or (disjunction)</h3>
 <p>Another logical formula is <span class="math display">X_1 \lor X_2, </span> which with binary variables becomes <span class="math display">[\delta_1=1] \lor [\delta_2=1].</span></p>
-<p>It can be equivalently expressed as <span class="math display">\delta_1 + \delta_2\geq 1.</span></p>
+<p>It can be equivalently expressed as <span class="math display">\boxed
+{\delta_1 + \delta_2\geq 1.}
+</span></p>
 </section>
 <section id="negation" class="level3">
 <h3 class="anchored" data-anchor-id="negation">Negation</h3>
-<p>The negation <span class="math display">\neg X_1</span> expressed using a binary variable as in <span class="math display">\neg [\delta_1=1]</span> leads to the equation <span class="math display">\delta_1 = 0.</span></p>
+<p>The negation <span class="math display">\neg X_1</span> expressed using a binary variable as in <span class="math display">\neg [\delta_1=1]</span> leads to the equation <span class="math display">
+\boxed{\delta_1 = 0.}
+</span></p>
 </section>
 <section id="xor" class="level3">
 <h3 class="anchored" data-anchor-id="xor">Xor</h3>
 <p>The exclusive OR <span class="math display">X_1 \oplus X_2,</span></p>
 <p><span class="math display">[\delta_1=1] \oplus [\delta_2=1],</span></p>
-<p>leads to the equation <span class="math display">\delta_1 + \delta_2 = 1.</span></p>
+<p>leads to the equation <span class="math display">\boxed{\delta_1 + \delta_2 = 1.}</span></p>
 </section>
 <section id="implication" class="level3">
 <h3 class="anchored" data-anchor-id="implication">Implication</h3>
 <p>We now consider the implication <span class="math display">X_1 \rightarrow X_2,</span></p>
 <p><span class="math display">[\delta_1=1] \rightarrow [\delta_2=1].</span></p>
-<p>We can take advantage of the equivalent formula <span class="math display">\neg X_1 \lor X_2,</span> which in terms of binary variables is <span class="math display">\neg [\delta_1=1] \lor [\delta_2=1],</span> which can be equivalently expressed as an inequality <span class="math display">(1-\delta_1) + \delta_2\geq 1,</span> which further simplifies to <span class="math display">\delta_1 - \delta_2 \leq 0.</span></p>
+<p>We can take advantage of the equivalent formula <span class="math display">\neg X_1 \lor X_2,</span> which in terms of binary variables is <span class="math display">\neg [\delta_1=1] \lor [\delta_2=1],</span> which can be equivalently expressed as an inequality <span class="math display">(1-\delta_1) + \delta_2\geq 1,</span> which further simplifies to <span class="math display">\boxed{\delta_1 - \delta_2 \leq 0.}</span></p>
 </section>
 <section id="equivalence" class="level3">
 <h3 class="anchored" data-anchor-id="equivalence">Equivalence</h3>
-<p>The equivalence <span class="math display">X_1 \leftrightarrow X_2,</span> <span class="math display">[\delta_1=1] \leftrightarrow [\delta_2=1]</span> can be viewed as a conjunction of two implications, which then gives <span class="math display">\delta_1 - \delta_2 = 0.</span></p>
+<p>The equivalence <span class="math display">X_1 \leftrightarrow X_2,</span> <span class="math display">[\delta_1=1] \leftrightarrow [\delta_2=1]</span> can be viewed as a conjunction of two implications, which then gives <span class="math display">\boxed{\delta_1 - \delta_2 = 0.}</span></p>
 </section>
-<section id="assignment-product" class="level3">
-<h3 class="anchored" data-anchor-id="assignment-product">Assignment (product)</h3>
+<section id="assignment-of-conjunction-reified-conjunction" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-of-conjunction-reified-conjunction">Assignment of conjunction (Reified conjunction)</h3>
 <p>We now investigate the following logical formula <span class="math display">X_3 \leftrightarrow (X_1 \land X_2),</span> which after introducing binary variables becomes <span class="math display">[\delta_3=1] \leftrightarrow ([\delta_1=1] \land [\delta_2=1]).</span></p>
-<p>The motivation as well as the justification of the name(s) will become clear later in this section when we discuss the interplay between logic and continuous variables (the <code>IF-THEN-ELSE</code> case).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Reified constraint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a some optimization literature (in particular, on <em>constrained programming</em>), the term <em>reified constraint</em> refers to the situation in which the result of some logical formula with Boolean variables is “assigned” to another Boolean variable.</p>
+</div>
+</div>
+<!-- One motivation will become clear later in the next section when we discuss the interplay between logic and continuous variables (the `IF-THEN-ELSE` case). -->
 <p>Expressing the equivalence using implications <span class="math display">(X_3 \rightarrow X_1) \land (X_3\rightarrow X_2) \land ((X_1 \land X_2) \rightarrow X_3).</span></p>
-<p>The last of the tree terms connected by the <span class="math inline">\land</span> connective is equivalent to <span class="math display">\neg (X_1 \land X_2) \lor X_3,</span> which can be simplified to <span class="math display">\neg X_1 \lor \neg X_2 \lor X_3,</span> which is represented with binary variables as <span class="math display">\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],</span> which finally leads to the linear inequality <span class="math display">(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1.</span></p>
-<p>After simplification, and bringing in also the inequality formulations for the other two terms, we get <span id="eq-product-assignment"><span class="math display">
-\begin{aligned}
+<p>The last of the tree terms connected by the <span class="math inline">\land</span> connective is equivalent to <span class="math display">\neg (X_1 \land X_2) \lor X_3,</span> which can be rewritten to <span class="math display">\neg X_1 \lor \neg X_2 \lor X_3,</span> which is represented with binary variables as <span class="math display">\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],</span> which finally leads to the linear inequality <span class="math display">(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1.</span></p>
+<p>After simplification, and bringing in also the inequality formulations for the other two terms, we get <span id="eq-reified-conjunction"><span class="math display">\boxed
+{\begin{aligned}
 \delta_1 + \delta_2 - \delta_3 &amp;\leq 1,\\
 -\delta_1 + \delta_3 &amp;\leq 0,\\
 -\delta_2 + \delta_3 &amp;\leq 0.
-\end{aligned}
+\end{aligned}}
 \tag{1}</span></span></p>
+</section>
+<section id="assignment-of-disjunction-reified-disjunction" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-of-disjunction-reified-disjunction">Assignment of disjunction (Reified disjunction)</h3>
+<p>Analogously, we can consider the logical formula <span class="math display">X_3 \leftrightarrow (X_1 \lor X_2),</span> which after introducing binary variables becomes <span class="math display">[\delta_3=1] \leftrightarrow ([\delta_1=1] \lor [\delta_2=1]).</span></p>
+<p>Invoking the same equivalences as before, we get (after a few lines of work that we do not document here) the following system of inequalities: <span id="eq-reified-disjunction"><span class="math display">\boxed
+{\begin{aligned}
+\delta_1 + \delta_2 - \delta_3 &amp;\geq 0,\\
+-\delta_1 + \delta_3 &amp;\geq 0,\\
+-\delta_2 + \delta_3 &amp;\geq 0.
+\end{aligned}}
+\tag{2}</span></span></p>
 </section>
 <section id="general-transformation-of-boolean-expressions-to-integer-inequalities" class="level3">
 <h3 class="anchored" data-anchor-id="general-transformation-of-boolean-expressions-to-integer-inequalities">General transformation of Boolean expressions to integer inequalities</h3>
-<p>While logical formulas can be fairly diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the <em>Conjunctive Normal Form (CNF)</em> <span class="math display">
+<p>While logical formulas can be diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the <em>Conjunctive Normal Form (CNF)</em> <span id="eq-cnf"><span class="math display">
 \bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right].
-</span></p>
-<p>The reason for our preference has already been displayed in <a href="#eq-product-assignment" class="quarto-xref">Eq.&nbsp;1</a> above. Namely, the logical conjunction <span class="math inline">\land</span> translates to the requirement of a simultaneous satisfaction of inequalities or equations as in <span class="math display">
+\tag{3}</span></span></p>
+<p>Namely, the logical conjunction <span class="math inline">\land</span> translates to the requirement of a simultaneous satisfaction of inequalities or equations as in <span id="eq-cnf-inequalities"><span class="math display">
 \begin{aligned}
 \sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &amp;\geq 1,\\
 &amp;\vdots\\
 \sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &amp;\geq 1.
 \end{aligned}
-</span></p>
+\tag{4}</span></span></p>
 
 
 </section>

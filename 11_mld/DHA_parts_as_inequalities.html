@@ -822,28 +822,28 @@ window.Quarto = {
 <p>In this section, we use the general results from the previous section to show how the four components of the discrete hybrid automaton (DHA) can be formulated as linear inequalities and equations.</p>
 <section id="finite-state-machine-fsm-using-binary-variables" class="level2">
 <h2 class="anchored" data-anchor-id="finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</h2>
-<p>For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable <span class="math inline">x_\mathrm{d}</span> in binary. As a matter of fact, vector variables are needed here <span class="math display">
+<p>For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable <span class="math inline">x_\mathrm{d}</span> as binary. Vector variables are then needed <span class="math display">
 \bm x_b \in \{0,1\}^{n_b}.
 </span></p>
-<p>Similarly the discrete inputs <span class="math display">
+<p>Similarly, the discrete-valued inputs are encoded in binary as <span class="math display">
 \bm u_b \in \{0,1\}^{m_b}.
 </span></p>
-<p>The logic state equation then <span class="math display">
-\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)).
-</span></p>
+<p>The state equation encoded in binary is then <span class="math display">
+\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)),
+</span> and our goal in this section is to learn how to formulate this equation as a system of linear inequalities with binary variables.</p>
 <div id="exm-fsm-example" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Example)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 1</strong></span> Consider the automaton in <a href="#fig-fsm-example" class="quarto-xref">Fig.&nbsp;1</a> with three states (Red, Green, Blue) and two binary inputs (<span class="math inline">u_{b1}, u_{b2}</span>).</p>
 <div id="fig-fsm-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Example of a FSM
+Figure&nbsp;1: Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables
 </figcaption>
 </figure>
 </div>
-<p>The state update/transition equation is <span class="math display">
+<p>The state update/transition equation, expressed still with integer (not necessarily binary) variables is <span class="math display">
 \begin{aligned}
 x_d(k+1) =
 \begin{cases}
@@ -853,18 +853,18 @@ x_d(k+1) =
 \end{cases}
 \end{aligned}
 </span></p>
-<p>Binary encoding of the discrete states <span class="math display">
+<p>The three discrete states can be encoded with a binary vector (vector consisting of two binary variables) as <span class="math display">
 \text{Red}: \bm x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: \bm x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: \bm x_b = \begin{bmatrix}1\\0 \end{bmatrix}
 </span></p>
 <p>Reformulating the state update equations for binary variables <span class="math display">
 \begin{aligned}
-x_{b1} &amp;= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
-&amp;\quad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
-&amp;\quad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
-x_{b2} &amp;= \ldots
+[x_{b1} = 1] &amp;\leftrightarrow (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
+&amp;\qquad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
+&amp;\qquad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
+[x_{b2} = 1] &amp;\leftrightarrow \ldots
 \end{aligned}
 </span></p>
-<p>Finally, simplify, convert to CNF.</p>
+<p>While converting these into linear inequalities, the reified conjunctions and reified disjunctions from the previous section will be heavily used.</p>
 </div>
 </section>
 <section id="mixing-logical-and-continuous-through-indicator-variables" class="level2">
@@ -922,14 +922,14 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 </span></p>
 <p>It can be equivalently expressed as the product <span class="math display">
 z = \delta\,f(x,u),
-</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written (finally using the equivalence for the <a href="../11_mld/logic_vs_inequalities.html#assignment-product">assignment</a>) as <span class="math display">
+</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written as <span class="math display">
 \begin{aligned}
 z &amp;\leq M\delta,\\
 - z &amp;\leq -m\delta,\\
 z &amp;\leq f(x,u) - m(1-\delta),\\
--z &amp;\leq -f(x,u) + M(1-\delta).
+-z &amp;\leq -f(x,u) + M(1-\delta),
 \end{aligned}
-</span></p>
+</span> which can be verified in a straightforward manner: if <span class="math inline">\delta=0</span>, then the first two inequalities enforce <span class="math inline">z=0</span>, while the last two inequalities are nonrestrictive due to the presence of large <span class="math inline">M</span> and small <span class="math inline">m</span>; if <span class="math inline">\delta=1</span>, then the last two inequalities enforce <span class="math inline">z=f(x,u)</span>, while the first two inequalities are nonrestrictive due to the presence of large <span class="math inline">M</span> and small <span class="math inline">m</span>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -943,7 +943,7 @@ z &amp;\leq f(x,u) - m(1-\delta),\\
 <p>Beware that the above results are valid only for scalar functions <span class="math inline">f()</span>, even if their arguments are possibly vectors.</p>
 </div>
 </div>
-<p>Particularly useful from a computational viewpoint will be an affine function <span class="math inline">f(x,y) = ax + bu + e</span>. We specialize the above inequalities to this case for later convenience. <span id="eq-if-then-else-1"><span class="math display">\boxed{
+<p>Particularly useful from a computational viewpoint will be an affine function <span class="math inline">f(x,u) = ax + bu + e</span>. We specialize the above inequalities to this case for later convenience. <span id="eq-if-then-else-1"><span class="math display">\boxed{
 \begin{aligned}
 z &amp;\leq M\delta,\\
 - z &amp;\leq -m\delta,\\
@@ -954,7 +954,7 @@ z &amp;\leq ax + bu + e - m(1-\delta),\\
 </section>
 <section id="another-if-then-else-rule" class="level3">
 <h3 class="anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h3>
-<p>Another IF-THEN-ELSE rule (and here we already specialized it to affine functions) can also be useful:</p>
+<p>Another <code>IF-THEN-ELSE</code> rule can also be useful, and here we immediately specialize to the affine case:</p>
 <p><span class="math display">
 \mathrm{if} \; X, \; \mathrm{then} \; z = a_1x + b_1u + e_1, \; \mathrm{else} \; z = a_2x + b_2u + e_2.
 </span></p>
@@ -1013,7 +1013,7 @@ z_i &amp;\leq a_i x + b_i u + f_i - m_i(1-\delta_i),\\
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>With the formalism presented here, vector variables <span class="math inline">\bm z</span> and correspondingly vector right-hand-side functions <span class="math inline">\mathbf f()</span> must be handled but considering their individual scalar components <span class="math inline">z_1, \ldots, z_n</span> and <span class="math inline">f_1(), \ldots, f_n()</span>. Notational care must be exercised, note that the lower index in this remark has different meaning than that in <a href="#eq-switched-affine" class="quarto-xref">Eq.&nbsp;5</a>.</p>
+<p>With the formalism presented here, vector variables <span class="math inline">\bm z</span> and correspondingly vector right-hand-side functions <span class="math inline">\mathbf f()</span> must be handled by considering their individual scalar components <span class="math inline">z_1, \ldots, z_n</span> and <span class="math inline">f_1(), \ldots, f_n()</span>. Notational care must be exercised, note that the lower index in this remark has different meaning than that in <a href="#eq-switched-affine" class="quarto-xref">Eq.&nbsp;5</a>.</p>
 </div>
 </div>
 
