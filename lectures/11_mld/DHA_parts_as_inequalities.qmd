@@ -18,27 +18,28 @@ In this section, we use the general results from the previous section to show ho
 
 ## Finite state machine (FSM) using binary variables
 
-For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable $x_\mathrm{d}$ in binary. As a matter of fact, vector  variables are needed here 
+For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable $x_\mathrm{d}$ as binary. Vector variables are then needed 
 $$
 \bm x_b \in \{0,1\}^{n_b}.
 $$
 
-Similarly the discrete inputs
+Similarly, the discrete-valued inputs are encoded in binary as
 $$
 \bm u_b \in \{0,1\}^{m_b}.
 $$
 
-The logic state equation then
+The state equation encoded in binary is then
 $$
-\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)).
+\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)),
 $$
+and our goal in this section is to learn how to formulate this equation as a system of linear inequalities with binary variables.
 
 ::: {#exm-fsm-example}
-## Example
+Consider the automaton in @fig-fsm-example with three states (Red, Green, Blue) and two binary inputs ($u_{b1}, u_{b2}$). 
 
-![Example of a FSM](figures/fsm_example.png){width=60% #fig-fsm-example} 
+![Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables](figures/fsm_example.png){width=60% #fig-fsm-example} 
 
-The state update/transition equation is
+The state update/transition equation, expressed still with integer (not necessarily binary) variables is
 $$
 \begin{aligned}
 x_d(k+1) = 
@@ -50,7 +51,7 @@ x_d(k+1) =
 \end{aligned}
 $$
 
-Binary encoding of the discrete states
+The three discrete states can be encoded with a binary vector (vector consisting of two binary variables) as
 $$
 \text{Red}: \bm x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: \bm x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: \bm x_b = \begin{bmatrix}1\\0 \end{bmatrix}
 $$
@@ -58,14 +59,14 @@ $$
 Reformulating the state update equations for binary variables
 $$
 \begin{aligned}
-x_{b1} &= (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
-&\quad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
-&\quad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
-x_{b2} &= \ldots
+[x_{b1} = 1] &\leftrightarrow (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
+&\qquad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
+&\qquad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
+[x_{b2} = 1] &\leftrightarrow \ldots
 \end{aligned}
 $$
 
-Finally, simplify, convert to CNF.
+While converting these into linear inequalities, the reified conjunctions and reified disjunctions from the previous section will be heavily used.
 :::
 
 ## Mixing logical and continuous through indicator variables
@@ -144,22 +145,23 @@ It can be equivalently expressed as the product
 $$
 z = \delta\,f(x,u),
 $$
-where $\delta$ is a binary indicator. This, in turn, can be written (finally using the equivalence for the [assignment](logic_vs_inequalities.qmd#assignment-product)) as
+where $\delta$ is a binary indicator. This, in turn, can be written as
 $$
 \begin{aligned}
 z &\leq M\delta,\\
 - z &\leq -m\delta,\\
 z &\leq f(x,u) - m(1-\delta),\\
--z &\leq -f(x,u) + M(1-\delta).
+-z &\leq -f(x,u) + M(1-\delta),
 \end{aligned}
 $$
+which can be verified in a straightforward manner: if $\delta=0$, then the first two inequalities enforce $z=0$, while the last two inequalities are nonrestrictive due to the presence of large $M$ and small $m$; if $\delta=1$, then the last two inequalities enforce $z=f(x,u)$, while the first two inequalities are nonrestrictive due to the presence of large $M$ and small $m$.  
 
 :::{.callout-warning}
 ## Scalar functions only
 Beware that the above results are valid only for scalar functions $f()$, even if their arguments are possibly vectors. 
 :::
 
-Particularly useful from a computational viewpoint will be an affine function $f(x,y) = ax + bu + e$. We specialize the above inequalities to this case for later convenience.
+Particularly useful from a computational viewpoint will be an affine function $f(x,u) = ax + bu + e$. We specialize the above inequalities to this case for later convenience.
 $$\boxed{
 \begin{aligned}
 z &\leq M\delta,\\
@@ -171,7 +173,7 @@ $${#eq-if-then-else-1}
 
 ### Another IF-THEN-ELSE rule
 
-Another IF-THEN-ELSE rule (and here we already specialized it to affine functions) can also be useful:
+Another `IF-THEN-ELSE` rule can also be useful, and here we immediately specialize to the affine case:
 
 $$
 \mathrm{if} \; X, \; \mathrm{then} \; z = a_1x + b_1u + e_1, \; \mathrm{else} \; z = a_2x + b_2u + e_2.
@@ -236,5 +238,5 @@ $${#eq-switched-affine}
 
 :::{.callout-warning}
 ## All these results were derived just for scalar $z$ and $f()$ 
-With the formalism presented here, vector variables $\bm z$ and correspondingly vector right-hand-side functions $\mathbf f()$ must be handled but considering their individual scalar components $z_1, \ldots, z_n$ and $f_1(), \ldots, f_n()$. Notational care must be exercised, note that the lower index in this remark has different meaning than that in @eq-switched-affine.
+With the formalism presented here, vector variables $\bm z$ and correspondingly vector right-hand-side functions $\mathbf f()$ must be handled by considering their individual scalar components $z_1, \ldots, z_n$ and $f_1(), \ldots, f_n()$. Notational care must be exercised, note that the lower index in this remark has different meaning than that in @eq-switched-affine.
 :::

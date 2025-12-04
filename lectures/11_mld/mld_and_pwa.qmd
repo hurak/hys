@@ -18,9 +18,9 @@ We have just learnt how the logical conditions that encode the individual compon
 
 $$\boxed{
 \begin{aligned}
-{\color{blue}\bm x(k+1)} &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta {\color{blue}\bm \delta(k)} + \mathbf B_z{\color{blue}\bm z(k)} + \mathbf B_0,\\
-{\color{blue}\bm y(k)} &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta {\color{blue}\bm \delta(k)} + \mathbf D_z {\color{blue}\bm z(k) }+ \mathbf D_0,\\
-\mathbf E_\delta {\color{blue}\bm \delta(k)} &+ \mathbf E_z {\color{blue}\bm z(k)} \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_\delta \bm \delta(k) + \mathbf B_z \bm z(k) + \mathbf B_0,\\
+\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_\delta \bm \delta(k) + \mathbf D_z \bm z(k) + \mathbf D_0,\\
+\mathbf E_\delta \bm \delta(k) &+ \mathbf E_z \bm z(k) \leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
 \end{aligned}}
 $${#eq-mld}
 where
@@ -29,7 +29,7 @@ $$
 $$
 which reads that the state and control input vectors are composed of the continuous (real) and binary variables.
 
-The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxiliary variables (plus an offset). The auxiliary variables are not completely arbitrary – they must comply with the third (set of) equation(s). We highlight all the unknown variables at time step $k$ in blue color.
+The first two (sets of) equations resemble the state and output equations of a linear time-invariant (LTI) system, but with some additional terms corresponding to auxiliary variables (plus an offset). The auxiliary variables are not completely arbitrary – they must comply with the third (set of) equation(s). 
 
 ::: {.callout-note}
 ## Note on the "nonsymmetry" in the format
@@ -38,9 +38,9 @@ $$\bm w(k) = \begin{bmatrix}\bm z(k) \\ \bm \delta(k) \end{bmatrix},$$
 which will give us the alternative MLD format
 $$
 \begin{aligned}
-\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_w {\color{blue}\bm w(k)} + \mathbf B_0,\\
-\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_w {\color{blue}\bm w(k) }+ \mathbf D_0,\\
-\mathbf E_w {\color{blue}\bm w(k)} &\leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
+\bm x(k+1) &= \mathbf A\bm x(k) + \mathbf B_u \bm u(k) + \mathbf B_w \bm w(k) + \mathbf B_0,\\
+\bm y(k) &= \mathbf C\bm x(k) + \mathbf D_u \bm u(k) + \mathbf D_w \bm w(k) + \mathbf D_0,\\
+\mathbf E_w \bm w(k) &\leq \mathbf E_u \bm u(k) + \mathbf E_x \bm x(k) + \mathbf E_0,  
 \end{aligned}
 $$
 but we decided to stick to the format supported by the main references on MLD systems.
@@ -56,11 +56,11 @@ An immediate question that must pop up in our minds is that of the uniqueness of
 ## Switched linear system
 We consider a discrete-time switched system that switches between two linear systems 
 $$
-x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{0,1\}, 
+x(k+1) = a_i x(k) + b_i u(k), \quad i\in\{1,2\}, 
 $$
-where $i=0$ if $x(k)< 0$ and $i=1$ otherwise. 
+where $i=1$ if $x(k)< 0$ and $i=2$ otherwise. 
 
-The auxilliary binary variable $\delta$ (actually $\delta(k)$, one for each discrete time $k$) is introduced to encode the switching condition:
+The auxiliary binary variable $\delta$ (actually $\delta(k)$, one for each discrete time $k$) is introduced to encode the switching condition:
 $$
 [\delta(k) = 1] \leftrightarrow [-x(k)\leq 0].
 $$
@@ -145,7 +145,7 @@ M = 10.0
 m1 = m2 = m
 M1 = M2 = M
 
-ϵ = 0.001
+ϵ = 1e-8
 
 A  = [0.0;;]
 Bu = [0.0]
@@ -229,7 +229,7 @@ where $Q(k) \leftrightarrow [q(k)=1]$. Or we could write even without explicitly
 $$
 [q(k+1)=1] \leftrightarrow ([q(k)=1] \lor [x(k) \leq x_{\text{lb}}]), 
 $$
-but this makes the model somewhat clumsy and heavy. The somewhat abusive view of $q$ as both a logical (Boolean) and binary (integer) variable is a common practice.
+but the somewhat abusive view of $q$ as both a logical (Boolean) and binary (integer) variable is a common practice.
 :::
 
 To comply with the notation of this framework, we composed the state vector of the the real and binary components as
@@ -380,7 +380,10 @@ $$
 $$
 :::
 
+::: {.callout-caution}
+### Two lessons learnt
 Two general lessons can be learnt from the previous example. First, the procedure of finding the matrices defining the MLD model is rather tedious and error-prone. Second, the MLD model is, indeed, not a state-space model, but a different kind of a model. In particular, in the latter example we can see that the control input $u$ does not affect the next state through the state update equation, it only appears in the inequalities.
+:::
 
 ## HYSDEL language
 
@@ -424,6 +427,75 @@ SYSTEM switched_LTI_1 {
         }
     }
 }
+```
+
+Accessed through Hybrid Toolbox for Matlab (see the [section on software for details on availability](software.qmd)), the HYSDEL parser can generate the MLD matrices automatically.
+
+## Do we need the matrices of the MLD model?
+
+Here we solve the problem from @exm-mld-switched but we do not formulate the matrices from @eq-mld explicitly. Instead, we rely on the functionality provided by modern optimization modelling languages (here we use JuMP for Julia) to formulate the problem directly by collecting all the constraints. 
+
+We were also able to avoid the need to introduce the big-M and small-m constants, as JuMP makes it possible to write the indicator constraints directly (but see the discussion in the [section on software for details](software.qmd)).
+
+``` {julia}
+#| code-fold: show
+a₁ = -3/4
+a₂ = 1/5
+b₁ = 1.0
+b₂ = 1.0
+
+x₀ = -5.0
+u₀ = 1.0
+
+N = 10
+
+u_precomputed = zeros(Float64,N) # [u(0), u(1), ..., u(N-1)]
+u_precomputed[1] = u₀
+
+x_min, x_max = -10.0, 10.0
+u_min, u_max = -1.0, 1.0
+
+ϵ = 1e-8
+
+using JuMP
+using HiGHS
+
+sim_problem = Model(HiGHS.Optimizer) 
+set_silent(sim_problem)
+
+@variable(sim_problem, δ[1:N], Bin)                     # [δ(0), δ(1), ..., δ(N-1)]
+@variable(sim_problem, -10.0 <= z[i=1:N] <= 10.0)       # [z(0), z(1), ..., z(N-1)]
+@variable(sim_problem, -10.0 <= x[i=1:N+1] <= 10.0)     # [x(0), x(1), ..., x(N-1), x(N)] 
+@variable(sim_problem, -1.0 <= u[i=1:N] <= 1.0)         # [u(0), u(1), ..., u(N-1)]
+
+for i in 1:N
+    @constraint(sim_problem, δ[i] --> {x[i] >= 0})
+    @constraint(sim_problem, !δ[i] --> {x[i] <= -ϵ})
+    @constraint(sim_problem, δ[i] --> {z[i] == a₂ * x[i] + b₂ * u[i]})
+    @constraint(sim_problem, !δ[i] --> {z[i] == a₁ * x[i] + b₁ * u[i]})
+    @constraint(sim_problem, x[i+1] == z[i])
+    @constraint(sim_problem, x[1] == x₀)
+    @constraint(sim_problem, u[i] == u_precomputed[i])
+end
+
+@objective(sim_problem, Min, 0.0)
+optimize!(sim_problem)
+```
+
+We plot the results in @fig-mld-switched-sim.
+``` {julia}
+#| fig-cap: Simulation of the switched linear system from @exm-mld-switched using its MLD model without explicitly formulating the MLD matrices.
+#| label: fig-mld-switched-sim
+#| code-fold: true
+xopt = value.(x)
+uopt = value.(u)
+δopt = value.(δ)
+
+using Plots
+p1 = plot(0:N, xopt, xlims=(-0.1, 10.1), label="x(k)", xlabel="k", ylabel="x(k)", markershape=:circle, markersize=2)
+p2 = plot(0:N-1, uopt, xlims=(-0.1, 10.1), label="u(k)", xlabel="k", ylabel="u(k)", markershape=:circle, markersize=2)    
+p3 = plot(0:N-1, δopt, xlims=(-0.1, 10.1), label="δ(k)", xlabel="k", ylabel="δ(k)", markershape=:circle, markersize=2)
+plot(p1, p2, p3, layout=(3,1), size=(600,800))
 ```
 
 ## Piecewise affine systems

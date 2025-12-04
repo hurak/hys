@@ -85,11 +85,11 @@ $$X_1 \land X_2.$$
 Invoking binary variables, we can rewrite this as
 $$[\delta_1=1] \land [\delta_2=1],$$ 
 which ultimately translates to the system of two (trivial) equations
-$$
-\begin{aligned}
+$$\boxed
+{\begin{aligned}
 \delta_1&=1,\\
 \delta_2&=1.
-\end{aligned}
+\end{aligned}}
 $$
 
 Another possibility is 
@@ -110,7 +110,9 @@ which with binary variables becomes
 $$[\delta_1=1] \lor [\delta_2=1].$$
 
 It can be equivalently expressed as
-$$\delta_1 + \delta_2\geq 1.$$
+$$\boxed
+{\delta_1 + \delta_2\geq 1.}
+$$
 
 ### Negation
 
@@ -119,7 +121,9 @@ $$\neg X_1$$
 expressed using a binary variable as in
 $$\neg [\delta_1=1]$$
 leads to the equation
-$$\delta_1 = 0.$$
+$$
+\boxed{\delta_1 = 0.}
+$$
 
 ### Xor
 
@@ -129,7 +133,7 @@ $$X_1 \oplus X_2,$$
 $$[\delta_1=1] \oplus [\delta_2=1],$$
 
 leads to the equation
-$$\delta_1 + \delta_2 = 1.$$
+$$\boxed{\delta_1 + \delta_2 = 1.}$$
 
 ### Implication
 
@@ -145,7 +149,7 @@ $$\neg [\delta_1=1] \lor [\delta_2=1],$$
 which can be equivalently expressed as an inequality 
 $$(1-\delta_1) + \delta_2\geq 1,$$ 
 which further simplifies to 
-$$\delta_1 - \delta_2 \leq 0.$$
+$$\boxed{\delta_1 - \delta_2 \leq 0.}$$
 
 ### Equivalence
 
@@ -153,23 +157,28 @@ The equivalence
 $$X_1 \leftrightarrow X_2,$$
 $$[\delta_1=1] \leftrightarrow [\delta_2=1]$$
 can be viewed as a conjunction of two implications, which then gives
-$$\delta_1 - \delta_2 = 0.$$
+$$\boxed{\delta_1 - \delta_2 = 0.}$$
 
-### Assignment (product) 
+### Assignment of conjunction (Reified conjunction)
 
 We now investigate the following logical formula
 $$X_3 \leftrightarrow (X_1 \land X_2),$$
 which after introducing binary variables becomes
 $$[\delta_3=1] \leftrightarrow ([\delta_1=1] \land [\delta_2=1]).$$
 
-The motivation as well as the justification of the name(s) will become clear later in this section when we discuss the interplay between logic and continuous variables (the `IF-THEN-ELSE` case).
+::: {.callout-note}
+#### Reified constraint
+In a some optimization literature (in particular, on *constrained programming*), the term *reified constraint* refers to the situation in which the result of some logical formula with Boolean variables is "assigned" to another Boolean variable.
+:::
+
+<!-- One motivation will become clear later in the next section when we discuss the interplay between logic and continuous variables (the `IF-THEN-ELSE` case). -->
 
 Expressing the equivalence using implications 
 $$(X_3 \rightarrow X_1) \land (X_3\rightarrow X_2) \land ((X_1 \land X_2) \rightarrow X_3).$$
 
 The last of the tree terms connected by the $\land$ connective is equivalent to
 $$\neg (X_1 \land X_2) \lor X_3,$$
-which can be simplified to
+which can be rewritten to
 $$\neg X_1 \lor \neg X_2 \lor X_3,$$
 which is represented with binary variables as 
 $$\neg [\delta_1=1] \lor \neg [\delta_2 = 1] \lor [\delta_3 = 1],$$
@@ -177,26 +186,42 @@ which finally leads to the linear inequality
 $$(1-\delta_1) + (1-\delta_2) + \delta_3 \geq 1.$$
 
 After simplification, and bringing in also the inequality formulations for the other two terms, we get
-$$
-\begin{aligned}
+$$\boxed
+{\begin{aligned}
 \delta_1 + \delta_2 - \delta_3 &\leq 1,\\
 -\delta_1 + \delta_3 &\leq 0,\\
 -\delta_2 + \delta_3 &\leq 0. 
-\end{aligned}
-$${#eq-product-assignment}
+\end{aligned}}
+$${#eq-reified-conjunction}
+
+### Assignment of disjunction (Reified disjunction)
+
+Analogously, we can consider the logical formula
+$$X_3 \leftrightarrow (X_1 \lor X_2),$$
+which after introducing binary variables becomes
+$$[\delta_3=1] \leftrightarrow ([\delta_1=1] \lor [\delta_2=1]).$$
+
+Invoking the same equivalences as before, we get (after a few lines of work that we do not document here) the following system of inequalities:
+$$\boxed
+{\begin{aligned}
+\delta_1 + \delta_2 - \delta_3 &\geq 0,\\
+-\delta_1 + \delta_3 &\geq 0,\\
+-\delta_2 + \delta_3 &\geq 0. 
+\end{aligned}}
+$${#eq-reified-disjunction}
 
 ### General transformation of Boolean expressions to integer inequalities
 
-While logical formulas can be fairly diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the *Conjunctive Normal Form (CNF)*
+While logical formulas can be diverse, it is often advantageous to use equivalences to reformulate them into some special forms. One particular form that we prefer here is the *Conjunctive Normal Form (CNF)*
 $$
 \bigwedge_{j=1}^m \left[\left(\lor_{i\in \mathcal{P}_j} X_i\right) \lor \left(\lor_{i\in \mathcal{N}_j} \neg X_i\right)\right].
-$$
+$${#eq-cnf}
 
-The reason for our preference has already been displayed in @eq-product-assignment above. Namely, the logical conjunction $\land$ translates to the requirement of a simultaneous satisfaction of inequalities or equations as in
+Namely, the logical conjunction $\land$ translates to the requirement of a simultaneous satisfaction of inequalities or equations as in
 $$
 \begin{aligned}
 \sum_{i\in \mathcal{P}_1} \delta_i + \sum_{i\in \mathcal{N}_1} (1-\delta_i) &\geq 1,\\
 &\vdots\\
 \sum_{i\in \mathcal{P}_m} \delta_i + \sum_{i\in \mathcal{N}_m} (1-\delta_i) &\geq 1.
 \end{aligned}
-$$
+$${#eq-cnf-inequalities}
