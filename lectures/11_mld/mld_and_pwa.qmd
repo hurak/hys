@@ -433,10 +433,10 @@ Accessed through Hybrid Toolbox for Matlab (see the [section on software for det
 
 ## Do we need the matrices of the MLD model?
 
-Here we solve the problem from @exm-mld-switched but we do not formulate the matrices from @eq-mld explicitly. Instead, we rely on the functionality provided by modern optimization modelling languages (here we use JuMP for Julia) to formulate the problem directly by collecting all the constraints. 
+With modern optimization modelling languages (OML), we can formulate the (optimization) problem by entering the inequalities and equations directly. It is then the responsibility of the OML to transform the problem definition into the format that the chosen MILP or MIQP solver accepts. Below we demonstrate this by means of examples.
 
-We were also able to avoid the need to introduce the big-M and small-m constants, as JuMP makes it possible to write the indicator constraints directly (but see the discussion in the [section on software for details](software.qmd)).
-
+::: {#exm-mld-switched-no-matrices-yes-indicator-constraints}
+Here we solve the problem from @exm-mld-switched but we do not formulate the matrices from @eq-mld explicitly. We use JuMP optimization modelling layer (for Julia language) for that. Note that JuMP also allows writing the indicators constraints directly, avoiding the need to introduce the big-M and small-m constants (but see the [section on software for details](software.qmd) for a discussion of caveats).
 ``` {julia}
 #| code-fold: show
 a₁ = -3/4
@@ -484,7 +484,7 @@ optimize!(sim_problem)
 
 We plot the results in @fig-mld-switched-sim.
 ``` {julia}
-#| fig-cap: Simulation of the switched linear system from @exm-mld-switched using its MLD model without explicitly formulating the MLD matrices.
+#| fig-cap: Simulation of the switched linear system from @exm-mld-switched using its MLD model without explicitly formulating the MLD matrices
 #| label: fig-mld-switched-sim
 #| code-fold: true
 xopt = value.(x)
@@ -492,11 +492,155 @@ uopt = value.(u)
 δopt = value.(δ)
 
 using Plots
-p1 = plot(0:N, xopt, xlims=(-0.1, 10.1), label="x(k)", xlabel="k", ylabel="x(k)", markershape=:circle, markersize=2)
-p2 = plot(0:N-1, uopt, xlims=(-0.1, 10.1), label="u(k)", xlabel="k", ylabel="u(k)", markershape=:circle, markersize=2)    
-p3 = plot(0:N-1, δopt, xlims=(-0.1, 10.1), label="δ(k)", xlabel="k", ylabel="δ(k)", markershape=:circle, markersize=2)
-plot(p1, p2, p3, layout=(3,1), size=(600,800))
+p1 = plot(0:N, xopt, xlims=(-0.1, 10.1), label="x(k)", xlabel="k", ylabel="x(k)", markershape=:circle, markersize=1, linetype=:steppost)
+p2 = plot(0:N-1, uopt, xlims=(-0.1, 10.1), label="u(k)", xlabel="k", ylabel="u(k)", markershape=:circle, markersize=1, linetype=:steppost)    
+p3 = plot(0:N-1, δopt, xlims=(-0.1, 10.1), label="δ(k)", xlabel="k", ylabel="δ(k)", markershape=:circle, markersize=1, linetype=:steppost)
+plot(p1, p2, p3, layout=(3,1))
 ```
+:::
+
+::: {#exm-heat-cool-mld-no-matrices-yes-indicator-constraints}
+### Heating and cooling system modeled as MLD system without explicitly formulating the MLD matrices
+The example is from the collection of demos for the Hybrid Toolbox for Matlab (see the [section on software for details on availability](software.qmd)). It is also described in the accompanying [presentation](https://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/hybrid_presentation.pdf), page 13. 
+
+We consider a room with a heater and a cooler. The temperature is sensed at two places (corresponding to workplaces of two persons). The logic of the temperature control system is this: if the person 1 feels cold, the heater is turned on; in addition, the heater can also be turned on if the person 2 feels cold, but in this case this will only happen if at the same time the person 1 does not feel hot. And similarly for the cooling: if the person one feels hot, the cooler is on; the cooler can also be on if the person 2 feels hot, but at the same time person 1 is not cold. 
+
+While the control logic is already fixed here, it is the external (ambient) temperature varying in time that serves as the input to the system. Here we fix it to a precomputed profile because our only goal at the moment is mere simulation, but it could als be optimized over when performing some *verification analysis*, in particular *reachability analysis*, but more on this later in the course. 
+``` {julia}
+#| code-fold: show
+α1 = 1.0                            # Thermal model parameter coefficient at the location 1.
+α2 = 0.5                            # Thermal model parameter coefficient at the location 2.
+k1 = 0.8                            # Gain of the heater/cooler at the location 1.
+k2 = 0.4                            # Gain of the heater/cooler at the location 2.
+T1hot = 30.0                        # Hot temperature threshold at location 1.
+T1cold = 15.0                       # Cold temperature threshold at location 1.
+T2hot = 35.0                        # Hot temperature threshold at location 2.
+T2cold = 10.0                       # Cold temperature threshold at location 2.
+Q̇cmax = 2.0                         # Air conditioning power when switched on.
+Q̇hmax = 2.0                         # Heater power when switched on.
+
+Tinit = [30.0, 20.0]                # Initial state (the temperatures at the two locations).
+tfinal = 40.0                       # Final time.
+h = 0.5                             # Sampling period.
+
+t = 0:h:tfinal
+Ta_precomp = 10*cos.(t/10) .+ 20    # Precomputed ambient temperature profile.
+N = length(t)                       # Number of time steps.   
+
+Tmin, Tmax = -10.0, 50.0            # Lower and upper bounds on the temperatures.
+
+ϵ = 1e-6                            # Small constant for indicator constraints.
+
+using JuMP
+using HiGHS
+#using Gurobi
+
+sim_problem = Model(HiGHS.Optimizer) 
+set_silent(sim_problem)
+
+# Auxiliary binary variables (delta)
+@variable(sim_problem, is_1_hot[1:N], Bin)                 
+@variable(sim_problem, is_2_hot[1:N], Bin)
+@variable(sim_problem, is_1_cold[1:N], Bin)
+@variable(sim_problem, is_2_cold[1:N], Bin)
+@variable(sim_problem, is_heating[1:N], Bin)
+@variable(sim_problem, is_cooling[1:N], Bin)
+@variable(sim_problem, is_2_cold_and_1_not_hot[1:N], Bin)
+@variable(sim_problem, is_2_hot_and_1_not_cold[1:N], Bin)
+
+# Auxiliary continuous (real) variables (z)
+@variable(sim_problem, 0.0 <= Q̇h[i=1:N] <= Q̇hmax)       
+@variable(sim_problem, 0.0 <= Q̇c[i=1:N] <= Q̇cmax)       
+
+# State variables (x)
+@variable(sim_problem, -10.0 <= T1[i=1:N+1] <= 50.0)     # [x(0), x(1), ..., x(N)] 
+@variable(sim_problem, -10.0 <= T2[i=1:N+1] <= 50.0)     # Must be literals here.
+
+# Input variables (u, ambient temperature here)
+@variable(sim_problem, -10.0 <= Ta[i=1:N] <= 50.0)
+
+for i in 1:N
+    # Event generation constraints
+    # Is location 1 hot?
+    @constraint(sim_problem, is_1_hot[i] --> {T1[i] >= T1hot})
+    @constraint(sim_problem, !is_1_hot[i] --> {T1[i] <= T1hot-ϵ})
+
+    # Is location 2 hot?
+    @constraint(sim_problem, is_2_hot[i] --> {T2[i] >= T2hot})
+    @constraint(sim_problem, !is_2_hot[i] --> {T2[i] <= T2hot-ϵ})
+    
+    # Is location 1 cold?
+    @constraint(sim_problem, is_1_cold[i] --> {T1[i] <= T1cold})
+    @constraint(sim_problem, !is_1_cold[i] --> {T1[i] >= T1cold+ϵ})
+    
+    # Is location 2 cold?
+    @constraint(sim_problem, is_2_cold[i] --> {T2[i] <= T2cold})
+    @constraint(sim_problem, !is_2_cold[i] --> {T2[i] >= T2cold+ϵ})
+
+    # Is heating ON?
+    # Is location 2 cold and location 1 not hot?
+    @constraint(sim_problem, is_2_cold[i] - is_2_cold_and_1_not_hot[i] >= 0)
+    @constraint(sim_problem, 1 - is_1_hot[i] - is_2_cold_and_1_not_hot[i] >= 0)
+    @constraint(sim_problem, -is_2_cold[i] + is_1_hot[i] + is_2_cold_and_1_not_hot[i] >= 0)    
+    
+    # Is location 1 cold or (location 2 cold and location 1 not hot)?
+    @constraint(sim_problem, -is_heating[i] + is_1_cold[i] + is_2_cold_and_1_not_hot[i] >= 0)
+    @constraint(sim_problem, -is_1_cold[i] + is_heating[i] >= 0)
+    @constraint(sim_problem, -is_2_cold_and_1_not_hot[i] + is_heating[i] >= 0)
+    
+    # Is cooling ON?
+    # Is location 2 hot and location 1 not cold?
+    @constraint(sim_problem, is_2_hot[i] - is_2_hot_and_1_not_cold[i] >= 0)
+    @constraint(sim_problem, 1 - is_1_cold[i] - is_2_hot_and_1_not_cold[i] >= 0)
+    @constraint(sim_problem, -is_2_hot[i] + is_1_cold[i] + is_2_hot_and_1_not_cold[i] >= 0)    
+    
+    # Is location 1 hot or (location 2 hot and location 1 not cold)?
+    @constraint(sim_problem, -is_cooling[i] + is_1_hot[i] + is_2_hot_and_1_not_cold[i] >= 0)
+    @constraint(sim_problem, -is_1_hot[i] + is_cooling[i] >= 0)
+    @constraint(sim_problem, -is_2_hot_and_1_not_cold[i] + is_cooling[i] >= 0)
+
+    # Mode-selecting constraints (here it sets just parts of the right-hand sides, not the whole z's)
+    @constraint(sim_problem, is_heating[i] --> {Q̇h[i] == Q̇hmax})
+    @constraint(sim_problem, !is_heating[i] --> {Q̇h[i] == 0.0})
+    @constraint(sim_problem, is_cooling[i] --> {Q̇c[i] == Q̇cmax})
+    @constraint(sim_problem, !is_cooling[i] --> {Q̇c[i] == 0.0})
+    
+    # Switched affined system dynamics
+    @constraint(sim_problem, T1[i+1] == T1[i] + h * ( -α1*(T1[i]-Ta[i]) + k1 * (Q̇h[i]-Q̇c[i]) ) )
+    @constraint(sim_problem, T2[i+1] == T2[i] + h * ( -α2*(T2[i]-Ta[i]) + k2 * (Q̇h[i]-Q̇c[i]) ) )
+    
+    # Initial condition
+    @constraint(sim_problem, T1[1] == Tinit[1])
+    @constraint(sim_problem, T2[1] == Tinit[2])
+    
+    # Precomputed ambient temperature
+    @constraint(sim_problem, Ta[i] == Ta_precomp[i])
+end
+
+@objective(sim_problem, Min, 0.0)
+optimize!(sim_problem)
+```
+
+``` {julia}
+#| fig-cap: Simulation of the heating-cooling system using its MLD model without explicitly formulating the MLD matrices
+#| label: fig-heat-cool-mld-sim
+#| code-fold: true
+Topt₁ = value.(T1)
+Topt₂ = value.(T2)
+Toptₐ = value.(Ta)
+
+Q̇hopt = value.(Q̇h)
+Q̇copt = value.(Q̇c)
+
+using Plots
+p1 = plot(t, Topt₁[1:end-1], label="T₁(k)", xlabel="k", ylabel="T₁(k)", markershape=:circle, markersize=1)
+plot!(t, Topt₂[1:end-1], label="T₂(k)", xlabel="k", ylabel="T₂(k)", markershape=:circle, markersize=1)    
+p2 = plot(t, Toptₐ, label="Tₐ(k)", xlabel="k", ylabel="Ta(k)", markershape=:circle, markersize=1)
+p3 = plot(t, Q̇hopt, label="Q̇h(k)", xlabel="k", ylabel="Q̇h(k)", markershape=:circle, markersize=1, linetype=:steppost)
+plot!(t, Q̇copt, label="Q̇c(k)", xlabel="k", ylabel="Q̇c(k)", markershape=:circle, markersize=1, linetype=:steppost)
+plot(p1, p2, p3, layout=(3,1))
+```
+:::
 
 ## Piecewise affine systems
 

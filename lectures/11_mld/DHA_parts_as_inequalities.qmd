@@ -37,7 +37,7 @@ and our goal in this section is to learn how to formulate this equation as a sys
 ::: {#exm-fsm-example}
 Consider the automaton in @fig-fsm-example with three states (Red, Green, Blue) and two binary inputs ($u_{b1}, u_{b2}$). 
 
-![Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables](figures/fsm_example.png){width=60% #fig-fsm-example} 
+![Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables](figures/fsm_example.png){width=70% #fig-fsm-example} 
 
 The state update/transition equation, expressed still with integer (not necessarily binary) variables is
 $$
@@ -133,6 +133,16 @@ f(x) &\geq \epsilon + (m-\epsilon)\delta.
 \end{aligned}}
 $${#eq-logic-continuous}
 
+### Generation of events by mixing logical and continuous variables in inequalities
+
+Application of @eq-logic-continuous to the $i$th event generator function $h_i(x,u)$ leads to the following inequalities
+$$\boxed{
+\begin{aligned}
+h_i(x_c(k), u_c(k)) &\leq M_i (1-\delta_{e,i}),\\
+h_i(x_c(k), u_c(k)) &\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
+\end{aligned}}
+$${#eq-event-generator}
+
 ### IF-THEN-ELSE rule as an inequality
 
 We now consider the following `IF-THEN-ELSE` rule: 
@@ -161,7 +171,7 @@ which can be verified in a straightforward manner: if $\delta=0$, then the first
 Beware that the above results are valid only for scalar functions $f()$, even if their arguments are possibly vectors. 
 :::
 
-Particularly useful from a computational viewpoint will be an affine function $f(x,u) = ax + bu + e$. We specialize the above inequalities to this case for later convenience.
+Particularly useful from a computational viewpoint (because it will lead to linear inequalities) will be an affine function $f(x,u) = ax + bu + e$. We specialize the above inequalities to this case for later convenience.
 $$\boxed{
 \begin{aligned}
 z &\leq M\delta,\\
@@ -194,19 +204,9 @@ $$
 \end{aligned}}
 $${#eq-if-then-else-2}
 
-### Generation of events by mixing logical and continuous variables in inequalities
-
-Application of @eq-logic-continuous to the $i$th event generator function $h_i(x,u)$ leads to the following inequalities
-$$\boxed{
-\begin{aligned}
-h_i(x_c(k), u_c(k)) &\leq M_i (1-\delta_{e,i}),\\
-h_i(x_c(k), u_c(k)) &\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
-\end{aligned}}
-$${#eq-event-generator}
-
 ### Switched affine system
 
-We are now ready to get rid of the `IF-THEN(-ELSE)` conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables $z_i$:
+We are now ready to get rid of the `IF-THEN-ELSE` conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables $z_i$:
 $$
 x_c(k+1) = \sum_{i=1}^s z_i(k),  
 $$
