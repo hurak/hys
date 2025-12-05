@@ -789,9 +789,9 @@ window.Quarto = {
   <li><a href="#logical-implies-continuous" id="toc-logical-implies-continuous" class="nav-link" data-scroll-target="#logical-implies-continuous">Logical implies continuous</a></li>
   <li><a href="#continuous-implies-logical" id="toc-continuous-implies-logical" class="nav-link" data-scroll-target="#continuous-implies-logical">Continuous implies logical</a></li>
   <li><a href="#equivalence-between-logical-and-continuous" id="toc-equivalence-between-logical-and-continuous" class="nav-link" data-scroll-target="#equivalence-between-logical-and-continuous">Equivalence between logical and continuous</a></li>
+  <li><a href="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" id="toc-generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="nav-link" data-scroll-target="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</a></li>
   <li><a href="#if-then-else-rule-as-an-inequality" id="toc-if-then-else-rule-as-an-inequality" class="nav-link" data-scroll-target="#if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</a></li>
   <li><a href="#another-if-then-else-rule" id="toc-another-if-then-else-rule" class="nav-link" data-scroll-target="#another-if-then-else-rule">Another IF-THEN-ELSE rule</a></li>
-  <li><a href="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" id="toc-generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="nav-link" data-scroll-target="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</a></li>
   <li><a href="#switched-affine-system" id="toc-switched-affine-system" class="nav-link" data-scroll-target="#switched-affine-system">Switched affine system</a></li>
   </ul></li>
   </ul>
@@ -836,7 +836,7 @@ window.Quarto = {
 <div id="fig-fsm-example" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:60.0%">
+<img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables
@@ -914,6 +914,15 @@ f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
 \end{aligned}}
 \tag{1}</span></span></p>
 </section>
+<section id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="level3">
+<h3 class="anchored" data-anchor-id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</h3>
+<p>Application of <a href="#eq-logic-continuous" class="quarto-xref">Eq.&nbsp;1</a> to the <span class="math inline">i</span>th event generator function <span class="math inline">h_i(x,u)</span> leads to the following inequalities <span id="eq-event-generator"><span class="math display">\boxed{
+\begin{aligned}
+h_i(x_c(k), u_c(k)) &amp;\leq M_i (1-\delta_{e,i}),\\
+h_i(x_c(k), u_c(k)) &amp;\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
+\end{aligned}}
+\tag{2}</span></span></p>
+</section>
 <section id="if-then-else-rule-as-an-inequality" class="level3">
 <h3 class="anchored" data-anchor-id="if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</h3>
 <p>We now consider the following <code>IF-THEN-ELSE</code> rule:</p>
@@ -943,14 +952,14 @@ z &amp;\leq f(x,u) - m(1-\delta),\\
 <p>Beware that the above results are valid only for scalar functions <span class="math inline">f()</span>, even if their arguments are possibly vectors.</p>
 </div>
 </div>
-<p>Particularly useful from a computational viewpoint will be an affine function <span class="math inline">f(x,u) = ax + bu + e</span>. We specialize the above inequalities to this case for later convenience. <span id="eq-if-then-else-1"><span class="math display">\boxed{
+<p>Particularly useful from a computational viewpoint (because it will lead to linear inequalities) will be an affine function <span class="math inline">f(x,u) = ax + bu + e</span>. We specialize the above inequalities to this case for later convenience. <span id="eq-if-then-else-1"><span class="math display">\boxed{
 \begin{aligned}
 z &amp;\leq M\delta,\\
 - z &amp;\leq -m\delta,\\
 z &amp;\leq ax + bu + e - m(1-\delta),\\
 -z &amp;\leq -(ax + bu + e) + M(1-\delta).
 \end{aligned}}
-\tag{2}</span></span></p>
+\tag{3}</span></span></p>
 </section>
 <section id="another-if-then-else-rule" class="level3">
 <h3 class="anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h3>
@@ -968,20 +977,11 @@ z = {\color{blue}\delta}\,(a_1 x + b_1 u + e_1) + {\color{blue}(1-\delta)}(a_2 x
 (m_1-M_2)(1-\delta)  + z &amp;\leq a_1 x + b_1 u + e_1,\\
 (m_2-M_1)(1-\delta)  - z &amp;\leq -a_1 x - b_1 u - e_1.
 \end{aligned}}
-\tag{3}</span></span></p>
-</section>
-<section id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="level3">
-<h3 class="anchored" data-anchor-id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</h3>
-<p>Application of <a href="#eq-logic-continuous" class="quarto-xref">Eq.&nbsp;1</a> to the <span class="math inline">i</span>th event generator function <span class="math inline">h_i(x,u)</span> leads to the following inequalities <span id="eq-event-generator"><span class="math display">\boxed{
-\begin{aligned}
-h_i(x_c(k), u_c(k)) &amp;\leq M_i (1-\delta_{e,i}),\\
-h_i(x_c(k), u_c(k)) &amp;\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
-\end{aligned}}
 \tag{4}</span></span></p>
 </section>
 <section id="switched-affine-system" class="level3">
 <h3 class="anchored" data-anchor-id="switched-affine-system">Switched affine system</h3>
-<p>We are now ready to get rid of the <code>IF-THEN(-ELSE)</code> conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables <span class="math inline">z_i</span>: <span class="math display">
+<p>We are now ready to get rid of the <code>IF-THEN-ELSE</code> conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables <span class="math inline">z_i</span>: <span class="math display">
 x_c(k+1) = \sum_{i=1}^s z_i(k),  
 </span> where <span class="math display">
 z_1(k) =
