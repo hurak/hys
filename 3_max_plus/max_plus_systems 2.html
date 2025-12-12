@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.8">
+<meta name="generator" content="quarto-1.9.12">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -59,7 +59,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -1104,7 +1104,7 @@ y_{k+j} \leq r_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
 <h3 class="anchored" data-anchor-id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</h3>
 <p>Our motivation for formulating the problems within the (max,+) algebra was to fake the reality a bit and pretend that the problem is linear. This allowed us to invoke many concepts that we are familiar with from linear systems theory. However, at the end of the day, when it comes to actually solving the problem, we must reveal the nonlinear nature of the problem.</p>
 <p>When we consider the MPC for MPL systems, we are faced with a nonlinear optimization problem. We can use some general nonlinear solvers (<code>fmincon</code>, <code>ipopt</code>, …).</p>
-<p>Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by <span class="citation" data-cites="deschutterExtendedLinearComplementarity1995"><a href="#ref-deschutterExtendedLinearComplementarity1995" role="doc-biblioref">[1]</a></span>. We will introduce the complementarity problem(s) later in a <a href="../complementarity/constraints.qmd">chapter dedicated to complementarity</a>.</p>
+<p>Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by <span class="citation" data-cites="deschutterExtendedLinearComplementarity1995"><a href="#ref-deschutterExtendedLinearComplementarity1995" role="doc-biblioref">[1]</a></span>. We will introduce the complementarity problem(s) later in a <a href="../10_complementarity/constraints.html">chapter dedicated to complementarity</a>.</p>
 <p>Yet another approach is through Mixed Integer (Linear) Programming (MILP).</p>
 
 
