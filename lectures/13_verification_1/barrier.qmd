@@ -22,28 +22,28 @@ For notational and conceptual convenience we start with an explanation of the me
 
 We consider a continuous-time dynamical system modelled by
 $$
-\dot{\bm x}(t) = \mathbf f(\bm x, \bm d), 
+\dot{\bm x}(t) = \mathbf f(\bm x). 
 $$
-where $\bm d$ represents an uncertainty in the system description – it can be an uncertain parameter or an external disturbance acting on the system.
 
-We now define two regions of the state space: 
+We now define two regions of the state space $\mathcal X$: 
 
 - the set of initial states $\mathcal X_0$, 
 - and the set of unsafe states $\mathcal X_\mathrm{u}$. 
 
-Our goal is to prove (certify) that the system does not reach the unsafe states for an arbitrary initial state $\bm x(0)\in \mathcal X_0$ and for an arbitrary $d\in \mathcal D$.
+Our goal is to prove (certify) that the system does not reach the unsafe states for an arbitrary initial state $\bm x(0)\in \mathcal X_0$.
 
 We define a barrier function $B(\bm x)$ with the following three properties
 
-$$B(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
+$$B(\bm x) > 0\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
 
-$$B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,$$
+$$B(\bm x) \leq 0\quad \forall \bm x \in \mathcal X_0,$$
 
-$$\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x, \bm d \, \text{such that} \, B(\bm x) = 0.$$
+$$\nabla B(\bm x)^\top \mathbf f(\bm x) \leq 0\quad \forall \bm x\; \text{such that} \; B(\bm x) = 0.$$
 
-Now, upon finding a function $B(\bm x)$ with such properties, we will prove (certify) safety of the system – the function serves as a certificate of safety.
+Now, upon finding a function $B(\bm x)$ with such properties, we prove (certify) safety of the system. Indeed, the (existence of the) function serves as a certificate of safety.
 
 :::{.callout-note}
+### Barrier function vs Lyapunov function
 It cannot go unnoticed that the properties of a barrier function $B(\bm x)$ and the motivation for its finding resemble those of a Lyapunov function. Indeed, the two concepts are related. But they are not the same. 
 :::
 
@@ -52,11 +52,11 @@ How do we find such function? We will reuse the computational technique based on
 ## Convex relaxation of the barrier certificate problem
 
 We relax the third condition so that it holds not only at $B(\bm x) = 0$ but everywhere. The three conditions are then
-$$B(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
+$$B(\bm x) > 0\quad \forall \bm x \in \mathcal X_\mathrm{u},$$
 
-$$B(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0,$$
+$$B(\bm x) \leq 0\quad \forall \bm x \in \mathcal X_0,$$
 
-$$\nabla B(\bm x)^\top \mathbf f(\bm x, \bm d) \leq 0,\quad \forall \bm x\in \mathcal X, \bm d \in \mathcal D.$$
+$$\nabla B(\bm x)^\top \mathbf f(\bm x) \leq 0\quad \forall \bm x\in \mathcal X.$$
 
 Let's now demonstrate this by means of an example.
 
@@ -64,11 +64,10 @@ Let's now demonstrate this by means of an example.
 Consider the system modelled by
 $$
 \begin{aligned}
-\dot x_1 &= x_2\\
-\dot x_2 &= -x_1 + \frac{p}{3}x_1^3 - x_2,
+\dot x_1 &= x_2,\\
+\dot x_2 &= -x_1 + \frac{1}{3}x_1^3 - x_2.
 \end{aligned}
-$$
-where the parameter $p\in [0.9,1.1]$. 
+$$ 
 
 The initial set is given by
 $$
@@ -82,22 +81,19 @@ $$
 The vector field $\mathbf f$ and the initial and unsafe sets are shown in the figure below.
 
 ```{julia}
-#| eval: true
-#| fig-cap: The vector field, the initial and unsafe sets, and the boundary function level set for the barrier certificate example. Simulated are also a few trajectories. From [Tutorials for SumOfSquares.jl](https://jump.dev/SumOfSquares.jl/stable/generated/Systems%20and%20Control/barrier_certificate/).
-#| label: fig-barrier
+#| code-fold: show
 using SumOfSquares
 using DynamicPolynomials
 # using MosekTools     
 using CSDP
+using LinearAlgebra # Needed for `dot`
 
 optimizer = optimizer_with_attributes(CSDP.Optimizer, MOI.Silent() => true)
 model = SOSModel(optimizer)
 @polyvar x[1:2] 
 
-p = 1;
-
 f = [ x[2],
-     -x[1] + (p/3)*x[1]^3 - x[2]]
+     -x[1] + (1/3)*x[1]^3 - x[2]]
 
 g₁ = -(x[1]+1)^2 - (x[2]+1)^2 + 0.16  # 𝒳ᵤ = {x ∈ R²: g₁(x) ≥ 0}
 h₁ = -(x[1]-1.5)^2 - x[2]^2 + 0.25    # 𝒳₀ = {x ∈ R²: h₁(x) ≥ 0}
@@ -107,17 +103,20 @@ X = monomials(x, 0:4)
 
 ε = 0.001
 @constraint(model, B >= ε, domain = @set(g₁ >= 0))
-
 @constraint(model, B <= 0, domain = @set(h₁ >= 0))
 
-using LinearAlgebra # Needed for `dot`
 dBdt = dot(differentiate(B, x), f)
 @constraint(model, -dBdt >= 0)
 
 JuMP.optimize!(model)
-
 JuMP.primal_status(model)
+```
 
+The optimization problem is feasible, a barrier function is found. We can visualize the vector field, the initial and unsafe sets, and the boundary function level set, along with a few simulated trajectories, as in @fig-barrier.
+``` {julia}
+#| code-fold: true
+#| fig-cap: The vector field, the initial and unsafe sets, and the boundary function level set for the barrier certificate example. Simulated are also a few trajectories. From [Tutorials for SumOfSquares.jl](https://jump.dev/SumOfSquares.jl/stable/generated/Systems%20and%20Control/barrier_certificate/)
+#| label: fig-barrier
 import DifferentialEquations, Plots, ImplicitPlots
 function phase_plot(f, B, g₁, h₁, quiver_scaling, Δt, X0, solver = DifferentialEquations.Tsit5())
     X₀plot = ImplicitPlots.implicit_plot(h₁; xlims=(-2, 3), ylims=(-2.5, 2.5), resolution = 1000, label="X₀", linecolor=:blue)
@@ -151,26 +150,24 @@ phase_plot(f, value(B), g₁, h₁, 10, 30.0, [[x1, x2] for x1 in 1.2:0.2:1.7, x
 
 For a hybrid automaton with $l$ locations $\{q_1,q_2,\ldots,q_l\}$, not just one but $l$ barrier functions/certificates are needed:
 
-$$B_i(\bm x) > 0,\quad \forall \bm x \in \mathcal X_\mathrm{u}(q_i),$$
+$$B_i(\bm x) > 0\quad \forall \bm x \in \mathcal X_\mathrm{u}(q_i),$$
 
-$$B_i(\bm x) \leq 0,\quad \forall \bm x \in \mathcal X_0(q_i),$$
+$$B_i(\bm x) \leq 0\quad \forall \bm x \in \mathcal X_0(q_i),$$
 
-$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x, \bm u \, \text{such that} \, B_i(\bm x) = 0,$$
+$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x) \leq 0\quad \forall \bm x\;\text{such that} \; B_i(\bm x) = 0,$$
 
 $$
 \begin{aligned}
-B_i(\bm x) \leq 0,\quad &\forall \bm x \in \mathcal R(q_j,q_i,\bm x^-)\,\text{for some}\, q_j\,\\
-&\text{and}\, \bm x^-\in\mathcal G(q_j,q_i)\,\text{with}\, B_j(\bm x^-)\leq 0.
+B_i(\bm x) \leq 0\quad &\forall \bm x \in \mathcal R(q_j,q_i,\bm x^-)\,\text{for some}\, q_j\; \text{and}\; \bm x^-\in\mathcal G(q_j,q_i)\,\text{with}\, B_j(\bm x^-)\leq 0.
 \end{aligned}
 $$
 
 ## Convex relaxation of barrier certificates for hybrid systems
 
-$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x, \bm u) \leq 0,\quad \forall \bm x\in X_0(q_i), \bm u\in\mathcal U(q_i),$$
+$$\nabla B_i(\bm x)^\top \mathbf f_i(\bm x) \leq 0\quad\; \forall \bm x\in \mathcal X_0(q_i),$$
 
 $$
 \begin{aligned}
-B_i(\bm x) \leq 0,\quad &\forall (\bm x, \bm x^-)\,\text{such that}\, \bm x \in \mathcal R(q_j,q_i,\bm x^-), \\
-&\text{and}\, \bm x^-\in\mathcal G(q_i,q_j).
+B_i(\bm x) \leq 0\quad &\forall (\bm x, \bm x^-)\,\text{such that}\, \bm x \in \mathcal R(q_j,q_i,\bm x^-) \;\text{and}\; \bm x^-\in\mathcal G(q_i,q_j).
 \end{aligned}
 $$

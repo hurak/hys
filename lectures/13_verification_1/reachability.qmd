@@ -14,9 +14,9 @@ crossref:
 engine: julia
 ---
 
-- For autonomous systems: Given a set of initial states $\mathcal X_0$, determine the set of states $\mathcal X_{\mathrm{reach}}$ that can be reached from $X_0$ over the time interval $(0,t)$.
+- For autonomous systems: Given a set of initial states $\mathcal X_0$, determine the set of states $\mathcal X_{\mathrm{reach}}$ that can be reached from $\mathcal X_0$ over the time interval $(0,t)$.
 
-- For non-autonomous (controlled) system: Given a set of initial states $\mathcal X_0$, determine the set of states $\mathcal X_{\mathrm{reach}}$ that can be reached from $X_0$ over the time interval $(0,t)$ using some control.
+- For non-autonomous (controlled) system: Given a set of initial states $\mathcal X_0$, determine the set of states $\mathcal X_{\mathrm{reach}}$ that can be reached from $\mathcal X_0$ over the time interval $(0,t)$ using some control.
 
 Robust versions exist for cases with uncertain parameters, or disturbances.   
 

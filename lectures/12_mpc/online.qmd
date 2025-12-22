@@ -14,42 +14,148 @@ crossref:
 engine: julia  
 ---
 
-## Optimal control on a finite horizon
+## Optimal control on a finite receding horizon
 
-### Cost function
-First, we need to set the cost function for the optimal control problem. As usual in optimal control, we want to impose different weights on invididual state and control variables. The most popular is the quadratic cost function well known from the LQ-optimal control
-
+At each discrete time $t$, we solve and optimal control problem on a finite horizon of length $N$: 
 $$
-J_0(x(0),U_0) = x_N^T S_N x_N + \sum_{k=0}^{N-1} \left( x_k^T Q x_k + u_k^T R u_k \right)
-$$
-
-But other (weighted) norms can also be used, in particular 1-norm and infinity-norm
-
-$$
-J_0(x(0),U_0) = \|S_N x_N\|_1 + \sum_{k=0}^{N-1} \left( \|Q x_k\|_1 + \|R u_k\|_1 \right),
-$$
-
-$$
-J_0(x(0),U_0) = \|S_N x_N\|_{\infty} + \sum_{k=0}^{N-1} \left( \|Q x_k\|_{\infty} + \|R u_k\|_{\infty} \right).
-$$
-
-## Optimization problem 
-Combining the cost function with the MLD model, and perhaps we some extra constraints imposed on the control inputs as well as state variables, we get
-$$
-\operatorname*{minimize}_{u_0, u_1, \ldots, u_{N-1}} J_0(x(0),(u_0, u_1, \ldots, u_{N-1}))
+\operatorname*{minimize}_{\bm u(t\mid t), \bm u(t+1\mid t) \ldots, \bm u(t+N-1\mid t), \bm x(t\mid t), \ldots, \bm x(t+N\mid t), \bm z(t\mid t), \ldots, \bm z(t+N-1\mid t), \bm \delta(t\mid t), \ldots, \bm \delta(t+N-1\mid t)} J_t(\ldots)
 $$
 
 subject to
 $$
 \begin{aligned}
-x_{k+1} &= Ax_k + B_u u_k + B_\delta\delta_k + B_z z_k + B_0\\
-y_k &= Cx_k + D_u u_k + D_\delta \delta_k + D_z z_k + D_0\\
-E_\delta \delta_k &+ E_z z_k \leq E_u u_k + E_x x_k + E_0 \\
-u_{\min} &\leq u_k \leq u_{\max} \\
-x_{\min} &\leq x_k \leq x_{\max} \\
-P x_N &\leq r \\
-x_0 &= x(0)
+\bm x(t+k+1\mid t) &= \mathbf A\bm x(t+k\mid t) + \mathbf B_u \bm u(t+k\mid t) + \mathbf B_\delta\bm \delta(t+k\mid t) + \mathbf B_z \bm z(t+k\mid t) + \mathbf B_0,\\
+\bm y(t+k\mid t) &= \mathbf C\bm x(t+k\mid t) + \mathbf D_u \bm u(t+k\mid t) + \mathbf D_\delta \bm \delta(t+k\mid t) + \mathbf D_z \bm z(t+k\mid t) + \mathbf D_0,\\
+\mathbf E_\delta \bm \delta(t+k\mid t) &+ \mathbf E_z \bm z(t+k\mid t) \leq \mathbf E_u \bm u(t+k\mid t) + \mathbf E_x \bm x(t+k\mid t) + \mathbf E_0, \\
+\mathbf u^{\min} &\leq \bm u(t+k\mid t) \leq \mathbf u^{\max}, \\
+\mathbf x^{\min} &\leq \bm x(t+k\mid t) \leq \mathbf x^{\max}, \\
+\mathbf P \bm x(t+N\mid t) &\leq \mathbf r, \\
+\bm x(t\mid t) &= \mathbf x(t),
 \end{aligned}
+$$
+where the "relative" discrete-time $k$, which indicates the time since the current time $t$ within the prediction horizon, takes values $k=0,1,\ldots,N-1$.
+
+The cost function $J_t(\cdot)$ to be minimized will be elaborated below. Here we only emphasize that it is a function of all the optimization variables.
+
+The constraints are given the MLD model, and some extra constraints imposed on the control inputs as well as state variables, including possibly the terminal constraints on the state variables.
+
+::: {.callout-note}
+### Notation for the values predicted at time t
+The notation $\bm x(t+k\mid t)$ indicates the *predicted* state vector at time $t+k$ as predicted at time $t$. Similarly, $\bm u(t+k\mid t)$ is the control input at time $t+k$ as predicted/computed at time $t$. This notation is used to distinguish between the actual values at time $t+k$, which we denote simply as $\mathbf x(t+k)$ and $\bm u(t+k)$, and the predicted values computed at time $t$. Additionally, in $\mathbf x(t)$ we use the upright font to emphasize that it is not a *variable* from the perspective of optimization but rather a known *parameter* (once time $t$ is reached).
+:::
+
+After solving the optimal control problem, we apply only the first control input $\bm u(t\mid t)$ to the system. The applied control input can thus be viewed as a function of the current state $\mathbf x(t)$:
+$$\boxed{\mathbf u(t) = \bm u(t\mid t) = \kappa(\bm x(t\mid t)) = \kappa(\mathbf x(t)),}$$
+hence, the MPC controller implements a state feedback control loop.
+
+Then at the next time step $t+1$ we solve a new optimal control problem over a shifted horizon, and so on. This is the receding horizon strategy.
+
+### Cost function
+We want to be able to impose different weights on invididual state and control variables. The most popular is the quadratic cost function well known from the LQ-optimal control
+
+$$
+J_t(\ldots) = \bm x(t+N\mid t)^\top \mathbf S_N \bm x(t+N\mid t) + \sum_{k=0}^{N-1} \left( \bm x(t+k\mid t)^\top \mathbf Q \bm x(t+k\mid t) + \bm u(t+k\mid t)^\top \mathbf R \bm u(t+k\mid t) \right).
+$$
+
+But other (weighted) norms can also be used, in particular 1-norm and infinity-norm
+
+$$
+J_t(\ldots) = \| \mathbf S_N \bm x(t+N\mid t) \|_1 + \sum_{k=0}^{N-1} \left( \| \mathbf Q \bm x(t+k\mid t) \|_1 + \| \mathbf R \bm u(t+k\mid t) \|_1 \right),
+$$
+
+$$
+J_t(\ldots) = \| \mathbf S_N \bm x(t+N\mid t) \|_{\infty} + \sum_{k=0}^{N-1} \left( \| \mathbf Q \bm x(t+k\mid t) \|_{\infty} + \| \mathbf R \bm u(t+k\mid t) \|_{\infty} \right).
 $$
 
 
+
+
+## Examples
+
+::: {#exm-mld-online-mpc-switched-LTI-1-no-matrices}
+### Online MPC for MLD systems – switched LTI system of order 1 (without explicitly forming the MLD matrices)
+In this example we continue showing how we can use the MLD framework even if we do not form the MLD matrices explicitly and stay with the linear inequalities and equations instead. We consider the same switched LTI system (of order 1) as we did in the previous lecture, but now we want to design an online MPC controller for it.
+
+The goal for the controller is to track a given reference trajectory for the state variable, while respecting the input and state constraints. We will use the 1-norm of the regulation error as the cost function for this purpose (but we leave commented in the code the option for using the quadratic norm of the error).
+
+``` {julia}
+#| code-fold: show
+a₁ = -3/4                   # Definition of the hybrid system that switches between two linear modes 
+a₂ = 1/5                    # x(k+1) = a₁*x(k) + b₁*u(k) and x(k+1) = a₂*x(k) + b₂*u(k)
+b₁ = 1.0                    # depending on whether x(k) < 0 or x(k) >= 0, respectively.
+b₂ = 1.0
+
+x₀ = -3.0                   # Initial state.
+N_full = 100                # Length of the simulation discrete-time horizon.
+h = 0.2                     # Sampling period. Just for creating the reference signal. 
+t = 0:h:N_full*h            # Vector of continuous-time instants. Just for creating the reference signal.
+x_ref_full = sin.(t)        # [x_ref(0), x_ref(1), ..., x_ref(N_full-1), x_ref(N_full)]
+
+x_min, x_max = -10.0, 10.0  # Lower and upper bounds on the state and the control input.
+u_min, u_max = -1.0, 1.0    # Unfortunately, these are not used in the formulation below and must be entered as literals there.
+
+using JuMP
+using HiGHS
+#using Gurobi
+import ParametricOptInterface as POI
+
+rhocp = Model(() -> POI.Optimizer(HiGHS.Optimizer()))    # Defining the receding-horizon (RH) optimal control problem (OCP).
+set_silent(rhocp)
+
+N = 10                                              # Prediction horizon for the MPC controller.
+ϵ = 1e-6                                            # Small positive constant for strict inequalities.
+@variable(rhocp, δ[1:N], Bin)                       # [δ(k), δ(k+1), ..., δ(k+N-1)]
+@variable(rhocp, -10.0 <= z[i=1:N] <= 10.0)         # [z(k), z(k+1), ..., z(k+N-1)]
+@variable(rhocp, -10.0 <= x[i=1:N+1] <= 10.0)       # [x(k), x(k+1), ..., x(k+N-1), x(k+N)] 
+@variable(rhocp, -1.0 <= u[i=1:N] <= 1.0)           # [u(k), u(k+1), ..., u(k+N-1)]
+@variable(rhocp, t)                                 # Aux variable for formulating the abs value in the objective.
+@variable(rhocp, x_cur in MOI.Parameter(0))         # Current state x(k)        
+@variable(rhocp, x_ref[1:N+1] in MOI.Parameter(0))  # [x_ref(k), x_ref(k+1), ..., x_ref(k+N)]
+@constraint(rhocp, x[1] == x_cur)                   # State at the beginning of the prediction horizon.
+for i in 1:N                                        # i corresponds to time step k+i-1
+    @constraint(rhocp, δ[i] --> {x[i] >= 0})
+    @constraint(rhocp, !δ[i] --> {x[i] <= -ϵ})
+    @constraint(rhocp, δ[i] --> {z[i] == a₂ * x[i] + b₂ * u[i]})
+    @constraint(rhocp, !δ[i] --> {z[i] == a₁ * x[i] + b₁ * u[i]})
+    @constraint(rhocp, x[i+1] == z[i])
+end
+@constraint(rhocp, [t; (x-x_ref)] in MOI.NormOneCone(1 + length(x)))
+@objective(rhocp, Min, t)
+#@objective(rhocp, Min, sum((x[i]-x_ref[i])^2 for i in 1:N+1))
+
+function mpc_tracking(rhocp, xₖ, x_ref_full, k, N)          # Function that solves the RH OCP 
+    set_parameter_value(x_cur,xₖ)                           #   for the current state x_cur = x(k),
+    for i in 1:(N+1)
+        set_parameter_value(x_ref[i], x_ref_full[k+i-1])    #   and the full reference trajectory, from which the relevant portion is extracted.
+    end
+    optimize!(rhocp)
+    return value.(u)
+end
+
+xopt_full = [x₀,]
+uopt_full = Float64[]
+δopt_full = Float64[]
+
+for k in 1:(N_full-N)                                           # Receding-horizon simulation loop.  
+    xₖ = xopt_full[end]                                         # Current state.  
+    u_pred = mpc_tracking(rhocp, xₖ, x_ref_full, k, N)          # Optimal control sequence over the prediction horizon.
+    uₖ = u_pred[1]                                              # Apply only the first control input.
+    x⁺ = xₖ >= 0 ? (a₂ * xₖ + b₂ * uₖ) : (a₁ * xₖ + b₁ * uₖ)    # State update according to the hybrid system dynamics.
+    push!(xopt_full, x⁺)
+    push!(uopt_full, uₖ)
+    push!(δopt_full, (xₖ >= 0) ? 1.0 : 0.0)
+end
+```
+
+``` {julia}
+#| code-fold: true
+#| fig-cap: "Tracking a sinusoidal reference by a first-order switched linear system controlled using an online MLD MPC"
+#| label: fig-mld-online-mpc-switched-lti-1
+using Plots
+p1 = plot(0:h:(N_full-N)*h, xopt_full, xlims=(-0.1, N_full*h*1.01), label="x(k)", xlabel="k", ylabel="x(k)", markershape=:circle, markersize=2, linetype=:steppost)
+plot!(p1, 0:h:N_full*h, x_ref_full, label="x_ref(k)")
+p2 = plot(0:h:(N_full-N-1)*h, uopt_full, xlims=(-0.1, N_full*h*1.01), label="u(k)", xlabel="k", ylabel="u(k)", markershape=:circle, markersize=2, linetype=:steppost)    
+p3 = plot(0:h:(N_full-N-1)*h, δopt_full, xlims=(-0.1, N_full*h*1.01), label="δ(k)", xlabel="k", ylabel="δ(k)", markershape=:circle, markersize=2, linetype=:steppost)
+plot(p1, p2, p3, layout=(3,1), size=(600,800))
+```
+:::
