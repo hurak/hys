@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.8">
+<meta name="generator" content="quarto-1.9.12">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-095e6f6405c331e3b33229e03003579f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -937,6 +937,23 @@ Figure&nbsp;1: Hybrid automaton for a thermostat
 <li>Since the invariant for a given mode and the guard set for the only transition to the other model overlap, the response of the system is not uniquely determined. Consider the case when the system is in the <code>off</code> mode and the temperature is 16.5. The system can either stay in the <code>off</code> mode or switch to the <code>on</code> mode.</li>
 </ol>
 </div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Alternative semantics for the invariant sets and guard sets
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The roles of the invariant sets (the system “can stay in the given mode as long as the continuous state is within the invariant set”) and the guard sets (the transition “can be executed when the continuous state is within the guard set”) as we defined them constitute the most common semantics, the canonical one, there are alternative semantics used by some authors. Mostly they are motivated by the need to remove the nondeterminism that may arise when the invariant set and the guard set overlap.</p>
+<ul>
+<li>One common possibility is that as soon as the transition is enabled, it is executed, even if the state is still well inside the invariant set. In other words, a guard gives not only necessary but also sufficient conditions for the transition. Within timed automata theory, such transitions are called <em>urgent</em>. This approach is followed by Stateflow software, for example.</li>
+<li>Another possibility is that even if the transition is enabled, it is only executed once the state leaves the invariant set.</li>
+</ul>
+</div>
+</div>
 <section id="hybrid-automaton-with-external-events-and-control-inputs" class="level2">
 <h2 class="anchored" data-anchor-id="hybrid-automaton-with-external-events-and-control-inputs">Hybrid automaton with external events and control inputs</h2>
 <p>We now extend the hybrid automaton with two new components:</p>
@@ -970,12 +987,19 @@ Figure&nbsp;1: Hybrid automaton for a thermostat
 <li><p><span class="math inline">\mathcal G: \mathcal E \rightarrow 2^{\mathcal{X}\times U}</span> is a guard set now augmented with a subset of the control input set. The necessary condition for a given transition can be thus imposed not only on <span class="math inline">x</span> but also on <span class="math inline">u</span>.</p></li>
 <li><p><span class="math inline">\mathcal R: \mathcal E \times \mathcal X\times \mathcal U\rightarrow 2^{\mathcal X}</span> is a (state) reset map that is now additionally parameterized by the control input.</p></li>
 </ul>
-<p>If enabled, the transition can happen if one of the two things is satisfied:</p>
-<ul>
-<li>the continous state leaves the invariant set of the given location,<br>
-</li>
-<li>an external event occurs.</li>
-</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Alternative semantics of transitions with external events
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There does not appear to be a universal agreement on the semantics of transitions in hybrid automata with external events. What we presented above is the most common one, namely, the transition occurs when the external event arrives <em>and</em> the guard condition is satisfied (the invariant set is relevant as before). However, in alternative semantics, the transition occurs as soon as the corresponding external event occurs. But as a matter of fact, this alternative semantics can be formulated within the original one by assuming that the guard condition (posibly even an unspecified one) is automatically satisfied.</p>
+</div>
+</div>
 <div id="exm-button-controlled-LED" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Button-controlled LED)</strong></span> &nbsp;</p>
 <div id="fig-button-controlled-LED" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1403,7 +1427,7 @@ Figure&nbsp;15: Hybrid automaton for a DC-DC boost converter
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
