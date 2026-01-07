@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.14">
+<meta name="generator" content="quarto-1.9.16">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-4f72c1afe59a4edb82ad8e59b4b7d712.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a67ac2868200dddf7a4f0e3ae403775c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3e5efe3ec618909172dc8f77596cf8b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -760,22 +760,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Mainly some experimental code accompanying research papers.</p>
-<section id="in-julia" class="level4">
-<h4 class="anchored" data-anchor-id="in-julia">In Julia</h4>
+<p>Currently mainly some experimental code accompanying research papers.</p>
+<section id="julia" class="level4">
+<h4 class="anchored" data-anchor-id="julia">Julia</h4>
 <ul>
 <li><a href="https://github.com/sisl/SignalTemporalLogic.jl">SignalTemporalLogic.jl</a></li>
 </ul>
 </section>
-<section id="in-python" class="level4">
-<h4 class="anchored" data-anchor-id="in-python">In Python</h4>
-</section>
-<section id="in-matlab" class="level4">
-<h4 class="anchored" data-anchor-id="in-matlab">In Matlab</h4>
+<section id="python" class="level4">
+<h4 class="anchored" data-anchor-id="python">Python</h4>
 <ul>
-<li><p><a href="https://github.com/decyphir/breach">Breach</a> toolbox for Matlab</p></li>
-<li><p>Beware that Matlab’s toolboxes such as <a href="https://www.mathworks.com/products/requirements-toolbox.html">Requirements Toolbox</a> and <a href="https://www.mathworks.com/products/simulink-design-verifier.html">Simulink Design Verifier</a> mention some temporal logic and temporal operators, but they do not adhere to the syntax of STL.</p></li>
+<li><a href="https://github.com/nickovic/rtamt">rtamt</a> – STL real-time monitoring library.</li>
+<li><a href="https://github.com/vincekurtz/stlpy">stlpy</a> – library for control from STL specifications.</li>
 </ul>
+</section>
+<section id="matlab" class="level4">
+<h4 class="anchored" data-anchor-id="matlab">Matlab</h4>
+<ul>
+<li><p><a href="https://github.com/decyphir/breach">Breach</a> – toolbox for time series analysis and simulation-based analysis of systems with respect to STL specifications.</p></li>
+<li><p><a href="https://tumcps.github.io/CORA/">CORA</a> – toolbox for reachability analysis by set-propagation techniques, but it also supports STL syntax.</p></li>
+<li><p>Beware that Matlab’s toolboxes such as <a href="https://www.mathworks.com/products/requirements-toolbox.html">Requirements Toolbox</a>, <a href="https://www.mathworks.com/help/sltest/">Simulink Test</a>, and <a href="https://www.mathworks.com/products/simulink-design-verifier.html">Simulink Design Verifier</a> mention some temporal logic and temporal operators (for instance <a href="https://www.mathworks.com/help/sltest/ug/assess-temporal-logic-by-using-temporal-assessments.html">here</a>), but they do not adhere to the syntax of STL.</p></li>
+</ul>
+<p>A lot more can be found but those are mostly abandoned and unmaintained for some time.</p>
 
 
 </section>

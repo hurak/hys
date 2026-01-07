@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.14">
+<meta name="generator" content="quarto-1.9.16">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -39,7 +59,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-4f72c1afe59a4edb82ad8e59b4b7d712.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-a67ac2868200dddf7a4f0e3ae403775c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-3e5efe3ec618909172dc8f77596cf8b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -799,7 +819,8 @@ window.Quarto = {
   <li><a href="#signal-temporal-logic-stl" id="toc-signal-temporal-logic-stl" class="nav-link" data-scroll-target="#signal-temporal-logic-stl">Signal temporal logic (STL)</a>
   <ul class="collapse">
   <li><a href="#robustness-degree-in-stl" id="toc-robustness-degree-in-stl" class="nav-link" data-scroll-target="#robustness-degree-in-stl">Robustness degree in STL</a></li>
-  <li><a href="#monitoring-run-time-verification" id="toc-monitoring-run-time-verification" class="nav-link" data-scroll-target="#monitoring-run-time-verification">Monitoring, run-time verification</a></li>
+  <li><a href="#stl-monitoring-run-time-verification" id="toc-stl-monitoring-run-time-verification" class="nav-link" data-scroll-target="#stl-monitoring-run-time-verification">STL Monitoring, run-time verification</a></li>
+  <li><a href="#time-varying-control-barrier-functions-for-design-of-controllers-from-a-restricted-set-of-stl-specifications" id="toc-time-varying-control-barrier-functions-for-design-of-controllers-from-a-restricted-set-of-stl-specifications" class="nav-link" data-scroll-target="#time-varying-control-barrier-functions-for-design-of-controllers-from-a-restricted-set-of-stl-specifications">Time-varying control barrier functions for design of controllers from (a restricted set of) STL specifications</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -846,8 +867,11 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="temporal-operators">Temporal operators</h2>
 <p>The name might be misleading here – the adjective <em>temporal</em> has nothing to do with time as measured by the wall clock. Their basic versions have been developed for discrete-event systems, and as state trajectories of these form sequencies, temporal operators refer to sequences.</p>
 <p>Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But we will only mention these extensions after introducing the basics.</p>
+<div id="exm-progress-beverage-machine" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Progress in a beverage vending machine)</strong></span> Recall our second example of a specified requirement for the beverage vending machine from the previous lecture. We required that “If the user pays, the machine will eventually dispenses a beverage”. With the standard propositional logic we were unable to express this requirement. Note that the formula <span class="math display">\text{paid} \implies \text{delivered}</span> is not the correct answer, because it would require that this implication holds for the same state, which is not what we require. Instead, we need to express that if the state trajectory contains a state where <code>paid</code> holds, then there must be some later state in the same trajectory where <code>delivered</code> holds.</p>
+</div>
 <div id="exm-line" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Insufficiency of propositional logic to express requirements on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span> of the traffic light. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
+<p><span class="theorem-title"><strong>Example 2 (Insufficiency of propositional logic to express requirements on a traffic light controller)</strong></span> Consider the state automaton for a controller for two traffic lights (admittedly, we simplify here a lot). The state trajectory for each light is a sequence of the four color states <span class="math inline">\{\text{green}</span>, <span class="math inline">\text{yellow}</span>, <span class="math inline">\text{red}</span>, <span class="math inline">\text{red-yellow}\}</span>. We may want to impose a requirement such that <span class="math inline">\text{green}</span> is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, <span class="math inline">\neg(\text{green}_1 \land \text{green}_2)</span>. But now consider that we require that sooner or later, <span class="math inline">\text{green}</span> must be on for each light (to guarantee <em>fairness</em>). And that this must be true all the time, that is, <span class="math inline">\text{green}</span> must come infinitely often. And, furthermore, that <span class="math inline">\text{red}</span> cannot come imediately after its respective <span class="math inline">\text{green}</span>.</p>
 </div>
 <p>Requirements like these cannot be expressed with standard logical operators such as <span class="math inline">\lnot</span>, <span class="math inline">\land</span>, <span class="math inline">\lor</span>, <span class="math inline">\implies</span> and <span class="math inline">\iff</span>, and temporal operators must be introduced. Here they are.</p>
 <table class="caption-top table">
@@ -990,9 +1014,9 @@ Figure&nbsp;1: Graphical representation of a sequence of Boolean labels attached
 </div>
 </div>
 <p>We now consider some property of the whole discrete state trajectory expressed by a Boolean formula <span class="math inline">\phi</span> (as such it evaluates to <code>true</code> or <code>false</code>).</p>
-<p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by a <em>Linear Temporal Logic</em> (LTL) formula. Here comes a formal definition (using recursion): <span class="math display">\boxed{
-\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2}
-</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL sub-formulas.</p>
+<p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by a <em>Linear Temporal Logic</em> (LTL) formula. This is a general structure of the formula (using Backus-Naur form as used in computer science): <span class="math display">\boxed{
+\phi \Coloneqq \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2,}
+</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL formulas (apparently the above definition uses recursion).</p>
 <p>The trajectory will be identified by its initial <span class="math inline">x</span>, we write that a state sequence initiated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">\boxed{
 x \models \phi.}
 </span></p>
@@ -1039,7 +1063,7 @@ x \models \phi.}
 </div>
 </div>
 <div id="exm-some-more-LTL-formulas" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
+<p><span class="theorem-title"><strong>Example 3 (Some nontrivial LTL formulas)</strong></span> Here we consider some requirements expressed by notrivial LTL formulas.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 54%">
@@ -1065,12 +1089,12 @@ x \models \phi.}
 </tbody>
 </table>
 </div>
-<p>We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula?</p>
+<p>We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula? The answer is provided by the first row above:</p>
 <p><span class="math display">
 \Box \neg \text{collision}
 </span></p>
 <p>We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?</p>
-<p>Finally, another type of a common requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?</p>
+<p>Finally, another type of a common requirement is that of stability – something good must eventually happen and then it must hold forever. How do we express it using an LTL formula? No surprise, the answer is also provided in the table above.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1176,7 +1200,7 @@ Table&nbsp;1: Path quantifiers
 </table>
 <p>Temporal operators and path quantifiers always come in pairs when forming CTL formulas. For example, <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula.</p>
 <div id="exm-nontrivial-CTL-formulas" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (Some nontrivial CTL formulas and their interpretations)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 4 (Some nontrivial CTL formulas and their interpretations)</strong></span> &nbsp;</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 32%">
@@ -1205,16 +1229,11 @@ Table&nbsp;1: Path quantifiers
 <td>For all paths and times, the two processes P1 and P2 are not in their critical sections simultaneously.</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\forall \Box (\text{enabled}\implies \forall\Diamond \text{executed})</span></td>
-<td>Fairness Property</td>
-<td>If an action becomes enabled, it will be eventually executed, whichever path is taken.</td>
-</tr>
-<tr class="even">
 <td><span class="math inline">\forall \Box (\text{condition} \implies \exists \Diamond (\exists \Box \text{safe}))</span></td>
 <td>Nested Temporal Properties</td>
 <td>For all states globally, if a condition holds, then there exists a path where eventually the system will enter a state from which it can always stay in safe states.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><span class="math inline">\forall \Box (\neg \text{error} \land (\exists \Diamond \text{goal}))</span></td>
 <td>Combined Safety and Liveness</td>
 <td>It is always true globally that the system avoids an error state and guarantees that a goal state can eventually be reached.</td>
@@ -1228,7 +1247,7 @@ Table&nbsp;1: Path quantifiers
 <h2 class="anchored" data-anchor-id="ctl">CTL*</h2>
 <p>A combination of CTL and LTL is known as CTL*. In particular, the restriction that temporal operators and path quantifiers must come in pairs, which is imposed in CTL, is relaxed. The expressive power is best. But it comes at cost – verification of the formulas is more difficult.</p>
 <div id="exm-CTL-star" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Some examples of CTL*)</strong></span> Having state above, that <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula, it is a valid CTL* formula. But <span class="math inline">\forall \Diamond \forall \Box \phi</span> is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.</p>
+<p><span class="theorem-title"><strong>Example 5 (Some examples of CTL*)</strong></span> As we stated above, the formula <span class="math inline">\forall \Diamond \Box \phi</span> is not a valid CTL formula, it is a valid CTL* formula. But <span class="math inline">\forall \Diamond \forall \Box \phi</span> is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.</p>
 </div>
 </section>
 <section id="probabilistic-ctl-pctl-and-continuous-stochastic-logic-csl" class="level2">
@@ -1243,7 +1262,7 @@ Table&nbsp;1: Path quantifiers
 <h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
 <p>Dense time added to LTL.</p>
 <div id="exm-mtl" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 6</strong></span> <span class="math display">
 \square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 </span></p>
 </div>
@@ -1251,13 +1270,13 @@ Table&nbsp;1: Path quantifiers
 </section>
 <section id="signal-temporal-logic-stl" class="level2">
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
-<p>Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It also supports the continuous (aka dense) time, and furthermore it replaces the <em>proposional logic</em> with the <em>predicate logic</em> as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems.</p>
+<p>Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It not only supports the continuous time (as MTL/MITL does), but also it replaces the <em>propositional logic</em> with the <em>predicate logic</em> as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems.</p>
 <div id="exm-stl-formulas" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Examples of STL formulas)</strong></span> <span class="math display">
+<p><span class="theorem-title"><strong>Example 7 (Examples of STL formulas)</strong></span> <span class="math display">
 \square \neg(x(t) &gt; 10.0)
 </span></p>
 <p><span class="math display">
-\square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+\square (x(t) \geq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 </span> <span class="math display">
 \Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
 </span> <span class="math display">
@@ -1267,17 +1286,26 @@ Table&nbsp;1: Path quantifiers
 <p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
 <section id="robustness-degree-in-stl" class="level3">
 <h3 class="anchored" data-anchor-id="robustness-degree-in-stl">Robustness degree in STL</h3>
-<p>It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>. See the literature for more.</p>
+<p>It turns out that if we only learn that the STL formula has been satisfied by a particular trajectory (aka signal), it is not clear whether the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a <em>robustness degree</em>. See the literature for more.</p>
 </section>
-<section id="monitoring-run-time-verification" class="level3">
-<h3 class="anchored" data-anchor-id="monitoring-run-time-verification">Monitoring, run-time verification</h3>
-<p>LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such general techniques for STL. Instead, verification of STL formulas for the whole system must then be approached by evaluating them on individual trajectories (called <em>monitoring</em>) obtained either by simulation, running tests or obtaining operational data. The outcomes from several trajectories are then processesed statistically in Monte-Carlo style. This is known as <em>simulation-based</em> or <em>run-time verification</em>.</p>
+<section id="stl-monitoring-run-time-verification" class="level3">
+<h3 class="anchored" data-anchor-id="stl-monitoring-run-time-verification">STL Monitoring, run-time verification</h3>
+<p>LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such techniques for general STL formulas. Instead, verification of general STL formulas for the whole system must then be approached by evaluating them on individual trajectories started at initial states. This is called <em>monitoring</em>. The trajectories are obtained either by running simulations, experiments, or obtaining operational data. The outcomes from several trajectories are then processed statistically in Monte-Carlo style. This is known as <em>simulation-based</em> or <em>run-time verification</em>.</p>
+</section>
+<section id="time-varying-control-barrier-functions-for-design-of-controllers-from-a-restricted-set-of-stl-specifications" class="level3">
+<h3 class="anchored" data-anchor-id="time-varying-control-barrier-functions-for-design-of-controllers-from-a-restricted-set-of-stl-specifications">Time-varying control barrier functions for design of controllers from (a restricted set of) STL specifications</h3>
+<p>For some restricted classes of systems and STL formulas, verification techniques avoiding sampling the set of initial states exist. Those are based on <em>time-varying</em> barrier functions that we have introduced previously. In fact, upon introducing control into the concept of barriers, we get Control Barrier Functions (CBF), and time-varying CBFs can then be used to design (and not just analyze/verify) controllers satisfying a subset of STL formulas. See the latest book <span class="citation" data-cites="lindemannFormalMethodsMultiAgent2025"><a href="#ref-lindemannFormalMethodsMultiAgent2025" role="doc-biblioref">[1]</a></span> (and papers by the same authors) for more details and references.</p>
 
 
+
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-lindemannFormalMethodsMultiAgent2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">L. Lindemann and D. V. Dimarogonas, <em>Formal <span>Methods</span> for <span>Multi-Agent Feedback Control Systems</span></em>. in Cyber-<span>Physical Systems Series</span>. The MIT Press, 2025. doi: <a href="https://doi.org/10.7551/mitpress/15136.001.0001">10.7551/mitpress/15136.001.0001</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
