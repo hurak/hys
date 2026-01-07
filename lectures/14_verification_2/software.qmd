@@ -7,16 +7,22 @@ bibliography:
 format: html
 ---
 
-Mainly some experimental code accompanying research papers.
+Currently mainly some experimental code accompanying research papers. 
 
-#### In Julia
+#### Julia
 
 - [SignalTemporalLogic.jl](https://github.com/sisl/SignalTemporalLogic.jl)
 
-#### In Python
+#### Python
 
-#### In Matlab
+- [rtamt](https://github.com/nickovic/rtamt) – STL real-time monitoring library.
+- [stlpy](https://github.com/vincekurtz/stlpy) – library for control from STL specifications.
 
-- [Breach](https://github.com/decyphir/breach) toolbox for Matlab
+#### Matlab
 
-- Beware that Matlab's toolboxes such as [Requirements Toolbox](https://www.mathworks.com/products/requirements-toolbox.html) and [Simulink Design Verifier](https://www.mathworks.com/products/simulink-design-verifier.html) mention some temporal logic and temporal operators, but they do not adhere to the syntax of STL.
+- [Breach](https://github.com/decyphir/breach) – toolbox for time series analysis and simulation-based analysis of systems with respect to STL specifications.
+- [CORA](https://tumcps.github.io/CORA/) – toolbox for reachability analysis by set-propagation techniques, but it also supports STL syntax.
+
+- Beware that Matlab's toolboxes such as [Requirements Toolbox](https://www.mathworks.com/products/requirements-toolbox.html), [Simulink Test](https://www.mathworks.com/help/sltest/), and [Simulink Design Verifier](https://www.mathworks.com/products/simulink-design-verifier.html) mention some temporal logic and temporal operators (for instance [here](https://www.mathworks.com/help/sltest/ug/assess-temporal-logic-by-using-temporal-assessments.html)), but they do not adhere to the syntax of STL.
+
+A lot more can be found but those are mostly abandoned and unmaintained for some time.

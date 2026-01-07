@@ -7,8 +7,10 @@ bibliography:
 format: html
 ---
 
-Two popular monographs on verification (model checking) based on temporal logics such as LTL, CTL and CTL* are @baierPrinciplesModelChecking2008, and @clarkeModelChecking2018. These do not cover hybrid systems, though. Still they are recommendable (at least their first chapters) for understanding the basics.
+Two popular monographs on formal verification (namely, model checking) based on temporal logics such as LTL, CTL and CTL* are @baierPrinciplesModelChecking2008, and @clarkeModelChecking2018. These do not cover hybrid systems, but still reading at least their first chapters may help understand he fundamentals in this area.
 
 Some learning material and sketches of applications of temporal logics in control systems for robotics and autonomous driving are in the lectures @murrayLectureLinearTemporal2020, and @wongpiromsarnLectureModelChecking2020.
 
-A temporal logic particularly useful for specifying more complex requirements on (hybrid) control systems is Signal Temporal Logic (STL). Its treatment of this framework in textbooks is still rather sketchy. Research papers are then the only source. STL has been introduced in the readable @malerMonitoringTemporalProperties2004. Robustness degree has been described in @donzeRobustSatisfactionTemporal2010 and the self-contained slides @donzeSignalTemporalLogic2013. Some more recent papers that also contain other relevant references are @yuOnlineControlSynthesis2024, @ramanModelPredictiveControl2014, @farahaniRobustModelPredictive2015, @farahaniShrinkingHorizonModel2019.
+As we argued in the lecture, a temporal logic particularly useful for specifying more complex requirements on hybrid control systems is *Signal Temporal Logic* (STL). Treatment of this framework in textbooks is still rather sketchy (a very recent exception is @lindemannFormalMethodsMultiAgent2025). Research papers are then the main learning resource. STL has been introduced in the readable @malerMonitoringTemporalProperties2004. Robustness degree has been described in @donzeRobustSatisfactionTemporal2010 and the self-contained slides @donzeSignalTemporalLogic2013. 
+
+A selection of some more recent papers on STL that also contain other relevant references is: @yuOnlineControlSynthesis2024, @yangSignalTemporalLogic2024, @charitidouRecedingHorizonControl2023. Clearly, research in this area is very active.

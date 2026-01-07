@@ -32,9 +32,16 @@ The name might be misleading here – the adjective *temporal* has nothing to do
 
 Basic temporal operators that we are going to introduce can be extended so that they also refer to the wall-clock time. But we will only mention these extensions after introducing the basics.  
 
+::: {#exm-progress-beverage-machine}
+### Progress in a beverage vending machine
+Recall our second example of a specified requirement for the beverage vending machine from the previous lecture. We required that "If the user pays, the machine will eventually dispenses a beverage". With the standard propositional logic we were unable to express this requirement. Note that the formula 
+$$\text{paid} \implies \text{delivered}$$ 
+is not the correct answer, because it would require that this implication holds for the same state, which is not what we require. Instead, we need to express that if the state trajectory contains a state where `paid` holds, then there must be some later state in the same trajectory where `delivered` holds. 
+:::
+
 ::: {#exm-line}
-## Insufficiency of propositional logic to express requirements on a traffic light controller
-Consider the state automaton for a controller for two traffic lights (but note that we intentionally simplify here a lot compared to real traffic light controllers). The state trajectory for each light is a sequence of color states $\{\text{green}$, $\text{yellow}$, $\text{red}$, $\text{red-yellow}\}$ of the traffic light. We may want to impose a requirement such that $\text{green}$ is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, $\neg(\text{green}_1 \land \text{green}_2)$. But now consider that we require that sooner or later, $\text{green}$ must be on for each light (to guarantee *fairness*). And that this must be true all the time, that is, $\text{green}$ must come infinitely often. And, furthermore, that $\text{red}$ cannot come imediately after its respective $\text{green}$. 
+### Insufficiency of propositional logic to express requirements on a traffic light controller
+Consider the state automaton for a controller for two traffic lights (admittedly, we simplify here a lot). The state trajectory for each light is a sequence of the four color states $\{\text{green}$, $\text{yellow}$, $\text{red}$, $\text{red-yellow}\}$. We may want to impose a requirement such that $\text{green}$ is never on at both lights at the same time. This we can easily express just with the standard logical operators, namely, $\neg(\text{green}_1 \land \text{green}_2)$. But now consider that we require that sooner or later, $\text{green}$ must be on for each light (to guarantee *fairness*). And that this must be true all the time, that is, $\text{green}$ must come infinitely often. And, furthermore, that $\text{red}$ cannot come imediately after its respective $\text{green}$. 
 :::
 
 Requirements like these cannot be expressed with standard logical operators such as $\lnot$, $\land$, $\lor$, $\implies$ and $\iff$, and temporal operators must be introduced. Here they are.
@@ -86,11 +93,11 @@ digraph path {
 
 We now consider some property of the whole discrete state trajectory expressed by a Boolean formula $\phi$ (as such it evaluates to `true` or `false`).   
 
-How do we express such property formula $\phi$? In order to be able to express requirements on future states, $\phi$ cannot be just a (proposional) logic formula, it must by a *Linear Temporal Logic* (LTL) formula. Here comes a formal definition (using recursion):
+How do we express such property formula $\phi$? In order to be able to express requirements on future states, $\phi$ cannot be just a (proposional) logic formula, it must by a *Linear Temporal Logic* (LTL) formula. This is a general structure of the formula (using Backus-Naur form as used in computer science):
 $$\boxed{
-\phi = \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2}
+\phi \Coloneqq \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2,}
 $$
-where $p$ is an atomic formula, and $\phi_1$ and $\phi_2$ are some LTL sub-formulas.
+where $p$ is an atomic formula, and $\phi_1$ and $\phi_2$ are some LTL formulas (apparently the above definition uses recursion).
 
 The trajectory will be identified by its initial $x$, we write that a state sequence initiated at the given discrete state $x$ *satisfies* the formula as
 $$\boxed{
@@ -130,15 +137,15 @@ Here we consider some requirements expressed by notrivial LTL formulas.
 | $x \models \Diamond(p_1 \land \bigcirc\Diamond p_2)$ | ○──→○──→○──→○──→●──→○──→■┄┄→ |
 :::
 
-We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula?
+We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula? The answer is provided by the first row above:
 
 $$
 \Box \neg \text{collision}
 $$
 
-We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?
+We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula? 
 
-Finally, another type of a common requirement is that of stability – something good must eventually happend and then it must hold forever. How do we express it using an LTL formula?
+Finally, another type of a common requirement is that of stability – something good must eventually happen and then it must hold forever. How do we express it using an LTL formula? No surprise, the answer is also provided in the table above.
 
 ::: {.callout-note}
 ## Property Specification Language (PSL)
@@ -182,7 +189,6 @@ Temporal operators and path quantifiers always come in pairs when forming CTL fo
 | $\exists \Diamond \text{goal}$ | Liveness Property | There exists some path along which the system will eventually reach the goal state. |
 | $\forall \Box (\text{request} \implies \forall \Diamond \text{grant})$ | Response Property (Cause-Effect) | For all possible paths and all times, if a request occurs, it is guaranteed that eventually a grant will follow. |
 | $\forall \Box (\neg (P_1 \land P_2))$ | Mutual Exclusion Property | For all paths and times, the two processes P1 and P2 are not in their critical sections simultaneously. |
-| $\forall \Box (\text{enabled}\implies \forall\Diamond \text{executed})$ | Fairness Property | If an action becomes enabled, it will be eventually executed, whichever path is taken. |
 | $\forall \Box (\text{condition} \implies \exists \Diamond (\exists \Box \text{safe}))$ | Nested Temporal Properties | For all states globally, if a condition holds, then there exists a path where eventually the system will enter a state from which it can always stay in safe states. |
 | $\forall \Box (\neg \text{error} \land (\exists \Diamond \text{goal}))$ | Combined Safety and Liveness | It is always true globally that the system avoids an error state and guarantees that a goal state can eventually be reached. |
 :::
@@ -193,7 +199,7 @@ A combination of CTL and LTL is known as CTL*. In particular, the restriction th
 
 :::{#exm-CTL-star}
 ## Some examples of CTL*
-Having state above, that $\forall \Diamond \Box \phi$ is not a valid CTL formula, it is a valid CTL* formula. But $\forall \Diamond \forall \Box \phi$ is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.
+As we stated above, the formula $\forall \Diamond \Box \phi$ is not a valid CTL formula, it is a valid CTL* formula. But $\forall \Diamond \forall \Box \phi$ is a valid CTL formula. These two are not equivalent. Investigating the difference between the two shows that CTL* is indeed more expressive than CTL.
 :::
 
 ## Probabilistic CTL (PCTL) and Continuous stochastic logic (CSL) 
@@ -218,7 +224,7 @@ MITL does not allow singleton time intervals allowed by MTL. The motivation for 
 
 ## Signal temporal logic (STL)
 
-Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It also supports the continuous (aka dense) time, and furthermore it replaces the *proposional logic* with the *predicate logic* as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems. 
+Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It not only supports the continuous time (as MTL/MITL does), but also it replaces the *propositional logic* with the *predicate logic* as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems. 
 
 :::{#exm-stl-formulas}
 ## Examples of STL formulas
@@ -227,7 +233,7 @@ $$
 $$
 
 $$
-\square (x(t) \leq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
+\square (x(t) \geq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
 $$
 $$
 \Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
@@ -241,8 +247,12 @@ It allows combinations of surveillance (“visit regions A, B, and C every 10–
 
 ### Robustness degree in STL
 
-It turns out that if we only learn that the STL formula has been satisfied, it is not clear the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a *robustness degree*. See the literature for more.
+It turns out that if we only learn that the STL formula has been satisfied by a particular trajectory (aka signal), it is not clear whether the corresponding constraint has been satisfied with quite some margin or just so so. This is compensated for by introducing a *robustness degree*. See the literature for more.
 
-### Monitoring, run-time verification
+### STL Monitoring, run-time verification
 
-LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such general techniques for STL. Instead, verification of STL formulas for the whole system must then be approached by evaluating them on individual trajectories (called *monitoring*) obtained either by simulation, running tests or obtaining operational data. The outcomes from several trajectories are then processesed statistically in Monte-Carlo style. This is known as *simulation-based* or *run-time verification*. 
+LTL and CTL logics (a bit less so CTL* and significantly less so MITL) lend themselves for some rigorous symbolic (fully exhaustive) verification (model checking) techniques with known complexities. In contrast, there are no such techniques for general STL formulas. Instead, verification of general STL formulas for the whole system must then be approached by evaluating them on individual trajectories started at initial states. This is called *monitoring*. The trajectories are obtained either by running simulations, experiments, or obtaining operational data. The outcomes from several trajectories are then processed statistically in Monte-Carlo style. This is known as *simulation-based* or *run-time verification*. 
+
+### Time-varying control barrier functions for design of controllers from (a restricted set of) STL specifications
+
+For some restricted classes of systems and STL formulas, verification techniques avoiding sampling the set of initial states exist. Those are based on *time-varying* barrier functions that we have introduced previously. In fact, upon introducing control into the concept of barriers, we get Control Barrier Functions (CBF), and time-varying CBFs can then be used to design (and not just analyze/verify) controllers satisfying a subset of STL formulas. See the latest book @lindemannFormalMethodsMultiAgent2025 (and papers by the same authors) for more details and references.
