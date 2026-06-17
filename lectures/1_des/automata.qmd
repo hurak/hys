@@ -510,7 +510,7 @@ function output(dtr::DijkstraTokenRing)     # Token = 1, no token = 0 at the giv
 end
 ```
 
-We now rund the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.
+We now run the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.
 ```{julia}
 n = 4                           # Concrete number of nodes.
 k = n                           # Concrete max value of a state variable (>= n).
