@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.12">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Similar courses – B(E)3M35HYS – Hybrid systems</title>
+<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,19 +68,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../0_intro/references.html" rel="next">
-<link href="../0_intro/rules.html" rel="prev">
+<link href="../2_petri_nets/goals.html" rel="next">
+<link href="../1_des/references.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cdaacfc258cb6f151192107f105ac881.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +108,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -84,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/similar.html">Similar courses</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/exercises.html">Exercises</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0_intro/similar.html" class="sidebar-item-text sidebar-link active">
+  <a href="../0_intro/similar.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Similar courses</span></a>
   </div>
 </li>
@@ -187,6 +267,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../1_des/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1_des/exercises.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -740,17 +826,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#at-other-universities" id="toc-at-other-universities" class="nav-link active" data-scroll-target="#at-other-universities">At other universities</a></li>
-  <li><a href="#at-ctu-prague" id="toc-at-ctu-prague" class="nav-link" data-scroll-target="#at-ctu-prague">At CTU Prague</a></li>
+  <li><a href="#exercise-1-turnstile-access-gate-automaton-30-min" id="toc-exercise-1-turnstile-access-gate-automaton-30-min" class="nav-link active" data-scroll-target="#exercise-1-turnstile-access-gate-automaton-30-min">Exercise 1: Turnstile / access-gate automaton (≈30 min)</a></li>
+  <li><a href="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" id="toc-exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" class="nav-link" data-scroll-target="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min">Exercise 2: Vending machine with two products and a Moore output (≈30 min)</a></li>
+  <li><a href="#exercise-3-composing-two-automata-blocking-analysis-30-min" id="toc-exercise-3-composing-two-automata-blocking-analysis-30-min" class="nav-link" data-scroll-target="#exercise-3-composing-two-automata-blocking-analysis-30-min">Exercise 3: Composing two automata + blocking analysis (≈30 min)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/similar.html">Similar courses</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/exercises.html">Exercises</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Similar courses</h1>
+<h1 class="title">Exercises</h1>
 </div>
 
 
@@ -767,28 +854,102 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You may find it useful at least to be aware of these courses if not even to explore them at some detail. But we do not particularly try to align our course with any of these as the backgrounds of the students and the teachers vary.</p>
-<section id="at-other-universities" class="level2">
-<h2 class="anchored" data-anchor-id="at-other-universities">At other universities</h2>
+<section id="exercise-1-turnstile-access-gate-automaton-30-min" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-turnstile-access-gate-automaton-30-min">Exercise 1: Turnstile / access-gate automaton (≈30 min)</h2>
+<p><strong>Goal:</strong> practice extracting the formal tuple <span class="math inline">G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}</span> (and optionally <span class="math inline">\mathcal X_\mathrm{m}</span>) from an informal description, and draw the state-transition diagram.</p>
+<p><strong>Part A — Pen and paper.</strong> A subway turnstile starts <strong>locked</strong>. Inserting a valid <code>coin</code> unlocks it. A person then either <code>pushes</code> through (relocking the turnstile) or, if nobody pushes within some time, an attendant can <code>reset</code> it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a <code>coin</code> is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).</p>
+<ol type="1">
+<li>Identify <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and write out <span class="math inline">\mathcal F</span> as a set of triples (or as the transition function <span class="math inline">f</span>).</li>
+<li>Decide whether <code>coin</code> while unlocked should appear in <span class="math inline">\mathcal F</span> at all, or whether it is simply outside <span class="math inline">\Gamma(\text{unlocked})</span> (the active event set). Justify your choice.</li>
+<li>Draw the digraph (nodes, edges, labels). Mark the initial state.</li>
+<li>Is <code>locked</code> a reasonable marked/accepting state <span class="math inline">\mathcal X_\mathrm{m}</span>? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?</li>
+<li>Identify the active event function <span class="math inline">\Gamma(x)</span> for each state.</li>
+</ol>
+<p><strong>Part B — Computer implementation (choose one).</strong></p>
 <ul>
-<li>Ricardo G. Sanfelice: Hybrid Control Design, PhD Course at the University of Bologna, 2018, <a href="https://hybrid.soe.ucsc.edu/hcd18">https://hybrid.soe.ucsc.edu/hcd18</a>.</li>
-<li>Maria Prandini: Hybrid Systems, PhD course at Lund University, 2015, <a href="https://www.control.lth.se/education/doctorate-program/hybrid-systems/">https://www.control.lth.se/education/doctorate-program/hybrid-systems/</a>.</li>
-<li>Wei Zhang: ECE 7850 Hybrid Systems: Theory and Applications, The Ohio State University, Spring 2017, <a href="http://www2.ece.ohio-state.edu/~zhang/HybridSystemsClass/index.html">http://www2.ece.ohio-state.edu/~zhang/HybridSystemsClass/index.html</a>.</li>
-<li>Dimos Dimarogonas: EL2450 Hybrid and Embedded Control Systems, KTH, 2021, <a href="https://www.kth.se/student/kurser/kurs/EL2450?l=en">https://www.kth.se/student/kurser/kurs/EL2450?l=en</a> (requires login).</li>
-<li>De Persis: WMIE014-05 Advanced Digital and Hybrid Control Systems, Groningen, 2021/22, <a href="https://www.rug.nl/ocasys/rug/vak/show?code=WMIE014-05">https://www.rug.nl/ocasys/rug/vak/show?code=WMIE014-05</a>.</li>
-<li>Bart de Schutter: Modeling and Control of Hybrid Systems (SC42075), MSc course, TU Delft, 2021, <a href="https://www.dcsc.tudelft.nl/~bdeschutter/hs/index.html">https://www.dcsc.tudelft.nl/~bdeschutter/hs/index.html</a>.</li>
-<li>Claire Tomlin: EE C291E/ME C290S Hybrid Systems—Computation and Control, UC Berkeley, Spring 2021, <a href="https://inst.eecs.berkeley.edu/~ee291e/sp21/">https://inst.eecs.berkeley.edu/~ee291e/sp21/</a>.</li>
-<li>João P. Hespanha: ECE229 Hybrid and Switched Systems, UCSB, Fall 2005, <a href="https://web.ece.ucsb.edu/~hespanha/ece229/">https://web.ece.ucsb.edu/~hespanha/ece229/</a>.</li>
-<li>Imura Jun-Ichi: Hybrid Systems Control, Tokyo Institute of Technology, 2018, <a href="http://www.ocw.titech.ac.jp/index.php?module=General&amp;action=T0300&amp;JWC=201804589&amp;lang=EN">http://www.ocw.titech.ac.jp/index.php?module=General&amp;action=T0300&amp;JWC=201804589&amp;lang=EN</a>.</li>
-<li>Inseok Hwang and Jianghai Hu: AAE 66800 Hybrid Systems: Theory and Applications, Purdue University, 2014, <a href="https://engineering.purdue.edu/AAE/academics/course-descriptions/AAE690_Hybrid_System_Theory_Applications">https://engineering.purdue.edu/AAE/academics/course-descriptions/AAE690_Hybrid_System_Theory_Applications</a>.</li>
-<li>O. Stursberg and L. Malkolf: FB16 - 4455 Hy­brid and Net­wor­ked Con­trol Sys­tems (HNCS), <a href="https://www.uni-kassel.de/eecs/control/lehre/hybrid-and-networked-control-systems">https://www.uni-kassel.de/eecs/control/lehre/hybrid-and-networked-control-systems</a>.</li>
-<li>Necmiye Ozay: EECS 598-002 Hybrid Systems: Specification, Verification and Control, University of Michigan, Fall 2015, <a href="http://web.eecs.umich.edu/~necmiye/hybridsystemsF15.html">http://web.eecs.umich.edu/~necmiye/hybridsystemsF15.html</a>.</li>
+<li><strong>Stateflow:</strong> Build the turnstile as a chart with two states, <code>locked</code> and <code>unlocked</code>. Use two input “events” (Boolean triggers or Stateflow events) <code>coin</code> and <code>push</code>, and implement the self-loop/reject behavior for <code>coin</code> in <code>unlocked</code>. Add a counter (extended state, e.g., integer <code>n_passengers</code>) that increments on every successful <code>push</code>, to connect to the “extended-state automaton” concept from the lecture.</li>
+<li><strong>Julia/MATLAB (low-level, no GUI):</strong> Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function <code>update(state, event) -&gt; new_state</code> implementing <span class="math inline">f</span> directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., <code>[:coin, :push, :coin, :coin, :push]</code>) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.</li>
 </ul>
-</section>
-<section id="at-ctu-prague" class="level2">
-<h2 class="anchored" data-anchor-id="at-ctu-prague">At CTU Prague</h2>
+<p><strong>Part C — Optional extension (if a group finishes early): closer to a real fare gate.</strong> Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:</p>
 <ul>
-<li>Pavel Burget: BE3M35SDU Discrete Event Systems (within <a href="https://moodle.fel.cvut.cz/">https://moodle.fel.cvut.cz/</a>). Last time run in 2020.</li>
+<li>Real gates have a passage <strong>sensor</strong> (an infrared beam or pressure pad), separate from the mechanical unlocking. This means <code>push</code> should really be split into two distinct events: <code>enter</code> (sensor detects someone stepping into the gate) and <code>exit</code> (sensor detects them leaving the gate area), since some gates re-lock only after the person has <em>fully</em> passed through, not the instant they push.</li>
+<li>Add an <code>alarm</code> event/output: if the sensor detects someone entering while the gate is still <code>locked</code> (fare evasion / jumping the gate), the automaton should go to a new state, say <code>breach</code>, and emit an alarm, rather than silently ignoring the event as in the basic version.</li>
+<li>Optionally add a <code>fault</code> state reachable from any state on a <code>motor_jam</code> event, with a <code>reset_by_technician</code> event returning to <code>locked</code> — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from <code>locked</code>/<code>unlocked</code>.</li>
+</ul>
+<p>Redo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if <code>breach</code> is not cleared within 5 seconds”).</p>
+<hr>
+</section>
+<section id="exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min">Exercise 2: Vending machine with two products and a Moore output (≈30 min)</h2>
+<p><strong>Goal:</strong> practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.</p>
+<p><strong>Part A — Pen and paper.</strong> Design (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events <code>insert5</code>, <code>insert10</code>), sells a single snack for exactly 15 crowns, gives no change, and has a <code>cancel</code> button that returns to the start at any point before purchase (refund not modeled — just state reset).</p>
+<ol type="1">
+<li>Decide whether to model this with a <strong>plain automaton</strong> where each state is an explicit “amount inserted so far” (0, 5, 10) or with an <strong>extended-state automaton</strong> (a single state <code>idle</code>/<code>vending</code> plus an integer variable <code>credit</code>). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to “State as the value of a state variable” in the notes.</li>
+<li>Write <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and <span class="math inline">\mathcal F</span> (or the guarded transitions, if you picked the extended-state version).</li>
+<li>Add a Moore-style output: label each state with <code>NO SNACK</code> or <code>DISPENSE</code>, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., <code>insert5 / no_snack</code>) would look like for the same machine.</li>
+<li>Draw the digraph for whichever version (plain or extended) you find clearer to draw.</li>
+</ol>
+<p><strong>Part B — Computer implementation (choose one).</strong></p>
+<ul>
+<li><strong>Stateflow:</strong> Implement the chart using an extended state variable <code>credit</code> (data of type integer local to the chart) and guarded transitions of the form <code>[credit + 5 &gt;= 15] / {credit = 0; dispense();}</code>, closely following the “Counting up to 10” extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (<code>NO SNACK</code> / <code>DISPENSE</code>).</li>
+<li><strong>Julia/MATLAB (low-level):</strong> Implement a function <code>f(x, e)</code> (or <code>update!</code>) operating on a small struct/state holding the mode and the <code>credit</code> variable, plus a separate <code>output(x)</code> function returning <code>"NO SNACK"</code> or <code>"DISPENSE"</code>, mirroring the <code>update!</code>/<code>output</code> split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.</li>
+</ul>
+<hr>
+</section>
+<section id="exercise-3-composing-two-automata-blocking-analysis-30-min" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-composing-two-automata-blocking-analysis-30-min">Exercise 3: Composing two automata + blocking analysis (≈30 min)</h2>
+<p><strong>Goal:</strong> practice the concept of <strong>composing automata</strong> via shared/synchronized events (the <code>!</code>/<code>?</code> convention from the notes), and identify <strong>blocking, deadlock, and livelock</strong> states — a topic not covered by either demo example.</p>
+<p><strong>Part A — Pen and paper.</strong> Consider two simple automata that must be composed:</p>
+<ul>
+<li><strong>Producer</strong> <span class="math inline">G_1</span>: states <code>idle</code>, <code>producing</code>, <code>done</code>; it cycles <code>idle —start→ producing —finish!→ idle</code>, where <code>finish!</code> is a <em>generated</em> (sent) event signaling that an item is ready.</li>
+<li><strong>Buffer</strong> <span class="math inline">G_2</span>: a one-slot buffer with states <code>empty</code>, <code>full</code>; transition <code>empty —finish?→ full</code> (receiving the item) and <code>full —take→ empty</code> (a consumer removing it). Assume the consumer’s <code>take</code> event is not synchronized with anything else for this exercise (free event).</li>
+</ul>
+<ol type="1">
+<li>Write out <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, <span class="math inline">\mathcal F</span> for <span class="math inline">G_1</span> and <span class="math inline">G_2</span> separately, and draw each digraph.</li>
+<li>Form the composed (product) automaton <span class="math inline">G = G_1 \| G_2</span> by synchronizing on the shared event <code>finish</code> (i.e., a transition in the product happens only when both automata’s <code>finish!</code>/<code>finish?</code> fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find <span class="math inline">\mathcal X_0</span> first and explore outward.)</li>
+<li>Now suppose the consumer’s <code>take</code> event is accidentally <em>removed</em> from the model (forgotten event). Re-examine the composed automaton: is there now a <strong>blocking</strong> state? Is it a <strong>deadlock</strong> (no outgoing transition at all) or a <strong>livelock</strong> (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state <span class="math inline">\mathcal X_\mathrm{m}</span> (e.g., <code>(idle, empty)</code>) to make this precise, and justify your classification using the definitions from the lecture.</li>
+</ol>
+<p><strong>Part B — Computer implementation (choose one).</strong></p>
+<ul>
+<li><p><strong>Stateflow:</strong> Implement <span class="math inline">G_1</span> and <span class="math inline">G_2</span> as two <strong>parallel</strong> (AND) states or as two separate charts communicating via a Stateflow event/signal representing <code>finish</code>, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the <code>take</code> transition (as in Part A.3) causes the buffer chart to visibly stall.</p></li>
+<li><p><strong>Julia/MATLAB (low-level):</strong> Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit <code>finish!</code> and step the buffer’s <code>finish?</code> transition only when that happens; step <code>take</code> independently/randomly. Run the simulation for the “broken” version with <code>take</code> removed and confirm in code (e.g., by checking that the buffer state never changes again after the first <code>finish</code>) that it deadlocks. Print the full path of composed states to support your conclusion.</p>
+<p><strong>Suggested primary pattern (synchronous, single-threaded — matches the Dijkstra style in the notes):</strong> keep a <code>Composed</code> struct holding both sub-states, and write one <code>step</code> function where the shared event is <em>derived</em> rather than supplied as an input — it fires automatically and only when both sides are simultaneously enabled:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Composed</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    producer_state<span class="op">::</span><span class="dt">Symbol   </span><span class="co"># :idle or :producing</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    buffer_state<span class="op">::</span><span class="dt">Symbol     </span><span class="co"># :empty or :full</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">step</span>(c<span class="op">::</span><span class="dt">Composed</span>; start<span class="op">::</span><span class="dt">Bool</span>=<span class="cn">false</span>, take<span class="op">::</span><span class="dt">Bool</span>=<span class="cn">false</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    p, b <span class="op">=</span> c.producer_state, c.buffer_state</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    finish_fires <span class="op">=</span> (p <span class="op">==</span> <span class="op">:</span>producing) <span class="op">&amp;&amp;</span> (b <span class="op">==</span> <span class="op">:</span>empty)   <span class="co"># the synchronization condition</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    p_next <span class="op">=</span> finish_fires ? <span class="op">:</span>idle  <span class="op">:</span> (p <span class="op">==</span> <span class="op">:</span>idle <span class="op">&amp;&amp;</span> start) ? <span class="op">:</span>producing <span class="op">:</span> p</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    b_next <span class="op">=</span> finish_fires ? <span class="op">:</span>full  <span class="op">:</span> (b <span class="op">==</span> <span class="op">:</span>full <span class="op">&amp;&amp;</span> take)  ? <span class="op">:</span>empty     <span class="op">:</span> b</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">Composed</span>(p_next, b_next)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Deadlock in the broken (<code>take</code>-removed) variant is then trivial to detect in code: step in a loop and check whether <code>step(c) == c</code> — no change means the system is stuck, and you can print which automaton is the blocked one.</p>
+<p><strong>Optional “idiomatic Julia” bonus, for groups that finish early:</strong> Julia has language-level primitives for exactly this kind of synchronization — an <strong>unbuffered <code>Channel</code></strong> is a synchronous rendezvous (<code>put!</code> blocks until a matching <code>take!</code>), which <em>is</em> the <code>finish!</code>/<code>finish?</code> pair rather than a simulation of it. Run each automaton as its own <code>Task</code> via <code>@async</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">producer</span>(ch<span class="op">::</span><span class="dt">Channel</span>, n<span class="op">::</span><span class="dt">Int</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"producing..."</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">put!</span>(ch, <span class="op">:</span>item)       <span class="co"># blocks until the buffer calls take! -- this *is* finish!/finish?</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"idle"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">close</span>(ch)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">buffer</span>(ch<span class="op">::</span><span class="dt">Channel</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _item <span class="kw">in</span> ch           <span class="co"># take!, looping until ch is closed</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"full"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sleep</span>(<span class="fl">0.01</span>)           <span class="co"># the independent `take` event</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"empty"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ch <span class="op">=</span> <span class="fu">Channel</span><span class="dt">{Symbol}</span>(<span class="fl">0</span>)       <span class="co"># capacity 0 = unbuffered = synchronous rendezvous</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="pp">@async</span> <span class="fu">producer</span>(ch, <span class="fl">3</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> <span class="pp">@async</span> <span class="fu">buffer</span>(ch)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">wait</span>(t1); <span class="fu">wait</span>(t2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Caution if you try this for the broken variant: removing the consumer’s <code>take</code> doesn’t give you an inspectable deadlocked <em>state</em> the way the synchronous version does — <code>put!</code> just blocks forever and <code>wait</code> never returns. That’s a faithful illustration of what deadlock means for real concurrent processes, but it’s the synchronous version above that you should use to actually <em>answer</em> question A.3.</p></li>
 </ul>
 
 
@@ -1197,13 +1358,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../0_intro/rules.html" class="pagination-link" aria-label="Rules of the course">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Rules of the course</span>
+      <a href="../1_des/references.html" class="pagination-link" aria-label="Literature">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../0_intro/references.html" class="pagination-link" aria-label="Literature">
-        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2_petri_nets/goals.html" class="pagination-link" aria-label="Learning goals">
+        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
