@@ -1,0 +1,124 @@
+---
+title: "Exercises"
+bibliography: 
+    - ../references/ref_des.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq. 
+engine: julia   
+---
+
+## Exercise 1: Turnstile / access-gate automaton (≈30 min)
+
+**Goal:** practice extracting the formal tuple $G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}$ (and optionally $\mathcal X_\mathrm{m}$) from an informal description, and draw the state-transition diagram.
+
+**Part A — Pen and paper.**
+A subway turnstile starts **locked**. Inserting a valid `coin` unlocks it. A person then either `pushes` through (relocking the turnstile) or, if nobody pushes within some time, an attendant can `reset` it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a `coin` is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).
+
+1. Identify $\mathcal X$, $\mathcal X_0$, $\mathcal E$, and write out $\mathcal F$ as a set of triples (or as the transition function $f$).
+2. Decide whether `coin` while unlocked should appear in $\mathcal F$ at all, or whether it is simply outside $\Gamma(\text{unlocked})$ (the active event set). Justify your choice.
+3. Draw the digraph (nodes, edges, labels). Mark the initial state.
+4. Is `locked` a reasonable marked/accepting state $\mathcal X_\mathrm{m}$? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?
+5. Identify the active event function $\Gamma(x)$ for each state.
+
+**Part B — Computer implementation (choose one).**
+
+- **Stateflow:** Build the turnstile as a chart with two states, `locked` and `unlocked`. Use two input "events" (Boolean triggers or Stateflow events) `coin` and `push`, and implement the self-loop/reject behavior for `coin` in `unlocked`. Add a counter (extended state, e.g., integer `n_passengers`) that increments on every successful `push`, to connect to the "extended-state automaton" concept from the lecture.
+- **Julia/MATLAB (low-level, no GUI):** Represent the automaton exactly as in the lecture's Dijkstra example: a struct holding the state, and a function `update(state, event) -> new_state` implementing $f$ directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., `[:coin, :push, :coin, :coin, :push]`) and prints the resulting path (sequence of visited states), mirroring "Path of an automaton" from the notes.
+
+**Part C — Optional extension (if a group finishes early): closer to a real fare gate.**
+Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:
+
+- Real gates have a passage **sensor** (an infrared beam or pressure pad), separate from the mechanical unlocking. This means `push` should really be split into two distinct events: `enter` (sensor detects someone stepping into the gate) and `exit` (sensor detects them leaving the gate area), since some gates re-lock only after the person has *fully* passed through, not the instant they push.
+- Add an `alarm` event/output: if the sensor detects someone entering while the gate is still `locked` (fare evasion / jumping the gate), the automaton should go to a new state, say `breach`, and emit an alarm, rather than silently ignoring the event as in the basic version.
+- Optionally add a `fault` state reachable from any state on a `motor_jam` event, with a `reset_by_technician` event returning to `locked` — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from `locked`/`unlocked`.
+
+Redo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., "alarm if `breach` is not cleared within 5 seconds").
+
+---
+
+## Exercise 2: Vending machine with two products and a Moore output (≈30 min)
+
+**Goal:** practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.
+
+**Part A — Pen and paper.**
+Design (don't just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events `insert5`, `insert10`), sells a single snack for exactly 15 crowns, gives no change, and has a `cancel` button that returns to the start at any point before purchase (refund not modeled — just state reset).
+
+1. Decide whether to model this with a **plain automaton** where each state is an explicit "amount inserted so far" (0, 5, 10) or with an **extended-state automaton** (a single state `idle`/`vending` plus an integer variable `credit`). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to "State as the value of a state variable" in the notes.
+2. Write $\mathcal X$, $\mathcal X_0$, $\mathcal E$, and $\mathcal F$ (or the guarded transitions, if you picked the extended-state version).
+3. Add a Moore-style output: label each state with `NO SNACK` or `DISPENSE`, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., `insert5 / no_snack`) would look like for the same machine.
+4. Draw the digraph for whichever version (plain or extended) you find clearer to draw.
+
+**Part B — Computer implementation (choose one).**
+
+- **Stateflow:** Implement the chart using an extended state variable `credit` (data of type integer local to the chart) and guarded transitions of the form `[credit + 5 >= 15] / {credit = 0; dispense();}`, closely following the "Counting up to 10" extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (`NO SNACK` / `DISPENSE`).
+- **Julia/MATLAB (low-level):** Implement a function `f(x, e)` (or `update!`) operating on a small struct/state holding the mode and the `credit` variable, plus a separate `output(x)` function returning `"NO SNACK"` or `"DISPENSE"`, mirroring the `update!`/`output` split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.
+
+---
+
+## Exercise 3: Composing two automata + blocking analysis (≈30 min)
+
+**Goal:** practice the concept of **composing automata** via shared/synchronized events (the `!`/`?` convention from the notes), and identify **blocking, deadlock, and livelock** states — a topic not covered by either demo example.
+
+**Part A — Pen and paper.**
+Consider two simple automata that must be composed:
+
+- **Producer** $G_1$: states `idle`, `producing`, `done`; it cycles `idle —start→ producing —finish!→ idle`, where `finish!` is a *generated* (sent) event signaling that an item is ready.
+- **Buffer** $G_2$: a one-slot buffer with states `empty`, `full`; transition `empty —finish?→ full` (receiving the item) and `full —take→ empty` (a consumer removing it). Assume the consumer's `take` event is not synchronized with anything else for this exercise (free event).
+
+1. Write out $\mathcal X$, $\mathcal X_0$, $\mathcal E$, $\mathcal F$ for $G_1$ and $G_2$ separately, and draw each digraph.
+2. Form the composed (product) automaton $G = G_1 \| G_2$ by synchronizing on the shared event `finish` (i.e., a transition in the product happens only when both automata's `finish!`/`finish?` fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find $\mathcal X_0$ first and explore outward.)
+3. Now suppose the consumer's `take` event is accidentally *removed* from the model (forgotten event). Re-examine the composed automaton: is there now a **blocking** state? Is it a **deadlock** (no outgoing transition at all) or a **livelock** (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state $\mathcal X_\mathrm{m}$ (e.g., `(idle, empty)`) to make this precise, and justify your classification using the definitions from the lecture.
+
+**Part B — Computer implementation (choose one).**
+
+- **Stateflow:** Implement $G_1$ and $G_2$ as two **parallel** (AND) states or as two separate charts communicating via a Stateflow event/signal representing `finish`, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the `take` transition (as in Part A.3) causes the buffer chart to visibly stall.
+- **Julia/MATLAB (low-level):** Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit `finish!` and step the buffer's `finish?` transition only when that happens; step `take` independently/randomly. Run the simulation for the "broken" version with `take` removed and confirm in code (e.g., by checking that the buffer state never changes again after the first `finish`) that it deadlocks. Print the full path of composed states to support your conclusion.
+
+  **Suggested primary pattern (synchronous, single-threaded — matches the Dijkstra style in the notes):** keep a `Composed` struct holding both sub-states, and write one `step` function where the shared event is *derived* rather than supplied as an input — it fires automatically and only when both sides are simultaneously enabled:
+  ```julia
+  struct Composed
+      producer_state::Symbol   # :idle or :producing
+      buffer_state::Symbol     # :empty or :full
+  end
+
+  function step(c::Composed; start::Bool=false, take::Bool=false)
+      p, b = c.producer_state, c.buffer_state
+      finish_fires = (p == :producing) && (b == :empty)   # the synchronization condition
+      p_next = finish_fires ? :idle  : (p == :idle && start) ? :producing : p
+      b_next = finish_fires ? :full  : (b == :full && take)  ? :empty     : b
+      return Composed(p_next, b_next)
+  end
+  ```
+  Deadlock in the broken (`take`-removed) variant is then trivial to detect in code: step in a loop and check whether `step(c) == c` — no change means the system is stuck, and you can print which automaton is the blocked one.
+
+  **Optional "idiomatic Julia" bonus, for groups that finish early:** Julia has language-level primitives for exactly this kind of synchronization — an **unbuffered `Channel`** is a synchronous rendezvous (`put!` blocks until a matching `take!`), which *is* the `finish!`/`finish?` pair rather than a simulation of it. Run each automaton as its own `Task` via `@async`:
+  ```julia
+  function producer(ch::Channel, n::Int)
+      for i in 1:n
+          println("producing...")
+          put!(ch, :item)       # blocks until the buffer calls take! -- this *is* finish!/finish?
+          println("idle")
+      end
+      close(ch)
+  end
+
+  function buffer(ch::Channel)
+      for _item in ch           # take!, looping until ch is closed
+          println("full")
+          sleep(0.01)           # the independent `take` event
+          println("empty")
+      end
+  end
+
+  ch = Channel{Symbol}(0)       # capacity 0 = unbuffered = synchronous rendezvous
+  t1 = @async producer(ch, 3)
+  t2 = @async buffer(ch)
+  wait(t1); wait(t2)
+  ```
+  Caution if you try this for the broken variant: removing the consumer's `take` doesn't give you an inspectable deadlocked *state* the way the synchronous version does — `put!` just blocks forever and `wait` never returns. That's a faithful illustration of what deadlock means for real concurrent processes, but it's the synchronous version above that you should use to actually *answer* question A.3.

@@ -10,6 +10,7 @@ website:
   sidebar:
     style: "docked"
     search: true
+
     contents:
       - section: "0. Introduction"
         contents:
@@ -25,6 +26,7 @@ website:
           - 1_des/automata.qmd  
           - 1_des/software.qmd
           - 1_des/references.qmd
+          - 1_des/exercises.qmd
       - section: "2. Discrete-event systems: Petri nets"  
         contents:
           - 2_petri_nets/goals.qmd  
