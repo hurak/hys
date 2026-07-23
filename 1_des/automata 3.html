@@ -338,12 +338,6 @@ window.Quarto = {
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -383,12 +377,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../3_max_plus/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../3_max_plus/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -467,12 +455,6 @@ window.Quarto = {
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../5_hybrid_equations/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -518,12 +500,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../6_classes/exercises.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -2328,16 +2304,16 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [3, 2, 4, 0]
-output(dtr) = [0, 1, 1, 1]
+<pre><code>x_initial = rand(0:k, n) = [2, 4, 1, 2]
+output(dtr) = [1, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([3, 2, 4, 1], [0, 1, 1, 1])
 (update!(dtr), output(dtr)) = ([3, 3, 2, 4], [0, 0, 1, 1])
 (update!(dtr), output(dtr)) = ([3, 3, 3, 2], [0, 0, 0, 1])
 (update!(dtr), output(dtr)) = ([3, 3, 3, 3], [1, 0, 0, 0])
-(update!(dtr), output(dtr)) = ([0, 3, 3, 3], [0, 1, 0, 0])
-(update!(dtr), output(dtr)) = ([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+(update!(dtr), output(dtr)) = ([0, 3, 3, 3], [0, 1, 0, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([0, 0, 3, 3], [0, 0, 1, 0])</code></pre>
+<pre><code>([0, 3, 3, 3], [0, 1, 0, 0])</code></pre>
 </div>
 </div>
 <p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>

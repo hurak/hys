@@ -283,6 +283,12 @@ window.Quarto = {
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -322,6 +328,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../3_max_plus/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../3_max_plus/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -400,6 +412,12 @@ window.Quarto = {
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../5_hybrid_equations/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -445,6 +463,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../6_classes/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../6_classes/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -867,7 +891,7 @@ window.Quarto = {
 <li>Julia: use <code>OrdinaryDiffEq.jl</code> with a <code>VectorContinuousCallback</code> for the same two conditions, with an <code>affect!</code> that switches the active vector field and resets the corresponding <span class="math inline">\tau_i</span>.</li>
 </ul>
 <p>Since none of the transitions reset <span class="math inline">T</span> itself (only the active dynamics and the clocks change), this is a comparatively clean case for the non-GUI track — similar in spirit to event-triggered integration you may use elsewhere in the course, but here with <strong>three simultaneous event conditions</strong> (temperature threshold plus two independent cooldown checks) rather than a single boundary, so budget extra time for getting the event/mode bookkeeping right.</p>
-<p>For both options: simulate at least 5 minutes of reactor time from the given initial condition, and plot <span class="math inline">T(t)</span> together with the active mode <span class="math inline">q(t)</span> (and, if using Option 2, <span class="math inline">\tau_1(t), \tau_2(t)</span>) to visually confirm the rod-preference and cooldown logic are behaving as intended.</p>
+<p>For both options: simulate at least 3 minutes of reactor time from the given initial condition, and plot <span class="math inline">T(t)</span> together with the active mode <span class="math inline">q(t)</span> (and, if using Option 2, <span class="math inline">\tau_1(t), \tau_2(t)</span>) to visually confirm the rod-preference and cooldown logic are behaving as intended.</p>
 
 
 </section>
