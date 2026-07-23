@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.17">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Literature – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -26,7 +23,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,18 +53,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../5_hybrid_equations/goals.html" rel="next">
-<link href="../4_hybrid_automata/references.html" rel="prev">
+<link href="../9_stability_2/goals.html" rel="next">
+<link href="../8_stability_1/software.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ebc60db188ef306950d9575fb91cd422.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,50 +93,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -131,7 +106,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../8_stability_1/goals.html">8. Stability I.</a></li><li class="breadcrumb-item"><a href="../8_stability_1/references.html">Literature</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -359,12 +334,6 @@ window.Quarto = {
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../4_hybrid_automata/exercises.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Exercises</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -525,7 +494,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -799,20 +768,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" id="toc-exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="nav-link active" data-scroll-target="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</a>
-  <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper" id="toc-part-a-pen-and-paper" class="nav-link" data-scroll-target="#part-a-pen-and-paper">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one" id="toc-part-b-computer-implementation-choose-one" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</a></li>
-  </ul></li>
+  <li><a href="#linear-matrix-inequalities" id="toc-linear-matrix-inequalities" class="nav-link active" data-scroll-target="#linear-matrix-inequalities">Linear matrix inequalities</a></li>
+  <li><a href="#sum-of-squares-programming" id="toc-sum-of-squares-programming" class="nav-link" data-scroll-target="#sum-of-squares-programming">Sum-of-squares programming</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../8_stability_1/goals.html">8. Stability I.</a></li><li class="breadcrumb-item"><a href="../8_stability_1/references.html">Literature</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Literature</h1>
 </div>
 
 
@@ -829,51 +795,52 @@ window.Quarto = {
 </header>
 
 
-<section id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</h2>
-<p><strong>Goal:</strong> practice formulating a hybrid automaton (identifying its components) and simulating it.</p>
-<section id="part-a-pen-and-paper" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper">Part A (pen and paper)</h3>
-<p>Temperature inside a nuclear reactor is controlled by inserting or withdrawing control rods. Two rods are available; only one can be inserted at a time. Upon insertion of a rod, the temperature decreases; without any rod inserted the temperature rises. Namely, the temperature (in °C) without any rod inserted evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 50.
-</span></p>
-<p>With rod #1 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 56,
-</span> and with rod #2 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 60.
-</span></p>
-<p>The initial temperature is 505 °C, with no rod inserted.</p>
-<p>The system is controlled by a feedback control system that monitors the temperature and inserts or withdraws rods to keep the temperature within a safe range. The duration of the process of inserting or removing a rod is negligible compared to the time scale of the temperature evolution, so we can model it as a discrete event.</p>
-<ul>
-<li>A rod is <strong>inserted</strong> once the temperature rises to <strong>550 °C</strong>.</li>
-<li>A rod is <strong>withdrawn</strong> once the temperature drops to <strong>510 °C</strong>.</li>
-<li>After a given rod is withdrawn, <strong>that same rod</strong> must not be reinserted for at least <strong>20 seconds</strong>. (The two rods have independent cooldown timers — withdrawing rod #2 does not restrict rod #1, and vice versa.)</li>
-<li>Whenever a rod must be inserted, the control system <strong>prefers rod #2</strong>; it inserts rod #1 only if rod #2 is currently unavailable (still cooling down).</li>
-</ul>
-<ol type="1">
-<li>Identify the components of the hybrid automaton <span class="math inline">\{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\}</span>.</li>
-<li>Draw the digraph (nodes, edges, labels). Mark the initial state.</li>
-<li>Timing constraints. A 20-second cooldown cannot be represented by <span class="math inline">\mathcal Q</span> or <span class="math inline">\mathcal E</span> alone — discrete locations only change via instantaneous transitions, and nothing in the formalism makes a location advance on its own as time passes. Explain briefly why this is the case. Then extend <span class="math inline">\mathcal X</span> with the clock variable(s) needed to track each rod’s cooldown: state how many you need, their dynamics <span class="math inline">f</span>, and how they are reset on each transition.</li>
-<li>Rod preference. Using the clock variable(s) from Q3, express “prefer rod #2, fall back to rod #1” as part of the guard set(s) <span class="math inline">\mathcal G</span> for the relevant transition(s) out of the no-rod location.</li>
-</ol>
+<p>The lecture was partly built upon the chapter 4 of the textbook <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>, which in turn was (to a large extent) built upon chapter 2 of the research monograph <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[2]</a></span>. None of these two is available online, but fortunately, the latter has a free shorter online version <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[3]</a></span>. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.</p>
+<p>The lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[4]</a></span> (well, it used to be available online, but has recently disappeared).</p>
+<section id="linear-matrix-inequalities" class="level2">
+<h2 class="anchored" data-anchor-id="linear-matrix-inequalities">Linear matrix inequalities</h2>
+<p>The topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph <span class="citation" data-cites="boydLinearMatrixInequalities1994"><a href="#ref-boydLinearMatrixInequalities1994" role="doc-biblioref">[5]</a></span> was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material <span class="citation" data-cites="boydSolvingSemidefinitePrograms"><a href="#ref-boydSolvingSemidefinitePrograms" role="doc-biblioref">[6]</a></span>, tailored to their Matlab toolbox called CVX. Alternatively, the text <span class="citation" data-cites="boydEE363ReviewSession2008"><a href="#ref-boydEE363ReviewSession2008" role="doc-biblioref">[7]</a></span> is even richer by two pages. Another recommendable lecture notes are also available for free: <span class="citation" data-cites="schererLinearMatrixInequalities2015"><a href="#ref-schererLinearMatrixInequalities2015" role="doc-biblioref">[8]</a></span>. Finally, a section on <a href="https://yalmip.github.io/tutorial/semidefiniteprogramming/">Semidefinite programming</a> in the documentation for Yalmip software can also serve as learning resource.</p>
 </section>
-<section id="part-b-computer-implementation-choose-one" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</h3>
-<p><strong>Option 1 — Stateflow.</strong> Build the simulation model in Stateflow. For the cooldown timers, you can use the built-in <a href="https://www.mathworks.com/help/stateflow/ug/using-temporal-logic-in-state-actions-and-transitions.html">temporal logic operators</a> (e.g., <code>after(20,sec)</code>) instead of declaring explicit continuous clock states — compare this with your answer to Q3: <code>after()</code> is effectively the same clock idea, just managed for you under the hood.</p>
-<p><strong>Option 2 — low-level MATLAB or Julia (no GUI).</strong> Implement the automaton directly via ODE integration with event detection:</p>
-<ul>
-<li>Represent the state as <span class="math inline">[T, \tau_1, \tau_2]</span>, where <span class="math inline">\tau_1,\tau_2</span> are the two cooldown clocks (each with <span class="math inline">\dot\tau_i = 1</span>, reset to <span class="math inline">0</span> when the corresponding rod is withdrawn).</li>
-<li>MATLAB: use <code>ode45</code> with <code>odeset('Events', @reactorEvents)</code>; your events function should return zero-crossings for (a) <span class="math inline">T=550</span>, (b) <span class="math inline">T=510</span>, restarting the integration after each detected event with the appropriate new mode and, where relevant, a rod-availability check (<span class="math inline">\tau_i \geq 20</span>) to decide which rod to insert.</li>
-<li>Julia: use <code>OrdinaryDiffEq.jl</code> with a <code>VectorContinuousCallback</code> for the same two conditions, with an <code>affect!</code> that switches the active vector field and resets the corresponding <span class="math inline">\tau_i</span>.</li>
-</ul>
-<p>Since none of the transitions reset <span class="math inline">T</span> itself (only the active dynamics and the clocks change), this is a comparatively clean case for the non-GUI track — similar in spirit to event-triggered integration you may use elsewhere in the course, but here with <strong>three simultaneous event conditions</strong> (temperature threshold plus two independent cooldown checks) rather than a single boundary, so budget extra time for getting the event/mode bookkeeping right.</p>
-<p>For both options: simulate at least 5 minutes of reactor time from the given initial condition, and plot <span class="math inline">T(t)</span> together with the active mode <span class="math inline">q(t)</span> (and, if using Option 2, <span class="math inline">\tau_1(t), \tau_2(t)</span>) to visually confirm the rod-preference and cooldown logic are behaving as intended.</p>
+<section id="sum-of-squares-programming" class="level2">
+<h2 class="anchored" data-anchor-id="sum-of-squares-programming">Sum-of-squares programming</h2>
+<p>The topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper <span class="citation" data-cites="papachristodoulouTutorialSumSquares2005"><a href="#ref-papachristodoulouTutorialSumSquares2005" role="doc-biblioref">[9]</a></span> is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation <span class="citation" data-cites="papachristodoulouSOSTOOLSSumsSquares2021"><a href="#ref-papachristodoulouSOSTOOLSSumsSquares2021" role="doc-biblioref">[10]</a></span> can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on <a href="https://yalmip.github.io/tutorial/sumofsquaresprogramming/">Sum-of-squares programming</a>.</p>
+
 
 
 </section>
-</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
+</div>
+<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+<div id="ref-boydLinearMatrixInequalities1994" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, <em>Linear <span>Matrix Inequalities</span> in <span>System</span> and <span>Control Theory</span></em>. in Studies in <span>Applied</span> and <span>Numerical Mathematics</span>. <span>Society for Industrial and Applied Mathematics</span>, 1994. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://web.stanford.edu/~boyd/lmibook/">https://web.stanford.edu/~boyd/lmibook/</a></div>
+</div>
+<div id="ref-boydSolvingSemidefinitePrograms" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">S. Boyd, <span>“Solving semidefinite programs using cvx,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/notes/lmi-cvx.pdf">https://stanford.edu/class/ee363/notes/lmi-cvx.pdf</a></div>
+</div>
+<div id="ref-boydEE363ReviewSession2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. Boyd, <span>“<span>EE363 Review Session</span> 4: <span>Linear Matrix Inequalities</span>,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/sessions/s4notes.pdf">https://stanford.edu/class/ee363/sessions/s4notes.pdf</a></div>
+</div>
+<div id="ref-schererLinearMatrixInequalities2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C. W. Scherer and S. Weiland, <span>“Linear matrix inequalities in control,”</span> Jan. 2015. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf">https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf</a></div>
+</div>
+<div id="ref-papachristodoulouTutorialSumSquares2005" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. Papachristodoulou and S. Prajna, <span>“A tutorial on sum of squares techniques for systems analysis,”</span> in <em>Proceedings of the 2005 <span>American Control Conference</span></em>, Portland, OR, USA: IEEE, Jun. 2005, pp. 2686–2700 vol. 4. doi: <a href="https://doi.org/10.1109/ACC.2005.1470374">10.1109/ACC.2005.1470374</a>.</div>
+</div>
+<div id="ref-papachristodoulouSOSTOOLSSumsSquares2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Papachristodoulou <em>et al.</em>, <span>“<span>SOSTOOLS Sums</span> of <span>Squares Optimization Toolbox</span> for <span>Matlab</span>: <span>User</span>’s <span>Guide</span>.”</span> University of Oxford Control Group, Sep. 2021. Available: <a href="https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf">https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1276,12 +1243,12 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../4_hybrid_automata/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../8_stability_1/software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../5_hybrid_equations/goals.html" class="pagination-link" aria-label="Learning goals">
+      <a href="../9_stability_2/goals.html" class="pagination-link" aria-label="Learning goals">
         <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

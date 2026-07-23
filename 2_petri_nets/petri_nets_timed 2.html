@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.17">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Timed Petri nets – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -36,18 +33,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../5_hybrid_equations/goals.html" rel="next">
-<link href="../4_hybrid_automata/references.html" rel="prev">
+<link href="../2_petri_nets/software.html" rel="next">
+<link href="../2_petri_nets/petri_nets.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ebc60db188ef306950d9575fb91cd422.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,6 +117,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -131,7 +129,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -267,7 +265,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link">
+  <a href="../2_petri_nets/petri_nets_timed.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Timed Petri nets</span></a>
   </div>
 </li>
@@ -357,12 +355,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../4_hybrid_automata/exercises.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -799,10 +791,15 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" id="toc-exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="nav-link active" data-scroll-target="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</a>
+  <li><a href="#delays-associated-with-transitions" id="toc-delays-associated-with-transitions" class="nav-link active" data-scroll-target="#delays-associated-with-transitions">Delays associated with transitions</a>
   <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper" id="toc-part-a-pen-and-paper" class="nav-link" data-scroll-target="#part-a-pen-and-paper">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one" id="toc-part-b-computer-implementation-choose-one" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</a></li>
+  <li><a href="#places-can-also-be-delayed" id="toc-places-can-also-be-delayed" class="nav-link" data-scroll-target="#places-can-also-be-delayed">Places can also be delayed</a></li>
+  </ul></li>
+  <li><a href="#timed-petri-net-dynamics" id="toc-timed-petri-net-dynamics" class="nav-link" data-scroll-target="#timed-petri-net-dynamics">Timed Petri net dynamics</a></li>
+  <li><a href="#queueing-system-using-tpn" id="toc-queueing-system-using-tpn" class="nav-link" data-scroll-target="#queueing-system-using-tpn">Queueing system using TPN</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
+  <ul class="collapse">
+  <li><a href="#stochastic-petri-nets-spn" id="toc-stochastic-petri-nets-spn" class="nav-link" data-scroll-target="#stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -810,9 +807,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/petri_nets_timed.html">Timed Petri nets</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Timed Petri nets</h1>
 </div>
 
 
@@ -829,45 +826,204 @@ window.Quarto = {
 </header>
 
 
-<section id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</h2>
-<p><strong>Goal:</strong> practice formulating a hybrid automaton (identifying its components) and simulating it.</p>
-<section id="part-a-pen-and-paper" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper">Part A (pen and paper)</h3>
-<p>Temperature inside a nuclear reactor is controlled by inserting or withdrawing control rods. Two rods are available; only one can be inserted at a time. Upon insertion of a rod, the temperature decreases; without any rod inserted the temperature rises. Namely, the temperature (in °C) without any rod inserted evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 50.
-</span></p>
-<p>With rod #1 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 56,
-</span> and with rod #2 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 60.
-</span></p>
-<p>The initial temperature is 505 °C, with no rod inserted.</p>
-<p>The system is controlled by a feedback control system that monitors the temperature and inserts or withdraws rods to keep the temperature within a safe range. The duration of the process of inserting or removing a rod is negligible compared to the time scale of the temperature evolution, so we can model it as a discrete event.</p>
-<ul>
-<li>A rod is <strong>inserted</strong> once the temperature rises to <strong>550 °C</strong>.</li>
-<li>A rod is <strong>withdrawn</strong> once the temperature drops to <strong>510 °C</strong>.</li>
-<li>After a given rod is withdrawn, <strong>that same rod</strong> must not be reinserted for at least <strong>20 seconds</strong>. (The two rods have independent cooldown timers — withdrawing rod #2 does not restrict rod #1, and vice versa.)</li>
-<li>Whenever a rod must be inserted, the control system <strong>prefers rod #2</strong>; it inserts rod #1 only if rod #2 is currently unavailable (still cooling down).</li>
-</ul>
-<ol type="1">
-<li>Identify the components of the hybrid automaton <span class="math inline">\{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\}</span>.</li>
-<li>Draw the digraph (nodes, edges, labels). Mark the initial state.</li>
-<li>Timing constraints. A 20-second cooldown cannot be represented by <span class="math inline">\mathcal Q</span> or <span class="math inline">\mathcal E</span> alone — discrete locations only change via instantaneous transitions, and nothing in the formalism makes a location advance on its own as time passes. Explain briefly why this is the case. Then extend <span class="math inline">\mathcal X</span> with the clock variable(s) needed to track each rod’s cooldown: state how many you need, their dynamics <span class="math inline">f</span>, and how they are reset on each transition.</li>
-<li>Rod preference. Using the clock variable(s) from Q3, express “prefer rod #2, fall back to rod #1” as part of the guard set(s) <span class="math inline">\mathcal G</span> for the relevant transition(s) out of the no-rod location.</li>
-</ol>
+<p>Recall that when introducing <em>enabled transitions</em>, we emphasized that these can but do not have to fire immediately after having been enabled <span class="math display">\boxed{\mathrm{ENABLING} \neq \text{FIRING}.}</span></p>
+<section id="delays-associated-with-transitions" class="level2">
+<h2 class="anchored" data-anchor-id="delays-associated-with-transitions">Delays associated with transitions</h2>
+<p>Well then, the enabled transitions do not have to fire <em>immediately</em>, but they can possibly fire with some <em>delay</em> after enabling. This is for the first time that we are introducing the concept of time into the Petri nets, isn’t it?</p>
+<p>For the <span class="math inline">j</span>th transition, the delay of the <span class="math inline">k</span>th firing is <span class="math inline">v_{j,k}</span>, and we collect the sequence of delayes into <span class="math display">v_j = \{v_{j,1}, v_{j,2}, \ldots \}.</span></p>
+<p>But not all transitions have to be timed. Denote the timed transitions <span class="math inline">\mathcal{T}_\mathrm{D}\subseteq \mathcal{T}</span>. We define the <em>clock structure</em> for a PN as <span class="math display">\mathcal{V} = \{v_j\mid t_j\in\mathcal{T}_\mathrm{D}\}.</span></p>
+<p>The definition of a <em>timed Petri net</em> (TPN) is then obtained by augmenting the definition of a Petri net with the clock structure</p>
+<p><span class="math display">\boxed{TPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w, x, \mathcal{V}\}}.</span></p>
+<div id="exm-timed-Petri-net" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Timed Petri net)</strong></span> Model of processing multiple tasks: task 1 and task 2 are processed sequentially, and task 3 is processed in parallel with them; task 4 can only be processed after both tasks 2 and 3 have been finished. Finishing individual tasks corresponds to the individual transitions. The transition 4 is untimed, it only expresses the logical requirement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/timed_petri_net_for_multiple_tasks.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example of a timed Petri net</figcaption>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Rectangles instead of bars
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sometimes instead of a bar, the untimed transitions are modelled using similarly thin rectangles as the timed transitions, but filled.</p>
+</div>
+</div>
+<section id="places-can-also-be-delayed" class="level3">
+<h3 class="anchored" data-anchor-id="places-can-also-be-delayed">Places can also be delayed</h3>
+<p>With delays associated with just one type of a node in a Petri net, the situation is rather nonsymmetric. In some literature, delays can also associated with places. And yet in some other literature delays are <em>only</em> associated with places. Such delays associated with places are called <em>holding time</em> for a place It is the minimum duration the token must rest in the place. But the token can stay longer if the output transition is waiting for other places.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Delays associated with transitions and places
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is a major difference in delays associated with places compared to the delays associated with transitions. While the former tells the minimum duration the token has to dwell in the place, the latter tell the exact delay with which the transition fires after having been enabled.</p>
+</div>
+</div>
 </section>
-<section id="part-b-computer-implementation-choose-one" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</h3>
-<p><strong>Option 1 — Stateflow.</strong> Build the simulation model in Stateflow. For the cooldown timers, you can use the built-in <a href="https://www.mathworks.com/help/stateflow/ug/using-temporal-logic-in-state-actions-and-transitions.html">temporal logic operators</a> (e.g., <code>after(20,sec)</code>) instead of declaring explicit continuous clock states — compare this with your answer to Q3: <code>after()</code> is effectively the same clock idea, just managed for you under the hood.</p>
-<p><strong>Option 2 — low-level MATLAB or Julia (no GUI).</strong> Implement the automaton directly via ODE integration with event detection:</p>
+</section>
+<section id="timed-petri-net-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="timed-petri-net-dynamics">Timed Petri net dynamics</h2>
+<p>With the introduction of time into the Petri nets, we can now study the dynamics of the system. For general Petri nets, alhough perfectly doable, it may quicly become too complex, and therefore here we only consider <em>event graphs</em>.</p>
+<p>Some notation:</p>
 <ul>
-<li>Represent the state as <span class="math inline">[T, \tau_1, \tau_2]</span>, where <span class="math inline">\tau_1,\tau_2</span> are the two cooldown clocks (each with <span class="math inline">\dot\tau_i = 1</span>, reset to <span class="math inline">0</span> when the corresponding rod is withdrawn).</li>
-<li>MATLAB: use <code>ode45</code> with <code>odeset('Events', @reactorEvents)</code>; your events function should return zero-crossings for (a) <span class="math inline">T=550</span>, (b) <span class="math inline">T=510</span>, restarting the integration after each detected event with the appropriate new mode and, where relevant, a rod-availability check (<span class="math inline">\tau_i \geq 20</span>) to decide which rod to insert.</li>
-<li>Julia: use <code>OrdinaryDiffEq.jl</code> with a <code>VectorContinuousCallback</code> for the same two conditions, with an <code>affect!</code> that switches the active vector field and resets the corresponding <span class="math inline">\tau_i</span>.</li>
+<li><span class="math inline">\{\tau_{j,1}, \tau_{j,2}, \ldots\}</span> are the firing times of the <span class="math inline">j</span>th transition,</li>
+<li><span class="math inline">\{\pi_{i,1},\pi_{i,2},\ldots\}</span> are the times when the <span class="math inline">i</span>th place receives a token,</li>
+<li><span class="math inline">x_i = x(p_i)</span> is the number of tokens at the <span class="math inline">i</span>th place,</li>
+<li><span class="math inline">x_{i,k} = \left.x(p_i)\right|_k</span>, is the number of tokens at the <span class="math inline">i</span>th place after the <span class="math inline">k</span>th firing.</li>
 </ul>
-<p>Since none of the transitions reset <span class="math inline">T</span> itself (only the active dynamics and the clocks change), this is a comparatively clean case for the non-GUI track — similar in spirit to event-triggered integration you may use elsewhere in the course, but here with <strong>three simultaneous event conditions</strong> (temperature threshold plus two independent cooldown checks) rather than a single boundary, so budget extra time for getting the event/mode bookkeeping right.</p>
-<p>For both options: simulate at least 5 minutes of reactor time from the given initial condition, and plot <span class="math inline">T(t)</span> together with the active mode <span class="math inline">q(t)</span> (and, if using Option 2, <span class="math inline">\tau_1(t), \tau_2(t)</span>) to visually confirm the rod-preference and cooldown logic are behaving as intended.</p>
+<p>Now, assume first that <span class="math inline">x_{i,0} = 0</span>. We can then relate the time of the arrival of the token to the place with the firing of the transition from which the token arrives <span class="math display">\pi_{i,k} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j).</span></p>
+<p>But generally <span class="math inline">x_{i,0} \neq 0</span> and the above relation needs to be modified to <span class="math display">\pi_{i,k+x_{i,0}} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j),</span> or, equivalently <span id="eq-pi-tau"><span class="math display">\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).} \tag{1}</span></span></p>
+<p>This can be read in the following way. If there are initially, say, 3 tokens in the place, the time of the arrival of the 4th token is the time of the first firing of the transition from which the 4th token arrives.</p>
+<p>Good. Keep this result in mind. Now we go for another.</p>
+<p>For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place <span class="math display">
+\tau_{j,k} = \pi_{i,k}.
+</span></p>
+<p>Modifying this result for a timed transition with a single input place we get <span class="math display">
+\tau_{j,k} = \pi_{i,k} + v_{j,k}.
+</span></p>
+<p>In words, the firing time is given by the time of the arrival of the token to the place, which enables the transition, and the delay associated with the transition.</p>
+<p>Finally, we extend this result to the case of a timed transition with multiple input places <span id="eq-tau-pi"><span class="math display">\boxed{
+\tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.}
+\tag{2}</span></span></p>
+<p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> handy, they will be needed in what is coming.</p>
+<div id="exm-timed-Petri-net-dynamics" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-timed-petri-net-dynamics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_dynamics.png" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-dynamics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a Petri net for which the dynamics is analyzed
+</figcaption>
+</figure>
+</div>
+<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\pi_{1,k},\pi_{3,k}\}\\
+\tau_{2,k} &amp;= \pi_{2,k}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
+\begin{aligned}
+\pi_{1,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
+\pi_{2,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{2,0} = 0\\
+\pi_{3,k} &amp;= \tau_{2,k}, \qquad k=1,\ldots
+\end{aligned}
+</span></p>
+<p>Substituting from the latter into the former we get <span class="math display">
+\begin{aligned}
+\tau_{1,k} &amp;= \max\{\tau_{1,k-1},\tau_{1,k-1}+v_{2,k}\}\\
+&amp;= \tau_{1,k-1}+v_{2,k}, \quad \tau_{1,k} = 0\\
+\tau_{2,k} &amp;= \tau_{1,k-1}+v_{2,k}.
+\end{aligned}
+</span></p>
+<p>This is the ultimate model for the dynamics of the Petri net. Should we need it, we can also get similar expressions for the times of the arrival of the tokens to the places.</p>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Update equations for times and not states
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While with state equations we compute a sequences of values of the state vector <span class="math inline">(\bm x_0, \bm x_1, \bm x_2, \ldots)</span>, in other words, we compute the evolution of the state in time, here we compute the sequences of times when transitions fire (or token arrive to places). This update scheme for times resembles the state equations, but the interpretation is different.</p>
+</div>
+</div>
+</section>
+<section id="queueing-system-using-tpn" class="level2">
+<h2 class="anchored" data-anchor-id="queueing-system-using-tpn">Queueing system using TPN</h2>
+<p>We can also model a queueing system using a TPN. The Petri net is shown in <a href="#fig-timed-petri-net-simple-queue" class="quarto-xref">Fig.&nbsp;2</a>.</p>
+<div id="fig-timed-petri-net-simple-queue" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/timed_petri_net_simple_queue.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timed-petri-net-simple-queue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Timed Petri net modelling a queueing system
+</figcaption>
+</figure>
+</div>
+<p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
+c_k &amp;= \pi_{B,k} + v_{c,k}\\
+\pi_{Q,k} &amp;= a_{k},\quad k=1,2,\ldots\\
+\pi_{I,k} &amp;= c_{k-1},\quad k= 2, \ldots, \quad \pi_{I,0}=1\\
+\pi_{B,k} &amp;= s_{k},\quad k=1,2,\ldots\\
+\end{aligned}
+</span></p>
+<p>Combining gives the desired update equations <span class="math display">
+\begin{aligned}
+a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
+s_k &amp;= \max\{a_{k},c_{k-1}\}\\
+c_k &amp;= s_{k} + v_{c,k}\\
+&amp;= \max\{a_{k},c_{k-1}\} + v_{c,k},\quad k=1,\ldots, \quad c_0=0
+\end{aligned}
+</span></p>
+<p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
+<div id="exm-timed-petri-nets-train" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-trains" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Example with three train lines
+</figcaption>
+</figure>
+</div>
+<p>Departure of a train at a station must be synchronized with arrival of the other train so that passengers can change train. The timed Petri net for this system is shown in <a href="#fig-fig-trains-petri-net" class="quarto-xref">Fig.&nbsp;4</a>.</p>
+<div id="fig-fig-trains-petri-net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net.png" class="img-fluid figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig-trains-petri-net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+<p>If time is associated with the places, the Petri net simplifies significantly to <a href="#fig-trains-petri-net-delayed-places" class="quarto-xref">Fig.&nbsp;5</a>.</p>
+<div id="fig-trains-petri-net-delayed-places" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/trains_petri_net_delayed_places.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-trains-petri-net-delayed-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Timed Petri net for the example of synchronization of three train lines
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="exm-timed-petri-nets-manufacturing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Manufacturing)</strong></span> tbd</p>
+</div>
+</section>
+<section id="extensions" class="level2">
+<h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
+<section id="stochastic-petri-nets-spn" class="level3">
+<h3 class="anchored" data-anchor-id="stochastic-petri-nets-spn">Stochastic Petri nets (SPN)</h3>
+<p>Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petri nets can be conceived, in which delays are random variables.</p>
 
 
 </section>
@@ -1276,13 +1432,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../4_hybrid_automata/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../2_petri_nets/petri_nets.html" class="pagination-link" aria-label="Petri nets">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Petri nets</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../5_hybrid_equations/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2_petri_nets/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

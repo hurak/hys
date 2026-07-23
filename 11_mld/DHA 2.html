@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.17">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Discrete hybrid automata – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -36,18 +33,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../5_hybrid_equations/goals.html" rel="next">
-<link href="../4_hybrid_automata/references.html" rel="prev">
+<link href="../11_mld/logic_vs_inequalities.html" rel="next">
+<link href="../11_mld/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ebc60db188ef306950d9575fb91cd422.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -120,6 +117,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -131,7 +129,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -357,12 +355,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../4_hybrid_automata/exercises.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -630,7 +622,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discrete hybrid automata</span></a>
   </div>
 </li>
@@ -799,20 +791,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" id="toc-exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="nav-link active" data-scroll-target="#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</a>
+  <li><a href="#why-yet-another-framework-for-hybrid-systems" id="toc-why-yet-another-framework-for-hybrid-systems" class="nav-link active" data-scroll-target="#why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</a></li>
+  <li><a href="#discrete-time-hybrid-automaton" id="toc-discrete-time-hybrid-automaton" class="nav-link" data-scroll-target="#discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</a>
   <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper" id="toc-part-a-pen-and-paper" class="nav-link" data-scroll-target="#part-a-pen-and-paper">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one" id="toc-part-b-computer-implementation-choose-one" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</a></li>
+  <li><a href="#switched-affine-systems-sas" id="toc-switched-affine-systems-sas" class="nav-link" data-scroll-target="#switched-affine-systems-sas">Switched affine systems (SAS)</a></li>
+  <li><a href="#event-generator-eg" id="toc-event-generator-eg" class="nav-link" data-scroll-target="#event-generator-eg">Event generator (EG)</a></li>
+  <li><a href="#finite-state-machine-fsm" id="toc-finite-state-machine-fsm" class="nav-link" data-scroll-target="#finite-state-machine-fsm">Finite state machine (FSM)</a></li>
+  <li><a href="#mode-selector-ms" id="toc-mode-selector-ms" class="nav-link" data-scroll-target="#mode-selector-ms">Mode selector (MS)</a></li>
   </ul></li>
+  <li><a href="#trajectory-of-a-dha" id="toc-trajectory-of-a-dha" class="nav-link" data-scroll-target="#trajectory-of-a-dha">Trajectory of a DHA</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../4_hybrid_automata/goals.html">4. Hybrid systems: Hybrid automata</a></li><li class="breadcrumb-item"><a href="../4_hybrid_automata/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Discrete hybrid automata</h1>
 </div>
 
 
@@ -829,48 +825,101 @@ window.Quarto = {
 </header>
 
 
-<section id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min">Exercise 1: Temperature control of a nuclear reactor using two rods (≈45 min)</h2>
-<p><strong>Goal:</strong> practice formulating a hybrid automaton (identifying its components) and simulating it.</p>
-<section id="part-a-pen-and-paper" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper">Part A (pen and paper)</h3>
-<p>Temperature inside a nuclear reactor is controlled by inserting or withdrawing control rods. Two rods are available; only one can be inserted at a time. Upon insertion of a rod, the temperature decreases; without any rod inserted the temperature rises. Namely, the temperature (in °C) without any rod inserted evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 50.
+<section id="why-yet-another-framework-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</h2>
+<p>We are going to introduce yet another framework for modeling hybrid systems – <em>mixed logical dynamical (MLD)</em> description. A question must inevitably pop up: “why yet another framework?”</p>
+<p>The answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it.</p>
+<p>In particular, with the state variable and control input vectors composed of continuous and discrete variables <span class="math display">
+\bm x = \begin{bmatrix}\bm x_\mathrm{c}\\\bm x_\mathrm{d}\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_\mathrm{c}\\\bm u_\mathrm{d}\end{bmatrix},
+</span> where <span class="math inline">\bm x_\mathrm{c}\in\mathbb R^{n_\mathrm{c}},\;\bm x_\mathrm{d}\in\mathbb N^{n_\mathrm{d}},\; \bm u_\mathrm{c}\in\mathbb R^{m_\mathrm{c}}</span> and <span class="math inline">\bm u_\mathrm{d}\in\mathbb N^{m_\mathrm{d}}</span>, we would like to formulate the model in the form of state equations, say <span class="math display">
+\begin{aligned}
+\begin{bmatrix}\bm x_\mathrm{c}(k+1) \\ \bm x_\mathrm{d}(k+1)\end{bmatrix}
+&amp;=
+\begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
+\end{aligned}
 </span></p>
-<p>With rod #1 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 56,
-</span> and with rod #2 inserted, the temperature evolves according to <span class="math display">
-\dot T(t) = 0.1 T(t) - 60.
-</span></p>
-<p>The initial temperature is 505 °C, with no rod inserted.</p>
-<p>The system is controlled by a feedback control system that monitors the temperature and inserts or withdraws rods to keep the temperature within a safe range. The duration of the process of inserting or removing a rod is negligible compared to the time scale of the temperature evolution, so we can model it as a discrete event.</p>
-<ul>
-<li>A rod is <strong>inserted</strong> once the temperature rises to <strong>550 °C</strong>.</li>
-<li>A rod is <strong>withdrawn</strong> once the temperature drops to <strong>510 °C</strong>.</li>
-<li>After a given rod is withdrawn, <strong>that same rod</strong> must not be reinserted for at least <strong>20 seconds</strong>. (The two rods have independent cooldown timers — withdrawing rod #2 does not restrict rod #1, and vice versa.)</li>
-<li>Whenever a rod must be inserted, the control system <strong>prefers rod #2</strong>; it inserts rod #1 only if rod #2 is currently unavailable (still cooling down).</li>
-</ul>
-<ol type="1">
-<li>Identify the components of the hybrid automaton <span class="math inline">\{\mathcal Q, \mathcal Q_0, \mathcal X, \mathcal X_0, f, \mathcal I, \mathcal E, \mathcal G, \mathcal R\}</span>.</li>
-<li>Draw the digraph (nodes, edges, labels). Mark the initial state.</li>
-<li>Timing constraints. A 20-second cooldown cannot be represented by <span class="math inline">\mathcal Q</span> or <span class="math inline">\mathcal E</span> alone — discrete locations only change via instantaneous transitions, and nothing in the formalism makes a location advance on its own as time passes. Explain briefly why this is the case. Then extend <span class="math inline">\mathcal X</span> with the clock variable(s) needed to track each rod’s cooldown: state how many you need, their dynamics <span class="math inline">f</span>, and how they are reset on each transition.</li>
-<li>Rod preference. Using the clock variable(s) from Q3, express “prefer rod #2, fall back to rod #1” as part of the guard set(s) <span class="math inline">\mathcal G</span> for the relevant transition(s) out of the no-rod location.</li>
-</ol>
+<p>Is it possible? Unfortunately no. At least not exactly in this form. But something close to it is achievable instead.</p>
+<p>But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.</p>
 </section>
-<section id="part-b-computer-implementation-choose-one" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</h3>
-<p><strong>Option 1 — Stateflow.</strong> Build the simulation model in Stateflow. For the cooldown timers, you can use the built-in <a href="https://www.mathworks.com/help/stateflow/ug/using-temporal-logic-in-state-actions-and-transitions.html">temporal logic operators</a> (e.g., <code>after(20,sec)</code>) instead of declaring explicit continuous clock states — compare this with your answer to Q3: <code>after()</code> is effectively the same clock idea, just managed for you under the hood.</p>
-<p><strong>Option 2 — low-level MATLAB or Julia (no GUI).</strong> Implement the automaton directly via ODE integration with event detection:</p>
+<section id="discrete-time-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</h2>
+<p>Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.</p>
+<p>In particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that</p>
 <ul>
-<li>Represent the state as <span class="math inline">[T, \tau_1, \tau_2]</span>, where <span class="math inline">\tau_1,\tau_2</span> are the two cooldown clocks (each with <span class="math inline">\dot\tau_i = 1</span>, reset to <span class="math inline">0</span> when the corresponding rod is withdrawn).</li>
-<li>MATLAB: use <code>ode45</code> with <code>odeset('Events', @reactorEvents)</code>; your events function should return zero-crossings for (a) <span class="math inline">T=550</span>, (b) <span class="math inline">T=510</span>, restarting the integration after each detected event with the appropriate new mode and, where relevant, a rod-availability check (<span class="math inline">\tau_i \geq 20</span>) to decide which rod to insert.</li>
-<li>Julia: use <code>OrdinaryDiffEq.jl</code> with a <code>VectorContinuousCallback</code> for the same two conditions, with an <code>affect!</code> that switches the active vector field and resets the corresponding <span class="math inline">\tau_i</span>.</li>
+<li>the continuous-value dynamics (often corresponding to the physical part of the system) evolves in discrete time,</li>
+<li>the events and their processing by the logical part of the system are synchronized to the same periodic clock.</li>
 </ul>
-<p>Since none of the transitions reset <span class="math inline">T</span> itself (only the active dynamics and the clocks change), this is a comparatively clean case for the non-GUI track — similar in spirit to event-triggered integration you may use elsewhere in the course, but here with <strong>three simultaneous event conditions</strong> (temperature threshold plus two independent cooldown checks) rather than a single boundary, so budget extra time for getting the event/mode bookkeeping right.</p>
-<p>For both options: simulate at least 5 minutes of reactor time from the given initial condition, and plot <span class="math inline">T(t)</span> together with the active mode <span class="math inline">q(t)</span> (and, if using Option 2, <span class="math inline">\tau_1(t), \tau_2(t)</span>) to visually confirm the rod-preference and cooldown logic are behaving as intended.</p>
+<p>We are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, …). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:</p>
+<ul>
+<li>switched affine system (SAS),</li>
+<li>mode selector (MS),</li>
+<li>event generator (EG),</li>
+<li>finite state machine (FSM).</li>
+</ul>
+<p>Their interconnection is shown in <a href="#fig-dha" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-dha" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dha.png" class="img-fluid figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Discrete-time hybrid automaton
+</figcaption>
+</figure>
+</div>
+<p>Let’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).</p>
+<section id="switched-affine-systems-sas" class="level3">
+<h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
+<p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
+\begin{aligned}
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)},\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}.
+\end{aligned}
+</span></p>
+<p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
+</section>
+<section id="event-generator-eg" class="level3">
+<h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
+<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_\mathrm{c}(k)</span> and the continuous-value control input <span class="math inline">u_\mathrm{c}</span> satisfy <span class="math display">
+\mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0.
+</span></p>
+<p>The event indicated by the vector binary variable (through so-called one-hot encoding) <span class="math display">
+\bm \delta_e(k) = \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) \in \{0,1\}^{n_e},
+</span> where <span class="math display">
+h_i(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) = \begin{cases}1 &amp; \mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
+</span></p>
+</section>
+<section id="finite-state-machine-fsm" class="level3">
+<h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
+<p><span class="math display">
+\bm x_\mathrm{d}(k+1) = \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
+</span></p>
+</section>
+<section id="mode-selector-ms" class="level3">
+<h3 class="anchored" data-anchor-id="mode-selector-ms">Mode selector (MS)</h3>
+<p><span class="math display">
+i(k) \in \{1, 2, \ldots, s\}
+</span></p>
+<p><span class="math display">
+i(k) = \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k)).
+</span></p>
+</section>
+</section>
+<section id="trajectory-of-a-dha" class="level2">
+<h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
+<p><span class="math display">
+\begin{aligned}
+\bm \delta_e(k) &amp;= \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k))\\
+i(k) &amp;= \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}\\
+\bm y_\mathrm{d}(k) &amp;= \mathbf g_\mathrm{d}(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)}\\
+\bm x_\mathrm{d}(k+1) &amp;= \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
+\end{aligned}
+</span></p>
+<p>Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1276,13 +1325,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../4_hybrid_automata/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../11_mld/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../5_hybrid_equations/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../11_mld/logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <span class="nav-page-text">Logic vs inequalities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
