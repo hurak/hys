@@ -34,6 +34,7 @@ website:
           - 2_petri_nets/petri_nets_timed.qmd 
           - 2_petri_nets/software.qmd 
           - 2_petri_nets/references.qmd
+          - 2_petri_nets/exercises.qmd
       - section: "3. Discrete-event systems: Max-plus systems"  
         contents:
           - 3_max_plus/goals.qmd
@@ -41,6 +42,7 @@ website:
           - 3_max_plus/max_plus_systems.qmd  
           - 3_max_plus/software.qmd
           - 3_max_plus/references.qmd
+          - 3_max_plus/exercises.qmd
       - section: "4. Hybrid systems: Hybrid automata"
         contents:
           - 4_hybrid_automata/goals.qmd
@@ -54,6 +56,7 @@ website:
           - 5_hybrid_equations/hybrid_equations.qmd
           - 5_hybrid_equations/software.qmd
           - 5_hybrid_equations/references.qmd
+          - 5_hybrid_equations/exercises.qmd
       - section: "6. Some classes of hybrid systems"
         contents:
           - 6_classes/goals.qmd
@@ -62,6 +65,7 @@ website:
           - 6_classes/PWA.qmd
           - 6_classes/software.qmd
           - 6_classes/references.qmd
+          - 6_classes/exercises.qmd
       - section: "7. Solution"
         contents:
           - 7_solution/goals.qmd
