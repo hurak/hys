@@ -59,4 +59,4 @@ The system is controlled by a feedback control system that monitors the temperat
 
 Since none of the transitions reset $T$ itself (only the active dynamics and the clocks change), this is a comparatively clean case for the non-GUI track — similar in spirit to event-triggered integration you may use elsewhere in the course, but here with **three simultaneous event conditions** (temperature threshold plus two independent cooldown checks) rather than a single boundary, so budget extra time for getting the event/mode bookkeeping right.
 
-For both options: simulate at least 5 minutes of reactor time from the given initial condition, and plot $T(t)$ together with the active mode $q(t)$ (and, if using Option 2, $\tau_1(t), \tau_2(t)$) to visually confirm the rod-preference and cooldown logic are behaving as intended.
+For both options: simulate at least 3 minutes of reactor time from the given initial condition, and plot $T(t)$ together with the active mode $q(t)$ (and, if using Option 2, $\tau_1(t), \tau_2(t)$) to visually confirm the rod-preference and cooldown logic are behaving as intended.
