@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.11">
+<meta name="generator" content="quarto-1.10.17">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5947b73a06bce04bf1d622ae23e1ec5b.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ebc60db188ef306950d9575fb91cd422.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -152,7 +155,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -390,6 +392,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../4_hybrid_automata/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../4_hybrid_automata/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercises</span></a>
   </div>
 </li>
       </ul>
@@ -826,9 +834,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-turnstile-access-gate-automaton-30-min" id="toc-exercise-1-turnstile-access-gate-automaton-30-min" class="nav-link active" data-scroll-target="#exercise-1-turnstile-access-gate-automaton-30-min">Exercise 1: Turnstile / access-gate automaton (≈30 min)</a></li>
-  <li><a href="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" id="toc-exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" class="nav-link" data-scroll-target="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min">Exercise 2: Vending machine with two products and a Moore output (≈30 min)</a></li>
-  <li><a href="#exercise-3-composing-two-automata-blocking-analysis-30-min" id="toc-exercise-3-composing-two-automata-blocking-analysis-30-min" class="nav-link" data-scroll-target="#exercise-3-composing-two-automata-blocking-analysis-30-min">Exercise 3: Composing two automata + blocking analysis (≈30 min)</a></li>
+  <li><a href="#exercise-1-turnstile-access-gate-automaton-30-min" id="toc-exercise-1-turnstile-access-gate-automaton-30-min" class="nav-link active" data-scroll-target="#exercise-1-turnstile-access-gate-automaton-30-min">Exercise 1: Turnstile / access-gate automaton (≈30 min)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-pen-and-paper" id="toc-part-a-pen-and-paper" class="nav-link" data-scroll-target="#part-a-pen-and-paper">Part A (pen and paper)</a></li>
+  <li><a href="#part-b-computer-implementation-choose-one" id="toc-part-b-computer-implementation-choose-one" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" id="toc-exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" class="nav-link" data-scroll-target="#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min">Exercise 2: Vending machine with two products and a Moore output (≈30 min)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-pen-and-paper-1" id="toc-part-a-pen-and-paper-1" class="nav-link" data-scroll-target="#part-a-pen-and-paper-1">Part A (pen and paper)</a></li>
+  <li><a href="#part-b-computer-implementation-choose-one-1" id="toc-part-b-computer-implementation-choose-one-1" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one-1">Part B (computer implementation, choose one)</a></li>
+  </ul></li>
+  <li><a href="#exercise-3-composing-two-automata-blocking-analysis-30-min" id="toc-exercise-3-composing-two-automata-blocking-analysis-30-min" class="nav-link" data-scroll-target="#exercise-3-composing-two-automata-blocking-analysis-30-min">Exercise 3: Composing two automata + blocking analysis (≈30 min)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-pen-and-paper-2" id="toc-part-a-pen-and-paper-2" class="nav-link" data-scroll-target="#part-a-pen-and-paper-2">Part A (pen and paper)</a></li>
+  <li><a href="#part-b-computer-implementation-choose-one-2" id="toc-part-b-computer-implementation-choose-one-2" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one-2">Part B (computer implementation, choose one)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -857,7 +877,9 @@ window.Quarto = {
 <section id="exercise-1-turnstile-access-gate-automaton-30-min" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1-turnstile-access-gate-automaton-30-min">Exercise 1: Turnstile / access-gate automaton (≈30 min)</h2>
 <p><strong>Goal:</strong> practice extracting the formal tuple <span class="math inline">G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}</span> (and optionally <span class="math inline">\mathcal X_\mathrm{m}</span>) from an informal description, and draw the state-transition diagram.</p>
-<p><strong>Part A — Pen and paper.</strong> A subway turnstile starts <strong>locked</strong>. Inserting a valid <code>coin</code> unlocks it. A person then either <code>pushes</code> through (relocking the turnstile) or, if nobody pushes within some time, an attendant can <code>reset</code> it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a <code>coin</code> is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).</p>
+<section id="part-a-pen-and-paper" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-pen-and-paper">Part A (pen and paper)</h3>
+<p>A subway turnstile starts <strong>locked</strong>. Inserting a valid <code>coin</code> unlocks it. A person then either <code>pushes</code> through (relocking the turnstile) or, if nobody pushes within some time, an attendant can <code>reset</code> it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a <code>coin</code> is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).</p>
 <ol type="1">
 <li>Identify <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and write out <span class="math inline">\mathcal F</span> as a set of triples (or as the transition function <span class="math inline">f</span>).</li>
 <li>Decide whether <code>coin</code> while unlocked should appear in <span class="math inline">\mathcal F</span> at all, or whether it is simply outside <span class="math inline">\Gamma(\text{unlocked})</span> (the active event set). Justify your choice.</li>
@@ -865,7 +887,9 @@ window.Quarto = {
 <li>Is <code>locked</code> a reasonable marked/accepting state <span class="math inline">\mathcal X_\mathrm{m}</span>? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?</li>
 <li>Identify the active event function <span class="math inline">\Gamma(x)</span> for each state.</li>
 </ol>
-<p><strong>Part B — Computer implementation (choose one).</strong></p>
+</section>
+<section id="part-b-computer-implementation-choose-one" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</h3>
 <ul>
 <li><strong>Stateflow:</strong> Build the turnstile as a chart with two states, <code>locked</code> and <code>unlocked</code>. Use two input “events” (Boolean triggers or Stateflow events) <code>coin</code> and <code>push</code>, and implement the self-loop/reject behavior for <code>coin</code> in <code>unlocked</code>. Add a counter (extended state, e.g., integer <code>n_passengers</code>) that increments on every successful <code>push</code>, to connect to the “extended-state automaton” concept from the lecture.</li>
 <li><strong>Julia/MATLAB (low-level, no GUI):</strong> Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function <code>update(state, event) -&gt; new_state</code> implementing <span class="math inline">f</span> directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., <code>[:coin, :push, :coin, :coin, :push]</code>) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.</li>
@@ -879,27 +903,35 @@ window.Quarto = {
 <p>Redo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if <code>breach</code> is not cleared within 5 seconds”).</p>
 <hr>
 </section>
+</section>
 <section id="exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min">Exercise 2: Vending machine with two products and a Moore output (≈30 min)</h2>
 <p><strong>Goal:</strong> practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.</p>
-<p><strong>Part A — Pen and paper.</strong> Design (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events <code>insert5</code>, <code>insert10</code>), sells a single snack for exactly 15 crowns, gives no change, and has a <code>cancel</code> button that returns to the start at any point before purchase (refund not modeled — just state reset).</p>
+<section id="part-a-pen-and-paper-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-pen-and-paper-1">Part A (pen and paper)</h3>
+<p>Design (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events <code>insert5</code>, <code>insert10</code>), sells a single snack for exactly 15 crowns, gives no change, and has a <code>cancel</code> button that returns to the start at any point before purchase (refund not modeled — just state reset).</p>
 <ol type="1">
 <li>Decide whether to model this with a <strong>plain automaton</strong> where each state is an explicit “amount inserted so far” (0, 5, 10) or with an <strong>extended-state automaton</strong> (a single state <code>idle</code>/<code>vending</code> plus an integer variable <code>credit</code>). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to “State as the value of a state variable” in the notes.</li>
 <li>Write <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and <span class="math inline">\mathcal F</span> (or the guarded transitions, if you picked the extended-state version).</li>
 <li>Add a Moore-style output: label each state with <code>NO SNACK</code> or <code>DISPENSE</code>, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., <code>insert5 / no_snack</code>) would look like for the same machine.</li>
 <li>Draw the digraph for whichever version (plain or extended) you find clearer to draw.</li>
 </ol>
-<p><strong>Part B — Computer implementation (choose one).</strong></p>
+</section>
+<section id="part-b-computer-implementation-choose-one-1" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one-1">Part B (computer implementation, choose one)</h3>
 <ul>
 <li><strong>Stateflow:</strong> Implement the chart using an extended state variable <code>credit</code> (data of type integer local to the chart) and guarded transitions of the form <code>[credit + 5 &gt;= 15] / {credit = 0; dispense();}</code>, closely following the “Counting up to 10” extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (<code>NO SNACK</code> / <code>DISPENSE</code>).</li>
 <li><strong>Julia/MATLAB (low-level):</strong> Implement a function <code>f(x, e)</code> (or <code>update!</code>) operating on a small struct/state holding the mode and the <code>credit</code> variable, plus a separate <code>output(x)</code> function returning <code>"NO SNACK"</code> or <code>"DISPENSE"</code>, mirroring the <code>update!</code>/<code>output</code> split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.</li>
 </ul>
 <hr>
 </section>
+</section>
 <section id="exercise-3-composing-two-automata-blocking-analysis-30-min" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3-composing-two-automata-blocking-analysis-30-min">Exercise 3: Composing two automata + blocking analysis (≈30 min)</h2>
 <p><strong>Goal:</strong> practice the concept of <strong>composing automata</strong> via shared/synchronized events (the <code>!</code>/<code>?</code> convention from the notes), and identify <strong>blocking, deadlock, and livelock</strong> states — a topic not covered by either demo example.</p>
-<p><strong>Part A — Pen and paper.</strong> Consider two simple automata that must be composed:</p>
+<section id="part-a-pen-and-paper-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-pen-and-paper-2">Part A (pen and paper)</h3>
+<p>Consider two simple automata that must be composed:</p>
 <ul>
 <li><strong>Producer</strong> <span class="math inline">G_1</span>: states <code>idle</code>, <code>producing</code>, <code>done</code>; it cycles <code>idle —start→ producing —finish!→ idle</code>, where <code>finish!</code> is a <em>generated</em> (sent) event signaling that an item is ready.</li>
 <li><strong>Buffer</strong> <span class="math inline">G_2</span>: a one-slot buffer with states <code>empty</code>, <code>full</code>; transition <code>empty —finish?→ full</code> (receiving the item) and <code>full —take→ empty</code> (a consumer removing it). Assume the consumer’s <code>take</code> event is not synchronized with anything else for this exercise (free event).</li>
@@ -909,7 +941,9 @@ window.Quarto = {
 <li>Form the composed (product) automaton <span class="math inline">G = G_1 \| G_2</span> by synchronizing on the shared event <code>finish</code> (i.e., a transition in the product happens only when both automata’s <code>finish!</code>/<code>finish?</code> fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find <span class="math inline">\mathcal X_0</span> first and explore outward.)</li>
 <li>Now suppose the consumer’s <code>take</code> event is accidentally <em>removed</em> from the model (forgotten event). Re-examine the composed automaton: is there now a <strong>blocking</strong> state? Is it a <strong>deadlock</strong> (no outgoing transition at all) or a <strong>livelock</strong> (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state <span class="math inline">\mathcal X_\mathrm{m}</span> (e.g., <code>(idle, empty)</code>) to make this precise, and justify your classification using the definitions from the lecture.</li>
 </ol>
-<p><strong>Part B — Computer implementation (choose one).</strong></p>
+</section>
+<section id="part-b-computer-implementation-choose-one-2" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one-2">Part B (computer implementation, choose one)</h3>
 <ul>
 <li><p><strong>Stateflow:</strong> Implement <span class="math inline">G_1</span> and <span class="math inline">G_2</span> as two <strong>parallel</strong> (AND) states or as two separate charts communicating via a Stateflow event/signal representing <code>finish</code>, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the <code>take</code> transition (as in Part A.3) causes the buffer chart to visibly stall.</p></li>
 <li><p><strong>Julia/MATLAB (low-level):</strong> Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit <code>finish!</code> and step the buffer’s <code>finish?</code> transition only when that happens; step <code>take</code> independently/randomly. Run the simulation for the “broken” version with <code>take</code> removed and confirm in code (e.g., by checking that the buffer state never changes again after the first <code>finish</code>) that it deadlocks. Print the full path of composed states to support your conclusion.</p>
@@ -953,6 +987,7 @@ window.Quarto = {
 </ul>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

@@ -213,7 +213,7 @@
     "href": "13_verification_1/reachability.html#reachability-computations-for-hybrid-systems",
     "title": "Reachability analysis",
     "section": "Reachability computations for hybrid systems",
-    "text": "Reachability computations for hybrid systems\nThere are two major approaches to reachibility analysis for hybrid systems\n\nChecking a feasibility of an optimal control problem for a MLD system. This is used in Hybrid Toolbox (and Hysdel): http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/\nComputing the reachable sets by set propagation techniques.\n\n\nReachability analysis based on optimal control\nThe former does not need much discussion here. We have already discussed all the crucial concepts and facts when introducing the MPC for hybrid systems. Infeasibility of the corresponding optimization problem indicates unreachability. Thefefore, we focus on the latter here.\n\n\nReachability analysis based on set propagation\n\nBasic computational steps for reachability analysis based on set propagation\nGiven a set \\mathcal X_k of current states \\bm x(k), compute the set \\mathcal X_{k+1} of next states \\bm x(k+1) of a discrete-time (or discretized) system such that\n\n\\bm x(k+1) = \\mathbf f(\\bm x(k)).\n\nIn the case of a linear discrete-time system, and the set of initial states characterized by a (multidimensional) interval, the problem is to characterize the set \\mathcal X_{k+1} of all possible (reachable) \\bm x(k+1) satisfying \n\\begin{aligned}\n\\bm x(k+1) &= \\mathbf A \\bm x(k),\\\\\n\\bm x(k) &\\in \\mathcal X_k = \\{\\bm x(k) \\in \\mathbb R^n \\mid \\bm x_\\mathrm{min} \\leq \\bm x(k) \\leq \\bm x_\\mathrm{max}\\}.\n\\end{aligned}\n\nTypically, inner or outer approximations of the set of all possible next states are used, depending on the context (alowed vs forbidden regions of the state space).\n\n\nSets to be propagated\nCertain sets are (computationally) easier to propagate than others:\n\nIntervals\nPolyhedra (both in V and H representations)\nEllipsoids\nZonotopes\n\n\nZonotopes\nWhile the first three types of sets are well-known, we will discuss the forth in the list – zonotopes. Zonotopes are a class of polytopes. They are commonly used in reachability analysis because computationally they are often more efficient than general polytopes.\nThe can be obtained by an affine transformation of a unit box, that is, \n\\mathcal Z = \\{\\bm x\\in\\mathbb R^n \\mid \\bm x = \\mathbf A \\bm y+\\mathbf b, \\; \\bm y\\in\\mathbb R^m, \\; |y_i|\\leq 1\\},\n but most commonly they are represented using generator representation \n\\mathcal Z = \\{\\bm x\\in\\mathbb R^n \\mid \\bm x = \\mathbf c + \\sum_{i=1}^p \\alpha_i \\mathbf g_i, \\; \\mathbf g_i\\in\\mathbb R^n, \\; \\alpha_i\\in\\mathbb R, \\;|\\alpha_i|\\leq 1\\},\n where \\mathbf c\\in\\mathbb R^n is the center and \\mathbf g_i\\in\\mathbb R^n are the generators.",
+    "text": "Reachability computations for hybrid systems\nThere are two major approaches to reachability analysis for hybrid systems:\n\nChecking a feasibility of an optimal control problem for a MLD system. This is used in Hybrid Toolbox (and Hysdel): http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/\nComputing the reachable sets by set propagation techniques.\n\n\nReachability analysis based on optimal control\nThe former does not need much discussion here. We have already discussed all the crucial concepts and facts when introducing the MPC for hybrid systems. Infeasibility of the corresponding optimization problem indicates unreachability. Thefefore, we focus on the latter here.\n\n\nReachability analysis based on set propagation\n\nBasic computational steps for reachability analysis based on set propagation\nGiven a set \\mathcal X_k of current states \\bm x(k), compute the set \\mathcal X_{k+1} of next states \\bm x(k+1) of a discrete-time (or discretized) system such that\n\n\\bm x(k+1) = \\mathbf f(\\bm x(k)).\n\nIn the case of a linear discrete-time system, and the set of initial states characterized by a (multidimensional) interval, the problem is to characterize the set \\mathcal X_{k+1} of all possible (reachable) \\bm x(k+1) satisfying \n\\begin{aligned}\n\\bm x(k+1) &= \\mathbf A \\bm x(k),\\\\\n\\bm x(k) &\\in \\mathcal X_k = \\{\\bm x(k) \\in \\mathbb R^n \\mid \\bm x_\\mathrm{min} \\leq \\bm x(k) \\leq \\bm x_\\mathrm{max}\\}.\n\\end{aligned}\n\nTypically, inner or outer approximations of the set of all possible next states are used, depending on the context (alowed vs forbidden regions of the state space).\n\n\nSets to be propagated\nCertain sets are (computationally) easier to propagate than others:\n\nIntervals\nPolyhedra (both in V and H representations)\nEllipsoids\nZonotopes\n\n\nZonotopes\nWhile the first three types of sets are well-known, we will discuss the forth in the list – zonotopes. Zonotopes are a class of polytopes. They are commonly used in reachability analysis because computationally they are often more efficient than general polytopes.\nThe can be obtained by an affine transformation of a unit box, that is, \n\\mathcal Z = \\{\\bm x\\in\\mathbb R^n \\mid \\bm x = \\mathbf A \\bm y+\\mathbf b, \\; \\bm y\\in\\mathbb R^m, \\; |y_i|\\leq 1\\},\n but most commonly they are represented using generator representation \n\\mathcal Z = \\{\\bm x\\in\\mathbb R^n \\mid \\bm x = \\mathbf c + \\sum_{i=1}^p \\alpha_i \\mathbf g_i, \\; \\mathbf g_i\\in\\mathbb R^n, \\; \\alpha_i\\in\\mathbb R, \\;|\\alpha_i|\\leq 1\\},\n where \\mathbf c\\in\\mathbb R^n is the center and \\mathbf g_i\\in\\mathbb R^n are the generators.",
     "crumbs": [
       "13. Formal verification I.",
       "Reachability analysis"
@@ -1427,201 +1427,311 @@
     ]
   },
   {
-    "objectID": "0_intro/outline.html",
-    "href": "0_intro/outline.html",
-    "title": "Course annotation and outline",
+    "objectID": "4_hybrid_automata/goals.html",
+    "href": "4_hybrid_automata/goals.html",
+    "title": "Learning goals",
     "section": "",
-    "text": "Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.\nThe behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.\nHowever, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).\nHybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.\nThe aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.",
+    "text": "Give a definition of a hybrid automaton. In particular, describe all the key components.\nDraws a graph of a hybrid automaton that displays all the key types of components.\nExplain the differences in roles played in a hybrid automaton by the invariant (or domain) of a given location (or mode), and the guard set of a given transition.",
     "crumbs": [
-      "0. Introduction",
-      "Course annotation and outline"
+      "4. Hybrid systems: Hybrid automata",
+      "Learning goals"
     ]
   },
   {
-    "objectID": "0_intro/outline.html#course-annotation",
-    "href": "0_intro/outline.html#course-annotation",
-    "title": "Course annotation and outline",
+    "objectID": "4_hybrid_automata/goals.html#knowledge-remember-and-understand",
+    "href": "4_hybrid_automata/goals.html#knowledge-remember-and-understand",
+    "title": "Learning goals",
     "section": "",
-    "text": "Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.\nThe behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.\nHowever, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).\nHybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.\nThe aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.",
+    "text": "Give a definition of a hybrid automaton. In particular, describe all the key components.\nDraws a graph of a hybrid automaton that displays all the key types of components.\nExplain the differences in roles played in a hybrid automaton by the invariant (or domain) of a given location (or mode), and the guard set of a given transition.",
     "crumbs": [
-      "0. Introduction",
-      "Course annotation and outline"
+      "4. Hybrid systems: Hybrid automata",
+      "Learning goals"
     ]
   },
   {
-    "objectID": "0_intro/outline.html#course-outline",
-    "href": "0_intro/outline.html#course-outline",
-    "title": "Course annotation and outline",
-    "section": "Course outline",
-    "text": "Course outline\nThe course is structured into 14 topics, each corresponding to one lecture, one seminar/exercise session, and possibly an assignment of homework. The topics are as follows:\n\nDiscrete-event systems\n\n(State) automata (also state machines), including timed variants\nPetri nets (and timed Petri nets),\nMax-Plus algebra and Max-Plus Linear (MPL) systems\n\nHybrid systems\n\nHybrid automata\nHybrid equations\n\nSpecial classes of hybrid systems\n\nReset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)\nComplementarity dynamical systems (and complementarity optimization constraints)\n\n\n\n\nSolutions of hybrid systems\n\n\nStability of hybrid systems\n\nCommon Lyapunov function\n\nQuadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)\nPolynomial Lyapunov function via sum-of-squares (SOS) programming\n\nPiecewise quadratic/polynomial Lyapunov function via S-procedure\n\n\n\nMixed-logical dynamical (MLD) description of hybrid systems\nModel predictive control (MPC) for MLD systems\n\n\nFormal verification of hybrid systems\n\nReachability analysis and barrier certificates\nTemporal logics and model checking",
+    "objectID": "4_hybrid_automata/goals.html#skills-use-the-knowledge-to-solve-a-problem",
+    "href": "4_hybrid_automata/goals.html#skills-use-the-knowledge-to-solve-a-problem",
+    "title": "Learning goals",
+    "section": "Skills (use the knowledge to solve a problem)",
+    "text": "Skills (use the knowledge to solve a problem)\n\nFind a model of a simple dynamical system in the form of a hybrid automaton.\nImplement a simple hybrid automaton in Stateflow.",
     "crumbs": [
-      "0. Introduction",
-      "Course annotation and outline"
+      "4. Hybrid systems: Hybrid automata",
+      "Learning goals"
     ]
   },
   {
-    "objectID": "0_intro/similar.html",
-    "href": "0_intro/similar.html",
-    "title": "Similar courses",
+    "objectID": "0_intro/references.html",
+    "href": "0_intro/references.html",
+    "title": "Literature",
     "section": "",
-    "text": "You may find it useful at least to be aware of these courses if not even to explore them at some detail. But we do not particularly try to align our course with any of these as the backgrounds of the students and the teachers vary.",
+    "text": "The discipline of hybrid system is huge and spans several areas of science and engineering. As a result, finding a single comprehensive reference is difficult if not impossible. The more so that our selection of topics is inevitably biased. Admittedly, our selections of both topics and references will mostly be biased towards control engineering, and yet even within that discipline we have our own preferences. Therefore, we will always provide a list of references when studying particular topics.",
     "crumbs": [
       "0. Introduction",
-      "Similar courses"
+      "Literature"
     ]
   },
   {
-    "objectID": "0_intro/similar.html#at-other-universities",
-    "href": "0_intro/similar.html#at-other-universities",
-    "title": "Similar courses",
-    "section": "At other universities",
-    "text": "At other universities\n\nRicardo G. Sanfelice: Hybrid Control Design, PhD Course at the University of Bologna, 2018, https://hybrid.soe.ucsc.edu/hcd18.\nMaria Prandini: Hybrid Systems, PhD course at Lund University, 2015, https://www.control.lth.se/education/doctorate-program/hybrid-systems/.\nWei Zhang: ECE 7850 Hybrid Systems: Theory and Applications, The Ohio State University, Spring 2017, http://www2.ece.ohio-state.edu/~zhang/HybridSystemsClass/index.html.\nDimos Dimarogonas: EL2450 Hybrid and Embedded Control Systems, KTH, 2021, https://www.kth.se/student/kurser/kurs/EL2450?l=en (requires login).\nDe Persis: WMIE014-05 Advanced Digital and Hybrid Control Systems, Groningen, 2021/22, https://www.rug.nl/ocasys/rug/vak/show?code=WMIE014-05.\nBart de Schutter: Modeling and Control of Hybrid Systems (SC42075), MSc course, TU Delft, 2021, https://www.dcsc.tudelft.nl/~bdeschutter/hs/index.html.\nClaire Tomlin: EE C291E/ME C290S Hybrid Systems—Computation and Control, UC Berkeley, Spring 2021, https://inst.eecs.berkeley.edu/~ee291e/sp21/.\nJoão P. Hespanha: ECE229 Hybrid and Switched Systems, UCSB, Fall 2005, https://web.ece.ucsb.edu/~hespanha/ece229/.\nImura Jun-Ichi: Hybrid Systems Control, Tokyo Institute of Technology, 2018, http://www.ocw.titech.ac.jp/index.php?module=General&action=T0300&JWC=201804589&lang=EN.\nInseok Hwang and Jianghai Hu: AAE 66800 Hybrid Systems: Theory and Applications, Purdue University, 2014, https://engineering.purdue.edu/AAE/academics/course-descriptions/AAE690_Hybrid_System_Theory_Applications.\nO. Stursberg and L. Malkolf: FB16 - 4455 Hy­brid and Net­wor­ked Con­trol Sys­tems (HNCS), https://www.uni-kassel.de/eecs/control/lehre/hybrid-and-networked-control-systems.\nNecmiye Ozay: EECS 598-002 Hybrid Systems: Specification, Verification and Control, University of Michigan, Fall 2015, http://web.eecs.umich.edu/~necmiye/hybridsystemsF15.html.",
+    "objectID": "0_intro/references.html#introductoryoverview-texts-freely-available-online",
+    "href": "0_intro/references.html#introductoryoverview-texts-freely-available-online",
+    "title": "Literature",
+    "section": "Introductory/overview texts freely available online",
+    "text": "Introductory/overview texts freely available online\nAmong the texts that provide motivation for studying hybrid systems as well as some introduction into theoretical and computational frameworks, we recommend [1], which is also available on the author’s webpage. Yet another overview, which is also available online, is [2]. And yet another is [3], which is available on the author’s web page. The quartet of recommended introductory resources available online is concluded by the lecture notes [4].\nWhen it comes to the resources specialized to the MPC methodology, we can recommend the book [5], not only because the authors are the leaders in that particular research direction, but also because they have made the electronic version of the book freely available on their webpage.",
     "crumbs": [
       "0. Introduction",
-      "Similar courses"
+      "Literature"
     ]
   },
   {
-    "objectID": "0_intro/similar.html#at-ctu-prague",
-    "href": "0_intro/similar.html#at-ctu-prague",
-    "title": "Similar courses",
-    "section": "At CTU Prague",
-    "text": "At CTU Prague\n\nPavel Burget: BE3M35SDU Discrete Event Systems (within https://moodle.fel.cvut.cz/). Last time run in 2020.",
+    "objectID": "0_intro/references.html#books-not-freely-available-online-at-least-not-that-we-know-of",
+    "href": "0_intro/references.html#books-not-freely-available-online-at-least-not-that-we-know-of",
+    "title": "Literature",
+    "section": "Books not freely available online (at least not that we know of)",
+    "text": "Books not freely available online (at least not that we know of)\nAmong the high-quality printed books, for which we are not aware of legally available online versions, the slim book [6] can be regarded as the classic.\n\nThe handbook [7] contains a wealth of contributions from several authors (in fact two of the online resources linked above are chapters from this book).\n\nThe latest textbook on the topic of hybrid systems is [8]. The book was the prime candidate for the book for this course, but we wanted a slightly different emphasis on each topic.\n\nAnother relatively recent book is [9]. Although it is very well written and is certainly recommendable, it follows a particular framework that is not the most common one in the literature on hybrid systems – the framework of hybrid equations. But we are certainly going to introduce their approach in our course. The more so that it is supported by a freely available Matlab toolbox.\n\nThe book [10] can be regarded as a predecessor and/or complement of the just mentioned [9]. Although the book is not available online, a short version appears as an article [11] in the popular IEEE Control Systems magazine (the one with color figures :-).\n\nThis list of study resources on hybrid systems is by no means exhaustive. We will provide more references in the respective chapters.",
     "crumbs": [
       "0. Introduction",
-      "Similar courses"
+      "Literature"
     ]
   },
   {
-    "objectID": "0_intro/intro.html",
-    "href": "0_intro/intro.html",
-    "title": "What is a hybrid system?",
+    "objectID": "0_intro/rules.html",
+    "href": "0_intro/rules.html",
+    "title": "Rules of the course",
     "section": "",
-    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nWarningHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nWarningHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
+    "text": "The only grading occasion is the final exam. Every students will choose some three topics covered in the course and the exam will then consist of discussing these topics in some depth.",
     "crumbs": [
       "0. Introduction",
-      "What is a hybrid system?"
+      "Rules of the course"
     ]
   },
   {
-    "objectID": "0_intro/intro.html#definition-of-a-hybrid-system",
-    "href": "0_intro/intro.html#definition-of-a-hybrid-system",
-    "title": "What is a hybrid system?",
+    "objectID": "0_intro/rules.html#grading",
+    "href": "0_intro/rules.html#grading",
+    "title": "Rules of the course",
     "section": "",
-    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nWarningHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nWarningHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
+    "text": "The only grading occasion is the final exam. Every students will choose some three topics covered in the course and the exam will then consist of discussing these topics in some depth.",
     "crumbs": [
       "0. Introduction",
-      "What is a hybrid system?"
+      "Rules of the course"
     ]
   },
   {
-    "objectID": "0_intro/intro.html#example-of-a-hybrid-system",
-    "href": "0_intro/intro.html#example-of-a-hybrid-system",
-    "title": "What is a hybrid system?",
-    "section": "Example of a hybrid system",
-    "text": "Example of a hybrid system\n\n\n\nExample of a hybrid system (from [1])",
+    "objectID": "0_intro/rules.html#optional-semestral-project",
+    "href": "0_intro/rules.html#optional-semestral-project",
+    "title": "Rules of the course",
+    "section": "Optional semestral project",
+    "text": "Optional semestral project\nA student can (optionally) come up with a small project of their choice. Successfully accomplished project will improve the final grade at the exam. Typically such project can derive from a diploma project. It can be just an application of particular technique presented in the course. But it can also be a (computational) demonstration of some other (yet related) technique that the students studies in research literature. Shaping the assignment/scope of the project will be done with the teacher.\nThe project can be rather small, this is not another diploma thesis. As a concrete outcome, either a few page report, or a few presentation slides or even some well-commented code can be delivered. Every nice work counts.",
     "crumbs": [
       "0. Introduction",
-      "What is a hybrid system?"
+      "Rules of the course"
     ]
   },
   {
-    "objectID": "0_intro/intro.html#hybrid-system-is-an-open-and-unbounded-concept",
-    "href": "0_intro/intro.html#hybrid-system-is-an-open-and-unbounded-concept",
-    "title": "What is a hybrid system?",
-    "section": "Hybrid system is an open and unbounded concept",
-    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\n\n\n\n\n\n\n\nWarningSystems vs models\n\n\n\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled. After all, we also speak about “second-order systems” when we actually mean “second-order models”, or “LTI systems” when we actually mean “LTI models”.\n\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
-    "crumbs": [
-      "0. Introduction",
-      "What is a hybrid system?"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/software.html",
-    "href": "8_stability_1/software.html",
-    "title": "Software",
+    "objectID": "8_stability_1/references.html",
+    "href": "8_stability_1/references.html",
+    "title": "Literature",
     "section": "",
-    "text": "In our course we formulated the problem of checking the stability as that of constructing a Lyapunov function, which in turn was formulated as a problem of solving the optimization problem of type semidefinite programming (with linear matrix inequalities, LMI) or type positive (nonnegative) polynomial programming (via sum-of-squares (SOS) programming). Hence, we need to be able to formulate and solve those optimization problems.\n\nMatlab\n\nCVX\nYALMIP\n\nTutorial for semidefinite programming\nTutorial for sum-of-squares programming\n\nSOSTOOLS\n\n\n\nJulia\n\nConvex.jl\nJuMP.jl\nSumOfSquares.jl\n\n\n\nPython\n\nCVXPY\n\nTutorial for semidefinite programming\n\n\n\n\n\n\n Back to top",
+    "text": "The lecture was partly built upon the chapter 4 of the textbook [1], which in turn was (to a large extent) built upon chapter 2 of the research monograph [2]. None of these two is available online, but fortunately, the latter has a free shorter online version [3]. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.\nThe lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text [4] (well, it used to be available online, but has recently disappeared).",
     "crumbs": [
       "8. Stability I.",
-      "Software"
+      "Literature"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html",
-    "href": "8_stability_1/concepts.html",
-    "title": "Stability of hybrid systems",
+    "objectID": "8_stability_1/references.html#linear-matrix-inequalities",
+    "href": "8_stability_1/references.html#linear-matrix-inequalities",
+    "title": "Literature",
+    "section": "Linear matrix inequalities",
+    "text": "Linear matrix inequalities\nThe topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph [5] was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material [6], tailored to their Matlab toolbox called CVX. Alternatively, the text [7] is even richer by two pages. Another recommendable lecture notes are also available for free: [8]. Finally, a section on Semidefinite programming in the documentation for Yalmip software can also serve as learning resource.",
+    "crumbs": [
+      "8. Stability I.",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/references.html#sum-of-squares-programming",
+    "href": "8_stability_1/references.html#sum-of-squares-programming",
+    "title": "Literature",
+    "section": "Sum-of-squares programming",
+    "text": "Sum-of-squares programming\nThe topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper [9] is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation [10] can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on Sum-of-squares programming.",
+    "crumbs": [
+      "8. Stability I.",
+      "Literature"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/goals.html",
+    "href": "8_stability_1/goals.html",
+    "title": "Learning goals",
     "section": "",
-    "text": "As we have recalled in the recap section on stability of continuous dynamical systems, stability is a property of an equilibrium. But what is an equilibrium of a hybrid systems? It turns out that the definition is not as straightforward as in the continuous case. It also depends on the chosen framework for modelling of hybrid systems.",
+    "text": "Give a definition of an equilibrium of a hybrid automaton.\nGive definitions of (uniform) stability, (global uniform) asymptotic stability, and (global uniform) exponential stability of a hybrid automaton.\nDoes stability of the continuous dynamics at each individual discrete state (mode, location) guarantee stability of the full hybrid automaton?\nDoes instability of the continuous dynamics at some of the discrete state (mode, location) prevent the full hybrid automaton from being stable?\nGive conditions of (uniform) asymptotic stability of a hybrid automaton in terms of Lyapunov-like functions.\nExplain the essence and the pros and the cons of a common Lyapunov function (CLF) approach to stability analysis.\nExplain the common quadratic Lyapunov function (CQLF) approach to stability analysis.\nRestricting to a hybrid automaton with linear dynamics in each mode, formulate the problem of finding a CQLF as a linear matrix inequality.\nExplain the S-procedure and show how it can be used to formulate the problem of a piecewise quadratic Lyapunov function?",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Learning goals"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton",
-    "href": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton",
-    "title": "Stability of hybrid systems",
-    "section": "Equilibrium of a hybrid system modelled by a hybrid automaton",
-    "text": "Equilibrium of a hybrid system modelled by a hybrid automaton\nFirst, an equilibrium of a hybrid automaton is a point \\bm x_\\mathrm{eq} in the continuous state space \\mathcal X\\subset \\mathbb R^n.\n\n\n\n\n\n\nNote\n\n\n\nAlthough we often assume the equilibrium at the origin, that is, \\bm x_\\mathrm{eq} = \\mathbf 0, the assumption does not have to be invoked in order to provide the definition.\n\n\nWe now consider a hybrid automaton for which the dynamics of each individual mode q is given by \\dot{\\bm x} = \\mathbf f_q(\\bm x). The invariants (or domains) of each mode are \\mathcal X_q, \\, q=1, \\ldots, m.\nThe definition of the equilibrium \\bm x_\\mathrm{eq} that is often found in the literature imposes these two conditions:\n\n\\mathbf 0 = \\mathbf f_q(\\bm x_\\mathrm{eq}) for all q\\in \\mathcal Q,\nthe reset map r(q,q',\\bm x_\\mathrm{eq}) = \\bm x_\\mathrm{eq}.\n\nThe first condition states that the point in the continuous state space should qualify as an equilibrium for each mode. This might appear unnecessarily restrictive (what if the particular \\bm x_\\mathrm{eq} is not an element of \\mathcal X_q for all q?) as we discuss later. But note that this definition appears in several resources. For example, in the definition 4.9 in the section 4.2 in [1] or the definition 8.2 in the section 8.2 in (no longer available online) [2].\nThe second condition states that the system can be regarded as resting at the equlibrium even if it jumps from one discrete state (mode) to another (while staying in the equilibrium continuous state).",
+    "objectID": "8_stability_1/goals.html#knowledge-remember-and-understand",
+    "href": "8_stability_1/goals.html#knowledge-remember-and-understand",
+    "title": "Learning goals",
+    "section": "",
+    "text": "Give a definition of an equilibrium of a hybrid automaton.\nGive definitions of (uniform) stability, (global uniform) asymptotic stability, and (global uniform) exponential stability of a hybrid automaton.\nDoes stability of the continuous dynamics at each individual discrete state (mode, location) guarantee stability of the full hybrid automaton?\nDoes instability of the continuous dynamics at some of the discrete state (mode, location) prevent the full hybrid automaton from being stable?\nGive conditions of (uniform) asymptotic stability of a hybrid automaton in terms of Lyapunov-like functions.\nExplain the essence and the pros and the cons of a common Lyapunov function (CLF) approach to stability analysis.\nExplain the common quadratic Lyapunov function (CQLF) approach to stability analysis.\nRestricting to a hybrid automaton with linear dynamics in each mode, formulate the problem of finding a CQLF as a linear matrix inequality.\nExplain the S-procedure and show how it can be used to formulate the problem of a piecewise quadratic Lyapunov function?",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Learning goals"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations",
-    "href": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations",
-    "title": "Stability of hybrid systems",
-    "section": "Equilibrium of a hybrid system modelled by hybrid equations",
-    "text": "Equilibrium of a hybrid system modelled by hybrid equations\nThe state vector within this modelling framework is composed by both the discrete and continuous state variables. The two conditions for the equilibrium of a hybrid automata can be translated into the hybrid equation framework, which means that the equilibrium is not just a single point but rather a set of points.\n\nExample 1 (Equilibrium of a hybrid system modelled by hybrid equations) Consider a hybrid system modelled by hybrid equations, for which the state space is given by \\mathcal X = \\{0,1\\} \\times \\mathbb R. The dynamics of the system is given by [TBD]\n\nThis makes the analysis significantly more challenging. Therefore, in our lecture we will only consider stability of hybrid automata.",
+    "objectID": "8_stability_1/goals.html#skills-use-the-knowledge-to-solve-a-problem",
+    "href": "8_stability_1/goals.html#skills-use-the-knowledge-to-solve-a-problem",
+    "title": "Learning goals",
+    "section": "Skills (use the knowledge to solve a problem)",
+    "text": "Skills (use the knowledge to solve a problem)\n\nAnalyze stability of a switched linear system under arbitrary switching by formulating and solving (using a computer) the relevant linear matrix inequalities (LMI).\nAnalyze stability of a switched linear system using a piecewise quadratic Lyapunov function.",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Learning goals"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#stability-of-a-hybrid-automaton",
-    "href": "8_stability_1/concepts.html#stability-of-a-hybrid-automaton",
-    "title": "Stability of hybrid systems",
-    "section": "Stability of a hybrid automaton",
-    "text": "Stability of a hybrid automaton\nThe equilibrium \\bm x_\\mathrm{eq}=\\mathbf 0 is stable if for a given \\varepsilon &gt; 0 there exists \\delta &gt; 0 such that for all hybrid systems executions/trajectories starting at (q_0,\\bm x_0), \n\\|\\bm x_0\\| &lt; \\delta \\Rightarrow \\|\\bm x(\\tau)\\| &lt; \\varepsilon, \\; \\forall \\tau \\in \\mathcal{T},\n where \\tau is a hybrid time and \\mathcal{T} is the hybrid time domain.",
+    "objectID": "8_stability_1/recap.html",
+    "href": "8_stability_1/recap.html",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "",
+    "text": "Before we start discussing stability of hybrid dynamical systems, it will not hurt to recapitulate the stability analysis for continuous (both in value and in time) dynamical systems modelled by the standard state equation\n\\dot{\\bm{x}} = \\mathbf f(\\bm x).",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Recap of stability analysis for continuous dynamical systems"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#asymptotic-stability",
-    "href": "8_stability_1/concepts.html#asymptotic-stability",
-    "title": "Stability of hybrid systems",
+    "objectID": "8_stability_1/recap.html#equilibrium",
+    "href": "8_stability_1/recap.html#equilibrium",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Equilibrium",
+    "text": "Equilibrium\nLoosely speaking, equilibrium is a state at which the system can rest indefinitely when undisturbed by external disturbances. More technically speaking, equilibrium is a point in the state space, that is, a vector \\bm x_\\mathrm{eq}\\in \\mathbb R^n, at which the vector field \\mathbf f vanishes, that is,\n\\mathbf f(\\bm x_\\mathrm{eq}) = \\mathbf 0.\nWithout loss of generality we often assume that \\bm x_\\mathrm{eq} = \\mathbf 0, because if the equilibrium is considered anywhere else than at the origin, we can always introduce a new shifted state vector \\bm x_\\mathrm{new}(t) = \\bm x(t) - \\bm x_\\mathrm{eq}.\n\n\n\n\n\n\nCautionAn equilibrium and not a system is what we analyze for stability\n\n\n\nAlthough every now and then we may hear the term stability attributed to a system, strictly speaking it is an equilibrium that is stable or unstable. For linear systems, there is not need to distinguish between the two, for nonlinear systems it can easily happen that some equilibrium is stable while some other is unstable.",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#lyapunov-stability",
+    "href": "8_stability_1/recap.html#lyapunov-stability",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Lyapunov stability",
+    "text": "Lyapunov stability\nOne of the most common types of stability is Lyapunov stability. Loosely speaking, it means that if the system starts close to the equilibrium, it stays close to it. More formally, for a given \\varepsilon&gt;0, there is a \\delta&gt;0 such that …",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#attractivity",
+    "href": "8_stability_1/recap.html#attractivity",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Attractivity",
+    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\nExample 1 (Example of an attractive but unstable equilibrium)  \n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig\n\n\n\nPrecompiling packages...\n   6451.6 ms  ✓ QuartoNotebookWorkerMakieExt (serial)\n  1 dependency successfully precompiled in 7 seconds\nPrecompiling packages...\n   5024.4 ms  ✓ QuartoNotebookWorkerCairoMakieExt (serial)\n  1 dependency successfully precompiled in 5 seconds",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#asymptotic-stability",
+    "href": "8_stability_1/recap.html#asymptotic-stability",
+    "title": "Recap of stability analysis for continuous dynamical systems",
     "section": "Asymptotic stability",
-    "text": "Asymptotic stability\nThe equilibrium is stable and furthermore we can choose some \\delta such that \n\\|\\bm x_0\\| &lt; \\delta \\quad \\Rightarrow \\quad \\lim_{\\tau\\rightarrow \\tau_\\infty} \\|\\bm x(\\tau)\\| = 0,\n where \\tau_\\infty&lt;\\infty if the execution is Zeno and \\tau_\\infty=\\infty otherwise.",
+    "text": "Asymptotic stability\nCombination of Lyapunov stability and attractivity is called asymptotic stability.\nIf the attractivity is global, the asymptotic stability is called global too.",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Recap of stability analysis for continuous dynamical systems"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#is-stability-of-the-individual-dynamics-enough",
-    "href": "8_stability_1/concepts.html#is-stability-of-the-individual-dynamics-enough",
-    "title": "Stability of hybrid systems",
-    "section": "Is stability of the individual dynamics enough?",
-    "text": "Is stability of the individual dynamics enough?\n\n\n\n\n\n\nFigure 1: Hybrid automaton that is unstable due to switching even though the two modes are stable\n\n\n\n\nA_1 =\n\\begin{bmatrix}\n-1 & -100\\\\ 10 & -1\n\\end{bmatrix}, \\quad\nA_2 =\n\\begin{bmatrix}\n-1 & 10\\\\ -100 & -1\n\\end{bmatrix}\n\n\nBoth are stable.\nSwitching can be destabilizing.",
+    "objectID": "8_stability_1/recap.html#exponential-stability",
+    "href": "8_stability_1/recap.html#exponential-stability",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Exponential stability",
+    "text": "Exponential stability\nExponential convergence.",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Recap of stability analysis for continuous dynamical systems"
     ]
   },
   {
-    "objectID": "8_stability_1/concepts.html#can-the-individual-dynamics-be-unstable",
-    "href": "8_stability_1/concepts.html#can-the-individual-dynamics-be-unstable",
-    "title": "Stability of hybrid systems",
-    "section": "Can the individual dynamics be unstable?",
-    "text": "Can the individual dynamics be unstable?\n\n\n\n\n\n\nFigure 2: Hybrid automaton that is stable thanks to switching even though the two modes are unstable\n\n\n\n\nA_1 =\n\\begin{bmatrix}\n1 & -100\\\\ 10 & 1\n\\end{bmatrix}, \\quad\nA_2 =\n\\begin{bmatrix}\n1 & 10\\\\ -100 & 1\n\\end{bmatrix}\n\n\nBoth are unstable.\nSwitching can be stabilizing.",
+    "objectID": "8_stability_1/recap.html#stability-of-time-varying-systems",
+    "href": "8_stability_1/recap.html#stability-of-time-varying-systems",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Stability of time-varying systems",
+    "text": "Stability of time-varying systems\nStability (Lyapunov, asymptotic, …) is called uniform, if it is independent of the inititial time.",
     "crumbs": [
       "8. Stability I.",
-      "Stability of hybrid systems"
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#stability-analysis-via-lyapunov-function",
+    "href": "8_stability_1/recap.html#stability-analysis-via-lyapunov-function",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Stability analysis via Lyapunov function",
+    "text": "Stability analysis via Lyapunov function\nNow that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the searching for a Lyapunov function.\nLyapunov function is a scalar function V(\\cdot)\\in\\mathcal{C}_1 defined on open \\mathcal{D}\\subset \\mathbb{R}^n containing the origin (the equilibrium) that satisfies the following conditions V(0) = 0, \\; V(x) &gt; 0\\, \\text{for all}\\, x\\in \\mathcal{D}\\setminus \\{0\\}, \n \\underbrace{\\left(\\nabla V(x)\\right)^\\top f(x)}_{\\frac{\\mathrm d}{\\mathrm d t}V(x(t))} \\leq 0.\nIn words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function positive definite), and its derivative along the trajectories of the system is nonpositive (aka negative semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.\nIf the latter condition is made strict, that is, if \\left(\\nabla V(x)\\right)^\\top f(x) &lt; 0, which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.\nThe interpretation is quite intuitive: …",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#lasalles-invariance-principle",
+    "href": "8_stability_1/recap.html#lasalles-invariance-principle",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "LaSalle’s invariance principle",
+    "text": "LaSalle’s invariance principle\nA delicate question is if the derivative of the Lyapunov function ocassionally vanishes, it it automatically means that the equilibrium is not assymptotically stable. The aswer is: not necessarily. LaSalle’s invariance principle states that even if the derivative of the Lyapunov function occasionally vanishes, the equilibrium can still be asymptotically stable, provided some condition is satisfied. We will not elaborate on it here. Look it up in your favourite nonlinear (control) system textbook.",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#formulated-using-comparison-functions",
+    "href": "8_stability_1/recap.html#formulated-using-comparison-functions",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Formulated using comparison functions",
+    "text": "Formulated using comparison functions\nThe above properties of the Lyapunov function be also be formulated using comparison functions. For Lyapunov stability, the following holds \\kappa_1(\\|x\\|) \\leq V(x) {\\color{gray}\\leq \\kappa_2(\\|x\\|)}, where\n\n\\kappa_1(\\cdot), \\kappa_2(\\cdot) are class \\mathcal{K} comparison functions, that is, they are continuous, zero at zero and (strictly) increasing.\nIf \\kappa_1 increases to infinity (\\kappa_1(\\cdot)\\in\\mathcal{K}_\\infty), the stability is global.\n\nFor asymptotic stability\n\\left(\\nabla V(x)\\right)^\\top f(x) \\leq -\\rho(\\|x\\|), where \\rho(\\cdot) is a positive definite continuous function, zero at the origin.\n\nThe upper bound \\kappa_2(\\cdot) does not have to be there, it is automatically satisfied for time-invariant systems. It does have to be imposed for time-varying systems though.",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#exponential-stability-1",
+    "href": "8_stability_1/recap.html#exponential-stability-1",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Exponential stability",
+    "text": "Exponential stability\nk_1 \\|x\\|^p \\leq V(x) \\leq k_2 \\|x\\|^p,\n\\left(\\nabla V(x)\\right)^\\top f(x) \\leq -k_3 \\|x\\|^p.",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#exponential-stability-with-quadratic-lyapunov-function",
+    "href": "8_stability_1/recap.html#exponential-stability-with-quadratic-lyapunov-function",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Exponential stability with quadratic Lyapunov function",
+    "text": "Exponential stability with quadratic Lyapunov function\n\nV(x) = x^\\top P x\n\n\\lambda_{\\min} (P) \\|x\\|^2 \\leq V(x) \\leq \\lambda_{\\max} (P) \\|x\\|^2",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
+    ]
+  },
+  {
+    "objectID": "8_stability_1/recap.html#converse-theorems",
+    "href": "8_stability_1/recap.html#converse-theorems",
+    "title": "Recap of stability analysis for continuous dynamical systems",
+    "section": "Converse theorems",
+    "text": "Converse theorems\n\nfor (G)UAS,\nfor Lyapunov stability only time-varying Lyapunov function guaranteed.",
+    "crumbs": [
+      "8. Stability I.",
+      "Recap of stability analysis for continuous dynamical systems"
     ]
   },
   {
@@ -1761,7 +1871,7 @@
     "href": "8_stability_1/common_lyapunov_function.html#how-to-get-an-sos-representation-of-a-polynomial-or-prove-that-none-exist",
     "title": "Stability via common Lyapunov function",
     "section": "How to get an SOS representation of a polynomial (or prove that none exist)?",
-    "text": "How to get an SOS representation of a polynomial (or prove that none exist)?\n\nUnivariate case\nBack to the univariate example first. And we do it through an example.\n\nExample 3 We consider the polynomial in the Example 2. One of the two squared polynomials is x^2 - 2x + 4. We can write it as x^2 - 2x + 4 = \\underbrace{\\begin{bmatrix}4 & -2 & 1\\end{bmatrix}}_{\\bm v^\\top} \\underbrace{\\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}}_{\\bm z}.\n\nThen the squared polynomial can be written as \n(x^2 - 2x + 4)^2 = \\bm z^\\top \\bm v \\bm v^\\top \\bm z.\n\nNote that the the product \\bm v \\bm v^\\top is a positive semidefinite matrix of rank one.\nWe can similarly express the second squared polynomial \nx-1 = \\underbrace{\\begin{bmatrix} -1 & 1 & 0\\end{bmatrix}}_{\\bm v^\\top} \\underbrace{\\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}}_{\\bm z}\n and then \n(x - 1)^2 = \\bm z^\\top \\begin{bmatrix} -1 \\\\ 1 \\\\ 0\\end{bmatrix} \\begin{bmatrix} -1 & 1 & 0\\end{bmatrix} \\bm z.\n\nSumming the two squares we get the original polynomial. But while doing this, we can sum the two rank-one matrices. \n\\begin{aligned}\np(x) &= x^4 - 4x^3 + 13x^2 - 18x + 17\\\\\n&= \\begin{bmatrix} 1 & x & x^2\\end{bmatrix} \\bm P \\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}\n\\end{aligned},\n where \\bm P\\succeq 0 is \n\\bm P = \\underbrace{\\begin{bmatrix} 4 \\\\ -2 \\\\ 1\\end{bmatrix} \\begin{bmatrix} 4 & -2 & 1\\end{bmatrix}}_{\\mathbf P_1} + \\underbrace{\\begin{bmatrix} -1 \\\\ 1 \\\\ 0\\end{bmatrix} \\begin{bmatrix} -1 & 1 & 0\\end{bmatrix}}_{\\mathbf P_2}\n\nThe matrix that defines the quadratic form is positive semidefinite and of rank 2. Indeed, the rank of the matrix is given by the number of squared terms in the SOS decomposition.\n\n\n\nMultivariate case\nIn a general multivariate case we can proceed similarly. Just form the vector \\bm z from all possible monomials: \n  \\bm z = \\begin{bmatrix}1 \\\\ x_1 \\\\ x_2 \\\\  \\\\ \\vdots \\\\ x_n\\\\ x_1^2 \\\\ x_1 x_2 \\\\ \\vdots \\\\ x_n^2\\\\\\vdots \\\\x_1x_2\\ldots x_n^{2}\\\\ \\vdots \\\\ x_n^d \\end{bmatrix}\n\nBut how to determine the coefficients of the matrix? We again show it by means of an example.\n\nWe consider the polynomial p(x_1,x_2)=2x_1^4 +2x_1^3x_2 − x_1^2x_2^2 +5x_2^4. We define the vector \\bm z as \n\\bm z = \\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}.\n\nNote that we could also write it fully as \n\\bm z = \\begin{bmatrix} 1 \\\\ x_1\\\\ x_2\\\\ x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix},\n but we can see that the first three terms are not going to be needed. If you still cannot see it, feel free to continue with the full version of \\bm z, no problem.\nThen the polynomial can be written as \np(x_1,x_2)=\\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}^\\top \\begin{bmatrix} p_{11} & p_{12} & p_{13}\\\\ p_{12} & p_{22} & p_{23}\\\\p_{13} & p_{23} & p_{33}\\end{bmatrix} \\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}.\n\nAfter multiplying the producs out, we get \n\\begin{aligned}\np(x_1,x_2)&={\\color{blue}p_{11}}x_1^4 + {\\color{blue}p_{33}}x_2^4 \\\\\n&\\quad + {\\color{blue}2p_{12}}x_1^3x_2 + {\\color{blue}2p_{23}}x_1x_2^3\\\\\n&\\quad + {\\color{blue}(2p_{13} + p_{22})}x_1^2x_2^2\n\\end{aligned}\n\nThere are now 5 coefficients in the above polynomial (they are highlighted in blue). Equating them to the particular values gives 5 equations. In our case, the five equations are \n\\begin{aligned}\np_{11} &= 2,\\\\\n2p_{12} &= 2,\\\\\n2p_{13} + p_{22} &= -1,\\\\\n2p_{23} &= 0,\\\\\np_{33} &= 5.\n\\end{aligned}\n\nBut the matrix \\mathbf P is parameterized by 6 coefficients. Hence we need one more equation. The sixth condition is the linear matrix inequality (LMI)\n\\mathbf P\\succeq 0.\nThis can be solved as the feasibility problem with linear equality and semidefinite constraints using the code below.\n\n\nShow the code\nusing Convex, SCS\n\np₁₁ = Variable()\np₁₂ = Variable()\np₁₃ = Variable()\np₂₂ = Variable()\np₂₃ = Variable()\np₃₃ = Variable()\n\nP = [p₁₁ p₁₂ p₁₃; p₁₂ p₂₂ p₂₃; p₁₃ p₂₃ p₃₃]\n\nlinear_constraints = [\n    p₁₁ == 2,\n    2p₁₂ == 2,\n    2p₁₃ + p₂₂ == -1,\n    2p₂₃ == 0,\n    p₃₃ == 5\n]\n\nsemidefinite_constraint = [P ⪰ 0]\n\nconstraint = vcat(linear_constraints, semidefinite_constraint)\n\nproblem = satisfy(constraint)\nsolve!(problem, SCS.Optimizer, silent=true)\n\n\nProblem statistics\n  problem is DCP         : true\n  number of variables    : 6 (6 scalar elements)\n  number of constraints  : 6 (14 scalar elements)\n  number of coefficients : 8\n  number of atoms        : 12\n\nSolution summary\n  termination status : OPTIMAL\n  primal status      : FEASIBLE_POINT\n  dual status        : FEASIBLE_POINT\n\nExpression graph\n  satisfy\n   └─ nothing\n  subject to\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ real variable (id: 149…567)\n   │     └─ [-2;;]\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ * (affine; real)\n   │     │  ├─ …\n   │     │  └─ …\n   │     └─ [-2;;]\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ * (affine; real)\n   │     │  ├─ …\n   │     │  └─ …\n   │     ├─ real variable (id: 163…591)\n   │     └─ [1;;]\n   ⋮\n\n\nApparently, the problem is feasible, hence the polynomial is SOS, hence nonnegative. We can also visualize the polynomial to see that it is indeed nonnegative at least withing some region around the origin.\n\n\nShow the code\np(x1, x2) = 2x1^4 + 2x1^3*x2 - x1^2*x2^2 + 5x2^4\n\nusing Plots\n#gr(show=false)                    # Neinteraktivní backend (důležité v Quarto)\n\nX1 = range(-1.5, 1.5, length=20)\nX2 = range(-1.5, 1.5, length=20)\n\nZ = [p(x1,x2) for x1 in X1, x2 in X2]\n\nsurface(X1, X2, Z; xlabel=\"x₁\", ylabel=\"x₂\", zlabel=\"p(x₁,x₂)\", colorbar=true, c=:viridis)\n\n#contour(X1, X2, Z; xlabel=\"x₁\", ylabel=\"x₂\", fill=true, c=:thermal)\n\n\n\n\n\n\n\nFigure 3: Surface plot of the polynomial p(x_1,x_2) from the example",
+    "text": "How to get an SOS representation of a polynomial (or prove that none exist)?\n\nUnivariate case\nBack to the univariate example first. And we do it through an example.\n\nExample 3 We consider the polynomial in the Example 2. One of the two squared polynomials is x^2 - 2x + 4. We can write it as x^2 - 2x + 4 = \\underbrace{\\begin{bmatrix}4 & -2 & 1\\end{bmatrix}}_{\\bm v^\\top} \\underbrace{\\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}}_{\\bm z}.\n\nThen the squared polynomial can be written as \n(x^2 - 2x + 4)^2 = \\bm z^\\top \\bm v \\bm v^\\top \\bm z.\n\nNote that the the product \\bm v \\bm v^\\top is a positive semidefinite matrix of rank one.\nWe can similarly express the second squared polynomial \nx-1 = \\underbrace{\\begin{bmatrix} -1 & 1 & 0\\end{bmatrix}}_{\\bm v^\\top} \\underbrace{\\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}}_{\\bm z}\n and then \n(x - 1)^2 = \\bm z^\\top \\begin{bmatrix} -1 \\\\ 1 \\\\ 0\\end{bmatrix} \\begin{bmatrix} -1 & 1 & 0\\end{bmatrix} \\bm z.\n\nSumming the two squares we get the original polynomial. But while doing this, we can sum the two rank-one matrices. \n\\begin{aligned}\np(x) &= x^4 - 4x^3 + 13x^2 - 18x + 17\\\\\n&= \\begin{bmatrix} 1 & x & x^2\\end{bmatrix} \\bm P \\begin{bmatrix} 1 \\\\ x \\\\ x^2\\end{bmatrix}\n\\end{aligned},\n where \\bm P\\succeq 0 is \n\\bm P = \\underbrace{\\begin{bmatrix} 4 \\\\ -2 \\\\ 1\\end{bmatrix} \\begin{bmatrix} 4 & -2 & 1\\end{bmatrix}}_{\\mathbf P_1} + \\underbrace{\\begin{bmatrix} -1 \\\\ 1 \\\\ 0\\end{bmatrix} \\begin{bmatrix} -1 & 1 & 0\\end{bmatrix}}_{\\mathbf P_2}\n\nThe matrix that defines the quadratic form is positive semidefinite and of rank 2. Indeed, the rank of the matrix is given by the number of squared terms in the SOS decomposition.\n\n\n\nMultivariate case\nIn a general multivariate case we can proceed similarly. Just form the vector \\bm z from all possible monomials: \n  \\bm z = \\begin{bmatrix}1 \\\\ x_1 \\\\ x_2 \\\\  \\\\ \\vdots \\\\ x_n\\\\ x_1^2 \\\\ x_1 x_2 \\\\ \\vdots \\\\ x_n^2\\\\\\vdots \\\\x_1x_2\\ldots x_n^{2}\\\\ \\vdots \\\\ x_n^d \\end{bmatrix}\n\nBut how to determine the coefficients of the matrix? We again show it by means of an example.\n\nWe consider the polynomial p(x_1,x_2)=2x_1^4 +2x_1^3x_2 − x_1^2x_2^2 +5x_2^4. We define the vector \\bm z as \n\\bm z = \\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}.\n\nNote that we could also write it fully as \n\\bm z = \\begin{bmatrix} 1 \\\\ x_1\\\\ x_2\\\\ x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix},\n but we can see that the first three terms are not going to be needed. If you still cannot see it, feel free to continue with the full version of \\bm z, no problem.\nThen the polynomial can be written as \np(x_1,x_2)=\\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}^\\top \\begin{bmatrix} p_{11} & p_{12} & p_{13}\\\\ p_{12} & p_{22} & p_{23}\\\\p_{13} & p_{23} & p_{33}\\end{bmatrix} \\begin{bmatrix} x_1^2 \\\\ x_1x_2 \\\\ x_2^2\\end{bmatrix}.\n\nAfter multiplying the producs out, we get \n\\begin{aligned}\np(x_1,x_2)&={\\color{blue}p_{11}}x_1^4 + {\\color{blue}p_{33}}x_2^4 \\\\\n&\\quad + {\\color{blue}2p_{12}}x_1^3x_2 + {\\color{blue}2p_{23}}x_1x_2^3\\\\\n&\\quad + {\\color{blue}(2p_{13} + p_{22})}x_1^2x_2^2\n\\end{aligned}\n\nThere are now 5 coefficients in the above polynomial (they are highlighted in blue). Equating them to the particular values gives 5 equations. In our case, the five equations are \n\\begin{aligned}\np_{11} &= 2,\\\\\n2p_{12} &= 2,\\\\\n2p_{13} + p_{22} &= -1,\\\\\n2p_{23} &= 0,\\\\\np_{33} &= 5.\n\\end{aligned}\n\nBut the matrix \\mathbf P is parameterized by 6 coefficients. Hence we need one more equation. The sixth condition is the linear matrix inequality (LMI)\n\\mathbf P\\succeq 0.\nThis can be solved as the feasibility problem with linear equality and semidefinite constraints using the code below.\n\n\nShow the code\nusing Convex, SCS\n\np₁₁ = Variable()\np₁₂ = Variable()\np₁₃ = Variable()\np₂₂ = Variable()\np₂₃ = Variable()\np₃₃ = Variable()\n\nP = [p₁₁ p₁₂ p₁₃; p₁₂ p₂₂ p₂₃; p₁₃ p₂₃ p₃₃]\n\nlinear_constraints = [\n    p₁₁ == 2,\n    2p₁₂ == 2,\n    2p₁₃ + p₂₂ == -1,\n    2p₂₃ == 0,\n    p₃₃ == 5\n]\n\nsemidefinite_constraint = [P ⪰ 0]\n\nconstraint = vcat(linear_constraints, semidefinite_constraint)\n\nproblem = satisfy(constraint)\nsolve!(problem, SCS.Optimizer, silent=true)\n\n\nProblem statistics\n  problem is DCP         : true\n  number of variables    : 6 (6 scalar elements)\n  number of constraints  : 6 (14 scalar elements)\n  number of coefficients : 8\n  number of atoms        : 12\n\nSolution summary\n  termination status : OPTIMAL\n  primal status      : FEASIBLE_POINT\n  dual status        : FEASIBLE_POINT\n\nExpression graph\n  satisfy\n   └─ nothing\n  subject to\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ real variable (id: 155…075)\n   │     └─ [-2;;]\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ * (affine; real)\n   │     │  ├─ …\n   │     │  └─ …\n   │     └─ [-2;;]\n   ├─ == constraint (affine)\n   │  └─ + (affine; real)\n   │     ├─ * (affine; real)\n   │     │  ├─ …\n   │     │  └─ …\n   │     ├─ real variable (id: 727…475)\n   │     └─ [1;;]\n   ⋮\n\n\nApparently, the problem is feasible, hence the polynomial is SOS, hence nonnegative. We can also visualize the polynomial to see that it is indeed nonnegative at least withing some region around the origin.\n\n\nShow the code\np(x1, x2) = 2x1^4 + 2x1^3*x2 - x1^2*x2^2 + 5x2^4\n\nusing Plots\n#gr(show=false)                    # Neinteraktivní backend (důležité v Quarto)\n\nX1 = range(-1.5, 1.5, length=20)\nX2 = range(-1.5, 1.5, length=20)\n\nZ = [p(x1,x2) for x1 in X1, x2 in X2]\n\nsurface(X1, X2, Z; xlabel=\"x₁\", ylabel=\"x₂\", zlabel=\"p(x₁,x₂)\", colorbar=true, c=:viridis)\n\n#contour(X1, X2, Z; xlabel=\"x₁\", ylabel=\"x₂\", fill=true, c=:thermal)\n\n\n\nPrecompiling packages...\n   2147.4 ms  ✓ QuartoNotebookWorkerPlotsExt (serial)\n  1 dependency successfully precompiled in 2 seconds\n\n\n\n\n\n\n\n\n\nFigure 3: Surface plot of the polynomial p(x_1,x_2) from the example",
     "crumbs": [
       "8. Stability I.",
       "Stability via common Lyapunov function"
@@ -1790,311 +1900,223 @@
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html",
-    "href": "8_stability_1/recap.html",
-    "title": "Recap of stability analysis for continuous dynamical systems",
+    "objectID": "8_stability_1/concepts.html",
+    "href": "8_stability_1/concepts.html",
+    "title": "Stability of hybrid systems",
     "section": "",
-    "text": "Before we start discussing stability of hybrid dynamical systems, it will not hurt to recapitulate the stability analysis for continuous (both in value and in time) dynamical systems modelled by the standard state equation\n\\dot{\\bm{x}} = \\mathbf f(\\bm x).",
+    "text": "As we have recalled in the recap section on stability of continuous dynamical systems, stability is a property of an equilibrium. But what is an equilibrium of a hybrid systems? It turns out that the definition is not as straightforward as in the continuous case. It also depends on the chosen framework for modelling of hybrid systems.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#equilibrium",
-    "href": "8_stability_1/recap.html#equilibrium",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Equilibrium",
-    "text": "Equilibrium\nLoosely speaking, equilibrium is a state at which the system can rest indefinitely when undisturbed by external disturbances. More technically speaking, equilibrium is a point in the state space, that is, a vector \\bm x_\\mathrm{eq}\\in \\mathbb R^n, at which the vector field \\mathbf f vanishes, that is,\n\\mathbf f(\\bm x_\\mathrm{eq}) = \\mathbf 0.\nWithout loss of generality we often assume that \\bm x_\\mathrm{eq} = \\mathbf 0, because if the equilibrium is considered anywhere else than at the origin, we can always introduce a new shifted state vector \\bm x_\\mathrm{new}(t) = \\bm x(t) - \\bm x_\\mathrm{eq}.\n\n\n\n\n\n\nCautionAn equilibrium and not a system is what we analyze for stability\n\n\n\nAlthough every now and then we may hear the term stability attributed to a system, strictly speaking it is an equilibrium that is stable or unstable. For linear systems, there is not need to distinguish between the two, for nonlinear systems it can easily happen that some equilibrium is stable while some other is unstable.",
+    "objectID": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton",
+    "href": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-a-hybrid-automaton",
+    "title": "Stability of hybrid systems",
+    "section": "Equilibrium of a hybrid system modelled by a hybrid automaton",
+    "text": "Equilibrium of a hybrid system modelled by a hybrid automaton\nFirst, an equilibrium of a hybrid automaton is a point \\bm x_\\mathrm{eq} in the continuous state space \\mathcal X\\subset \\mathbb R^n.\n\n\n\n\n\n\nNote\n\n\n\nAlthough we often assume the equilibrium at the origin, that is, \\bm x_\\mathrm{eq} = \\mathbf 0, the assumption does not have to be invoked in order to provide the definition.\n\n\nWe now consider a hybrid automaton for which the dynamics of each individual mode q is given by \\dot{\\bm x} = \\mathbf f_q(\\bm x). The invariants (or domains) of each mode are \\mathcal X_q, \\, q=1, \\ldots, m.\nThe definition of the equilibrium \\bm x_\\mathrm{eq} that is often found in the literature imposes these two conditions:\n\n\\mathbf 0 = \\mathbf f_q(\\bm x_\\mathrm{eq}) for all q\\in \\mathcal Q,\nthe reset map r(q,q',\\bm x_\\mathrm{eq}) = \\bm x_\\mathrm{eq}.\n\nThe first condition states that the point in the continuous state space should qualify as an equilibrium for each mode. This might appear unnecessarily restrictive (what if the particular \\bm x_\\mathrm{eq} is not an element of \\mathcal X_q for all q?) as we discuss later. But note that this definition appears in several resources. For example, in the definition 4.9 in the section 4.2 in [1] or the definition 8.2 in the section 8.2 in (no longer available online) [2].\nThe second condition states that the system can be regarded as resting at the equlibrium even if it jumps from one discrete state (mode) to another (while staying in the equilibrium continuous state).",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#lyapunov-stability",
-    "href": "8_stability_1/recap.html#lyapunov-stability",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Lyapunov stability",
-    "text": "Lyapunov stability\nOne of the most common types of stability is Lyapunov stability. Loosely speaking, it means that if the system starts close to the equilibrium, it stays close to it. More formally, for a given \\varepsilon&gt;0, there is a \\delta&gt;0 such that …",
+    "objectID": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations",
+    "href": "8_stability_1/concepts.html#equilibrium-of-a-hybrid-system-modelled-by-hybrid-equations",
+    "title": "Stability of hybrid systems",
+    "section": "Equilibrium of a hybrid system modelled by hybrid equations",
+    "text": "Equilibrium of a hybrid system modelled by hybrid equations\nThe state vector within this modelling framework is composed by both the discrete and continuous state variables. The two conditions for the equilibrium of a hybrid automata can be translated into the hybrid equation framework, which means that the equilibrium is not just a single point but rather a set of points.\n\nExample 1 (Equilibrium of a hybrid system modelled by hybrid equations) Consider a hybrid system modelled by hybrid equations, for which the state space is given by \\mathcal X = \\{0,1\\} \\times \\mathbb R. The dynamics of the system is given by [TBD]\n\nThis makes the analysis significantly more challenging. Therefore, in our lecture we will only consider stability of hybrid automata.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#attractivity",
-    "href": "8_stability_1/recap.html#attractivity",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Attractivity",
-    "text": "Attractivity\nThis is another property of an equilibrium. If it is (locally) attractive, it means that if the systems starts close to the equilibrium, it will converge to it. The global version of attractivity means that the system asymptotically converges to the equilibrium from anywhere.\nPerhaps it is not immediately clear that attractivity is distinct from (Lyapunov) stability. The following example shows an attractive but Lyapunov unstable equilibrium.\n\nExample 1 (Example of an attractive but unstable equilibrium)  \n\n\nShow the code\nf(x) = [(x[1]^2*(x[2]-x[1])+x[2]^5)/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2)); \n        (x[2]^2*(x[2]-2x[1]))/((x[1]^2+x[2]^2)*(1+(x[1]^2+x[2]^2)^2))]\n\nusing CairoMakie\nfig = Figure(; size = (800, 800),fontsize=20)\nax = Axis(fig[1, 1], xlabel = \"x₁\", ylabel = \"x₂\")\nstreamplot!(ax,x-&gt;Point2f(f(x)), -1.5..1.5, -1.5..1.5, colormap = :magma)\nfig",
+    "objectID": "8_stability_1/concepts.html#stability-of-a-hybrid-automaton",
+    "href": "8_stability_1/concepts.html#stability-of-a-hybrid-automaton",
+    "title": "Stability of hybrid systems",
+    "section": "Stability of a hybrid automaton",
+    "text": "Stability of a hybrid automaton\nThe equilibrium \\bm x_\\mathrm{eq}=\\mathbf 0 is stable if for a given \\varepsilon &gt; 0 there exists \\delta &gt; 0 such that for all hybrid systems executions/trajectories starting at (q_0,\\bm x_0), \n\\|\\bm x_0\\| &lt; \\delta \\Rightarrow \\|\\bm x(\\tau)\\| &lt; \\varepsilon, \\; \\forall \\tau \\in \\mathcal{T},\n where \\tau is a hybrid time and \\mathcal{T} is the hybrid time domain.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#asymptotic-stability",
-    "href": "8_stability_1/recap.html#asymptotic-stability",
-    "title": "Recap of stability analysis for continuous dynamical systems",
+    "objectID": "8_stability_1/concepts.html#asymptotic-stability",
+    "href": "8_stability_1/concepts.html#asymptotic-stability",
+    "title": "Stability of hybrid systems",
     "section": "Asymptotic stability",
-    "text": "Asymptotic stability\nCombination of Lyapunov stability and attractivity is called asymptotic stability.\nIf the attractivity is global, the asymptotic stability is called global too.",
+    "text": "Asymptotic stability\nThe equilibrium is stable and furthermore we can choose some \\delta such that \n\\|\\bm x_0\\| &lt; \\delta \\quad \\Rightarrow \\quad \\lim_{\\tau\\rightarrow \\tau_\\infty} \\|\\bm x(\\tau)\\| = 0,\n where \\tau_\\infty&lt;\\infty if the execution is Zeno and \\tau_\\infty=\\infty otherwise.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#exponential-stability",
-    "href": "8_stability_1/recap.html#exponential-stability",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Exponential stability",
-    "text": "Exponential stability\nExponential convergence.",
+    "objectID": "8_stability_1/concepts.html#is-stability-of-the-individual-dynamics-enough",
+    "href": "8_stability_1/concepts.html#is-stability-of-the-individual-dynamics-enough",
+    "title": "Stability of hybrid systems",
+    "section": "Is stability of the individual dynamics enough?",
+    "text": "Is stability of the individual dynamics enough?\n\n\n\n\n\n\nFigure 1: Hybrid automaton that is unstable due to switching even though the two modes are stable\n\n\n\n\nA_1 =\n\\begin{bmatrix}\n-1 & -100\\\\ 10 & -1\n\\end{bmatrix}, \\quad\nA_2 =\n\\begin{bmatrix}\n-1 & 10\\\\ -100 & -1\n\\end{bmatrix}\n\n\nBoth are stable.\nSwitching can be destabilizing.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#stability-of-time-varying-systems",
-    "href": "8_stability_1/recap.html#stability-of-time-varying-systems",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Stability of time-varying systems",
-    "text": "Stability of time-varying systems\nStability (Lyapunov, asymptotic, …) is called uniform, if it is independent of the inititial time.",
+    "objectID": "8_stability_1/concepts.html#can-the-individual-dynamics-be-unstable",
+    "href": "8_stability_1/concepts.html#can-the-individual-dynamics-be-unstable",
+    "title": "Stability of hybrid systems",
+    "section": "Can the individual dynamics be unstable?",
+    "text": "Can the individual dynamics be unstable?\n\n\n\n\n\n\nFigure 2: Hybrid automaton that is stable thanks to switching even though the two modes are unstable\n\n\n\n\nA_1 =\n\\begin{bmatrix}\n1 & -100\\\\ 10 & 1\n\\end{bmatrix}, \\quad\nA_2 =\n\\begin{bmatrix}\n1 & 10\\\\ -100 & 1\n\\end{bmatrix}\n\n\nBoth are unstable.\nSwitching can be stabilizing.",
     "crumbs": [
       "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
+      "Stability of hybrid systems"
     ]
   },
   {
-    "objectID": "8_stability_1/recap.html#stability-analysis-via-lyapunov-function",
-    "href": "8_stability_1/recap.html#stability-analysis-via-lyapunov-function",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Stability analysis via Lyapunov function",
-    "text": "Stability analysis via Lyapunov function\nNow that we recapitulated the key stability concepts, it is time to recapitulate the methods of checking if this or that type of stability is achieved. The classical method is based on the searching for a Lyapunov function.\nLyapunov function is a scalar function V(\\cdot)\\in\\mathcal{C}_1 defined on open \\mathcal{D}\\subset \\mathbb{R}^n containing the origin (the equilibrium) that satisfies the following conditions V(0) = 0, \\; V(x) &gt; 0\\, \\text{for all}\\, x\\in \\mathcal{D}\\setminus \\{0\\}, \n \\underbrace{\\left(\\nabla V(x)\\right)^\\top f(x)}_{\\frac{\\mathrm d}{\\mathrm d t}V(x(t))} \\leq 0.\nIn words, Lyapunov function for a given system and a given equilibrium is a function that is positive everywhere except at the origin, where it is zero (we call such function positive definite), and its derivative along the trajectories of the system is nonpositive (aka negative semidefinite), which is a way to guarantee that the function does not increase along the trajectories. If such function exists, the equilibrium is Lyapunov stable.\nIf the latter condition is made strict, that is, if \\left(\\nabla V(x)\\right)^\\top f(x) &lt; 0, which is a way to guarantee that the function decreases along the trajectories, the equilibrium is asymptotically stable.\nThe interpretation is quite intuitive: …",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/recap.html#lasalles-invariance-principle",
-    "href": "8_stability_1/recap.html#lasalles-invariance-principle",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "LaSalle’s invariance principle",
-    "text": "LaSalle’s invariance principle\nA delicate question is if the derivative of the Lyapunov function ocassionally vanishes, it it automatically means that the equilibrium is not assymptotically stable. The aswer is: not necessarily. LaSalle’s invariance principle states that even if the derivative of the Lyapunov function occasionally vanishes, the equilibrium can still be asymptotically stable, provided some condition is satisfied. We will not elaborate on it here. Look it up in your favourite nonlinear (control) system textbook.",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/recap.html#formulated-using-comparison-functions",
-    "href": "8_stability_1/recap.html#formulated-using-comparison-functions",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Formulated using comparison functions",
-    "text": "Formulated using comparison functions\nThe above properties of the Lyapunov function be also be formulated using comparison functions. For Lyapunov stability, the following holds \\kappa_1(\\|x\\|) \\leq V(x) {\\color{gray}\\leq \\kappa_2(\\|x\\|)}, where\n\n\\kappa_1(\\cdot), \\kappa_2(\\cdot) are class \\mathcal{K} comparison functions, that is, they are continuous, zero at zero and (strictly) increasing.\nIf \\kappa_1 increases to infinity (\\kappa_1(\\cdot)\\in\\mathcal{K}_\\infty), the stability is global.\n\nFor asymptotic stability\n\\left(\\nabla V(x)\\right)^\\top f(x) \\leq -\\rho(\\|x\\|), where \\rho(\\cdot) is a positive definite continuous function, zero at the origin.\n\nThe upper bound \\kappa_2(\\cdot) does not have to be there, it is automatically satisfied for time-invariant systems. It does have to be imposed for time-varying systems though.",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/recap.html#exponential-stability-1",
-    "href": "8_stability_1/recap.html#exponential-stability-1",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Exponential stability",
-    "text": "Exponential stability\nk_1 \\|x\\|^p \\leq V(x) \\leq k_2 \\|x\\|^p,\n\\left(\\nabla V(x)\\right)^\\top f(x) \\leq -k_3 \\|x\\|^p.",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/recap.html#exponential-stability-with-quadratic-lyapunov-function",
-    "href": "8_stability_1/recap.html#exponential-stability-with-quadratic-lyapunov-function",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Exponential stability with quadratic Lyapunov function",
-    "text": "Exponential stability with quadratic Lyapunov function\n\nV(x) = x^\\top P x\n\n\\lambda_{\\min} (P) \\|x\\|^2 \\leq V(x) \\leq \\lambda_{\\max} (P) \\|x\\|^2",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/recap.html#converse-theorems",
-    "href": "8_stability_1/recap.html#converse-theorems",
-    "title": "Recap of stability analysis for continuous dynamical systems",
-    "section": "Converse theorems",
-    "text": "Converse theorems\n\nfor (G)UAS,\nfor Lyapunov stability only time-varying Lyapunov function guaranteed.",
-    "crumbs": [
-      "8. Stability I.",
-      "Recap of stability analysis for continuous dynamical systems"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/goals.html",
-    "href": "8_stability_1/goals.html",
-    "title": "Learning goals",
+    "objectID": "8_stability_1/software.html",
+    "href": "8_stability_1/software.html",
+    "title": "Software",
     "section": "",
-    "text": "Give a definition of an equilibrium of a hybrid automaton.\nGive definitions of (uniform) stability, (global uniform) asymptotic stability, and (global uniform) exponential stability of a hybrid automaton.\nDoes stability of the continuous dynamics at each individual discrete state (mode, location) guarantee stability of the full hybrid automaton?\nDoes instability of the continuous dynamics at some of the discrete state (mode, location) prevent the full hybrid automaton from being stable?\nGive conditions of (uniform) asymptotic stability of a hybrid automaton in terms of Lyapunov-like functions.\nExplain the essence and the pros and the cons of a common Lyapunov function (CLF) approach to stability analysis.\nExplain the common quadratic Lyapunov function (CQLF) approach to stability analysis.\nRestricting to a hybrid automaton with linear dynamics in each mode, formulate the problem of finding a CQLF as a linear matrix inequality.\nExplain the S-procedure and show how it can be used to formulate the problem of a piecewise quadratic Lyapunov function?",
+    "text": "In our course we formulated the problem of checking the stability as that of constructing a Lyapunov function, which in turn was formulated as a problem of solving the optimization problem of type semidefinite programming (with linear matrix inequalities, LMI) or type positive (nonnegative) polynomial programming (via sum-of-squares (SOS) programming). Hence, we need to be able to formulate and solve those optimization problems.\n\nMatlab\n\nCVX\nYALMIP\n\nTutorial for semidefinite programming\nTutorial for sum-of-squares programming\n\nSOSTOOLS\n\n\n\nJulia\n\nConvex.jl\nJuMP.jl\nSumOfSquares.jl\n\n\n\nPython\n\nCVXPY\n\nTutorial for semidefinite programming\n\n\n\n\n\n\n Back to top",
     "crumbs": [
       "8. Stability I.",
-      "Learning goals"
+      "Software"
     ]
   },
   {
-    "objectID": "8_stability_1/goals.html#knowledge-remember-and-understand",
-    "href": "8_stability_1/goals.html#knowledge-remember-and-understand",
-    "title": "Learning goals",
+    "objectID": "0_intro/intro.html",
+    "href": "0_intro/intro.html",
+    "title": "What is a hybrid system?",
     "section": "",
-    "text": "Give a definition of an equilibrium of a hybrid automaton.\nGive definitions of (uniform) stability, (global uniform) asymptotic stability, and (global uniform) exponential stability of a hybrid automaton.\nDoes stability of the continuous dynamics at each individual discrete state (mode, location) guarantee stability of the full hybrid automaton?\nDoes instability of the continuous dynamics at some of the discrete state (mode, location) prevent the full hybrid automaton from being stable?\nGive conditions of (uniform) asymptotic stability of a hybrid automaton in terms of Lyapunov-like functions.\nExplain the essence and the pros and the cons of a common Lyapunov function (CLF) approach to stability analysis.\nExplain the common quadratic Lyapunov function (CQLF) approach to stability analysis.\nRestricting to a hybrid automaton with linear dynamics in each mode, formulate the problem of finding a CQLF as a linear matrix inequality.\nExplain the S-procedure and show how it can be used to formulate the problem of a piecewise quadratic Lyapunov function?",
-    "crumbs": [
-      "8. Stability I.",
-      "Learning goals"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/goals.html#skills-use-the-knowledge-to-solve-a-problem",
-    "href": "8_stability_1/goals.html#skills-use-the-knowledge-to-solve-a-problem",
-    "title": "Learning goals",
-    "section": "Skills (use the knowledge to solve a problem)",
-    "text": "Skills (use the knowledge to solve a problem)\n\nAnalyze stability of a switched linear system under arbitrary switching by formulating and solving (using a computer) the relevant linear matrix inequalities (LMI).\nAnalyze stability of a switched linear system using a piecewise quadratic Lyapunov function.",
-    "crumbs": [
-      "8. Stability I.",
-      "Learning goals"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/references.html",
-    "href": "8_stability_1/references.html",
-    "title": "Literature",
-    "section": "",
-    "text": "The lecture was partly built upon the chapter 4 of the textbook [1], which in turn was (to a large extent) built upon chapter 2 of the research monograph [2]. None of these two is available online, but fortunately, the latter has a free shorter online version [3]. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.\nThe lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text [4] (well, it used to be available online, but has recently disappeared).",
-    "crumbs": [
-      "8. Stability I.",
-      "Literature"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/references.html#linear-matrix-inequalities",
-    "href": "8_stability_1/references.html#linear-matrix-inequalities",
-    "title": "Literature",
-    "section": "Linear matrix inequalities",
-    "text": "Linear matrix inequalities\nThe topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph [5] was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material [6], tailored to their Matlab toolbox called CVX. Alternatively, the text [7] is even richer by two pages. Another recommendable lecture notes are also available for free: [8]. Finally, a section on Semidefinite programming in the documentation for Yalmip software can also serve as learning resource.",
-    "crumbs": [
-      "8. Stability I.",
-      "Literature"
-    ]
-  },
-  {
-    "objectID": "8_stability_1/references.html#sum-of-squares-programming",
-    "href": "8_stability_1/references.html#sum-of-squares-programming",
-    "title": "Literature",
-    "section": "Sum-of-squares programming",
-    "text": "Sum-of-squares programming\nThe topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper [9] is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation [10] can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on Sum-of-squares programming.",
-    "crumbs": [
-      "8. Stability I.",
-      "Literature"
-    ]
-  },
-  {
-    "objectID": "0_intro/rules.html",
-    "href": "0_intro/rules.html",
-    "title": "Rules of the course",
-    "section": "",
-    "text": "The only grading occasion is the final exam. Every students will choose some three topics covered in the course and the exam will then consist of discussing these topics in some depth.",
+    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nWarningHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nWarningHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
     "crumbs": [
       "0. Introduction",
-      "Rules of the course"
+      "What is a hybrid system?"
     ]
   },
   {
-    "objectID": "0_intro/rules.html#grading",
-    "href": "0_intro/rules.html#grading",
-    "title": "Rules of the course",
+    "objectID": "0_intro/intro.html#definition-of-a-hybrid-system",
+    "href": "0_intro/intro.html#definition-of-a-hybrid-system",
+    "title": "What is a hybrid system?",
     "section": "",
-    "text": "The only grading occasion is the final exam. Every students will choose some three topics covered in the course and the exam will then consist of discussing these topics in some depth.",
+    "text": "The adjective “hybrid” is used in a common language to express that the subject under consideration has a bit of this and a bit of that… When talking about hybridness of systems, we modify this vague “definition” into a more descriptive one: a hybrid system has a bit of this and an atom of that… By this bon mot we mean that hybrid systems contain some physical subsystems and components combined with if-then-else and/or timing rules that are mostly (but not always) implemented in software. This definition is certainly not the most precise one, but it is a good starting point.\nEven better a definition is that hybrid systems are composed of subsystems whose evolution is driven by time (discrete or continuous) and some other subsystems that evolve as dictated by (discrete) events. The former are modelled by ordinary differential equations (ODE) or differential-algebraic equations (DAE) in continuous time cases and by difference equations in the discrete time cases. The are latter are modelled by state automata or Petri nets, and they implement some propositonal (aka sentential or statement), predicate and/or temporal logics. Let’s stick to this definition of hybrid systems. As we will progress with modelling frameworks, the definition will become a bit more operational.\n\n\n\n\n\n\nWarningHybrid systems vs sampled-data systems\n\n\n\nIt may be a bit confusing that we are introducing a new framework for the situation that we can already handle – a physical plant evolving in continuous time (and modelled by an ODE) controlled in discrete-time by a digital controller/computer. Indeed, this situation does qualify as a hybrid system. In introductory course we have learnt to design such controllers (by discretizing the system and then designing a controller for a discrete-time model, relying on ) and there was no need to introduce whatever new framework. However, this standard scenario assumes that the sampling period is constant. Only then can the standard techniques based on z-transform be applied. As soon as the sampling period is not constant, we need some more general framework – the framework of hybrid systems.\n\n\n\n\n\n\n\n\nWarningHybrid systems vs cyberphysical systems\n\n\n\nRecently systems containing both the computer/software/algorithmic parts and physical parts are also studied under the fancy name cyberphysical systems. The two concepts can hardly be distinguished, to be honest. I also confess I am unhappy with the narrowing of the concept of cybernetics to just computers. Cybernetics, as introduced by Norbert Wiener, already encompasses physical and biological systems among others. Anyway, that is how it is and the take-away leeson is that these days a great deal of material relevant for our course on hybrid systems can also be found in resources adopting the name cyberphysical systems.",
     "crumbs": [
       "0. Introduction",
-      "Rules of the course"
+      "What is a hybrid system?"
     ]
   },
   {
-    "objectID": "0_intro/rules.html#optional-semestral-project",
-    "href": "0_intro/rules.html#optional-semestral-project",
-    "title": "Rules of the course",
-    "section": "Optional semestral project",
-    "text": "Optional semestral project\nA student can (optionally) come up with a small project of their choice. Successfully accomplished project will improve the final grade at the exam. Typically such project can derive from a diploma project. It can be just an application of particular technique presented in the course. But it can also be a (computational) demonstration of some other (yet related) technique that the students studies in research literature. Shaping the assignment/scope of the project will be done with the teacher.\nThe project can be rather small, this is not another diploma thesis. As a concrete outcome, either a few page report, or a few presentation slides or even some well-commented code can be delivered. Every nice work counts.",
+    "objectID": "0_intro/intro.html#example-of-a-hybrid-system",
+    "href": "0_intro/intro.html#example-of-a-hybrid-system",
+    "title": "What is a hybrid system?",
+    "section": "Example of a hybrid system",
+    "text": "Example of a hybrid system\n\n\n\nExample of a hybrid system (from [1])",
     "crumbs": [
       "0. Introduction",
-      "Rules of the course"
+      "What is a hybrid system?"
     ]
   },
   {
-    "objectID": "0_intro/references.html",
-    "href": "0_intro/references.html",
-    "title": "Literature",
+    "objectID": "0_intro/intro.html#hybrid-system-is-an-open-and-unbounded-concept",
+    "href": "0_intro/intro.html#hybrid-system-is-an-open-and-unbounded-concept",
+    "title": "What is a hybrid system?",
+    "section": "Hybrid system is an open and unbounded concept",
+    "text": "Hybrid system is an open and unbounded concept\nPartly because hybrid systems are investigated by many\n\nComputer science\nModeling & simulation\nControl systems\n\n\nHybrid systems in computer science\n\nThey start with discrete-event systems, typically modelled by finite state automata and/or timed automata, and add some (typically simple) continuous-time dynamics.\nMainly motivated by analysis (verification, model checking, …): safety, liveness, fairness, …\n\n\n\nHybrid systems in modeling and simulation\n\nEven when modeling purely physical systems, it can be beneficial to approximate some fast dynamics with discontinuous transitions – jumps (diodes and other semiconductor switches, computer networks, mechanical impacts, …).\n\n\n\n\n\n\n\nWarningSystems vs models\n\n\n\nStrictly speaking, we should speak about hybrid models, because modeling a given system as hybrid is already a modeller’s decision. But the terminology is already settled. After all, we also speak about “second-order systems” when we actually mean “second-order models”, or “LTI systems” when we actually mean “LTI models”.\n\n\n\n\nHybrid systems in control systems\n\nTypically focused on continuous-time dynamical systems to be controlled but introducing some logic through a controller (switching control, relay control, PLC, …)\nBesides synthesis (aka control design), properties such as stability, controllability, robustness.\nThere is yet another motivation for explicitly dealing with hybridness in control systems: some systems can only be stabilized by switching and switching can be formulated within the hybrid system framework.",
+    "crumbs": [
+      "0. Introduction",
+      "What is a hybrid system?"
+    ]
+  },
+  {
+    "objectID": "0_intro/similar.html",
+    "href": "0_intro/similar.html",
+    "title": "Similar courses",
     "section": "",
-    "text": "The discipline of hybrid system is huge and spans several areas of science and engineering. As a result, finding a single comprehensive reference is difficult if not impossible. The more so that our selection of topics is inevitably biased. Admittedly, our selections of both topics and references will mostly be biased towards control engineering, and yet even within that discipline we have our own preferences. Therefore, we will always provide a list of references when studying particular topics.",
+    "text": "You may find it useful at least to be aware of these courses if not even to explore them at some detail. But we do not particularly try to align our course with any of these as the backgrounds of the students and the teachers vary.",
     "crumbs": [
       "0. Introduction",
-      "Literature"
+      "Similar courses"
     ]
   },
   {
-    "objectID": "0_intro/references.html#introductoryoverview-texts-freely-available-online",
-    "href": "0_intro/references.html#introductoryoverview-texts-freely-available-online",
-    "title": "Literature",
-    "section": "Introductory/overview texts freely available online",
-    "text": "Introductory/overview texts freely available online\nAmong the texts that provide motivation for studying hybrid systems as well as some introduction into theoretical and computational frameworks, we recommend [1], which is also available on the author’s webpage. Yet another overview, which is also available online, is [2]. And yet another is [3], which is available on the author’s web page. The quartet of recommended introductory resources available online is concluded by the lecture notes [4].\nWhen it comes to the resources specialized to the MPC methodology, we can recommend the book [5], not only because the authors are the leaders in that particular research direction, but also because they have made the electronic version of the book freely available on their webpage.",
+    "objectID": "0_intro/similar.html#at-other-universities",
+    "href": "0_intro/similar.html#at-other-universities",
+    "title": "Similar courses",
+    "section": "At other universities",
+    "text": "At other universities\n\nRicardo G. Sanfelice: Hybrid Control Design, PhD Course at the University of Bologna, 2018, https://hybrid.soe.ucsc.edu/hcd18.\nMaria Prandini: Hybrid Systems, PhD course at Lund University, 2015, https://www.control.lth.se/education/doctorate-program/hybrid-systems/.\nWei Zhang: ECE 7850 Hybrid Systems: Theory and Applications, The Ohio State University, Spring 2017, http://www2.ece.ohio-state.edu/~zhang/HybridSystemsClass/index.html.\nDimos Dimarogonas: EL2450 Hybrid and Embedded Control Systems, KTH, 2021, https://www.kth.se/student/kurser/kurs/EL2450?l=en (requires login).\nDe Persis: WMIE014-05 Advanced Digital and Hybrid Control Systems, Groningen, 2021/22, https://www.rug.nl/ocasys/rug/vak/show?code=WMIE014-05.\nBart de Schutter: Modeling and Control of Hybrid Systems (SC42075), MSc course, TU Delft, 2021, https://www.dcsc.tudelft.nl/~bdeschutter/hs/index.html.\nClaire Tomlin: EE C291E/ME C290S Hybrid Systems—Computation and Control, UC Berkeley, Spring 2021, https://inst.eecs.berkeley.edu/~ee291e/sp21/.\nJoão P. Hespanha: ECE229 Hybrid and Switched Systems, UCSB, Fall 2005, https://web.ece.ucsb.edu/~hespanha/ece229/.\nImura Jun-Ichi: Hybrid Systems Control, Tokyo Institute of Technology, 2018, http://www.ocw.titech.ac.jp/index.php?module=General&action=T0300&JWC=201804589&lang=EN.\nInseok Hwang and Jianghai Hu: AAE 66800 Hybrid Systems: Theory and Applications, Purdue University, 2014, https://engineering.purdue.edu/AAE/academics/course-descriptions/AAE690_Hybrid_System_Theory_Applications.\nO. Stursberg and L. Malkolf: FB16 - 4455 Hy­brid and Net­wor­ked Con­trol Sys­tems (HNCS), https://www.uni-kassel.de/eecs/control/lehre/hybrid-and-networked-control-systems.\nNecmiye Ozay: EECS 598-002 Hybrid Systems: Specification, Verification and Control, University of Michigan, Fall 2015, http://web.eecs.umich.edu/~necmiye/hybridsystemsF15.html.",
     "crumbs": [
       "0. Introduction",
-      "Literature"
+      "Similar courses"
     ]
   },
   {
-    "objectID": "0_intro/references.html#books-not-freely-available-online-at-least-not-that-we-know-of",
-    "href": "0_intro/references.html#books-not-freely-available-online-at-least-not-that-we-know-of",
-    "title": "Literature",
-    "section": "Books not freely available online (at least not that we know of)",
-    "text": "Books not freely available online (at least not that we know of)\nAmong the high-quality printed books, for which we are not aware of legally available online versions, the slim book [6] can be regarded as the classic.\n\nThe handbook [7] contains a wealth of contributions from several authors (in fact two of the online resources linked above are chapters from this book).\n\nThe latest textbook on the topic of hybrid systems is [8]. The book was the prime candidate for the book for this course, but we wanted a slightly different emphasis on each topic.\n\nAnother relatively recent book is [9]. Although it is very well written and is certainly recommendable, it follows a particular framework that is not the most common one in the literature on hybrid systems – the framework of hybrid equations. But we are certainly going to introduce their approach in our course. The more so that it is supported by a freely available Matlab toolbox.\n\nThe book [10] can be regarded as a predecessor and/or complement of the just mentioned [9]. Although the book is not available online, a short version appears as an article [11] in the popular IEEE Control Systems magazine (the one with color figures :-).\n\nThis list of study resources on hybrid systems is by no means exhaustive. We will provide more references in the respective chapters.",
+    "objectID": "0_intro/similar.html#at-ctu-prague",
+    "href": "0_intro/similar.html#at-ctu-prague",
+    "title": "Similar courses",
+    "section": "At CTU Prague",
+    "text": "At CTU Prague\n\nPavel Burget: BE3M35SDU Discrete Event Systems (within https://moodle.fel.cvut.cz/). Last time run in 2020.",
     "crumbs": [
       "0. Introduction",
-      "Literature"
+      "Similar courses"
     ]
   },
   {
-    "objectID": "4_hybrid_automata/goals.html",
-    "href": "4_hybrid_automata/goals.html",
-    "title": "Learning goals",
+    "objectID": "0_intro/outline.html",
+    "href": "0_intro/outline.html",
+    "title": "Course annotation and outline",
     "section": "",
-    "text": "Give a definition of a hybrid automaton. In particular, describe all the key components.\nDraws a graph of a hybrid automaton that displays all the key types of components.\nExplain the differences in roles played in a hybrid automaton by the invariant (or domain) of a given location (or mode), and the guard set of a given transition.",
+    "text": "Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.\nThe behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.\nHowever, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).\nHybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.\nThe aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.",
+    "crumbs": [
+      "0. Introduction",
+      "Course annotation and outline"
+    ]
+  },
+  {
+    "objectID": "0_intro/outline.html#course-annotation",
+    "href": "0_intro/outline.html#course-annotation",
+    "title": "Course annotation and outline",
+    "section": "",
+    "text": "Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.\nThe behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.\nHowever, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).\nHybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.\nThe aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.",
+    "crumbs": [
+      "0. Introduction",
+      "Course annotation and outline"
+    ]
+  },
+  {
+    "objectID": "0_intro/outline.html#course-outline",
+    "href": "0_intro/outline.html#course-outline",
+    "title": "Course annotation and outline",
+    "section": "Course outline",
+    "text": "Course outline\nThe course is structured into 14 topics, each corresponding to one lecture, one seminar/exercise session, and possibly an assignment of homework. The topics are as follows:\n\nDiscrete-event systems\n\n(State) automata (also state machines), including timed variants\nPetri nets (and timed Petri nets),\nMax-Plus algebra and Max-Plus Linear (MPL) systems\n\nHybrid systems\n\nHybrid automata\nHybrid equations\n\nSpecial classes of hybrid systems\n\nReset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)\nComplementarity dynamical systems (and complementarity optimization constraints)\n\n\n\n\nSolutions of hybrid systems\n\n\nStability of hybrid systems\n\nCommon Lyapunov function\n\nQuadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)\nPolynomial Lyapunov function via sum-of-squares (SOS) programming\n\nPiecewise quadratic/polynomial Lyapunov function via S-procedure\n\n\n\nMixed-logical dynamical (MLD) description of hybrid systems\nModel predictive control (MPC) for MLD systems\n\n\nFormal verification of hybrid systems\n\nReachability analysis and barrier certificates\nTemporal logics and model checking",
+    "crumbs": [
+      "0. Introduction",
+      "Course annotation and outline"
+    ]
+  },
+  {
+    "objectID": "4_hybrid_automata/exercises.html",
+    "href": "4_hybrid_automata/exercises.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "Goal: practice formulating a hybrid automaton (identifying its components) and simulating it.\n\n\nTemperature inside a nuclear reactor is controlled by inserting or withdrawing control rods. Two rods are available, only one can be inserted at a time. Upon inserton of a rod, the temperature decreases; without any rod inserted the temperature rises. Namely, the temperature (in °C) without any rod inserted evolves according to \n\\dot T(t) = 0.1 T(t) - 50.\n\nWith the rod #1 inserted, the temperature evolves according to \n\\dot T(t) = 0.1 T(t) - 56,\n and with rod #2 inserted, the temperature evolves according to \n\\dot T(t) = 0.1 T(t) - 60.\n\nThe initial temperatures is 510 °C with no rod inserted.\nThe system is controlled by a feedback control system that monitors the temperature and inserts or withdraws rods to keep the temperature within a safe range. The duration of the process of inserting or removing a rod is negligible compared to the time scale of the temperature evolution, so we can model it as a discrete event. The temperature threshold for the control system to insert a rod is 550 °C.\nAfter removing a rod, the control system must wait for a minimum of 20 seconds before inserting the rod again.\nThe control system should prefer inserting the rod #2 over the rod #1 if possible.\n\nIdentify the components of the hybrid automaton: \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, f, \\mathcal I, \\mathcal E, \\mathcal G, \\mathcal R\\}.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nPay attention to the timing constraints and the preference of rod #2 over rod #1. How would you model this in the hybrid automaton?\n\n\n\n\nBuild the simulation model using Stateflow. While modeling the timing constraints, you can use their built-in “temporal logic operators” (e.g., after(20,sec)).",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
-      "Learning goals"
+      "Exercises"
     ]
   },
   {
-    "objectID": "4_hybrid_automata/goals.html#knowledge-remember-and-understand",
-    "href": "4_hybrid_automata/goals.html#knowledge-remember-and-understand",
-    "title": "Learning goals",
+    "objectID": "4_hybrid_automata/exercises.html#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min",
+    "href": "4_hybrid_automata/exercises.html#exercise-1-temperature-control-of-a-nuclear-reactor-using-two-rods-45-min",
+    "title": "Exercises",
     "section": "",
-    "text": "Give a definition of a hybrid automaton. In particular, describe all the key components.\nDraws a graph of a hybrid automaton that displays all the key types of components.\nExplain the differences in roles played in a hybrid automaton by the invariant (or domain) of a given location (or mode), and the guard set of a given transition.",
+    "text": "Goal: practice formulating a hybrid automaton (identifying its components) and simulating it.\n\n\nTemperature inside a nuclear reactor is controlled by inserting or withdrawing control rods. Two rods are available, only one can be inserted at a time. Upon inserton of a rod, the temperature decreases; without any rod inserted the temperature rises. Namely, the temperature (in °C) without any rod inserted evolves according to \n\\dot T(t) = 0.1 T(t) - 50.\n\nWith the rod #1 inserted, the temperature evolves according to \n\\dot T(t) = 0.1 T(t) - 56,\n and with rod #2 inserted, the temperature evolves according to \n\\dot T(t) = 0.1 T(t) - 60.\n\nThe initial temperatures is 510 °C with no rod inserted.\nThe system is controlled by a feedback control system that monitors the temperature and inserts or withdraws rods to keep the temperature within a safe range. The duration of the process of inserting or removing a rod is negligible compared to the time scale of the temperature evolution, so we can model it as a discrete event. The temperature threshold for the control system to insert a rod is 550 °C.\nAfter removing a rod, the control system must wait for a minimum of 20 seconds before inserting the rod again.\nThe control system should prefer inserting the rod #2 over the rod #1 if possible.\n\nIdentify the components of the hybrid automaton: \\{\\mathcal Q, \\mathcal Q_0, \\mathcal X, \\mathcal X_0, f, \\mathcal I, \\mathcal E, \\mathcal G, \\mathcal R\\}.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nPay attention to the timing constraints and the preference of rod #2 over rod #1. How would you model this in the hybrid automaton?\n\n\n\n\nBuild the simulation model using Stateflow. While modeling the timing constraints, you can use their built-in “temporal logic operators” (e.g., after(20,sec)).",
     "crumbs": [
       "4. Hybrid systems: Hybrid automata",
-      "Learning goals"
-    ]
-  },
-  {
-    "objectID": "4_hybrid_automata/goals.html#skills-use-the-knowledge-to-solve-a-problem",
-    "href": "4_hybrid_automata/goals.html#skills-use-the-knowledge-to-solve-a-problem",
-    "title": "Learning goals",
-    "section": "Skills (use the knowledge to solve a problem)",
-    "text": "Skills (use the knowledge to solve a problem)\n\nFind a model of a simple dynamical system in the form of a hybrid automaton.\nImplement a simple hybrid automaton in Stateflow.",
-    "crumbs": [
-      "4. Hybrid systems: Hybrid automata",
-      "Learning goals"
+      "Exercises"
     ]
   },
   {
@@ -2696,7 +2718,7 @@
     "href": "1_des/automata.html#extensions",
     "title": "State automata",
     "section": "Extensions",
-    "text": "Extensions\nThe concept of an automaton can be extended in several ways. In particular, the following two extensions introduce the concept of an output to an automaton.\n\nMoore machine\nOne extension of an automaton with outputs is Moore machine. The outputs assigned to the states by the output function y = g(x).\nThe output is produced (emitted) when the (new) state is entered.\nNote, in particular, that the output does not depend on the input. This has a major advantage when a feedback loop is closed around this system, since no algebraic loop is created.\nGraphically, we make a conventions that outputs are the labels of the states.\n\nExample 8 (Moore machine) The following automaton has just three states, but just two outputs (FLOW and NO FLOW).\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nclosed\n\nNO FLOW\nValve\nclosed\n\n\n\ninit-&gt;closed\n\n\n\n\n\npartial\n\nFLOW\nValve\npartially\nopen\n\n\n\nclosed-&gt;partial\n\n\nopen valve one turn\n\n\n\npartial-&gt;closed\n\n\nclose valve one turn\n\n\n\nfull\n\nFLOW\nValve\nfully open\n\n\n\npartial-&gt;full\n\n\nopen valve one turn\n\n\n\nfull-&gt;closed\n\n\nemergency shut off\n\n\n\nfull-&gt;partial\n\n\nclose valve one turn\n\n\n\n\n\n\nFigure 9: Example of a digraph representation of the Moore machine for a valve control\n\n\n\n\n\n\n\n\nMealy machine\nMealy machine is another extension of an automaton. Here the outputs are associated with the transitions rather than the states.\nSince the events already associated with the states can be viewed as the inputs, we now have input/output transition labels. The transition label e_\\mathrm{i}/e_\\mathrm{o} on the transion from x_1 to x_2 reads as “the input event e_\\mathrm{i} at state x_1 activates the transition to x_2, which outputs the event e_\\mathrm{o}” and can be written as x_1\\xrightarrow{e_\\mathrm{i}/e_\\mathrm{o}} x_2.\nIt can be viewed as if the output function also considers the input and not only the state y = e_\\mathrm{o} = g(x,e_\\mathrm{i}).\nIn contrast with the Moore machine, here the output is produced (emitted) during the transition (before the new state is entered).\n\nExample 9 (Mealy machine) Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNo coin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\n10 CZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK / no coffee\n\n\n\n20\n\n20 CZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK / no coffee\n\n\n\n10-&gt;0\n\n\ninsert 20 CZK / coffee\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK / no coffee\n\n\n\n20-&gt;0\n\n\ninsert 10 CZK / coffee\n\n\n\n20-&gt;10\n\n\ninsert 20 CZK / coffee\n\n\n\n\n\n\nFigure 10: Example of a digraph representation of the Mealy machine for a coffee machine\n\n\n\n\n\n\n\nExample 10 (Reformulate the previous example as a Moore machine) Two more states wrt Mealy\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNO COFFEE\nNo\ncoin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\nNO COFFEE\n10\nCZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK\n\n\n\n20\n\nNO COFFEE\n20\nCZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK\n\n\n\n30\n\nCOFFEE\n10+20\nCZK\n\n\n\n10-&gt;30\n\n\ninsert 20 CZK\n\n\n\n20-&gt;30\n\n\ninsert 10 CZK\n\n\n\n40\n\nCOFFEE\n20+20\nCZK\n\n\n\n20-&gt;40\n\n\ninsert 20 CZK\n\n\n\n30-&gt;0\n\n\n\n\n\n30-&gt;10\n\n\ninsert 10 CZK\n\n\n\n30-&gt;20\n\n\ninsert 20 CZK\n\n\n\n40-&gt;10\n\n\n\n\n\n40-&gt;20\n\n\ninsert 10 CZK\n\n\n\n40-&gt;30\n\n\ninsert 20 CZK\n\n\n\n\n\n\nFigure 11: Example of a digraph representation of the Moore machine for a coffee machine\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThere are transitions from 30 and 40 back to 0 that are not labelled by any event. This does not seem to follow the general rule that transitions are always triggered by events. Not what? It can be resolved upon introducing time as the timeout transitions.\n\n\n\nExample 11 (Dijkstra’s token passing) The motivation for this example is to show that it is perhaps not always productive to insist on visual description of the automaton using a graph. The four components of our formal definition of an automaton are just enough, and they translate directly to a code.\nThe example comes from the field of distributed computing systems. It considers several computers that are connected in ring topology, and the communication is just one-directional as Fig. 12 shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.\n\n\n\n\n\n\n\n\nG\n\n\n0\n\n0\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n3-&gt;0\n\n\n\n\n\n\n\n\nFigure 12: Example of a ring topology for Dijkstra’s token passing in a distributed system\n\n\n\n\n\nOne popular method for this is called Dijkstra’s token passing. Each computer keeps a single integer value as its state variable. And it forwards this integer value to the neighbour (in the clockwise direction in our setting). Upon receiving the value from the other neighbour (in the counter-clockwise direction), it updates its own value according to the rule displayed in the code below. At every clock tick, the state vector (composed of the individual state variables) is updated according to the function update!() in the code. Based on the value of the state vector, an output is computed, which decodes the informovation about the location of the token from the state vector. Again, the details are in the output() function.\n\n\nShow the code\nstruct DijkstraTokenRing\n    number_of_nodes::Int64\n    max_value_of_state_variable::Int64\n    state_vector::Vector{Int64}\nend\n\nfunction update!(dtr::DijkstraTokenRing)                        \n    n = dtr.number_of_nodes\n    k = dtr.max_value_of_state_variable\n    x = dtr.state_vector\n    xnext = copy(x)\n    for i in eachindex(x)   # Mind the +1 shift. x[2] corresponds to x₁ in the literature.\n        if i == 1                                              \n            xnext[i] = (x[i] == x[n]) ? mod(x[i] + 1,k) : x[i]  # Increment if the left neighbour is identical.\n        else                                                    \n            xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]         # Update by the differing left neighbour.\n        end\n    end\n    dtr.state_vector .= xnext                                              \nend\n\nfunction output(dtr::DijkstraTokenRing)     # Token = 1, no token = 0 at the given position. \n    x = dtr.state_vector\n    y = similar(x)\n    y[1] = iszero(x[1]-x[end])\n    y[2:end] .= .!iszero.(diff(x))\n    return y\nend\n\n\noutput (generic function with 1 method)\n\n\nWe now rund the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.\n\n\nShow the code\nn = 4                           # Concrete number of nodes.\nk = n                           # Concrete max value of a state variable (&gt;= n).\n@show x_initial = rand(0:k,n)   # Initial state vector, not necessarily acceptable (&gt;1 token in the ring).\ndtr = DijkstraTokenRing(n,k,x_initial)\n@show output(dtr)               # Show where the token is (are).\n\n@show update!(dtr), output(dtr) # Perform the update, show the state vector and show where the token is.\n@show update!(dtr), output(dtr) # Repeat a few times to see the stabilization.    \n@show update!(dtr), output(dtr)\n@show update!(dtr), output(dtr)\n@show update!(dtr), output(dtr)\n\n\nx_initial = rand(0:k, n) = [2, 0, 3, 1]\noutput(dtr) = [0, 1, 1, 1]\n(update!(dtr), output(dtr)) = ([2, 2, 0, 3], [0, 0, 1, 1])\n(update!(dtr), output(dtr)) = ([2, 2, 2, 0], [0, 0, 0, 1])\n(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])\n(update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])\n(update!(dtr), output(dtr)) = ([3, 3, 2, 2], [0, 0, 1, 0])\n\n\n([3, 3, 2, 2], [0, 0, 1, 0])\n\n\nWe can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.\n\n\n\nExtended-state automaton\nYet another extension of an automaton is the extended-state automaton. And indeed, the hyphen is there on purpose as we extend the state space.\nIn particular, we augment the state variable(s) that define the states/modes/locations (the nodes in the graph) by additional (typed) state variables: Int, Enum, Bool, …\nTransitions from one mode to another are then guarded by conditions on theses new extra state variables.\nBesides being guarded by a guard condition, a given transition can also be labelled by a reset function that resets the extended-state variables.\n\nExample 12 (Counting up to 10) In this example, there are two modes (on and off), which can be captured by a single binary state variable, say x. But then there is an additional integer variable k, and the two variables together characterize the extended state.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\nint k=0\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npress\n\n\n\nON-&gt;OFF\n\n\n(press ⋁ k ≥ 10); k=0\n\n\n\nON-&gt;ON\n\n\n(press ∧ k &lt; 10); k=k+1\n\n\n\n\n\n\nFigure 13: Example of a digraph representation of the extended-state automaton for counting up to ten",
+    "text": "Extensions\nThe concept of an automaton can be extended in several ways. In particular, the following two extensions introduce the concept of an output to an automaton.\n\nMoore machine\nOne extension of an automaton with outputs is Moore machine. The outputs assigned to the states by the output function y = g(x).\nThe output is produced (emitted) when the (new) state is entered.\nNote, in particular, that the output does not depend on the input. This has a major advantage when a feedback loop is closed around this system, since no algebraic loop is created.\nGraphically, we make a conventions that outputs are the labels of the states.\n\nExample 8 (Moore machine) The following automaton has just three states, but just two outputs (FLOW and NO FLOW).\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nclosed\n\nNO FLOW\nValve\nclosed\n\n\n\ninit-&gt;closed\n\n\n\n\n\npartial\n\nFLOW\nValve\npartially\nopen\n\n\n\nclosed-&gt;partial\n\n\nopen valve one turn\n\n\n\npartial-&gt;closed\n\n\nclose valve one turn\n\n\n\nfull\n\nFLOW\nValve\nfully open\n\n\n\npartial-&gt;full\n\n\nopen valve one turn\n\n\n\nfull-&gt;closed\n\n\nemergency shut off\n\n\n\nfull-&gt;partial\n\n\nclose valve one turn\n\n\n\n\n\n\nFigure 9: Example of a digraph representation of the Moore machine for a valve control\n\n\n\n\n\n\n\n\nMealy machine\nMealy machine is another extension of an automaton. Here the outputs are associated with the transitions rather than the states.\nSince the events already associated with the states can be viewed as the inputs, we now have input/output transition labels. The transition label e_\\mathrm{i}/e_\\mathrm{o} on the transion from x_1 to x_2 reads as “the input event e_\\mathrm{i} at state x_1 activates the transition to x_2, which outputs the event e_\\mathrm{o}” and can be written as x_1\\xrightarrow{e_\\mathrm{i}/e_\\mathrm{o}} x_2.\nIt can be viewed as if the output function also considers the input and not only the state y = e_\\mathrm{o} = g(x,e_\\mathrm{i}).\nIn contrast with the Moore machine, here the output is produced (emitted) during the transition (before the new state is entered).\n\nExample 9 (Mealy machine) Coffee machine: coffee for 30 CZK, machine accepting 10 and 20 CZK coins, no change.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNo coin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\n10 CZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK / no coffee\n\n\n\n20\n\n20 CZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK / no coffee\n\n\n\n10-&gt;0\n\n\ninsert 20 CZK / coffee\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK / no coffee\n\n\n\n20-&gt;0\n\n\ninsert 10 CZK / coffee\n\n\n\n20-&gt;10\n\n\ninsert 20 CZK / coffee\n\n\n\n\n\n\nFigure 10: Example of a digraph representation of the Mealy machine for a coffee machine\n\n\n\n\n\n\n\nExample 10 (Reformulate the previous example as a Moore machine) Two more states wrt Mealy\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\n0\n\nNO COFFEE\nNo\ncoin\n\n\n\ninit-&gt;0\n\n\n\n\n\n10\n\nNO COFFEE\n10\nCZK\n\n\n\n0-&gt;10\n\n\ninsert 10 CZK\n\n\n\n20\n\nNO COFFEE\n20\nCZK\n\n\n\n0-&gt;20\n\n\ninsert 20 CZK\n\n\n\n10-&gt;20\n\n\ninsert 10 CZK\n\n\n\n30\n\nCOFFEE\n10+20\nCZK\n\n\n\n10-&gt;30\n\n\ninsert 20 CZK\n\n\n\n20-&gt;30\n\n\ninsert 10 CZK\n\n\n\n40\n\nCOFFEE\n20+20\nCZK\n\n\n\n20-&gt;40\n\n\ninsert 20 CZK\n\n\n\n30-&gt;0\n\n\n\n\n\n30-&gt;10\n\n\ninsert 10 CZK\n\n\n\n30-&gt;20\n\n\ninsert 20 CZK\n\n\n\n40-&gt;10\n\n\n\n\n\n40-&gt;20\n\n\ninsert 10 CZK\n\n\n\n40-&gt;30\n\n\ninsert 20 CZK\n\n\n\n\n\n\nFigure 11: Example of a digraph representation of the Moore machine for a coffee machine\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThere are transitions from 30 and 40 back to 0 that are not labelled by any event. This does not seem to follow the general rule that transitions are always triggered by events. Not what? It can be resolved upon introducing time as the timeout transitions.\n\n\n\nExample 11 (Dijkstra’s token passing) The motivation for this example is to show that it is perhaps not always productive to insist on visual description of the automaton using a graph. The four components of our formal definition of an automaton are just enough, and they translate directly to a code.\nThe example comes from the field of distributed computing systems. It considers several computers that are connected in ring topology, and the communication is just one-directional as Fig. 12 shows. The task is to use the communication to determine in – a distributed way – which of the computers carries a (single) token at a given time. And to realize passing of the token to a neighbour. We assume a synchronous case, in which all the computers are sending simultaneously, say, with some fixed sending period.\n\n\n\n\n\n\n\n\nG\n\n\n0\n\n0\n\n\n\n1\n\n1\n\n\n\n0-&gt;1\n\n\n\n\n\n2\n\n2\n\n\n\n1-&gt;2\n\n\n\n\n\n3\n\n3\n\n\n\n2-&gt;3\n\n\n\n\n\n3-&gt;0\n\n\n\n\n\n\n\n\nFigure 12: Example of a ring topology for Dijkstra’s token passing in a distributed system\n\n\n\n\n\nOne popular method for this is called Dijkstra’s token passing. Each computer keeps a single integer value as its state variable. And it forwards this integer value to the neighbour (in the clockwise direction in our setting). Upon receiving the value from the other neighbour (in the counter-clockwise direction), it updates its own value according to the rule displayed in the code below. At every clock tick, the state vector (composed of the individual state variables) is updated according to the function update!() in the code. Based on the value of the state vector, an output is computed, which decodes the informovation about the location of the token from the state vector. Again, the details are in the output() function.\n\n\nShow the code\nstruct DijkstraTokenRing\n    number_of_nodes::Int64\n    max_value_of_state_variable::Int64\n    state_vector::Vector{Int64}\nend\n\nfunction update!(dtr::DijkstraTokenRing)                        \n    n = dtr.number_of_nodes\n    k = dtr.max_value_of_state_variable\n    x = dtr.state_vector\n    xnext = copy(x)\n    for i in eachindex(x)   # Mind the +1 shift. x[2] corresponds to x₁ in the literature.\n        if i == 1                                              \n            xnext[i] = (x[i] == x[n]) ? mod(x[i] + 1,k) : x[i]  # Increment if the left neighbour is identical.\n        else                                                    \n            xnext[i] = (x[i] != x[i-1]) ? x[i-1] : x[i]         # Update by the differing left neighbour.\n        end\n    end\n    dtr.state_vector .= xnext                                              \nend\n\nfunction output(dtr::DijkstraTokenRing)     # Token = 1, no token = 0 at the given position. \n    x = dtr.state_vector\n    y = similar(x)\n    y[1] = iszero(x[1]-x[end])\n    y[2:end] .= .!iszero.(diff(x))\n    return y\nend\n\n\noutput (generic function with 1 method)\n\n\nWe now run the code for a given number of computers and some initial state vector that does not necessarily comply with the requirement that there is only one token in the ring.\n\n\nShow the code\nn = 4                           # Concrete number of nodes.\nk = n                           # Concrete max value of a state variable (&gt;= n).\n@show x_initial = rand(0:k,n)   # Initial state vector, not necessarily acceptable (&gt;1 token in the ring).\ndtr = DijkstraTokenRing(n,k,x_initial)\n@show output(dtr)               # Show where the token is (are).\n\n@show update!(dtr), output(dtr) # Perform the update, show the state vector and show where the token is.\n@show update!(dtr), output(dtr) # Repeat a few times to see the stabilization.    \n@show update!(dtr), output(dtr)\n@show update!(dtr), output(dtr)\n@show update!(dtr), output(dtr)\n\n\nx_initial = rand(0:k, n) = [2, 4, 1, 2]\noutput(dtr) = [1, 1, 1, 1]\n(update!(dtr), output(dtr)) = ([3, 2, 4, 1], [0, 1, 1, 1])\n(update!(dtr), output(dtr)) = ([3, 3, 2, 4], [0, 0, 1, 1])\n(update!(dtr), output(dtr)) = ([3, 3, 3, 2], [0, 0, 0, 1])\n(update!(dtr), output(dtr)) = ([3, 3, 3, 3], [1, 0, 0, 0])\n(update!(dtr), output(dtr)) = ([0, 3, 3, 3], [0, 1, 0, 0])\n\n\n([0, 3, 3, 3], [0, 1, 0, 0])\n\n\nWe can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.\n\n\n\nExtended-state automaton\nYet another extension of an automaton is the extended-state automaton. And indeed, the hyphen is there on purpose as we extend the state space.\nIn particular, we augment the state variable(s) that define the states/modes/locations (the nodes in the graph) by additional (typed) state variables: Int, Enum, Bool, …\nTransitions from one mode to another are then guarded by conditions on theses new extra state variables.\nBesides being guarded by a guard condition, a given transition can also be labelled by a reset function that resets the extended-state variables.\n\nExample 12 (Counting up to 10) In this example, there are two modes (on and off), which can be captured by a single binary state variable, say x. But then there is an additional integer variable k, and the two variables together characterize the extended state.\n\n\n\n\n\n\n\n\nG\n\n\ninit\ninit\n\n\n\nOFF\n\nOFF\n\n\n\ninit-&gt;OFF\n\n\nint k=0\n\n\n\nON\n\nON\n\n\n\nOFF-&gt;ON\n\n\npress\n\n\n\nON-&gt;OFF\n\n\n(press ⋁ k ≥ 10); k=0\n\n\n\nON-&gt;ON\n\n\n(press ∧ k &lt; 10); k=k+1\n\n\n\n\n\n\nFigure 13: Example of a digraph representation of the extended-state automaton for counting up to ten",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "State automata"
@@ -2762,7 +2784,7 @@
     "href": "1_des/exercises.html",
     "title": "Exercises",
     "section": "",
-    "text": "Goal: practice extracting the formal tuple G = \\{\\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F\\} (and optionally \\mathcal X_\\mathrm{m}) from an informal description, and draw the state-transition diagram.\nPart A — Pen and paper. A subway turnstile starts locked. Inserting a valid coin unlocks it. A person then either pushes through (relocking the turnstile) or, if nobody pushes within some time, an attendant can reset it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a coin is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).\n\nIdentify \\mathcal X, \\mathcal X_0, \\mathcal E, and write out \\mathcal F as a set of triples (or as the transition function f).\nDecide whether coin while unlocked should appear in \\mathcal F at all, or whether it is simply outside \\Gamma(\\text{unlocked}) (the active event set). Justify your choice.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nIs locked a reasonable marked/accepting state \\mathcal X_\\mathrm{m}? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?\nIdentify the active event function \\Gamma(x) for each state.\n\nPart B — Computer implementation (choose one).\n\nStateflow: Build the turnstile as a chart with two states, locked and unlocked. Use two input “events” (Boolean triggers or Stateflow events) coin and push, and implement the self-loop/reject behavior for coin in unlocked. Add a counter (extended state, e.g., integer n_passengers) that increments on every successful push, to connect to the “extended-state automaton” concept from the lecture.\nJulia/MATLAB (low-level, no GUI): Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function update(state, event) -&gt; new_state implementing f directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., [:coin, :push, :coin, :coin, :push]) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.\n\nPart C — Optional extension (if a group finishes early): closer to a real fare gate. Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:\n\nReal gates have a passage sensor (an infrared beam or pressure pad), separate from the mechanical unlocking. This means push should really be split into two distinct events: enter (sensor detects someone stepping into the gate) and exit (sensor detects them leaving the gate area), since some gates re-lock only after the person has fully passed through, not the instant they push.\nAdd an alarm event/output: if the sensor detects someone entering while the gate is still locked (fare evasion / jumping the gate), the automaton should go to a new state, say breach, and emit an alarm, rather than silently ignoring the event as in the basic version.\nOptionally add a fault state reachable from any state on a motor_jam event, with a reset_by_technician event returning to locked — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from locked/unlocked.\n\nRedo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if breach is not cleared within 5 seconds”).",
+    "text": "Goal: practice extracting the formal tuple G = \\{\\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F\\} (and optionally \\mathcal X_\\mathrm{m}) from an informal description, and draw the state-transition diagram.\n\n\nA subway turnstile starts locked. Inserting a valid coin unlocks it. A person then either pushes through (relocking the turnstile) or, if nobody pushes within some time, an attendant can reset it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a coin is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).\n\nIdentify \\mathcal X, \\mathcal X_0, \\mathcal E, and write out \\mathcal F as a set of triples (or as the transition function f).\nDecide whether coin while unlocked should appear in \\mathcal F at all, or whether it is simply outside \\Gamma(\\text{unlocked}) (the active event set). Justify your choice.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nIs locked a reasonable marked/accepting state \\mathcal X_\\mathrm{m}? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?\nIdentify the active event function \\Gamma(x) for each state.\n\n\n\n\n\nStateflow: Build the turnstile as a chart with two states, locked and unlocked. Use two input “events” (Boolean triggers or Stateflow events) coin and push, and implement the self-loop/reject behavior for coin in unlocked. Add a counter (extended state, e.g., integer n_passengers) that increments on every successful push, to connect to the “extended-state automaton” concept from the lecture.\nJulia/MATLAB (low-level, no GUI): Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function update(state, event) -&gt; new_state implementing f directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., [:coin, :push, :coin, :coin, :push]) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.\n\nPart C — Optional extension (if a group finishes early): closer to a real fare gate. Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:\n\nReal gates have a passage sensor (an infrared beam or pressure pad), separate from the mechanical unlocking. This means push should really be split into two distinct events: enter (sensor detects someone stepping into the gate) and exit (sensor detects them leaving the gate area), since some gates re-lock only after the person has fully passed through, not the instant they push.\nAdd an alarm event/output: if the sensor detects someone entering while the gate is still locked (fare evasion / jumping the gate), the automaton should go to a new state, say breach, and emit an alarm, rather than silently ignoring the event as in the basic version.\nOptionally add a fault state reachable from any state on a motor_jam event, with a reset_by_technician event returning to locked — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from locked/unlocked.\n\nRedo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if breach is not cleared within 5 seconds”).",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Exercises"
@@ -2773,7 +2795,7 @@
     "href": "1_des/exercises.html#exercise-1-turnstile-access-gate-automaton-30-min",
     "title": "Exercises",
     "section": "",
-    "text": "Goal: practice extracting the formal tuple G = \\{\\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F\\} (and optionally \\mathcal X_\\mathrm{m}) from an informal description, and draw the state-transition diagram.\nPart A — Pen and paper. A subway turnstile starts locked. Inserting a valid coin unlocks it. A person then either pushes through (relocking the turnstile) or, if nobody pushes within some time, an attendant can reset it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a coin is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).\n\nIdentify \\mathcal X, \\mathcal X_0, \\mathcal E, and write out \\mathcal F as a set of triples (or as the transition function f).\nDecide whether coin while unlocked should appear in \\mathcal F at all, or whether it is simply outside \\Gamma(\\text{unlocked}) (the active event set). Justify your choice.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nIs locked a reasonable marked/accepting state \\mathcal X_\\mathrm{m}? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?\nIdentify the active event function \\Gamma(x) for each state.\n\nPart B — Computer implementation (choose one).\n\nStateflow: Build the turnstile as a chart with two states, locked and unlocked. Use two input “events” (Boolean triggers or Stateflow events) coin and push, and implement the self-loop/reject behavior for coin in unlocked. Add a counter (extended state, e.g., integer n_passengers) that increments on every successful push, to connect to the “extended-state automaton” concept from the lecture.\nJulia/MATLAB (low-level, no GUI): Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function update(state, event) -&gt; new_state implementing f directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., [:coin, :push, :coin, :coin, :push]) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.\n\nPart C — Optional extension (if a group finishes early): closer to a real fare gate. Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:\n\nReal gates have a passage sensor (an infrared beam or pressure pad), separate from the mechanical unlocking. This means push should really be split into two distinct events: enter (sensor detects someone stepping into the gate) and exit (sensor detects them leaving the gate area), since some gates re-lock only after the person has fully passed through, not the instant they push.\nAdd an alarm event/output: if the sensor detects someone entering while the gate is still locked (fare evasion / jumping the gate), the automaton should go to a new state, say breach, and emit an alarm, rather than silently ignoring the event as in the basic version.\nOptionally add a fault state reachable from any state on a motor_jam event, with a reset_by_technician event returning to locked — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from locked/unlocked.\n\nRedo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if breach is not cleared within 5 seconds”).",
+    "text": "Goal: practice extracting the formal tuple G = \\{\\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F\\} (and optionally \\mathcal X_\\mathrm{m}) from an informal description, and draw the state-transition diagram.\n\n\nA subway turnstile starts locked. Inserting a valid coin unlocks it. A person then either pushes through (relocking the turnstile) or, if nobody pushes within some time, an attendant can reset it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a coin is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).\n\nIdentify \\mathcal X, \\mathcal X_0, \\mathcal E, and write out \\mathcal F as a set of triples (or as the transition function f).\nDecide whether coin while unlocked should appear in \\mathcal F at all, or whether it is simply outside \\Gamma(\\text{unlocked}) (the active event set). Justify your choice.\nDraw the digraph (nodes, edges, labels). Mark the initial state.\nIs locked a reasonable marked/accepting state \\mathcal X_\\mathrm{m}? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?\nIdentify the active event function \\Gamma(x) for each state.\n\n\n\n\n\nStateflow: Build the turnstile as a chart with two states, locked and unlocked. Use two input “events” (Boolean triggers or Stateflow events) coin and push, and implement the self-loop/reject behavior for coin in unlocked. Add a counter (extended state, e.g., integer n_passengers) that increments on every successful push, to connect to the “extended-state automaton” concept from the lecture.\nJulia/MATLAB (low-level, no GUI): Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function update(state, event) -&gt; new_state implementing f directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., [:coin, :push, :coin, :coin, :push]) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.\n\nPart C — Optional extension (if a group finishes early): closer to a real fare gate. Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:\n\nReal gates have a passage sensor (an infrared beam or pressure pad), separate from the mechanical unlocking. This means push should really be split into two distinct events: enter (sensor detects someone stepping into the gate) and exit (sensor detects them leaving the gate area), since some gates re-lock only after the person has fully passed through, not the instant they push.\nAdd an alarm event/output: if the sensor detects someone entering while the gate is still locked (fare evasion / jumping the gate), the automaton should go to a new state, say breach, and emit an alarm, rather than silently ignoring the event as in the basic version.\nOptionally add a fault state reachable from any state on a motor_jam event, with a reset_by_technician event returning to locked — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from locked/unlocked.\n\nRedo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if breach is not cleared within 5 seconds”).",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Exercises"
@@ -2784,7 +2806,7 @@
     "href": "1_des/exercises.html#exercise-2-vending-machine-with-two-products-and-a-moore-output-30-min",
     "title": "Exercises",
     "section": "Exercise 2: Vending machine with two products and a Moore output (≈30 min)",
-    "text": "Exercise 2: Vending machine with two products and a Moore output (≈30 min)\nGoal: practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.\nPart A — Pen and paper. Design (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events insert5, insert10), sells a single snack for exactly 15 crowns, gives no change, and has a cancel button that returns to the start at any point before purchase (refund not modeled — just state reset).\n\nDecide whether to model this with a plain automaton where each state is an explicit “amount inserted so far” (0, 5, 10) or with an extended-state automaton (a single state idle/vending plus an integer variable credit). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to “State as the value of a state variable” in the notes.\nWrite \\mathcal X, \\mathcal X_0, \\mathcal E, and \\mathcal F (or the guarded transitions, if you picked the extended-state version).\nAdd a Moore-style output: label each state with NO SNACK or DISPENSE, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., insert5 / no_snack) would look like for the same machine.\nDraw the digraph for whichever version (plain or extended) you find clearer to draw.\n\nPart B — Computer implementation (choose one).\n\nStateflow: Implement the chart using an extended state variable credit (data of type integer local to the chart) and guarded transitions of the form [credit + 5 &gt;= 15] / {credit = 0; dispense();}, closely following the “Counting up to 10” extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (NO SNACK / DISPENSE).\nJulia/MATLAB (low-level): Implement a function f(x, e) (or update!) operating on a small struct/state holding the mode and the credit variable, plus a separate output(x) function returning \"NO SNACK\" or \"DISPENSE\", mirroring the update!/output split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.",
+    "text": "Exercise 2: Vending machine with two products and a Moore output (≈30 min)\nGoal: practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.\n\nPart A (pen and paper)\nDesign (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events insert5, insert10), sells a single snack for exactly 15 crowns, gives no change, and has a cancel button that returns to the start at any point before purchase (refund not modeled — just state reset).\n\nDecide whether to model this with a plain automaton where each state is an explicit “amount inserted so far” (0, 5, 10) or with an extended-state automaton (a single state idle/vending plus an integer variable credit). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to “State as the value of a state variable” in the notes.\nWrite \\mathcal X, \\mathcal X_0, \\mathcal E, and \\mathcal F (or the guarded transitions, if you picked the extended-state version).\nAdd a Moore-style output: label each state with NO SNACK or DISPENSE, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., insert5 / no_snack) would look like for the same machine.\nDraw the digraph for whichever version (plain or extended) you find clearer to draw.\n\n\n\nPart B (computer implementation, choose one)\n\nStateflow: Implement the chart using an extended state variable credit (data of type integer local to the chart) and guarded transitions of the form [credit + 5 &gt;= 15] / {credit = 0; dispense();}, closely following the “Counting up to 10” extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (NO SNACK / DISPENSE).\nJulia/MATLAB (low-level): Implement a function f(x, e) (or update!) operating on a small struct/state holding the mode and the credit variable, plus a separate output(x) function returning \"NO SNACK\" or \"DISPENSE\", mirroring the update!/output split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Exercises"
@@ -2795,7 +2817,7 @@
     "href": "1_des/exercises.html#exercise-3-composing-two-automata-blocking-analysis-30-min",
     "title": "Exercises",
     "section": "Exercise 3: Composing two automata + blocking analysis (≈30 min)",
-    "text": "Exercise 3: Composing two automata + blocking analysis (≈30 min)\nGoal: practice the concept of composing automata via shared/synchronized events (the !/? convention from the notes), and identify blocking, deadlock, and livelock states — a topic not covered by either demo example.\nPart A — Pen and paper. Consider two simple automata that must be composed:\n\nProducer G_1: states idle, producing, done; it cycles idle —start→ producing —finish!→ idle, where finish! is a generated (sent) event signaling that an item is ready.\nBuffer G_2: a one-slot buffer with states empty, full; transition empty —finish?→ full (receiving the item) and full —take→ empty (a consumer removing it). Assume the consumer’s take event is not synchronized with anything else for this exercise (free event).\n\n\nWrite out \\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F for G_1 and G_2 separately, and draw each digraph.\nForm the composed (product) automaton G = G_1 \\| G_2 by synchronizing on the shared event finish (i.e., a transition in the product happens only when both automata’s finish!/finish? fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find \\mathcal X_0 first and explore outward.)\nNow suppose the consumer’s take event is accidentally removed from the model (forgotten event). Re-examine the composed automaton: is there now a blocking state? Is it a deadlock (no outgoing transition at all) or a livelock (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state \\mathcal X_\\mathrm{m} (e.g., (idle, empty)) to make this precise, and justify your classification using the definitions from the lecture.\n\nPart B — Computer implementation (choose one).\n\nStateflow: Implement G_1 and G_2 as two parallel (AND) states or as two separate charts communicating via a Stateflow event/signal representing finish, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the take transition (as in Part A.3) causes the buffer chart to visibly stall.\nJulia/MATLAB (low-level): Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit finish! and step the buffer’s finish? transition only when that happens; step take independently/randomly. Run the simulation for the “broken” version with take removed and confirm in code (e.g., by checking that the buffer state never changes again after the first finish) that it deadlocks. Print the full path of composed states to support your conclusion.\nSuggested primary pattern (synchronous, single-threaded — matches the Dijkstra style in the notes): keep a Composed struct holding both sub-states, and write one step function where the shared event is derived rather than supplied as an input — it fires automatically and only when both sides are simultaneously enabled:\nstruct Composed\n    producer_state::Symbol   # :idle or :producing\n    buffer_state::Symbol     # :empty or :full\nend\n\nfunction step(c::Composed; start::Bool=false, take::Bool=false)\n    p, b = c.producer_state, c.buffer_state\n    finish_fires = (p == :producing) && (b == :empty)   # the synchronization condition\n    p_next = finish_fires ? :idle  : (p == :idle && start) ? :producing : p\n    b_next = finish_fires ? :full  : (b == :full && take)  ? :empty     : b\n    return Composed(p_next, b_next)\nend\nDeadlock in the broken (take-removed) variant is then trivial to detect in code: step in a loop and check whether step(c) == c — no change means the system is stuck, and you can print which automaton is the blocked one.\nOptional “idiomatic Julia” bonus, for groups that finish early: Julia has language-level primitives for exactly this kind of synchronization — an unbuffered Channel is a synchronous rendezvous (put! blocks until a matching take!), which is the finish!/finish? pair rather than a simulation of it. Run each automaton as its own Task via @async:\nfunction producer(ch::Channel, n::Int)\n    for i in 1:n\n        println(\"producing...\")\n        put!(ch, :item)       # blocks until the buffer calls take! -- this *is* finish!/finish?\n        println(\"idle\")\n    end\n    close(ch)\nend\n\nfunction buffer(ch::Channel)\n    for _item in ch           # take!, looping until ch is closed\n        println(\"full\")\n        sleep(0.01)           # the independent `take` event\n        println(\"empty\")\n    end\nend\n\nch = Channel{Symbol}(0)       # capacity 0 = unbuffered = synchronous rendezvous\nt1 = @async producer(ch, 3)\nt2 = @async buffer(ch)\nwait(t1); wait(t2)\nCaution if you try this for the broken variant: removing the consumer’s take doesn’t give you an inspectable deadlocked state the way the synchronous version does — put! just blocks forever and wait never returns. That’s a faithful illustration of what deadlock means for real concurrent processes, but it’s the synchronous version above that you should use to actually answer question A.3.",
+    "text": "Exercise 3: Composing two automata + blocking analysis (≈30 min)\nGoal: practice the concept of composing automata via shared/synchronized events (the !/? convention from the notes), and identify blocking, deadlock, and livelock states — a topic not covered by either demo example.\n\nPart A (pen and paper)\nConsider two simple automata that must be composed:\n\nProducer G_1: states idle, producing, done; it cycles idle —start→ producing —finish!→ idle, where finish! is a generated (sent) event signaling that an item is ready.\nBuffer G_2: a one-slot buffer with states empty, full; transition empty —finish?→ full (receiving the item) and full —take→ empty (a consumer removing it). Assume the consumer’s take event is not synchronized with anything else for this exercise (free event).\n\n\nWrite out \\mathcal X, \\mathcal X_0, \\mathcal E, \\mathcal F for G_1 and G_2 separately, and draw each digraph.\nForm the composed (product) automaton G = G_1 \\| G_2 by synchronizing on the shared event finish (i.e., a transition in the product happens only when both automata’s finish!/finish? fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find \\mathcal X_0 first and explore outward.)\nNow suppose the consumer’s take event is accidentally removed from the model (forgotten event). Re-examine the composed automaton: is there now a blocking state? Is it a deadlock (no outgoing transition at all) or a livelock (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state \\mathcal X_\\mathrm{m} (e.g., (idle, empty)) to make this precise, and justify your classification using the definitions from the lecture.\n\n\n\nPart B (computer implementation, choose one)\n\nStateflow: Implement G_1 and G_2 as two parallel (AND) states or as two separate charts communicating via a Stateflow event/signal representing finish, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the take transition (as in Part A.3) causes the buffer chart to visibly stall.\nJulia/MATLAB (low-level): Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit finish! and step the buffer’s finish? transition only when that happens; step take independently/randomly. Run the simulation for the “broken” version with take removed and confirm in code (e.g., by checking that the buffer state never changes again after the first finish) that it deadlocks. Print the full path of composed states to support your conclusion.\nSuggested primary pattern (synchronous, single-threaded — matches the Dijkstra style in the notes): keep a Composed struct holding both sub-states, and write one step function where the shared event is derived rather than supplied as an input — it fires automatically and only when both sides are simultaneously enabled:\nstruct Composed\n    producer_state::Symbol   # :idle or :producing\n    buffer_state::Symbol     # :empty or :full\nend\n\nfunction step(c::Composed; start::Bool=false, take::Bool=false)\n    p, b = c.producer_state, c.buffer_state\n    finish_fires = (p == :producing) && (b == :empty)   # the synchronization condition\n    p_next = finish_fires ? :idle  : (p == :idle && start) ? :producing : p\n    b_next = finish_fires ? :full  : (b == :full && take)  ? :empty     : b\n    return Composed(p_next, b_next)\nend\nDeadlock in the broken (take-removed) variant is then trivial to detect in code: step in a loop and check whether step(c) == c — no change means the system is stuck, and you can print which automaton is the blocked one.\nOptional “idiomatic Julia” bonus, for groups that finish early: Julia has language-level primitives for exactly this kind of synchronization — an unbuffered Channel is a synchronous rendezvous (put! blocks until a matching take!), which is the finish!/finish? pair rather than a simulation of it. Run each automaton as its own Task via @async:\nfunction producer(ch::Channel, n::Int)\n    for i in 1:n\n        println(\"producing...\")\n        put!(ch, :item)       # blocks until the buffer calls take! -- this *is* finish!/finish?\n        println(\"idle\")\n    end\n    close(ch)\nend\n\nfunction buffer(ch::Channel)\n    for _item in ch           # take!, looping until ch is closed\n        println(\"full\")\n        sleep(0.01)           # the independent `take` event\n        println(\"empty\")\n    end\nend\n\nch = Channel{Symbol}(0)       # capacity 0 = unbuffered = synchronous rendezvous\nt1 = @async producer(ch, 3)\nt2 = @async buffer(ch)\nwait(t1); wait(t2)\nCaution if you try this for the broken variant: removing the consumer’s take doesn’t give you an inspectable deadlocked state the way the synchronous version does — put! just blocks forever and wait never returns. That’s a faithful illustration of what deadlock means for real concurrent processes, but it’s the synchronous version above that you should use to actually answer question A.3.",
     "crumbs": [
       "1. Discrete-event systems: Automata",
       "Exercises"
