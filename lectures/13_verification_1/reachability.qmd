@@ -22,7 +22,7 @@ Robust versions exist for cases with uncertain parameters, or disturbances.
 
 ## Reachability computations for hybrid systems
 
-There are two major approaches to reachibility analysis for hybrid systems
+There are two major approaches to reachability analysis for hybrid systems:
 
 - Checking a feasibility of an optimal control problem for a MLD system. This is used in Hybrid Toolbox (and Hysdel): [http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/](http://cse.lab.imtlucca.it/~bemporad/hybrid/toolbox/)
 - Computing the reachable sets by *set propagation techniques*.
