@@ -13,6 +13,10 @@ crossref:
 engine: julia   
 ---
 
-## Exercise 1: xxx (≈45 min)
+## Exercise 1: Event-triggered PID control of a water tank
 
-**Goal:** practice xxx.
+**Goal:** practice formulating a sampled-data control loop with non-periodic, event-triggered sampling within the framework of hybrid (state) equations by identifying the quadruple {f, C, g, D}, and implement/simulate it with using a suitable software.
+
+## Exercise 2: Supervisory switching between a local and a global pendulum controller
+
+**Goal:** practice formulating a supervisory control system switching between a local and global controller within the framework of hybrid (state) equations by identifying the quadruple {f, C, g, D}, and implement/simulate it with using a suitable software.
