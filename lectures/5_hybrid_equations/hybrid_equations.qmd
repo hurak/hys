@@ -116,12 +116,11 @@ $$
 v_\mathrm{p}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}).
 $${#eq-restitution}
 
-From the momentum conservation @eq-momentum-conservation
+From the momentum conservation @eq-momentum-conservation we get
 $$
-v_\mathrm{p}^+ = \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+
+v_\mathrm{p}^+ = \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+,
 $$
-
-we substitute to @eq-restitution to get
+which we substitute to @eq-restitution to get
 $$
 \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b}^+ - v_\mathrm{b}^+ = -\gamma (v_\mathrm{p} - v_\mathrm{b}),
 $$
@@ -134,7 +133,7 @@ v_\mathrm{b}^+ &= \frac{1}{1+\frac{m_\mathrm{b}}{m_\mathrm{p}}}\left(\frac{m_\ma
 \end{aligned}.
 $$
 
-Substitute to the expression for $v_\mathbb{p}^+$ to get
+We substitute this into the expression for $v_\mathrm{p}^+$ to get
 $$
 \begin{aligned}
 v_\mathrm{p}^+ &= \frac{m_\mathrm{b}}{m_\mathrm{p}}v_\mathrm{b} + v_\mathrm{p} - \frac{m_\mathrm{b}}{m_\mathrm{p}}\left(\frac{m_\mathrm{b}-\gamma m_\mathrm{p}}{m_\mathrm{b}+m_\mathrm{p}}v_\mathrm{b} + \frac{(1+\gamma)m_\mathrm{p}}{m_\mathrm{p}+m_\mathrm{b}}v_\mathrm{p}\right)\\
@@ -320,7 +319,7 @@ x_\mathrm{p}\\
 \end{bmatrix}
 $$
 
-You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theoris. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time $T$ may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework. 
+You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theories. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time $T$ may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework. 
 :::
 
 ## Hybridness after closing the loop
