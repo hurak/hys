@@ -31,7 +31,7 @@ D = [0]
 # State space model, first continuous-time, then ZOH-discretized
 G = ss(A, B, C, D)
 Ac, Bc, Cc, Dc = ssdata(G)  # Keeping the continuous-time matrices around for the sampled-data simulation below
-h = 0.5                     # Sampling time
+h = 1.0                     # Sampling time
 Gd = c2d(G, h)
 A, B, C, D = ssdata(Gd)     # Rewriting the original matrices by those correspoinding to the discretized system
 
@@ -50,7 +50,7 @@ R = 1.0
 K = lqr(Discrete, A, B, Q, R)
 
 # Introduce the reference into the state feedback scheme
-y_ref(t) = 1.0(t>=1.5)          # Reference output (step function starting at t=1.5)
+y_ref(t) = 1.0(t>=2.0)          # Reference output (step function starting at t=1.5)
 N = K*Nₓ .+ Nᵤ                  # Dot needed here because K*Nₓ is a 1x1 matrix, while Nᵤ is a scaler.
 κ(x,t)  = -K*x .+ N*y_ref(t)    # Control law (u is a function of t and x)
 
@@ -95,7 +95,7 @@ end
 saved_values = SavedValues(Float64, Vector{Float64})   # (time type, saved-value type)
 save_func(x, t, integrator) = copy(integrator.p.u)  
 
-function sampling_condition(x,t,integrator)
+function sampling_condition_fcn(x,t,integrator)
     tₖ = integrator.p.t_last
     uₖ = integrator.p.u
     τ = t - tₖ              # Time elapsed since the last sampling time.  
@@ -112,7 +112,7 @@ function affect!(integrator)
 end
 
 #sampling_cb = DiscreteCallback(condition,affect!)
-sampling_cb = ContinuousCallback(sampling_condition,affect!)
+sampling_cb = ContinuousCallback(sampling_condition_fcn,affect!)
 saving_cb = SavingCallback(save_func, saved_values)
 cb = CallbackSet(sampling_cb, saving_cb)    # Order matters: the sampling callback's affect! must update integrator.p.u
                                              # before the saving callback records it at that same instant.

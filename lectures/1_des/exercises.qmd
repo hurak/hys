@@ -13,7 +13,7 @@ crossref:
 engine: julia   
 ---
 
-## Exercise 1: Turnstile / access-gate automaton (≈30 min)
+## Exercise 1: Turnstile / access-gate automaton
 
 **Goal:** practice extracting the formal tuple $G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}$ (and optionally $\mathcal X_\mathrm{m}$) from an informal description, and draw the state-transition diagram.
 
@@ -32,7 +32,8 @@ A subway turnstile starts **locked**. Inserting a valid `coin` unlocks it. A per
 - **Stateflow:** Build the turnstile as a chart with two states, `locked` and `unlocked`. Use two input "events" (Boolean triggers or Stateflow events) `coin` and `push`, and implement the self-loop/reject behavior for `coin` in `unlocked`. Add a counter (extended state, e.g., integer `n_passengers`) that increments on every successful `push`, to connect to the "extended-state automaton" concept from the lecture.
 - **Julia/MATLAB (low-level, no GUI):** Represent the automaton exactly as in the lecture's Dijkstra example: a struct holding the state, and a function `update(state, event) -> new_state` implementing $f$ directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., `[:coin, :push, :coin, :coin, :push]`) and prints the resulting path (sequence of visited states), mirroring "Path of an automaton" from the notes.
 
-**Part C — Optional extension (if a group finishes early): closer to a real fare gate.**
+### Part C — Optional extension (if a group finishes early): closer to a real fare gate
+
 Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:
 
 - Real gates have a passage **sensor** (an infrared beam or pressure pad), separate from the mechanical unlocking. This means `push` should really be split into two distinct events: `enter` (sensor detects someone stepping into the gate) and `exit` (sensor detects them leaving the gate area), since some gates re-lock only after the person has *fully* passed through, not the instant they push.
@@ -43,7 +44,7 @@ Redo Part A.1–A.5 for this extended version (it will now have 4–5 states ins
 
 ---
 
-## Exercise 2: Vending machine with two products and a Moore output (≈30 min)
+## Exercise 2: Vending machine with two products and a Moore output
 
 **Goal:** practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.
 
@@ -62,7 +63,7 @@ Design (don't just look up) a state automaton for a simplified snack vending mac
 
 ---
 
-## Exercise 3: Composing two automata + blocking analysis (≈30 min)
+## Exercise 3: Composing two automata + blocking analysis
 
 **Goal:** practice the concept of **composing automata** via shared/synchronized events (the `!`/`?` convention from the notes), and identify **blocking, deadlock, and livelock** states — a topic not covered by either demo example.
 
