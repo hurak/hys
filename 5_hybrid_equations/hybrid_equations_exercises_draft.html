@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Learning goals – B(E)3M35HYS – Hybrid systems</title>
+<title>hybrid_equations_exercises_draft – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../11_mld/DHA.html" rel="next">
-<link href="../10_complementarity/references.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +86,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/goals.html">Learning goals</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item">
+      B(E)3M35HYS – Hybrid systems
+      </li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -569,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-12" aria-labelledby="quarto-sidebar-section-12-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/goals.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11_mld/goals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning goals</span></a>
   </div>
 </li>
@@ -735,47 +735,157 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#knowledge-remember-and-understand" id="toc-knowledge-remember-and-understand" class="nav-link active" data-scroll-target="#knowledge-remember-and-understand">Knowledge (remember and understand)</a></li>
-  <li><a href="#skills-use-the-knowledge-to-solve-a-problem" id="toc-skills-use-the-knowledge-to-solve-a-problem" class="nav-link" data-scroll-target="#skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</a></li>
+  <li><a href="#exercises-5.-hybrid-systems-hybrid-equations" id="toc-exercises-5.-hybrid-systems-hybrid-equations" class="nav-link active" data-scroll-target="#exercises-5.-hybrid-systems-hybrid-equations">Exercises — 5. Hybrid systems: Hybrid equations</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1-an-event-triggered-pid-controller-as-a-hybrid-system-45-min" id="toc-exercise-1-an-event-triggered-pid-controller-as-a-hybrid-system-45-min" class="nav-link" data-scroll-target="#exercise-1-an-event-triggered-pid-controller-as-a-hybrid-system-45-min">Exercise 1: An event-triggered PID controller as a hybrid system (≈45 min)</a>
+  <ul class="collapse">
+  <li><a href="#background-hand-out-to-students" id="toc-background-hand-out-to-students" class="nav-link" data-scroll-target="#background-hand-out-to-students">Background (hand out to students)</a></li>
+  <li><a href="#plant-given-to-students" id="toc-plant-given-to-students" class="nav-link" data-scroll-target="#plant-given-to-students">Plant given to students</a></li>
+  <li><a href="#controller-structure" id="toc-controller-structure" class="nav-link" data-scroll-target="#controller-structure">Controller structure</a></li>
+  <li><a href="#state-vector-some-entries-intentionally-left-for-students-to-justify" id="toc-state-vector-some-entries-intentionally-left-for-students-to-justify" class="nav-link" data-scroll-target="#state-vector-some-entries-intentionally-left-for-students-to-justify">State vector (some entries intentionally left for students to justify)</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks">Tasks</a></li>
+  </ul></li>
+  <li><a href="#exercise-2-supervisory-switching-between-a-local-and-a-global-pendulum-controller-3035-min" id="toc-exercise-2-supervisory-switching-between-a-local-and-a-global-pendulum-controller-3035-min" class="nav-link" data-scroll-target="#exercise-2-supervisory-switching-between-a-local-and-a-global-pendulum-controller-3035-min">Exercise 2: Supervisory switching between a local and a global pendulum controller (≈30–35 min)</a>
+  <ul class="collapse">
+  <li><a href="#part-a-instructor-led-demo-15-min" id="toc-part-a-instructor-led-demo-15-min" class="nav-link" data-scroll-target="#part-a-instructor-led-demo-15-min">Part A — Instructor-led demo (~15 min)</a></li>
+  <li><a href="#part-b-guided-exploration-students-ta-supervised-1520-min" id="toc-part-b-guided-exploration-students-ta-supervised-1520-min" class="nav-link" data-scroll-target="#part-b-guided-exploration-students-ta-supervised-1520-min">Part B — Guided exploration (students, TA-supervised, ~15–20 min)</a></li>
+  </ul></li>
+  <li><a href="#logistics-notes-for-the-ta" id="toc-logistics-notes-for-the-ta" class="nav-link" data-scroll-target="#logistics-notes-for-the-ta">Logistics notes for the TA</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content" tabindex="-1">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/goals.html">Learning goals</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Learning goals</h1>
-</div>
+<main class="content" id="quarto-document-content" tabindex="-1"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="knowledge-remember-and-understand" class="level2">
-<h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
+<section id="exercises-5.-hybrid-systems-hybrid-equations" class="level1">
+<h1>Exercises — 5. Hybrid systems: Hybrid equations</h1>
+<p><em>Draft for a 90-minute TA-supervised session. Designed to plug into the placeholder at</em> <code>https://hurak.github.io/hys/5_hybrid_equations/exercises.html</code>.</p>
+<p><strong>Targets both skill-level learning goals of this chapter:</strong> - Find a model of a dynamical system in the form of hybrid equations (determine <code>{f, C, g, D}</code>). - Implement a model in the form of hybrid equations using the HyEQ Toolbox.</p>
+<p><strong>Session plan (90 min total)</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Time</th>
+<th>Block</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0–5 min</td>
+<td>Framing: why asynchronous sampling and supervisory switching both need the hybrid-equations formalism</td>
+</tr>
+<tr class="even">
+<td>5–50 min</td>
+<td><strong>Exercise 1</strong> — event-triggered PID (hands-on, pairs, TA circulates)</td>
+</tr>
+<tr class="odd">
+<td>50–55 min</td>
+<td>Break / transition</td>
+</tr>
+<tr class="even">
+<td>55–70 min</td>
+<td><strong>Exercise 2, Part A</strong> — instructor-led demo (pendulum swing-up + LQR supervisor)</td>
+</tr>
+<tr class="odd">
+<td>70–88 min</td>
+<td><strong>Exercise 2, Part B</strong> — guided exploration/extension (pairs, TA circulates)</td>
+</tr>
+<tr class="even">
+<td>88–90 min</td>
+<td>Wrap-up, collect deliverables</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<section id="exercise-1-an-event-triggered-pid-controller-as-a-hybrid-system-45-min" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-an-event-triggered-pid-controller-as-a-hybrid-system-45-min">Exercise 1: An event-triggered PID controller as a hybrid system (≈45 min)</h2>
+<p><strong>Goal:</strong> practice formulating a sampled-data control loop with <em>non-periodic, event-triggered</em> sampling as a hybrid equation <code>{f, C, g, D}</code>, and implement/simulate it with the HyEQ Toolbox.</p>
+<section id="background-hand-out-to-students" class="level3">
+<h3 class="anchored" data-anchor-id="background-hand-out-to-students">Background (hand out to students)</h3>
+<p>Recall <strong>Example 5</strong> in the lecture notes: a sampled-data loop with periodic sampling is written as a hybrid system with state <code>x = (x_p, u, τ)</code>, flow set <code>C = {τ ∈ [0,T)}</code>, and jump set <code>D = {τ ≥ T}</code>. The controller output is only recomputed at the jumps.</p>
+<p>An <strong>event-triggered</strong> (a.k.a. <em>send-on-delta</em> or <em>Lebesgue</em>) controller replaces “recompute every <code>T</code> seconds” with “recompute only when the output has drifted enough to matter.” This is the idea behind Årzén’s 1999 event-based PID controller: a comparator continuously watches the plant output and triggers a recomputation only when it has changed by more than a threshold Δ since the last update, cutting CPU/network load with little performance loss (Årzén, <em>A Simple Event-Based PID Controller</em>, 14th IFAC World Congress, 1999 — tested on a double-tank process). The hybrid-equations framework is exactly what lets you formalize “sample now, or don’t” without treating it as a separate discrete-event layer bolted onto the ODE.</p>
+</section>
+<section id="plant-given-to-students" class="level3">
+<h3 class="anchored" data-anchor-id="plant-given-to-students">Plant given to students</h3>
+<p>A simple second-order plant with an integrator and damping (good match for PI action):</p>
+<pre><code>ẋ_p1 = x_p2
+ẋ_p2 = -x_p2 + u
+y    = x_p1</code></pre>
+<p>(Optional stretch: swap in Årzén’s nonlinear double-tank model if a pair finishes early — two coupled tank levels, <code>ẋ1 = -k1√x1 + u</code>, <code>ẋ2 = k1√x1 - k2√x2</code>, <code>y = x2</code>.)</p>
+</section>
+<section id="controller-structure" class="level3">
+<h3 class="anchored" data-anchor-id="controller-structure">Controller structure</h3>
+<p>A PI controller, but written to <em>use the hybrid framework’s own bookkeeping</em>: the integral term accumulates using the <strong>actual elapsed flow time</strong> <code>τ</code> recorded since the last event (rather than assuming a fixed <code>T</code>), and only <code>u</code> is held between events.</p>
+</section>
+<section id="state-vector-some-entries-intentionally-left-for-students-to-justify" class="level3">
+<h3 class="anchored" data-anchor-id="state-vector-some-entries-intentionally-left-for-students-to-justify">State vector (some entries intentionally left for students to justify)</h3>
+<p><code>x = (x_p, u, z, τ, y_last)</code> where <code>z</code> is the running integral term, <code>τ</code> is the timer since the last event, <code>y_last</code> is the output value recorded at the last event, and <code>τ_min</code> is a small minimum dwell time (a design parameter, not a state).</p>
+</section>
+<section id="tasks" class="level3">
+<h3 class="anchored" data-anchor-id="tasks">Tasks</h3>
+<p><strong>(a) [~5 min] Orient.</strong> By analogy with Example 5, list which of the four components <code>{f, C, g, D}</code> must change to go from periodic to event-triggered sampling, and which stay the same.</p>
+<p><strong>(b) [~15 min] Derive the model.</strong> Given</p>
+<pre><code>f(x) = ( x_p2, -x_p2 + u,  0,  0,  1,  0 )</code></pre>
 <ul>
-<li>Explain how logical conditions can be translated into linear inequalities using binary variables.</li>
-<li>Write down the general form of a <em>mixed logical dynamical</em> (MLD) description of a hybrid dynamical system and explain the individual terms.</li>
+<li>Write the <strong>flow set</strong> <code>C</code>: flow continues while either the minimum dwell time hasn’t elapsed, <em>or</em> the output hasn’t drifted by Δ from <code>y_last</code>.</li>
+<li>Write the <strong>jump set</strong> <code>D</code> as its complement.</li>
+<li>Write the <strong>jump map</strong> <code>g</code>: derive the expressions for <code>e</code>, <code>z⁺</code> (integral update using the elapsed <code>τ</code>), <code>u⁺ = Kp·e + z⁺</code>, <code>τ⁺</code>, and <code>y_last⁺</code>.</li>
+</ul>
+<p><em>(TA hint sheet, not for students: <code>C = {τ ≤ τ_min} ∪ {τ &gt; τ_min ∧ |y − y_last| &lt; Δ}</code>; <code>D</code> = complement; <code>z⁺ = z + Ki·e·τ</code>.)</em></p>
+<p><strong>(c) [~20 min] Implement and simulate.</strong> Using the HyEQ Toolbox skeleton (TA-provided <code>.slx</code> with plant wired and empty <code>f</code>/<code>C</code>/<code>g</code>/<code>D</code> MATLAB Function blocks — see logistics below), simulate a unit step reference. Suggested parameters: <code>Kp = 2</code>, <code>Ki = 1</code>, <code>Δ = 0.05</code>, <code>τ_min = 0.01 s</code>, horizon 10 s. Plot <code>y(t)</code> and <code>u(t)</code> with event instants marked (stem plot), and count the number of controller updates.</p>
+<p><strong>(d) [~5 min] Compare and discuss.</strong> Compare the event count against a periodic PID sampled at a rate giving comparable tracking error. What happens as Δ → 0? As τ_min → 0? Did you observe very rapid, closely spaced triggering near the target (a preview of the <em>Zeno</em> phenomenon, covered formally in Ch. 7)?</p>
+<p><strong>Deliverable:</strong> the filled-in <code>{f, C, g, D}</code>, the Simulink/HyEQ model or script, one annotated plot, 3–4 sentences answering (d).</p>
+<p><strong>Optional stretch (if a pair finishes early):</strong> add a derivative term computed from the two most recent event samples; or swap in the double-tank plant; or add a “watchdog” periodic fallback update (as later event-based PID papers do) to bound the maximum inter-event time from above as well as below.</p>
+<hr>
+</section>
+</section>
+<section id="exercise-2-supervisory-switching-between-a-local-and-a-global-pendulum-controller-3035-min" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-supervisory-switching-between-a-local-and-a-global-pendulum-controller-3035-min">Exercise 2: Supervisory switching between a local and a global pendulum controller (≈30–35 min)</h2>
+<p>As you noted, deriving a swing-up (energy-shaping) controller and computing a region of attraction from scratch draws on competences outside this course. So this exercise is split: the control laws and the ROA are <strong>given</strong>, and the exercise itself is scoped tightly to what this chapter is teaching — encoding a hysteresis-switched supervisor as <code>{f, C, g, D}</code>, directly extending <strong>Example 7</strong> (stabilization on a circle), which students will already have worked through minutes earlier.</p>
+<section id="part-a-instructor-led-demo-15-min" class="level3">
+<h3 class="anchored" data-anchor-id="part-a-instructor-led-demo-15-min">Part A — Instructor-led demo (~15 min)</h3>
+<p>Walk through a fully worked solution, presented explicitly as an instance of Fig. 9–11 (supervisory control / combining local and global controllers) in the notes:</p>
+<ul>
+<li><strong>Pendulum</strong>, state <code>x = (θ, θ̇)</code>, upright equilibrium at <code>θ = 0</code>.</li>
+<li><strong>Local controller</strong> (<code>κ_loc</code>): LQR on the linearization about <code>θ = 0</code>. Region of validity estimated as a sublevel set of the LQR Lyapunov function, <code>{x : V(x) ≤ c}</code>, <code>V(x) = xᵀPx</code>. Give students <code>P</code> and <code>c</code> as precomputed numbers — explain <em>what</em> a Lyapunov sublevel set buys you (an invariant, attractive region) without deriving how <code>c</code> was found.</li>
+<li><strong>Global controller</strong> (<code>κ_glob</code>): an energy-shaping swing-up law, e.g.&nbsp;<code>u = k·θ̇·cos(θ)·(E(x) − E_top)</code>. Present the formula and the one-line intuition (pump energy in until total energy matches the energy at the upright point), not a stability proof.</li>
+<li><strong>Supervisor</strong>: discrete state <code>q ∈ {0,1}</code> (0 = global/swing-up, 1 = local/LQR), switching <strong>with hysteresis</strong> — exactly the <code>c₀</code>/<code>c₁</code> pattern from Example 7:
+<ul>
+<li>switch global → local when <code>V(x) ≤ c_in</code>,</li>
+<li>switch local → global only if <code>V(x) ≥ c_out &gt; c_in</code>.</li>
+</ul></li>
+<li>Show a live simulation (HyEQ Toolbox, or the Julia <code>OrdinaryDiffEq</code> + <code>DiscreteCallback</code> pattern already used for Example 7 in the notes) of a full swing-up-and-balance run.</li>
 </ul>
 </section>
-<section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
-<h2 class="anchored" data-anchor-id="skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</h2>
+<section id="part-b-guided-exploration-students-ta-supervised-1520-min" class="level3">
+<h3 class="anchored" data-anchor-id="part-b-guided-exploration-students-ta-supervised-1520-min">Part B — Guided exploration (students, TA-supervised, ~15–20 min)</h3>
+<p>Students do <strong>not</strong> re-derive the controllers or the ROA. Their task is the hybrid-equations-specific part, using the demo code as a given starting point.</p>
+<p><strong>(b1) [~5–8 min, everyone] Write the model.</strong> Using <code>κ_loc</code>, <code>κ_glob</code>, <code>V</code>, <code>c_in</code>, <code>c_out</code> as given black-box quantities, write out <code>{f, C, g, D}</code> for the supervisory system in the same notation as Fig. 11 / Example 7 (a fill-in-the-blanks worksheet works well here — this is the direct “find a model” exercise for this chapter’s learning goal, just with the plant now nonlinear and the sets defined via <code>V(x)</code> rather than a scalar coordinate).</p>
+<p><strong>(b2) [~5 min, everyone] Break the hysteresis.</strong> In the provided code, set <code>c_in = c_out = c</code> (no hysteresis gap) and rerun. Report what happens near the boundary of <code>{V(x) = c}</code> — this should reproduce, in a new setting, the “hysteresis is a robustifying feature” point made in the notes.</p>
+<p><strong>(b3) [~10 min, pick one per pair] Extension menu:</strong> - Add torque saturation to both controllers and adjust <code>c_in</code>/<code>c_out</code> so switching only happens where the saturated global controller is still not needed/local controller is still valid. - Try two different initial conditions (near the bottom vs.&nbsp;off to one side) and report time-to-upright and number of switches for each. - Replace the hysteresis rule with a minimum-dwell-time rule (structurally identical to <code>τ_min</code> from Exercise 1) instead of a geometric margin, and compare switching behavior with a bit of noise added to the <code>θ̇</code> measurement. - <em>(Bonus, optional)</em> empirically tighten the given ROA estimate: grid a few candidate values of <code>c</code> and check whether trajectories started on <code>{V(x) = c}</code> under <code>κ_loc</code> alone stay inside the region and converge.</p>
+<p><strong>Deliverable:</strong> the annotated <code>{f, C, g, D}</code>, one plot showing the effect of the chosen extension, 2–3 sentences of interpretation.</p>
+<hr>
+</section>
+</section>
+<section id="logistics-notes-for-the-ta" class="level2">
+<h2 class="anchored" data-anchor-id="logistics-notes-for-the-ta">Logistics notes for the TA</h2>
 <ul>
-<li>Formulate the MLD description of a simple discrete-time hybrid automaton. For very simple systems you should be able to do it by hand but for anything more complicated feel free to use a relevant software tool.</li>
+<li><strong>Toolchain:</strong> the course page recommends the HyEQ Toolbox beta (v3.1.0.04) for Matlab/Simulink. Confirm it’s installed on lab machines <em>before</em> the session — this exercise assumes zero install time in-class. If Simulink access is unreliable, the Julia <code>OrdinaryDiffEq</code> + <code>DiscreteCallback</code> style already used for Example 7 in the notes is a lighter-weight fallback and keeps the same C/D/g structure.</li>
+<li><strong>Skeletons, not blank canvases:</strong> for both exercises, pre-wire the plant, solver harness, and plotting, and leave only <code>f</code>, <code>C</code>, <code>g</code>, <code>D</code> (and, in Ex. 1, the controller gains) as blanks. 45 and 30 minutes are not enough to build a Simulink model from scratch <em>and</em> reason about the sets.</li>
+<li><strong>Common beginner bug to watch for:</strong> boundary handling between <code>C</code> and <code>D</code> — strict vs.&nbsp;non-strict inequalities at the same boundary can cause chattering or solver deadlock. This is worth flagging explicitly, since Exercise 1(d) and Exercise 2(b2) are designed to make students <em>see</em> this happen rather than just be warned about it.</li>
+<li><strong>Grading signal, not just a plot:</strong> the useful checkpoint for both exercises is the written <code>{f, C, g, D}</code>, not just a working simulation — a student can sometimes get a plausible-looking simulation from a wrong or incomplete model.</li>
 </ul>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -1179,18 +1289,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation" aria-label="Page">
-  <div class="nav-page nav-page-previous">
-      <a href="../10_complementarity/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../11_mld/DHA.html" class="pagination-link" aria-label="Discrete hybrid automata">
-        <span class="nav-page-text">Discrete hybrid automata</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
