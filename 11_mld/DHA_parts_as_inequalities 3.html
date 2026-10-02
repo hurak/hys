@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Components of DHA as inequalities – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -71,8 +36,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../2_petri_nets/goals.html" rel="next">
-<link href="../1_des/references.html" rel="prev">
+<link href="../11_mld/mld_and_pwa.html" rel="next">
+<link href="../11_mld/logic_vs_inequalities.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -166,7 +131,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA_parts_as_inequalities.html">Components of DHA as inequalities</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -267,7 +232,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_des/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../1_des/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -665,7 +630,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_mld/DHA_parts_as_inequalities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Components of DHA as inequalities</span></a>
   </div>
 </li>
@@ -813,22 +778,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-simple-state-automata-in-stateflow" id="toc-exercise-1-simple-state-automata-in-stateflow" class="nav-link active" data-scroll-target="#exercise-1-simple-state-automata-in-stateflow">Exercise 1: Simple state automata in Stateflow</a></li>
-  <li><a href="#exercise-2-turnstile-access-gate-automaton" id="toc-exercise-2-turnstile-access-gate-automaton" class="nav-link" data-scroll-target="#exercise-2-turnstile-access-gate-automaton">Exercise 2: Turnstile / access-gate automaton</a>
+  <li><a href="#finite-state-machine-fsm-using-binary-variables" id="toc-finite-state-machine-fsm-using-binary-variables" class="nav-link active" data-scroll-target="#finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</a></li>
+  <li><a href="#mixing-logical-and-continuous-through-indicator-variables" id="toc-mixing-logical-and-continuous-through-indicator-variables" class="nav-link" data-scroll-target="#mixing-logical-and-continuous-through-indicator-variables">Mixing logical and continuous through indicator variables</a>
   <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper" id="toc-part-a-pen-and-paper" class="nav-link" data-scroll-target="#part-a-pen-and-paper">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one" id="toc-part-b-computer-implementation-choose-one" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</a></li>
-  <li><a href="#part-c-optional-extension-if-a-group-finishes-early-closer-to-a-real-fare-gate" id="toc-part-c-optional-extension-if-a-group-finishes-early-closer-to-a-real-fare-gate" class="nav-link" data-scroll-target="#part-c-optional-extension-if-a-group-finishes-early-closer-to-a-real-fare-gate">Part C — Optional extension (if a group finishes early): closer to a real fare gate</a></li>
-  </ul></li>
-  <li><a href="#exercise-3-vending-machine-with-two-products-and-a-moore-output" id="toc-exercise-3-vending-machine-with-two-products-and-a-moore-output" class="nav-link" data-scroll-target="#exercise-3-vending-machine-with-two-products-and-a-moore-output">Exercise 3: Vending machine with two products and a Moore output</a>
-  <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper-1" id="toc-part-a-pen-and-paper-1" class="nav-link" data-scroll-target="#part-a-pen-and-paper-1">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one-1" id="toc-part-b-computer-implementation-choose-one-1" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one-1">Part B (computer implementation, choose one)</a></li>
-  </ul></li>
-  <li><a href="#exercise-4-composing-two-automata-blocking-analysis" id="toc-exercise-4-composing-two-automata-blocking-analysis" class="nav-link" data-scroll-target="#exercise-4-composing-two-automata-blocking-analysis">Exercise 4: Composing two automata + blocking analysis</a>
-  <ul class="collapse">
-  <li><a href="#part-a-pen-and-paper-2" id="toc-part-a-pen-and-paper-2" class="nav-link" data-scroll-target="#part-a-pen-and-paper-2">Part A (pen and paper)</a></li>
-  <li><a href="#part-b-computer-implementation-choose-one-2" id="toc-part-b-computer-implementation-choose-one-2" class="nav-link" data-scroll-target="#part-b-computer-implementation-choose-one-2">Part B (computer implementation, choose one)</a></li>
+  <li><a href="#logical-implies-continuous" id="toc-logical-implies-continuous" class="nav-link" data-scroll-target="#logical-implies-continuous">Logical implies continuous</a></li>
+  <li><a href="#continuous-implies-logical" id="toc-continuous-implies-logical" class="nav-link" data-scroll-target="#continuous-implies-logical">Continuous implies logical</a></li>
+  <li><a href="#equivalence-between-logical-and-continuous" id="toc-equivalence-between-logical-and-continuous" class="nav-link" data-scroll-target="#equivalence-between-logical-and-continuous">Equivalence between logical and continuous</a></li>
+  <li><a href="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" id="toc-generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="nav-link" data-scroll-target="#generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</a></li>
+  <li><a href="#if-then-else-rule-as-an-inequality" id="toc-if-then-else-rule-as-an-inequality" class="nav-link" data-scroll-target="#if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</a></li>
+  <li><a href="#another-if-then-else-rule" id="toc-another-if-then-else-rule" class="nav-link" data-scroll-target="#another-if-then-else-rule">Another IF-THEN-ELSE rule</a></li>
+  <li><a href="#switched-affine-system" id="toc-switched-affine-system" class="nav-link" data-scroll-target="#switched-affine-system">Switched affine system</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -836,9 +795,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA_parts_as_inequalities.html">Components of DHA as inequalities</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Components of DHA as inequalities</h1>
 </div>
 
 
@@ -855,127 +814,203 @@ window.Quarto = {
 </header>
 
 
-<section id="exercise-1-simple-state-automata-in-stateflow" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-simple-state-automata-in-stateflow">Exercise 1: Simple state automata in Stateflow</h2>
-<p><strong>Goal:</strong> practice building a simple state automaton in Stateflow.</p>
-<p>Create a Stateflow implementation of the simple two-state automaton – a button and an LED. Pressing the button toggles the LED state. The automaton has two <em>states</em>, <code>LED off</code> and <code>LED on</code>, and a single <em>input event</em> <code>button</code>. Generate the input event by generating a random 0-1 signal in Simulink and deriving the <code>button</code> event from the <em>rising edge</em> of that signal. Define an <em>output variable</em> <code>light</code> that can be used to represent the state of the LED in Simulink.</p>
-<p>Extend the automaton to include a third state <code>LED double intensity</code> that is reached by pressing the button twice in a row within a short time interval.The automaton should return to <code>LED off</code> after a press that followes after a longer time. You may want to use <a href="https://www.mathworks.com/help/stateflow/ug/using-temporal-logic-in-state-actions-and-transitions.html">Stateflow temporal operators</a> for that.</p>
-<hr>
+<p>In this section, we use the general results from the previous section to show how the four components of the discrete hybrid automaton (DHA) can be formulated as linear inequalities and equations.</p>
+<section id="finite-state-machine-fsm-using-binary-variables" class="level2">
+<h2 class="anchored" data-anchor-id="finite-state-machine-fsm-using-binary-variables">Finite state machine (FSM) using binary variables</h2>
+<p>For characterization of discrete states (both in discrete-event and hybrid systems), we used integer variables. But now, with anticipation of using numerical solvers, we will use binary variables. We encode the discrete state variable <span class="math inline">x_\mathrm{d}</span> as binary. Vector variables are then needed <span class="math display">
+\bm x_b \in \{0,1\}^{n_b}.
+</span></p>
+<p>Similarly, the discrete-valued inputs are encoded in binary as <span class="math display">
+\bm u_b \in \{0,1\}^{m_b}.
+</span></p>
+<p>The state equation encoded in binary is then <span class="math display">
+\bm x_b(k+1) = \mathbf f_b(\bm x_b(k),\bm u_b(k),\bm \delta_e(k)),
+</span> and our goal in this section is to learn how to formulate this equation as a system of linear inequalities with binary variables.</p>
+<div id="exm-fsm-example" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1</strong></span> Consider the automaton in <a href="#fig-fsm-example" class="quarto-xref">Fig.&nbsp;1</a> with three states (Red, Green, Blue) and two binary inputs (<span class="math inline">u_{b1}, u_{b2}</span>).</p>
+<div id="fig-fsm-example" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/fsm_example.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fsm-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a discrete-time finite state machine (aka finite state automaton) modelled using binary variables
+</figcaption>
+</figure>
+</div>
+<p>The state update/transition equation, expressed still with integer (not necessarily binary) variables is <span class="math display">
+\begin{aligned}
+x_d(k+1) =
+\begin{cases}
+\text{Red} &amp; \text{if}\; ([x_d = \text{green}] \land \neg [\delta_3=1]) \lor ([x_d = \text{red}] \land \neg [\delta_3=1])\\
+\text{Green} &amp; \text{if} \; \ldots\\
+\text{Blue} &amp; \text{if} \; \ldots
+\end{cases}
+\end{aligned}
+</span></p>
+<p>The three discrete states can be encoded with a binary vector (vector consisting of two binary variables) as <span class="math display">
+\text{Red}: \bm x_b = \begin{bmatrix}0\\0 \end{bmatrix}, \; \text{Green}: \bm x_b = \begin{bmatrix}0\\1 \end{bmatrix}, \; \text{Blue}: \bm x_b = \begin{bmatrix}1\\0 \end{bmatrix}
+</span></p>
+<p>Reformulating the state update equations for binary variables <span class="math display">
+\begin{aligned}
+[x_{b1} = 1] &amp;\leftrightarrow (\neg [x_{b1} = 1] \land \neg [x_{b2} = 1]  \land [\delta_1=1] \land \neg[u_{b2}=1]) \\
+&amp;\qquad \lor (\neg [x_{b1} = 1] \land [x_{b2} = 1]  \land [\delta_3=1] \land [u_{b1}=1])\\
+&amp;\qquad \lor ([x_{b1} = 1]\land [x_{b2} = 1] \land \neg [\delta_2=1])\\
+[x_{b2} = 1] &amp;\leftrightarrow \ldots
+\end{aligned}
+</span></p>
+<p>While converting these into linear inequalities, the reified conjunctions and reified disjunctions from the previous section will be heavily used.</p>
+</div>
 </section>
-<section id="exercise-2-turnstile-access-gate-automaton" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-2-turnstile-access-gate-automaton">Exercise 2: Turnstile / access-gate automaton</h2>
-<p><strong>Goal:</strong> practice extracting the formal tuple <span class="math inline">G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}</span> (and optionally <span class="math inline">\mathcal X_\mathrm{m}</span>) from an informal description, and draw the state-transition diagram.</p>
-<section id="part-a-pen-and-paper" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper">Part A (pen and paper)</h3>
-<p>A subway turnstile starts <strong>locked</strong>. Inserting a valid <code>coin</code> unlocks it. A person then either <code>pushes</code> through (relocking the turnstile) or, if nobody pushes within some time, an attendant can <code>reset</code> it back to locked without anyone passing (model this as an ordinary untimed event for now — ignore the timing aspect). If a <code>coin</code> is inserted while already unlocked, the turnstile simply ejects it (no state change — add a self-loop or explicitly state that the event is not active in that state).</p>
-<ol type="1">
-<li>Identify <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and write out <span class="math inline">\mathcal F</span> as a set of triples (or as the transition function <span class="math inline">f</span>).</li>
-<li>Decide whether <code>coin</code> while unlocked should appear in <span class="math inline">\mathcal F</span> at all, or whether it is simply outside <span class="math inline">\Gamma(\text{unlocked})</span> (the active event set). Justify your choice.</li>
-<li>Draw the digraph (nodes, edges, labels). Mark the initial state.</li>
-<li>Is <code>locked</code> a reasonable marked/accepting state <span class="math inline">\mathcal X_\mathrm{m}</span>? What language would that correspond to (informally — sequences of events that bring the turnstile back to locked)?</li>
-<li>Identify the active event function <span class="math inline">\Gamma(x)</span> for each state.</li>
-</ol>
+<section id="mixing-logical-and-continuous-through-indicator-variables" class="level2">
+<h2 class="anchored" data-anchor-id="mixing-logical-and-continuous-through-indicator-variables">Mixing logical and continuous through indicator variables</h2>
+<p>Now that we have learnt to encode purely logical expressions into inequalities, we consider the cases where logical and continuous variables are mixed. We aim at the same kind of encoding as before, that is, we want to formulate inequalities.</p>
+<section id="logical-implies-continuous" class="level3">
+<h3 class="anchored" data-anchor-id="logical-implies-continuous">Logical implies continuous</h3>
+<p>We start by considering the implication <span class="math display">X \rightarrow [f(x)\leq 0],</span> where <span class="math inline">X</span> is a Boolean variable and <span class="math inline">f(x)</span> is a real-valued function of a real variable <span class="math inline">x</span>. Upon represented the Boolean variable <span class="math inline">X</span> with the binary variable <span class="math inline">\delta</span> (called an <em>indicator variable</em>) we can write the implication as <span class="math display">[\delta = 1] \rightarrow [f(x)\leq 0].</span></p>
+<p>In order to construct an equivalent inequality, we introduce a real parameter <span class="math inline">M</span> large enough such that when <span class="math inline">\delta=0</span> in <span class="math display">
+f(x) \leq (1-\delta) M,
+</span> there is no practical restriction on <span class="math inline">f</span>. If <span class="math inline">\delta=1</span>, the original inequality is trivially enforced.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Big-M technique
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a popular trick and is known as the <em>Big-M technique</em>. It is not a trouble-free trick, though. It is important to avoid setting <span class="math inline">M</span> unnecessarily too high. See the section <a href="https://docs.gurobi.com/projects/optimizer/en/current/concepts/numericguide/tolerances_scaling.html#dealing-with-big-m-constraints">Dealing with Big-M Constraints</a> in Gurobi Reference Manual for some discussion of numerical issues.</p>
+</div>
+</div>
 </section>
-<section id="part-b-computer-implementation-choose-one" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one">Part B (computer implementation, choose one)</h3>
-<ul>
-<li><strong>Stateflow:</strong> Build the turnstile as a chart with two states, <code>locked</code> and <code>unlocked</code>. Use two input “events” (Boolean triggers or Stateflow events) <code>coin</code> and <code>push</code>, and implement the self-loop/reject behavior for <code>coin</code> in <code>unlocked</code>. Add a counter (extended state, e.g., integer <code>n_passengers</code>) that increments on every successful <code>push</code>, to connect to the “extended-state automaton” concept from the lecture.</li>
-<li><strong>Julia/MATLAB (low-level, no GUI):</strong> Represent the automaton exactly as in the lecture’s Dijkstra example: a struct holding the state, and a function <code>update(state, event) -&gt; new_state</code> implementing <span class="math inline">f</span> directly from your Part A transition set. Write a short driver script that feeds in a sequence of events (e.g., <code>[:coin, :push, :coin, :coin, :push]</code>) and prints the resulting path (sequence of visited states), mirroring “Path of an automaton” from the notes.</li>
-</ul>
+<section id="continuous-implies-logical" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-implies-logical">Continuous implies logical</h3>
+<p>The other implication <span class="math display">[f(x)\leq 0] \rightarrow X,</span> with the Boolean variable <span class="math inline">X</span> represented with a binary <span class="math inline">\delta</span> as <span class="math display">[f(x)\leq 0] \rightarrow [\delta = 1],</span> can be written equivalently as <span class="math display">\neg [\delta = 1] \rightarrow \neg [f(x)\leq 0],</span> which can be further simplified to <span class="math display">[\delta = 0] \rightarrow [f(x) &gt; 0].</span></p>
+<p>We now introduce <span class="math inline">m</span> small enough such that that <span class="math inline">f(x)</span> is practically unrestricted when <span class="math inline">\delta=1</span> in <span class="math display">
+f(x) &gt; m\delta,
+</span> while <span class="math inline">f(x)&gt;0</span> is trivially enforced when <span class="math inline">\delta=0</span>.</p>
+<p>For numerical reasons, we modify the strict equality to nonstrict inequality <span class="math display">
+f(x) \geq \epsilon + (m-\epsilon)\delta,
+</span> where <span class="math inline">\epsilon\approx 0</span> (for example, machine epsilon).</p>
 </section>
-<section id="part-c-optional-extension-if-a-group-finishes-early-closer-to-a-real-fare-gate" class="level3">
-<h3 class="anchored" data-anchor-id="part-c-optional-extension-if-a-group-finishes-early-closer-to-a-real-fare-gate">Part C — Optional extension (if a group finishes early): closer to a real fare gate</h3>
-<p>Real subway/turnstile gates are usually built this way for good reason, so the extension below is not artificial — it reflects how such gates are actually specified:</p>
-<ul>
-<li>Real gates have a passage <strong>sensor</strong> (an infrared beam or pressure pad), separate from the mechanical unlocking. This means <code>push</code> should really be split into two distinct events: <code>enter</code> (sensor detects someone stepping into the gate) and <code>exit</code> (sensor detects them leaving the gate area), since some gates re-lock only after the person has <em>fully</em> passed through, not the instant they push.</li>
-<li>Add an <code>alarm</code> event/output: if the sensor detects someone entering while the gate is still <code>locked</code> (fare evasion / jumping the gate), the automaton should go to a new state, say <code>breach</code>, and emit an alarm, rather than silently ignoring the event as in the basic version.</li>
-<li>Optionally add a <code>fault</code> state reachable from any state on a <code>motor_jam</code> event, with a <code>reset_by_technician</code> event returning to <code>locked</code> — gates do jam, and this is exactly the kind of state a maintenance technician needs represented separately from <code>locked</code>/<code>unlocked</code>.</li>
-</ul>
-<p>Redo Part A.1–A.5 for this extended version (it will now have 4–5 states instead of 2), and, time permitting, extend your Part B implementation accordingly. This version is also a nicer setup for revisiting later in the course when timed automata are introduced (e.g., “alarm if <code>breach</code> is not cleared within 5 seconds”).</p>
-<hr>
+<section id="equivalence-between-logical-and-continuous" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence-between-logical-and-continuous">Equivalence between logical and continuous</h3>
+<p>Now we combine the previous two implications so that we can write the equivalence <span class="math display">X \leftrightarrow [f(x)\leq 0],</span></p>
+<p>represented through the indicator variable <span class="math inline">\delta</span> as <span class="math display">\boxed{
+[\delta = 1] \leftrightarrow [f(x)\leq 0],
+}
+</span></p>
+<p>as the two inequalities <span id="eq-logic-continuous"><span class="math display">\boxed{
+\begin{aligned}
+f(x) &amp;\leq (1-\delta) M,\\
+f(x) &amp;\geq \epsilon + (m-\epsilon)\delta.
+\end{aligned}}
+\tag{1}</span></span></p>
 </section>
+<section id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities" class="level3">
+<h3 class="anchored" data-anchor-id="generation-of-events-by-mixing-logical-and-continuous-variables-in-inequalities">Generation of events by mixing logical and continuous variables in inequalities</h3>
+<p>Application of <a href="#eq-logic-continuous" class="quarto-xref">Eq.&nbsp;1</a> to the <span class="math inline">i</span>th event generator function <span class="math inline">h_i(x,u)</span> leads to the following inequalities <span id="eq-event-generator"><span class="math display">\boxed{
+\begin{aligned}
+h_i(x_c(k), u_c(k)) &amp;\leq M_i (1-\delta_{e,i}),\\
+h_i(x_c(k), u_c(k)) &amp;\geq \epsilon + (m_i-\epsilon) \delta_{e,i}.
+\end{aligned}}
+\tag{2}</span></span></p>
 </section>
-<section id="exercise-3-vending-machine-with-two-products-and-a-moore-output" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3-vending-machine-with-two-products-and-a-moore-output">Exercise 3: Vending machine with two products and a Moore output</h2>
-<p><strong>Goal:</strong> practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.</p>
-<section id="part-a-pen-and-paper-1" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper-1">Part A (pen and paper)</h3>
-<p>Design (don’t just look up) a state automaton for a simplified snack vending machine that accepts only 5- and 10-crown coins (events <code>insert5</code>, <code>insert10</code>), sells a single snack for exactly 15 crowns, gives no change, and has a <code>cancel</code> button that returns to the start at any point before purchase (refund not modeled — just state reset).</p>
-<ol type="1">
-<li>Decide whether to model this with a <strong>plain automaton</strong> where each state is an explicit “amount inserted so far” (0, 5, 10) or with an <strong>extended-state automaton</strong> (a single state <code>idle</code>/<code>vending</code> plus an integer variable <code>credit</code>). Justify your choice and give the definition both ways if time allows, to compare scalability — this connects directly to “State as the value of a state variable” in the notes.</li>
-<li>Write <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, and <span class="math inline">\mathcal F</span> (or the guarded transitions, if you picked the extended-state version).</li>
-<li>Add a Moore-style output: label each state with <code>NO SNACK</code> or <code>DISPENSE</code>, analogous to the valve-control Moore machine example. Where exactly is the output produced — on entering the state, or during the transition? Contrast this with what a Mealy-machine version (output on the transition, e.g., <code>insert5 / no_snack</code>) would look like for the same machine.</li>
-<li>Draw the digraph for whichever version (plain or extended) you find clearer to draw.</li>
-</ol>
+<section id="if-then-else-rule-as-an-inequality" class="level3">
+<h3 class="anchored" data-anchor-id="if-then-else-rule-as-an-inequality">IF-THEN-ELSE rule as an inequality</h3>
+<p>We now consider the following <code>IF-THEN-ELSE</code> rule:</p>
+<p><span class="math display">
+\mathrm{if} \; X, \; \mathrm{then} \; z = f(x,u), \; \text{else} \; z = 0.
+</span></p>
+<p>It can be equivalently expressed as the product <span class="math display">
+z = \delta\,f(x,u),
+</span> where <span class="math inline">\delta</span> is a binary indicator. This, in turn, can be written as <span class="math display">
+\begin{aligned}
+z &amp;\leq M\delta,\\
+- z &amp;\leq -m\delta,\\
+z &amp;\leq f(x,u) - m(1-\delta),\\
+-z &amp;\leq -f(x,u) + M(1-\delta),
+\end{aligned}
+</span> which can be verified in a straightforward manner: if <span class="math inline">\delta=0</span>, then the first two inequalities enforce <span class="math inline">z=0</span>, while the last two inequalities are nonrestrictive due to the presence of large <span class="math inline">M</span> and small <span class="math inline">m</span>; if <span class="math inline">\delta=1</span>, then the last two inequalities enforce <span class="math inline">z=f(x,u)</span>, while the first two inequalities are nonrestrictive due to the presence of large <span class="math inline">M</span> and small <span class="math inline">m</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Scalar functions only
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Beware that the above results are valid only for scalar functions <span class="math inline">f()</span>, even if their arguments are possibly vectors.</p>
+</div>
+</div>
+<p>Particularly useful from a computational viewpoint (because it will lead to linear inequalities) will be an affine function <span class="math inline">f(x,u) = ax + bu + e</span>. We specialize the above inequalities to this case for later convenience. <span id="eq-if-then-else-1"><span class="math display">\boxed{
+\begin{aligned}
+z &amp;\leq M\delta,\\
+- z &amp;\leq -m\delta,\\
+z &amp;\leq ax + bu + e - m(1-\delta),\\
+-z &amp;\leq -(ax + bu + e) + M(1-\delta).
+\end{aligned}}
+\tag{3}</span></span></p>
 </section>
-<section id="part-b-computer-implementation-choose-one-1" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one-1">Part B (computer implementation, choose one)</h3>
-<ul>
-<li><strong>Stateflow:</strong> Implement the chart using an extended state variable <code>credit</code> (data of type integer local to the chart) and guarded transitions of the form <code>[credit + 5 &gt;= 15] / {credit = 0; dispense();}</code>, closely following the “Counting up to 10” extended-state example from the lecture. Use a Stateflow output port or a logged signal for the Moore-style output (<code>NO SNACK</code> / <code>DISPENSE</code>).</li>
-<li><strong>Julia/MATLAB (low-level):</strong> Implement a function <code>f(x, e)</code> (or <code>update!</code>) operating on a small struct/state holding the mode and the <code>credit</code> variable, plus a separate <code>output(x)</code> function returning <code>"NO SNACK"</code> or <code>"DISPENSE"</code>, mirroring the <code>update!</code>/<code>output</code> split used in the Dijkstra example in the notes. Simulate a sequence of coin insertions and a cancel, and print the resulting trace of (state, output) pairs.</li>
-</ul>
-<hr>
+<section id="another-if-then-else-rule" class="level3">
+<h3 class="anchored" data-anchor-id="another-if-then-else-rule">Another IF-THEN-ELSE rule</h3>
+<p>Another <code>IF-THEN-ELSE</code> rule can also be useful, and here we immediately specialize to the affine case:</p>
+<p><span class="math display">
+\mathrm{if} \; X, \; \mathrm{then} \; z = a_1x + b_1u + e_1, \; \mathrm{else} \; z = a_2x + b_2u + e_2.
+</span></p>
+<p>Using a binary indicator <span class="math inline">\delta</span>, it can be expressed as <span class="math display">
+z = {\color{blue}\delta}\,(a_1 x + b_1 u + e_1) + {\color{blue}(1-\delta)}(a_2 x + b_2 u + e_2),
+</span> which can be rewritten as <span id="eq-if-then-else-2"><span class="math display">
+\boxed{
+\begin{aligned}
+(m_2-M_1)\delta  + z &amp;\leq a_2 x + b_2 u + e_2,\\
+(m_1-M_2)\delta  - z &amp;\leq -a_2 x - b_2 u - e_2,\\
+(m_1-M_2)(1-\delta)  + z &amp;\leq a_1 x + b_1 u + e_1,\\
+(m_2-M_1)(1-\delta)  - z &amp;\leq -a_1 x - b_1 u - e_1.
+\end{aligned}}
+\tag{4}</span></span></p>
 </section>
-</section>
-<section id="exercise-4-composing-two-automata-blocking-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-4-composing-two-automata-blocking-analysis">Exercise 4: Composing two automata + blocking analysis</h2>
-<p><strong>Goal:</strong> practice the concept of <strong>composing automata</strong> via shared/synchronized events (the <code>!</code>/<code>?</code> convention from the notes), and identify <strong>blocking, deadlock, and livelock</strong> states — a topic not covered by either demo example.</p>
-<section id="part-a-pen-and-paper-2" class="level3">
-<h3 class="anchored" data-anchor-id="part-a-pen-and-paper-2">Part A (pen and paper)</h3>
-<p>Consider two simple automata that must be composed:</p>
-<ul>
-<li><strong>Producer</strong> <span class="math inline">G_1</span>: states <code>idle</code>, <code>producing</code>, <code>done</code>; it cycles <code>idle —start→ producing —finish!→ idle</code>, where <code>finish!</code> is a <em>generated</em> (sent) event signaling that an item is ready.</li>
-<li><strong>Buffer</strong> <span class="math inline">G_2</span>: a one-slot buffer with states <code>empty</code>, <code>full</code>; transition <code>empty —finish?→ full</code> (receiving the item) and <code>full —take→ empty</code> (a consumer removing it). Assume the consumer’s <code>take</code> event is not synchronized with anything else for this exercise (free event).</li>
-</ul>
-<ol type="1">
-<li>Write out <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span>, <span class="math inline">\mathcal E</span>, <span class="math inline">\mathcal F</span> for <span class="math inline">G_1</span> and <span class="math inline">G_2</span> separately, and draw each digraph.</li>
-<li>Form the composed (product) automaton <span class="math inline">G = G_1 \| G_2</span> by synchronizing on the shared event <code>finish</code> (i.e., a transition in the product happens only when both automata’s <code>finish!</code>/<code>finish?</code> fire together; all other events occur independently). List the resulting product states (pairs) and transitions, and draw the composed digraph. (Hint: not all of the 3×2 = 6 combinations need be reachable — find <span class="math inline">\mathcal X_0</span> first and explore outward.)</li>
-<li>Now suppose the consumer’s <code>take</code> event is accidentally <em>removed</em> from the model (forgotten event). Re-examine the composed automaton: is there now a <strong>blocking</strong> state? Is it a <strong>deadlock</strong> (no outgoing transition at all) or a <strong>livelock</strong> (the system loops forever among non-marked states without ever reaching a marked one)? Pick a marked state <span class="math inline">\mathcal X_\mathrm{m}</span> (e.g., <code>(idle, empty)</code>) to make this precise, and justify your classification using the definitions from the lecture.</li>
-</ol>
-</section>
-<section id="part-b-computer-implementation-choose-one-2" class="level3">
-<h3 class="anchored" data-anchor-id="part-b-computer-implementation-choose-one-2">Part B (computer implementation, choose one)</h3>
-<ul>
-<li><p><strong>Stateflow:</strong> Implement <span class="math inline">G_1</span> and <span class="math inline">G_2</span> as two <strong>parallel</strong> (AND) states or as two separate charts communicating via a Stateflow event/signal representing <code>finish</code>, similar in spirit to the synchronized-automata figure in the notes. Simulate and observe whether removing the <code>take</code> transition (as in Part A.3) causes the buffer chart to visibly stall.</p></li>
-<li><p><strong>Julia/MATLAB (low-level):</strong> Implement each automaton as its own transition function, then write a small composition driver: at each step, check whether the producer wants to emit <code>finish!</code> and step the buffer’s <code>finish?</code> transition only when that happens; step <code>take</code> independently/randomly. Run the simulation for the “broken” version with <code>take</code> removed and confirm in code (e.g., by checking that the buffer state never changes again after the first <code>finish</code>) that it deadlocks. Print the full path of composed states to support your conclusion.</p>
-<p><strong>Suggested primary pattern (synchronous, single-threaded — matches the Dijkstra style in the notes):</strong> keep a <code>Composed</code> struct holding both sub-states, and write one <code>step</code> function where the shared event is <em>derived</em> rather than supplied as an input — it fires automatically and only when both sides are simultaneously enabled:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Composed</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    producer_state<span class="op">::</span><span class="dt">Symbol   </span><span class="co"># :idle or :producing</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    buffer_state<span class="op">::</span><span class="dt">Symbol     </span><span class="co"># :empty or :full</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">step</span>(c<span class="op">::</span><span class="dt">Composed</span>; start<span class="op">::</span><span class="dt">Bool</span>=<span class="cn">false</span>, take<span class="op">::</span><span class="dt">Bool</span>=<span class="cn">false</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    p, b <span class="op">=</span> c.producer_state, c.buffer_state</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    finish_fires <span class="op">=</span> (p <span class="op">==</span> <span class="op">:</span>producing) <span class="op">&amp;&amp;</span> (b <span class="op">==</span> <span class="op">:</span>empty)   <span class="co"># the synchronization condition</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    p_next <span class="op">=</span> finish_fires ? <span class="op">:</span>idle  <span class="op">:</span> (p <span class="op">==</span> <span class="op">:</span>idle <span class="op">&amp;&amp;</span> start) ? <span class="op">:</span>producing <span class="op">:</span> p</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    b_next <span class="op">=</span> finish_fires ? <span class="op">:</span>full  <span class="op">:</span> (b <span class="op">==</span> <span class="op">:</span>full <span class="op">&amp;&amp;</span> take)  ? <span class="op">:</span>empty     <span class="op">:</span> b</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">Composed</span>(p_next, b_next)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Deadlock in the broken (<code>take</code>-removed) variant is then trivial to detect in code: step in a loop and check whether <code>step(c) == c</code> — no change means the system is stuck, and you can print which automaton is the blocked one.</p>
-<p><strong>Optional “idiomatic Julia” bonus, for groups that finish early:</strong> Julia has language-level primitives for exactly this kind of synchronization — an <strong>unbuffered <code>Channel</code></strong> is a synchronous rendezvous (<code>put!</code> blocks until a matching <code>take!</code>), which <em>is</em> the <code>finish!</code>/<code>finish?</code> pair rather than a simulation of it. Run each automaton as its own <code>Task</code> via <code>@async</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">producer</span>(ch<span class="op">::</span><span class="dt">Channel</span>, n<span class="op">::</span><span class="dt">Int</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span>n</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"producing..."</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">put!</span>(ch, <span class="op">:</span>item)       <span class="co"># blocks until the buffer calls take! -- this *is* finish!/finish?</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"idle"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">close</span>(ch)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">buffer</span>(ch<span class="op">::</span><span class="dt">Channel</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _item <span class="kw">in</span> ch           <span class="co"># take!, looping until ch is closed</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"full"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">sleep</span>(<span class="fl">0.01</span>)           <span class="co"># the independent `take` event</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"empty"</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>ch <span class="op">=</span> <span class="fu">Channel</span><span class="dt">{Symbol}</span>(<span class="fl">0</span>)       <span class="co"># capacity 0 = unbuffered = synchronous rendezvous</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> <span class="pp">@async</span> <span class="fu">producer</span>(ch, <span class="fl">3</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> <span class="pp">@async</span> <span class="fu">buffer</span>(ch)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">wait</span>(t1); <span class="fu">wait</span>(t2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Caution if you try this for the broken variant: removing the consumer’s <code>take</code> doesn’t give you an inspectable deadlocked <em>state</em> the way the synchronous version does — <code>put!</code> just blocks forever and <code>wait</code> never returns. That’s a faithful illustration of what deadlock means for real concurrent processes, but it’s the synchronous version above that you should use to actually <em>answer</em> question A.3.</p></li>
-</ul>
+<section id="switched-affine-system" class="level3">
+<h3 class="anchored" data-anchor-id="switched-affine-system">Switched affine system</h3>
+<p>We are now ready to get rid of the <code>IF-THEN-ELSE</code> conditions in the definition of the switched affine system by reformulating it as inequalities. Namely, we compose the state variable in the next step as a sum of the auxiliary variables <span class="math inline">z_i</span>: <span class="math display">
+x_c(k+1) = \sum_{i=1}^s z_i(k),  
+</span> where <span class="math display">
+z_1(k) =
+\begin{cases}
+a_1 x_c(k) + b_1 u_c(k) + f_1 &amp; \text{if}\;i(k)=1,\\
+0 &amp; \text{otherwise},
+\end{cases}
+</span> <span class="math display">\quad \vdots</span> <span class="math display">
+z_s(k) =
+\begin{cases}
+a_s x_c(k) + b_s u_c(k) + f_s &amp; \text{if}\;i(k)=s,\\
+0 &amp; \text{otherwise},
+\end{cases}
+</span> and we rewrite it for each <span class="math inline">i\in \{1, 2, \ldots, s\}</span> as <span id="eq-switched-affine"><span class="math display">\boxed{
+\begin{aligned}
+z_i &amp;\leq M_i\delta_i,\\
+- z_i &amp;\leq -m_i\delta_i,\\
+z_i &amp;\leq a_i x + b_i u + f_i - m_i(1-\delta_i),\\
+-z_i &amp;\leq -(a_i x + b_i u + f_i) + M_i(1-\delta_i).
+\end{aligned}}
+\tag{5}</span></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>All these results were derived just for scalar <span class="math inline">z</span> and <span class="math inline">f()</span>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>With the formalism presented here, vector variables <span class="math inline">\bm z</span> and correspondingly vector right-hand-side functions <span class="math inline">\mathbf f()</span> must be handled by considering their individual scalar components <span class="math inline">z_1, \ldots, z_n</span> and <span class="math inline">f_1(), \ldots, f_n()</span>. Notational care must be exercised, note that the lower index in this remark has different meaning than that in <a href="#eq-switched-affine" class="quarto-xref">Eq.&nbsp;5</a>.</p>
+</div>
+</div>
 
 
 </section>
@@ -1384,13 +1419,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../1_des/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../11_mld/logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Logic vs inequalities</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../2_petri_nets/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../11_mld/mld_and_pwa.html" class="pagination-link" aria-label="Mixed logical dynamical (MLD) systems">
+        <span class="nav-page-text">Mixed logical dynamical (MLD) systems</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
