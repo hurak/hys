@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Software – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../10_complementarity/references.html" rel="next">
+<link href="../10_complementarity/simulations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +76,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/software.html">Software</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -549,7 +592,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_complementarity/software.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_complementarity/software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -735,16 +778,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#solving-optimization-problems-with-complementarity-constraints" id="toc-solving-optimization-problems-with-complementarity-constraints" class="nav-link active" data-scroll-target="#solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</a></li>
+  <li><a href="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" id="toc-modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="nav-link" data-scroll-target="#modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/software.html">Software</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Software</h1>
 </div>
 
 
@@ -761,21 +805,37 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
-</div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<section id="solving-optimization-problems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="solving-optimization-problems-with-complementarity-constraints">Solving optimization problems with complementarity constraints</h2>
+<p>Surprisingly, there are not many software packages that can handle complementarity constraints directly.</p>
+<ul>
+<li>Within the realm of free software, I am only aware of <a href="https://pages.cs.wisc.edu/~ferris/path.html">PATH</a> solver. Well, it is not open source and it is not issued under any classical free and open source license. It can be interfaced from Matlab and Julia (and AMPL and GAMS, which are not relevant for our course). For Matlab, compiled mexfiles can be downloaded. For Julia, the solver can be interfaced directly from the popular <a href="https://jump.dev/JuMP.jl/stable/">JuMP</a> package (choosing the <a href="https://jump.dev/JuMP.jl/stable/packages/PATHSolver/#PATHSolver.jl">PATHSolver.jl</a> solver), see the section on <a href="https://jump.dev/JuMP.jl/stable/manual/constraints/#Complementarity-constraints">Complementarity constraints</a> and <a href="https://jump.dev/JuMP.jl/stable/tutorials/nonlinear/complementarity/">Mixed complementarity problems</a> in JuMP manual.</li>
+</ul>
+<p>When restricted to Matlab, there are several options, all of them commercial:</p>
+<ul>
+<li><a href="https://www.mathworks.com/help/optim/index.html">Optimization Toolbox for Matlab</a> does not offer a specialized solver for complementarity problems. The <code>fmincon</code> function can only handle it as a general nonlinear constraint <span class="math inline">g_1(x)g_2(x)=0, \, g_1(x) \geq 0, \, g_2(x) \geq 0</span>.</li>
+<li><a href="https://tomopt.com/tomlab/">Tomlab</a> toolbox has some <a href="https://tomopt.com/docs/quickguide/quickguide029.php">support for complementarity constraints</a>.</li>
+<li><a href="https://www.artelys.com/solvers/knitro/">Knitro</a> solver (by Artelys) has some <a href="https://www.artelys.com/docs/knitro/2_userGuide/complementarity.html">support for complementarity constraints</a>.</li>
+<li><a href="https://yalmip.github.io">YALMIP</a> toolbox supports definining the complementarity constraints through the command <a href="https://yalmip.github.io/command/complements/">complements</a>: <code>F = complements(w &gt;= 0, z &gt;= 0)</code>. By default, it converts the problem into the format suitable for a mixed-integer solver. If Knitro is available, it can be interfaced.</li>
+</ul>
+<p><a href="https://www.gurobi.com/solutions/gurobi-optimizer/">Gurobi</a> does not seem to support complementarity constraints.</p>
+<p><a href="https://www.mosek.com">Mosek</a> supports <a href="https://docs.mosek.com/latest/capi/tutorial-djc-optimizer.html">disjunctive constraints</a>, within which complementarity constraints can be formulated. But they are then approached using a mixed-integer solver.</p>
+</section>
+<section id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints" class="level2">
+<h2 class="anchored" data-anchor-id="modeling-and-simulation-of-dynamical-systems-with-complementarity-constraints">Modeling and simulation of dynamical systems with complementarity constraints</h2>
+<p>Within the modeling and simulation domains, there are two free and open source libraries that can handle complementarity constraints, mainly motivated by nonsmooth dynamical systems:</p>
+<ul>
+<li><a href="https://nonsmooth.gricad-pages.univ-grenoble-alpes.fr/siconos/">SICONOS</a>
+<ul>
+<li>C++, Python</li>
+<li>physical domain independent</li>
+</ul></li>
+<li><a href="https://stack-of-tasks.github.io/pinocchio/">PINOCCHIO</a>
+<ul>
+<li>C++, Python</li>
+<li>specialized for robotics</li>
+</ul></li>
+</ul>
 
 
 </section>
@@ -1183,13 +1243,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../10_complementarity/simulations.html" class="pagination-link" aria-label="Simulations of complementarity systems using time-stepping">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Simulations of complementarity systems using time-stepping</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../10_complementarity/references.html" class="pagination-link" aria-label="Literature">
+        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

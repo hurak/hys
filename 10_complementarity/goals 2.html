@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Learning goals – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../10_complementarity/constraints.html" rel="next">
+<link href="../9_stability_2/references.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">Learning goals</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -525,7 +525,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-11" aria-labelledby="quarto-sidebar-section-11-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link">
+  <a href="../10_complementarity/goals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Learning goals</span></a>
   </div>
 </li>
@@ -735,16 +735,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#knowledge-remember-and-understand" id="toc-knowledge-remember-and-understand" class="nav-link active" data-scroll-target="#knowledge-remember-and-understand">Knowledge (remember and understand)</a></li>
+  <li><a href="#skills-use-the-knowledge-to-solve-a-problem" id="toc-skills-use-the-knowledge-to-solve-a-problem" class="nav-link" data-scroll-target="#skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">10. Complementarity systems</a></li><li class="breadcrumb-item"><a href="../10_complementarity/goals.html">Learning goals</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Learning goals</h1>
 </div>
 
 
@@ -761,21 +762,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
-</div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<section id="knowledge-remember-and-understand" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
+<ul>
+<li>Explain the concept of <em>complementarity constraints</em>, both for scalar and vector variables.</li>
+<li>Formulate a <em>linear complementarity problem</em> (LCP).</li>
+<li>Give a general prescription for a <em>linear complementarity system</em> (LCS, aka linear dynamical complementarity problem, LDCP).</li>
+<li>Explain the essence of <em>time-stepping</em> numerical methods for simulating dynamical systems with complementarity constraints. In particular, show how the complementarity constraints are combined with an implicit or semi-explicit Euler scheme.</li>
+</ul>
+</section>
+<section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
+<h2 class="anchored" data-anchor-id="skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</h2>
+<ul>
+<li>Formulate a (model of a) given mechanical system with unilateral constraints (hard stops) as a linear complementarity system.</li>
+<li>Write a computer code (in Matlab, Julia, …) that implements a simple time-stepping numerical scheme for a simulation of a simple mechanical system with complementarity constraints (hard stops, dry friction).</li>
+</ul>
 
 
 </section>
@@ -1183,13 +1184,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
+      <a href="../9_stability_2/references.html" class="pagination-link" aria-label="Literature">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../10_complementarity/constraints.html" class="pagination-link" aria-label="Complementarity constraints">
+        <span class="nav-page-text">Complementarity constraints</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

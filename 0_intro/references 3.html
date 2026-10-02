@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Literature – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,8 +56,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../1_des/goals.html" rel="next">
+<link href="../0_intro/similar.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/references.html">Literature</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +165,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0_intro/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../0_intro/references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -233,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -735,16 +755,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#introductoryoverview-texts-freely-available-online" id="toc-introductoryoverview-texts-freely-available-online" class="nav-link active" data-scroll-target="#introductoryoverview-texts-freely-available-online">Introductory/overview texts freely available online</a></li>
+  <li><a href="#books-not-freely-available-online-at-least-not-that-we-know-of" id="toc-books-not-freely-available-online-at-least-not-that-we-know-of" class="nav-link" data-scroll-target="#books-not-freely-available-online-at-least-not-that-we-know-of">Books not freely available online (at least not that we know of)</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/references.html">Literature</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Literature</h1>
 </div>
 
 
@@ -761,26 +782,66 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
-</div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<p>The discipline of <em>hybrid system</em> is huge and spans several areas of science and engineering. As a result, finding a <em>single</em> comprehensive reference is difficult if not impossible. The more so that our selection of topics is inevitably biased. Admittedly, our selections of both topics and references will mostly be biased towards control engineering, and yet even within that discipline we have our own preferences. Therefore, we will always provide a list of references when studying particular topics.</p>
+<section id="introductoryoverview-texts-freely-available-online" class="level2">
+<h2 class="anchored" data-anchor-id="introductoryoverview-texts-freely-available-online">Introductory/overview texts freely available online</h2>
+<p>Among the texts that provide motivation for studying hybrid systems as well as some introduction into theoretical and computational frameworks, we recommend <span class="citation" data-cites="heemelsIntroductionHybridSystems2009"><a href="#ref-heemelsIntroductionHybridSystems2009" role="doc-biblioref">[1]</a></span>, which is also <a href="https://heemels.tue.nl/content/papers/HeeLeh_BOOK_CONTRIB09a.pdf">available on the author’s webpage</a>. Yet another overview, which is also available online, is <span class="citation" data-cites="johanssonHybridControlSystems2004"><a href="#ref-johanssonHybridControlSystems2004" role="doc-biblioref">[2]</a></span>. And yet another is <span class="citation" data-cites="deschutterSurveyModelingAnalysis2009"><a href="#ref-deschutterSurveyModelingAnalysis2009" role="doc-biblioref">[3]</a></span>, which is <a href="https://pub.deschutter.info/abs/09_007.html">available on the author’s web page</a>. The quartet of recommended introductory resources available online is concluded by the lecture notes <span class="citation" data-cites="lygerosLectureNotesHybrid2004"><a href="#ref-lygerosLectureNotesHybrid2004" role="doc-biblioref">[4]</a></span>.</p>
+<p>When it comes to the resources specialized to the MPC methodology, we can recommend the book <span class="citation" data-cites="borrelliPredictiveControlLinear2017"><a href="#ref-borrelliPredictiveControlLinear2017" role="doc-biblioref">[5]</a></span>, not only because the authors are the leaders in that particular research direction, but also because they have made the electronic version of the book freely available on their webpage.</p>
+<p><img src="figures/borrelli_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+</section>
+<section id="books-not-freely-available-online-at-least-not-that-we-know-of" class="level2">
+<h2 class="anchored" data-anchor-id="books-not-freely-available-online-at-least-not-that-we-know-of">Books not freely available online (at least not that we know of)</h2>
+<p>Among the high-quality printed books, for which we are not aware of legally available online versions, the slim book <span class="citation" data-cites="vanderschaftIntroductionHybridDynamical2000"><a href="#ref-vanderschaftIntroductionHybridDynamical2000" role="doc-biblioref">[6]</a></span> can be regarded as the classic.</p>
+<p><img src="figures/van_der_schaft_hybrid_FRONT_PAGE.jpeg" class="img-fluid" style="width:20.0%"></p>
+<p>The handbook <span class="citation" data-cites="lunzeHandbookHybridSystems2009"><a href="#ref-lunzeHandbookHybridSystems2009" role="doc-biblioref">[7]</a></span> contains a wealth of contributions from several authors (in fact two of the online resources linked above are chapters from this book).</p>
+<p><img src="figures/lunze_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>The latest textbook on the topic of hybrid systems is <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[8]</a></span>. The book was the prime candidate for <em>the</em> book for this course, but we wanted a slightly different emphasis on each topic.</p>
+<p><img src="figures/lin_antsaklis_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>Another relatively recent book is <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[9]</a></span>. Although it is very well written and is certainly recommendable, it follows a particular framework that is not the most common one in the literature on hybrid systems – the framework of <em>hybrid equations</em>. But we are certainly going to introduce their approach in our course. The more so that it is supported by a freely available <a href="https://www.mathworks.com/matlabcentral/fileexchange/102239-hybrid-equations-toolbox-beta">Matlab toolbox</a>.</p>
+<p><img src="figures/sanfelice_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>The book <span class="citation" data-cites="goebelHybridDynamicalSystems2012"><a href="#ref-goebelHybridDynamicalSystems2012" role="doc-biblioref">[10]</a></span> can be regarded as a predecessor and/or complement of the just mentioned <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[9]</a></span>. Although the book is not available online, a short version appears as an article <span class="citation" data-cites="goebelHybridDynamicalSystems2009"><a href="#ref-goebelHybridDynamicalSystems2009" role="doc-biblioref">[11]</a></span> in the popular <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=37">IEEE Control Systems magazine</a> (the one with color figures :-).</p>
+<p><img src="figures/goebel_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>This list of study resources on hybrid systems is by no means exhaustive. We will provide more references in the respective chapters.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-heemelsIntroductionHybridSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">W. P. M. H. Heemels, D. Lehmann, J. Lunze, and B. De Schutter, <span>“Introduction to hybrid systems,”</span> in <em>Handbook of <span>Hybrid Systems Control</span>: <span>Theory</span>, <span>Tools</span>, <span>Applications</span></em>, J. Lunze and F. Lamnabhi-Lagarrigue, Eds., Cambridge University Press, 2009, pp. 3–30. doi: <a href="https://doi.org/10.1017/CBO9780511807930.002">10.1017/CBO9780511807930.002</a>.</div>
+</div>
+<div id="ref-johanssonHybridControlSystems2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">K. H. Johansson, <span>“Hybrid control systems,”</span> in <em><span>UNESCO Encyclopedia</span> of <span>Life Support Systems</span> (<span>EOLSS</span>)</em>, UNESCO, 2004. Accessed: Jun. 02, 2022. [Online]. Available: <a href="http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-90411">http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-90411</a></div>
+</div>
+<div id="ref-deschutterSurveyModelingAnalysis2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">B. De Schutter, W. P. M. H. Heemels, J. Lunze, and C. Prieur, <span>“Survey of modeling, analysis, and control of hybrid systems,”</span> in <em>Handbook of <span>Hybrid Systems Control</span>: <span>Theory</span>, <span>Tools</span>, <span>Applications</span></em>, F. Lamnabhi-Lagarrigue and J. Lunze, Eds., Cambridge: Cambridge University Press, 2009, pp. 31–56. doi: <a href="https://doi.org/10.1017/CBO9780511807930.003">10.1017/CBO9780511807930.003</a>.</div>
+</div>
+<div id="ref-lygerosLectureNotesHybrid2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">J. Lygeros, <em>Lecture <span>Notes</span> on <span>Hybrid Systems</span></em>. 2004. Available: <a href="https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf">https://people.eecs.berkeley.edu/~sastry/ee291e/lygeros.pdf</a></div>
+</div>
+<div id="ref-borrelliPredictiveControlLinear2017" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">F. Borrelli, A. Bemporad, and M. Morari, <em>Predictive <span>Control</span> for <span>Linear</span> and <span>Hybrid Systems</span></em>. Cambridge, New York: Cambridge University Press, 2017. Available: <a href="http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf">http://cse.lab.imtlucca.it/~bemporad/publications/papers/BBMbook.pdf</a></div>
+</div>
+<div id="ref-vanderschaftIntroductionHybridDynamical2000" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline"><span class="nocase">A. J. van der Schaft and H. Schumacher</span>, <em>An <span>Introduction</span> to <span>Hybrid Dynamical Systems</span></em>. in Lecture <span>Notes</span> in <span>Control</span> and <span>Information Sciences</span>, no. 251. London: Springer-Verlag, 2000. Accessed: Dec. 11, 2018. [Online]. Available: <a href="https://doi.org/10.1007/BFb0109998">https://doi.org/10.1007/BFb0109998</a></div>
+</div>
+<div id="ref-lunzeHandbookHybridSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">J. Lunze and F. Lamnabhi-Lagarrigue, Eds., <em>Handbook of <span>Hybrid Systems Control</span>: <span>Theory</span>, <span>Tools</span>, <span>Applications</span></em>, 1 edition. Cambridge, UK ; New York: Cambridge University Press, 2009.</div>
+</div>
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-sanfeliceHybridFeedbackControl2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">R. G. Sanfelice, <em>Hybrid <span>Feedback Control</span></em>. Princeton University Press, 2021. Accessed: Sep. 23, 2020. [Online]. Available: <a href="https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control">https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control</a></div>
+</div>
+<div id="ref-goebelHybridDynamicalSystems2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <em>Hybrid <span>Dynamical Systems</span>: <span>Modeling</span>, <span>Stability</span>, and <span>Robustness</span></em>. Princeton University Press, 2012. Available: <a href="https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems">https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems</a></div>
+</div>
+<div id="ref-goebelHybridDynamicalSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <span>“Hybrid dynamical systems,”</span> <em>IEEE Control Systems Magazine</em>, vol. 29, no. 2, pp. 28–93, Apr. 2009, doi: <a href="https://doi.org/10.1109/MCS.2008.931718">10.1109/MCS.2008.931718</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1183,12 +1244,12 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../0_intro/similar.html" class="pagination-link" aria-label="Similar courses">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Similar courses</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
+      <a href="../1_des/goals.html" class="pagination-link" aria-label="Learning goals">
         <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Max-plus linear (MPL) systems – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,8 +56,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../3_max_plus/software.html" rel="next">
+<link href="../3_max_plus/max_plus_algebra.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +96,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3_max_plus/goals.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="../3_max_plus/max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +296,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -259,7 +322,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link">
+  <a href="../3_max_plus/max_plus_systems.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Max-plus linear (MPL) systems</span></a>
   </div>
 </li>
@@ -735,16 +798,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" id="toc-model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="nav-link active" data-scroll-target="#model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</a></li>
+  <li><a href="#state-response-of-an-mpl-system" id="toc-state-response-of-an-mpl-system" class="nav-link" data-scroll-target="#state-response-of-an-mpl-system">State response of an MPL system</a></li>
+  <li><a href="#max-linearity" id="toc-max-linearity" class="nav-link" data-scroll-target="#max-linearity">(max,+) linearity</a></li>
+  <li><a href="#input-output-response-of-an-mpl-system" id="toc-input-output-response-of-an-mpl-system" class="nav-link" data-scroll-target="#input-output-response-of-an-mpl-system">Input-output response of an MPL system</a></li>
+  <li><a href="#analysis-of-an-irreducible-mpl-system" id="toc-analysis-of-an-irreducible-mpl-system" class="nav-link" data-scroll-target="#analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</a></li>
+  <li><a href="#model-predictive-control-mpc-for-mpl-systems" id="toc-model-predictive-control-mpc-for-mpl-systems" class="nav-link" data-scroll-target="#model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</a>
+  <ul class="collapse">
+  <li><a href="#cost-function-for-mpc" id="toc-cost-function-for-mpc" class="nav-link" data-scroll-target="#cost-function-for-mpc">Cost function for MPC</a></li>
+  <li><a href="#control-horizon-vs.-prediction-horizon" id="toc-control-horizon-vs.-prediction-horizon" class="nav-link" data-scroll-target="#control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</a></li>
+  <li><a href="#inequality-constraints-for-mpc" id="toc-inequality-constraints-for-mpc" class="nav-link" data-scroll-target="#inequality-constraints-for-mpc">Inequality constraints for MPC</a></li>
+  <li><a href="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" id="toc-mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="nav-link" data-scroll-target="#mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../3_max_plus/goals.html">3. Discrete-event systems: Max-plus systems</a></li><li class="breadcrumb-item"><a href="../3_max_plus/max_plus_systems.html">Max-plus linear (MPL) systems</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Max-plus linear (MPL) systems</h1>
 </div>
 
 
@@ -761,26 +835,283 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>We start with an example of a discrete-event systems modelled using (max,+) algebra.</p>
+<div id="exm-production-system" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Production system)</strong></span> &nbsp;</p>
+<ul>
+<li>There are 3 production units: <span class="math inline">P_1, P_2, P_3</span>.</li>
+<li>The unit <span class="math inline">P_3</span> waits for the outputs from the units <span class="math inline">P_1</span> and <span class="math inline">P_2</span>.</li>
+<li>Each unit introduces a processing delay: <span class="math inline">v_1 = 12, v_2 = 11, v_3 = 7</span>, respectively.</li>
+<li>There are also transportation delays: <span class="math inline">d_2 = 2</span> from the entry to <span class="math inline">P_2</span>, and <span class="math inline">d_4 = 1</span> from <span class="math inline">P_2</span> to <span class="math inline">P_3</span>. All the other transportation delays are negligible.</li>
+</ul>
+<p>Timed Petri net (event graph) for the example is in <a href="#fig-production_system_petri_net_long" class="quarto-xref">Fig.&nbsp;1</a> below.</p>
+<div id="fig-production_system_petri_net_long" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/production_system_petri_net_long.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net_long-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Example of a production system modelled by a timed Petri net (only the transitions are timed)
 </figcaption>
 </figure>
 </div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<p>The Petri net can be made more compact by associating the delays also with the places, as in <a href="#fig-production_system_petri_net" class="quarto-xref">Fig.&nbsp;2</a> below.</p>
+<div id="fig-production_system_petri_net" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/production_system_petri_net.png" class="img-fluid figure-img" style="width:65.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-production_system_petri_net-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Example of a production system modelled by a timed Petri net (both places and transitions are timed)
+</figcaption>
+</figure>
+</div>
+<p>With the outputs from the three transitions (the rectangles) after the kth event labelled by <span class="math inline">x_{1,k}</span>, <span class="math inline">x_{2,k}</span>, and <span class="math inline">x_{3,k}</span>, the state equations are <span class="math display">
+\begin{aligned}
+x_{1,k} &amp;= \max\{x_{1,k-1} + 12, u_k + 0\}\\
+x_{2,k} &amp;= \max\{x_{2,k-1} + 11, u_k + 2\}\\
+x_{3,k} &amp;= \max\{x_{3,k-1} + 7, x_{1,k} +12 + 0, x_{2,k} + 11 + 1\}\\
+&amp;= \max\{x_{3,k-1} + 7, \max\{x_{1,k-1} + 12, u_k\} +12, \\
+&amp;\qquad \max\{x_{2,k-1} + 11, u_k+2\} + 12\}\\
+&amp;= \max\{x_{3,k-1} + 7, x_{1,k-1} + 24, x_{2,k-1} + 23, \\
+&amp;\qquad\qquad u_k+14\}\\
+y_k &amp;= x_{3,k} + 7
+\end{aligned}
+</span></p>
+<p>The state equations can be rewritten in the (max,+) algebra <span class="math display">
+\begin{aligned}
+\begin{bmatrix}
+x_{1,k} \\ x_{2,k} \\ x_{3,k}
+\end{bmatrix}
+&amp;=
+\begin{bmatrix}
+12 &amp; \varepsilon &amp; \varepsilon\\
+\varepsilon &amp; 11 &amp; \varepsilon\\
+24 &amp; 23 &amp; 7
+\end{bmatrix}
+\otimes
+\begin{bmatrix}
+x_{1,k-1} \\ x_{2,k-1} \\ x_{3,k-1}
+\end{bmatrix}
+\oplus
+\begin{bmatrix}
+0 \\ 2 \\ 14
+\end{bmatrix}
+\otimes
+u_k\\
+y_k &amp;=
+\begin{bmatrix}
+\varepsilon &amp; \varepsilon &amp; 7
+\end{bmatrix}
+\otimes
+x_k
+\end{aligned}
+</span></p>
+</div>
+<section id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system" class="level2">
+<h2 class="anchored" data-anchor-id="model-of-an-event-graph-as-a-max-plus-linear-mpl-state-space-system">Model of an event graph as a Max-plus linear (MPL) state-space system</h2>
+<p>Generalizing what we have seen in the previous example, we can write the MPL state-space system (actually a model) as <span id="eq-MPL-system"><span class="math display">\boxed{
+  \begin{aligned}
+  x(k) &amp;= A\otimes x(k-1) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}}
+\tag{1}</span></span></p>
+<p>where <span class="math inline">A</span>, <span class="math inline">B</span>, and <span class="math inline">C</span> are matrices of appropriate dimensions. or, equivalently (after relabelling) <span class="math display">
+  \begin{aligned}
+  x(k+1) &amp;= A\otimes x(k) \oplus B\otimes u(k),\\
+  y(k) &amp;= C\otimes x(k),
+  \end{aligned}
+</span><br>
+which mimics the conventional state-space system <span class="math display">
+  \begin{aligned}
+  x(k+1) &amp;= A x(k) + Bu(k),\\
+  y(k) &amp;= Cx(k).
+  \end{aligned}
+</span></p>
+<p>We already know this from the example, but we need to emphasize it here again: the role of the variables <span class="math inline">u(k), x(k), y(k)</span> is that they are event times. Namely the times of</p>
+<ul>
+<li>arrivals of inputs,</li>
+<li>beginning of processing</li>
+<li>finishing of processing,</li>
+</ul>
+<p>respectively.</p>
+<p>The independent variable <span class="math inline">k</span> is now a counter of the events.</p>
+</section>
+<section id="state-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="state-response-of-an-mpl-system">State response of an MPL system</h2>
+<p>In order to simulate an MPL system, we can now find use of the definitions of the basic operations in (max,+) algebra that we studied previously. Note that <span class="math display">
+\begin{aligned}
+x_1 &amp;= A\otimes x_0 \oplus B\otimes u_1\\
+x_2 &amp;= A\otimes x_1 \oplus B\otimes u_2\\
+    &amp;= A\otimes (A\otimes x_0 \oplus B\otimes u_1) \oplus B\otimes u_2\\
+    &amp;= A^{\otimes^2}\otimes x_0 \oplus A\otimes B\otimes u_1 \oplus B\otimes u_2\\
+    &amp;\vdots    
+\end{aligned}
+</span> which can be generalized to <span id="eq-MPL-system-simulation"><span class="math display">\boxed{
+x_k = A^{\otimes^k}\otimes x_0 \oplus \bigoplus_{i=1}^k A^{\otimes^{k-i}} \otimes B\otimes u_i.}
+\tag{2}</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Response of an LTI state-space system
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The response of a linear time-invariant (LTI) system described by a (vector) state equation <span class="math inline">x(k+1) = Ax(k) + Bu(k)</span> is <span class="math display">
+x_{k} = A^k x_0 + \sum_{i=0}^{k-1} A^{k-1-i}Bu_i.
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Lower and upper bounds for the summation shifted by 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note how the lower and upper bounds for the summation are shifted by 1 compared to the traditional convolution.</p>
+</div>
+</div>
+</section>
+<section id="max-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="max-linearity">(max,+) linearity</h2>
+<p>We should emphasize that the linearity exhibited by the state equation <a href="#eq-MPL-system" class="quarto-xref">Eq.&nbsp;1</a> and the convolution <a href="#eq-MPL-system-simulation" class="quarto-xref">Eq.&nbsp;2</a> must only be understood in the (max,+) sense.</p>
+<p>Indeed, if we consider two input sequences <span class="math inline">u_1= \{u_{1,1},u_{1,2},\ldots\}</span> and <span class="math inline">u_2= \{u_{2,1},u_{2,2},\ldots\}</span>, a (max,+)-linear combination <span class="math inline">\alpha \otimes u_1 \oplus \beta \otimes u_2</span> of the two inputs yields the same (max,+)-linear combination of the outputs <span class="math inline">y_1</span> and <span class="math inline">y_2</span>.</p>
+</section>
+<section id="input-output-response-of-an-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="input-output-response-of-an-mpl-system">Input-output response of an MPL system</h2>
+<p>We can also eliminate the state variables from the model and aim at finding the relation between the input and output sequences <span class="math display">
+U = \begin{bmatrix}u_1 \\ u_2 \\ \vdots \\ u_p\end{bmatrix}, \qquad Y = \begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_p\end{bmatrix}
+</span> in the form of <span class="math display">\boxed
+{Y = G\otimes x_0 \oplus H\otimes U,}
+</span> where <span class="math display">
+H =
+\begin{bmatrix}
+C\otimes B &amp; \varepsilon &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A\otimes B &amp; C\otimes B &amp; \varepsilon &amp; \ldots &amp; \varepsilon\\
+C\otimes A^{\otimes^2}\otimes B &amp; C\otimes A\otimes B &amp; C\otimes B &amp; \ldots &amp; \varepsilon\\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+C\otimes A^{\otimes^{p-1}}\otimes B &amp; C\otimes A^{\otimes^{p-2}}\otimes B &amp; C\otimes A^{\otimes^{p-3}}\otimes B &amp; \ldots &amp; C\otimes B
+\end{bmatrix}
+</span> and <span class="math display">
+G =
+\begin{bmatrix}
+C \\ C\otimes A \\ C\otimes A^{\otimes^2} \\ \vdots \\ C\otimes A^{\otimes^{p-1}}
+\end{bmatrix}.
+</span></p>
+<div id="exm-production-system-input-output-description" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Production system)</strong></span> We consider again the production system in <a href="#exm-production-system" class="quarto-xref">Example&nbsp;1</a>. On the time horizon of 4, and assuming zero initial state, the input-output model is paramaterized by <span class="math display">
+Y = \begin{bmatrix}y_1 &amp; y_2 &amp; y_3 &amp; y_4\end{bmatrix}^\top, \quad U = \begin{bmatrix}u_1 &amp; u_2 &amp; u_3 &amp; u_4\end{bmatrix}^\top,
+</span></p>
+<p><span class="math display">
+x_0 = \begin{bmatrix}\varepsilon &amp; \varepsilon &amp; \varepsilon\end{bmatrix}^\top,
+</span></p>
+<p><span class="math display">
+H =
+\begin{bmatrix}
+21 &amp; \varepsilon &amp; \varepsilon &amp; \varepsilon\\
+32 &amp; 21 &amp; \varepsilon &amp; \varepsilon\\
+43 &amp; 32 &amp; 21 &amp; \varepsilon\\
+55 &amp; 43 &amp; 32 &amp; 21
+\end{bmatrix}.
+</span></p>
+</div>
+</section>
+<section id="analysis-of-an-irreducible-mpl-system" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-an-irreducible-mpl-system">Analysis of an irreducible MPL system</h2>
+<p>We now consider an autonomous MPL system <span class="math display">
+x_{k+c} = A^{\otimes^{k+c}}\otimes x_0,
+</span> for which we assume irreducibility of the matrix <span class="math inline">A</span>.</p>
+<p>We have learnt previously, that for large enough <span class="math inline">k</span> and <span class="math inline">c</span>, <span class="math display">
+x_{k+c} = \lambda^{\otimes^c}\otimes A^{\otimes^{k}}\otimes x_0 = \lambda^{\otimes^c}\otimes x_k.
+</span></p>
+<p>This can be interpreted in the standard algabra as <span class="math display">
+x_{k+c} = c\lambda + x_k,
+</span> from which it follows that <span class="math display">
+x_{k+c}-x_k = c\lambda.
+</span></p>
+<p>This is an insightful result. When the system under consideration is a production system, then once it reaches a cyclic behaviour, the average cycle is <span class="math inline">\lambda</span>. The average production rate is then <span class="math inline">1/\lambda</span>.</p>
+</section>
+<section id="model-predictive-control-mpc-for-mpl-systems" class="level2">
+<h2 class="anchored" data-anchor-id="model-predictive-control-mpc-for-mpl-systems">Model Predictive Control (MPC) for MPL systems</h2>
+<p>Now we are finally ready to consider control problems for MPL systems. We will consider the MPC approach.</p>
+<section id="cost-function-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="cost-function-for-mpc">Cost function for MPC</h3>
+<p>We consider the cost function composed of two parts <span class="math display">
+J = J_\mathrm{output} + \lambda J_\mathrm{input}.
+</span></p>
+<p>At “time” <span class="math inline">k</span>, with the prediction horizon <span class="math inline">N_\mathrm{p}</span>, and with the number of outputs <span class="math inline">n_\mathrm{y}</span>: <span class="math display">
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{y_{i,k+j} - r_{i,k+j},0\}
+</span></p>
+<p>This cost function penalizes <em>tardiness</em> (late delivery).</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Is the lower value for j correct?</p>
+</div>
+</div>
+<p>Alternative choice of the cost function is <span class="math display">
+J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left|y_{i,k+j} - r_{i,k+j} \right |,
+</span> which penalizes difference between the due and actual dates, or <span class="math display">
+J_\mathrm{output} = \sum_{j=1}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left |\Delta^2 y_{i,k+j}\right |,
+</span> which balances the output rates.</p>
+<p>The input cost can be set to <span class="math display">
+J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
+</span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
+</section>
+<section id="control-horizon-vs.-prediction-horizon" class="level3">
+<h3 class="anchored" data-anchor-id="control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</h3>
+<p>Assume constant feeding rate after the control horizon <span class="math inline">N_\mathrm{c}</span> <span class="math display">
+\Delta u_{k+j} = \Delta u_{k+N_\mathrm{c}-1},\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+</span> where <span class="math inline">\Delta u_k = u_k - u_{k-1}</span>.</p>
+<p>Alternatively, <span class="math display">
+\Delta^2 u_{k+j} = 0,\qquad j=N_\mathrm{c},\ldots, N_\mathrm{p}-1
+</span> where <span class="math inline">\Delta^2 u_k = \Delta u_k - \Delta u_{k-1} = u_k - 2u_{k-1} + u_{k-2}</span>.</p>
+</section>
+<section id="inequality-constraints-for-mpc" class="level3">
+<h3 class="anchored" data-anchor-id="inequality-constraints-for-mpc">Inequality constraints for MPC</h3>
+<p>There are several possibilities for the constraints in the MPC for MPL systems. For example, we can constrain the minimum and maximum separation of input and output events <span class="math display">
+a_{k+j} \leq \Delta u_{k+j} \leq b_{k+j},\qquad j=0,1,\ldots,N_\mathrm{c}-1,
+</span> <span class="math display">
+c_{k+j} \leq \Delta y_{k+j} \leq d_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+</span></p>
+<p>We can also impose constraint on the maximum due dates for the output events <span class="math display">
+y_{k+j} \leq r_{k+j},\qquad j=0,1,\ldots,N_\mathrm{p}-1.
+</span></p>
+<p>We can also enforce the condition that the input and output events are consecutive <span class="math display">
+\Delta u_{k+j} \geq 0, \qquad j=0,1,\ldots,N_\mathrm{c}-1.
+</span></p>
+</section>
+<section id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem" class="level3">
+<h3 class="anchored" data-anchor-id="mpc-for-mpl-system-leads-to-a-nonlinear-optimization-problem">MPC for MPL system leads to a nonlinear optimization problem</h3>
+<p>Our motivation for formulating the problems within the (max,+) algebra was to fake the reality a bit and pretend that the problem is linear. This allowed us to invoke many concepts that we are familiar with from linear systems theory. However, at the end of the day, when it comes to actually solving the problem, we must reveal the nonlinear nature of the problem.</p>
+<p>When we consider the MPC for MPL systems, we are faced with a nonlinear optimization problem. We can use some general nonlinear solvers (<code>fmincon</code>, <code>ipopt</code>, …).</p>
+<p>Alternatively, there is a dedicated framework for solving these problem. It is called Extended Linear Complementarity Problem (ELCP) and was developed by <span class="citation" data-cites="deschutterExtendedLinearComplementarity1995"><a href="#ref-deschutterExtendedLinearComplementarity1995" role="doc-biblioref">[1]</a></span>. We will introduce the complementarity problem(s) later in a <a href="../10_complementarity/constraints.html">chapter dedicated to complementarity</a>.</p>
+<p>Yet another approach is through Mixed Integer (Linear) Programming (MILP).</p>
+
 
 
 </section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-deschutterExtendedLinearComplementarity1995" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B. De Schutter and B. De Moor, <span>“The extended linear complementarity problem,”</span> <em>Mathematical Programming</em>, vol. 71, no. 3, pp. 289–325, Dec. 1995, doi: <a href="https://doi.org/10.1007/BF01590958">10.1007/BF01590958</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1183,13 +1514,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../3_max_plus/max_plus_algebra.html" class="pagination-link" aria-label="Max-plus algebra">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Max-plus algebra</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../3_max_plus/software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text">Software</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

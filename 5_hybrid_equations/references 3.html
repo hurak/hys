@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Literature – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,8 +56,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../5_hybrid_equations/exercises.html" rel="next">
+<link href="../5_hybrid_equations/software.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../5_hybrid_equations/goals.html">5. Hybrid systems: Hybrid equations</a></li><li class="breadcrumb-item"><a href="../5_hybrid_equations/references.html">Literature</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -347,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../5_hybrid_equations/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../5_hybrid_equations/references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -730,21 +750,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../5_hybrid_equations/goals.html">5. Hybrid systems: Hybrid equations</a></li><li class="breadcrumb-item"><a href="../5_hybrid_equations/references.html">Literature</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Literature</h1>
 </div>
 
 
@@ -761,26 +775,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
+<p>The theoretical and computational framework of hybrid equations has been mostly developed by a relatively small circle of researchers (Sanfelice, Goebel, Teel, …). The primary monograph is <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[1]</a></span>. It is also supported by a freely available Matlab toolbox, see the section on software.</p>
+<p><img src="figures/sanfelice_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+<p>The book <span class="citation" data-cites="goebelHybridDynamicalSystems2012"><a href="#ref-goebelHybridDynamicalSystems2012" role="doc-biblioref">[2]</a></span> can be regarded as a predecessor and/or complement of the just mentioned <span class="citation" data-cites="sanfeliceHybridFeedbackControl2021"><a href="#ref-sanfeliceHybridFeedbackControl2021" role="doc-biblioref">[1]</a></span>. Although the book is not available online, a short version appears as an article <span class="citation" data-cites="goebelHybridDynamicalSystems2009"><a href="#ref-goebelHybridDynamicalSystems2009" role="doc-biblioref">[3]</a></span> in the popular <a href="https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=37">IEEE Control Systems magazine</a> (the one with color figures :-).</p>
+<p><img src="figures/goebel_hybrid_FRONT_PAGE.jpg" class="img-fluid" style="width:20.0%"></p>
+
+
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-sanfeliceHybridFeedbackControl2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. G. Sanfelice, <em>Hybrid <span>Feedback Control</span></em>. Princeton University Press, 2021. Accessed: Sep. 23, 2020. [Online]. Available: <a href="https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control">https://press.princeton.edu/books/hardcover/9780691180229/hybrid-feedback-control</a></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
+<div id="ref-goebelHybridDynamicalSystems2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <em>Hybrid <span>Dynamical Systems</span>: <span>Modeling</span>, <span>Stability</span>, and <span>Robustness</span></em>. Princeton University Press, 2012. Available: <a href="https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems">https://press.princeton.edu/books/hardcover/9780691153896/hybrid-dynamical-systems</a></div>
 </div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
-
-
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<div id="ref-goebelHybridDynamicalSystems2009" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">R. Goebel, R. G. Sanfelice, and A. R. Teel, <span>“Hybrid dynamical systems,”</span> <em>IEEE Control Systems Magazine</em>, vol. 29, no. 2, pp. 28–93, Apr. 2009, doi: <a href="https://doi.org/10.1109/MCS.2008.931718">10.1109/MCS.2008.931718</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1183,13 +1196,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../5_hybrid_equations/software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../5_hybrid_equations/exercises.html" class="pagination-link" aria-label="Exercises">
+        <span class="nav-page-text">Exercises</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1201,7 +1214,7 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2025, Zdeněk Hurák</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

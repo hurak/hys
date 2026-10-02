@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Course annotation and outline – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../0_intro/rules.html" rel="next">
+<link href="../0_intro/intro.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/outline.html">Course annotation and outline</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../0_intro/outline.html" class="sidebar-item-text sidebar-link">
+  <a href="../0_intro/outline.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Course annotation and outline</span></a>
   </div>
 </li>
@@ -233,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -735,16 +735,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#course-annotation" id="toc-course-annotation" class="nav-link active" data-scroll-target="#course-annotation">Course annotation</a></li>
+  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course outline</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../0_intro/intro.html">0. Introduction</a></li><li class="breadcrumb-item"><a href="../0_intro/outline.html">Course annotation and outline</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Course annotation and outline</h1>
 </div>
 
 
@@ -761,21 +762,61 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
-</div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<section id="course-annotation" class="level2">
+<h2 class="anchored" data-anchor-id="course-annotation">Course annotation</h2>
+<p>Hybrid dynamical systems, sometimes also referred to as cyber-physical systems, contain both subsystems governed by physical laws and subsystems behaving according to logical rules and regulations, often encoded in the form of algorithms and implemented in software.</p>
+<p>The behaviour of the former can be described by real quantities whose evolution in continuous or discrete time is commonly modelled by differential or difference equations. The behaviour of the latter is commonly described by quantities taking on a countable or finite number of values (or even just two in the case of binary quantities), whose evolution is modelled by logical models such as finite state automata or Petri nets. In the modelling and analysis of hybrid systems and the design of control systems for them, these two classes of models intersect.</p>
+<p>However, the control system itself can also be hybrid. And the industrial reality is that practical control systems contain, in addition to the continuous subsystems represented by PID controllers or Kalman filters, a subsystem or component evaluating the satisfaction of logic conditions. Switched linear controllers (gain scheduling), supervisory control, sliding mode control or reset control are examples of such controllers with hybrid dynamics. Hybrid control methods are also becoming particularly important in a networked environment, where measurements or controls are sent over the network only when some condition is met, in order to minimize network traffic (event triggered control).</p>
+<p>Hybrid dynamical systems thus represent a suitable theoretical and extremely practical framework for modelling, analysis and synthesis of a large number of practical control systems.</p>
+<p>The aim of this advanced course is to help students acquire basic competences (knowledge but also practical design/computational skills) in this practically very relevant and theoretically still intensively developed area.</p>
+</section>
+<section id="course-outline" class="level2">
+<h2 class="anchored" data-anchor-id="course-outline">Course outline</h2>
+<p>The course is structured into 14 topics, each corresponding to one lecture, one seminar/exercise session, and possibly an assignment of homework. The topics are as follows:</p>
+<ul>
+<li>Discrete-event systems
+<ol type="1">
+<li>(State) automata (also state machines), including timed variants</li>
+<li>Petri nets (and timed Petri nets),</li>
+<li>Max-Plus algebra and Max-Plus Linear (MPL) systems</li>
+</ol></li>
+<li>Hybrid systems
+<ol start="4" type="1">
+<li>Hybrid automata</li>
+<li>Hybrid equations</li>
+</ol></li>
+<li>Special classes of hybrid systems
+<ol start="6" type="1">
+<li>Reset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)</li>
+<li>Complementarity dynamical systems (and complementarity optimization constraints)<br>
+</li>
+</ol></li>
+</ul>
+<ol start="8" type="1">
+<li>Solutions of hybrid systems</li>
+</ol>
+<ul>
+<li>Stability of hybrid systems
+<ol start="9" type="1">
+<li>Common Lyapunov function
+<ul>
+<li>Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)</li>
+<li>Polynomial Lyapunov function via sum-of-squares (SOS) programming</li>
+</ul></li>
+<li>Piecewise quadratic/polynomial Lyapunov function via S-procedure</li>
+</ol></li>
+</ul>
+<ol start="11" type="1">
+<li>Mixed-logical dynamical (MLD) description of hybrid systems</li>
+<li>Model predictive control (MPC) for MLD systems</li>
+</ol>
+<ul>
+<li>Formal verification of hybrid systems
+<ol start="13" type="1">
+<li>Reachability analysis and barrier certificates</li>
+<li>Temporal logics and model checking</li>
+</ol></li>
+</ul>
 
 
 </section>
@@ -1183,13 +1224,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../0_intro/intro.html" class="pagination-link" aria-label="What is a hybrid system?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What is a hybrid system?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../0_intro/rules.html" class="pagination-link" aria-label="Rules of the course">
+        <span class="nav-page-text">Rules of the course</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

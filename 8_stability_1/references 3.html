@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Literature – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,8 +56,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../9_stability_2/goals.html" rel="next">
+<link href="../8_stability_1/software.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../8_stability_1/goals.html">8. Stability I.</a></li><li class="breadcrumb-item"><a href="../8_stability_1/references.html">Literature</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -479,7 +499,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../8_stability_1/references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literature</span></a>
   </div>
 </li>
@@ -735,16 +755,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#linear-matrix-inequalities" id="toc-linear-matrix-inequalities" class="nav-link active" data-scroll-target="#linear-matrix-inequalities">Linear matrix inequalities</a></li>
+  <li><a href="#sum-of-squares-programming" id="toc-sum-of-squares-programming" class="nav-link" data-scroll-target="#sum-of-squares-programming">Sum-of-squares programming</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../8_stability_1/goals.html">8. Stability I.</a></li><li class="breadcrumb-item"><a href="../8_stability_1/references.html">Literature</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Literature</h1>
 </div>
 
 
@@ -761,26 +782,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
-</figure>
-</div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<p>The lecture was partly built upon the chapter 4 of the textbook <span class="citation" data-cites="linHybridDynamicalSystems2022"><a href="#ref-linHybridDynamicalSystems2022" role="doc-biblioref">[1]</a></span>, which in turn was (to a large extent) built upon chapter 2 of the research monograph <span class="citation" data-cites="liberzonSwitchingSystemsControl2003"><a href="#ref-liberzonSwitchingSystemsControl2003" role="doc-biblioref">[2]</a></span>. None of these two is available online, but fortunately, the latter has a free shorter online version <span class="citation" data-cites="liberzonSwitchedSystemsStability2007"><a href="#ref-liberzonSwitchedSystemsStability2007" role="doc-biblioref">[3]</a></span>. The chapter 4 (pages 20 through 27) give the necessary material. Possibly, the chapter 3 can serve with some recap of Lyapunov analysis of stability.</p>
+<p>The lecture was also partly inspired by the sections 8.2 and 8.3 (pages 158–168) of the text <span class="citation" data-cites="lygerosHybridSystemsFoundations2020"><a href="#ref-lygerosHybridSystemsFoundations2020" role="doc-biblioref">[4]</a></span> (well, it used to be available online, but has recently disappeared).</p>
+<section id="linear-matrix-inequalities" class="level2">
+<h2 class="anchored" data-anchor-id="linear-matrix-inequalities">Linear matrix inequalities</h2>
+<p>The topic of linear matrix inequalities and the related semidefinite programming, which we used for analysis of stability, is dealt with in numerous resources, many of them available online. The monograph <span class="citation" data-cites="boydLinearMatrixInequalities1994"><a href="#ref-boydLinearMatrixInequalities1994" role="doc-biblioref">[5]</a></span> was one of the first systematic treatments of the topic and still offers a relevant material. The authors also provide some shorter teaching material <span class="citation" data-cites="boydSolvingSemidefinitePrograms"><a href="#ref-boydSolvingSemidefinitePrograms" role="doc-biblioref">[6]</a></span>, tailored to their Matlab toolbox called CVX. Alternatively, the text <span class="citation" data-cites="boydEE363ReviewSession2008"><a href="#ref-boydEE363ReviewSession2008" role="doc-biblioref">[7]</a></span> is even richer by two pages. Another recommendable lecture notes are also available for free: <span class="citation" data-cites="schererLinearMatrixInequalities2015"><a href="#ref-schererLinearMatrixInequalities2015" role="doc-biblioref">[8]</a></span>. Finally, a section on <a href="https://yalmip.github.io/tutorial/semidefiniteprogramming/">Semidefinite programming</a> in the documentation for Yalmip software can also serve as learning resource.</p>
+</section>
+<section id="sum-of-squares-programming" class="level2">
+<h2 class="anchored" data-anchor-id="sum-of-squares-programming">Sum-of-squares programming</h2>
+<p>The topic of sum-of-squares programming, which we also relied upon in analysis of stability, is a trending topic in optimization and a wealth of resources are available. As an introduction, the paper <span class="citation" data-cites="papachristodoulouTutorialSumSquares2005"><a href="#ref-papachristodoulouTutorialSumSquares2005" role="doc-biblioref">[9]</a></span> is recommendable. The computational problems described in the paper can be solved in Matlab using the SOSTOOLS toolbox. Its documentation <span class="citation" data-cites="papachristodoulouSOSTOOLSSumsSquares2021"><a href="#ref-papachristodoulouSOSTOOLSSumsSquares2021" role="doc-biblioref">[10]</a></span> can serve as yet another tutorial. Last but not least, YALMIP software contains a well-developed section on <a href="https://yalmip.github.io/tutorial/sumofsquaresprogramming/">Sum-of-squares programming</a>.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-linHybridDynamicalSystems2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Lin and P. J. Antsaklis, <em>Hybrid <span>Dynamical Systems</span>: <span>Fundamentals</span> and <span>Methods</span></em>. in Advanced <span>Textbooks</span> in <span>Control</span> and <span>Signal Processing</span>. Cham: Springer, 2022. Accessed: Jul. 09, 2022. [Online]. Available: <a href="https://doi.org/10.1007/978-3-030-78731-8">https://doi.org/10.1007/978-3-030-78731-8</a></div>
+</div>
+<div id="ref-liberzonSwitchingSystemsControl2003" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">D. Liberzon, <em>Switching in <span>Systems</span> and <span>Control</span></em>. in Systems &amp; <span>Control</span>: <span>Foundations</span> &amp; <span>Applications</span>. Boston, MA: Birkhäuser, 2003. Available: <a href="https://doi.org/10.1007/978-1-4612-0017-8">https://doi.org/10.1007/978-1-4612-0017-8</a></div>
+</div>
+<div id="ref-liberzonSwitchedSystemsStability2007" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">D. Liberzon, <span>“Switched <span>Systems</span>: <span>Stability Analysis</span> and <span>Control Synthesis</span>,”</span> Lecture {{Notes}}, 2007. Available: <a href="http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf">http://liberzon.csl.illinois.edu/teaching/Liberzon-LectureNotes.pdf</a></div>
+</div>
+<div id="ref-lygerosHybridSystemsFoundations2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">J. Lygeros, S. Sastry, and C. Tomlin, <span>“Hybrid <span>Systems</span>: <span>Foundations</span>, advanced topics and applications,”</span> Jan. 2020. Available: <a href="https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf">https://www-inst.eecs.berkeley.edu/~ee291e/sp21/handouts/hybridSystems_monograph.pdf</a></div>
+</div>
+<div id="ref-boydLinearMatrixInequalities1994" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">S. Boyd, L. El Ghaoui, E. Feron, and V. Balakrishnan, <em>Linear <span>Matrix Inequalities</span> in <span>System</span> and <span>Control Theory</span></em>. in Studies in <span>Applied</span> and <span>Numerical Mathematics</span>. <span>Society for Industrial and Applied Mathematics</span>, 1994. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://web.stanford.edu/~boyd/lmibook/">https://web.stanford.edu/~boyd/lmibook/</a></div>
+</div>
+<div id="ref-boydSolvingSemidefinitePrograms" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">S. Boyd, <span>“Solving semidefinite programs using cvx,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/notes/lmi-cvx.pdf">https://stanford.edu/class/ee363/notes/lmi-cvx.pdf</a></div>
+</div>
+<div id="ref-boydEE363ReviewSession2008" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. Boyd, <span>“<span>EE363 Review Session</span> 4: <span>Linear Matrix Inequalities</span>,”</span> Stanford University, Stanford, CA, Lecture Notes for {{EE363}}, 2008. Accessed: Aug. 22, 2024. [Online]. Available: <a href="https://stanford.edu/class/ee363/sessions/s4notes.pdf">https://stanford.edu/class/ee363/sessions/s4notes.pdf</a></div>
+</div>
+<div id="ref-schererLinearMatrixInequalities2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C. W. Scherer and S. Weiland, <span>“Linear matrix inequalities in control,”</span> Jan. 2015. Accessed: Apr. 16, 2021. [Online]. Available: <a href="https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf">https://www.imng.uni-stuttgart.de/mst/files/LectureNotes.pdf</a></div>
+</div>
+<div id="ref-papachristodoulouTutorialSumSquares2005" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">A. Papachristodoulou and S. Prajna, <span>“A tutorial on sum of squares techniques for systems analysis,”</span> in <em>Proceedings of the 2005 <span>American Control Conference</span></em>, Portland, OR, USA: IEEE, Jun. 2005, pp. 2686–2700 vol. 4. doi: <a href="https://doi.org/10.1109/ACC.2005.1470374">10.1109/ACC.2005.1470374</a>.</div>
+</div>
+<div id="ref-papachristodoulouSOSTOOLSSumsSquares2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">A. Papachristodoulou <em>et al.</em>, <span>“<span>SOSTOOLS Sums</span> of <span>Squares Optimization Toolbox</span> for <span>Matlab</span>: <span>User</span>’s <span>Guide</span>.”</span> University of Oxford Control Group, Sep. 2021. Available: <a href="https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf">https://github.com/oxfordcontrol/SOSTOOLS/blob/SOSTOOLS400/docs/sostools.pdf</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1183,12 +1230,12 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../8_stability_1/software.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Software</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
+      <a href="../9_stability_2/goals.html" class="pagination-link" aria-label="Learning goals">
         <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

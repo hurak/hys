@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Types of solutions – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../7_solution/references.html" rel="next">
+<link href="../7_solution/concepts.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +76,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/types.html">Types of solutions</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -429,7 +472,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link">
+  <a href="../7_solution/types.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Types of solutions</span></a>
   </div>
 </li>
@@ -735,16 +778,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#examples-of-types-of-solutions" id="toc-examples-of-types-of-solutions" class="nav-link active" data-scroll-target="#examples-of-types-of-solutions">Examples of types of solutions</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../7_solution/goals.html">7. Solution</a></li><li class="breadcrumb-item"><a href="../7_solution/types.html">Types of solutions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Types of solutions</h1>
 </div>
 
 
@@ -761,21 +804,133 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
+<p>Now that we know, what a hybrid arc (trajectory) needs to satisfy to be a solution of a hybrid system, we can classify the solutions into several types. And we base this classification on their hybrid time domain <span class="math inline">E</span>:</p>
+<dl>
+<dt>Trivial</dt>
+<dd>
+just one point.
+</dd>
+<dt>Nontrivial</dt>
+<dd>
+at least two points;
+</dd>
+<dt>Complete</dt>
+<dd>
+if the domain is unbounded;
+</dd>
+<dt>Bounded, compact</dt>
+<dd>
+if the domain is bounded, compact (well, it is perhaps a bit awkward to call a solution bounded just based on boundednes of its time domain as most people would interpret the boundedness of a solution with regard to the values of the solution);
+</dd>
+<dt>Discrete</dt>
+<dd>
+if nontrivial and <span class="math inline">E\subset \{0\} \times \mathbb N</span>;
+</dd>
+<dt>Continuous</dt>
+<dd>
+if nontrivial and <span class="math inline">E\subset \mathbb R_{\geq 0} \times \{0\}</span>;
+</dd>
+<dt>Eventually discrete</dt>
+<dd>
+if <span class="math inline">T = \sup_E t &lt; \infty</span> and <span class="math inline">E \cap (\{T\}\times \mathbb N)</span> contains at least two points;
+</dd>
+<dt>Eventually continuous</dt>
+<dd>
+if <span class="math inline">J = \sup_E j &lt; \infty</span> and <span class="math inline">E \cap (\mathbb R_{\geq 0} \times \{J\})</span> contains at least two points;
+</dd>
+<dt>Zeno</dt>
+<dd>
+if complete and <span class="math inline">\sup_E t &lt; \infty</span>;
+</dd>
+<dt>Maximal</dt>
+<dd>
+It cannot be extended. A solution <span class="math inline">x(t,j)</span> defined on the hybrid time domain <span class="math inline">E</span> is maximal, if on an extended hybrid time domain <span class="math inline">E^\mathrm{ext}</span> such that <span class="math inline">E\subset E^\mathrm{ext}</span>, there is no solution <span class="math inline">x^\mathrm{ext}(t,j)</span> that coincides with <span class="math inline">x</span> on <span class="math inline">E</span>. Some literature uses the “linguistic” terminology that a maximal solution is not a prefix to any other solution. Complete solutions are maximal. But not vice versa.
+</dd>
+</dl>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
-</figcaption>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is certainly helpful to sketch the times domains for the individual classes of solutions.</p>
+</div>
+</div>
+<section id="examples-of-types-of-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="examples-of-types-of-solutions">Examples of types of solutions</h2>
+<div id="exm-maximal-solution" class="theorem example">
+<p><span class="theorem-title"><strong>Example 1 (Example of a (non-)maximal solution)</strong></span> <span class="math display">
+\dot x = 1, \; x(0) = 1
+</span></p>
+<p><span class="math display">
+(t,j) \in [0,1] \times \{0\}
+</span></p>
+<p>Now extend the time domain to <span class="math display">
+(t,j) \in [0,2] \times \{0\}.
+</span></p>
+<p>Can we extend the solution?</p>
+</div>
+<div id="exm-maximal-but-not-complete" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2 (Maximal but not complete continuous solution)</strong></span> Finite escape time</p>
+<p><span class="math display">\dot x = x^2, \; x(0) = 1,</span></p>
+<p><span class="math display">x(t) = 1/(1-t)</span></p>
+</div>
+<div id="exm-maximal-but-not-complete-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3 (Discontinuous right hand side)</strong></span> <span class="math display">\dot x = \begin{cases}-1 &amp; x&gt;0\\ 1 &amp; x\leq 0\end{cases}, \quad x(0) = -1</span> (unless the concept of Filippov solution is invoked).</p>
+</div>
+<div id="exm-zeno-solution-bouncing-ball" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4 (Zeno solution of the bouncing ball)</strong></span> Starting on the ground with some initial upward velocity <span class="math display">
+h(t) = \underbrace{h(0)}_0 + v(0)t - \frac{1}{2}gt^2, \quad v(0)=1
+</span></p>
+<p>What time will it hit the ground again? <span class="math display">
+0 = t - \frac{1}{2}gt^2 = t(1-\frac{1}{2}gt)
+</span></p>
+<p><span class="math display">t_1=\frac{2}{g}</span></p>
+<p>Simplify (scale) the computations just to get the qualitative picture: set <span class="math inline">g=2</span>, which gives <span class="math inline">t_1 = 1</span>.</p>
+<p><span class="math inline">t_1=1</span>:</p>
+<p><span class="math display">v(t_1^+) = \gamma v(t_1) = \gamma v(0) = \gamma</span></p>
+<p>The next hit will be at <span class="math inline">t_1 + \tau_1</span> <span class="math display">h(t_1 + \tau_1) = 0 = \gamma \tau_1 - \tau_1^2 = \tau_1(\gamma - \tau_1)</span> <span class="math display">\tau_1 = \gamma</span></p>
+<p><span class="math inline">t_2 = t_1+\tau_1 = 1 + \gamma:\quad \ldots</span></p>
+<p><span class="math inline">t_k = 1 + \gamma + \gamma^2 + \ldots + \gamma^k:\quad \ldots</span> <span class="math display">\boxed{\lim_{k\rightarrow \infty} t_k = \frac{1}{1-\gamma} &lt; \infty}</span></p>
+<p>Infinite number of jumps in a finite time!</p>
+</div>
+<div id="exm-water-tank" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5 (Water tank)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/water_tank.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Switching between two water tanks</figcaption>
 </figure>
 </div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<p><span class="math display">
+\max \{Q_\mathrm{out,1}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,1} + Q_\mathrm{out,2}
+</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Hybrid automaton for switching between two water tanks</figcaption>
+</figure>
+</div>
+</div>
+<div id="exm-nonblocking-nondeterministic" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6 ((Non)blocking and (non)determinism in hybrid systemtems)</strong></span> &nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/blocking_and_nondeterminism.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Example of an automaton exhibitting (non)blocking and (non)determinism</figcaption>
+</figure>
+</div>
+<ul>
+<li><span class="math inline">x(0) = -3</span></li>
+<li><span class="math inline">x(0) = -2</span></li>
+<li><span class="math inline">x(0) = -1</span></li>
+<li><span class="math inline">x(0) = 0</span></li>
+</ul>
+</div>
 
 
 </section>
@@ -1183,13 +1338,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../7_solution/concepts.html" class="pagination-link" aria-label="Solution concepts">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Solution concepts</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../7_solution/references.html" class="pagination-link" aria-label="Literature">
+        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

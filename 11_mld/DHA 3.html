@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Discrete hybrid automata – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../11_mld/logic_vs_inequalities.html" rel="next">
+<link href="../11_mld/goals.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +76,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -88,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -233,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -575,7 +618,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link">
+  <a href="../11_mld/DHA.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Discrete hybrid automata</span></a>
   </div>
 </li>
@@ -735,16 +778,24 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#why-yet-another-framework-for-hybrid-systems" id="toc-why-yet-another-framework-for-hybrid-systems" class="nav-link active" data-scroll-target="#why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</a></li>
+  <li><a href="#discrete-time-hybrid-automaton" id="toc-discrete-time-hybrid-automaton" class="nav-link" data-scroll-target="#discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</a>
+  <ul class="collapse">
+  <li><a href="#switched-affine-systems-sas" id="toc-switched-affine-systems-sas" class="nav-link" data-scroll-target="#switched-affine-systems-sas">Switched affine systems (SAS)</a></li>
+  <li><a href="#event-generator-eg" id="toc-event-generator-eg" class="nav-link" data-scroll-target="#event-generator-eg">Event generator (EG)</a></li>
+  <li><a href="#finite-state-machine-fsm" id="toc-finite-state-machine-fsm" class="nav-link" data-scroll-target="#finite-state-machine-fsm">Finite state machine (FSM)</a></li>
+  <li><a href="#mode-selector-ms" id="toc-mode-selector-ms" class="nav-link" data-scroll-target="#mode-selector-ms">Mode selector (MS)</a></li>
+  </ul></li>
+  <li><a href="#trajectory-of-a-dha" id="toc-trajectory-of-a-dha" class="nav-link" data-scroll-target="#trajectory-of-a-dha">Trajectory of a DHA</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../11_mld/goals.html">11. Mixed logical dynamical (MLD) systems</a></li><li class="breadcrumb-item"><a href="../11_mld/DHA.html">Discrete hybrid automata</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Discrete hybrid automata</h1>
 </div>
 
 
@@ -761,21 +812,99 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="why-yet-another-framework-for-hybrid-systems" class="level2">
+<h2 class="anchored" data-anchor-id="why-yet-another-framework-for-hybrid-systems">Why yet another framework for hybrid systems?</h2>
+<p>We are going to introduce yet another framework for modeling hybrid systems – <em>mixed logical dynamical (MLD)</em> description. A question must inevitably pop up: “why yet another framework?”</p>
+<p>The answer is, that we would like to have a model of a hybrid system that is suitable for model predictive control (MPC). Recall that the role of the model in MPC is that the model is used to define some constraints (equations and inequalities) in the numerical optimization problem. The frameworks that we considered so far did not offer it.</p>
+<p>In particular, with the state variable and control input vectors composed of continuous and discrete variables <span class="math display">
+\bm x = \begin{bmatrix}\bm x_\mathrm{c}\\\bm x_\mathrm{d}\end{bmatrix}, \quad \bm u = \begin{bmatrix}\bm u_\mathrm{c}\\\bm u_\mathrm{d}\end{bmatrix},
+</span> where <span class="math inline">\bm x_\mathrm{c}\in\mathbb R^{n_\mathrm{c}},\;\bm x_\mathrm{d}\in\mathbb N^{n_\mathrm{d}},\; \bm u_\mathrm{c}\in\mathbb R^{m_\mathrm{c}}</span> and <span class="math inline">\bm u_\mathrm{d}\in\mathbb N^{m_\mathrm{d}}</span>, we would like to formulate the model in the form of state equations, say <span class="math display">
+\begin{aligned}
+\begin{bmatrix}\bm x_\mathrm{c}(k+1) \\ \bm x_\mathrm{d}(k+1)\end{bmatrix}
+&amp;=
+\begin{bmatrix} \mathbf f_\mathrm{c}(\bm x(k), \bm u(k)) \\ \mathbf f_\mathrm{d}(\bm x(k), \bm u(k)) \end{bmatrix}.
+\end{aligned}
+</span></p>
+<p>Is it possible? Unfortunately no. At least not exactly in this form. But something close to it is achievable instead.</p>
+<p>But first we need to set the terminology and notation used to define a discrete(-time) hybrid automaton.</p>
+</section>
+<section id="discrete-time-hybrid-automaton" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-time-hybrid-automaton">Discrete(-time) hybrid automaton</h2>
+<p>Since the new modelling framework is expected to be useful for prediction of a system response within model predictive control, it must model a hybrid system in discrete time. This is a major difference from what we did in our course so far.</p>
+<p>In particular, we are going to model a hybrid system as a discrete(-time) hybrid automaton (DHA), which means that</p>
+<ul>
+<li>the continuous-value dynamics (often corresponding to the physical part of the system) evolves in discrete time,</li>
+<li>the events and their processing by the logical part of the system are synchronized to the same periodic clock.</li>
+</ul>
+<p>We are already well familiar with the concept of a hybrid automaton, and the restriction to discrete time does not seem to warrant reopening the definition (modes/locations, guards, invariants/domains, reset maps, …). However, it turns out that reformulating/restructuring the hybrid automaton will be useful for our ultimate goal of developing an MPC-friendly modelling framework. In particular, we consider four components of a DHA:</p>
+<ul>
+<li>switched affine system (SAS),</li>
+<li>mode selector (MS),</li>
+<li>event generator (EG),</li>
+<li>finite state machine (FSM).</li>
+</ul>
+<p>Their interconnection is shown in <a href="#fig-dha" class="quarto-xref">Fig.&nbsp;1</a>.</p>
+<div id="fig-dha" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/dha.png" class="img-fluid figure-img" style="width:90.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dha-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Discrete-time hybrid automaton
 </figcaption>
 </figure>
 </div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<p>Let’s discuss the individual components (and while doing that, you can think about the equivalent concept in the classical definition of a hybrid automaton such as mode, invariant, guard, …).</p>
+<section id="switched-affine-systems-sas" class="level3">
+<h3 class="anchored" data-anchor-id="switched-affine-systems-sas">Switched affine systems (SAS)</h3>
+<p>This is a model of the continuous-value dynamics parameterized by the index <span class="math inline">i</span> that evolves in (discrete) time <span class="math display">
+\begin{aligned}
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)},\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}.
+\end{aligned}
+</span></p>
+<p>In principle there is no need to restrict the right hand sides to affine functions as we did, but the fact is that the methods and tools are currently only available for this restricted class of systems.</p>
+</section>
+<section id="event-generator-eg" class="level3">
+<h3 class="anchored" data-anchor-id="event-generator-eg">Event generator (EG)</h3>
+<p>We consider partitioning of the state space or possibly state-control space into polyhedral regions. The system is then in the <span class="math inline">i</span>th region of the state-input space, if the continuous-value state <span class="math inline">x_\mathrm{c}(k)</span> and the continuous-value control input <span class="math inline">u_\mathrm{c}</span> satisfy <span class="math display">
+\mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0.
+</span></p>
+<p>The event indicated by the vector binary variable (through so-called one-hot encoding) <span class="math display">
+\bm \delta_e(k) = \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) \in \{0,1\}^{n_e},
+</span> where <span class="math display">
+h_i(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k)) = \begin{cases}1 &amp; \mathbf H_i \bm x_\mathrm{c}(k) + \mathbf J_i \bm u_\mathrm{c}(k) + \mathbf K_i \leq 0,\\ 0 &amp; \text{otherwise}. \end{cases}
+</span></p>
+</section>
+<section id="finite-state-machine-fsm" class="level3">
+<h3 class="anchored" data-anchor-id="finite-state-machine-fsm">Finite state machine (FSM)</h3>
+<p><span class="math display">
+\bm x_\mathrm{d}(k+1) = \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
+</span></p>
+</section>
+<section id="mode-selector-ms" class="level3">
+<h3 class="anchored" data-anchor-id="mode-selector-ms">Mode selector (MS)</h3>
+<p><span class="math display">
+i(k) \in \{1, 2, \ldots, s\}
+</span></p>
+<p><span class="math display">
+i(k) = \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k)).
+</span></p>
+</section>
+</section>
+<section id="trajectory-of-a-dha" class="level2">
+<h2 class="anchored" data-anchor-id="trajectory-of-a-dha">Trajectory of a DHA</h2>
+<p><span class="math display">
+\begin{aligned}
+\bm \delta_e(k) &amp;= \mathbf h(\bm x_\mathrm{c}(k), \bm u_\mathrm{c}(k))\\
+i(k) &amp;= \mu(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm y_\mathrm{c}(k) &amp;= \mathbf C_{i(k)} \bm x_\mathrm{c}(k) + \mathbf D_{i(k)} \bm u_\mathrm{c}(k) + \mathbf g_{i(k)}\\
+\bm y_\mathrm{d}(k) &amp;= \mathbf g_\mathrm{d}(\bm x_\mathrm{d}(k), \bm u_\mathrm{d}(k), \bm \delta_e(k))\\
+\bm x_\mathrm{c}(k+1) &amp;= \mathbf A_{i(k)} \bm x_\mathrm{c}(k) + \mathbf B_{i(k)} \bm u_\mathrm{c}(k) + \mathbf f_{i(k)}\\
+\bm x_\mathrm{d}(k+1) &amp;= \mathbf f_\mathrm{d}(\bm x_\mathrm{d}(k),\bm u_\mathrm{d}(k),\bm \delta_e(k)).
+\end{aligned}
+</span></p>
+<p>Obviously, in order to compute the trajectory, besides the standard arithmetics, some IF-THEN conditions are also present in the model. They prevent us from using this model as constraints within a mathematical program (numerical optimization problem). Can we get rid of them?</p>
 
 
 </section>
@@ -1183,13 +1312,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../11_mld/goals.html" class="pagination-link" aria-label="Learning goals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Learning goals</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../11_mld/logic_vs_inequalities.html" class="pagination-link" aria-label="Logic vs inequalities">
+        <span class="nav-page-text">Logic vs inequalities</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

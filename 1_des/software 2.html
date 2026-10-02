@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises – B(E)3M35HYS – Hybrid systems</title>
+<title>Software – B(E)3M35HYS – Hybrid systems</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,8 +56,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../3_max_plus/goals.html" rel="next">
-<link href="../2_petri_nets/references.html" rel="prev">
+<link href="../1_des/references.html" rel="next">
+<link href="../1_des/automata.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -88,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/software.html">Software</a></li></ol></nav>
         <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1_des/software.html" class="sidebar-item-text sidebar-link">
+  <a href="../1_des/software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Software</span></a>
   </div>
 </li>
@@ -233,7 +253,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2_petri_nets/exercises.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exercises</span></a>
   </div>
 </li>
@@ -735,16 +755,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" id="toc-exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="nav-link active" data-scroll-target="#exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</a></li>
+  <li><a href="#matlab-and-simulink" id="toc-matlab-and-simulink" class="nav-link active" data-scroll-target="#matlab-and-simulink">Matlab and Simulink</a></li>
+  <li><a href="#openmodelica" id="toc-openmodelica" class="nav-link" data-scroll-target="#openmodelica">(Open)Modelica</a></li>
+  <li><a href="#uppaal" id="toc-uppaal" class="nav-link" data-scroll-target="#uppaal">UPPAAL</a></li>
+  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
+  <li><a href="#umlsysml" id="toc-umlsysml" class="nav-link" data-scroll-target="#umlsysml">UML/SysML</a></li>
+  <li><a href="#drawing-tools" id="toc-drawing-tools" class="nav-link" data-scroll-target="#drawing-tools">Drawing tools</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/hys/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content" tabindex="-1">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2_petri_nets/goals.html">2. Discrete-event systems: Petri nets</a></li><li class="breadcrumb-item"><a href="../2_petri_nets/exercises.html">Exercises</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1_des/goals.html">1. Discrete-event systems: Automata</a></li><li class="breadcrumb-item"><a href="../1_des/software.html">Software</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Exercises</h1>
+<h1 class="title">Software</h1>
 </div>
 
 
@@ -761,26 +787,93 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-1-manufacturing-system-with-multiple-machines-conveyor-belts-and-robotic-arms">Exercise 1: manufacturing system with multiple machines, conveyor belts and robotic arms</h2>
-<p><strong>Goal:</strong> formulating a Petri net model for a manufacturing system.</p>
-<p>Consider the manufacturing systems depicted in <a href="#fig-manufacturing" class="quarto-xref">Fig.&nbsp;1</a>. A part to be manufactured arrives by the input conveyor belt. The part is then placed to one of the two machines 1 and 3 or one of the two bidirectional conveyor belts 2 and 4 by one of the two robotic arms 1 and 2. The remaining robotic arm 3 is used to place place the parts between the two conveyor belts and and the two machines 3 and 4. The final placement of the processed part onto the output conveyor belt is only done by the robotic arm 3, which can pick up the parts from either the machine 2 and the conveyor belt 4.</p>
-<div id="fig-manufacturing" class="quarto-float quarto-figure quarto-figure-center anchored">
+<p>The number of software tools for defining and analysing state automata is huge, as is the number of domains of application of this modelling concept. As we are leaning towards the control systems domain, we first encounter the tools produced by The Mathworks company (Matlab and Simulink)</p>
+<section id="matlab-and-simulink" class="level2">
+<h2 class="anchored" data-anchor-id="matlab-and-simulink">Matlab and Simulink</h2>
+<ul>
+<li><a href="https://www.mathworks.com/products/stateflow.html">StateFlow</a> – finite state automata within Simulink. A nice interactive tutorial is launched directly within Simulink upon entering <code>learning.simulink.launchOnramp("stateflow")</code> in Matlab. This is the primary tool for our course, as it extends nicely to hybrid systems. An example is shown in <a href="#fig-statechart-stateflow" class="quarto-xref">Fig.&nbsp;1</a> below.</li>
+</ul>
+<div id="fig-statechart-stateflow" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/manufacturing_exercise.png" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-statechart-stateflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/aircontrol-chart_stateflow.png" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-manufacturing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and robotic arms
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statechart-stateflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Screenshot of a state “chart” in Simscape
 </figcaption>
 </figure>
 </div>
-<p>The task is to model this system as a Petri net. The model should be general enough to allow for later specification of the actual processing sequences and times. The model should allow for the possibility of having multiple parts in the system at the same time.</p>
+<ul>
+<li><a href="https://www.mathworks.com/products/simevents.html">SimEvents</a> – oriented towards one instance of the (state) automata, namely <em>queuing systems</em>. You may want to have a look at the <a href="https://www.mathworks.com/videos/series/understanding-discrete-event-simulation.html">series of introductory videos</a> by the Mathworks, although we are not going to rely on this tool in our course.</li>
+</ul>
+<p>Several tools are also available outside Matlab and Simulink, and it is certainly good to be aware of these alternatives.</p>
+</section>
+<section id="openmodelica" class="level2">
+<h2 class="anchored" data-anchor-id="openmodelica">(Open)Modelica</h2>
+<p>A popular modelling language for physical systems is <a href="https://www.modelica.org">Modelica</a>. Starting with version 3.3 (several years ago already), it has a support for state machines, see Chapter 17 in the <a href="https://specification.modelica.org/master/state-machines.html">language specification</a> and the screenshot in <a href="#fig-statemachine-modelica" class="quarto-xref">Fig.&nbsp;2</a> below. A readable introduction to state machines in Modelica is in <span class="citation" data-cites="elmqvistStateMachinesModelica2012"><a href="#ref-elmqvistStateMachinesModelica2012" role="doc-biblioref">[1]</a></span>.</p>
+<div id="fig-statemachine-modelica" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statemachine-modelica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/statemachine_modelica.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statemachine-modelica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Screenshot of a state machine diagram in Modelica
+</figcaption>
+</figure>
+</div>
+<p>Several implementations of Modelica language and compiler exist. On the FOSS side, <a href="https://openmodelica.org">OpenModelica</a> is a popular choice. Slides from an introdutory presentation <span class="citation" data-cites="thieleStateMachinesOpenModelica2015"><a href="#ref-thieleStateMachinesOpenModelica2015" role="doc-biblioref">[2]</a></span> about state machines in OpenModelica are available for free download.</p>
+</section>
+<section id="uppaal" class="level2">
+<h2 class="anchored" data-anchor-id="uppaal">UPPAAL</h2>
+<p>Dedicated software for timed automata. Not only modelling and simulation but also formal verification. Available at <a href="https://uppaal.org">https://uppaal.org/</a>. In our course we will only use it in this block/week. A tutorial is <span class="citation" data-cites="behrmannTutorialUppaal2004"><a href="#ref-behrmannTutorialUppaal2004" role="doc-biblioref">[3]</a></span>.</p>
+</section>
+<section id="python" class="level2">
+<h2 class="anchored" data-anchor-id="python">Python</h2>
+<p><a href="https://simpy.readthedocs.io/en/latest/">SimPy</a> – discrete-event simulation in Python. We are not going to use it in our course, but if you are a Python enthusiast, you may want to have a look at it.</p>
+</section>
+<section id="julia" class="level2">
+<h2 class="anchored" data-anchor-id="julia">Julia</h2>
+<p>Two major packages for discrete-event simulation in Julia are:</p>
+<ul>
+<li><a href="https://github.com/JuliaDynamics/ConcurrentSim.jl">ConcurrentSim.jl</a> – discrete-event simulation in Julia.</li>
+<li><a href="https://github.com/JuliaDynamics/DiscreteEvents.jl">DiscreteEvents.jl</a> – discrete-event simulation in Julia.</li>
+</ul>
+</section>
+<section id="umlsysml" class="level2">
+<h2 class="anchored" data-anchor-id="umlsysml">UML/SysML</h2>
+<p>If you have been exposed to software engineering, you have probably seen <a href="https://www.uml.org">UML</a> diagrams. Their extension (and restriction at the same time) toward systems that also contain hardware is called <a href="https://sysml.org">SysML</a>. And SysML does have support for defining state machines (by drawing the <a href="(https://sysml.org/sysml-faq/what-is-state-machine-diagram.html)">state machine diagrams</a>), see the screenshot in <a href="#fig-statemachine-sysml" class="quarto-xref">Fig.&nbsp;3</a> below.</p>
+<div id="fig-statemachine-sysml" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statemachine-sysml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/statemachine_sysml.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-statemachine-sysml-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Screenshot of a state machine diagram in SysML
+</figcaption>
+</figure>
+</div>
+<p>SysML standard also augments the original concept of a state automaton with hierarchies, and some more. But we are not going to discuss it here. Should you need to follow this standard in your project, you may consider exploring some free&amp;open-source (FOSS) tool for creating SysML diagrams such as <a href="https://www.modelio.org">Modelio</a> or <a href="https://eclipse.dev/papyrus/">Eclipse Papyrus</a>. But we are not going to use them in our course.</p>
+</section>
+<section id="drawing-tools" class="level2">
+<h2 class="anchored" data-anchor-id="drawing-tools">Drawing tools</h2>
+<p>Last but not least, you may want only to <em>draw</em> state automata (state machines). While there is no shortage of general WYSIWYG drawing and diagramming tools, you may want to consider <a href="https://graphviz.org">Graphviz</a> software that processes text description of automata in <a href="https://graphviz.org/doc/info/lang.html">DOT</a> language. This is what I used in this lecture. As an alternative, but still text-based, you may want to give a try to <a href="https://mermaid.js.org">Mermaid</a>, which <a href="https://mermaid.js.org/syntax/stateDiagram.html">can also draw what they call state diagrams</a>.</p>
+<p>If you still prefer WISYWIG tools, have a look at <a href="https://ipe.otfried.org">IPE</a>, which I also used for some other figures in this lecture and in the rest of the course. Unlike most other tools, it also allows to enter LaTeX math.</p>
+
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-elmqvistStateMachinesModelica2012" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">H. Elmqvist, F. Gaucher, S. E. Mattson, and F. Dupont, <span>“State <span>Machines</span> in <span>Modelica</span>,”</span> in <em>Proceedings of 9th <span>International MODELICA Conference</span></em>, Munich, Germany, Sep. 2012, pp. 37–46. doi: <a href="https://doi.org/10.3384/ecp1207637">10.3384/ecp1207637</a>.</div>
+</div>
+<div id="ref-thieleStateMachinesOpenModelica2015" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">B. Thiele, <span>“State <span>Machines</span> in <span>OpenModelica</span> - <span>Current Status</span> and <span>Further Development</span>.”</span> Feb. 2015. Available: <a href="https://openmodelica.org/images/docs/openmodelica2015/OpenModelica2015-talk14-OMStateMachines_Bernhard%20Thiele.pdf">https://openmodelica.org/images/docs/openmodelica2015/OpenModelica2015-talk14-OMStateMachines_Bernhard%20Thiele.pdf</a></div>
+</div>
+<div id="ref-behrmannTutorialUppaal2004" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">G. Behrmann, A. David, and K. G. Larsen, <span>“A <span>Tutorial</span> on <span>Uppaal</span>,”</span> in <em>Formal <span>Methods</span> for the <span>Design</span> of <span>Real-Time Systems</span></em>, M. Bernardo and F. Corradini, Eds., in Lecture <span>Notes</span> in <span>Computer Science</span>, no. 3185., Berlin, Heidelberg: Springer, 2004, pp. 200–236. doi: <a href="https://doi.org/10.1007/978-3-540-30080-9_7">10.1007/978-3-540-30080-9_7</a>.</div>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1183,13 +1276,13 @@ Figure&nbsp;1: Manufacturing system with multiple machines, conveyor belts and r
   </script>
 <nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
-      <a href="../2_petri_nets/references.html" class="pagination-link" aria-label="Literature">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Literature</span>
+      <a href="../1_des/automata.html" class="pagination-link" aria-label="State automata">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">State automata</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../3_max_plus/goals.html" class="pagination-link" aria-label="Learning goals">
-        <span class="nav-page-text">Learning goals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1_des/references.html" class="pagination-link" aria-label="Literature">
+        <span class="nav-page-text">Literature</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
