@@ -1044,25 +1044,12 @@ x_{k+c}-x_k = c\lambda.
 <section id="cost-function-for-mpc" class="level3">
 <h3 class="anchored" data-anchor-id="cost-function-for-mpc">Cost function for MPC</h3>
 <p>We consider the cost function composed of two parts <span class="math display">
-J = J_\mathrm{output} + \lambda J_\mathrm{input}.
-</span></p>
+J = J_\mathrm{output} + \rho J_\mathrm{input},
+</span> which are weighted using the nonnegative parameter <span class="math inline">\rho</span>.</p>
 <p>At “time” <span class="math inline">k</span>, with the prediction horizon <span class="math inline">N_\mathrm{p}</span>, and with the number of outputs <span class="math inline">n_\mathrm{y}</span>: <span class="math display">
 J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{y_{i,k+j} - r_{i,k+j},0\}
 </span></p>
 <p>This cost function penalizes <em>tardiness</em> (late delivery).</p>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Is the lower value for j correct?</p>
-</div>
-</div>
 <p>Alternative choice of the cost function is <span class="math display">
 J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left|y_{i,k+j} - r_{i,k+j} \right |,
 </span> which penalizes difference between the due and actual dates, or <span class="math display">
@@ -1071,6 +1058,23 @@ J_\mathrm{output} = \sum_{j=1}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \left |
 <p>The input cost can be set to <span class="math display">
 J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
 </span> which penalizes early feeding (favours <em>just-in-time</em> feeding). Note the minus sign.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Cost function for MPC in the (max,+) algebra
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While we invested quite some effort in formulating the MPL system in the (max,+) algebra, when formulating the cost function we admittedly reverted to the standard algebra. This is because any resonable cost function is not a (max,+) linear function of the inputs and outputs and therefore it is disputable if we get any benefit from such reformulation. We do it here for the tardiness cost function just out of curiosity:</p>
+<p><span class="math display">
+J_\mathrm{output} = \bigotimes_{j=0}^{N_{\mathrm{p}-1}}\bigotimes_{i=1}^{n_{\mathrm{y}}} \left(y_{i,k+j} \otimes r_{i,k+j}^{\otimes^{-1}} \oplus  0\right).
+</span></p>
+<p>We now have a full (max,+) formulation of the MPC problem – both the model of the system and the cost function. However, it seems that this does not really bring us any further benefit. Therefore, we stick to using the standard algebra for cost functions.</p>
+</div>
+</div>
 </section>
 <section id="control-horizon-vs.-prediction-horizon" class="level3">
 <h3 class="anchored" data-anchor-id="control-horizon-vs.-prediction-horizon">Control horizon vs.&nbsp;prediction horizon</h3>
