@@ -13,7 +13,17 @@ crossref:
 engine: julia   
 ---
 
-## Exercise 1: Turnstile / access-gate automaton
+## Exercise 1: Simple state automata in Stateflow
+
+**Goal:** practice building a simple state automaton in Stateflow.
+
+Create a Stateflow implementation of the simple two-state automaton – a button and an LED. Pressing the button toggles the LED state. The automaton has two *states*, `LED off` and `LED on`, and a single *input event* `button`. Generate the input event by generating a random 0-1 signal in Simulink and deriving the `button` event from the *rising edge* of that signal. Define an *output variable* `light` that can be used to represent the state of the LED in Simulink. 
+
+Extend the automaton to include a third state `LED double intensity` that is reached by pressing the button twice in a row within a short time interval.The automaton should return to `LED off` after a press that followes after a longer time. You may want to use [Stateflow temporal operators](https://www.mathworks.com/help/stateflow/ug/using-temporal-logic-in-state-actions-and-transitions.html) for that. 
+
+---
+
+## Exercise 2: Turnstile / access-gate automaton
 
 **Goal:** practice extracting the formal tuple $G = \{\mathcal X, \mathcal X_0, \mathcal E, \mathcal F\}$ (and optionally $\mathcal X_\mathrm{m}$) from an informal description, and draw the state-transition diagram.
 
@@ -44,7 +54,7 @@ Redo Part A.1–A.5 for this extended version (it will now have 4–5 states ins
 
 ---
 
-## Exercise 2: Vending machine with two products and a Moore output
+## Exercise 3: Vending machine with two products and a Moore output
 
 **Goal:** practice modeling with marked states, recognize when a Moore-machine (state-labeled output) view is natural, and implement a slightly larger automaton (more states/events) with explicit guard-like reasoning on an extended integer variable.
 
@@ -63,7 +73,7 @@ Design (don't just look up) a state automaton for a simplified snack vending mac
 
 ---
 
-## Exercise 3: Composing two automata + blocking analysis
+## Exercise 4: Composing two automata + blocking analysis
 
 **Goal:** practice the concept of **composing automata** via shared/synchronized events (the `!`/`?` convention from the notes), and identify **blocking, deadlock, and livelock** states — a topic not covered by either demo example.
 
