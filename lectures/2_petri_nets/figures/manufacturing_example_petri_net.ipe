@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.29">
-<info created="D:20260912215829" modified="D:20260912230047"/>
+<info created="D:20260912215829" modified="D:20260926115827"/>
 <ipestyle name="ElectricalEngineering">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -3121,7 +3121,6 @@ h
 </path>
 <use name="mark/disk(sx)" pos="64 768" size="large" stroke="black"/>
 <use name="mark/disk(sx)" pos="320 768" size="large" stroke="black"/>
-<use name="mark/disk(sx)" pos="448 704" size="large" stroke="black"/>
 <path stroke="black" arrow="normal/normal">
 384 712 m
 416 736 l
@@ -3164,10 +3163,15 @@ h
 </path>
 <text matrix="1 0 0 1 -32 8" transformations="translations" pos="64 736" stroke="black" type="label" width="66.909" height="6.837" depth="2.05" halign="center" valign="center">Part at the input</text>
 <text transformations="translations" pos="32 608" stroke="black" type="label" width="63.91" height="6.844" depth="0.04" halign="center" valign="center">Robot available</text>
-<text matrix="1 0 0 1 0 8" transformations="translations" pos="192 672" stroke="black" type="label" width="79.033" height="6.837" depth="2.05" halign="center" valign="center">Transfer of the part</text>
-<text matrix="1 0 0 1 0 8" transformations="translations" pos="320 672" stroke="black" type="label" width="44.533" height="6.492" depth="2.25" halign="center" valign="center">Processing</text>
-<text matrix="1 0 0 1 0 8" transformations="translations" pos="448 672" stroke="black" type="label" width="79.033" height="6.837" depth="2.05" halign="center" valign="center">Transfer of the part</text>
+<text matrix="1 0 0 1 0 8" transformations="translations" pos="192 672" stroke="black" type="label" width="80.697" height="6.844" depth="0.04" halign="center" valign="center">Part at the machine</text>
+<text matrix="1 0 0 1 0 8" transformations="translations" pos="320 672" stroke="black" type="label" width="41.624" height="6.844" depth="0.04" halign="center" valign="center">Processed</text>
+<text matrix="1 0 0 1 0 8" transformations="translations" pos="448 672" stroke="black" type="label" width="82.52" height="6.841" depth="2.25" halign="center" valign="center">Part at the conveyor</text>
 <text matrix="1 0 0 1 -16 8" transformations="translations" pos="576 672" stroke="black" type="label" width="72.568" height="6.837" depth="2.05" halign="center" valign="center">Part at the output</text>
 <text transformations="translations" pos="320 744" stroke="black" type="label" width="75.467" height="6.844" depth="0.04" halign="center" valign="center">Machine available</text>
+<text matrix="1 0 0 1 -64 56" transformations="translations" pos="192 672" stroke="black" type="label" width="98.52" height="6.844" depth="0.04" halign="center" valign="center">Transfer to the machine</text>
+<text matrix="1 0 0 1 64 56" transformations="translations" pos="192 672" stroke="black" type="label" width="75.507" height="6.841" depth="2.25" halign="center" valign="center">Processing started</text>
+<text matrix="1 0 0 1 192 56" transformations="translations" pos="192 672" stroke="black" type="label" width="110.256" height="6.844" depth="0.04" halign="center" valign="center">Transfer from the machine</text>
+<text matrix="1 0 0 1 320 56" transformations="translations" pos="192 672" stroke="black" type="label" width="90.391" height="6.837" depth="2.05" halign="center" valign="center">Transfer to the output</text>
+<use matrix="1 0 0 1 -384 -64" name="mark/disk(sx)" pos="448 704" size="large" stroke="black"/>
 </page>
 </ipe>
