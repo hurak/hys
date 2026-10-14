@@ -735,7 +735,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link active" data-scroll-target="#matlab">Matlab</a></li>
+  <li><a href="#matlab-and-simulink-and-stateflow" id="toc-matlab-and-simulink-and-stateflow" class="nav-link active" data-scroll-target="#matlab-and-simulink-and-stateflow">Matlab and Simulink and Stateflow</a></li>
   <li><a href="#julia" id="toc-julia" class="nav-link" data-scroll-target="#julia">Julia</a></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
   </ul>
@@ -763,19 +763,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
+<section id="matlab-and-simulink-and-stateflow" class="level2">
+<h2 class="anchored" data-anchor-id="matlab-and-simulink-and-stateflow">Matlab and Simulink and Stateflow</h2>
 <ul>
-<li>pure Simulink: <a href="https://www.mathworks.com/help/simulink/slref/relationaloperator.html">Relational operators</a>, <a href="https://www.mathworks.com/help/simulink/slref/logicaloperator.html">Logical operators</a>, Extra options for the <a href="https://www.mathworks.com/help/simulink/slref/integrator.html">Integrator</a> block (external reset, external initial conditions, possibly state port).</li>
-<li>pure Matlab: <a href="https://www.mathworks.com/help/matlab/math/ode-event-location.html">Event Location</a> with ODE solvers.</li>
-<li>Stateflow: <a href="https://www.mathworks.com/help/stateflow/ug/about-continuous-time-modeling.html">Continuous-time modeling in Stateflow</a></li>
+<li><p><strong>pure Simulink</strong>: we can build models of systems with hybrid dynamics using just Simulink, but then the <a href="https://www.mathworks.com/help/simulink/slref/relationaloperator.html">relational operators</a> and <a href="https://www.mathworks.com/help/simulink/slref/logicaloperator.html">logical operators</a> will be needed. We may also appreciate the extra options for the <a href="https://www.mathworks.com/help/simulink/slref/integrator.html">integrator</a> block, such as the external reset, external initial conditions, and displaying the state port (to avoid algebraic loops if the resetting condition is derived from the integrator output).</p></li>
+<li><p><strong>pure Matlab</strong>: we can go relatively far just with Matlab – the key functionality is <a href="https://www.mathworks.com/help/matlab/math/ode-event-location.html">event location</a> while calling the ODE solvers.</p></li>
+<li><p><strong>Stateflow</strong>: having been exposed to some basics of automata modeling in Stateflow, <a href="https://www.mathworks.com/help/stateflow/ug/about-continuous-time-modeling.html">including continuous-time dynamics in Stateflow</a> is relatively straightforward. Here we only single out one potential stumbling block: we must make sure that we set the <em>Update method</em> for the whole chart to <code>Continuous</code> (open the <em>Property inspector</em> pane in the <em>Modeling menu</em>, make sure the chart is selected).</p>
+<p><img src="figures/stateflow_continuous.png" class="img-fluid" style="width:60.0%"></p></li>
 </ul>
 </section>
 <section id="julia" class="level2">
 <h2 class="anchored" data-anchor-id="julia">Julia</h2>
 <ul>
 <li><a href="https://github.com/blegat/HybridSystems.jl">HybridSystems.jl</a> – the package essentially just defines some basic data types, currently it is mainly used by some other packages, such as ReachabilityAnalysis.jl.</li>
-<li><a href="https://github.com/JuliaReach/ReachabilityAnalysis.jl">ReachabilityAnalysis.jl</a></li>
+<li><a href="https://github.com/JuliaReach/ReachabilityAnalysis.jl">ReachabilityAnalysis.jl</a> – well-maintained and even <a href="https://juliareach.github.io/post/archcomp20_prize/">award-winning</a> (under its previous name) package that also supports hybrid systems.</li>
 </ul>
 </section>
 <section id="python" class="level2">

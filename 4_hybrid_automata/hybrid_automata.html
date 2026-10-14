@@ -1092,8 +1092,8 @@ Figure&nbsp;5: Bouncing ball example
 </figure>
 </div>
 <p>The state equation during the free fall is <span class="math display">
-\dot{\bm x} = \begin{bmatrix} x_2\\ -g\end{bmatrix}, \quad \bm x = \begin{bmatrix}10\\0\end{bmatrix}.
-</span></p>
+\dot{\bm x}(t) = \begin{bmatrix} x_2(t)\\ -g\end{bmatrix},
+</span> while the initial state is <span class="math inline">\bm x(0) = \begin{bmatrix}10\\0\end{bmatrix}</span>.</p>
 <p>But how can we model what happens during and after the collision? High-fidelity model would be complicated, involving partial differential equations to model the deformation of the ball and the table. These complexities can be avoided with a simpler model assuming that immediately after the collision the sign of the velocity abruptly (discontinuously) changes, and at the same time the ball also looses a portion of the energy.</p>
 <p>When modelling this using a hybrid automaton, it turns out that we only need a single discrete state. The crucial feature of the model is then the nontrivial (non-identity) <em>reset map</em>. This is depicted in <a href="#fig-bouncing-ball-automaton" class="quarto-xref">Fig.&nbsp;6</a>.</p>
 <div id="fig-bouncing-ball-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1102,7 +1102,7 @@ Figure&nbsp;5: Bouncing ball example
 <img src="figures/bouncing_ball_automaton.png" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bouncing-ball-automaton-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Hybrid automaton for a bouncing ball eaxample
+Figure&nbsp;6: Hybrid automaton for a bouncing ball example
 </figcaption>
 </figure>
 </div>
