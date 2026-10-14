@@ -182,18 +182,10 @@ If time is associated with the places, the Petri net simplifies significantly to
 ![Timed Petri net for the example of synchronization of three train lines](figures/trains_petri_net_delayed_places.png){width=50% #fig-trains-petri-net-delayed-places}
 :::
 
-::: {#exm-timed-petri-nets-manufacturing}
-## Manufacturing
-The configuration of a simple manufacturing system is sketched in @fig-manufacturing-example. A robot arm is used to pick up a part from the input buffer at the end of the input conveyor belt, and place it on the processing (milling) machine. After the processing (milling) is finished, the robot arm picks up the part again and places it on beginning of the output conveyor belt.
-
-![Sketch of the configuration of a simple manufacturing system](figures/manufacturing_example.png){width=60% #fig-manufacturing-example}
-
-![Petri net for the example of a manufacturing system](figures/manufacturing_example_petri_net.png){width=80% #fig-manufacturing-example-petri-net}
-
-:::
-
 ## Extensions
 
 ### Stochastic Petri nets (SPN)
 
 Numerous extensions are possible, some of which we have already mentioned when discussing untimed Petri nets. But upon introducing time, stochastic Petri nets can be conceived, in which delays are random variables.
+
+
