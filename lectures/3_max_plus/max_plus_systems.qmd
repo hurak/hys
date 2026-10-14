@@ -230,8 +230,9 @@ Now we are finally ready to consider control problems for MPL systems. We will c
 
 We consider the cost function composed of two parts
 $$
-J = J_\mathrm{output} + \lambda J_\mathrm{input}. 
+J = J_\mathrm{output} + \rho J_\mathrm{input}, 
 $$
+which are weighted using the nonnegative parameter $\rho$.
 
 At "time" $k$, with the prediction horizon $N_\mathrm{p}$, and with the number of outputs $n_\mathrm{y}$:
 $$
@@ -239,10 +240,6 @@ J_\mathrm{output} = \sum_{j=0}^{N_\mathrm{p}-1}\sum_{i=1}^{n_\mathrm{y}} \max \{
 $$
 
 This cost function penalizes *tardiness* (late delivery).
-
-::: {.callout-caution}
-Is the lower value for j correct?
-:::
 
 Alternative choice of the cost function is 
 $$
@@ -259,6 +256,17 @@ $$
 J_\mathrm{input} = -\sum_{j=0}^{N_\mathrm{p}-1}\sum_{l=1}^{n_\mathrm{u}} u_{l,k+j},
 $$
 which penalizes early feeding (favours *just-in-time* feeding). Note the minus sign.
+
+::: {.callout-note}
+#### Cost function for MPC in the (max,+) algebra
+While we invested quite some effort in formulating the MPL system in the (max,+) algebra, when formulating the cost function we admittedly reverted to the standard algebra. This is because any resonable cost function is not a (max,+) linear function of the inputs and outputs and therefore it is disputable if we get any benefit from such reformulation. We do it here for the tardiness cost function just out of curiosity:
+
+$$
+J_\mathrm{output} = \bigotimes_{j=0}^{N_{\mathrm{p}-1}}\bigotimes_{i=1}^{n_{\mathrm{y}}} \left(y_{i,k+j} \otimes r_{i,k+j}^{\otimes^{-1}} \oplus  0\right).
+$$
+
+We now have a full (max,+) formulation of the MPC problem – both the model of the system and the cost function. However, it seems that this does not really bring us any further benefit. Therefore, we stick to using the standard algebra for cost functions.
+:::
 
 ### Control horizon vs. prediction horizon
 

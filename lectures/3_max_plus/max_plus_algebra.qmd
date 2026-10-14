@@ -7,6 +7,7 @@ format:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
+        #fig-width: 4
 crossref:
   fig-prefix: Fig. 
   eq-prefix: Eq.
@@ -175,18 +176,23 @@ p(x) = 2\otimes x^{\otimes^{2}} \oplus 3\otimes x \oplus 1.
 $$
 
 We can interpret it in the conventional algebra as
-$$
-p(x) = \max\{2x+2,x+3,1\},  
-$$
-which is a piecewise linear (actually affine) function.
 ```{julia}
+#| code-fold: false
+p(x) = max(2*x+2,x+3,1)
+```
+which is a piecewise linear (actually affine) function. We plot it in @fig-example-of-1d-max-plus-polynomial.
+
+```{julia}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| label: fig-example-of-1d-max-plus-polynomial
+#| fig-cap: Example of a 1D (max,+) polynomial
 using Plots
 x = -5:3
-f(x) = max(2*x+2,x+3,1)
-plot(x,f.(x),label="",thickness_scaling = 2)
+plot(x,p.(x),label="",thickness_scaling = 1, size=(400,300))
 xc = [-2,1]
-yc = f.(xc)
-scatter!(xc,yc,markercolor=[:red,:red],label="",thickness_scaling = 2)
+yc = p.(xc)
+scatter!(xc,yc,markercolor=[:red,:red],label="",thickness_scaling = 1)
 ```
 :::
 
@@ -198,15 +204,19 @@ p(x,y) = 0 \oplus x \oplus y.
 $$
 
 ```{julia}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| label: fig-example-of-2d-max-plus-polynomial
+#| fig-cap: Example of a 2D (max,+) polynomial
 using Plots
 x = -2:0.1:2;
 y = -2:0.1:2;
-f(x,y) = max(0,x,y)
-z = f.(x',y);
-wireframe(x,y,z,legend=false,camera=(5,30))
+p(x,y) = max(0,x,y)
+z = p.(x',y);
+wireframe(x,y,z,legend=false,camera=(5,30),size=(400,300))
 xlabel!("x")
 ylabel!("y")
-zlabel!("f(x,y)")
+zlabel!("p(x,y)")
 ```
 :::
 
@@ -218,12 +228,16 @@ p(x,y) = 0 \oplus x \oplus y \oplus (-1)\otimes x^{\otimes^2} \oplus 1\otimes x\
 $$
 
 ```{julia}
+#| code-fold: true
+#| code-summary: "Show the code"
+#| label: fig-another-example-of-2d-max-plus-polynomial
+#| fig-cap: Another example of a 2D (max,+) polynomial
 using Plots
 x = -2:0.1:2;
 y = -2:0.1:2;
-f(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)
-z = f.(x',y);
-wireframe(x,y,z,legend=false,camera=(15,30))
+p(x,y) = max(0,x,y,2*x-1,x+y+1,2*y-1)
+z = p.(x',y);
+wireframe(x,y,z,legend=false,camera=(15,30),size=(400,300))
 xlabel!("x")
 ylabel!("y")
 zlabel!("p(x,y)")
