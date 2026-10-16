@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.28">
-<info created="D:20231017205251" modified="D:20231017212102"/>
+<ipe version="70218" creator="Ipe 7.3.1">
+<info created="D:20231017205251" modified="D:20261016170550"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -339,8 +339,8 @@ h
 <text transformations="translations" pos="320 704" stroke="black" type="label" width="88.293" height="9.527" depth="1.19" halign="center" valign="baseline" size="Large" style="math">\dot x = -0.1 x + 5</text>
 <text matrix="1 0 0 1 0 -16" transformations="translations" pos="128 688" stroke="black" type="label" width="40.925" height="9.248" depth="0.38" halign="center" valign="baseline" size="Large" style="math">x&gt;16</text>
 <text matrix="1 0 0 1 0 -16" transformations="translations" pos="320 688" stroke="black" type="label" width="40.925" height="9.248" depth="0.38" halign="center" valign="baseline" size="Large" style="math">x&lt;20</text>
-<text matrix="1 0 0 1 8 0" transformations="translations" pos="168 760" stroke="black" type="label" width="41.158" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">x\leq 17</text>
-<text matrix="1 0 0 1 -24 16" transformations="translations" pos="280 648" stroke="black" type="label" width="41.158" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">x\geq 19</text>
-<text matrix="1 0 0 1 0 24" transformations="translations" pos="40 688" stroke="black" type="label" width="67.31" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">5\leq x\leq 10</text>
+<text matrix="1 0 0 1 8 0" transformations="translations" pos="168 760" stroke="black" type="label" width="41.158" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">x\leq 16</text>
+<text matrix="1 0 0 1 -24 16" transformations="translations" pos="280 648" stroke="black" type="label" width="41.158" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">x\geq 20</text>
+<text matrix="1 0 0 1 0 24" transformations="translations" pos="40 688" stroke="black" type="label" width="74.333" height="9.246" depth="1.95" halign="center" valign="baseline" size="Large" style="math">18\leq x\leq 22</text>
 </page>
 </ipe>

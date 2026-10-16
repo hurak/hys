@@ -102,8 +102,8 @@ The thermostat is a device that turns some heater `on` or `off` (or sets some va
 Naturally, the discrete states (modes, locations) are `on` and `off`. Initially, the heater is `off`. We can identify the first two components of the hybrid automaton:
 $$\mathcal Q = \{\text{on}, \text{off}\}, \quad \mathcal Q_0 = \{\text{off}\}$$
 
-The only continuous state variable is the temperature. The initial temperature is not quite certain, say, it is known to be in the interval $[5,10]$. Two more components of the hybrid automaton follow: 
-$$\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 5\leq x\leq 10\}$$
+The only continuous state variable is the temperature. The initial temperature is not quite certain, say, it is known to be in the interval $[18,22]$. Two more components of the hybrid automaton follow: 
+$$\mathcal X = \mathbb R, \quad \mathcal X_0 = \{x:x\in \mathcal X, 18\leq x\leq 22\}$$
 
 In the two modes `on` and `off`, the evolution of the temperature can be modelled by two different ODEs. Either from first-principles modelling or from system identification (or preferrably from the combination of the two) we get the two differential equations, say:
 $$
@@ -111,14 +111,16 @@ f_\text{off}(x) = -0.1x,\quad f_\text{on}(x) = -0.1x + 5,
 $$
 which gives another component for the hybrid automaton.
 
-The control logic of the thermostat is captured by the $\mathcal I$ and $\mathcal G$ components of the hybrid automaton. Let's determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval $(18 \pm 2)^\circ$ C is acceptable. 
+The control logic of the thermostat is captured by the $\mathcal I$ and $\mathcal G$ components of the hybrid automaton. Let's determine them now. Obviously, if we just set 18 as the threshold, the heater would be switching on and off all the time. We need to introduce some hysteresis. Say, keeping the temperature within the interval $(18 \pm 2)^\circ$ C is acceptable. Then we can set
 $$
 \mathcal I(\text{off}) = \{x\mid x> 16\},\quad \mathcal I(\text{on}) = \{x\mid x< 20\},
 $$  
 
 $$
-\mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
+\mathcal G(\text{off},\text{on}) = \{x\mid x\leq 16\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 20\}.
 $$  
+
+Apparently, the guard sets are complementary to the invariant sets of the corresponding modes, which is a common choice to make the model deterministic.
 
 Finally, $\mathcal R$ (or $r$) is not specified as the $x$ variable (the temperature) doesn't jump. Well, it is specified implicitly as an identity mapping $r(x)=x$.
 
@@ -126,10 +128,78 @@ The graphical representation of the thermostat hybrid automaton is shown in @fig
 
 ![Hybrid automaton for a thermostat](figures/thermostat_automaton.png){width=60% #fig-thermostat-automaton}
 
-Is this model *deterministic*? There are actually two reasons why it is not:
+The code implementing this hybrid automation and simulation of its response to a given initial state (in fact, an interval of initial states) in Julia is below. It uses the [ReachabilityAnalysis.jl](https://juliareach.github.io/ReachabilityAnalysis.jl/stable/) package.
 
-1. If we regard the characterization of the initial state (the temperature in this case) as a part of the model, which is the convention that we adhere to in our course, the model is nondeterministic.
-2. Since the invariant for a given mode and the guard set for the only transition to the other model overlap, the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode.
+```{julia}
+#| code-fold: show
+#| fig-cap: Simulation of a response to a range of initial states (temperatures) for a hybrid automaton modelling a thermostat
+#| label: fig-thermostat-simulation
+
+using ReachabilityAnalysis, ModelingToolkit, Plots
+
+const var = @variables T                                # Temperature (the only state variable)
+
+function f_on()
+    invariant = HalfSpace(T <= 20)
+    @system(T' = -0.1*T + 5.0, T ∈ invariant)
+end
+
+function f_off()
+    invariant = HalfSpace(T >= 16)
+    @system(T' = -0.1*T, T ∈ invariant)
+end
+
+function thermostat_automaton()
+    automaton = GraphAutomaton(2)
+    add_transition!(automaton, 1, 2, 1)
+    add_transition!(automaton, 2, 1, 2)
+
+    mode1 = f_on()
+    mode2 = f_off()
+    modes = [mode1, mode2]
+
+    # Transition on -> off
+    guard_on2off = HalfSpace(T >= 20)                   # We set the guard condition complementary to the invariant of the mode we are leaving (mode 1 = on) to be deterministic.
+    trans1 = ConstrainedIdentityMap(1, guard_on2off)    # Identity reset map (no reset) with the given guard.
+    # Transition off -> on
+    guard_off2on = HalfSpace(T <= 16)                   # We set the guard condition complementary to the invariant of the mode we are leaving (mode 1 = on) to be deterministic.
+    trans2 = ConstrainedIdentityMap(1, guard_off2on)    # Identity reset map (no reset) with the given guard.
+    guard_and_reset_maps = [trans1, trans2]             # Combines the guard and reset maps for each transition in the automaton.
+
+    return HybridSystems.HybridSystem(automaton, modes, guard_and_reset_maps, [AutonomousSwitching()])
+end
+
+# Creating the automaton
+H = thermostat_automaton()
+
+# Set of initial states
+T0 = Hyperrectangle(low=[21.0], high=[25.0])            # We leave the code ready for higher-dimensional systems as.
+
+# Formulate the initial-value problem (start in mode 2 = off)
+prob = @ivp(H, T(0) ∈ [(2, T0)], dim=1)
+
+# Solve
+sol = solve(prob, tspan=(0.0, 10.0), alg=BOX(δ=0.01), fixpoint_check=false) # Fixpoint_check=false keeps the solver going even after the reachable set stops growing.
+
+# Plot the "flowpipe" 
+default(guidefontsize=6, tickfontsize=6)
+plot(sol, vars=(0, 1), xlab="Time (s)", ylab="Temperature (deg C)", lw=0.5, size=(400, 300)) # Temperature vs. time (index 0 = time).
+```
+
+Now, the presented framework allows defining the invariant and guard sets corresponding to a given mode as overlapping. For example:
+$$
+\mathcal I(\text{off}) = \{x\mid x> 16\},\quad \mathcal I(\text{on}) = \{x\mid x< 20\},
+$$  
+and
+$$
+\mathcal G(\text{off},\text{on}) = \{x\mid x\leq 17\},\; \mathcal G(\text{on},\text{off}) = \{x\mid x\geq 19\}.
+$$
+
+The resulting hybrid automaton is shown in @fig-thermostat-automaton-nondeterministic.
+
+![Hybrid automaton for a thermostat with overlapping invariant and guard sets, which introduces nondeterminism into the model](figures/thermostat_automaton_nondeterministic.png){width=60% #fig-thermostat-automaton-nondeterministic}
+
+This clearly introduces a *nondeterminism* – the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode. It does not seem a good idea to *program* our thermostat in this way, but it may be useful to have this modelling choice in other situations to represent uncertainty. 
 :::
 
 :::{.callout-caution}
@@ -139,6 +209,7 @@ The roles of the invariant sets (the system "can stay in the given mode as long 
 - One common possibility is that as soon as the transition is enabled, it is executed, even if the state is still well inside the invariant set. In other words, a guard gives not only necessary but also sufficient conditions for the transition. Within timed automata theory, such transitions are called *urgent*. This approach is followed by Stateflow software, for example.
 - Another possibility is that even if the transition is enabled, it is only executed once the state leaves the invariant set.
 :::
+
 
 ## Hybrid automaton with external events and control inputs
 
