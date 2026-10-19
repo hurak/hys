@@ -94,6 +94,14 @@ Strictly speaking, $\mathcal{I}$ is a mapping and not a set. Only the mapping ev
     - The state after the jump (associated with the given transition) is reset according to $x^+ = r(q_i,q_j, x)$, or $x^+ \in \mathcal R(q_i,q_j, x)$ in the multivalued case.  
     - If no resetting of the continuous-valued state takes place, the reset map is defined just as the identity operator with respect to $x$ , that is, $r(q_i,q_j, x) = x$.  
 
+:::{.callout-caution}
+## Alternative semantics for the invariant sets and guard sets
+The roles of the invariant sets (the system "can stay in the given mode as long as the continuous state is within the invariant set") and the guard sets (the transition "can be executed when the continuous state is within the guard set") as we defined them constitute the most common semantics, the canonical one, there are alternative semantics used by some authors. Mostly they are motivated by the need to remove the nondeterminism that may arise when the invariant set and the guard set overlap.
+
+- One common possibility is that as soon as the transition is enabled, it is executed, even if the state is still well inside the invariant set. In other words, a guard gives not only necessary but also sufficient conditions for the transition. Within timed automata theory, such transitions are called *eager* or *urgent*. This approach is followed by Stateflow software, for example.
+- Another possibility is that even if the transition is enabled, it is only executed once the state leaves the invariant set.
+:::
+
 ::: {#exm-thermostat}
 ## Thermostat – the hello world example of a hybrid automaton
 
@@ -128,62 +136,130 @@ The graphical representation of the thermostat hybrid automaton is shown in @fig
 
 ![Hybrid automaton for a thermostat](figures/thermostat_automaton.png){width=60% #fig-thermostat-automaton}
 
-The code implementing this hybrid automation and simulation of its response to a given initial state (in fact, an interval of initial states) in Julia is below. It uses the [ReachabilityAnalysis.jl](https://juliareach.github.io/ReachabilityAnalysis.jl/stable/) package.
+The code implementing this hybrid automation and simulation of its response to a given initial state in Julia is below. It uses the [MathematicalSystems.jl](https://juliareach.github.io/MathematicalSystems.jl/stable/), [HybridSystems.jl](https://blegat.github.io/HybridSystems.jl/stable/index.html) and [LazySets.jl](https://juliareach.github.io/LazySets.jl/stable/) packages for defining a hybrid automaton, and [OrdinaryDiffEq.jl](https://docs.sciml.ai/DiffEqDocs/stable/) for solving the corresponding ODEs.
 
+First, we define the automaton:
 ```{julia}
 #| code-fold: show
-#| fig-cap: Simulation of a response to a range of initial states (temperatures) for a hybrid automaton modelling a thermostat
-#| label: fig-thermostat-simulation
+using HybridSystems, MathematicalSystems, LazySets, OrdinaryDiffEq
 
-using ReachabilityAnalysis, ModelingToolkit, Plots
+function thermostat_automaton(; T_on_max=20.0, T_off_min=16.0, T_guard_on2off=20.0, T_guard_off2on=16.0)
+    automaton = GraphAutomaton(2)                       # Locations: 1 = on, 2 = off
+    add_transition!(automaton, 1, 2, 1)                 # Transition 1: on -> off
+    add_transition!(automaton, 2, 1, 2)                 # Transition 2: off -> on
 
-const var = @variables T                                # Temperature (the only state variable)
+    # Flows and invariants. A halfspace {x | a'x ≤ b} is given as HalfSpace(a, b).
+    mode_on = @system(x' = -0.1*x + 5.0, x ∈ HalfSpace([1.0], T_on_max), dim=1)     # x ≤ T_on_max
+    mode_off = @system(x' = -0.1*x, x ∈ HalfSpace([-1.0], -T_off_min), dim=1)        # x ≥ T_off_min
+    modes = [mode_on, mode_off]
 
-function f_on()
-    invariant = HalfSpace(T <= 20)
-    @system(T' = -0.1*T + 5.0, T ∈ invariant)
+    # Guards (and identity reset maps)
+    on2off = ConstrainedIdentityMap(1, HalfSpace([-1.0], -T_guard_on2off))           # x ≥ T_guard_on2off
+    off2on = ConstrainedIdentityMap(1, HalfSpace([1.0], T_guard_off2on))             # x ≤ T_guard_off2on
+
+    return HybridSystem(automaton, modes, [on2off, off2on], [AutonomousSwitching()])
+end
+```
+
+Unfortunately, the current version of the `HybridSystems.jl` does not offer anything beyond the new type definition. We implement our own solver here:
+
+```{julia}
+#| code-fold: true
+using LinearAlgebra, Random, Plots
+
+vectorfield(s::ConstrainedLinearContinuousSystem) = x -> s.A * x
+vectorfield(s::ConstrainedAffineContinuousSystem) = x -> s.A * x + s.c
+
+# Membership in a polyhedral set (given by halfspaces) with some tolerance (to tolerate numerical errors at the boundary).
+isinside(x, X; tol=1e-8) = all(dot(c.a, x) <= c.b + tol for c in constraints_list(X))
+
+guardset(H, tr) = stateset(resetmap(H, tr))
+
+"""
+    simulate(H, q0, x0, tf; semantics=:random, rng=Random.default_rng(), Δt=1e-3, maxjumps=1000)
+
+Simulate a single execution of the hybrid automaton `H` from the initial location `q0` and the initial state `x0` on the time
+interval [0, tf]. Within the location, the state flows until it is about to leave the invariant. Out of the time instants
+at which some outgoing transition is enabled, the switching time is chosen according to `semantics`:
+
+- `:eager` – the transition is executed as soon as it is enabled (urgent transitions, like in Stateflow),
+- `:lazy` – the transition is executed only when the state is about to leave the invariant,
+- `:random` – a time instant at which some transition is enabled is chosen (uniformly) at random.
+
+If several transitions are enabled at the switching time, one of them is chosen at random.
+Returns a vector of segments (one per visited location), each a named tuple `(q, t, x)`.
+"""
+function simulate(H, q0, x0, tf; semantics=:random, rng=Random.default_rng(), Δt=1e-3, maxjumps=1000)
+    q, x, t = q0, float.(collect(x0)), 0.0
+    segments = NamedTuple[]
+    for _ in 1:maxjumps
+        sys = mode(H, q)
+        isinside(x, stateset(sys)) || error("The state $x at time $t is not in the invariant of the location $q.")
+
+        # Flow within the location until the state is about to leave the invariant (or until the final time).
+        f = vectorfield(sys)
+        constraints = constraints_list(stateset(sys))
+        condition(out, x, t, integrator) = (out .= [c.b - dot(c.a, x) for c in constraints])  # positive inside
+        leaving_invariant = VectorContinuousCallback(condition, nothing, (integrator, idx) -> terminate!(integrator), length(constraints))
+        sol = solve(ODEProblem((x, p, t) -> f(x), x, (t, tf)), Tsit5(); callback=leaving_invariant, abstol=1e-10, reltol=1e-10)
+        t_end = sol.t[end]
+        forced = t_end < tf                            # The state is about to leave the invariant before the final time.
+
+        # Time instants (on a grid) at which some outgoing transition is enabled.
+        enabled(τ) = [tr for tr in out_transitions(H, q) if isinside(sol(τ), guardset(H, tr))]
+        grid = unique([collect(t:Δt:t_end); t_end])
+        candidates = filter(τ -> !isempty(enabled(τ)), grid)
+
+        # Choose the switching time (if any).
+        τ = if isempty(candidates)
+            forced && @warn "Blocking: no transition enabled when leaving the invariant of location $q at t = $t_end."
+            nothing
+        elseif semantics == :eager
+            first(candidates)
+        elseif semantics == :lazy
+            forced ? last(candidates) : nothing
+        elseif semantics == :random
+            # If the final time is reached before being forced to leave, staying in the location is also an option.
+            forced ? rand(rng, candidates) : rand(rng, [candidates; nothing])
+        else
+            error("Unknown semantics $semantics.")
+        end
+
+        t_stop = something(τ, t_end)
+        ts = [filter(<(t_stop), sol.t); t_stop]
+        push!(segments, (q=q, t=ts, x=sol.(ts)))
+        isnothing(τ) && break
+
+        # Jump: choose one of the enabled transitions and apply its reset map.
+        tr = rand(rng, enabled(τ))
+        q, x, t = target(H, tr), apply(resetmap(H, tr), sol(τ)), τ
+        t >= tf && break
+    end
+    return segments
 end
 
-function f_off()
-    invariant = HalfSpace(T >= 16)
-    @system(T' = -0.1*T, T ∈ invariant)
+function plot_execution!(p, segments; i=1, colors=(:red, :blue), kwargs...)
+    for (k, s) in enumerate(segments)
+        plot!(p, s.t, getindex.(s.x, i); color=colors[s.q], label="", kwargs...)
+        if k < length(segments)                         # Dashed line for the jump (if any) to the next segment.
+            next = segments[k+1]
+            plot!(p, [s.t[end], next.t[1]], [s.x[end][i], next.x[1][i]]; color=:gray, ls=:dash, label="", kwargs...)
+        end
+    end
+    return p
 end
+```
 
-function thermostat_automaton()
-    automaton = GraphAutomaton(2)
-    add_transition!(automaton, 1, 2, 1)
-    add_transition!(automaton, 2, 1, 2)
+We can now use this simulator to simulate the response of the thermostat hybrid automaton to a single initial state (temperature). The results are shown in @fig-thermostat-simulation-deterministic.
 
-    mode1 = f_on()
-    mode2 = f_off()
-    modes = [mode1, mode2]
-
-    # Transition on -> off
-    guard_on2off = HalfSpace(T >= 20)                   # We set the guard condition complementary to the invariant of the mode we are leaving (mode 1 = on) to be deterministic.
-    trans1 = ConstrainedIdentityMap(1, guard_on2off)    # Identity reset map (no reset) with the given guard.
-    # Transition off -> on
-    guard_off2on = HalfSpace(T <= 16)                   # We set the guard condition complementary to the invariant of the mode we are leaving (mode 1 = on) to be deterministic.
-    trans2 = ConstrainedIdentityMap(1, guard_off2on)    # Identity reset map (no reset) with the given guard.
-    guard_and_reset_maps = [trans1, trans2]             # Combines the guard and reset maps for each transition in the automaton.
-
-    return HybridSystems.HybridSystem(automaton, modes, guard_and_reset_maps, [AutonomousSwitching()])
-end
-
-# Creating the automaton
+```{julia}
+#| code-fold: true
+#| fig-cap: Simulation of a response of a thermostat deterministic hybrid automaton to a single initial state (temperature)
+#| label: fig-thermostat-simulation-deterministic
 H = thermostat_automaton()
-
-# Set of initial states
-T0 = Hyperrectangle(low=[21.0], high=[25.0])            # We leave the code ready for higher-dimensional systems as.
-
-# Formulate the initial-value problem (start in mode 2 = off)
-prob = @ivp(H, T(0) ∈ [(2, T0)], dim=1)
-
-# Solve
-sol = solve(prob, tspan=(0.0, 10.0), alg=BOX(δ=0.01), fixpoint_check=false) # Fixpoint_check=false keeps the solver going even after the reachable set stops growing.
-
-# Plot the "flowpipe" 
-default(guidefontsize=6, tickfontsize=6)
-plot(sol, vars=(0, 1), xlab="Time (s)", ylab="Temperature (deg C)", lw=0.5, size=(400, 300)) # Temperature vs. time (index 0 = time).
+segments = simulate(H, 2, [22.0], 30.0)                 # Start in location 2 (off) at 22 °C.
+p1 = plot(xlabel="Time (s)", ylabel="Temperature (°C)")
+plot_execution!(p1, segments; lw=2, guidefontsize=6, tickfontsize=6, size=(400, 300))
 ```
 
 Now, the presented framework allows defining the invariant and guard sets corresponding to a given mode as overlapping. For example:
@@ -199,17 +275,35 @@ The resulting hybrid automaton is shown in @fig-thermostat-automaton-nondetermin
 
 ![Hybrid automaton for a thermostat with overlapping invariant and guard sets, which introduces nondeterminism into the model](figures/thermostat_automaton_nondeterministic.png){width=60% #fig-thermostat-automaton-nondeterministic}
 
-This clearly introduces a *nondeterminism* – the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode. It does not seem a good idea to *program* our thermostat in this way, but it may be useful to have this modelling choice in other situations to represent uncertainty. 
+This clearly introduces a *nondeterminism* – the response of the system is not uniquely determined. Consider the case when the system is in the `off` mode and the temperature is 16.5. The system can either stay in the `off` mode or switch to the `on` mode. It does not seem a good idea to *program* our thermostat in this way, but it may be useful to have this modelling choice in other situations to represent uncertainty, so we keep working with this example. 
+
+We can handle the nondeterminism due to overlapping invariant and guard sets by using a random number generator to decide whether to stay or whether to go. The responses to a few initial temperatures are shown in @fig-thermostat-simulation-nondeterministic.
+```{julia}
+#| code-fold: true
+#| fig-cap: Simulation of a response to a range of initial states (temperatures) for a nondeterministic hybrid automaton modelling a thermostat
+#| label: fig-thermostat-simulation-nondeterministic
+
+Hnd = thermostat_automaton(T_guard_on2off=19.0, T_guard_off2on=17.0)
+rng = Xoshiro(1234)
+p2 = plot(xlabel="Time (s)", ylabel="Temperature (°C)", guidefontsize=6, tickfontsize=6, size=(400, 300))
+for _ in 1:10
+    x0 = 18.0 + 4.0 * rand(rng)                         # Initial temperature from [18, 22]
+    plot_execution!(p2, simulate(Hnd, 2, [x0], 30.0; semantics=:random, rng=rng); lw=1)
+end
+hline!(p2, [16, 17, 19, 20]; color=:black, ls=:dot, label="")
+```
+
+But as we have already discussed, there may be different semantics for handling the overlapping of invariant and guard sets. Below we also plot the responses to a few initial temperatures for the same hybrid automaton but with the `:eager` semantics, which is shown in @fig-thermostat-simulation-eager. We also show the responses for the `:lazy` semantics for comparison. The difference is that the `:eager` semantics executes the transition as soon as it is enabled (this is how Stateflow simulator works too), while the `:lazy` semantics executes the transition only when the state is about to leave the invariant.
+```{julia}
+#| code-fold: true
+#| fig-cap: Simulation of a response to an initial state (temperature) for a hybrid automaton modelling a thermostat with overlapping invariant and guard sets, with two different semantics for handling the nondeterminism – eager (solid line) and lazy (dash-dotted line)
+#| label: fig-thermostat-simulation-eager
+
+p3 = plot(xlabel="Time (s)", ylabel="Temperature (°C)", guidefontsize=6, tickfontsize=6, size=(400, 300))
+plot_execution!(p3, simulate(Hnd, 2, [22.0], 30.0; semantics=:eager); lw=2)
+plot_execution!(p3, simulate(Hnd, 2, [22.0], 30.0; semantics=:lazy); lw=2, ls=:dashdot)
+```
 :::
-
-:::{.callout-caution}
-## Alternative semantics for the invariant sets and guard sets
-The roles of the invariant sets (the system "can stay in the given mode as long as the continuous state is within the invariant set") and the guard sets (the transition "can be executed when the continuous state is within the guard set") as we defined them constitute the most common semantics, the canonical one, there are alternative semantics used by some authors. Mostly they are motivated by the need to remove the nondeterminism that may arise when the invariant set and the guard set overlap.
-
-- One common possibility is that as soon as the transition is enabled, it is executed, even if the state is still well inside the invariant set. In other words, a guard gives not only necessary but also sufficient conditions for the transition. Within timed automata theory, such transitions are called *urgent*. This approach is followed by Stateflow software, for example.
-- Another possibility is that even if the transition is enabled, it is only executed once the state leaves the invariant set.
-:::
-
 
 ## Hybrid automaton with external events and control inputs
 

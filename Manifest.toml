@@ -2,7 +2,7 @@
 
 julia_version = "1.13.2"
 manifest_format = "2.1"
-project_hash = "b01192458320e5d59c59d8a2e5c7d6aad7bc8f0f"
+project_hash = "66f555d09203ac506930f572de33bcfbe29c07cc"
 
 [[deps.ADTypes]]
 deps = ["PrecompileTools"]
@@ -285,13 +285,6 @@ weakdeps = ["ChainRulesCore", "ForwardDiff"]
     BracketingNonlinearSolveChainRulesCoreExt = ["ChainRulesCore", "ForwardDiff"]
     BracketingNonlinearSolveForwardDiffExt = "ForwardDiff"
 
-[[deps.BranchAndPrune]]
-deps = ["AbstractTrees"]
-git-tree-sha1 = "8bea09a63c60b6b5200e613379947e7c8527992b"
-registries = "General"
-uuid = "d3bc4f2e-91e6-11e9-365e-cd067da536ce"
-version = "0.2.2"
-
 [[deps.Bzip2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
 git-tree-sha1 = "1b96ea4a01afe0ea4090c5c8039690672dd13f2e"
@@ -372,17 +365,6 @@ registries = "General"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.18.8+0"
 
-[[deps.CarlemanLinearization]]
-deps = ["LinearAlgebra", "MultivariatePolynomials", "ReachabilityBase", "SparseArrays"]
-git-tree-sha1 = "45baa9fc74d0d87b13dce46b9f48d906afc928ec"
-registries = "General"
-uuid = "4803f6b2-022a-4c1b-a771-522a3413ec86"
-version = "0.4.4"
-weakdeps = ["IntervalArithmetic", "LazySets", "Requires"]
-
-    [deps.CarlemanLinearization.extensions]
-    LazySetsExt = ["IntervalArithmetic", "LazySets"]
-
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra"]
 git-tree-sha1 = "8ae5ee44c8c4cbd943f6b4f21747df2bb3041513"
@@ -393,12 +375,6 @@ weakdeps = ["SparseArrays"]
 
     [deps.ChainRulesCore.extensions]
     ChainRulesCoreSparseArraysExt = "SparseArrays"
-
-[[deps.CheckedSizeProduct]]
-git-tree-sha1 = "10d16b78e524faa08b7b7b6993871ed9a3a67a9a"
-registries = "General"
-uuid = "1b2cc9da-92e3-4b71-9788-30fc110eefda"
-version = "1.0.0"
 
 [[deps.CloseOpenIntervals]]
 deps = ["Static", "StaticArrayInterface"]
@@ -427,12 +403,6 @@ git-tree-sha1 = "da54a6cd93c54950c15adf1d336cfd7d71f51a56"
 registries = "General"
 uuid = "6b39b394-51ab-5f42-8807-6242bab2b4c2"
 version = "0.8.7"
-
-[[deps.Collects]]
-git-tree-sha1 = "d0b504dbd9ea6a0142845a6f9b4c58b3627c718f"
-registries = "General"
-uuid = "08986516-18db-4a8b-8eaa-f5ef1828d8f1"
-version = "1.1.0"
 
 [[deps.ColorBrewer]]
 deps = ["Colors", "JSON"]
@@ -711,10 +681,10 @@ version = "1.1.0"
 
 [[deps.DelaunayTriangulation]]
 deps = ["AdaptivePredicates", "EnumX", "ExactPredicates", "Random"]
-git-tree-sha1 = "4ac548adcad90c1d5d677af13568a748af4c952b"
+git-tree-sha1 = "e1e28f37cbdca4b594ad86ecfe2ee8f25796ebff"
 registries = "General"
 uuid = "927a84f5-c5f4-47a5-9785-b46e178433df"
-version = "1.6.7"
+version = "1.7.0"
 
 [[deps.DelayDiffEq]]
 deps = ["ArrayInterface", "ConcreteStructs", "DataStructures", "DiffEqBase", "FastBroadcast", "ForwardDiff", "LinearAlgebra", "Logging", "OrdinaryDiffEq", "OrdinaryDiffEqCore", "OrdinaryDiffEqDefault", "OrdinaryDiffEqDifferentiation", "OrdinaryDiffEqFunctionMap", "OrdinaryDiffEqNonlinearSolve", "OrdinaryDiffEqRosenbrock", "Printf", "RecursiveArrayTools", "Reexport", "SciMLBase", "SciMLLogging", "SimpleNonlinearSolve", "SymbolicIndexingInterface"]
@@ -896,10 +866,10 @@ version = "1.11.0"
 
 [[deps.Distributions]]
 deps = ["AliasTables", "FillArrays", "LinearAlgebra", "PDMats", "Printf", "QuadGK", "Random", "Roots", "SpecialFunctions", "Statistics", "StatsAPI", "StatsBase", "StatsFuns"]
-git-tree-sha1 = "a958ab3a40c755563f5e1405c0846cb0446bf19d"
+git-tree-sha1 = "2ddbc341251ed713d39e503b504593a5d6789551"
 registries = "General"
 uuid = "31c24e10-a181-5473-b8eb-7969acd0382f"
-version = "0.25.131"
+version = "0.25.132"
 
     [deps.Distributions.extensions]
     DistributionsChainRulesCoreExt = "ChainRulesCore"
@@ -1109,10 +1079,10 @@ version = "0.4.20"
 
 [[deps.FastPower]]
 deps = ["PrecompileTools"]
-git-tree-sha1 = "3c7269c236978d434a16ebe99f9743b9d706270a"
+git-tree-sha1 = "a6bcbd090fc6b6f022fc0ad96f77ba31b9577282"
 registries = "General"
 uuid = "a4df4552-cc26-4903-aec0-212e50a0e84b"
-version = "1.5.0"
+version = "1.5.1"
 
     [deps.FastPower.extensions]
     FastPowerEnzymeExt = "Enzyme"
@@ -1224,23 +1194,6 @@ git-tree-sha1 = "59af96b98217c6ef4ae0dfe065ac7c20831d1a84"
 registries = "General"
 uuid = "53c48c17-4a7d-5ca2-90c5-79b7896eea93"
 version = "0.8.6"
-
-[[deps.FixedSizeArrays]]
-deps = ["CheckedSizeProduct", "Collects", "LightBoundsErrors"]
-git-tree-sha1 = "5004dcfe0be56e1033b7697bb8797a424ce11a3e"
-registries = "General"
-uuid = "3821ddf9-e5b5-40d5-8e25-6813ab96b5e2"
-version = "1.4.2"
-
-    [deps.FixedSizeArrays.extensions]
-    FixedSizeArraysAdaptExt = "Adapt"
-    FixedSizeArraysMPIExt = "MPI"
-    FixedSizeArraysRandomExt = "Random"
-
-    [deps.FixedSizeArrays.weakdeps]
-    Adapt = "79e6a3ab-5dfb-504d-930d-738a2a938a0e"
-    MPI = "da04e1cc-30fd-572f-bb4f-1f8673147195"
-    Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [[deps.Fontconfig_jll]]
 deps = ["Artifacts", "Bzip2_jll", "Expat_jll", "FreeType2_jll", "JLLWrappers", "Libdl", "Libuuid_jll", "Zlib_jll"]
@@ -1684,27 +1637,6 @@ version = "1.0.12"
     RecipesBase = "3cdcf5f2-1ef4-517c-9805-6587b60abb01"
     SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
-[[deps.IntervalBoxes]]
-deps = ["IntervalArithmetic", "StaticArrays"]
-git-tree-sha1 = "18031760800206d9aa5076f006dec6f00243f140"
-registries = "General"
-uuid = "43d83c95-ebbb-40ec-8188-24586a1458ed"
-version = "0.3.0"
-
-[[deps.IntervalMatrices]]
-deps = ["IntervalArithmetic", "LinearAlgebra", "PkgVersion", "Random", "Reexport"]
-git-tree-sha1 = "da975a6f697a3cb021650a4c35bff77c9c749386"
-registries = "General"
-uuid = "5c1f47dc-42dd-5697-8aaa-4d102d140ba9"
-version = "0.12.1"
-
-[[deps.IntervalRootFinding]]
-deps = ["BranchAndPrune", "ForwardDiff", "InteractiveUtils", "IntervalArithmetic", "LinearAlgebra", "Reexport", "StaticArrays"]
-git-tree-sha1 = "86b9b57fe4c0fd14d6ba676ddeda3f7601f631d7"
-registries = "General"
-uuid = "d2bf35a9-74e0-55ec-b149-d360ff49b807"
-version = "0.7.2"
-
 [[deps.IntervalSets]]
 git-tree-sha1 = "0db6aea5b64caa1c47e9fdd27394f0296f05e8bf"
 registries = "General"
@@ -1719,10 +1651,10 @@ weakdeps = ["Makie", "Random", "RecipesBase", "Statistics"]
     IntervalSetsStatisticsExt = "Statistics"
 
 [[deps.InverseFunctions]]
-git-tree-sha1 = "a779299d77cd080bf77b97535acecd73e1c5e5cb"
+git-tree-sha1 = "5cc6ad3e2bfc75a11eed92632ee341d37f4a4536"
 registries = "General"
 uuid = "3587e190-3f89-42d0-90ee-14403ec27112"
-version = "0.1.17"
+version = "0.1.18"
 weakdeps = ["Dates", "Test"]
 
     [deps.InverseFunctions.extensions]
@@ -1972,10 +1904,10 @@ version = "0.3.1"
 
 [[deps.LazySets]]
 deps = ["ExprTools", "GLPK", "IntervalArithmetic", "JuMP", "LinearAlgebra", "Random", "ReachabilityBase", "Reexport", "SparseArrays"]
-git-tree-sha1 = "4d9a83da8e3dbfc421817c881fed1232ee8c1c57"
+git-tree-sha1 = "8575c336bd347522349cf625541393a2acec001c"
 registries = "General"
 uuid = "b4f0291d-fe17-52bc-9479-3d1a343d9043"
-version = "7.0.1"
+version = "7.1.0"
 
     [deps.LazySets.extensions]
     LazySetsCDDLibExt = "CDDLib"
@@ -2000,7 +1932,7 @@ version = "7.0.1"
     LazySetsStaticArraysCoreExt = ["ReachabilityBase", "StaticArraysCore"]
     LazySetsSymEngineExt = "SymEngine"
     LazySetsSymbolicsExt = ["SymbolicUtils", "Symbolics"]
-    LazySetsTaylorModelsExt = ["IntervalArithmetic", "TaylorModels"]
+    LazySetsTaylorModelsExt = ["IntervalArithmetic", "TaylorModels", "TaylorSeries"]
     LazySetsWriteVTKExt = "WriteVTK"
 
     [deps.LazySets.weakdeps]
@@ -2030,6 +1962,7 @@ version = "7.0.1"
     SymbolicUtils = "d1185830-fcd6-423d-90d6-eec64667417b"
     Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
     TaylorModels = "314ce334-5f6e-57ae-acf6-00b6e903104a"
+    TaylorSeries = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
     WriteVTK = "64499a7a-5c06-52f2-abe2-ccb03c286192"
 
 [[deps.LibCURL]]
@@ -2084,10 +2017,10 @@ version = "1.18.0+0"
 
 [[deps.Libmount_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "e2b48382276415b5a5d5282a5dd75a0f0bf4ac84"
+git-tree-sha1 = "b8a91037379e1fd661e9b5ff3d7a770424b1f9f2"
 registries = "General"
 uuid = "4b2f31a3-9ecc-558c-b454-b3730dcb73e9"
-version = "2.42.2+0"
+version = "2.42.4+0"
 
 [[deps.Libtiff_jll]]
 deps = ["Artifacts", "JLLWrappers", "JpegTurbo_jll", "LERC_jll", "Libdl", "XZ_jll", "Zlib_jll", "Zstd_jll"]
@@ -2098,16 +2031,10 @@ version = "4.7.3+0"
 
 [[deps.Libuuid_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "d620582b1f0cbe2c72dd1d5bd195a9ce73370ab1"
+git-tree-sha1 = "9e887184f306b28dbfcff88cefbb0ec80f1aa9e0"
 registries = "General"
 uuid = "38a345b3-de98-5d2b-a5d3-14cd9215e700"
-version = "2.42.0+0"
-
-[[deps.LightBoundsErrors]]
-git-tree-sha1 = "1290fdf2b52491ed72658977a7c94274c86091df"
-registries = "General"
-uuid = "e21c612c-4641-4669-b9c3-3f4360ced9da"
-version = "1.1.0"
+version = "2.42.4+0"
 
 [[deps.LineSearch]]
 deps = ["ADTypes", "CommonSolve", "ConcreteStructs", "FastClosures", "LinearAlgebra", "MaybeInplace", "PrecompileTools", "SciMLBase", "SciMLJacobianOperators", "StaticArraysCore"]
@@ -2320,10 +2247,10 @@ version = "1.11.0"
 
 [[deps.MathOptIIS]]
 deps = ["MathOptInterface"]
-git-tree-sha1 = "3b3d69130d8ab8c39d5fa4d30e20a8e6428c9d37"
+git-tree-sha1 = "da7201fef4d3a70906723092d37a24a64ecab1bf"
 registries = "General"
 uuid = "8c4f8055-bd93-4160-a86b-a0c04941dbff"
-version = "0.2.0"
+version = "0.2.1"
 
 [[deps.MathOptInterface]]
 deps = ["CodecBzip2", "CodecZlib", "ForwardDiff", "JSON", "LinearAlgebra", "MutableArithmetics", "NaNMath", "OrderedCollections", "PrecompileTools", "Printf", "SparseArrays", "SpecialFunctions", "Test"]
@@ -2515,10 +2442,10 @@ version = "0.5.9"
 
 [[deps.MutableArithmetics]]
 deps = ["LinearAlgebra", "SparseArrays", "Test"]
-git-tree-sha1 = "7fc67976fca2c577ca96257061e4785463bb9fb8"
+git-tree-sha1 = "158af80b4d50a7bdc37c8357c4c4554c335cfe5f"
 registries = "General"
 uuid = "d8a4904e-b15c-11e9-3269-09a3773c0cb0"
-version = "1.8.1"
+version = "1.9.0"
 
 [[deps.NLSolversBase]]
 deps = ["ADTypes", "DifferentiationInterface", "FiniteDiff", "LinearAlgebra"]
@@ -3274,10 +3201,10 @@ version = "1.3.4"
 
 [[deps.Preferences]]
 deps = ["TOML"]
-git-tree-sha1 = "5005266de4bfe50e53ff44a5cb5c540b6e47a254"
+git-tree-sha1 = "aef1987d90dcc2e2cbd919ad10b2d25bcce4f418"
 registries = "General"
 uuid = "21216c6a-2e73-6563-6e65-726566657250"
-version = "1.6.0"
+version = "1.6.1"
 
 [[deps.PrettyTables]]
 deps = ["Crayons", "LaTeXStrings", "Markdown", "PrecompileTools", "Printf", "REPL", "Reexport", "StringManipulation", "StyledStrings", "Tables"]
@@ -3418,13 +3345,6 @@ weakdeps = ["FixedPointNumbers"]
 
     [deps.Ratios.extensions]
     RatiosFixedPointNumbersExt = "FixedPointNumbers"
-
-[[deps.ReachabilityAnalysis]]
-deps = ["CarlemanLinearization", "CommonSolve", "HybridSystems", "IntervalArithmetic", "IntervalBoxes", "IntervalMatrices", "LazySets", "LinearAlgebra", "MathematicalSystems", "Parameters", "Random", "ReachabilityBase", "RecipesBase", "Reexport", "Requires", "SparseArrays", "StaticArrays", "TaylorIntegration", "TaylorModels", "TaylorSeries"]
-git-tree-sha1 = "9554998d40fcc949d8bc47d66a77350f4ed05f85"
-registries = "General"
-uuid = "1e97bd63-91d1-579d-8e8d-501d2b57c93f"
-version = "0.32.1"
 
 [[deps.ReachabilityBase]]
 deps = ["ExprTools", "InteractiveUtils", "LinearAlgebra", "Random", "Requires", "SparseArrays"]
@@ -4147,44 +4067,6 @@ registries = "General"
 uuid = "ed4db957-447d-4319-bfb6-7fa9ae7ecf34"
 version = "0.1.3"
 
-[[deps.TaylorIntegration]]
-deps = ["DiffEqBase", "Espresso", "InteractiveUtils", "LinearAlgebra", "Markdown", "Parameters", "RecursiveArrayTools", "Reexport", "StaticArrays", "TaylorSeries"]
-git-tree-sha1 = "38ed42dcf490c97a9b5f881cf0fc5fc67ca7e53a"
-registries = "General"
-uuid = "92b13dbe-c966-51a2-8445-caca9f8a7d42"
-version = "0.18.3"
-weakdeps = ["IntervalArithmetic", "OrdinaryDiffEq"]
-
-    [deps.TaylorIntegration.extensions]
-    TaylorIntegrationDiffEqExt = "OrdinaryDiffEq"
-    TaylorIntegrationIAExt = "IntervalArithmetic"
-
-[[deps.TaylorModels]]
-deps = ["IntervalArithmetic", "IntervalRootFinding", "LinearAlgebra", "Markdown", "Parameters", "Random", "RecipesBase", "Reexport", "StaticArrays", "TaylorIntegration", "TaylorSeries"]
-git-tree-sha1 = "227c51be02e516b460f9c82932e3a418aa75bd23"
-registries = "General"
-uuid = "314ce334-5f6e-57ae-acf6-00b6e903104a"
-version = "0.10.2"
-
-[[deps.TaylorSeries]]
-deps = ["FixedSizeArrays", "LinearAlgebra", "Markdown", "Reexport", "SparseArrays"]
-git-tree-sha1 = "994ba459660412edbf4290931bb2a598f0318e6e"
-registries = "General"
-uuid = "6aa5eb33-94cf-58f4-a9d0-e4b2c4fc25ea"
-version = "0.21.10"
-
-    [deps.TaylorSeries.extensions]
-    TaylorSeriesIAExt = "IntervalArithmetic"
-    TaylorSeriesJLD2Ext = "JLD2"
-    TaylorSeriesRATExt = "RecursiveArrayTools"
-    TaylorSeriesSAExt = "StaticArrays"
-
-    [deps.TaylorSeries.weakdeps]
-    IntervalArithmetic = "d1acc4aa-44c8-5952-acd4-ba5d80a2a253"
-    JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
-    RecursiveArrayTools = "731186ca-8d62-57ce-b412-fbd966d074cd"
-    StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-
 [[deps.TensorCore]]
 deps = ["LinearAlgebra"]
 git-tree-sha1 = "1feb45f88d133a655e001435632f019a9a1bcdb6"
@@ -4193,10 +4075,11 @@ uuid = "62fd8b95-f654-4bbd-a8a5-9c27f68ccd50"
 version = "0.1.1"
 
 [[deps.TermInterface]]
-git-tree-sha1 = "d673e0aca9e46a2f63720201f55cc7b3e7169b16"
+deps = ["PrecompileTools"]
+git-tree-sha1 = "d6984451701c6462ce685d0e2d4f2c47cd966773"
 registries = "General"
 uuid = "8ea1fca8-c5ef-4a55-8b96-4e9afe9c9a3c"
-version = "2.0.0"
+version = "2.0.1"
 
 [[deps.Test]]
 deps = ["InteractiveUtils", "Logging", "Random", "Serialization"]
