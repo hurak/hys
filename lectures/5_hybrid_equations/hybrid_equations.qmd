@@ -43,7 +43,7 @@ This model of a hybrid system is thus parameterized by the quadruple $\{f, \math
 
 ## Hybrid inclusions
 
-We now extend the presented framework of hybrid equations a bit. Namely, the functions on the right-hand sides in both the differential and the difference equations are no longer assigning just a single value (as well-behaved functions do), but they assign sets!
+An extension of the presented framework of hybrid equations exists that may be useful in certain situations. Namely, the functions on the right-hand sides in both the differential and the difference equations no longer assign just a single value (as well-behaved functions do), but they assign sets!
 $$
 \begin{aligned}
 \dot{x} &\in \mathcal F(x), \quad x \in \mathcal{C},\\
@@ -56,6 +56,8 @@ where
 - $\mathcal{C}$ is the *flow set*,
 - $\mathcal{G}$ is the set-valued *jump map*, 
 - $\mathcal{D}$ is the *jump set*.
+
+One motivation for introduction of this set-valued framework is to model some uncertainty in the system. Later in this course we will also encounter another motivation for this extension: it turns out an appropriate and rigorous framework in some mathematically troublesome situations such as discontinuous right-hand sides of the differential equations.  
 
 ## Output equations
 
@@ -102,9 +104,7 @@ We now extend the simple bouncing ball example by adding a vertically moving pis
 
 ![Example of a ball bouncing on a vertically moving piston](figures/bouncing_ball_on_a_piston.png){width=40%}
 
-In our analysis we neglect the sizes (for simplicity).
-
-The collision happens when $x_\mathrm{b} = x_\mathrm{p}$, and $v_\mathrm{b} < v_\mathrm{p}$.
+In our analysis we neglect the sizes (for simplicity). The collision happens when $x_\mathrm{b} = x_\mathrm{p}$, and $v_\mathrm{b} < v_\mathrm{p}$.
 
 The conservation of momentum after a collision reads
 $$
@@ -164,21 +164,14 @@ $$
 ::: {#exm-synchronization-of-fireflies}
 ## Synchronization of fireflies
 
-This is a famous example in synchronization. We consider $n$ fireflies, $x_i$ is the $i$-th firefly's clock, normalized to $[0,1]$. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by $\varepsilon \%$.
+This is a famous example in synchronization. We consider $n$ fireflies, $x_i$ is the $i$-th firefly's clock, normalized to $[0,1]$. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by $\varepsilon\times 100\, \%$.
 
 Here is how we model the problem using the four-tuple $\{f, \mathcal C, g, \mathcal D\}$:
 $$
-\mathcal{C} = [0,1)^n = \{\bm x \in \mathbb R^n\mid x_i \in [0,1),\; i=1,\ldots,n \},
-$$
-$$
-\bm f = [f_1, f_2, \ldots, f_n]^\top,\quad f_i = 1, \quad i=1,\ldots,n,
-$$
-$$
-\mathcal{D} = \{\bm x \in [0,1]^n \mid \max_i x_i = 1 \},
-$$
-
-$$
 \begin{aligned}
+\mathcal{C} &= [0,1)^n = \{\bm x \in \mathbb R^n\mid x_i \in [0,1),\; i=1,\ldots,n \},\\
+\bm f &= [f_1, f_2, \ldots, f_n]^\top,\quad f_i = 1, \quad i=1,\ldots,n,\\
+\mathcal{D} &= \{\bm x \in [0,1]^n \mid \max_i x_i = 1 \},\\
 \bm g &= [g_1, \ldots, g_n]^\top,\\ 
 & \qquad g_i(x_i) = 
 \begin{cases} 
@@ -232,15 +225,15 @@ $$
 The flow set is
 $$
 \begin{aligned}
-\mathcal{C} &= \{\bm x \mid q=0,\, \tau<\frac{\alpha}{\omega},\, i_\mathrm{L}=0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}>0\}
-\end{aligned}.
+\mathcal{C} &= \{\bm x \mid q=0,\, \tau<\frac{\alpha}{\omega},\, i_\mathrm{L}=0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}>0\}.
+\end{aligned}
 $$
 
 The jump set is
 $$
 \begin{aligned}
-\mathcal{D} &= \{\bm x \mid q=0,\, \tau\geq \frac{\alpha}{\omega},\, i_\mathrm{L}=0,\, v_\mathrm{C}>0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}=0,\, v_\mathrm{C}<0\}
-\end{aligned}.
+\mathcal{D} &= \{\bm x \mid q=0,\, \tau\geq \frac{\alpha}{\omega},\, i_\mathrm{L}=0,\, v_\mathrm{C}>0\}\\ &\qquad \cup \{\bm x \mid q=1,\, i_\mathrm{L}=0,\, v_\mathrm{C}<0\}.
+\end{aligned}
 $$
 
 The jump map is
@@ -281,7 +274,7 @@ $$
 The flow set is
 $$
 \begin{aligned}
-\mathcal{C} &= \{\bm x \mid \tau \in [0,T)\}
+\mathcal{C} &= \{\bm x \mid \tau \in [0,T)\}.
 \end{aligned}
 $$
 
@@ -293,19 +286,19 @@ $$
 f_\mathrm{p}(x_\mathrm{p},u)\\
 0\\
 1
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 The jump set is
 $$
 \begin{aligned}
-\mathcal{D} &= \{\bm x \mid \tau = T\}
+\mathcal{D} &= \{\bm x \mid \tau = T\}.
 \end{aligned}
 $$
 or rather 
 $$
 \begin{aligned}
-\mathcal{D} &= \{\bm x \mid \tau \geq T\}
+\mathcal{D} &= \{\bm x \mid \tau \geq T\}.
 \end{aligned}
 $$
 
@@ -316,7 +309,7 @@ $$
 x_\mathrm{p}\\
 \kappa(r-y)\\
 0
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theories. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time $T$ may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework. 
@@ -522,9 +515,9 @@ sol = solve(prob,Tsit5(),callback=cb,dtmax=0.1) # ContinuousCallback more suitab
 # Plotting the results of the simulation
 
 using Plots
-gr(tickfontsize=12,legend_font_pointsize=12,guidefontsize=12)
+gr(tickfontsize=6,legend_font_pointsize=6,guidefontsize=6)
 
-plot(sol,label=["x₁" "x₂"],xaxis="t",yaxis="x",lw=2)
+plot(sol,label=["x₁" "x₂"],xaxis="t",yaxis="x",lw=2,size=(400,200))
 hline!([c₀], label="c₀")
 hline!([c₁], label="c₁")
 ```
@@ -535,13 +528,21 @@ The solution can also be visualized in the state space.
 #| label: fig-simulation-stabilization-on-a-circle-XY
 #| fig-cap: "Simulation of stabilization on a circle using a hybrid controller"
 
-plot(sol,idxs=(1,2),label="",xaxis="x₁",yaxis="x₂",lw=2,aspect_ratio=1)
+plot(sol,idxs=(1,2),label="",xaxis="x₁",yaxis="x₂",lw=2,aspect_ratio=1,size=(400,400))
 vline!([c₀], label="c₀")
 vline!([c₁], label="c₁")
 scatter!([x₀[1]],[x₀[2]],label="x init")
 scatter!([1],[0],label="x ref")
 ```
 :::
+
+:::{.callout-warning}
+### On implementation of hybrid equations using general-purpose solvers for ordinary differential equations
+While the fact that we do not have to distinguish between continuous- and discrete-valued makes hybrid (state) equations convenient for theoretical analysis, when it comes to numerical simulation, it is a waste of computational resources to include among other general ODEs also the equations $\dot x_i = 0$, and solve them numerically. This we also reflected in the simulation code above by explicitly keeping the discrete state variable constant between the jumps.
+
+Admittedly, there is [HyEQ toolbox for Matlab](https://www.mathworks.com/matlabcentral/fileexchange/41372-hybrid-equations-toolbox), which does accept hybrid equations, but we view it as a convenient educational tool rather than an optimized numerical tool. 
+:::
+
 
 ## Supervisory control
 
