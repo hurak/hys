@@ -7,10 +7,10 @@ format:
 #engine: julia
 ---
 
-There is a well-developed and actively maintained Matlab toolbox
+There is a well-developed and actively maintained Matlab toolbox that follows the hybrid equations framework:
 
 - Sanfelice, Ricardo, and Pablo Nanez. ‘Hybrid Equations (HyEQ) Toolbox for Matlab’. Version 3.0, 15 October 2022. [https://github.com/pnanez/HyEQ_Toolbox](https://github.com/pnanez/HyEQ_Toolbox). Documentation at [https://hyeq.github.io](https://hyeq.github.io). 
 
-The toolbox can also be installed directly from Matlab through their Add-Ons Explorer. As the stable version is already two years old and they also offer a beta version 3.1.0.04, which was last updated on April 28, 2024, the beta version seems the way to go for our purposes. The authors will certainly appreciate any feedback.
+The toolbox can also be installed directly from Matlab through their Add-Ons Explorer. As the stable version 3.0 is already several years old as is the beta version 3.1.0.04 (last updated on April 28, 2024), the beta version seems the way to go for our purposes. 
 
-Other programming languages seem to be missing a similar toolbox/package. How about developing one in Julia?
+Other programming languages seem to be missing a similar toolbox/package. Whether implementing one is worth the effort is questionable – from the software implementation viewpoint it is suboptimal to include among the differential equations to be solved the trivial equations $\dot x = 0$ and $\dot x = 1$. It is more efficient to do the split of the state variables into those that flow (nontrivially) and those that only jump. The latter are only updated at the time of jumps. And since the time $t$ is always available to the solver as the independent variable, there is no need to solve for it either.
