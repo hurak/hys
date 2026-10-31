@@ -9,6 +9,7 @@ format:
 crossref:
   fig-prefix: Fig. 
   eq-prefix: Eq.
+  sec-prefix: Sec.
 engine: julia
 ---
 
@@ -83,13 +84,13 @@ $$
 \mathcal{C} = \{\bm x \in \mathbb{R}^2 \mid x_1>0 \lor (x_1 = 0, x_2\geq 0)\},
 $$
 $$
-f(\bm x) = \begin{bmatrix}x_2 \\ -g\end{bmatrix}, \qquad g = 9.81,
+\mathbf f(\bm x) = \begin{bmatrix}x_2 \\ -g_0\end{bmatrix}, \qquad g_0 = 9.81,
 $$
 $$
 \mathcal{D} = \{\bm x \in \mathbb{R}^2 \mid x_1 = 0, x_2 < 0\},
 $$
 $$
-g(\bm x) = \begin{bmatrix}x_1 \\ -\alpha x_2\end{bmatrix}, \qquad \alpha = 0.8.
+\mathbf g(\bm x) = \begin{bmatrix}x_1 \\ -\alpha x_2\end{bmatrix}, \qquad \alpha = 0.8.
 $$
 
 The two sets and two maps are illustrated below.
@@ -254,18 +255,18 @@ Another example of a dynamical system that fits nicely into the hybrid equations
 
 ![Sampled data feedback control](figures/sample_and_hold.png){width=70% #fig-sampled-data-feedback}
 
-The plant is modelled by $\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},u), \; y = h(x_\mathrm{p})$. The controller samples the output $T$-periodically and computes its own output as a nonlinear function $u = \kappa(r-y)$.
+The plant is modelled by $\dot{\bm x}_\mathrm{p} = \mathbf f_\mathrm{p}(\bm x_\mathrm{p},\bm u), \; \bm y = \mathbf h(\bm x_\mathrm{p})$. The controller samples the output $T$-periodically and computes its own output as a nonlinear function $\bm u = \bm\kappa(\mathbf r-\bm y)$.
 
 The closed-loop model is then 
 $$
-\dot x_\mathrm{p} = f_\mathrm{p}(x_\mathrm{p},\kappa(r-h(x_\mathrm{p}))), \; y = h(x_\mathrm{p}).
+\dot{\bm x}_\mathrm{p} = \mathbf f_\mathrm{p}(\bm x_\mathrm{p},\bm \kappa(\mathbf r-\bm h(\bm x_\mathrm{p}))), \; y = h(\bm x_\mathrm{p}).
 $$
 
-The closed-loop state vector is
+The closed-loop (hybrid) state vector is
 $$
 \bm x = 
 \begin{bmatrix}
-x_\mathrm{p}\\ u \\ \tau
+\bm x_\mathrm{p}\\ \bm u \\ \tau
 \end{bmatrix}
 \in
 \mathbb R^n \times \mathbb R^m \times \mathbb R.
@@ -274,17 +275,23 @@ $$
 The flow set is
 $$
 \begin{aligned}
-\mathcal{C} &= \{\bm x \mid \tau \in [0,T)\}.
+\mathcal{C} &= \{\bm x \mid \tau \in [0,T)\},
+\end{aligned}
+$$
+or perhaps better (see @sec-closedness-of-the-sets on preference for closedness of the sets)
+$$
+\begin{aligned}
+\mathcal{C} &= \{\bm x \mid \tau \in [0,T]\}.
 \end{aligned}
 $$
 
 The flow map is
 $$
-\bm f(\bm x)
+\mathbf f(\bm x)
 =
 \begin{bmatrix}
-f_\mathrm{p}(x_\mathrm{p},u)\\
-0\\
+\mathbf f_\mathrm{p}(\bm x_\mathrm{p},u)\\
+\bm 0\\
 1
 \end{bmatrix}.
 $$
@@ -295,7 +302,7 @@ $$
 \mathcal{D} &= \{\bm x \mid \tau = T\}.
 \end{aligned}
 $$
-or rather 
+or rather (in anticipation of numerical implementation)
 $$
 \begin{aligned}
 \mathcal{D} &= \{\bm x \mid \tau \geq T\}.
@@ -304,16 +311,24 @@ $$
 
 The jump map is
 $$
-\bm g(\bm x) = 
+\mathbf g(\bm x) = 
 \begin{bmatrix}
-x_\mathrm{p}\\
-\kappa(r-y)\\
+\bm x_\mathrm{p}\\
+\bm \kappa(\mathbf r-\bm y)\\
 0
 \end{bmatrix}.
 $$
 
-You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. No need for new theories. True, but still, it is nice to have a rigorous framework for analysis of such systems. The more so that the sampling time $T$ may not be constant – it can either vary randomly or perhaps the samling can be event-triggered. All these scenarios are easily handled within the hybrid equations framework. 
+:::{.callout-tip}
+### Why bother with modelling this as a hybrid system when we have modeling tools such as Simulink for this blend of continuous-time and discrete-time systems?
+You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. There seems to be no need for new framing and theories. Well, in both cases the model is ultimately discrete-time and the model no longer represents the behaviour of the system between the sampling instants. Analyzing such systems, even using numerical simulation, gives us no warning about the intersample behaviour. The need for such capability is even more pronounced when the sampling period $T$ is not be constant – it can either vary randomly or perhaps the sampling can be event-triggered. All these scenarios are systematically handled within the hybrid equations framework. 
 :::
+
+:::
+
+## Closedness of the sets {#sec-closedness-of-the-sets}
+
+While it makes perfect modelling sense to define the flow and jump sets as open sets, an assumption is often made in the theories proposed for hybrid systems that these are closed. We are not going to delve into details in our course though.
 
 ## Hybridness after closing the loop
 
@@ -540,7 +555,7 @@ scatter!([1],[0],label="x ref")
 ### On implementation of hybrid equations using general-purpose solvers for ordinary differential equations
 While the fact that we do not have to distinguish between continuous- and discrete-valued makes hybrid (state) equations convenient for theoretical analysis, when it comes to numerical simulation, it is a waste of computational resources to include among other general ODEs also the equations $\dot x_i = 0$, and solve them numerically. This we also reflected in the simulation code above by explicitly keeping the discrete state variable constant between the jumps.
 
-Admittedly, there is [HyEQ toolbox for Matlab](https://www.mathworks.com/matlabcentral/fileexchange/41372-hybrid-equations-toolbox), which does accept hybrid equations, but we view it as a convenient educational tool rather than an optimized numerical tool. 
+The only sofware for hybrid equations that we are aware of is [HyEQ toolbox for Matlab](https://www.mathworks.com/matlabcentral/fileexchange/41372-hybrid-equations-toolbox). While it is a convenient educational tool, it is not an optimized numerical solver. 
 :::
 
 
