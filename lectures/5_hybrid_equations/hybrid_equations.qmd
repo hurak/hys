@@ -72,8 +72,10 @@ $$
 y(t) = h(x(t),u(t)).
 $$
 
+## Examples
+
 ::: {#exm-bouncing-ball}
-## Bouncing ball
+### Bouncing ball
 This is the "hello world example" for hybrid systems with state jumps (pun intended). The state variables are the height and the vertical speed of the ball.
 $$
 \bm x \in \mathbb{R}^2, \qquad \bm x = \begin{bmatrix}x_1 \\ x_2\end{bmatrix}.
@@ -99,7 +101,7 @@ The two sets and two maps are illustrated below.
 :::
 
 ::: {#exm-bouncing-ball-on-piston}
-## Bouncing ball on a controlled piston
+### Bouncing ball on a controlled piston
 
 We now extend the simple bouncing ball example by adding a vertically moving piston. The piston is controlled by a force.
 
@@ -163,7 +165,7 @@ $$
 :::
 
 ::: {#exm-synchronization-of-fireflies}
-## Synchronization of fireflies
+### Synchronization of fireflies
 
 This is a famous example in synchronization. We consider $n$ fireflies, $x_i$ is the $i$-th firefly's clock, normalized to $[0,1]$. The clock resets (to zero) when it reaches 1. Each firefly can see the flashing of all other fireflies. As soon as it observes a flash, it increases its clock by $\varepsilon\times 100\, \%$.
 
@@ -185,7 +187,7 @@ $$
 
 
 ::: {#exm-thyristor-control}
-## Thyristor control
+### Thyristor control
 
 Consider the circuit below.
 
@@ -249,7 +251,7 @@ The last condition in the jump set comes from the requirement that not only must
 :::
 
 ::: {#exm-sampled-data-feedback}
-## Sampled-data feedback control
+### Sampled-data feedback control
 
 Another example of a dynamical system that fits nicely into the hybrid equations framework is sampled-data feedback control system. Within the feedback loop in @fig-sampled-data-feedback, we recognize a continuous-time plant and a discrete-time controller.
 
