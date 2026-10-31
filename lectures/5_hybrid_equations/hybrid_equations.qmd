@@ -324,11 +324,197 @@ $$
 You may wonder why we bother with modelling this system as a hybrid system at all. When it comes to analysis of the closed-loop system, implementation of the model in Simulink allows for seemless mixing of continuous-time and dicrete-time blocks. And when it comes to control design, we can either discretize the plant and design a discrete-time controller, or design a continuous-time controller and then discretize it. There seems to be no need for new framing and theories. Well, in both cases the model is ultimately discrete-time and the model no longer represents the behaviour of the system between the sampling instants. Analyzing such systems, even using numerical simulation, gives us no warning about the intersample behaviour. The need for such capability is even more pronounced when the sampling period $T$ is not be constant – it can either vary randomly or perhaps the sampling can be event-triggered. All these scenarios are systematically handled within the hybrid equations framework. 
 :::
 
+We now demonstrate the usage of hybrid equations for sampled-date control on a simple numerical example. A continuous-time model of the plant (double mass-spring-damper) is given first, then an LQR controller is designed for a ZOH-discretized model. A feedforward term is added to the controll law. 
+```{julia}
+#| code-fold: true
+using ControlSystems
+using LinearAlgebra
+
+#---------------------------------------------------------------------------------------------------------
+# Discrete-time design of the controller
+#---------------------------------------------------------------------------------------------------------
+
+# System parameters
+m₁ = 1      # Mass 1
+m₂ = 0.1    # Mass 2
+b₁₂ = 0.03  # Damping coefficient between the two masses
+k₁₂ = 0.09  # Spring stiffness between the two masses
+b₀₁ = 0.3   # Damping coefficient between the first mass and the wall
+k₀₁ = 0.5   # Spring stiffness between the first mass and the wall
+
+# Plant state vector: xₚ = [y'; y; d'; d],
+# where y is the position of the first mass, and d is the position of the second mass.
+
+# State matrices of the continuous-time plant
+Ac = [-(b₁₂+b₀₁)/m₁ -(k₁₂+k₀₁)/m₁ b₁₂/m₁ k₁₂/m₁;
+    1 0 0 0;
+    b₁₂/m₂ k₁₂/m₂ -b₁₂/m₂ -k₁₂/m₂;
+    0 0 1 0]
+Bc = [1/m₁; 0; 0; 0]        # The force (the control input) acts on the first mass.
+Cc = [0 0 0 1]              # We want to control the position of the second mass, d.
+Dc = [0]
+
+# ZOH discretization
+G = ss(Ac, Bc, Cc, Dc)
+T = 1.0                     # Sampling time
+Gd = c2d(G, T)
+A, B, C, D = ssdata(Gd)
+
+# Feedforward for reference tracking
+N = [A-I B; C 0]\[0; 0; 0; 0; 1]
+Nₓ = N[1:4]
+Nᵤ = N[5]
+
+# LQR design
+Q = C'*10.0*C
+R = 1.0
+K = lqr(Discrete, A, B, Q, R)
+
+# Control law
+y_ref(t) = 1.0(t>=2.0)      # Reference output (step function starting at t=2)
+N = K*Nₓ .+ Nᵤ
+κ(xₚ,r) = -K*xₚ .+ N*r      # Control law (u is a function of the plant state xₚ and the reference r)
+```
+
+Now that we have the continuous-time plant $\dot{\bm x} = \mathbf{A}\bm{x} + \mathbf{B}u$ and the discrete-time control law $u = \kappa(\bm{x}_\mathrm{p}, \mathrm{r})$, we can model the closed-loop system using hybrid equations, that is, we define the quadruple $\{\mathbf f, \mathcal C, \mathbf g, \mathcal D\}$. In fact, the latter two we model as functions that return `true` if the state is in the corresponding set.
+
+```{julia}
+#| code-fold: show
+#| output: false
+n = 4                       # Dimension of the plant state xₚ
+
+# Flow set and jump set
+function isinC(x)
+    τ = x[n+2]
+    return τ <= T           # Flow is possible as long as the timer has not exceeded the sampling time.
+end
+
+function isinD(x)
+    τ = x[n+2]
+    return τ >= T           # Jump is possible once the timer has reached the sampling time.
+end
+
+# Flow map: the plant evolves, the ZOH output stays constant, the timer runs.
+function f(x)
+    xₚ, u = x[1:n], x[n+1]
+    return [Ac*xₚ + Bc*u;   # ẋₚ = Ac xₚ + Bc u
+            0.0;            # u̇ = 0
+            1.0]            # τ̇ = 1
+end
+
+# Jump map: the plant state does not change, a new control is computed and stored (to be held), the timer is reset.
+# The reference r enters as an exogenous input (otherwise, time would have to be included in the state too).
+function g(x,r)
+    xₚ = x[1:n]
+    return [xₚ;             # xₚ⁺ = xₚ
+            κ(xₚ,r);        # u⁺ = κ(xₚ,r)
+            0.0]            # τ⁺ = 0
+end
+```
+
+Now comes the simulation. We rely on the popular [OrdinaryDiffEq.jl](https://docs.sciml.ai/OrdinaryDiffEq/stable/) package. We must define a `DiscreteCallback` that checks whether the state is in the jump set and if so, applies the jump map. The key thing is that the condition is checked **at the end of each integration step** (see the section [Event Handling and Callback Functions](https://docs.sciml.ai/DiffEqDocs/stable/features/callback_functions/) in the documentation). More on the implications after we see the results.
+```{julia}
+#| code-fold: show
+#| output: false
+using OrdinaryDiffEq
+
+f!(dx,x,p,t) = (dx .= f(x))     # The flow map in the format required by the ODE solver.
+
+# The condition is only checked at the end of each integration step (DiscreteCallback).
+# Jumps have priority over flows when x is in both C and D.
+# If x is in neither C nor D, the solution cannot be continued and the simulation is terminated.
+condition(x,t,integrator) = isinD(x) || !isinC(x)
+
+function affect!(integrator)
+    x = integrator.u            # Note that within the DifferentialEquations.jl ecosystem, u denotes the state.
+    t = integrator.t
+    if isinD(x)
+        integrator.u .= g(x,y_ref(t))
+    else
+        terminate!(integrator)
+    end
+end
+
+jump_cb = DiscreteCallback(condition,affect!)
+
+# Setting up the simulation problem
+xₚ_init = [0, 0.0, 0, 0.0]
+u_init = 0.0
+τ_init = 0.0
+x_init = [xₚ_init; u_init; τ_init]
+tspan = (0.0,10.0)
+prob = ODEProblem(f!,x_init,tspan)
+
+# Solving the simulation problem
+sol = solve(prob,Tsit5(),callback=jump_cb,dtmax=0.1)
+```
+
+Finally, we plot the results in @fig-sampled-data-feedback-control-results
+```{julia}
+#| code-fold: true
+#| fig-cap: Simulation results of the sampled-data feedback control
+#| label: fig-sampled-data-feedback-control-results
+using Plots
+t = tspan[1]:T:tspan[2]
+p1 = plot(sol, idxs=4, ylabel="Tracked output", lab="d", lw=2, color=palette(:default)[4])
+plot!(t, y_ref.(t), lab="reference", lw=2, ls=:dash, seriestype=:steppost)
+p2 = plot(sol, idxs=1:n, ylabel="Plant state", lab=["y dot" "y" "d dot" "d"], lw=2, legend_position=:topright)
+p3 = plot(sol, idxs=n+1, ylabel="Control", lab="u", lw=2)
+p4 = plot(sol, idxs=n+2, ylabel="Timer", lab="τ", lw=2, xlabel="t")
+plot(p1, p2, p3, p4, layout=(4,1), size=(400,600))
+```
+
+We can observe that the plant output $d$ tracks the reference signal well, and the control input $u$ is updated at each sampling instant. So far, so good! But we can also observe that the times at which the jumps occur are not exactly at the sampling instants – the sampling period is 1. How come? This behaviour is a consequence of our choice of the `DiscreteCallback` in the simulation. The condition for a jump is only checked at the end of each integration step, and as the integration step size varies adaptively, the integration ticks determined in this way are not necessarily aligned with the desired periodic sampling instants. 
+
+There are several ways to improve this. First, we can use the `PeriodicCallback` of [DiffEqCallbacks.jl](https://docs.sciml.ai/DiffEqCallbacks/) package, which ensures that jumps occur exactly at the specified (periodic) sampling instants. Although it would fit our current problem perfectly, we want to present a more general solution in which the sampling times are not prescribed but are derived from the actual state trajectories of the system. For this, the appropriate choice is the `ContinuousCallback` of the same standard OrdinaryDiffEq.jl package.
+
+We do it here. Instead of the logical functions `isinC` and `isinD`, a real-valued function is needed. Its zero crossing (from negative to positive) marks the instant when the state reaches the jump set $\mathcal D = \{\bm x \in \mathbb R^{n+2} \mid \tau \geq T\}$. The solver then locates this instant by numerical root finding.
+```{julia}
+#| code-fold: show
+#| output: false
+function jump_set_crossing_fcn(x)
+    τ = x[n+2]
+    return τ - T
+end
+
+condition_zc(x,t,integrator) = jump_set_crossing_fcn(x)
+
+function affect_zc!(integrator)
+    x = integrator.u
+    t = integrator.t
+    integrator.u .= g(x,y_ref(t))
+end
+
+jump_zc_cb = ContinuousCallback(condition_zc,affect_zc!,nothing)  # Only upcrossings (from C into D) trigger a jump.
+
+# Solving the simulation problem (no need to limit the step size now)
+sol_zc = solve(prob,Tsit5(),callback=jump_zc_cb)
+```
+
+We now plot the solution in @fig-sampled-data-feedback-control-results-zc.
+```{julia}
+#| code-fold: true
+#| fig-cap: Simulation results of the sampled-data feedback control with zero-crossing detection
+#| label: fig-sampled-data-feedback-control-results-zc
+p5 = plot(sol_zc, idxs=4, ylabel="Tracked output", lab="d", lw=2, color=palette(:default)[4])
+plot!(t, y_ref.(t), lab="reference", lw=2, ls=:dash, seriestype=:steppost)
+p6 = plot(sol_zc, idxs=1:n, ylabel="Plant state", lab=["y dot" "y" "d dot" "d"], lw=2, legend_position=:topright)
+p7 = plot(sol_zc, idxs=n+1, ylabel="Control", lab="u", lw=2)
+p8 = plot(sol_zc, idxs=n+2, ylabel="Timer", lab="τ", lw=2, xlabel="t")
+plot(p5, p6, p7, p8, layout=(4,1), size=(400,600))
+```
+
+We can see that the jumps now occur exactly at the sampling instants (multiples of $T=1$).
+:::
+
+:::{.callout-tip}
+### Event detection and handling in Matlab
+Although in the examples we use Julia, we do not intend to lock you into one particular programming language and its ecosystem. Similar functionality for event detection and handling is also available in Matlab, see [ODE Event Location](https://www.mathworks.com/help/matlab/math/ode-event-location.html).
 :::
 
 ## Closedness of the sets {#sec-closedness-of-the-sets}
 
-While it makes perfect modelling sense to define the flow and jump sets as open sets, an assumption is often made in the theories proposed for hybrid systems that these are closed. We are not going to delve into details in our course though.
+While it is perfectly legitimate during modelling to choose if the flow and jump sets are defined as open or closed sets, an assumption is often made in the theories proposed for hybrid systems that these are closed. We are not going to delve into details in our course though, they can be found in the literature.
 
 ## Hybridness after closing the loop
 
