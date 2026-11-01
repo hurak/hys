@@ -6,11 +6,21 @@ format:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
+        fig-width: 4
+        fig-height: 3
 crossref:
   fig-prefix: Fig. 
   eq-prefix: Eq.
+  sec-prefix: Sec.
 engine: julia
 ---
+
+```{julia}
+#| echo: false
+#| output: false
+using Plots
+default(tickfontsize = 7, guidefontsize = 7, legendfontsize = 7, titlefontsize = 7, linewidth = 2)
+```
 
 We have introduced two major modeling frameworks for hybrid systems – [hybrid automata](../4_hybrid_automata/hybrid_automata.qmd) and [hybrid equations](../5_hybrid_equations/hybrid_equations.qmd). Now we are ready to model any hybrid system. It turns out useful, however, to define a few special classes of hybrid systems. Their special features are reflected in the structure of their models (hybrid automata or hybrid equations). The special classes of hybrid systems that we are going to discuss are
 
@@ -60,9 +70,11 @@ $$
 \end{aligned}
 $$
 
-Simulation outcomes for some concrete value of the small positive parameter $\delta$ are shown in the following figure.
+Simulation outcomes for some concrete value of the small positive parameter $\delta$ are shown in @fig-reset-oscillator.
 ```{julia}
-#| eval: true
+#| code-fold: true
+#| fig-cap: Simulated response of a reset oscillator.
+#| label: fig-reset-oscillator
 using OrdinaryDiffEq
 
 δ = 0.1
@@ -81,9 +93,7 @@ prob = ODEProblem(f, x0, tspan)
 sol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)
 
 using Plots
-plot(sol[1,:],sol[2,:],lw=2,legend=false, tickfontsize=12, xtickfontsize=12, ytickfontsize=12)
-xlabel!("x₁")
-ylabel!("x₂")
+plot(sol[1,:],sol[2,:],xlabel="x₁",ylabel="x₂",legend=false, size=(300,300))
 ```
 
 Isn't it fascinating that a linear system augmented with resetting can exhibit such a complex behavior?
@@ -99,9 +109,11 @@ Unlike the traditional (linear) integrator, the CI exhibits much smaller phase l
 
 ::: {#exm-clegg}
 ## Response of Clegg's integrator to a sinusoidal input
-Here is a response of the Clegg's integrator to a sinusoidal input.
+The response of the Clegg's integrator to a sinusoidal input is in @fig-clegg.
 ``` {julia}
-#| eval: true
+#| code-fold: true
+#| fig-cap: Response of Clegg's integrator to a sinusoidal input
+#| label: fig-clegg
 using OrdinaryDiffEq
 f(x, u, t) = u(t)                               # We adhere to the control systems notation that x is the state variable and u is the input.
 x0 = 0.0                                        # The initial state.
@@ -114,8 +126,8 @@ prob = ODEProblem(f, x0, tspan, u)
 sol = solve(prob, Tsit5(),callback=cb, reltol = 1e-6, abstol = 1e-6, saveat = 0.1)
 
 using Plots
-plot(sol.t,u.(sol.t),label="u",lw=2)
-plot!(sol,lw=2,label="x", tickfontsize=12, xtickfontsize=12, ytickfontsize=12)
+plot(sol.t,u.(sol.t),label="u")
+plot!(sol,label="x")
 xlabel!("t")
 ```
 :::
@@ -141,7 +153,9 @@ Consider a plant modelled by $G(s) = \frac{s+1}{s(s+0.2)}$ and a first-order con
 The response of the closed-loop system to a step reference input is shown using the following code. 
 
 ``` {julia}
-#| eval: false         # For some unknown reason the code does not work in Quarto.
+#| code-fold: true
+#| fig-cap: Response of a closed-loop system with a first-order controller to a step reference input
+#| label: fig-fore-a
 using ModelingToolkit
 using ModelingToolkit: t_nounits as t
 using ModelingToolkit: D_nounits as D
@@ -154,14 +168,14 @@ function plant(; name)
     eqs = [D(x₁) ~ x₂
            D(x₂) ~ -0.2x₂ + u
            y ~ x₁ + x₂]
-    ODESystem(eqs, t; name = name)
+    System(eqs, t; name = name)
 end
 
 function controller(; name) 
     @variables x(t)=0 u(t) y(t)
     eqs = [D(x) ~ -x + u
            y ~ x]
-    ODESystem(eqs, t, name = name)
+    System(eqs, t, name = name)
 end
 
 @named C = controller()
@@ -174,20 +188,20 @@ r(t) = t >= t_of_step ? 1.0 : 0.0
 connections = [C.u ~ r(t) - P.y
                C.y ~ P.u]
 
-@named T = ODESystem(connections, t, systems = [C, P])
+@named T = System(connections, t, systems = [C, P])
 
-T = structural_simplify(T)
+T = mtkcompile(T)
 equations(T)
 observed(T)
 
-prob = ODEProblem(complete(T), [], (0.0, 30.0), [])
-#sol = solve(prob, Tsit5(), saveat = 0.1)
-sol = solve(prob)
+#using DifferentialEquations: solve
+prob = ODEProblem(T, Dict(), (0.0, 30.0))
+sol = solve(prob, Tsit5(), saveat = 0.1)
 
-#plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y", lw = 2)
+plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y")
 ```
 
-![](figures/fore_a.png)
+<!-- ![](figures/fore_a.png) -->
 
 Now we turn the first-order controller into a FORE controller by augumenting it with the above described resetting functionality. The feedback loop is in @fig-fore.
 
@@ -195,27 +209,29 @@ Now we turn the first-order controller into a FORE controller by augumenting it 
 
 The response of the closed-loop system to a step reference input is shown using the following code. 
 ``` {julia}
-#| eval: false          # For some unknown reason the code does not work in Quarto.
+#| code-fold: true
+#| fig-cap: Response of a closed-loop system with a first-order reset element to a step reference input
+#| label: fig-fore-b
 using ModelingToolkit
 using ModelingToolkit: t_nounits as t
 using ModelingToolkit: D_nounits as D
 
-using OrdinaryDiffEq
 using Plots
+using OrdinaryDiffEq
 
 function plant(; name)
     @variables x₁(t)=0 x₂(t) = 0 u(t) y(t)
     eqs = [D(x₁) ~ x₂
            D(x₂) ~ -0.2x₂ + u
            y ~ x₁ + x₂]
-    ODESystem(eqs, t; name = name)
+    System(eqs, t; name = name)
 end
 
 function controller(; name) 
     @variables x(t)=0 u(t) y(t)
     eqs = [D(x) ~ -x + u
            y ~ x]
-    ODESystem(eqs, t, name = name)
+    System(eqs, t, name = name)
 end
 
 @named C = controller()
@@ -231,19 +247,19 @@ connections = [C.u ~ r(t) - P.y
 zero_crossed = [C.u ~ 0]
 reset = [C.x ~ 0]               
 
-@named T = ODESystem(connections, t, systems = [C, P], continuous_events = zero_crossed => reset)
+@named T = System(connections, t, systems = [C, P], continuous_events = zero_crossed => reset)
 
-T = structural_simplify(T)
+T = mtkcompile(T)
 equations(T)
 observed(T)
 
-prob = ODEProblem(complete(T), [], (0.0, 30.0), [])
+prob = ODEProblem(T, Dict(), (0.0, 30.0))
 sol = solve(prob, Tsit5(), saveat = 0.1)
 
-plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y", lw = 2)
+plot(sol.t, sol[P.y], label = "", xlabel = "t", ylabel = "y")
 ```
 
-![](figures/fore_b.png)
+<!-- ![](figures/fore_b.png) -->
 
 Obviously the introduction of the resetting functionality into the first order controller had a positive effect on the transient response of the closed-loop system.
 :::
@@ -260,3 +276,5 @@ But reset control can be helfpul if the plant is subject to *fundamental limitat
 - ...
 
 In these situations reset control can be a way to beat the so-called *waterbed effect*.
+
+There is one major drawback of reset control – it introduces discontinuity into the control signal, which may be troublesome in some applications as it may excite some weakly damped modes of the plant. Aiming at the same functionality but avoiding the disconntinuity, a new control strategy called *hybrid integrator-gain system* (HIGS) has been introduced in the literature. We are going to discuss it in one of the next lectures.
