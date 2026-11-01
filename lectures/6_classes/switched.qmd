@@ -6,11 +6,20 @@ format:
         html-math-method: katex
         code-fold: true
         code-summary: "Show the code"
+        fig-width: 4
+        fig-height: 3
 crossref:
   fig-prefix: Fig. 
   eq-prefix: Eq.
 engine: julia
 ---
+
+```{julia}
+#| echo: false
+#| output: false
+using Plots
+default(tickfontsize = 7, guidefontsize = 7, legendfontsize = 7, titlefontsize = 7, linewidth = 2)
+```
 
 Switched systems are modelled by first-order differential (state) equations with multiple right-hand sides, that is, 
 
@@ -78,9 +87,12 @@ $$
 s(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1.
 $$
 
-The state portrait that also shows the switching function is generated using the following code.
+The state portrait that also shows the switching function is in @fig-switched-portrait. The red curve is the zero level set of the switching function, that is, the boundary between the two domains. The vector field $\bm f_1$ is active in the domain below the red curve, while $\bm f_2$ is active in the domain above the red curve.
 
 ```{julia}
+#| code-fold: true
+#| fig-cap: State portrait of a switched system
+#| label: fig-switched-portrait
 s(x₁,x₂) = (x₁+0.05)^2 + (x₂+0.15)^2 - 1.0
 
 f₁(x₁,x₂) = x₁^2 + 2x₂^2
@@ -109,8 +121,11 @@ $$
 
 This is consistent with the observation that the flow goes through the boundary.
 
-We can also plot a particular solution of the ODE using the following code.
+We plot a particular solution of the ODE in @fig-switched-solution.
 ```{julia}
+#| code-fold: true
+#| fig-cap: Solution of the ODE
+#| label: fig-switched-solution
 using DifferentialEquations
 F(u, p, t) = f(u[1],u[2])
 u0 = [0.0,0.4]
@@ -139,8 +154,11 @@ $$
 
 The switching function is the same as in the previous example.
 
-The state portrait is below.
+The state portrait is in @fig-switched-portrait-2. 
 ```{julia}
+#| code-fold: true
+#| fig-cap: State portrait of a switched system
+#| label: fig-switched-portrait-2
 f(x₁,x₂) = s(x₁,x₂) <= 0.0 ? [-1, f₁(x₁,x₂)] : [1, f₂(x₁,x₂)] 
 
 fig = Figure(size = (600, 600),fontsize=20)
@@ -172,8 +190,11 @@ $$
 \bm f_2(\bm x) = \begin{bmatrix}-1\\ 2x_1^2+3x_2^2-2\end{bmatrix}.
 $$
 
-The state-portrait is below.
+The state-portrait is in @fig-switched-portrait-3.
 ```{julia}
+#| code-fold: true
+#| fig-cap: State portrait of a switched system
+#| label: fig-switched-portrait-3
 f(x₁,x₂) = s(x₁,x₂) <= 0.0 ? [1, f₁(x₁,x₂)] : [-1, f₂(x₁,x₂)] 
 
 fig = Figure(size = (600, 600),fontsize=20)
@@ -292,7 +313,12 @@ $$
 \end{aligned}
 $$
 where the switching function is $s(\bm x) = x_1$.
+
+The state portrait is in @fig-switched-portrait-4. 
 ```{julia}
+#| code-fold: true
+#| fig-cap: State portrait of a switched system
+#| label: fig-switched-portrait-4
 s(x) = x[1]
 
 f₁(x) = [-2x[1] + 2x[2], x[2] - 4x[1]]
