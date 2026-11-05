@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.28">
-<info created="D:20231029234921" modified="D:20231101235907"/>
+<ipe version="70218" creator="Ipe 7.3.1">
+<info created="D:20231029234921" modified="D:20261105215906"/>
 <preamble>\usepackage{bm}</preamble>
 <ipestyle name="ElectricalEngineering">
 <symbol name="arrow/arc(spx)">
@@ -132,22 +132,6 @@ h
 h
 </path>
 </symbol>
-<symbol name="arrow/fnormal semi 1(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 0 l
-h
-</path>
-</symbol>
-<symbol name="arrow/fnormal semi 2(spx)">
-<path stroke="sym-stroke" fill="white" pen="sym-pen">
-0 0 m
--1 0 l
--1 -0.333 l
-h
-</path>
-</symbol>
 <symbol name="arrow/pointed(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
 0 0 m
@@ -185,6 +169,34 @@ h
 h
 </path>
 </symbol>
+<symbol name="arrow/double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fnormal semi 1(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 0 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fnormal semi 2(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
 <symbol name="arrow/normal semi 1(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
 0 0 m
@@ -198,18 +210,6 @@ h
 0 0 m
 -1 0 l
 -1 -0.333 l
-h
-</path>
-</symbol>
-<symbol name="arrow/double(spx)">
-<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
-0 0 m
--1 0.333 l
--1 -0.333 l
-h
--1 0 m
--2 0.333 l
--2 -0.333 l
 h
 </path>
 </symbol>
@@ -3081,7 +3081,7 @@ h
 160 736 l
 192 736 l
 </path>
-<text transformations="translations" pos="256 736" stroke="black" type="label" width="71.496" height="9.865" depth="0.17" halign="center" valign="center" size="Large" style="math">\dot{\bm x} = \bm A\bm x + \bm b u</text>
+<text matrix="1 0 0 1 0 8" transformations="translations" pos="256 736" stroke="black" type="label" width="71.496" height="9.865" depth="0.17" halign="center" valign="center" size="Large" style="math">\dot{\bm x} = \bm A\bm x + \bm b u</text>
 <path stroke="gray50" arrow="normal/normal">
 256 616 m
 256 664 l
@@ -3105,6 +3105,9 @@ h
 272 616 l
 </path>
 <text transformations="translations" pos="144 688" stroke="black" type="label" width="8.88" height="6.532" depth="0.11" halign="center" valign="center" size="Large" style="math">u</text>
-<text matrix="1 0 0 1 16 0" transformations="translations" pos="368 688" stroke="black" type="label" width="47.201" height="11.598" depth="0.17" halign="center" valign="center" size="Large" style="math">v = \bm k^\top \bm x</text>
+<text transformations="translations" pos="368 688" stroke="black" type="label" width="7.833" height="6.528" depth="0" halign="center" valign="center" size="Large" style="math">\nu</text>
+<text matrix="1 0 0 1 0 -8" transformations="translations" pos="256 736" stroke="black" type="label" width="46.771" height="11.598" depth="0.17" halign="center" valign="center" size="Large" style="math">\nu = \bm k^\top \bm x</text>
+<text transformations="translations" pos="200 664" stroke="darkgray" type="label" width="39.004" height="5.843" depth="0.16" valign="baseline" size="small">Saturation</text>
+<text matrix="1 0 0 1 0 96" transformations="translations" pos="200 664" stroke="darkgray" type="label" width="116.527" height="6.156" depth="0.04" valign="baseline" size="small">Plant and nonsaturated control</text>
 </page>
 </ipe>
