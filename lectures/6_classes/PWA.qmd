@@ -61,9 +61,9 @@ $$
 $$
 where the partitioning of the space of control inputs is shown in @fig-saturated-state-feedback-partitioning.
 
-![Partitioning the control input space](figures/saturated_state_feedback_partitioning.png){width=50% #fig-saturated-state-feedback-partitioning}
+![Partitioning of the control input space](figures/saturated_state_feedback_partitioning.svg){width=50% #fig-saturated-state-feedback-partitioning}
 
-Expressed in the state space, the partitioning is
+Partitioning of the state space is
 $$
 \begin{aligned}
 \mathcal{X}_1 &= \{\bm x \mid \bm H_1\bm x + g_1 \leq 0\},\\
@@ -79,6 +79,10 @@ $$
 \bm H_3 &= -\bm k^\top, \quad g_3 = 1.
 \end{aligned}
 $$
+
+This is sketched in @fig-saturated-state-feedback-partitioning-state-space.
+
+![Partitioning of the state space](figures/saturated_state_feedback_state_partitioning.svg){width=40% #fig-saturated-state-feedback-partitioning-state-space}
 :::
 
 ## Approximation of nonlinear systems
