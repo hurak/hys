@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.11.9">
+<meta name="generator" content="quarto-1.12.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,10 +45,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0dbbca01a3eb91c5544239273a0f147d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -850,14 +850,14 @@ Figure&nbsp;1: Linear system with a saturated linear state feedback
 <div id="fig-saturated-state-feedback-partitioning" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-saturated-state-feedback-partitioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="figures/saturated_state_feedback_partitioning.png" class="img-fluid figure-img" style="width:50.0%">
+<img src="figures/saturated_state_feedback_partitioning.svg" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saturated-state-feedback-partitioning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Partitioning the control input space
+Figure&nbsp;2: Partitioning of the control input space
 </figcaption>
 </figure>
 </div>
-<p>Expressed in the state space, the partitioning is <span class="math display">
+<p>Partitioning of the state space is <span class="math display">
 \begin{aligned}
 \mathcal{X}_1 &amp;= \{\bm x \mid \bm H_1\bm x + g_1 \leq 0\},\\
 \mathcal{X}_2 &amp;= \{\bm x \mid \bm H_2\bm x + \bm g_2 \leq 0\},\\
@@ -870,6 +870,17 @@ Figure&nbsp;2: Partitioning the control input space
 \bm H_3 &amp;= -\bm k^\top, \quad g_3 = 1.
 \end{aligned}
 </span></p>
+<p>This is sketched in <a href="#fig-saturated-state-feedback-partitioning-state-space" class="quarto-xref">Fig.&nbsp;3</a>.</p>
+<div id="fig-saturated-state-feedback-partitioning-state-space" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-saturated-state-feedback-partitioning-state-space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/saturated_state_feedback_state_partitioning.svg" class="img-fluid figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-saturated-state-feedback-partitioning-state-space-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Partitioning of the state space
+</figcaption>
+</figure>
+</div>
 </div>
 <section id="approximation-of-nonlinear-systems" class="level2">
 <h2 class="anchored" data-anchor-id="approximation-of-nonlinear-systems">Approximation of nonlinear systems</h2>
@@ -966,6 +977,28 @@ x_2\\
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/hurak\.github\.io\/hys\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
+      var opensNewContext = (link) => {
+        var target = (link.getAttribute("target") || "").toLowerCase();
+        return target !== "" && !["_self", "_parent", "_top"].includes(target);
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -982,6 +1015,9 @@ x_2\\
           }
           if (!link.classList.contains('no-external-icon')) {
           }
+        }
+        if (opensNewContext(link)) {
+          describeNewWindow(link);
         }
       }
       };
