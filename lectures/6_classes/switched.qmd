@@ -133,8 +133,13 @@ tspan = (0.0, 1.0)
 prob = ODEProblem(F, u0, tspan)
 sol = solve(prob, Tsit5(), reltol = 1e-8, abstol = 1e-8)
 
-using Plots
-Plots.plot(sol,lw=3,xaxis="Time",yaxis="x",label=false)
+#using Plots
+#Plots.plot(sol,lw=3,xaxis="Time",yaxis="x",label=false)
+using CairoMakie
+fig = Figure(size = (600, 400),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "t", ylabel = "x₁, x₂")
+lines!(ax,sol,color=:blue,linewidth=3)
+fig
 ```
 
 Strictly speaking, this solution does not satisfy the differential equation on the boundary of the two domains (the derivative of $x_2$ does not exist there). This is visually recognized in the above plot as the sharp corner in the solution. But other than that, the solution is perfectly "reasonable" – for a while the system evolves according to one state equations, then at one particular moment the system starts evolving according to another state equation. That is it. Not much more to see here.
@@ -379,7 +384,112 @@ $$
 $$
 :::
 
+<!-- #TODO: Finish this section or remove.
 :::{.callout-warning}
 # Possible nonuniqueness on intersection of boundaries
 ...
+::: -->
+
+## Implementation of switched systems in software
+
+While giving the mathematical formulation of a switched (dynamical) system in (-@eq-switched-system), we did not need to introduce any discrete state variable – the dynamics is uniquely determined by the state $\bm x$ only. However, when it comes to implementation of models of switched systems in software, it turns out that efficient implementations do require explicit introduction of discrete modes. We illustrate this on a simple example of a switched linear system.
+
+
+:::{#exm-switched-implementation}
+Consider a switched linear system with two modes, whose dynamics is given by the following two matrices and the switching function
+```{julia}
+#| code-fold: show
+#| output: false
+A1 = [-0.1  1.0; -10.0 -0.1]
+A2 = [-0.1 10.0;  -1.0 -0.1]
+
+s(x) = x[1]                 # Switching function.
+
+f1(x) = A1*x                # d/dt x(t) = f1(x) for s(x) ≥ 0.
+f2(x) = A2*x                # d/dt x(t) = f2(x) for s(x) < 0.
+
+x0 = [1.0, 0.0]             # Initial state.
+tspan = (0.0, 10.0)         # Time span.
+```
+
+Naive implementation of the switched system can use just a single – albeit discontinuous – function $\mathbf f()$ 
+```{julia}
+#| code-fold: show
+#| output: false
+f(x) = s(x) >= 0 ? f1(x) : f2(x)
+
+using OrdinaryDiffEq
+prob_naive = ODEProblem((x,p,t) -> f(x), x0, tspan)
+sol_naive = solve(prob_naive, Tsit5())
+```
+
+The solution of the naive implementation of a switched system simulation is shown in @fig-switched-implementation-naive.
+
+```{julia}
+#| code-fold: true
+#| fig-cap: Solution of the naive implementation of a switched system simulation
+#| label: fig-switched-implementation-naive
+using CairoMakie
+fig = Figure(size = (600, 600),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+lines!(ax, sol_naive, idxs=(1, 2), color=:blue)
+vlines!(ax,0; color = :red)
+fig
+```
+
+Another implementation of switched system using callbacks is in the code snippet below. Note how we introduce a discrete state variable (`mode`) that keeps track of which right-hand side the state is currently in. Transitions between the two modes are implemented using callbacks, which includes some explicit zero-crossing detection. The mode is then used to choose the right right-hand side of the state equation. 
+```{julia}
+#| code-fold: show
+#| output: false
+# We need to introduce a discrete state variable (mode)
+mutable struct Parameters   # Container for parameters just in case there are more in the future..
+    mode::Int               # Discrete mode/state of the system (1 or 2)
+end
+
+function rhs!(dx, x, p, t)
+    dx .= p.mode == 1 ? f1(x) : f2(x) 
+    return nothing
+end
+
+# Transitions for the discrete state variable (mode)
+up!(integrator)   = (integrator.p.mode = 1)     # Switch up (s: − → +)
+down!(integrator) = (integrator.p.mode = 2)     # Switch down (s: + → −)
+
+# Setting the initial mode based on x0
+init_mode!(c, x, t, integrator) = (integrator.p.mode = x[1] >= 0 ? 1 : 2)
+
+cb = ContinuousCallback((x,t,integrator)->s(x), up!, down!; initialize = init_mode!)
+
+prob = ODEProblem(rhs!, x0, tspan, Parameters(1))
+sol = solve(prob, Tsit5(); callback = cb)
+```
+
+The solution of this implementation of a switched system simulation using callbacks is shown in @fig-switched-implementation-callbacks. 
+
+```{julia}
+#| code-fold: true
+#| fig-cap: Solution of the implementation of a switched system simulation using callbacks
+#| label: fig-switched-implementation-callbacks
+using CairoMakie
+fig = Figure(size = (600, 600),fontsize=20)
+ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
+lines!(ax, sol, idxs=(1, 2), color=:blue)
+vlines!(ax,0; color = :red)
+fig
+```
+
+Just by looking at the solution trajectories corresponding to the two implementations, we can hardly see any difference. But the difference is actually in the efficiency of the two implementations. In order to explore it, we can look at some statistics of the two solutions, namely the number of function evaluations and the number of rejected steps:
+
+```{julia}
+#| code-fold: false
+sol_naive.stats.nf, sol_naive.stats.nreject
+```
+
+```{julia}
+#| code-fold: false
+sol.stats.nf, sol.stats.nreject
+```
+
+At the same default settings (of absolute and relative tolerances), the naive implementation clearly requires an order of magnitude more function evalusions than the implementation using callbacks. There is also a nonzero number of rejected steps in the naive implementation. Both reflect the fact that in the naive implementation, in which the information about the problem is hidden in the definition of the function $\mathbf f()$, the solver is not aware of the switching and only get the information after each step.
 :::
+
