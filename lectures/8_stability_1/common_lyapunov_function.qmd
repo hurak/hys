@@ -366,7 +366,7 @@ $$
 
 But the matrix $\mathbf P$ is parameterized by 6 coefficients. Hence we need one more equation. The sixth condition is the linear matrix inequality (LMI) 
 
-$$\mathbf P\succeq 0$$.
+$$\mathbf P\succeq 0.$$
 
 This can be solved as the feasibility problem with linear equality and semidefinite constraints using the code below.
 
@@ -402,21 +402,26 @@ solve!(problem, SCS.Optimizer, silent=true)
 Apparently, the problem is feasible, hence the polynomial is SOS, hence nonnegative. We can also visualize the polynomial to see that it is indeed nonnegative at least withing some region around the origin.
 
 ```{julia}
-#| fig-cap: "Surface plot of the polynomial $p(x_1,x_2)$ from the example"
+#| code-fold: true
+#| fig-cap: "Surface and contour plots of the polynomial $p(x_1,x_2)$ from the example"
 #| label: fig-surface-polynomial
 p(x1, x2) = 2x1^4 + 2x1^3*x2 - x1^2*x2^2 + 5x2^4
 
-using Plots
-#gr(show=false)                    # Neinteraktivní backend (důležité v Quarto)
+using CairoMakie
 
-X1 = range(-1.5, 1.5, length=20)
-X2 = range(-1.5, 1.5, length=20)
+X1 = range(-1.5, 1.5, length=40)
+X2 = range(-1.5, 1.5, length=40)
 
 Z = [p(x1,x2) for x1 in X1, x2 in X2]
 
-surface(X1, X2, Z; xlabel="x₁", ylabel="x₂", zlabel="p(x₁,x₂)", colorbar=true, c=:viridis)
-
-#contour(X1, X2, Z; xlabel="x₁", ylabel="x₂", fill=true, c=:thermal)
+fig = Figure(; size = (600, 600),fontsize=20)
+ax = Axis3(fig[1, 1]; xlabel="x₁", ylabel="x₂", zlabel="p(x₁,x₂)", protrusions=(60, 0, 0, 0))
+surface!(ax, X1, X2, Z; colormap=:viridis)
+zfloor = -10.0                     # Level of the horizontal plane with the contours
+cp = contour!(ax, X1, X2, Z; levels=[0.1, 0.5, 1, 2, 4, 8, 16, 32], colormap=:viridis, colorrange=extrema(Z), linewidth=2)
+translate!(cp, 0, 0, zfloor)
+zlims!(ax, zfloor, maximum(Z))
+fig
 ```
 :::
 
