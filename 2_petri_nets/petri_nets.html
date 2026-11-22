@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,6 +46,26 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
+}@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
 }</style>
 
 
@@ -65,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -537,6 +557,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -914,7 +940,7 @@ Figure&nbsp;2: Example of a more complex Petri net
 </section>
 <section id="marking-and-marked-petri-nets" class="level3">
 <h3 class="anchored" data-anchor-id="marking-and-marked-petri-nets">Marking and marked Petri nets</h3>
-<p>An important concept that we must introduce now is that of <em>marking</em>. It is a function that assigns an integer to each place <span class="math display">  x: \mathcal{P} \rightarrow \mathbb{N}.</span></p>
+<p>An important concept that we must introduce now is that of <em>marking</em>. It is a function that assigns an integer to each place <span class="math display">x: \mathcal{P} \rightarrow \mathbb{N}.</span></p>
 <p>The vector composed of the values of the marking function for all places <span class="math display">\bm x = \begin{bmatrix}x(p_1)\\ x(p_2)\\ \vdots \\ x(p_n) \end{bmatrix}</span> can be viewed as the <em>state vector</em> (although the Petri nets community perhaps would not use this terminology and stick to just marking).</p>
 <p>Marked Petri net is then a Petri net augmented with the marking</p>
 <p><span class="math display">MPN = \{\mathcal{P}, \mathcal{T}, \mathcal{A}, w,x\}.</span></p>
@@ -949,9 +975,7 @@ Figure&nbsp;4: Example of a marked Petri net with different marking
 </section>
 <section id="enabling-and-firing-of-a-transition" class="level3">
 <h3 class="anchored" data-anchor-id="enabling-and-firing-of-a-transition">Enabling and firing of a transition</h3>
-<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only fire if it is enabled, and the marking is used to determine if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">
-x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
-</span></p>
+<p>Finally, here comes the enabling (pun intended) component of the definition of a Petri net – <em>enabled transition</em>. A transition <span class="math inline">t_j</span> does not just happen – we say <em>fire</em> – whenever it wants, it can only fire if it is enabled, and the marking is used to determine if it is enabled. Namely, the transition is enabled if the value of the marking function for each input place is greater than or equal to the weight of the arc from that place to the transition. That is, the transition <span class="math inline">t_j</span> is enabled if <span class="math display">x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).</span></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -972,15 +996,10 @@ x(p_i) \geq w(p_i,t_j)\quad \forall p_i \in \mathcal{I}(t_j).
 </section>
 <section id="state-transition-function" class="level2">
 <h2 class="anchored" data-anchor-id="state-transition-function">State transition function</h2>
-<p>We now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a <em>state transition function</em>. For a Petri net with <span class="math inline">n</span> places, the state transition function is <span class="math display">
-f: \mathbb N^n \times \mathcal{T} \rightarrow \mathbb N^n,
-</span> which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).</p>
+<p>We now have a Petri net as a conceptual model with a graphical representation. But in order to use it for some quantitative analysis, it is useful to turn it into some computational form. Preferrably a familiar one. This is done by defining a <em>state transition function</em>. For a Petri net with <span class="math inline">n</span> places, the state transition function is <span class="math display">f: \mathbb N^n \times \mathcal{T} \rightarrow \mathbb N^n,</span> which reads that the state transition fuction assignes a new marking (state) to the Petri net after a transition is fired at some given marking (state).</p>
 <p>The function is only defined for a transition <span class="math inline">t_j</span> iff the transition is enabled.</p>
-<p>If the transition <span class="math inline">t_j</span> is enabled and fired, the state evolves as <span class="math display">
-\bm x^+ = f(\bm x, t_j),
-</span> where the individual components of <span class="math inline">\bm x</span> evolve according to <span class="math display">\boxed{
-    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \; i = 1,\ldots,n.}
-</span></p>
+<p>If the transition <span class="math inline">t_j</span> is enabled and fired, the state evolves as <span class="math display">\bm x^+ = f(\bm x, t_j),</span> where the individual components of <span class="math inline">\bm x</span> evolve according to <span class="math display">\boxed{
+    x^+(p_i) = x(p_i) - w(p_i,t_j) + w(t_j,p_i), \; i = 1,\ldots,n.}</span></p>
 <p>This has a visual interpretation – a fired transition moves tokens from the input to the output places.</p>
 <div id="exm-moving-tokens-around" class="theorem example">
 <p><span class="theorem-title"><strong>Example 5 (Moving tokens around)</strong></span> Consider the PN with the initial marking (state) <span class="math inline">\bm x_0 = \begin{bmatrix}2\\ 0\\ 0\\ 1 \end{bmatrix}</span> (at discrete time 0), and the transition <span class="math inline">t_1</span> enabled</p>
@@ -1112,13 +1131,9 @@ Figure&nbsp;7: Reachability graph for an example Petri net
 </section>
 <section id="number-of-tokens-need-not-be-preserved-1" class="level2">
 <h2 class="anchored" data-anchor-id="number-of-tokens-need-not-be-preserved-1">Number of tokens need not be preserved</h2>
-<p>We have already commented on this before, but we emphasize it here. Indeed, it can be that <span class="math display">
-\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &lt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
-</span></p>
+<p>We have already commented on this before, but we emphasize it here. Indeed, it can be that <span class="math display">\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &lt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)</span></p>
 <p>or</p>
-<p><span class="math display">
-\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &gt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)
-</span></p>
+<p><span class="math display">\sum_{p_i\in\mathcal{O}(t_j)}w(t_j,p_i) &gt; \sum_{p_i\in\mathcal{I}(t_j)} w(p_i,t_j)</span></p>
 <p>With this reminder, we can now hightlight several patters that can be observed in Petri nets.</p>
 </section>
 <section id="and-convergence-and-divergence" class="level2">
@@ -1202,11 +1217,7 @@ Figure&nbsp;7: Reachability graph for an example Petri net
 </section>
 <section id="incidence-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="incidence-matrix">Incidence matrix</h3>
-<p>We consider a Petri net with <span class="math inline">n</span> places and <span class="math inline">m</span> transitions. The incidence matrix is defined as <span class="math display">
-\bm A \in \mathbb{Z}^{n\times m},
-</span> where <span class="math display">
-a_{ij} = w(t_j,p_i) - w(p_i,t_j).
-</span></p>
+<p>We consider a Petri net with <span class="math inline">n</span> places and <span class="math inline">m</span> transitions. The incidence matrix is defined as <span class="math display">\bm A \in \mathbb{Z}^{n\times m},</span> where <span class="math display">a_{ij} = w(t_j,p_i) - w(p_i,t_j).</span></p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1223,11 +1234,7 @@ a_{ij} = w(t_j,p_i) - w(p_i,t_j).
 </section>
 <section id="state-equation-for-a-petri-net" class="level3">
 <h3 class="anchored" data-anchor-id="state-equation-for-a-petri-net">State equation for a Petri net</h3>
-<p>With the incidence matrix defined above, the state equation for a Petri net can be written as <span class="math display">
-\bm x^+ = \bm x + \bm A \bm u,
-</span> where <span class="math inline">\bm u</span> is a <em>firing vector</em> for the <em>enabled</em> <span class="math inline">j</span>-th transition <span class="math display">
-\bm u = \bm e_j = \begin{bmatrix}0 \\ \vdots \\ 0 \\ 1\\ 0\\ \vdots\\ 0\end{bmatrix}
-</span> with the 1 at the <span class="math inline">j</span>-th position.</p>
+<p>With the incidence matrix defined above, the state equation for a Petri net can be written as <span class="math display">\bm x^+ = \bm x + \bm A \bm u,</span> where <span class="math inline">\bm u</span> is a <em>firing vector</em> for the <em>enabled</em> <span class="math inline">j</span>-th transition <span class="math display">\bm u = \bm e_j = \begin{bmatrix}0 \\ \vdots \\ 0 \\ 1\\ 0\\ \vdots\\ 0\end{bmatrix}</span> with the 1 at the <span class="math inline">j</span>-th position.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1253,28 +1260,22 @@ Figure&nbsp;8: Example of a Petri net
 </figcaption>
 </figure>
 </div>
-<p>The initial state is given by the vector <span class="math display">
-\bm x_0
+<p>The initial state is given by the vector <span class="math display">\bm x_0
 =
 \begin{bmatrix}
 2\\ 0\\ 0\\ 1
-\end{bmatrix}
-</span></p>
-<p>The incidence matrix is <span class="math display">
-\bm A = \begin{bmatrix}
+\end{bmatrix}</span></p>
+<p>The incidence matrix is <span class="math display">\bm A = \begin{bmatrix}
 -1 &amp; 0 &amp; -1\\
 1 &amp; 0 &amp; 0\\
 1 &amp; -1 &amp; -1\\
 0 &amp; 1 &amp; -1
-\end{bmatrix}
-</span></p>
-<p>And the state vector evolves according to <span class="math display">
-\begin{aligned}
+\end{bmatrix}</span></p>
+<p>And the state vector evolves according to <span class="math display">\begin{aligned}
 \bm x_1 &amp;= \bm x_0 + \bm A \bm u_1\\
 \bm x_2 &amp;= \bm x_1 + \bm A \bm u_2\\
 \vdots &amp;
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">

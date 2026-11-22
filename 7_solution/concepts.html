@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -517,6 +537,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -815,12 +841,8 @@ window.Quarto = {
 <p>Even before we start discussing the concepts of a solution, we need to discuss the concept of <em>time</em> in hybrid systems. Of course, hybrid systems live in the same world as we do, and therefore they evolve in the same physical time, but it turns out that we can come up with an artificial concept of <em>hybrid time</em> that makes modelling and analysis of hybrid systems convenient.</p>
 <p>Recall that in continuous-time systems, the continuous time <span class="math inline">t\in\mathbb R_{\geq 0}</span>, and in discrete-time systems, the discrete “time” <span class="math inline">k\in\mathbb N</span>. We put the latter in quotation marks since <span class="math inline">k</span> is not really the time but rather it should be read as the <span class="math inline">k</span>th transition of the system. Now, the idea is to combine these two concepts of time into one, and we call it the <em>hybrid time</em> <span class="math display">(t,j), \; t\in \mathbb R_{\geq 0},\, j\in \mathbb N.</span></p>
 <p>If you think that it is redundant, note that since hybrid systems can exhibit discrete-event system behaviour, a transition from one discrete state to another can happen instantaneously. In fact, several such transitions can take no time at all. It sounds weird, but that is what the mathematical model allows. That is why determining <span class="math inline">t</span> need not be enough and we also need to specify <span class="math inline">j</span>.</p>
-<p>The set of all hybrid times for a given hybrid system is called <em>hybrid time domain</em> <span class="math display">
-E \subset [0,T] \times \{0,1,2,\ldots, J\},
-</span> where <span class="math inline">T</span> and <span class="math inline">J</span> can be finite or <span class="math inline">\infty</span>.</p>
-<p>In particular, <span id="eq-hybrid-time-domain"><span class="math display">
-E = \bigcup_{j=0}^J \left([t_j,t_{j+1}] \times \{j\}\right)
-\tag{1}</span></span></p>
+<p>The set of all hybrid times for a given hybrid system is called <em>hybrid time domain</em> <span class="math display">E \subset [0,T] \times \{0,1,2,\ldots, J\},</span> where <span class="math inline">T</span> and <span class="math inline">J</span> can be finite or <span class="math inline">\infty</span>.</p>
+<p>In particular, <span id="eq-hybrid-time-domain"><span class="math display">E = \bigcup_{j=0}^J \left([t_j,t_{j+1}] \times \{j\}\right) \tag{1}</span></span></p>
 <p>where <span class="math inline">0=t_0 &lt; t_1 &lt; \ldots &lt; t_J = T</span>.</p>
 <p>The meaning of <a href="#eq-hybrid-time-domain" class="quarto-xref">Eq.&nbsp;1</a> can be best explained using <a href="#fig-hybrid-time-domain" class="quarto-xref">Fig.&nbsp;1</a> below.</p>
 <div id="fig-hybrid-time-domain" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -837,9 +859,7 @@ Figure&nbsp;1: Example of a hybrid time domain
 </section>
 <section id="hybrid-arc" class="level2">
 <h2 class="anchored" data-anchor-id="hybrid-arc">Hybrid arc</h2>
-<p><em>Hybrid arc</em> is just a terminology used in the literature for <em>hybrid state trajectory</em>. It is a function that assigns a state vector <span class="math inline">x</span> to a given hybrid time <span class="math inline">(t,j)</span> <span class="math display">
-x: E \rightarrow \mathbb R^n.
-</span></p>
+<p><em>Hybrid arc</em> is just a terminology used in the literature for <em>hybrid state trajectory</em>. It is a function that assigns a state vector <span class="math inline">x</span> to a given hybrid time <span class="math inline">(t,j)</span> <span class="math display">x: E \rightarrow \mathbb R^n.</span></p>
 <p>For each <span class="math inline">j</span> the function <span class="math inline">t \mapsto x(t,j)</span> is absolutely continuous on the interval <span class="math inline">I^j = \{t \mid (t,j) \in E\}</span>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -889,9 +909,7 @@ Figure&nbsp;2: Example of a solution
 </section>
 <section id="hybrid-input" class="level2">
 <h2 class="anchored" data-anchor-id="hybrid-input">Hybrid input</h2>
-<p>Similarly as we considered the state as a function of the hybrid time, we can consider the input as a function of the hybrid time. With its own hybrid domain <span class="math inline">E_\mathrm{u}</span>, the input is <span class="math display">
-u: E_\mathrm{u} \rightarrow \mathbb R^m.
-</span></p>
+<p>Similarly as we considered the state as a function of the hybrid time, we can consider the input as a function of the hybrid time. With its own hybrid domain <span class="math inline">E_\mathrm{u}</span>, the input is <span class="math display">u: E_\mathrm{u} \rightarrow \mathbb R^m.</span></p>
 <p>For each <span class="math inline">j</span> the function <span class="math inline">t \mapsto u(t,j)</span> must be… well-behaved… For example, piecewise continuous on the interval <span class="math inline">I^j = \{t \mid (t,j) \in E_\mathrm{u}\}</span>.</p>
 </section>
 <section id="solutions-of-systems-with-inputs" class="level2 scrollable">

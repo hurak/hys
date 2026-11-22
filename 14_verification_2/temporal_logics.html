@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,6 +46,26 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
+}@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
 }</style>
 
 
@@ -65,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -533,6 +553,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../8_stability_1/common_lyapunov_function.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stability via common Lyapunov function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1011,11 +1037,9 @@ Figure&nbsp;1: Graphical representation of a sequence of Boolean labels attached
 </div>
 <p>We now consider some property of the whole discrete state trajectory expressed by a Boolean formula <span class="math inline">\phi</span> (as such it evaluates to <code>true</code> or <code>false</code>).</p>
 <p>How do we express such property formula <span class="math inline">\phi</span>? In order to be able to express requirements on future states, <span class="math inline">\phi</span> cannot be just a (proposional) logic formula, it must by a <em>Linear Temporal Logic</em> (LTL) formula. This is a general structure of the formula (using Backus-Naur form as used in computer science): <span class="math display">\boxed{
-\phi \Coloneqq \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2,}
-</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL formulas (apparently the above definition uses recursion).</p>
+\phi \Coloneqq \text{true} \, | \, p \, | \, \neg \phi_1 \, | \, \phi_1 \land \phi_2 \, | \, \phi_1 \lor \phi_2 \, | \, \bigcirc \phi_1 \, | \, \Diamond \phi_1 \, | \, \Box \phi_1 | \, \phi_1 \sqcup \phi_2, \, \phi_1 \sqcap \phi_2,}</span> where <span class="math inline">p</span> is an atomic formula, and <span class="math inline">\phi_1</span> and <span class="math inline">\phi_2</span> are some LTL formulas (apparently the above definition uses recursion).</p>
 <p>The trajectory will be identified by its initial <span class="math inline">x</span>, we write that a state sequence initiated at the given discrete state <span class="math inline">x</span> <em>satisfies</em> the formula as <span class="math display">\boxed{
-x \models \phi.}
-</span></p>
+x \models \phi.}</span></p>
 <p>It the initial state <span class="math inline">x</span> does not determine the trajectory uniquely, the above is then interpreted as “for all trajectories initiated at <span class="math inline">x</span>”.</p>
 <section id="visualisation-of-some-basic-ltl-formulas" class="level3">
 <h3 class="anchored" data-anchor-id="visualisation-of-some-basic-ltl-formulas">Visualisation of some basic LTL formulas</h3>
@@ -1086,9 +1110,7 @@ x \models \phi.}
 </table>
 </div>
 <p>We have mentioned at the beginning of this whole chapter on verification that a special kind of a requirement is that of a safety – something bad (say, a collision) must never happen. How do we express it using an LTL formula? The answer is provided by the first row above:</p>
-<p><span class="math display">
-\Box \neg \text{collision}
-</span></p>
+<p><span class="math display">\Box \neg \text{collision}</span></p>
 <p>We have also mentioned that alternatively this can be expressed as a invariance property – something good must always hold. How do we express it using an LTL formula?</p>
 <p>Finally, another type of a common requirement is that of stability – something good must eventually happen and then it must hold forever. How do we express it using an LTL formula? No surprise, the answer is also provided in the table above.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1258,9 +1280,7 @@ Table&nbsp;1: Path quantifiers
 <h2 class="anchored" data-anchor-id="metric-temporal-logic-mtl-and-metric-interval-temporal-logic-mitl">Metric temporal logic (MTL) and Metric interval temporal logic (MITL)</h2>
 <p>Dense time added to LTL.</p>
 <div id="exm-mtl" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6</strong></span> <span class="math display">
-\square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
-</span></p>
+<p><span class="theorem-title"><strong>Example 6</strong></span> <span class="math display">\square (\mathrm{pressWalkButton} \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})</span></p>
 </div>
 <p>MITL does not allow singleton time intervals allowed by MTL. The motivation for this extension is that the verification of MTL requirements has been shown to be undecidable.</p>
 </section>
@@ -1268,16 +1288,8 @@ Table&nbsp;1: Path quantifiers
 <h2 class="anchored" data-anchor-id="signal-temporal-logic-stl">Signal temporal logic (STL)</h2>
 <p>Last but not least, STL is an extension of MITL towards continuous and hybrid systems. It not only supports the continuous time (as MTL/MITL does), but also it replaces the <em>propositional logic</em> with the <em>predicate logic</em> as it allows inequalities with real variables to play the role of atomic propositions. It is available for both continuous- and discrete-time systems.</p>
 <div id="exm-stl-formulas" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (Examples of STL formulas)</strong></span> <span class="math display">
-\square \neg(x(t) &gt; 10.0)
-</span></p>
-<p><span class="math display">
-\square (x(t) \geq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})
-</span> <span class="math display">
-\Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)
-</span> <span class="math display">
-\square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)
-</span></p>
+<p><span class="theorem-title"><strong>Example 7 (Examples of STL formulas)</strong></span> <span class="math display">\square \neg(x(t) &gt; 10.0)</span></p>
+<p><span class="math display">\square (x(t) \geq 5.5 \Rightarrow \Diamond_{(1,10)} \mathrm{greenLight})</span> <span class="math display">\Diamond_{(0,60)}\square_{(0,20)} (x(t)\leq 5.5)</span> <span class="math display">\square\Diamond_{[0,10]} (\bm x(t) \in \mathcal A) \land \square\Diamond_{[0,10]} (\bm x(t) \in \mathcal B)</span></p>
 </div>
 <p>It allows combinations of surveillance (“visit regions A, B, and C every 10–60 s”), safety (“always between 5–25 s stay at least 1 m away from D”), and many others.</p>
 <section id="robustness-degree-in-stl" class="level3">

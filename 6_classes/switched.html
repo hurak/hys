@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -61,7 +61,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -80,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -555,6 +575,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -854,9 +880,7 @@ window.Quarto = {
 
 
 <p>Switched systems are modelled by first-order differential (state) equations with multiple right-hand sides, that is,</p>
-<p><span id="eq-switched-system"><span class="math display">
-\dot{\bm x} = \bm f_q(\bm x), \qquad q \in \{1,2, \ldots, m\},
-\tag{1}</span></span> where <span class="math inline">m</span> right-hand sides are possible and the lower index <span class="math inline">q</span> determines which right-hand side function is “active” at a given moment.</p>
+<p><span id="eq-switched-system"><span class="math display">\dot{\bm x} = \bm f_q(\bm x), \qquad q \in \{1,2, \ldots, m\}, \tag{1}</span></span> where <span class="math inline">m</span> right-hand sides are possible and the lower index <span class="math inline">q</span> determines which right-hand side function is “active” at a given moment.</p>
 <p>The question is, what dictates the evolution of the integer variable <span class="math inline">q</span>? In other words, what drives the switching? It turns out that the switching can be <em>time-driven</em> or <em>state-driven</em>.</p>
 <p>In both cases, the right-hand sides can also depend the control input <span class="math inline">\bm u</span>.</p>
 <p>Major results for switched systems have been achieved without the need to refer to the framework of hybrid systems. But now that we have built such general framework, it turns out useful to view switched systems as a special class of hybrid systems. The aspects in which they are special will be discussed in the following, but here let us state that in contrast to full hybrid systems, switched systems are a bit less rich on the discrete side.</p>
@@ -879,15 +903,13 @@ Figure&nbsp;1: An automaton for a switched system with time-driven switching
 </section>
 <section id="state-dependent-switching" class="level2">
 <h2 class="anchored" data-anchor-id="state-dependent-switching">State-dependent switching</h2>
-<p>The model is <span class="math display">
-\dot{\bm x}
+<p>The model is <span class="math display">\dot{\bm x}
 =
 \begin{cases}
 \bm f_1(\bm x), &amp; \mathrm{if}\, \bm x \in \mathcal{X}_1,\\
 \vdots\\
 \bm f_m(\bm x), &amp; \mathrm{if}\, \bm x \in \mathcal{X}_m.
-\end{cases}
-</span></p>
+\end{cases}</span></p>
 <p>Let’s consider just two domains <span class="math inline">\mathcal X_1</span> and <span class="math inline">\mathcal X_2</span>. A hybrid automaton for a state-driven switched system is shown in <a href="#fig-switched-system-state-driven" class="quarto-xref">Fig.&nbsp;2</a>.</p>
 <div id="fig-switched-system-state-driven" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -912,13 +934,7 @@ Figure&nbsp;3: State-dependent switching
 </div>
 <p>Through examples we now illustrate the possible behaviors of the system when the flow transverses the boundary, when it pulls away from the boundary, and when it pushes towards the boundary.</p>
 <div id="exm-switched-portrait" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (The flow transverses the boundary)</strong></span> We consider the two right-hand sides of the state equation <span class="math display">
-\bm f_1(\bm x) = \begin{bmatrix}1\\ x_1^2 + 2x_2^2\end{bmatrix}
-</span> and <span class="math display">
-\bm f_2(\bm x) = \begin{bmatrix}1\\ 2x_1^2+3x_2^2-2\end{bmatrix}
-</span> and the switching function <span class="math display">
-s(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1.
-</span></p>
+<p><span class="theorem-title"><strong>Example 1 (The flow transverses the boundary)</strong></span> We consider the two right-hand sides of the state equation <span class="math display">\bm f_1(\bm x) = \begin{bmatrix}1\\ x_1^2 + 2x_2^2\end{bmatrix}</span> and <span class="math display">\bm f_2(\bm x) = \begin{bmatrix}1\\ 2x_1^2+3x_2^2-2\end{bmatrix}</span> and the switching function <span class="math display">s(x_1,x_2) = (x_1+0.05)^2 + (x_2+0.15)^2 - 1.</span></p>
 <p>The state portrait that also shows the switching function is in <a href="#fig-switched-portrait" class="quarto-xref">Fig.&nbsp;4</a>. The red curve is the zero level set of the switching function, that is, the boundary between the two domains. The vector field <span class="math inline">\bm f_1</span> is active in the domain below the red curve, while <span class="math inline">\bm f_2</span> is active in the domain above the red curve.</p>
 <div id="cell-fig-switched-portrait" class="cell" data-execution_count="1">
 <details class="code-fold">
@@ -954,9 +970,7 @@ Figure&nbsp;4: State portrait of a switched system
 </figure>
 </div>
 </div>
-<p>The state portrait also shows a particular initial state <span class="math inline">\bm x_0</span> using a blue dot. Note that the projection of both vector fields <span class="math inline">\mathbf f_1</span> and <span class="math inline">\mathbf f_2</span> evaluated at <span class="math inline">\bm x_0</span> onto the normal (the gradient) of the switching function at <span class="math inline">\bm x_0</span> is positive, that is <span class="math display">
-\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \geq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \geq 0.
-</span></p>
+<p>The state portrait also shows a particular initial state <span class="math inline">\bm x_0</span> using a blue dot. Note that the projection of both vector fields <span class="math inline">\mathbf f_1</span> and <span class="math inline">\mathbf f_2</span> evaluated at <span class="math inline">\bm x_0</span> onto the normal (the gradient) of the switching function at <span class="math inline">\bm x_0</span> is positive, that is <span class="math display">\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \geq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \geq 0.</span></p>
 <p>This is consistent with the observation that the flow goes through the boundary.</p>
 <p>We plot a particular solution of the ODE in <a href="#fig-switched-solution" class="quarto-xref">Fig.&nbsp;5</a>.</p>
 <div id="cell-fig-switched-solution" class="cell" data-execution_count="1">
@@ -991,11 +1005,7 @@ Figure&nbsp;5: Solution of the ODE
 <p>Strictly speaking, this solution does not satisfy the differential equation on the boundary of the two domains (the derivative of <span class="math inline">x_2</span> does not exist there). This is visually recognized in the above plot as the sharp corner in the solution. But other than that, the solution is perfectly “reasonable” – for a while the system evolves according to one state equations, then at one particular moment the system starts evolving according to another state equation. That is it. Not much more to see here.</p>
 </div>
 <div id="exm-switched-portrait-2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 2 (The flow pulls away from the boundary)</strong></span> We now consider another pair of the right-hand sides. <span class="math display">
-\bm f_1(\bm x) = \begin{bmatrix}-1\\ x_1^2 + 2x_2^2\end{bmatrix}
-</span> and <span class="math display">
-\bm f_2(\bm x) = \begin{bmatrix}1\\ 2x_1^2+3x_2^2-2\end{bmatrix}.
-</span></p>
+<p><span class="theorem-title"><strong>Example 2 (The flow pulls away from the boundary)</strong></span> We now consider another pair of the right-hand sides. <span class="math display">\bm f_1(\bm x) = \begin{bmatrix}-1\\ x_1^2 + 2x_2^2\end{bmatrix}</span> and <span class="math display">\bm f_2(\bm x) = \begin{bmatrix}1\\ 2x_1^2+3x_2^2-2\end{bmatrix}.</span></p>
 <p>The switching function is the same as in the previous example.</p>
 <p>The state portrait is in <a href="#fig-switched-portrait-2" class="quarto-xref">Fig.&nbsp;6</a>.</p>
 <div id="cell-fig-switched-portrait-2" class="cell" data-execution_count="1">
@@ -1023,17 +1033,11 @@ Figure&nbsp;6: State portrait of a switched system
 </figure>
 </div>
 </div>
-<p>We focus on the blue dot again. The projections of the two vector fields onto the normal of the switching function satisfy <span class="math display">
-\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \leq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \geq 0.
-</span></p>
+<p>We focus on the blue dot again. The projections of the two vector fields onto the normal of the switching function satisfy <span class="math display">\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \leq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \geq 0.</span></p>
 <p>The only interpretation of this situation is that a unique solution does not start at <span class="math inline">\bm x_0</span>. Again, not much more to see here.</p>
 </div>
 <div id="exm-switched-portrait-3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3 (The flow pushes towards the boundary)</strong></span> And one last pair of the right-hand sides: <span class="math display">
-\bm f_1(\bm x) = \begin{bmatrix}1\\ x_1^2 + 2x_2^2\end{bmatrix}
-</span> and <span class="math display">
-\bm f_2(\bm x) = \begin{bmatrix}-1\\ 2x_1^2+3x_2^2-2\end{bmatrix}.
-</span></p>
+<p><span class="theorem-title"><strong>Example 3 (The flow pushes towards the boundary)</strong></span> And one last pair of the right-hand sides: <span class="math display">\bm f_1(\bm x) = \begin{bmatrix}1\\ x_1^2 + 2x_2^2\end{bmatrix}</span> and <span class="math display">\bm f_2(\bm x) = \begin{bmatrix}-1\\ 2x_1^2+3x_2^2-2\end{bmatrix}.</span></p>
 <p>The state-portrait is in <a href="#fig-switched-portrait-3" class="quarto-xref">Fig.&nbsp;7</a>.</p>
 <div id="cell-fig-switched-portrait-3" class="cell" data-execution_count="1">
 <details class="code-fold">
@@ -1060,9 +1064,7 @@ Figure&nbsp;7: State portrait of a switched system
 </figure>
 </div>
 </div>
-<p>The projections of the two vector fields onto the normal of the switching function satisfy <span class="math display">
-\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \geq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \leq 0.
-</span></p>
+<p>The projections of the two vector fields onto the normal of the switching function satisfy <span class="math display">\left.\left(\nabla s\right)^\top \bm f_1\right|_{\bm x_0} \geq 0, \quad \left.\left(\nabla s\right)^\top \bm f_2\right|_{\bm x_0} \leq 0.</span></p>
 <p>But this is interesting! Once the trajectory hits the switching curve and tries to penetrate it futher, it is pushed back to the switching curve. As it tries to penetrate it further, it is pushed back to the switching curve again. And so on. But then, how does the state evolve from <span class="math inline">\bm x_0</span>?</p>
 <p>Hint: solve the ODE numerically with some finite step size. The solution will exhibit zig-zagging or chattering along the switching curve, away from the blue point. Now, keep shrinking the step size. The solution will ultimately “slide” smoothly along the switching curve. Perhaps this was your guess. One thing should worry you, however: such “sliding” solution satisfies neither of the two state equations!</p>
 <p>We will make this more rigorous in a moment, but right now we just wanted to tease the intuition.</p>
@@ -1102,9 +1104,7 @@ Figure&nbsp;7: State portrait of a switched system
 </div>
 <p>A solution is guaranteed to be continuously differentiable ( <span class="math inline">x\in\mathrm C^1</span> ). Such function <span class="math inline">x(t)</span> satisfies the ODE <span class="math inline">\dot x(t) = f(x(t),t) \; \forall t</span>, that is why such solution is called <em>classical</em>.</p>
 <div id="exm-localness-of-solution" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4</strong></span> An example of a solution that exists only on a finite interval is <span class="math display">
-  \dot x(t) = x^2(t),\; x(0) = 1,
-</span><br>
+<p><span class="theorem-title"><strong>Example 4</strong></span> An example of a solution that exists only on a finite interval is <span class="math display">\dot x(t) = x^2(t),\; x(0) = 1,</span><br>
 for which the solution is <span class="math inline">x(t) = \frac{1}{1-t}</span> . The solution blows up at <span class="math inline">t=1</span> .</p>
 </div>
 <div id="exm-nonuniqueness-of-solution" class="theorem example">
@@ -1141,17 +1141,13 @@ where we use Lebesgue integral (instead of Riemann).</p>
 <p>Needless to say, for a continuous <span class="math inline">f</span>, solutions <span class="math inline">x</span> are just classical (smooth).</p>
 <p>If the function <span class="math inline">f</span> is discontinuous with respect to <span class="math inline">x</span>, some more concepts of a solution need to be invoked so that existence and uniqueness can be analyzed.</p>
 <div id="exm-caratheodory" class="theorem example">
-<p><span class="theorem-title"><strong>Example 6 (Some more examples of nonexistence and nonuniqueness of solutions)</strong></span> The system with a discontinuous RHS <span class="math display">
-\begin{aligned}
+<p><span class="theorem-title"><strong>Example 6 (Some more examples of nonexistence and nonuniqueness of solutions)</strong></span> The system with a discontinuous RHS <span class="math display">\begin{aligned}
 \dot x_1 &amp;= -2x_1 - 2x_2\operatorname*{sgn(x_1)},\\
 \dot x_2 &amp;= x_2 + 4x_1\operatorname*{sgn(x_1)}
-\end{aligned}
-</span> can be reformulated as a switched system <span class="math display">
-\begin{aligned}
+\end{aligned}</span> can be reformulated as a switched system <span class="math display">\begin{aligned}
 \dot{\bm x} &amp;= \begin{bmatrix}-2 &amp; 2\\-4 &amp; 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \quad  s(\bm x)\leq 0\\
 \dot{\bm x} &amp;= \begin{bmatrix}-2 &amp; -2\\4 &amp; 1\end{bmatrix}\begin{bmatrix}x_1\\ x_2\end{bmatrix}, \quad s(\bm x)&gt; 0,
-\end{aligned}
-</span> where the switching function is <span class="math inline">s(\bm x) = x_1</span>.</p>
+\end{aligned}</span> where the switching function is <span class="math inline">s(\bm x) = x_1</span>.</p>
 <p>The state portrait is in <a href="#fig-switched-portrait-4" class="quarto-xref">Fig.&nbsp;8</a>.</p>
 <div id="cell-fig-switched-portrait-4" class="cell" data-execution_count="1">
 <details class="code-fold">
@@ -1190,26 +1186,16 @@ Figure&nbsp;8: State portrait of a switched system
 <section id="generalized-solutions-filippov" class="level3">
 <h3 class="anchored" data-anchor-id="generalized-solutions-filippov">Generalized solutions (Filippov)</h3>
 <p>It is now high time to introduce yet another concept of a solution. A concept that will make it possible to model the sliding mode dynamics in a more rigorous way. Remember that when the state <span class="math inline">\bm x(t)</span> slides along the boundary, it qualifies as a solution to neither of the two state equations in any sense we have discussed so far. But now comes the concept of <em>Fillipov solution</em>.</p>
-<p><span class="math inline">\bm x()</span> is a Filippov solution on <span class="math inline">[t_0,t_1]</span> if for almost all <span class="math inline">t</span> <span class="math display">
-\dot{\bm{x}}(t) \in \overline{\operatorname*{co}}\{\mathbf f(\bm x(t),t)\},
-</span> where <span class="math inline">\overline{\operatorname*{co}}</span> denotes the (closed) convex hull.</p>
+<p><span class="math inline">\bm x()</span> is a Filippov solution on <span class="math inline">[t_0,t_1]</span> if for almost all <span class="math inline">t</span> <span class="math display">\dot{\bm{x}}(t) \in \overline{\operatorname*{co}}\{\mathbf f(\bm x(t),t)\},</span> where <span class="math inline">\overline{\operatorname*{co}}</span> denotes the (closed) convex hull.</p>
 <div id="exm-filippov" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7</strong></span> Consider the model in the previous example. The switching surface, along which the solution slides, is given by <span class="math inline">\mathcal{S}^+ = \{\bm x \mid x_1=0 \land x_2\geq 0\}</span>.</p>
-<p>Now, Filippov solution must satisfy the following differential inclusion <span class="math display">
-\begin{aligned}
+<p>Now, Filippov solution must satisfy the following differential inclusion <span class="math display">\begin{aligned}
 \dot{\bm x}(t) &amp;\in \overline{\operatorname*{co}}\{\bm A_1\bm x_1(t), \bm A_2\bm x_2(t)\}\\
 &amp;= \alpha_1(t) \bm A_1\bm x_1(t) + \alpha_2(t) \bm A_2\bm x_2(t),
-\end{aligned}
-</span> where <span class="math inline">\alpha_1(t), \alpha_2(t) \geq 0, \alpha_1(t) + \alpha_2(t) = 1</span>.</p>
-<p>Note, however, that not all the weights keep the solution on <span class="math inline">\mathcal S^+</span>. We must impose some restriction, namely that <span class="math inline">\dot x_1 = 0</span> for <span class="math inline">\bm x(t) \in \mathcal S^+</span>. This leads to <span class="math display">
-\alpha_1(t) [-2x_1 + 2x_2] + \alpha_2(t) [-2x_1 - 2x_2] = 0
-</span></p>
-<p>Combining this with <span class="math inline">\alpha_1(t) + \alpha_2(t) = 1</span> gives <span class="math display">
-\alpha_1(t) = \alpha_2(t) = 1/2,
-</span> which in this simple case perhaps agrees with our intuition (the average of the two vector fields).</p>
-<p>The dynamics on the sliding mode is modelled by <span class="math display">
-\dot x_1 = 0, \quad \dot x_2 = x_2, \quad \bm x \in \mathcal{S}^+.
-</span></p>
+\end{aligned}</span> where <span class="math inline">\alpha_1(t), \alpha_2(t) \geq 0, \alpha_1(t) + \alpha_2(t) = 1</span>.</p>
+<p>Note, however, that not all the weights keep the solution on <span class="math inline">\mathcal S^+</span>. We must impose some restriction, namely that <span class="math inline">\dot x_1 = 0</span> for <span class="math inline">\bm x(t) \in \mathcal S^+</span>. This leads to <span class="math display">\alpha_1(t) [-2x_1 + 2x_2] + \alpha_2(t) [-2x_1 - 2x_2] = 0</span></p>
+<p>Combining this with <span class="math inline">\alpha_1(t) + \alpha_2(t) = 1</span> gives <span class="math display">\alpha_1(t) = \alpha_2(t) = 1/2,</span> which in this simple case perhaps agrees with our intuition (the average of the two vector fields).</p>
+<p>The dynamics on the sliding mode is modelled by <span class="math display">\dot x_1 = 0, \quad \dot x_2 = x_2, \quad \bm x \in \mathcal{S}^+.</span></p>
 </div>
 <!-- #TODO: Finish this section or remove.
 :::{.callout-warning}

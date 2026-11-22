@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -517,6 +537,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -816,8 +842,7 @@ window.Quarto = {
 \dot{\bm x}(t) &amp;= \mathbf A \bm x(t) + \mathbf B\bm u(t)\\
 \bm y(t) &amp;= \mathbf C \bm x(t) + \mathbf D\bm u(t)\\
 \mathbf 0&amp;\leq \bm u(t) \perp \bm y(t) \geq \mathbf 0.
-\end{aligned}}
-\tag{1}</span></span></p>
+\end{aligned}} \tag{1}</span></span></p>
 <div id="exm-electrical-circuit-as-LCS" class="theorem example">
 <p><span class="theorem-title"><strong>Example 1 (Electrical circuit with a diode as an LCS)</strong></span> &nbsp;</p>
 <div class="quarto-figure quarto-figure-center">
@@ -827,22 +852,16 @@ window.Quarto = {
 </figure>
 </div>
 <p>Note the upside-down orientation of the voltage and the current for the capacitor – we wanted the diode current identical to the capacitor current.</p>
-<p>Following the charge formalism within Lagrangian modelling, we can choose the generalized coordinates as <span class="math display">
-      \bm q = \begin{bmatrix}
+<p>Following the charge formalism within Lagrangian modelling, we can choose the generalized coordinates as <span class="math display">\bm q = \begin{bmatrix}
       q_L \\ q_C
-      \end{bmatrix}.
-</span></p>
-<p>That this is indeed a sufficient number is obvious, but we can also check the classical formula <span class="math inline">B-N+1 = 4-3+1 = 2</span>. But we can also choose the state variables as <span class="math display">
-      \bm x = \begin{bmatrix}
+      \end{bmatrix}.</span></p>
+<p>That this is indeed a sufficient number is obvious, but we can also check the classical formula <span class="math inline">B-N+1 = 4-3+1 = 2</span>. But we can also choose the state variables as <span class="math display">\bm x = \begin{bmatrix}
       i_L\\ q_c
-      \end{bmatrix}.
-</span></p>
-<p>The resulting state equations are <span class="math display">
-\begin{aligned}
+      \end{bmatrix}.</span></p>
+<p>The resulting state equations are <span class="math display">\begin{aligned}
 i_L' &amp;= -\frac{1}{LC}q_C - \frac{1}{L}u_D\\
 q_C' &amp;= i_L - \frac{1}{RC} q_C - \frac{1}{R} u_D.
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 <p>The idealized volt-ampere characteristics of the diode is</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -865,25 +884,18 @@ q_C' &amp;= i_L - \frac{1}{RC} q_C - \frac{1}{R} u_D.
 </figure>
 </div>
 <p>which can be modelled as a complementarity constraint<br>
-<span class="math display">
-0\leq i_D \perp \bar u_D \geq 0.
-</span></p>
-<p>Now, upon replacing the diode voltage with its reverse <span class="math inline">\bar u_D</span> while using <span class="math inline">i_D=i_C</span>, we get <span class="math display">
-\begin{aligned}
+<span class="math display">0\leq i_D \perp \bar u_D \geq 0.</span></p>
+<p>Now, upon replacing the diode voltage with its reverse <span class="math inline">\bar u_D</span> while using <span class="math inline">i_D=i_C</span>, we get <span class="math display">\begin{aligned}
 i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
 q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
 0&amp;\leq q_C' \perp \bar u_D \geq 0.
-\end{aligned}
-</span></p>
-<p>We are not there yet – there is a derivative in the complementarity constraint. But just substitute for it: <span class="math display">
-\begin{aligned}
+\end{aligned}</span></p>
+<p>We are not there yet – there is a derivative in the complementarity constraint. But just substitute for it: <span class="math display">\begin{aligned}
 i_L' &amp;= -\frac{1}{LC}q_C + \frac{1}{L} \bar u_D\\
 q_C' &amp;= i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D\\
 0&amp;\leq i_L - \frac{1}{RC} q_C + \frac{1}{R} \bar u_D \perp \bar u_D \geq 0,
-\end{aligned}
-</span><br>
-and voila, we finally got the LCS description. We can also reformat it into the matrix-vector form <span class="math display">
-\begin{aligned}
+\end{aligned}</span><br>
+and voila, we finally got the LCS description. We can also reformat it into the matrix-vector form <span class="math display">\begin{aligned}
 \begin{bmatrix}
 i_L' \\ q_C'
 \end{bmatrix} &amp;=
@@ -910,8 +922,7 @@ i_L \\ q_C
 \frac{1}{R}
 \end{bmatrix}
 \bar u_D\right ) \bot \bar u_D \geq 0.
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 </div>
 <div id="exm-mass-spring-damper-as-LCS" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Mass-spring system with a hard stop as a linear complementarity system)</strong></span> Two carts moving horitontally (left or right) are interconnected through a spring. The left cart is also interconnected with the wall through a another spring. Furthemore, the motion of the left cart is constrained in that there is a <em>hard stop</em> that prevents the cart from moving further to the left. Another natural constraint is that the right cart cannot get to the left of the other vehicle. The setup is shown in <a href="#fig-mass-spring-hard-stop" class="quarto-xref">Fig.&nbsp;1</a>.</p>
@@ -928,39 +939,24 @@ Figure&nbsp;1: Mass-spring system with a hard stop to be modelled as a LCS
 <p>The variables <span class="math inline">x_1</span> and <span class="math inline">x_2</span> give deviations of the two carts from their equilibrium positions. As we are considering negligible sizes of the two carts, the equilibrium position for both is 0. The derivatives of the two positions are also introduced as state variables <span class="math inline">x_3</span> and <span class="math inline">x_4</span>, respectively.</p>
 <p>The hard stop is located at the equilibrium position of the left cart.</p>
 <p>The input <span class="math inline">u_1</span> corresponds to the reaction force of the hard stop applied to the left cart. Another input is <span class="math inline">u_2</span> that corresponds to the force exerted by the left cart onto the right cart.</p>
-<p>The state equations are <span class="math display">
-\begin{aligned}
+<p>The state equations are <span class="math display">\begin{aligned}
 \dot x_1(t) &amp;= x_3,\\
 \dot x_2(t) &amp;= x_4,\\
 \dot x_3(t) &amp;= -\frac{k_1+k_2}{m_1}x_1(t) + \frac{k_2}{m_1}x_2(t) + \frac{1}{m_1}u_1(t) - \frac{1}{m_1}u_2(t),\\
 \dot x_4(t) &amp;= \frac{k_2}{m_2}x_1(t) - \frac{k_2}{m_2} x_2(t) + \frac{1}{m_2}u_2(t).
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 <p>The presence of the hard stop can be modelled as an inequality constraint on the state <span class="math display">x_1(t) \geq  0.</span></p>
-<p>Similarly, the fact that the right cart cannot get to the left of the left cart can be expressed as <span class="math display">
-x_2(t) - x_1(t) \geq 0.
-</span></p>
-<p>This motivates us to define two output variables as <span class="math display">
-\begin{aligned}
+<p>Similarly, the fact that the right cart cannot get to the left of the left cart can be expressed as <span class="math display">x_2(t) - x_1(t) \geq 0.</span></p>
+<p>This motivates us to define two output variables as <span class="math display">\begin{aligned}
 y_1(t) &amp;= x_1(t),\\
 y_2(t) &amp;= x_2(t)-x_1(t).
-\end{aligned}
-</span></p>
-<p>Now, the reaction force <span class="math inline">u_1</span> exerted by the hard stop onto the left cart can only be nonnegative <span class="math display">
-u_1(t) \geq 0,
-</span><br>
+\end{aligned}</span></p>
+<p>Now, the reaction force <span class="math inline">u_1</span> exerted by the hard stop onto the left cart can only be nonnegative <span class="math display">u_1(t) \geq 0,</span><br>
 and it is positive if and only if the left cart hits the hard stop<br>
-<span class="math display">
-      y_1(t) u_1(t) = 0.
-</span></p>
-<p>The condition can be written compactly as <span class="math display">
-0\leq y_1(t) \perp u_1(t) \geq 0.
-</span></p>
-<p>Similarly for the force <span class="math inline">u_2</span> exerted by the left cart onto the right cart <span class="math display">
-0\leq y_2(t) \perp u_2(t) \geq 0.
-</span></p>
-<p>For convenience, we now give a full model in the matrix-vector form. <span id="eq-mass-spring-hard-stop"><span class="math display">
-\begin{aligned}
+<span class="math display">y_1(t) u_1(t) = 0.</span></p>
+<p>The condition can be written compactly as <span class="math display">0\leq y_1(t) \perp u_1(t) \geq 0.</span></p>
+<p>Similarly for the force <span class="math inline">u_2</span> exerted by the left cart onto the right cart <span class="math display">0\leq y_2(t) \perp u_2(t) \geq 0.</span></p>
+<p>For convenience, we now give a full model in the matrix-vector form. <span id="eq-mass-spring-hard-stop"><span class="math display">\begin{aligned}
 \begin{bmatrix} \dot x_1\\ \dot x_2\\ \dot x_3\\ \dot x_4 \end{bmatrix}
 &amp;=
 \begin{bmatrix}
@@ -973,8 +969,7 @@ and it is positive if and only if the left cart hits the hard stop<br>
 \begin{bmatrix} 0 &amp; 0\\ 0 &amp; 0\\ {\color{blue}\frac{1}{m_1}} &amp; {\color{blue}-\frac{1}{m_1}}\\ {\color{blue}0} &amp; {\color{blue}\frac{1}{m_2}}\end{bmatrix} \begin{bmatrix} u_1\\u_2\end{bmatrix},\\
 \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} &amp;= \begin{bmatrix} {\color{blue}1} &amp; {\color{blue}0} &amp; 0 &amp; 0\\ {\color{blue}-1} &amp; {\color{blue}1} &amp; 0 &amp; 0\end{bmatrix} \begin{bmatrix} x_1\\ x_2\\ x_3\\ x_4 \end{bmatrix},\\
 \mathbf 0 &amp;\leq \bm y \perp \bm u \geq \mathbf 0.
-\end{aligned}
-\tag{2}</span></span></p>
+\end{aligned} \tag{2}</span></span></p>
 <p>Note that we highlighted in blue three submatrices that will come in handy in the next section.</p>
 </div>
 </section>
@@ -1001,17 +996,9 @@ Figure&nbsp;2: Feedback interconnection of a dynamical system and a nonlinearity
 </figcaption>
 </figure>
 </div>
-<p>We now express the original <span class="math inline">y</span> as a difference of two nonnegative variable satisfying the complementarity constraint <span class="math display">
-y = y^+ - y^-,\quad 0 \leq y^+ \bot y^- \geq 0.
-</span></p>
-<p>The motivation for this was that with the new variables <span class="math inline">y^+</span> and <span class="math inline">y^-</span>, the max function can be expressed as <span class="math display">
-\max(y,0) = \max(y^+ - y^-, 0) = y^+.
-</span></p>
-<p>Now, set <span class="math display">y^+ = u</span> and then <span class="math display">
-y = u - y^-,
-</span> from which <span class="math display">
-y^- = u - y
-</span> and therefore the original feedback interconnection can be rewritten as</p>
+<p>We now express the original <span class="math inline">y</span> as a difference of two nonnegative variable satisfying the complementarity constraint <span class="math display">y = y^+ - y^-,\quad 0 \leq y^+ \bot y^- \geq 0.</span></p>
+<p>The motivation for this was that with the new variables <span class="math inline">y^+</span> and <span class="math inline">y^-</span>, the max function can be expressed as <span class="math display">\max(y,0) = \max(y^+ - y^-, 0) = y^+.</span></p>
+<p>Now, set <span class="math display">y^+ = u</span> and then <span class="math display">y = u - y^-,</span> from which <span class="math display">y^- = u - y</span> and therefore the original feedback interconnection can be rewritten as</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/max_as_complementarity_in_feedback.png" class="img-fluid figure-img" style="width:30.0%"></p>
@@ -1032,9 +1019,7 @@ Figure&nbsp;3: A simple piecewise affine function
 </figcaption>
 </figure>
 </div>
-<p>The function is defined by shifting and scaling the original <span class="math inline">\max(y,0)</span> function: <span class="math display">
-u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0).
-</span></p>
+<p>The function is defined by shifting and scaling the original <span class="math inline">\max(y,0)</span> function: <span class="math display">u(y) = k_1 \max(y-y_1,0) = \max(k_1(y-y_1),0).</span></p>
 <p>We can now enforce complementarity based on this function in the feedback loop, see <a href="#fig-shifted-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;4</a>.</p>
 <div id="fig-shifted-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1057,14 +1042,12 @@ Figure&nbsp;5: PWA function with multiple segments
 </figcaption>
 </figure>
 </div>
-<p>The function is defined as <span class="math display">
-\begin{aligned}
+<p>The function is defined as <span class="math display">\begin{aligned}
 u(y) &amp;= k_0 y + u_0 + (k_1-k_0) \max(y-y_1,0) \\
 &amp;\qquad + (k_2-k_1) \max(y-y_2,0)\\
 &amp;= k_0 y + u_0 + \underbrace{\max((k_1-k_0)(y-y_1),0)}_{u_1}\\
 &amp;\qquad + \underbrace{\max((k_2-k_1)(y-y_2),0)}_{u_2}
-\end{aligned}
-</span> and the feedback interconnection now contain several parallel paths with complementarity constraints as in <a href="#fig-several-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;6</a></p>
+\end{aligned}</span> and the feedback interconnection now contain several parallel paths with complementarity constraints as in <a href="#fig-several-pwa-as-complementarity" class="quarto-xref">Fig.&nbsp;6</a></p>
 <div id="fig-several-pwa-as-complementarity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-several-pwa-as-complementarity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

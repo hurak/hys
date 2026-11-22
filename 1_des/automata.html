@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -81,6 +81,26 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
+}@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
 }</style>
 
 
@@ -100,7 +120,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -572,6 +592,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -894,8 +920,7 @@ window.Quarto = {
 <p>Having just discussed the concept of a discrete-event system, we now introduce the most popular modeling framework for such systems: a <em>state automaton</em>, or just an <em>automaton</em> (plural automata). It is also known as a <em>state machine</em> or a <em>(discrete) transition system</em>.</p>
 <div id="def-automaton" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 1 (Automaton)</strong></span> Automaton is a tuple <span class="math display">\boxed{
-G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F\},}
-</span><br>
+G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F\},}</span><br>
 where</p>
 <ul>
 <li><span class="math inline">\mathcal X</span> is the set of <em>states</em> (also called <em>modes</em> or <em>locations</em>).</li>
@@ -923,8 +948,7 @@ where</p>
 <section id="marked-states" class="level2">
 <h2 class="anchored" data-anchor-id="marked-states">Marked states</h2>
 <p>In some literature, the definition of the automaton also includes a set <span class="math inline">\mathcal X_\mathrm{m} \subseteq \mathcal X</span> of <em>marked</em> or <em>accepting</em> states, in which case the definition of an automaton now includes three (sub)sets of states: <span class="math inline">\mathcal X</span>, <span class="math inline">\mathcal X_0</span> and <span class="math inline">\mathcal X_\mathrm{m}</span>. <span class="math display">\boxed{
-G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\}.}
-</span></p>
+G = \{\mathcal X,\mathcal X_0,\mathcal E,\mathcal F, \mathcal X_\mathrm{m}\}.}</span></p>
 <p>The marked states are just some states with special roles in the system. Namely, these are the states into which the system should be controlled. I do not particularly like this idea of mixing the model of the system with the requirements, but some part of the community likes it this way.</p>
 </section>
 <section id="automaton-as-a-digraph-also-a-state-transition-diagram" class="level2">
@@ -2284,16 +2308,16 @@ Figure&nbsp;12: Example of a ring topology for Dijkstra’s token passing in a d
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="pp">@show</span> <span class="fu">update!</span>(dtr), <span class="fu">output</span>(dtr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>x_initial = rand(0:k, n) = [1, 0, 1, 1]
-output(dtr) = [1, 1, 1, 0]
-(update!(dtr), output(dtr)) = ([2, 1, 0, 1], [0, 1, 1, 1])
-(update!(dtr), output(dtr)) = ([2, 2, 1, 0], [0, 0, 1, 1])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 1], [0, 0, 0, 1])
-(update!(dtr), output(dtr)) = ([2, 2, 2, 2], [1, 0, 0, 0])
-(update!(dtr), output(dtr)) = ([3, 2, 2, 2], [0, 1, 0, 0])</code></pre>
+<pre><code>x_initial = rand(0:k, n) = [0, 2, 0, 4]
+output(dtr) = [0, 1, 1, 1]
+(update!(dtr), output(dtr)) = ([0, 0, 2, 0], [1, 0, 1, 1])
+(update!(dtr), output(dtr)) = ([1, 0, 0, 2], [0, 1, 0, 1])
+(update!(dtr), output(dtr)) = ([1, 1, 0, 0], [0, 0, 1, 0])
+(update!(dtr), output(dtr)) = ([1, 1, 1, 0], [0, 0, 0, 1])
+(update!(dtr), output(dtr)) = ([1, 1, 1, 1], [1, 0, 0, 0])</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>([3, 2, 2, 2], [0, 1, 0, 0])</code></pre>
+<pre><code>([1, 1, 1, 1], [1, 0, 0, 0])</code></pre>
 </div>
 </div>
 <p>We can see that although initially the there can be more tokens, after a few iterations the algorithm achieves the goal of having just one token in the ring.</p>
@@ -2449,19 +2473,11 @@ Figure&nbsp;14: Example illustrating how two automata can be synchronized by sen
 <h2 class="anchored" data-anchor-id="languages-and-automata">Languages and automata</h2>
 <p>When studying automata, we often encounter the concept of a <em>language</em>. Indeed, the concept of an automaton is heavily used in the formal laguage theory. Although in our course we are not going to refer to these results, some resources we recommend for our courses do, and so it is useful to understand how automata and languages are related.</p>
 <p>First, we extend the definition of a transition function in that it accepts the current state and not just a single event but a sequence of events, that is</p>
-<p><span class="math display">
-f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X,
-</span> where <span class="math inline">\mathcal E^\ast</span> stands for the set of all possible sequences of events.</p>
-<p>Language <em>generated</em> by the automaton is <span class="math display">
-\mathcal L(\mathcal G) = \{s\in\mathcal E^\ast \mid f(x_0,s) \;\text{is defined}\}
-</span></p>
-<p>Language <em>marked</em> by the automaton (the automaton is <em>accepting</em> or <em>recognizing</em> that language) <span class="math display">
-\mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}
-</span></p>
+<p><span class="math display">f: \mathcal X \times \mathcal E^\ast \rightarrow \mathcal X,</span> where <span class="math inline">\mathcal E^\ast</span> stands for the set of all possible sequences of events.</p>
+<p>Language <em>generated</em> by the automaton is <span class="math display">\mathcal L(\mathcal G) = \{s\in\mathcal E^\ast \mid f(x_0,s) \;\text{is defined}\}</span></p>
+<p>Language <em>marked</em> by the automaton (the automaton is <em>accepting</em> or <em>recognizing</em> that language) <span class="math display">\mathcal L_\mathrm{m}(\mathcal G) = \{s\in\mathcal L(\mathcal G) \mid f(x_0,s) \in \mathcal{X}_\mathrm{m}\}</span></p>
 <div id="exm-language-automaton" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14 (Language accepted by automaton)</strong></span> <span class="math display">
-\mathcal{E} = \{a,b\}, \mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}
-</span></p>
+<p><span class="theorem-title"><strong>Example 14 (Language accepted by automaton)</strong></span> <span class="math display">\mathcal{E} = \{a,b\}, \mathcal{L} = \{a,aa,ba,aaa,aba,baa,bba,\ldots\}</span></p>
 <div class="cell" data-fig-height="150px" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-language-automaton" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -2754,9 +2770,7 @@ Figure&nbsp;18: Example of a network of queueing systems
 <p>The reason why we mentioned queueing systems in this part of our course is that they can be modelled as automata. And we already know that in order to define and automaton, we must characterize the key components defining the automaton – three in this case:</p>
 <ul>
 <li><p>events: <span class="math inline">\mathcal E = \{\text{arrival},\text{departure}\}</span>;</p></li>
-<li><p>states: number of customers in the queue <span class="math display">
-\mathcal X = \{0,1,2,3,\ldots\}, \quad \mathcal X_0 = \{0\},
-</span></p></li>
+<li><p>states: number of customers in the queue <span class="math display">\mathcal X = \{0,1,2,3,\ldots\}, \quad \mathcal X_0 = \{0\},</span></p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -2772,13 +2786,11 @@ Note
 </div>
 </div>
 <ul>
-<li>state transition: <span class="math display">
-f(x,e) =
+<li>state transition: <span class="math display">f(x,e) =
 \begin{cases}
 x+1, &amp; \text{if}\; x\geq 0 \land e = \mathrm{arrival}\\
 x-1, &amp; \text{if}\; x &gt; 0 \land e = \mathrm{departure}.
-\end{cases}
-</span></li>
+\end{cases}</span></li>
 </ul>
 </section>
 <section id="queueing-system-as-an-automaton" class="level3">
@@ -2828,9 +2840,7 @@ Note
 </ul>
 <p>There are several ways how to incorporate time into the automaton. We will follow the concept of a <em>timed automaton with guards</em> (introduced by Alur and Dill). Within their framework we have</p>
 <ul>
-<li>one or several resettable clocks: <span class="math inline">c_i,\, i=1,\ldots, k</span>, driven by the ODE <span class="math display">
-  \frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0;
-  </span></li>
+<li>one or several resettable clocks: <span class="math inline">c_i,\, i=1,\ldots, k</span>, driven by the ODE <span class="math display">\frac{\mathrm{d} c_i(t)}{\mathrm d t} = 1, \quad c_i(0) = 0;</span></li>
 <li>each transition labelled by the tripple {<code>guard</code>; <code>event</code>; <code>reset</code>}.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">

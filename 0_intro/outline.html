@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -474,6 +494,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -782,30 +808,20 @@ ul.task-list li input[type="checkbox"] {
 <li>Max-Plus algebra and Max-Plus Linear (MPL) systems</li>
 </ol></li>
 <li>Hybrid systems
-<ol start="4" type="1">
-<li>Hybrid automata</li>
-<li>Hybrid equations</li>
-</ol></li>
+4. Hybrid automata
+5. Hybrid equations</li>
 <li>Special classes of hybrid systems
-<ol start="6" type="1">
-<li>Reset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)</li>
-<li>Complementarity dynamical systems (and complementarity optimization constraints)<br>
+6. Reset (control) systems, Switched/switching systems, Piecewise affine systems (PWA)
+7. Complementarity dynamical systems (and complementarity optimization constraints)<br>
 </li>
-</ol></li>
 </ul>
 <ol start="8" type="1">
 <li>Solutions of hybrid systems</li>
 </ol>
 <ul>
 <li>Stability of hybrid systems
-<ol start="9" type="1">
-<li>Common Lyapunov function
-<ul>
-<li>Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP)</li>
-<li>Polynomial Lyapunov function via sum-of-squares (SOS) programming</li>
-</ul></li>
-<li>Piecewise quadratic/polynomial Lyapunov function via S-procedure</li>
-</ol></li>
+9. Common Lyapunov function - Quadratic Lyapunov function via linear matrix inequality (LMI) and semidefinite programming (SDP) - Polynomial Lyapunov function via sum-of-squares (SOS) programming
+10. Piecewise quadratic/polynomial Lyapunov function via S-procedure</li>
 </ul>
 <ol start="11" type="1">
 <li>Mixed-logical dynamical (MLD) description of hybrid systems</li>
@@ -813,10 +829,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <ul>
 <li>Formal verification of hybrid systems
-<ol start="13" type="1">
-<li>Reachability analysis and barrier certificates</li>
-<li>Temporal logics and model checking</li>
-</ol></li>
+13. Reachability analysis and barrier certificates
+14. Temporal logics and model checking</li>
 </ul>
 
 

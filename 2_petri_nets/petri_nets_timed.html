@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -517,6 +537,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -876,16 +902,11 @@ window.Quarto = {
 <p>But generally <span class="math inline">x_{i,0} \neq 0</span> and the above relation needs to be modified to <span class="math display">\pi_{i,k+x_{i,0}} = \tau_{j,k},\quad p_i\in \mathcal{O}(t_j),</span> or, equivalently <span id="eq-pi-tau"><span class="math display">\boxed{\pi_{i,k} = \tau_{j,k-x_{i,0}},\quad p_i\in \mathcal{O}(t_j).} \tag{1}</span></span></p>
 <p>This can be read in the following way. If there are initially, say, 3 tokens in the place, the time of the arrival of the 4th token is the time of the first firing of the transition from which the 4th token arrives.</p>
 <p>Good. Keep this result in mind. Now we go for another.</p>
-<p>For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place <span class="math display">
-\tau_{j,k} = \pi_{i,k}.
-</span></p>
-<p>Modifying this result for a timed transition with a single input place we get <span class="math display">
-\tau_{j,k} = \pi_{i,k} + v_{j,k}.
-</span></p>
+<p>For an untimed transition with a single input place, the firing time is the same as the time of the arrival of the token to the place <span class="math display">\tau_{j,k} = \pi_{i,k}.</span></p>
+<p>Modifying this result for a timed transition with a single input place we get <span class="math display">\tau_{j,k} = \pi_{i,k} + v_{j,k}.</span></p>
 <p>In words, the firing time is given by the time of the arrival of the token to the place, which enables the transition, and the delay associated with the transition.</p>
 <p>Finally, we extend this result to the case of a timed transition with multiple input places <span id="eq-tau-pi"><span class="math display">\boxed{
-\tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.}
-\tag{2}</span></span></p>
+\tau_{j,k} = \max_{p_i\in\mathcal{I}(t_j)}\{\pi_{i,k}\} + v_{j,k}.} \tag{2}</span></span></p>
 <p>This is the other promised important result. Keep both boxed formulas <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> and <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> handy, they will be needed in what is coming.</p>
 <div id="exm-timed-Petri-net-dynamics" class="theorem example">
 <p><span class="theorem-title"><strong>Example 2 (Timed Petri net dynamics)</strong></span> Consider the Petri net with three places and two transitions, one of which is timed, as in <a href="#fig-timed-petri-net-dynamics" class="quarto-xref">Fig.&nbsp;1</a>.</p>
@@ -899,26 +920,20 @@ Figure&nbsp;1: Example of a Petri net for which the dynamics is analyzed
 </figcaption>
 </figure>
 </div>
-<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">
-\begin{aligned}
+<p>We first use <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> to write down the firing times of the two transitions <span class="math display">\begin{aligned}
 \tau_{1,k} &amp;= \max\{\pi_{1,k},\pi_{3,k}\}\\
 \tau_{2,k} &amp;= \pi_{2,k}+v_{2,k}.
-\end{aligned}
-</span></p>
-<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">
-\begin{aligned}
+\end{aligned}</span></p>
+<p>Now we apply <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> to write down the times of the arrival of the tokens to the places <span class="math display">\begin{aligned}
 \pi_{1,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{1,0} = 0\\
 \pi_{2,k} &amp;= \tau_{1,k-1}, \qquad k=2,\ldots, \qquad \pi_{2,0} = 0\\
 \pi_{3,k} &amp;= \tau_{2,k}, \qquad k=1,\ldots
-\end{aligned}
-</span></p>
-<p>Substituting from the latter into the former we get <span class="math display">
-\begin{aligned}
+\end{aligned}</span></p>
+<p>Substituting from the latter into the former we get <span class="math display">\begin{aligned}
 \tau_{1,k} &amp;= \max\{\tau_{1,k-1},\tau_{1,k-1}+v_{2,k}\}\\
 &amp;= \tau_{1,k-1}+v_{2,k}, \quad \tau_{1,k} = 0\\
 \tau_{2,k} &amp;= \tau_{1,k-1}+v_{2,k}.
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 <p>This is the ultimate model for the dynamics of the Petri net. Should we need it, we can also get similar expressions for the times of the arrival of the tokens to the places.</p>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -949,24 +964,20 @@ Figure&nbsp;2: Timed Petri net modelling a queueing system
 </figure>
 </div>
 <p>Of the three transitions <span class="math inline">\mathcal{T} = \{a,s,c\}</span>, which we have already identified previously, we assume that only are times, namely <span class="math inline">\mathcal{T}_\mathrm{D} = \{a,c\}</span>. The associated firing delays are <span class="math inline">\bm v = \begin{bmatrix}v_a \\ v_c\end{bmatrix}</span>.</p>
-<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">
-\begin{aligned}
+<p>For convenience we relabel the firing times of the transitions. Instead of <span class="math inline">t_{a,k}</span> we will use <span class="math inline">a_k</span>, and similarly <span class="math inline">s_k</span>, and <span class="math inline">c_k</span>. Application of <a href="#eq-tau-pi" class="quarto-xref">Eq.&nbsp;2</a> and <a href="#eq-pi-tau" class="quarto-xref">Eq.&nbsp;1</a> gives <span class="math display">\begin{aligned}
 a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
 s_k &amp;= \max\{\pi_{Q,k},\pi_{I,k}\}\\
 c_k &amp;= \pi_{B,k} + v_{c,k}\\
 \pi_{Q,k} &amp;= a_{k},\quad k=1,2,\ldots\\
 \pi_{I,k} &amp;= c_{k-1},\quad k= 2, \ldots, \quad \pi_{I,0}=1\\
 \pi_{B,k} &amp;= s_{k},\quad k=1,2,\ldots\\
-\end{aligned}
-</span></p>
-<p>Combining gives the desired update equations <span class="math display">
-\begin{aligned}
+\end{aligned}</span></p>
+<p>Combining gives the desired update equations <span class="math display">\begin{aligned}
 a_k &amp;= a_{k-1} + v_{a,k},\quad k=1,2,\ldots,\quad a_0 = 0\\
 s_k &amp;= \max\{a_{k},c_{k-1}\}\\
 c_k &amp;= s_{k} + v_{c,k}\\
 &amp;= \max\{a_{k},c_{k-1}\} + v_{c,k},\quad k=1,\ldots, \quad c_0=0
-\end{aligned}
-</span></p>
+\end{aligned}</span></p>
 <p>The time of completing the <span class="math inline">k</span>th task is given by the time at which the previous task was completed and the time needed to complete the <span class="math inline">k</span>th task itself, unless there is a gap in the queue after finishing the previous task, in which case the server must wait for the next task to arrive.</p>
 <div id="exm-timed-petri-nets-train" class="theorem example">
 <p><span class="theorem-title"><strong>Example 3 (Timed Petri net for synchronization of train lines)</strong></span> We consider three closed rail tracks and two stations as in <a href="#fig-trains" class="quarto-xref">Fig.&nbsp;3</a>.</p>

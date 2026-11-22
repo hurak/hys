@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -43,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -517,6 +537,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -813,14 +839,12 @@ Figure&nbsp;1: The signs of the input <span class="math inline">e</span> and the
 </figure>
 </div>
 <p>Now, as the input <span class="math inline">e</span> approaches zero, the output <span class="math inline">u</span> is forced to go to zero too, continuously. This way we avoided the discontinuity encountered in the Clegg’s integrator, where the output <span class="math inline">u</span> stays nonzero and once the input <span class="math inline">e</span> crosses zero, the output <span class="math inline">u</span> must reset to zero.</p>
-<p><span class="math display">
-\mathcal H :
+<p><span class="math display">\mathcal H :
 \begin{cases}
 \dot x(t) = \omega_\mathrm{h} e(t), &amp;\text{if} \quad (e, u, \dot e) \in \mathcal F_1,\\
 x(t) = k_\mathrm{h} e(t),  &amp;\text{if} \quad (e, u, \dot e) \in \mathcal F_2,\\
 u(t) = x(t).
-\end{cases}
-</span></p>
+\end{cases}</span></p>
 <p><span class="math inline">e</span> is the input to the system, <span class="math inline">u</span> is the output, and <span class="math inline">x</span> is the state. <span class="math inline">\omega_\mathrm{h}</span> and <span class="math inline">k_\mathrm{h}</span> are the two parameters.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">

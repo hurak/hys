@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.12.1">
+<meta name="generator" content="quarto-1.12.3">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -26,7 +26,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+@media print {
+  html {
+    color-scheme: light only;
+  }
+  html, body, pre, code {
+    background-color: transparent;
+  }
+  body, a, a:visited, blockquote {
+    color: black;
+  }
+  pre, code {
+    padding: 0;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3, h4 {
+    page-break-after: avoid;
+  }
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -45,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6f4d992786adc40a866529610d8cdb02.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-c65da67e2ccd7271deb104e05bb4b4d6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-63267f5764d07862f7cd9365b1d567d6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -517,6 +537,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../8_stability_1/clf_sos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Positive polynomial CLF via SOS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../8_stability_1/software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Software</span></a>
   </div>
@@ -864,15 +890,9 @@ Tip
 <section id="examples-of-types-of-solutions" class="level2">
 <h2 class="anchored" data-anchor-id="examples-of-types-of-solutions">Examples of types of solutions</h2>
 <div id="exm-maximal-solution" class="theorem example">
-<p><span class="theorem-title"><strong>Example 1 (Example of a (non-)maximal solution)</strong></span> <span class="math display">
-\dot x = 1, \; x(0) = 1
-</span></p>
-<p><span class="math display">
-(t,j) \in [0,1] \times \{0\}
-</span></p>
-<p>Now extend the time domain to <span class="math display">
-(t,j) \in [0,2] \times \{0\}.
-</span></p>
+<p><span class="theorem-title"><strong>Example 1 (Example of a (non-)maximal solution)</strong></span> <span class="math display">\dot x = 1, \; x(0) = 1</span></p>
+<p><span class="math display">(t,j) \in [0,1] \times \{0\}</span></p>
+<p>Now extend the time domain to <span class="math display">(t,j) \in [0,2] \times \{0\}.</span></p>
 <p>Can we extend the solution?</p>
 </div>
 <div id="exm-maximal-but-not-complete" class="theorem example">
@@ -884,12 +904,8 @@ Tip
 <p><span class="theorem-title"><strong>Example 3 (Discontinuous right hand side)</strong></span> <span class="math display">\dot x = \begin{cases}-1 &amp; x&gt;0\\ 1 &amp; x\leq 0\end{cases}, \quad x(0) = -1</span> (unless the concept of Filippov solution is invoked).</p>
 </div>
 <div id="exm-zeno-solution-bouncing-ball" class="theorem example">
-<p><span class="theorem-title"><strong>Example 4 (Zeno solution of the bouncing ball)</strong></span> Starting on the ground with some initial upward velocity <span class="math display">
-h(t) = \underbrace{h(0)}_0 + v(0)t - \frac{1}{2}gt^2, \quad v(0)=1
-</span></p>
-<p>What time will it hit the ground again? <span class="math display">
-0 = t - \frac{1}{2}gt^2 = t(1-\frac{1}{2}gt)
-</span></p>
+<p><span class="theorem-title"><strong>Example 4 (Zeno solution of the bouncing ball)</strong></span> Starting on the ground with some initial upward velocity <span class="math display">h(t) = \underbrace{h(0)}_0 + v(0)t - \frac{1}{2}gt^2, \quad v(0)=1</span></p>
+<p>What time will it hit the ground again? <span class="math display">0 = t - \frac{1}{2}gt^2 = t(1-\frac{1}{2}gt)</span></p>
 <p><span class="math display">t_1=\frac{2}{g}</span></p>
 <p>Simplify (scale) the computations just to get the qualitative picture: set <span class="math inline">g=2</span>, which gives <span class="math inline">t_1 = 1</span>.</p>
 <p><span class="math inline">t_1=1</span>:</p>
@@ -907,9 +923,7 @@ h(t) = \underbrace{h(0)}_0 + v(0)t - \frac{1}{2}gt^2, \quad v(0)=1
 <figcaption>Switching between two water tanks</figcaption>
 </figure>
 </div>
-<p><span class="math display">
-\max \{Q_\mathrm{out,1}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,1} + Q_\mathrm{out,2}
-</span></p>
+<p><span class="math display">\max \{Q_\mathrm{out,1}, Q_\mathrm{out,2}\} \leq Q_\mathrm{in} \leq Q_\mathrm{out,1} + Q_\mathrm{out,2}</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figures/water_tank_automaton.png" class="img-fluid figure-img" style="width:60.0%"></p>
