@@ -25,8 +25,10 @@ We consider a switched system with two modes, linear models that are parameteriz
 A₁ = [-0.1 -1; 2 -0.1]
 A₂ = [-0.1 -2; 1 -0.1]
 ```
-Switching curve is given by $x_1=0$, that is, the vertical axis. State portrait is in @fig-no-cqlf.
+
+The switching curve is given by $x_1=0$, that is, the vertical axis. The state portrait is in @fig-no-cqlf.
 ``` {julia}
+#| code-fold: true
 #| label: fig-no-cqlf
 #| fig-cap: "State portrait for the switched system with no common quadratic Lyapunov function"
 
@@ -35,7 +37,7 @@ f₂(x) = A₂*x
 f(x) = x[1] <= 0.0 ? f₁(x) : f₂(x)
 
 using CairoMakie
-fig = Figure(size = (800, 800),fontsize=20)
+fig = Figure(size = (600, 600),fontsize=20)
 ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
 streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma)
 vlines!(ax,0.0,ymin=-2.0,ymax=2.0, color = :red, linewidth=3)
@@ -44,36 +46,55 @@ fig
 
 The equilibrium (the origin) of this switched system appears stable. 
 
-The individual systems are stable, which we can immediately see by computing the eigenvalues of the matrices $A_1$ and $A_2$:
+The individual systems are stable, which we can immediately see by computing the eigenvalues of the matrices $\mathbf A_1$ and $\mathbf A_2$:
 ```{julia}
 #| code-fold: false
 using LinearAlgebra
 eigvals(A₁), eigvals(A₂)
 ```
 
-We now try to find a common quadratic Lyapunov function for both subsystems. We will formulate the problem as an LMI feasibility problem.
+We now search for a common quadratic Lyapunov function for both subsystems. We will formulate this search as an LMI feasibility problem.
 
 ```{julia}
 #| code-fold: false
-
-using Convex, SCS
+#| output: true
+using Convex, SCS, LinearAlgebra
 X = Semidefinite(2)
-constraint₁ = A₁'*X + X*A₁ ⪯ -Matrix{Float64}(I, 2, 2)
-constraint₂ = A₂'*X + X*A₂ ⪯ -Matrix{Float64}(I, 2, 2)
+constraint₁ = A₁'*X + X*A₁ ⪯ -I(2)
+constraint₂ = A₂'*X + X*A₂ ⪯ -I(2)
 constraints = [constraint₁, constraint₂]
 problem = satisfy(constraints)
 solve!(problem,SCS.Optimizer,silent=true)
 ```
 
-The solver does not find a solution. Well, perhaps trying another solver or two would make our conclusion more robust (`MosekTools` is another recommendable alternative to `SCS`). But we are now inclined to conclude that there is no common quadratic Lyapunov function for both subsystems. 
+The solver does not find a solution. We are now inclined to conclude that there is no common quadratic Lyapunov function for both subsystems. You may wonder if trying another solver or two could make our conclusion more robust ([Mosek](https://www.mosek.com/products/mosek/) solver interfaced from Julia via [MosekTools.jl](https://github.com/jump-dev/MosekTools.jl) is a recommendable alternative), but we can also try to solve the dual problem to have full trust in the conclusion. 
 
 :::{.callout-note}
 ## Dual LMI problem confirms the infeasibility of the primal one
 It is possible to certify infeasibility of the primal optimization problem by certifying feasibility of the dual one. Namely, if there are matrices $\bm R_1\succ 0$ and $\bm R_2\succ 0$ such that the following LMI holds:
 $$
-\bm R_1\mathbf A_1^\top+\mathbf A_1\bm R_1 + \bm R_2\mathbf A_2^\top+\mathbf A_2\bm R_2 \prec 0,
+\bm R_1\mathbf A_1^\top+\mathbf A_1\bm R_1 + \bm R_2\mathbf A_2^\top+\mathbf A_2\bm R_2 \succ 0,
 $$
 the primal problem is infeasible.
+
+```{julia}
+#| code-fold: false
+#| output: true
+R₁ = Semidefinite(2)
+R₂ = Semidefinite(2)
+M = A₁*R₁ + R₁*A₁' + A₂*R₂ + R₂*A₂'
+constraints = [M ⪰ 0, tr(R₁) + tr(R₂) == 1]   # normalization excludes R₁ = R₂ = 0
+dual_problem = satisfy(constraints)
+solve!(dual_problem, SCS.Optimizer, silent=true)
+dual_problem.status
+```
+
+We can also check positive definiteness of the matrices "manually". This time we will use the higher-level fuction for that
+```{julia}
+#| code-fold: false
+R₁val, R₂val = evaluate(R₁), evaluate(R₂)
+isposdef(Symmetric(R₁val)), isposdef(Symmetric(R₂val)), isposdef(Symmetric(A₁*R₁val + R₁val*A₁' + A₂*R₂val + R₂val*A₂'))
+```
 :::
 
 The conclusion about the imposibility to find a single quadratic Lyapunov function for both subsystems is also suppported by plotting the invariant sets for the two subsystems. First, we need to compute respective Lyapunov functions for the two subsystems.
@@ -81,7 +102,7 @@ The conclusion about the imposibility to find a single quadratic Lyapunov functi
 ```{julia}
 #| code-fold: false
 X₁ = Semidefinite(2)
-constraint₁ = A₁'*X₁ + X₁*A₁ ⪯ -Matrix{Float64}(I, 2, 2)
+constraint₁ = A₁'*X₁ + X₁*A₁ ⪯ -I(2)
 problem₁ = satisfy(constraint₁)
 solve!(problem₁,SCS.Optimizer,silent=true)
 X₁.value
@@ -90,13 +111,13 @@ X₁.value
 ```{julia}
 #| code-fold: false
 X₂ = Semidefinite(2)
-constraint₂ = A₂'*X₂ + X₂*A₂ ⪯ -Matrix{Float64}(I, 2, 2)
+constraint₂ = A₂'*X₂ + X₂*A₂ ⪯ -I(2)
 problem₂ = satisfy(constraint₂)
 solve!(problem₂,SCS.Optimizer,silent=true)
 X₂.value
 ```
 
-Generally, a Lyapunov function has the property that its sublevel set $\{\bm x \mid V(\bm x) \leq \alpha\}$ is *forward (also positive) invariant*. We plot invariant sets corresponding to some particular value for both subsystems superposed on the state portrait in @fig-no-cqlf-with-lyapunov-invariant-sets.
+Recall now the important property of a Lyapunov function that its sublevel set $\{\bm x \mid V(\bm x) \leq \alpha\}$ is *forward (also positive) invariant*. We plot invariant sets corresponding to some particular values of $\alpha$ for both subsystems superposed on the state portrait in @fig-no-cqlf-with-lyapunov-invariant-sets.
 
 ```{julia}
 #| label: fig-no-cqlf-with-lyapunov-invariant-sets
@@ -422,7 +443,7 @@ Q₁ = (c*d' + d*c')/2
 f(x) = dot(x,Q₁,x) >= 0 ? A₁*x : A₂*x 
 
 using CairoMakie
-fig = Figure(size = (800, 800),fontsize=20)
+fig = Figure(size = (600, 600),fontsize=20)
 ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
 streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
 lines!(ax,[-2,2],[-2,2], color = :red, linewidth=3)
@@ -487,7 +508,7 @@ The exotic shape of this piecewise quadratic Lyapunov function is worth visualiz
 #| label: fig-flower-with-piecewise-quadratic-lf-3d
 #| fig-cap: 3D surface plot of the piecewise quadratic Lyapunov function
 using CairoMakie
-fig = Figure(size = (800, 800),fontsize=20)
+fig = Figure(size = (600, 600),fontsize=20)
 ax = Axis3(fig[1, 1], xlabel = "x₁", ylabel = "x₂", zlabel = "V(x)")
 x₁ = x₂ = range(-2.0, 2.0; length=100)
 X₁ = [i for i in x₁, j in x₂]
@@ -566,7 +587,7 @@ Several sublevel sets for the computed piecewise quadratic Lyapunov function are
 V(x) = x[1] <= 0.0 ? x'*P₁*x : x'*P₂*x
 
 using CairoMakie
-fig = Figure(size = (800, 800),fontsize=20)
+fig = Figure(size = (600, 600),fontsize=20)
 ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
 streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
 vlines!(ax,0.0,ymin=-2.0,ymax=2.0, color = :red, linewidth=3)
@@ -594,7 +615,7 @@ f(x) = x[1] <= 0.0 ? A₁*x : A₂*x
 
 using CairoMakie
 
-fig = Figure(size = (800, 800),fontsize=20)
+fig = Figure(size = (600, 600),fontsize=20)
 ax = Axis(fig[1, 1], xlabel = "x₁", ylabel = "x₂")
 streamplot!(ax,(x₁,x₂)->Point2f(f([x₁,x₂])), -2.0..2.0, -2.0..2.0, colormap = :magma, alpha = 0.6)
 vlines!(ax,0.0,ymin=-2.0,ymax=2.0, color = :red, linewidth=3)
