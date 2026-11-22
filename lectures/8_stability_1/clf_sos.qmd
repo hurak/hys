@@ -1,0 +1,288 @@
+---
+title: "Positive polynomial CLF via SOS "
+bibliography: ../references/ref_hybrid.bib
+format:
+    html:
+        html-math-method: katex
+        code-fold: true
+        code-summary: "Show the code"
+crossref:
+  fig-prefix: Fig. 
+  eq-prefix: Eq.
+engine: julia
+---
+
+## What if quadratic LF is not enough? 
+
+So far we considered quadratic Lyapunov functions – and it may be useful to display their prescription explicitly in the scalar form
+$$
+\begin{aligned}
+V(\bm x) &= \bm x^\top \bm P \bm x\\ 
+&= \begin{bmatrix}x_1 & x_2\end{bmatrix} \begin{bmatrix} p_{11} & p_{12}\\ p_{12} & p_{22}\end{bmatrix} \begin{bmatrix}x_1\\ x_2\end{bmatrix}\\
+&= p_{11}x_1^2 + 2p_{12}x_1x_2 + p_{22}x_2
+\end{aligned}
+$$
+to show that, indeed, a quadratic Lyapunov function is a (multivariate) quadratic polynomial. 
+
+Now, if quadratic polynomials are not enough, it is natural to consider polynomials of a higher degree. The crucial question is, however: how do we enforce positive definiteness?
+
+## Positive/nonnegative polynomials
+
+The question that we ask is this: is the polynomial $p(\bm x), \; \bm x\in \mathbb R^n$, positive (or at least nonnegative) on the whole $\mathbb R^n$? That is, we ask if 
+$$
+p(\bm x) > 0,\quad (\text{or}\quad p(\bm x) \geq 0)\; \forall \bm x\in\mathbb R^n.
+$$
+
+:::{#exm-polynomial-nonnegativity}
+Consider the polynomial $p(\bm x)= 2x_1^4 + 2x_1^3x_2 - x_1^2x_2^2 + 5x_2^4$. Is it nonnegative for all $x_1\in\mathbb R, x_2\in\mathbb R$?
+:::
+
+Additionally, $\bm x$ can be restricted to some $\mathcal X\sub \mathbb R^n$ and we ask if  
+$$
+  p(\bm x) \geq 0 \;\forall\; \bm x\in \mathcal X.
+$$
+
+Once we started working with polynomials, *semialgebraic sets* $\mathcal X$ are often considered, asthese are defined by polynomial inequalities such as
+$$
+g_j(\bm x) \geq 0, \; j=1,\ldots, m.
+$$
+
+But this we are only going to need in the next chapter, when we consider *Multiple Lyapunov Functions* (MLF) approach to stability analysis.
+
+### How can we check positivity/nonnegativity of polynomials? 
+
+Gridding is certainly not the way to go – we need conditions on the coefficients of the polynomial so that we can do some optimization later.
+
+:::{#exm-polynomial-nonnegativity-1D}
+Consider a univariate polynomial 
+$$
+p(x) = x^4 - 4x^3 + 13x^2 - 18x + 17.
+$$ 
+Does it hold that $p(x)\geq 0 \; \forall x\in \mathbb R$? Without plotting (hence gridding) we can hardly say. But what if we learn that the polynomial can be written as 
+$$
+p = (x-1)^2 + (x^2 - 2x + 4)^2
+$$ 
+
+Obviously, whatever the two squared polynomials are, after squaring they become nonnegative. And summing nonnegative numbers yields a nonnegative result. Let's generalize this.
+:::
+
+## Sum of squares (SOS) polynomials
+
+If we can express the polynomial as a *sum of squares* (SOS) of some other polynomials, the original polynomial is nonnegative, that is, 
+$$
+\boxed{p(\bm x) = \sum_{i=1}^k p_i(\bm x)^2\; \Rightarrow \; p(\bm x) \geq 0,\; \forall \bm x\in \mathbb R^n.}
+$$  
+
+The converse does not hold in general – not every nonnegative polynomial is SOS! There are only three cases, for which SOS is a necessary and sufficient condition of nonnegativeness:
+
+- $n=1$: univariate polynomials. The degree (the highest power) $d$ can be arbitrarily high (but even, obviously),
+- $d = 2$ and $n$ is arbitrary: multivariate polynomials of degree two (note that for $p(\bm x) = x_1^2 + x_1x_2^2$ the degree $d=3$).
+- $n=2$ and $d = 4$: bivariate polynomials of degree 4 (at maximum).
+
+For all other cases all we can say is that $$p(\bm x)\, \text{is}\, \mathrm{SOS} \Rightarrow p(\bm x)\geq 0\, \forall \bm x\in \mathbb R^n.$$
+
+:::{.callout-note}
+Hilbert conjectured in 1900 in the 17th problem that every nonnegative polynomial can be written as a sum of squares of rational functions. This was later proved correct. It turns out, that this fact is not as useful as the SOS using polynomials because of impossibility to state apriori the bounds on the degrees of the polynomials defining those rational functions.
+:::
+
+## How to get an SOS representation of a polynomial (or prove that none exist)? {.scrollable}
+
+### Univariate case
+
+Back to the univariate example first. And we do it through an example.
+
+::: {#exm-polynomial-nonnegativity-1D-SOS}
+We consider the polynomial in the @exm-polynomial-nonnegativity-1D. One of the two squared polynomials is $x^2 - 2x + 4$. We can write it as 
+$$x^2 - 2x + 4 = \underbrace{\begin{bmatrix}4 & -2 & 1\end{bmatrix}}_{\bm v^\top} \underbrace{\begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}}_{\bm z}.
+$$ 
+
+Then the squared polynomial can be written as
+$$
+(x^2 - 2x + 4)^2 = \bm z^\top \bm v \bm v^\top \bm z.
+$$ 	  
+
+Note that the the product $\bm v \bm v^\top$ is a positive semidefinite matrix of rank one.  
+
+We can similarly express the second squared polynomial 
+$$
+x-1 = \underbrace{\begin{bmatrix} -1 & 1 & 0\end{bmatrix}}_{\bm v^\top} \underbrace{\begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}}_{\bm z}
+$$
+and then
+$$
+(x - 1)^2 = \bm z^\top \begin{bmatrix} -1 \\ 1 \\ 0\end{bmatrix} \begin{bmatrix} -1 & 1 & 0\end{bmatrix} \bm z.
+$$	
+
+Summing the two squares we get the original polynomial. But while doing this, we can sum the two rank-one matrices.
+$$
+\begin{aligned}
+p(x) &= x^4 - 4x^3 + 13x^2 - 18x + 17\\ 
+&= \begin{bmatrix} 1 & x & x^2\end{bmatrix} \bm P \begin{bmatrix} 1 \\ x \\ x^2\end{bmatrix}
+\end{aligned},
+$$
+where $\bm P\succeq 0$ is 
+$$
+\bm P = \underbrace{\begin{bmatrix} 4 \\ -2 \\ 1\end{bmatrix} \begin{bmatrix} 4 & -2 & 1\end{bmatrix}}_{\bm P_1} + \underbrace{\begin{bmatrix} -1 \\ 1 \\ 0\end{bmatrix} \begin{bmatrix} -1 & 1 & 0\end{bmatrix}}_{\bm P_2}
+$$
+
+The matrix that defines the quadratic form is positive semidefinite and of rank 2. Indeed, the rank of the matrix is given by the number of squared terms in the SOS decomposition.
+:::
+
+### Multivariate case
+
+In a general multivariate case we can proceed similarly. Just form the vector $\bm z$ from all possible monomials:
+$$
+  \bm z = \begin{bmatrix}1 \\ x_1 \\ x_2 \\  \\ \vdots \\ x_n\\ x_1^2 \\ x_1 x_2 \\ \vdots \\ x_n^2\\\vdots \\x_1x_2\ldots x_n^{2}\\ \vdots \\ x_n^d \end{bmatrix}
+$$ 
+
+But how to determine the coefficients of the matrix? We again show it by means of an example.
+
+:::{exm-polynomial-nonnegativity-2D}
+We consider the polynomial $p(x_1,x_2)=2x_1^4 +2x_1^3x_2 − x_1^2x_2^2 +5x_2^4$. We define the vector $\bm z$ as
+$$
+\bm z = \begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}.
+$$
+
+Note that we could also write it fully as 
+$$
+\bm z = \begin{bmatrix} 1 \\ x_1\\ x_2\\ x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix},
+$$
+but we can see that the first three terms are not going to be needed. If you still cannot see it, feel free to continue with the full version of $\bm z$, no problem. 
+
+Then the polynomial can be written as
+$$
+p(x_1,x_2)=\begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}^\top \begin{bmatrix} p_{11} & p_{12} & p_{13}\\ p_{12} & p_{22} & p_{23}\\p_{13} & p_{23} & p_{33}\end{bmatrix} \begin{bmatrix} x_1^2 \\ x_1x_2 \\ x_2^2\end{bmatrix}.
+$$
+
+After multiplying the producs out, we get
+$$
+\begin{aligned}
+p(x_1,x_2)&={\color{blue}p_{11}}x_1^4 + {\color{blue}p_{33}}x_2^4 \\
+&\quad + {\color{blue}2p_{12}}x_1^3x_2 + {\color{blue}2p_{23}}x_1x_2^3\\
+&\quad + {\color{blue}(2p_{13} + p_{22})}x_1^2x_2^2
+\end{aligned}
+$$
+
+There are now 5 coefficients in the above polynomial (they are highlighted in blue).
+Equating them to the particular values gives 5 equations. In our case, the five equations are
+$$
+\begin{aligned}
+p_{11} &= 2,\\
+2p_{12} &= 2,\\
+2p_{13} + p_{22} &= -1,\\
+2p_{23} &= 0,\\
+p_{33} &= 5.
+\end{aligned}
+$$
+
+But the matrix $\bm P$ is parameterized by 6 coefficients. Hence we need one more equation. The sixth condition is the linear matrix inequality (LMI) 
+
+$$\bm P\succeq 0.$$
+
+This can be solved as the feasibility problem with linear equality and semidefinite constraints using the code below.
+
+```{julia}
+#| code-fold: show
+using Convex, SCS
+
+p₁₁ = Variable()
+p₁₂ = Variable()
+p₁₃ = Variable()
+p₂₂ = Variable()
+p₂₃ = Variable()
+p₃₃ = Variable()
+
+P = [p₁₁ p₁₂ p₁₃; p₁₂ p₂₂ p₂₃; p₁₃ p₂₃ p₃₃]
+
+linear_constraints = [
+    p₁₁ == 2,
+    2p₁₂ == 2,
+    2p₁₃ + p₂₂ == -1,
+    2p₂₃ == 0,
+    p₃₃ == 5
+]
+
+semidefinite_constraint = [P ⪰ 0]
+
+constraint = vcat(linear_constraints, semidefinite_constraint)
+
+problem = satisfy(constraint)
+solve!(problem, SCS.Optimizer, silent=true)
+```
+
+Apparently, the problem is feasible, hence the polynomial is SOS, hence nonnegative. We can also visualize the polynomial to see that it is indeed nonnegative at least withing some region around the origin.
+
+```{julia}
+#| code-fold: true
+#| fig-cap: "Surface and contour plots of the polynomial $p(x_1,x_2)$ from the example"
+#| label: fig-surface-polynomial
+p(x1, x2) = 2x1^4 + 2x1^3*x2 - x1^2*x2^2 + 5x2^4
+
+using CairoMakie
+
+X1 = range(-1.5, 1.5, length=40)
+X2 = range(-1.5, 1.5, length=40)
+
+Z = [p(x1,x2) for x1 in X1, x2 in X2]
+
+fig = Figure(; size = (600, 600),fontsize=20)
+ax = Axis3(fig[1, 1]; xlabel="x₁", ylabel="x₂", zlabel="p(x₁,x₂)", protrusions=(60, 0, 0, 0))
+surface!(ax, X1, X2, Z; colormap=:viridis)
+zfloor = -10.0                     # Level of the horizontal plane with the contours
+cp = contour!(ax, X1, X2, Z; levels=[0.1, 0.5, 1, 2, 4, 8, 16, 32], colormap=:viridis, colorrange=extrema(Z), linewidth=2)
+translate!(cp, 0, 0, zfloor)
+zlims!(ax, zfloor, maximum(Z))
+fig
+```
+:::
+
+## Searching for a SOS polynomial Lyapunov function
+
+We can now formulate the search for a nonnegative polynomial function $V(\bm x)$ as a search within the set of SOS polynomials of a prescribed degree $d$. 
+
+However, for a Lyapunov function, we need positiveness (actually positive definiteness), not just nonnegativeness.Therefore, instead of $V(\bm x) \; \text{is SOS}$, we are going to impose the condition
+$$
+\boxed{
+V(\bm x) - \phi(\bm x) \; \text{is SOS},}
+$$
+where $\phi(\bm x) = \gamma \sum_{i=1}^n\sum_{j=1}^{d} x_i^{2j}$ for some (typically very small) $\gamma > 0$. This is pretty much the same trick that we used in the LMI formulation when we needed enforce strict inequalities.
+
+What remains to complete the conditions for Lyapunov stability, is to express the requirement that the time derivative of $V(\bm x)$ is nonpositive. This can also be done by requiring that *minus* the time derivative of the polynomial Lyapunov function, which is a polynomial too, is SOS too.
+
+$$
+\boxed
+{-\nabla V(\bm x)^\top \mathbf f(\bm x)\; \text{is SOS}.}
+$$
+
+If asymptotic stability is required instead of just Lyapunov one, the condition is that the time derivative is strictly negative, that is, we can require that 
+$$
+\boxed
+{-\nabla V(\bm x)^\top \mathbf f(\bm x) - \phi(\bm x)\; \text{is SOS}.}
+$$
+
+## Searching for a SOS polynomial common Lyapunov function
+
+Back to hybrid systems. For Lyapunov stability, the problem is to find $V(\bm x)$ such that 
+
+$$
+\boxed{
+\begin{aligned}  
+V(\bm x) - \phi(\bm x) \; &\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_1(\bm x)\; &\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_2(\bm x)\; &\text{is SOS},\\
+\vdots\\
+-\nabla V(\bm x)^\top \mathbf f_r(\bm x)\; &\text{is SOS}, 
+\end{aligned}
+}
+$$
+while for asymptotic stability, the conditions are
+$$
+\boxed{
+\begin{aligned}  
+V(\bm x) - \phi(\bm x) \; &\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_1(\bm x) - \phi(\bm x)\; &\text{is SOS},\\
+-\nabla V(\bm x)^\top \mathbf f_2(\bm x) - \phi(\bm x)\; &\text{is SOS},\\
+\vdots\\
+-\nabla V(\bm x)^\top \mathbf f_r(\bm x) - \phi(\bm x)\; &\text{is SOS}.
+\end{aligned}
+}
+$$
