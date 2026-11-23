@@ -169,7 +169,7 @@ Most (if not all) numerical optimization solvers, including those that can accep
 $$
 \begin{aligned}
 \bm P &\succeq \epsilon I,\\
-\mathbf A^\top \bm P + \bm P\mathbf A &\preceq \epsilon I.
+\mathbf A^\top \bm P + \bm P\mathbf A &\preceq -\epsilon I.
 \end{aligned}
 $$
 
@@ -177,7 +177,7 @@ For an LMI with no affine term, we can multiply both sides by $1/\epsilon$ to ge
 $$
 \begin{aligned}
 \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} &\succeq I,\\
-\mathbf A^\top \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} + \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}}\mathbf A &\preceq I.
+\mathbf A^\top \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} + \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}}\mathbf A &\preceq -I.
 \end{aligned}
 $$
 
@@ -241,10 +241,10 @@ We can also turn this into a nonstrict LMI system
 $$
 \begin{aligned}
 \bm P &\succeq \mathbf I,\\
-\mathbf A_1^\top \bm P + \bm P\mathbf A_1 &\preceq \mathbf I,\\
-\mathbf A_2^\top \bm P + \bm P\mathbf A_2 &\preceq \mathbf I,\\
+\mathbf A_1^\top \bm P + \bm P\mathbf A_1 &\preceq -\mathbf I,\\
+\mathbf A_2^\top \bm P + \bm P\mathbf A_2 &\preceq -\mathbf I,\\
 & \vdots \\
-\mathbf A_r^\top \bm P + \bm P\mathbf A_r &\preceq \mathbf I.
+\mathbf A_r^\top \bm P + \bm P\mathbf A_r &\preceq -\mathbf I.
 \end{aligned}
 $$
 
