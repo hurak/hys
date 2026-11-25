@@ -984,11 +984,11 @@ and for asymptotic stability<br>
 <h2 class="anchored" data-anchor-id="stric-vs.-nonstrict-lmi">Stric vs.&nbsp;nonstrict LMI</h2>
 <p>Most (if not all) numerical optimization solvers, including those that can accept linear matrix inequalities as constraints, can only handle nonstrict inequalities. Should we insist on strict inequalities, we can enforce strictness by introducing some small <span class="math inline">\epsilon&gt;0</span>. In the case of Lyapunov inequality, we can write <span class="math display">\begin{aligned}
 \bm P &amp;\succeq \epsilon I,\\
-\mathbf A^\top \bm P + \bm P\mathbf A &amp;\preceq \epsilon I.
+\mathbf A^\top \bm P + \bm P\mathbf A &amp;\preceq -\epsilon I.
 \end{aligned}</span></p>
 <p>For an LMI with no affine term, we can multiply both sides by <span class="math inline">1/\epsilon</span> to get the identity matrix on the right-hand side <span class="math display">\begin{aligned}
 \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} &amp;\succeq I,\\
-\mathbf A^\top \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} + \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}}\mathbf A &amp;\preceq I.
+\mathbf A^\top \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}} + \underbrace{\frac{1}{\epsilon}\bm P}_{\tilde{\bm P}}\mathbf A &amp;\preceq -I.
 \end{aligned}</span></p>
 <p>Obviously, the solution set of the LMI was not changed but this scaling of the right-hand side and we can safely use the identity matrix on the right-hand side. But beware this thick can only be used for and LMI with no affine term. If there is an affine term, we would have to stick with the <span class="math inline">\epsilon I</span> on the right-hand side.</p>
 </section>
@@ -1023,10 +1023,15 @@ and for asymptotic stability<br>
 <div id="6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">solve!</span>(problem, SCS.Optimizer; silent <span class="op">=</span> <span class="cn">true</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">evaluate</span>(P)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2×2 Matrix{Float64}:
+  2.83539     -0.00128958
+ -0.00128958   2.2423</code></pre>
+</div>
 </div>
 <p>Since the solution is a symmetric matrix, we can check that the solution is positive definite by computing its eigenvalues.</p>
 <div id="8" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigvals</span>(<span class="fu">evaluate</span>(P))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eigvals</span>(<span class="fu">evaluate</span>(P))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2-element Vector{Float64}:
  2.242300353154269
@@ -1047,10 +1052,10 @@ and for asymptotic stability<br>
 \end{aligned}</span></p>
 <p>We can also turn this into a nonstrict LMI system <span class="math display">\begin{aligned}
 \bm P &amp;\succeq \mathbf I,\\
-\mathbf A_1^\top \bm P + \bm P\mathbf A_1 &amp;\preceq \mathbf I,\\
-\mathbf A_2^\top \bm P + \bm P\mathbf A_2 &amp;\preceq \mathbf I,\\
+\mathbf A_1^\top \bm P + \bm P\mathbf A_1 &amp;\preceq -\mathbf I,\\
+\mathbf A_2^\top \bm P + \bm P\mathbf A_2 &amp;\preceq -\mathbf I,\\
 &amp; \vdots \\
-\mathbf A_r^\top \bm P + \bm P\mathbf A_r &amp;\preceq \mathbf I.
+\mathbf A_r^\top \bm P + \bm P\mathbf A_r &amp;\preceq -\mathbf I.
 \end{aligned}</span></p>
 </section>
 <section id="solution-set-of-an-lmi-is-convex" class="level2">
